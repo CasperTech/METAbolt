@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="METAbolt.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ToolstripTabs_LayoutStyle" Type="System.Windows.Forms.ToolStripLayoutStyle" Scope="User">
+      <Value Profile="(Default)">HorizontalStackWithOverflow</Value>
+    </Setting>
+    <Setting Name="ToolstripTabs_Dock" Type="System.Windows.Forms.DockStyle" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

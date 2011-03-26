@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aiml>
+<!--author: Mustafa-->
+<!--licence: Standard-->
+<!--created with: GaitoBot AIML Editor V1.1.0.1951-->
+<category>
+	<pattern>WHAT IS LTEK</pattern>
+	<template>L-Tek is a popular SL technology provider which has been in existence since 2006. It provides technologies such as vListmaker, Announcer, GroupMan Pro, METAbolt and many more. It is owned by Legolas Luke who is also the owner of METAbolt. Would you like a Landmark to the main L-Tek showroom?</template>
+</category>
+<category>
+	<pattern>WHAT IS L TEK</pattern>
+	<template><srai>WHAT IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>YES</pattern><that>WHAT IS LTEK</that>
+	<template>The slUrl is: <bot name="slurl" /></template>
+</category>
+<category>
+	<pattern>WHAT IS LTECH</pattern>
+	<template><srai>WHAT IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHAT IS L TECH</pattern>
+	<template><srai>WHAT IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHAT IS LTEC</pattern>
+	<template><srai>WHAT IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHAT IS L TEC</pattern>
+	<template><srai>WHAT IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS LTEK</pattern>
+	<template>The main showroom is in the Vilmarh SIM. The slUrl is <get name="slurl" /></template>
+</category>
+<category>
+	<pattern>WHERE IS L TEK</pattern>
+	<template><srai>WHERE IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS L TECH</pattern>
+	<template><srai>WHERE IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS LTECH</pattern>
+	<template><srai>WHERE IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS L TEC</pattern>
+	<template><srai>WHERE IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS LTEC</pattern>
+	<template><srai>WHERE IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>HOW CAN * LTEK</pattern>
+	<template>WHERE IS LTEK</template>
+</category>
+<category>
+	<pattern>CAN YOU TP *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELEPORT *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* SEND * LM</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* SEND * LANDMARK</pattern>
+	<template>I am unable to send TP invites at the moment. <srai>WHERE IS LTEK</srai></template>
+</category>
+<category>
+	<pattern>* GIVE * LM</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* GIVE * LANDMARK</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* HAVE * LANDMARK</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* HAVE * LM</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* GET * LANDMARK</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* GET * LM</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* GIVE * LM *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* GIVE * LANDMARK *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* SEND * LM *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* SEND * LANDMARK *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* HAVE * LANDMARK *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* HAVE * LM *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* GET * LM *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>* GET * LANDMARK *</pattern>
+	<template><srai><star /> SEND <star /> LANDMARK</srai></template>
+</category>
+<category>
+	<pattern>WHO OWNS LTEK</pattern>
+	<template>LTEK is owned by Legolas Luke.</template>
+</category>
+<category>
+	<pattern>WHO IS THE OWNER OF LTEK</pattern>
+	<template><srai>WHO OWNS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHO * LTEK OWNER *</pattern>
+	<template><srai>WHO OWNS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHO OWNS LTEK *</pattern>
+	<template><srai>WHO OWNS LTEK</srai></template>
+</category>
+<category>
+	<pattern>WHO * LTEK OWNER</pattern>
+	<template><srai>WHO OWNS LTEK</srai></template>
+</category>
+<category>
+	<pattern>I AM * VLISTMAKER</pattern>
+	<template>You can find it in the far corner to my left. The product is called vListmaker.</template>
+</category>
+<category>
+	<pattern>WHERE * VLISTMAKER</pattern>
+	<template><srai>I AM <star /> VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELL ME WHERE * VLISTMAKER</pattern>
+	<template><srai>I AM <star /> VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>COULD YOU TELL ME WHERE * VLISTMAKER</pattern>
+	<template><srai>I AM <star /> VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>VLISTMAKER</pattern>
+	<template>vListmaker is a popular greeter and/or traffic counter which also has the ability to give out landmarks. notecards and even gifts. It has many more features. If you would liek to know more please click on the vListmaker vendor for the information notecard. If you have any questions that is not covered in the notecard or I have failed to answer please IM Legolas Luke.</template>
+</category>
+<category>
+	<pattern>WHAT * VLISTMAKER</pattern>
+	<template><srai>VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>DOES * VLISTMAKER</pattern>
+	<template><srai>VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>HOW * VLISTMAKER</pattern>
+	<template><srai>VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS THE VLISTMAKER *</pattern>
+	<template><srai>VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>IS VLISTMAKER *</pattern>
+	<template><srai>VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES VLISTMAKER *</pattern>
+	<template><srai>VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES VLISTMAKER *</pattern>
+	<template><srai>VLISTMAKER</srai></template>
+</category>
+<category>
+	<pattern>I AM * SECURITY</pattern>
+	<template>We have 2 different types of security systems. One is called s-Globe. It is an advanced security system which allows security lists and it also works on group owned land. The second is s-Radar which combines the features of security, a greeter and some other functions. You can find them both on my left opposite by the window. If you click on the vendors you will be able to get more information on each product.</template>
+</category>
+<category>
+	<pattern>I AM LOOKING FOR SECURITY *</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>I AM LOOKING FOR A SECURITY *</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>I NEED A SECURITY *</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>I NEED SECURITY *</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>I WANT SECURITY *</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>I WANT TO * SECURITY</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>I NEED TO * SECURITY</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>WHERE * SECURITY</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELL ME WHERE * SECURITY</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>COULD YOU TELL ME WHERE * SECURITY</pattern>
+	<template><srai>I AM <star /> SECURITY</srai></template>
+</category>
+<category>
+	<pattern>S GLOBE</pattern>
+	<template>s-Globe is an advanced security system which allows security lists and it also works on group owned land. You can find it on my left opposite by the window. If you click on the s-Globe vendor you will be able to get more information on it.</template>
+</category>
+<category>
+	<pattern>S RADAR</pattern>
+	<template>s-Radar is mainly a visual security system but it also combines a greeter and some other fucntions into one powerful product. You can find it on my left opposite by the window, next to the door. If you click on the s-Radar vendor you will be able to get more information on it.</template>
+</category>
+<category>
+	<pattern>WHAT * S GLOBE</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>DOES * S GLOBE</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>HOW * S GLOBE</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>IS S GLOBE *</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS THE S GLOBE *</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>WHERE * S GLOBE</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES S GLOBE *</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES S GLOBE *</pattern>
+	<template><srai>S GLOBE</srai></template>
+</category>
+<category>
+	<pattern>WHAT * S RADAR</pattern>
+	<template><srai>S RADAR</srai></template>
+</category>
+<category>
+	<pattern>DOES * S RADAR</pattern>
+	<template><srai>RADAR</srai></template>
+</category>
+<category>
+	<pattern>HOW * S RADAR</pattern>
+	<template><srai>S RADAR</srai></template>
+</category>
+<category>
+	<pattern>IS S RADAR *</pattern>
+	<template><srai>S RADAR</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS THE S RADAR *</pattern>
+	<template><srai>S RADAR</srai></template>
+</category>
+<category>
+	<pattern>WHERE * S RADAR</pattern>
+	<template><srai>S RADAR</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES S RADAR *</pattern>
+	<template><srai>S RADAR</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES S RADAR *</pattern>
+	<template><srai>S RADAR</srai></template>
+</category>
+<category>
+	<pattern>TRACK GRABBER</pattern>
+	<template>Track grabber is a system that will connect to any Shoutcast streaming server and display the currently playing track details in its tag or output it to be displayed on Text display device such as TAG. You can get detailed information on the product by clicking on its vendor.</template>
+</category>
+<category>
+	<pattern>I AM * TRACK GRABBER</pattern>
+	<template>You can find it in the far corner to my left. The product is called TRACK GRABBER.</template>
+</category>
+<category>
+	<pattern>WHERE * TRACK GRABBER</pattern>
+	<template><srai>I AM <star /> TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELL ME WHERE * TRACK GRABBER</pattern>
+	<template><srai>I AM <star /> TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>COULD YOU TELL ME WHERE * TRACK GRABBER</pattern>
+	<template><srai>I AM <star /> TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>WHAT * TRACK GRABBER</pattern>
+	<template><srai>TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>DOES * TRACK GRABBER</pattern>
+	<template><srai>TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>HOW * TRACK GRABBER</pattern>
+	<template><srai>TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS THE TRACK GRABBER *</pattern>
+	<template><srai>TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>IS TRACK GRABBER *</pattern>
+	<template><srai>TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES TRACK GRABBER *</pattern>
+	<template><srai>TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES TRACK GRABBER *</pattern>
+	<template><srai>TRACK GRABBER</srai></template>
+</category>
+<category>
+	<pattern>TAG</pattern>
+	<template>TAG is a text display system that display text that you type in or it receives from another object of your choice. You can see a sample of it on the far wall on my left. You can also get detailed information on the product by clicking on its vendor.</template>
+</category>
+<category>
+	<pattern>I AM * TAG</pattern>
+	<template>You can find it at the other end on my left. There is a large TAG display unit on the wall there.</template>
+</category>
+<category>
+	<pattern>WHERE * TAG</pattern>
+	<template><srai>I AM <star /> TAG</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELL ME WHERE * TAG</pattern>
+	<template><srai>I AM <star /> TAG</srai></template>
+</category>
+<category>
+	<pattern>COULD YOU TELL ME WHERE * TAG</pattern>
+	<template><srai>I AM <star /> TAG</srai></template>
+</category>
+<category>
+	<pattern>WHAT * TAG</pattern>
+	<template><srai>TAG</srai></template>
+</category>
+<category>
+	<pattern>DOES * TAG</pattern>
+	<template><srai>TAG</srai></template>
+</category>
+<category>
+	<pattern>HOW * TAG</pattern>
+	<template><srai>TAG</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS THE TAG *</pattern>
+	<template><srai>TAG</srai></template>
+</category>
+<category>
+	<pattern>IS TAG *</pattern>
+	<template><srai>TAG</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES TAG *</pattern>
+	<template><srai>TAG</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES TAG *</pattern>
+	<template><srai>TAG</srai></template>
+</category>
+<category>
+	<pattern>ANNOUNCER</pattern>
+	<template>ANNOUNCER is a device that will announce everything you say in 3rd person. It can also announce prestored information that you have saved at the intervals you specify. It also has several other unique features. You can see a sample of it on the far wall on my left. You can also get detailed information on the product by clicking on its vendor.</template>
+</category>
+<category>
+	<pattern>I AM * ANNOUNCER</pattern>
+	<template>You can find it in the far opposite corner on my left. If you click on it you will be able to get detailed information on the product.</template>
+</category>
+<category>
+	<pattern>WHERE * ANNOUNCER</pattern>
+	<template><srai>I AM <star /> ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELL ME WHERE * ANNOUNCER</pattern>
+	<template><srai>I AM <star /> ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>COULD YOU TELL ME WHERE * ANNOUNCER</pattern>
+	<template><srai>I AM <star /> ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>WHAT * ANNOUNCER</pattern>
+	<template><srai>ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>DOES * ANNOUNCER</pattern>
+	<template><srai>ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>HOW * ANNOUNCER</pattern>
+	<template><srai>ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS THE ANNOUNCER *</pattern>
+	<template><srai>ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>IS ANNOUNCER *</pattern>
+	<template><srai>ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES ANNOUNCER *</pattern>
+	<template><srai>ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES ANNOUNCER *</pattern>
+	<template><srai>ANNOUNCER</srai></template>
+</category>
+<category>
+	<pattern>TRIVIUS</pattern>
+	<template>There are 2 types of Trivius, the Trivius S and the Trivius Classic. Trivius is a type of a Trivia game where players pay to enter and a monetary prize is paid to each correctly answered question. Trivius S has more advanced features than the classic range. You can see the whole range with display samples on my left, behind the elevator. You can get detailed information by clicking on a vendor.</template>
+</category>
+<category>
+	<pattern>I AM * TRIVIUS</pattern>
+	<template>You can find it in the far corner to my left. The product is called TRIVIUS.</template>
+</category>
+<category>
+	<pattern>WHERE * TRIVIUS</pattern>
+	<template><srai>I AM <star /> TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELL ME WHERE * TRIVIUS</pattern>
+	<template><srai>I AM <star /> TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>COULD YOU TELL ME WHERE * TRIVIUS</pattern>
+	<template><srai>I AM <star /> TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>WHAT * TRIVIUS</pattern>
+	<template><srai>TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>DOES * TRIVIUS</pattern>
+	<template><srai>TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>HOW * TRIVIUS</pattern>
+	<template><srai>TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>WHERE IS THE TRIVIUS *</pattern>
+	<template><srai>TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>IS TRIVIUS *</pattern>
+	<template><srai>TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES TRIVIUS *</pattern>
+	<template><srai>TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES TRIVIUS *</pattern>
+	<template><srai>TRIVIUS</srai></template>
+</category>
+<category>
+	<pattern>FREEBIES</pattern>
+	<template>Freebies are items designed by SL residents and given away FULL Mod for free. This is mainly done to help people who are new to SL get started and also for creators to make a name for themselves. You can see the L-Tek range of freebies upstairs on the first floor. You can use the lifts on either side of me to get up there.</template>
+</category>
+<category>
+	<pattern>I AM * FREEBIES</pattern>
+	<template>You can find it on the first floor above us. You can use the lifts on either side of me to get up there.</template>
+</category>
+<category>
+	<pattern>WHERE * FREEBIES</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>I AM * FREEBIES SECTION</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>I AM * FREEBIES DEPARTMENT</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>I NEED * FREEBIES</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>CAN YOU TELL ME WHERE * FREEBIES</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>COULD YOU TELL ME WHERE * FREEBIES</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>WHAT * FREEBIES</pattern>
+	<template><srai>FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>DOES * FREEBIES</pattern>
+	<template><srai>FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>HOW * FREEBIES</pattern>
+	<template><srai>FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>WHERE ARE THE FREEBIES *</pattern>
+	<template><srai>FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>ARE FREEBIES *</pattern>
+	<template><srai>FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>WHAT DOES FREEBIES *</pattern>
+	<template><srai>FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>HOW DOES FREEBIES *</pattern>
+	<template><srai>FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>WHERE * PENIS</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>WHERE * COCK</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>WHERE * MALE GENETALS</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>WHERE * MALE GENETALIA</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>I * PENIS</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>I * COCK</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>I * GENETALS</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>I * GENETALIA</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+
+<category>
+	<pattern>HOW * PENIS</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>HOW * COCK</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>HOW * GENETALS</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+<category>
+	<pattern>HOW * GENETALIA</pattern>
+	<template><srai>I AM <star /> FREEBIES</srai></template>
+</category>
+</aiml>
+

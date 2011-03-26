@@ -1,0 +1,12 @@
+﻿3rd Rock Grid,http://grid.3rdrockgrid.com:8002
+Avatar Hangout,http://login.avatarhangout.com:8002
+Cyberlandia,http://hypergrid.cyberlandia.net:8002
+Francogrid,http://grid.francogrid.net:8002
+Legend City Online,http://login.legendcityonline.com
+Meta7,https://login.meta7.com
+OSGrid,http://osgrid.org:8002
+ReactionGrid,http://reactiongrid.com:8008
+The Gor Grid,http://thegorgrid.com:8002
+The New World Grid,http://grid.newworldgrid.com:8002
+WorldSimTerra,http://wsterra.com:8002/
+Your Alternative Life,http://grid.youralternativelife.com

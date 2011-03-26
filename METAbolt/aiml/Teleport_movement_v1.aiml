@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+
+<aiml>
+<!--author: Mustafa-->
+<!--licence: Standard-->
+<!--created with: GaitoBot AIML Editor V1.2.0.33320-->
+<!--   Copyright (c) 2009 Courland Heritage Trust.   -->
+<!--     -->
+<!--   Permission is hereby granted, free of charge, to any person         -->
+<!--   obtaining a copy of this software and associated documentation      -->
+<!--   files (the "Software"), to deal in the Software without             -->
+<!--   restriction, including without limitation the rights to use,        -->
+<!--   copy, modify, merge, publish, distribute, sublicense, and/or sell   -->
+<!--   copies of the Software, and to permit persons to whom the           -->
+<!--   Software is furnished to do so, subject to the following            -->
+<!--   conditions:                                                         -->
+<!--     -->
+<!--   The above copyright notice and this permission notice shall be      -->
+<!--   included in all copies or substantial portions of the Software.     -->
+<!--     -->
+<!--   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,     -->
+<!--   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES     -->
+<!--   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND            -->
+<!--   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT         -->
+<!--   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,        -->
+<!--   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING        -->
+<!--   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR       -->
+<!--   OTHER DEALINGS IN THE SOFTWARE.   -->
+<!--     -->
+<!--   Complies with the AIML 1.0.1 Standard   -->
+<!--   as adopted by the ALICE A.I. Foundation.   -->
+<!--   Last modified June 10, 2009   -->
+<!--   NB. Incert your own SLURL if you want the visitors to find you  -->
+<category>
+	<pattern> COME </pattern>
+	<template>
+		<random> 
+			<li> I am grounded, sorry. Only IM, please. </li> 
+			<li> I cannot leave my post, sorry. Only IM, please. </li> 
+			<li> I am stuck at work, sorry. Only IM, please. </li> 
+			<li> I am stuck. Only IM, please. </li> 
+		</random> </template>
+</category>
+<category>
+	<pattern> * COME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern>_ TELEPORT</pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> TELEPORT _ </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern>_ TELEPORT * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> COME WITH ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> COME WITH ME * </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> _ COME WITH ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> * COME WITH ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> COME WITH ME _ </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> COME TO ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> FOLLOW ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> * FOLLOW ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> I GAVE YOU TPORT </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> I GAVE YOU TP </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> I WILL TP YOU </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern>I TP YOU </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> COME HERE </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> COME WERE I AM </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> CAN YOU TELEPORT TO ME </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> COME WHERE I AM </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> CAN YOU TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> TELEPORT TO ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> TELEPORT TO ME _ </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> TELEPORT TO ME * </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> * YOU TELEPORT _ </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> CAN YOU TP </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> CAN YOU TP _ </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> GIVE TELEPORT </pattern>
+	<template>
+		<random> 
+			<li> I have technical difficulties, sorry. Here is a SLURL instead - http://slurl.com/secondlife/Vilmarh/185/190/84 </li> 
+			<li> Techical problems sorry - try SLURL instead - http://slurl.com/secondlife/Vilmarh/185/190/84 </li> 
+			<li> Tech problems, sorry - try this instead - http://slurl.com/secondlife/ </li> 
+			<li> Please come - http://slurl.com/secondlife/Vilmarh/185/190/84 </li> 
+		</random></template>
+</category>
+<category>
+	<pattern> GIVE TPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> TP ME _ </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern>TP</pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> I WANT TO SEE YOU </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> COME WITH ME </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> GIVE TP </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> GIVE ME TELEPORT * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> GIVE ME TP </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> GIVE ME TP * </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> GIVE TP * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> * GIVE ME TP </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern>GIVE ME LM*</pattern>
+	<template><srai>GIVE ME TP</srai></template>
+</category>
+<category>
+	<pattern> * GIVE TP </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> SEND ME TP </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> SEND ME TP * </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> * SEND ME TP </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> _ SEND ME TP * </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> TP ME </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> _ TP ME </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> _ TP ME * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> _ SEND ME TP </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> _ GIVE ME TELEPORT * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> GIVE ME TP * </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> SEND INVITE * </pattern>
+	<template><srai> GIVE TP </srai></template>
+</category>
+<category>
+	<pattern> * GIVE ME TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> * GIVE TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> SEND ME TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> SEND ME TELEPORT * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> * SEND ME TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> _ SEND ME TELEPORT * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> _ SEND ME TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> _ TP YOU </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<!--   See if substitutions xml and reducer works ie. TP; TPORT    -->
+<category>
+	<pattern> ACCEPT TELEPORT </pattern>
+	<template><srai> COME </srai></template>
+</category>
+<category>
+	<pattern> GIVE ME YOUR LM </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> CAN I COME TO _ </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> MAY I COME TO _ </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> _ ME TELEPORT </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> _ ME TELEPORT * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> * ME TELEPORT _ </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> * ME TELEPORT * </pattern>
+	<template><srai> GIVE TELEPORT </srai></template>
+</category>
+<category>
+	<pattern> TOUCH THE POSEBALL </pattern>
+	<template>
+Tech difficulties, I cannot touch objects at the moment. Perhaps next time.
+</template>
+</category>
+<category>
+	<pattern> TOUCH THE BALL </pattern>
+	<template><srai> TOUCH THE POSEBALL </srai></template>
+</category>
+<category>
+	<pattern> TOUCH THE BALL * </pattern>
+	<template><srai> TOUCH THE POSEBALL </srai></template>
+</category>
+<category>
+	<pattern> * TOUCH THE BALL </pattern>
+	<template><srai> TOUCH THE POSEBALL </srai></template>
+</category>
+<category>
+	<pattern> _ TOUCH THE BALL * </pattern>
+	<template><srai> TOUCH THE POSEBALL </srai></template>
+</category>
+<!--   See if reducer can handle reductions below        -->
+<category>
+	<pattern> TOUCH THE PRIM </pattern>
+	<template><srai> TOUCH THE POSEBALL </srai></template>
+</category>
+<category>
+	<pattern> TOUCH THE HEIGHTMETER </pattern>
+	<template><srai> TOUCH THE POSEBALL </srai></template>
+</category>
+<category>
+	<pattern> TOUCH THE OBJECT </pattern>
+	<template><srai> TOUCH THE POSEBALL </srai></template>
+</category>
+<category>
+	<pattern> YOU ARE SHORT </pattern>
+	<template>
+I am 6', it appears I have not rezzed properly. 
+I don't mind you ejecting me, just don't ban me please. I came in peace. 
+</template>
+</category>
+<category>
+	<pattern> YOU LOOK SHORT </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK SHORT </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> YOU LOOK STRANGE </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> YOU LOOK * STRANGE </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK STRANGE </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK * STRANGE </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> YOU LOOK BAD </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> YOU LOOK * BAD </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK BAD </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK * BAD </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> YOU LOOK MISSHAPEN </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK MISSHAPEN </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> ARE YOU A DWARF </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ ARE YOU A DWARF </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> YOU LOOK LIKE A DWARF </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK LIKE A DWARF </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> ARE YOU A CHILD </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ ARE YOU A CHILD </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ YOU LOOK LIKE A CHILD </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> HOW TALL ARE YOU </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> WHAT IS YOU HEIGHT </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> TOUCH THE HEIGHT METER </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ TOUCH THE HEIGHT METER * </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> TOUCH THE HEIGHT METER * </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> * TOUCH THE HEIGHT METER _ </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> CLICK THE HEIGHT METER </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> _ CLICK THE HEIGHT METER * </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> CLICK THE HEIGHT METER * </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+<category>
+	<pattern> * CLICK THE HEIGHT METER _ </pattern>
+	<template><srai> YOU ARE SHORT </srai></template>
+</category>
+</aiml>

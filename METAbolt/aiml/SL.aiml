@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aiml>
+<category>
+<pattern>WHAT DO YOU KNOW ABOUT SL</pattern>
+<template>
+I know many things about SL! What would you like to know about it?
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT DO YOU KNOW ABOUT SECOND LIFE</pattern>
+<template>
+I know many things about SL! What would you like to know about it?
+</template>
+</category>
+
+
+<category>
+<pattern>SL</pattern>
+<template>
+<srai> SECOND LIFE</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>SECONDLIFE</pattern>
+<template>
+<srai> SECOND LIFE</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>SECOND LIFE</pattern>
+<template>
+<srai> WHAT IS SL</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT DOES LSL *</pattern>
+<template>
+<srai> WHAT IS LINDEN SCRIPTING LANGUAGE</srai>  
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS SL</pattern>
+<template>
+SL stands for Second Life, owned by Linden Labs. It is a 3D (virtual world) social platform which is called a Grid.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS A GRID</pattern>
+<template>
+A Grid is a network of SIMs i.e. independant SIMs that are joined together to form a large community
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT DOES SL *</pattern>
+<template>
+<srai> SECOND LIFE</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>I AM HAVING PROBLEMS INSTALLING METABOLT</pattern>
+<template>
+Have a look here:               http://www.metabolt.net/metaforums/yaf_postst13_Trouble-installating-METAbolt.aspx
+</template>
+</category>
+
+
+<category>
+<pattern>I HAVE PROBLEMS INSTALLING METABOLT</pattern>
+<template>
+Have a look here: http://www.metabolt.net/metaforums/yaf_postst13_Trouble-installating-METAbolt.aspx
+</template>
+</category>
+
+
+<category>
+<pattern>I AM HAVING TROUBLE INSTALLING METABOLT</pattern>
+<template>
+Have a look here: http://www.metabolt.net/metaforums/yaf_postst13_Trouble-installating-METAbolt.aspx
+</template>
+</category>
+
+
+<category>
+<pattern>I AM HAVING A PROBLEM INSTALLING METABOLT</pattern>
+<template>
+Have a look here: http://www.metabolt.net/metaforums/yaf_postst13_Trouble-installating-METAbolt.aspx
+</template>
+</category>
+
+
+<category>
+<pattern>LSL</pattern>
+<template>
+<srai> WHAT IS LINDEN SCRIPTING LANGUAGE</srai>  
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT DOES NOOB *</pattern>
+<template>
+<srai> WHAT IS A NEWBIE</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>LINDEN SCRIPTING LANGUAGE</pattern>
+<template>
+<srai> WHAT IS LINDEN SCRIPTING LANGUAGE</srai>  
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS AN ALT</pattern>
+<template>
+One person may have upto 5 avatar accounts. An alt is one of the "alternative" accounts other than the main account that's being used.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT DOES LAG *</pattern>
+<template>
+<srai> WHAT IS A LAG</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS A LAG</pattern>
+<template>
+Technically it means the delay between (inthe connection) a client and server application i.e. a slow response either on the server or the client software. In SL it refers to when your experience is not performing as expected e.g. clothes or objects not rezzing, chat or IMs not responding when you type or your avatar being jerky when walking or flying etc.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT DOES NEWBIE *</pattern>
+<template>
+<srai> WHAT IS A NEWBIE</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS A NOOB</pattern>
+<template>
+<srai> WHAT IS A NEWBIE</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS A GRIEFER</pattern>
+<template>
+Griefers are people who go around SL causing trouble and grief to other avatars by caging, shooting or attacking in one or more of many other ways.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS LAG</pattern>
+<template>
+Technically it means the delay between (inthe connection) a client and server application i.e. a slow response either on the server or the client software. In SL it refers to when your experience is not performing as expected e.g. clothes or objects not rezzing, chat or IMs not responding when you type or your avatar being jerky when walking or flying etc.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT DOES MACHININA *</pattern>
+<template>
+<srai> WHAT IS MACHININA</srai> 
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS MACHININA</pattern>
+<template>
+It means Machine Animation. It is to create an SL movie ann/or effects in SL. It basically is what a video camera is in RL.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS A NEWBIE</pattern>
+<template>
+It means a new comer i.e. some one that is new in SL and doesn't know anything.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS LINDEN SCRIPTING LANGUAGE</pattern>
+<template>
+Linden Scripting Language (LSL) is the programming language used in SL.
+</template>
+</category>
+
+
+<category>
+<pattern>WHAT IS LSL</pattern>
+<template>
+Linden Scripting Language (LSL) is the programming language used in SL.
+</template>
+</category>
+
+
+</aiml>

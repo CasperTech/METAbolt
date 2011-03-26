@@ -1,0 +1,1292 @@
+//  Copyright (c) 2008 - 2011, www.metabolt.net (METAbolt)
+//  Copyright (c) 2007-2009, openmetaverse.org
+//  All rights reserved.
+
+//  Redistribution and use in source and binary forms, with or without modification, 
+//  are permitted provided that the following conditions are met:
+
+//  * Redistributions of source code must retain the above copyright notice, 
+//    this list of conditions and the following disclaimer. 
+//  * Redistributions in binary form must reproduce the above copyright notice, 
+//    this list of conditions and the following disclaimer in the documentation 
+//    and/or other materials provided with the distribution. 
+
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+//  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+//  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+//  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+//  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+//  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+//  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+//  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+//  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+//  POSSIBILITY OF SUCH DAMAGE.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
+using OpenMetaverse;
+using OpenMetaverse.Imaging;
+using OpenMetaverse.Assets;
+using SLNetworkComm;
+using ExceptionReporting;
+using System.Threading;
+using System.Management; 
+
+namespace METAbolt
+{
+    public partial class frmGroupInfo : Form
+    {
+        private METAboltInstance instance;
+        //private ITextPrinter textPrinter;
+        //private List<ChatBufferItem> textBuffer;
+        private Group Group;
+        private GridClient Client;
+        private Group Profile = new Group();
+        private Dictionary<UUID, GroupMember> Members = new Dictionary<UUID, GroupMember>();
+        private Dictionary<UUID, GroupTitle> Titles = new Dictionary<UUID, GroupTitle>();
+        private Dictionary<UUID, GroupMemberData> MemberData = new Dictionary<UUID, GroupMemberData>();
+        private Dictionary<UUID, string> Names = new Dictionary<UUID, string>();
+        private SLNetCom netcom;
+        private InstantMessage imsg;
+        private UUID objID = UUID.Zero;
+        private bool floading = true;
+        private bool tchanged = false;
+        private UUID grouptitles = UUID.Zero;
+        private UUID groupmembers = UUID.Zero;
+        private bool ejectpower = false;
+        private ListViewColumnSorter lvwColumnSorter;
+        private ExceptionReporter reporter = new ExceptionReporter();
+        private UUID grpid = UUID.Zero;
+        private Dictionary<UUID, GroupRole> grouproles;
+        private List<KeyValuePair<UUID, UUID>> grouprolesavs;
+        private UUID grouprolesreply = UUID.Zero;
+        private UUID grouprolemembersid = UUID.Zero;
+        private UUID founderid = UUID.Zero;  
+
+        internal class ThreadExceptionHandler
+        {
+            public void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
+            {
+                ExceptionReporter reporter = new ExceptionReporter();
+                reporter.Show(e.Exception);
+            }
+        }
+
+        public frmGroupInfo(Group group, METAboltInstance instance)
+        {
+            InitializeComponent();
+
+            SetExceptionReporter();
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+
+            this.instance = instance;
+            netcom = instance.Netcom;
+            Client = instance.Client;
+            this.Group = group;
+            grpid = group.ID;
+
+            while (!IsHandleCreated)
+            {
+                // Force handle creation
+                IntPtr temp = Handle;
+            }
+
+            AddGEvents();
+
+            lvwColumnSorter = new ListViewColumnSorter();
+            lstMembers.ListViewItemSorter = lvwColumnSorter;
+            lstMembers2.ListViewItemSorter = lvwColumnSorter;
+            lstNotices.ListViewItemSorter = lvwColumnSorter;
+
+            GetDets();
+        }
+
+        public frmGroupInfo(AvatarGroup group, METAboltInstance instance)
+        {
+            InitializeComponent();
+
+            SetExceptionReporter();
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+
+            this.instance = instance;
+            netcom = instance.Netcom;
+            Client = instance.Client;
+            grpid = group.GroupID;
+
+            while (!IsHandleCreated)
+            {
+                // Force handle creation
+                IntPtr temp = Handle;
+            }
+
+            AddGEvents();
+
+            lvwColumnSorter = new ListViewColumnSorter();
+            lstMembers.ListViewItemSorter = lvwColumnSorter;
+            lstMembers2.ListViewItemSorter = lvwColumnSorter;
+            lstNotices.ListViewItemSorter = lvwColumnSorter;
+
+            Client.Groups.RequestGroupProfile(group.GroupID);
+            groupmembers = Client.Groups.RequestGroupMembers(group.GroupID);
+            grouptitles = Client.Groups.RequestGroupTitles(group.GroupID);
+            // and the notices
+            Client.Groups.RequestGroupNoticesList(group.GroupID);
+            grouprolesreply = Client.Groups.RequestGroupRoles(group.GroupID);
+        }
+
+        public frmGroupInfo(UUID groupid, METAboltInstance instance)
+        {
+            InitializeComponent();
+
+            SetExceptionReporter();
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+
+            this.instance = instance;
+            netcom = instance.Netcom;
+            Client = instance.Client;
+            grpid = groupid;
+
+            while (!IsHandleCreated)
+            {
+                // Force handle creation
+                IntPtr temp = Handle;
+            }
+
+            AddGEvents();
+
+            lvwColumnSorter = new ListViewColumnSorter();
+            lstMembers.ListViewItemSorter = lvwColumnSorter;
+            lstMembers2.ListViewItemSorter = lvwColumnSorter;
+            lstNotices.ListViewItemSorter = lvwColumnSorter;
+
+            Client.Groups.RequestGroupProfile(groupid);
+            groupmembers = Client.Groups.RequestGroupMembers(groupid);
+            grouptitles = Client.Groups.RequestGroupTitles(groupid);
+            // and the notices
+            Client.Groups.RequestGroupNoticesList(groupid);
+            grouprolesreply = Client.Groups.RequestGroupRoles(groupid);
+        }
+
+        private void SetExceptionReporter()
+        {
+            reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
+            reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
+            reporter.Config.CompanyName = "METAbolt";
+            reporter.Config.ContactEmail = "support@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+            reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
+            reporter.Config.AppName = "METAbolt";
+            reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
+            reporter.Config.BackgroundColor = Color.White;
+            reporter.Config.ShowButtonIcons = false;
+            reporter.Config.ShowLessMoreDetailButton = true;
+            reporter.Config.TakeScreenshot = true;
+            reporter.Config.ShowContactTab = true;
+            reporter.Config.ShowExceptionsTab = true;
+            reporter.Config.ShowFullDetail = true;
+            reporter.Config.ShowGeneralTab = true;
+            reporter.Config.ShowSysInfoTab = true;
+            reporter.Config.TitleText = "METAbolt Exception Reporter";
+        }
+
+        private void AddGEvents()
+        {
+            grouprolesavs = new List<KeyValuePair<UUID, UUID>>();
+            grouproles = new Dictionary<UUID, GroupRole>();
+
+            Client.Groups.GroupProfile += new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
+            Client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(AvatarNamesHandler);
+            netcom.InstantMessageReceived += new EventHandler<InstantMessageEventArgs>(netcom_InstantMessageReceived);
+            Client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+            Client.Groups.GroupTitlesReply += new EventHandler<GroupTitlesReplyEventArgs>(GroupTitlesHandler);
+            Client.Groups.GroupNoticesListReply += new EventHandler<GroupNoticesListReplyEventArgs>(GroupNoticesHandler);
+            Client.Groups.GroupLeaveReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupLeft);
+            Client.Groups.GroupRoleDataReply += new EventHandler<GroupRolesDataReplyEventArgs>(Groups_OnGroupRoleDataReply);
+            Client.Groups.GroupRoleMembersReply += new EventHandler<GroupRolesMembersReplyEventArgs>(Groups_OnGroupRoleMembersReply);
+        }
+
+        private void GetDets()
+        {
+            // Request the group information
+            Client.Groups.RequestGroupProfile(Group.ID);
+            groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+            grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
+            // and the notices
+            Client.Groups.RequestGroupNoticesList(Group.ID);
+            grouprolesreply = Client.Groups.RequestGroupRoles(Group.ID); 
+        }
+
+        ~frmGroupInfo()
+        {
+            form_dispose(); 
+        }
+
+        private void form_dispose()
+        {
+            Client.Groups.GroupProfile -= new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
+            Client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(AvatarNamesHandler);
+            Client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+            Client.Groups.GroupTitlesReply -= new EventHandler<GroupTitlesReplyEventArgs>(GroupTitlesHandler);
+            Client.Groups.GroupNoticesListReply -= new EventHandler<GroupNoticesListReplyEventArgs>(GroupNoticesHandler);
+            Client.Groups.GroupLeaveReply -= new EventHandler<GroupOperationEventArgs>(Groups_OnGroupLeft);
+            Client.Groups.GroupRoleDataReply -= new EventHandler<GroupRolesDataReplyEventArgs>(Groups_OnGroupRoleDataReply);
+            Client.Groups.GroupRoleMembersReply -= new EventHandler<GroupRolesMembersReplyEventArgs>(Groups_OnGroupRoleMembersReply);
+
+            netcom.InstantMessageReceived -= new EventHandler<InstantMessageEventArgs>(netcom_InstantMessageReceived);
+        }
+
+        public void GroupNoticesHandler(object sender, GroupNoticesListReplyEventArgs e)
+        {
+            if (e.GroupID != grpid)
+                return;
+
+            this.BeginInvoke(new MethodInvoker(delegate()
+            {
+                UpdateNotices(e.Notices);
+            }));
+        }
+
+        private void Groups_OnGroupRoleMembersReply(object sender, GroupRolesMembersReplyEventArgs e)
+        {
+            if (e.GroupID != grpid) return;
+
+            grouprolesavs = e.RolesMembers;
+        }
+
+        private void Groups_OnGroupRoleDataReply(object sender, GroupRolesDataReplyEventArgs e)
+        {
+            if (e.GroupID != grpid) return;
+
+            grouproles = e.Roles;
+            grouprolemembersid = Client.Groups.RequestGroupRolesMembers(grpid);
+        }
+
+        private void UpdateNotices(List<GroupNoticesListEntry> notices)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    UpdateNotices(notices);
+                }));
+
+                return;
+            }
+
+            foreach (GroupNoticesListEntry notice in notices)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = notice.Subject;
+
+                ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
+                lvsi.Text = notice.FromName;
+                lvi.SubItems.Add(lvsi);
+
+                DateTime ndte = Utils.UnixTimeToDateTime(notice.Timestamp);
+
+                if (!instance.Config.CurrentConfig.UseSLT)
+                {
+                    ndte = ndte.ToLocalTime();
+                }
+
+                lvsi = new ListViewItem.ListViewSubItem();
+                lvsi.Text = ndte.ToShortDateString();
+                lvi.SubItems.Add(lvsi);
+
+                lvi.Tag = notice;
+                lstNotices.Items.Add(lvi);
+            }
+        }
+
+        private void netcom_InstantMessageReceived(object sender, OpenMetaverse.InstantMessageEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    netcom_InstantMessageReceived(sender, e);
+                }));
+
+                return;
+            }
+
+            imsg = e.IM;
+ 
+            if (e.IM.IMSessionID == UUID.Zero) return;
+
+            if (e.IM.Dialog == InstantMessageDialog.GroupNoticeRequested && grpid == e.IM.FromAgentID)
+            {
+                string noticemsg =  e.IM.Message;
+
+                char[] deli = "|".ToCharArray();
+                string[] Msg = imsg.Message.Split(deli);
+                textBox5.Text = Msg[1].Replace("\n", System.Environment.NewLine);
+            }
+        }
+
+        private void GroupProfileHandler(object sender, GroupProfileEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    GroupProfileHandler(sender, e);
+                }));
+
+                return;
+            }
+
+            if (grpid != e.Group.ID) return;  
+
+            this.Group = e.Group; 
+            Group profile = e.Group;
+            Profile = profile;
+
+            if (this.Group.InsigniaID != null && this.Group.InsigniaID != UUID.Zero)
+                Client.Assets.RequestImage(this.Group.InsigniaID, ImageType.Normal,
+                    delegate(TextureRequestState state, AssetTexture assetTexture)
+                    {
+                        ManagedImage imgData;
+                        Image bitmap;
+
+                        if (state != TextureRequestState.Timeout || state != TextureRequestState.NotFound)
+                        {
+                            OpenJPEG.DecodeToImage(assetTexture.AssetData, out imgData, out bitmap);
+                            picInsignia.Image = bitmap;
+                            UpdateInsigniaProgressText("Progress...");
+                        }
+                        if (state == TextureRequestState.Finished)
+                        {
+                            UpdateInsigniaProgressText("");
+                        }
+                    }, true);
+
+            this.BeginInvoke(new MethodInvoker(delegate()
+            {
+                if (!instance.avnames.ContainsKey(e.Group.FounderID))
+                {
+                    founderid = e.Group.FounderID;
+                    Client.Avatars.RequestAvatarName(founderid);
+                }
+                else
+                {
+                    lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
+                }
+
+                UpdateProfile();
+            }));
+        }
+
+        private void UpdateInsigniaProgressText(string resultText)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    UpdateInsigniaProgressText(resultText);
+                }));
+
+                return;
+            }
+
+            labelInsigniaProgress.Text = resultText;
+        }
+
+        void Groups_OnGroupLeft(object sender, GroupOperationEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Groups_OnGroupLeft(sender, e);
+                }));
+
+                return;
+            }
+
+            groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+        }
+
+        private void UpdateProfile()
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    UpdateProfile();
+                }));
+
+                return;
+            }
+
+            lblGroupName.Text = Profile.Name;
+            txtCharter.Text = Profile.Charter;
+            chkShow.Checked = Profile.ShowInList;
+            chkPublish.Checked = Profile.AllowPublish;
+            chkOpenEnrollment.Checked = Profile.OpenEnrollment;
+
+            chkFee.Checked = (Profile.MembershipFee != 0);
+
+            try
+            {
+                if (Profile.MembershipFee > Convert.ToInt32(numFee.Maximum))
+                {
+                    numFee.Maximum = Convert.ToDecimal(Profile.MembershipFee);
+                }
+
+                numFee.Value = Profile.MembershipFee;
+            }
+
+            catch { ; }
+
+            chkMature.Checked = Profile.MaturePublish;
+            chkGroupNotices.Checked = Profile.AcceptNotices;
+            textBox2.Text = "Group UUID: " + Profile.ID.ToString();
+
+            floading = false;
+        }
+
+        private void AvatarNamesHandler(object sender, UUIDNameReplyEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    AvatarNamesHandler(sender, e);
+                }));
+
+                return;
+            }
+               
+            this.BeginInvoke(new MethodInvoker(delegate()
+            {
+                foreach (KeyValuePair<UUID, string> av in e.Names)
+                {
+                    try
+                    {
+                        if (!instance.avnames.ContainsKey(av.Key))
+                        {
+                            instance.avnames.Add(av.Key, av.Value);
+                        }
+
+                        if (av.Key == founderid)
+                        {
+                            lblFoundedBy.Text = "Founded by " + av.Value;
+                        }
+   
+                        if (!MemberData.ContainsKey(av.Key)) return;
+
+                        ListViewItem foundItem = lstMembers.FindItemWithText(av.Key.ToString(), false, 0, true);
+
+                        if (foundItem != null)
+                        {
+                            foundItem.Text = av.Value;
+                        }
+
+                        foundItem = lstMembers2.FindItemWithText(av.Key.ToString(), false, 0, true);
+
+                        if (foundItem != null)
+                        {
+                            foundItem.Text = av.Value;
+                        }
+
+                        GroupMemberData memberData = new GroupMemberData();
+
+                        memberData = MemberData[av.Key];
+                        memberData.Name = av.Value;
+
+                        lock (MemberData)
+                        {
+                            MemberData.Remove(av.Key);
+                            MemberData.Add(av.Key, memberData);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string exp = ex.Message; 
+                    }
+                }
+
+                lstMembers.Sort();
+                lstMembers2.Sort();
+            }));
+        }
+
+        private void GroupMembersHandler(object sender, GroupMembersReplyEventArgs e)
+        {
+            if (groupmembers != e.RequestID) return;
+
+            if (grpid != e.GroupID) return;
+
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    GroupMembersHandler(sender, e);
+                }));
+
+                return;
+            } 
+
+            Members = e.Members;
+
+            this.BeginInvoke(new MethodInvoker(delegate()
+            {
+                UpdateMembers();
+            })); 
+        }
+
+        private void UpdateMembers()
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    UpdateMembers();
+                }));
+
+                return;
+            }
+            else
+            {
+                List<UUID> requestids = new List<UUID>();
+
+                lstMembers.Items.Clear();
+                lstMembers2.Items.Clear();
+
+                foreach (GroupMember member in Members.Values)
+                {
+                    GroupMemberData memberData = new GroupMemberData();
+                    memberData.ID = member.ID;
+                    memberData.IsOwner = member.IsOwner;
+
+                    // TPV change just incase!!! 31 Mar 2010
+                    if (Client.Self.AgentID == member.ID && member.IsOwner)
+                    {
+                        button1.Enabled = true;
+                    }
+
+                    memberData.LastOnline = member.OnlineStatus;
+                    memberData.Powers = (ulong)member.Powers;
+                    memberData.Title = member.Title;
+                    memberData.Contribution = member.Contribution;
+
+                    if (member.ID == Client.Self.AgentID)
+                    {
+                        cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
+                        button6.Enabled = false;
+
+                        //button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
+                        //button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
+                    }
+
+                    ListViewItem lvi = new ListViewItem();
+
+                    if (!instance.avnames.ContainsKey(member.ID))
+                    {
+                        lvi.Text = member.ID.ToString();
+                    }
+                    else
+                    {
+                        lvi.Text = memberData.Name = instance.avnames[member.ID];
+                    }
+
+                    ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
+                    lvsi.Text = member.Title;
+                    lvi.SubItems.Add(lvsi);
+
+                    lvsi = new ListViewItem.ListViewSubItem();
+                    lvsi.Text = member.OnlineStatus;
+                    lvi.SubItems.Add(lvsi);
+
+                    lvi.Tag = memberData;
+                    lvi.ToolTipText = "Double click to view " + lvi.Text + "'s profile";
+
+                    lstMembers.Items.Add(lvi);
+
+                    if (!MemberData.ContainsKey(member.ID))
+                    {
+                        MemberData.Add(member.ID, memberData);
+                    }
+
+                    lvi = null;
+
+                    lvi = new ListViewItem();
+                    if (!instance.avnames.ContainsKey(member.ID))
+                    {
+                        lvi.Text = member.ID.ToString();
+                        requestids.Add(member.ID);
+                    }
+                    else
+                    {
+                        lvi.Text = instance.avnames[member.ID];
+                    }
+
+                    lvsi = new ListViewItem.ListViewSubItem();
+                    lvsi.Text = member.Contribution.ToString();
+                    lvi.SubItems.Add(lvsi);
+
+                    lvsi = new ListViewItem.ListViewSubItem();
+                    lvsi.Text = member.OnlineStatus;
+                    lvi.SubItems.Add(lvsi);
+
+                    lvi.Tag = member;
+
+                    lstMembers2.Items.Add(lvi);
+                }
+
+                label10.Visible = false;
+
+                lstMembers.Sort();
+                lstMembers2.Sort();
+
+                if (requestids.Count > 0)
+                {
+                    Client.Avatars.RequestAvatarNames(requestids);
+                }
+            }
+        }
+
+        private void GroupTitlesHandler(object sender, GroupTitlesReplyEventArgs e)
+        {
+            if (grouptitles  != e.RequestID)
+            {
+                return;
+            }
+
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    GroupTitlesHandler(sender, e);
+                }));
+
+                return;
+            }
+
+            Titles = e.Titles;
+
+            UpdateTitles();
+        }
+
+        private void UpdateTitles()
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    UpdateTitles();
+                }));
+
+                return;
+            }
+            else
+            {
+                lock (Titles)
+                {
+                    lstRoles.Items.Clear();
+
+                    foreach (KeyValuePair<UUID, GroupTitle> kvp in Titles)
+                    {
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Text = kvp.Value.Title.ToString()   ;
+
+                        ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
+                        lvsi.Text = kvp.Key.ToString();
+                        lvi.SubItems.Add(lvsi);
+                        lstRoles.Items.Add(lvi);
+                    }
+                }
+            }
+        }
+
+        private void cmdEject_Click(object sender, EventArgs e)
+        {
+            if (!ejectpower) return;
+
+            if (lstMembers2.SelectedItems.Count  > 0)   // && lstMembers2.Columns[0].ToString != "none")
+            {
+                for (int i = lstMembers2.SelectedItems.Count - 1; i >= 0; i--)
+                {
+                   string  li = lstMembers2.SelectedItems[i].Text ;  
+
+                    foreach (GroupMemberData entry in MemberData.Values)
+                    {
+                        if (li == entry.Name)
+                        {
+                            try
+                            {
+                                Client.Groups.EjectUser(Group.ID, entry.ID);
+                                break; 
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.Log("Eject from group: " + ex.Message, Helpers.LogLevel.Warning);    
+                            }
+                        }
+                    }
+                }
+
+                try
+                {
+                    groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+                }
+                catch (Exception ex)
+                {
+                    string exp = ex.Message; 
+                }
+            }
+        }
+
+        private void tabGeneral_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdRefresh_Click(object sender, EventArgs e)
+        {
+            // Request the group information
+            Client.Groups.RequestGroupProfile(Group.ID);
+            groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+            grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
+            Client.Groups.RequestGroupNoticesList(Group.ID);
+            grouprolesreply = Client.Groups.RequestGroupRoles(Group.ID); 
+        }
+
+        private void cmdApply_Click(object sender, EventArgs e)
+        {
+            GetDets();
+            //this.Close();
+        }
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cmdOK_Click(object sender, EventArgs e)
+        {
+            //GetDets();
+            this.Close();
+        }
+
+        private void lstMembers2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chkListRoles.Items.Clear();  
+
+            if (lstMembers2.SelectedItems.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
+            {
+                string li = lstMembers2.SelectedItems[0].Text;
+                UUID avid = UUID.Zero;  
+
+                foreach (GroupMemberData entry in MemberData.Values)
+                {
+                    if (li == entry.Name)
+                    {
+                        avid = entry.ID;
+                        break; 
+                    }
+                }
+
+                int ind = chkListRoles.Items.Add("Everyone");
+                chkListRoles.SetItemChecked(ind, true);
+                chkListRoles.Enabled = false;
+
+                GroupPowers power = GroupPowers.None;
+
+                foreach (KeyValuePair<UUID, UUID> member in grouprolesavs)
+                {
+                    UUID roleid = member.Key;  // role uuid
+
+                    if (member.Value == avid)
+                    {
+                        GroupRole role = grouproles[roleid];
+                        ind = chkListRoles.Items.Add(role.Name);
+                        chkListRoles.SetItemChecked(ind, true);
+                        chkListRoles.Enabled = false;
+                        
+                        power = role.Powers;
+                    }
+                }
+
+                lvwAble.Items.Clear();  
+
+                foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                {
+                    if (p != GroupPowers.None && (power & p) == p)
+                    {
+                        lvwAble.Items.Add(p.ToString());
+                    }
+                }
+            }
+        }
+
+        private void frmGroupInfo_Load(object sender, EventArgs e)
+        {
+            this.CenterToParent();
+        }
+
+        private void lstRoles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstRoles.SelectedItems.Count > 0)
+            {
+                for (int i = lstRoles.SelectedItems.Count - 1; i >= 0; i--)
+                {
+                    string li = lstRoles.SelectedItems[i].SubItems[1].Text;
+                    textBox3.Text = li;
+                }
+
+                //button5.Enabled = true;
+            }
+            else
+            {
+                //button5.Enabled = false; 
+            }
+        }
+
+        private void picInsignia_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_Click(object sender, EventArgs e)
+        {
+            textBox3.SelectAll();  
+        }
+
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            textBox3.SelectAll();
+        }
+
+        private void btnInvite_Click(object sender, EventArgs e)
+        {
+            if (lstRoles.SelectedItems.Count > 0)
+            {
+                UUID li = (UUID)textBox3.Text;
+                (new frmGive(instance, grpid, li)).ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("First you must select a role from the list above.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void lstMembers_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstMembers.SelectedItems.Count == 1)
+            {
+                string li = lstMembers.SelectedItems[0].Text;
+
+                foreach (GroupMemberData entry in MemberData.Values)
+                {
+                    if (li == entry.Name)
+                    {
+                        (new frmProfile(instance, entry.Name, entry.ID)).Show();
+                    }
+                }
+            }
+        }
+
+        private void lstMembers2_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstMembers2.SelectedItems.Count == 1)
+            {
+                string li = lstMembers2.SelectedItems[0].Text;
+
+                foreach (GroupMemberData entry in MemberData.Values)
+                {
+                    if (li == entry.Name)
+                    {
+                        (new frmProfile(instance, entry.Name, entry.ID)).Show();
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (lstMembers2.Items.Count  > 0)   // && lstMembers2.Columns[0].ToString != "none")
+            {
+                Stream tstream;
+                saveFileDialog1.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        if ((tstream = saveFileDialog1.OpenFile()) != null)
+                        {
+                            StreamWriter SW = new StreamWriter(tstream);
+
+                            SW.WriteLine("Group: " + this.Group.Name + ",UUID: " + grpid.ToString() + ",Ttl members: " + lstMembers2.Items.Count.ToString() + ",");
+                            SW.WriteLine(",,,");
+                            SW.WriteLine("Name,UUID,Title,Last online");
+
+                            foreach (GroupMemberData entry in MemberData.Values)
+                            {
+                                try
+                                {
+                                    string line = entry.Name + "," + entry.ID.ToString() + "," + entry.Title + "," + entry.LastOnline.ToString();
+                                    SW.WriteLine(line);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Logger.Log("Group list export: " + ex.Message, Helpers.LogLevel.Warning);
+                                }
+                            }
+
+                            SW.Close();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);   
+                    }
+                }
+             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length == 0)
+            {
+                MessageBox.Show("You must enter a 'subject' first");  
+                return;
+            }
+
+            // Send the notice
+            GroupNotice sgnotice = new GroupNotice();
+
+            sgnotice.Subject = textBox1.Text;
+            sgnotice.Message = textBox4.Text;
+
+            if (objID != UUID.Zero)
+            {
+                sgnotice.AttachmentID = objID;
+                sgnotice.OwnerID = Client.Self.AgentID;
+                sgnotice.SerializeAttachment();
+            }
+
+            Client.Groups.SendGroupNotice(grpid, sgnotice);
+
+            // Set everything back to defaults
+            label3.Text = "Archived Notice";
+            panel1.Visible = true;
+            panel2.Visible = false;
+            button2.Enabled = false;
+            objID = UUID.Zero;
+            textBox6.Text = "Drag-Drop attachment item here"; 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label3.Text = "Create a Notice";
+            panel1.Visible = false;
+            panel2.Visible = true;
+            button2.Enabled = true; 
+        }
+
+        private void tabNotices_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdRefreshNotices_Click(object sender, EventArgs e)
+        {
+            lstNotices.Items.Clear();
+            Client.Groups.RequestGroupNoticesList(grpid);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lstNotices_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstNotices.SelectedItems.Count > 0)
+            {
+                textBox5.Text = string.Empty;
+
+                GroupNoticesListEntry gnotice = (GroupNoticesListEntry)lstNotices.SelectedItems[0].Tag;
+                Client.Groups.RequestGroupNotice(gnotice.NoticeID);   
+            }
+        }
+
+        private void textBox6_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string s = (string)e.Data.GetData(DataFormats.FileDrop, false);
+
+                char[] deli = ",".ToCharArray();
+                string[] iDets = s.Split(deli);
+
+                objID = (UUID)iDets[0];
+                textBox6.Text = iDets[1];
+            }
+        }
+
+        private void textBox6_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void textBox6_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void chkShow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            Profile.ShowInList = chkShow.Checked;
+            Client.Groups.UpdateGroup(Profile.ID, Profile); 
+        }
+
+        private void chkPublish_CheckedChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            Profile.AllowPublish = chkPublish.Checked;
+            Client.Groups.UpdateGroup(Profile.ID, Profile);      
+        }
+
+        private void chkOpenEnrollment_CheckedChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            Profile.OpenEnrollment = chkOpenEnrollment.Checked;
+            Client.Groups.UpdateGroup(Profile.ID, Profile);
+        }
+
+        private void chkFee_CheckedChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            if (!chkFee.Checked)
+            {
+                Profile.MembershipFee = 0;
+                Client.Groups.UpdateGroup(Profile.ID, Profile);
+            }
+
+            numFee.Enabled = chkFee.Checked;
+        }
+
+        private void numFee_ValueChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            Profile.MembershipFee = Convert.ToInt32(numFee.Value);
+            Client.Groups.UpdateGroup(Profile.ID, Profile);
+        }
+
+        private void chkGroupNotices_CheckedChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            Profile.AcceptNotices = chkGroupNotices.Checked;
+            Client.Groups.UpdateGroup(Profile.ID, Profile); 
+        }
+
+        private void chkMature_CheckedChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            Profile.MaturePublish = chkMature.Checked;
+            Client.Groups.UpdateGroup(Profile.ID, Profile);
+        }
+
+        private void txtCharter_Leave(object sender, EventArgs e)
+        {
+            if (tchanged)
+            {
+                Profile.Charter = txtCharter.Text;
+                Client.Groups.UpdateGroup(Profile.ID, Profile);
+                tchanged = false;
+            }
+        }
+
+        private void txtCharter_TextChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            tchanged = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            GroupRole role = new GroupRole();
+            role.Name = textBox7.Text;
+            role.Title = textBox8.Text;
+            role.Description = textBox9.Text;
+
+            //GroupPowers powers = new GroupPowers();
+            //role.Powers
+
+            //Client.Groups.CreateRole(grpid, role);
+        }
+
+        private void frmGroupInfo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            form_dispose();
+        }
+
+        private void lstMembers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            lstMembers.Sort();
+        }
+
+        private void lstMembers2_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            lstMembers2.Sort();
+        }
+
+        private void lstNotices_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            lstNotices.Sort();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (lstRoles.SelectedItems.Count > 0)
+            {
+                //instance.State.Groups[grpid]
+                UUID li = (UUID)textBox3.Text;
+                Client.Groups.DeleteRole(grpid, li);
+            }
+            else
+            {
+                MessageBox.Show("First you must select a role from the list above.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Client.Groups.RequestJoinGroup(grpid);
+        }
+
+        private void lstMembers_MouseEnter(object sender, EventArgs e)
+        {
+            lstMembers.Cursor = Cursors.Hand;
+        }
+
+        private void lstMembers_MouseLeave(object sender, EventArgs e)
+        {
+            lstMembers.Cursor = Cursors.Default;
+        }
+
+        private void lstMembers2_MouseEnter(object sender, EventArgs e)
+        {
+            lstMembers2.Cursor = Cursors.Hand;
+        }
+
+        private void lstMembers2_MouseLeave(object sender, EventArgs e)
+        {
+            lstMembers2.Cursor = Cursors.Default;
+        }
+    }
+
+    public class GroupMemberData
+    {
+        public UUID ID;
+        public string Name;
+        public string Title;
+        public string LastOnline;
+        public ulong Powers;
+        public bool IsOwner;
+        public int Contribution;
+    }
+}

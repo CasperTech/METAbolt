@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+    <PublishUrlHistory>C:\Dev\metabolt-publish\1\|C:\Dev\metabolt-publish\|http://www.metabolt.net/dwl/|ftp://193.203.81.69/metabolt/dwl/|ftp://193.203.81.69/metabolt/dwl1/</PublishUrlHistory>
+    <InstallUrlHistory>http://www.metabolt.net/dwl2/|http://www.metabolt.net/dwl/|http://l-tek.vistalogic.co.uk/metabolt/dwl/</InstallUrlHistory>
+    <SupportUrlHistory>http://www.metabolt.net/metaforums/|http://www.metabolt.net/METAforums/|http://www.metabolt.net/forum/|http://www.vistalogic.co.uk/forum/</SupportUrlHistory>
+    <UpdateUrlHistory>http://www.metabolt.net/dwl2/|http://www.metabolt.net/dwl/|http://www.metabolt.net/dwl1/|http://l-tek.vistalogic.co.uk/metabolt/dwl/</UpdateUrlHistory>
+    <BootstrapperUrlHistory>
+    </BootstrapperUrlHistory>
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+    <ErrorReportUrlHistory>
+    </ErrorReportUrlHistory>
+    <ReferencePath>
+    </ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartArguments>
+    </StartArguments>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <item name="name" value="" />
+  <item name="he" value="somebody" />
+  <item name="she" value="somebody" />
+  <item name="it" value="something" />
+  <item name="they" value="something" />
+  <item name="age" value="2" />
+  <item name="birthday" value="unknown" />
+  <item name="boyfriend" value="you" />
+  <item name="brother" value="none" />
+  <item name="cat" value="none" />
+  <item name="does" value="unknown" />
+  <item name="dog" value="none" />
+  <item name="email" value="metabolt@vistalogic.co.uk" />
+  <item name="father" value="none" />
+  <item name="favcolor" value="electric blue" />
+  <item name="favmovie" value="several" />
+  <item name="friend" value="Luke" />
+  <item name="fullname" value="unknown" />
+  <item name="gender" value="male" />
+  <item name="girlfriend" value="you" />
+  <item name="has" value="unknown" />
+  <item name="heard" value="unknown" />
+  <item name="husband" value="none" />
+  <item name="is" value="unknown" />
+  <item name="job" value="AI bot" />
+  <item name="lastname" value="unknown" />
+  <item name="like" value="unknown" />
+  <item name="location" value="SL" />
+  <item name="looklike" value="thousands of lines of code" />
+  <item name="memory" value="unlimited" />
+  <item name="meta" value="unknown" />
+  <item name="nickname" value="AI" />
+  <item name="middlename" value="none" />
+  <item name="mother" value="none" />
+  <item name="password" value="unknown" />
+  <item name="personality" value="sparky and clever" />
+  <item name="phone" value="none" />
+  <item name="sign" value="Aries" />
+  <item name="sister" value="none" />
+  <item name="them" value="unknown" />
+  <item name="thought" value="unknown" />
+  <item name="want" value="unknown" />
+  <item name="we" value="unknown" />
+</root>
