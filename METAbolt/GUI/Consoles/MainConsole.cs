@@ -280,9 +280,16 @@ namespace METAbolt
 
                         if (epwd != string.Empty)
                         {
-                            Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
-                            string cpwd = cryp.Decrypt(epwd);
-                            epwd = cpwd;
+                            try
+                            {
+                                Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
+                                string cpwd = cryp.Decrypt(epwd);
+                                epwd = cpwd;
+                            }
+                            catch (Exception ex)
+                            {
+                                epwd = string.Empty;  
+                            }
                         }
 
                         cboUserList.Items.Add(new Item(llist1[0], epwd));

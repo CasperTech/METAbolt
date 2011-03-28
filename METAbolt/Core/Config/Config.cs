@@ -32,6 +32,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using MD5library;
 using System.IO;
+using System.Diagnostics;
 
 namespace METAbolt
 {
@@ -181,26 +182,6 @@ namespace METAbolt
 
                 string epwd = conf.Configs["Login"].GetString("Password", string.Empty);
 
-                try
-                {
-                    if (epwd != string.Empty)
-                    {
-                        Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
-                        //string cpwd = cryp.Decrypting(epwd);
-                        string cpwd = cryp.Decrypt(epwd);
-
-                        config.PasswordMD5 = cpwd;
-                    }
-                    else
-                    {
-                        config.PasswordMD5 = epwd;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("An error occured while decrypting your stored password in the INI file.\nPlease report this issue on the METAforums.\n\nTo resolve the issue now, try changing your password to something else.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
                 config.LoginGrid = conf.Configs["Login"].GetInt("Grid", 0);
                 config.LoginUri = conf.Configs["Login"].GetString("Uri", string.Empty);
                 config.LoginLocationType = conf.Configs["Login"].GetInt("LocationType", 0);
@@ -230,16 +211,6 @@ namespace METAbolt
                 {
                     config.HeaderBackColour = Color.AliceBlue;
                 }
-
-                //try
-                //{
-                //    int clr1 = conf.Configs["General"].GetInt("BgColour", Color.White.ToArgb());
-                //    config.BgColour = Color.FromArgb(clr1);
-                //}
-                //catch (Exception ex)
-                //{
-                //    config.BgColour = Color.White;
-                //}
 
                 config.TextFont = conf.Configs["General"].GetString("TextFont", "Tahoma");
                 config.TextFontStyle = conf.Configs["General"].GetString("TextFontStyle", "Regular");
@@ -304,6 +275,28 @@ namespace METAbolt
                 //config.TweeterUser = conf.Configs["Twitter"].GetString("TweeterUser", string.Empty);
 
                 config.PluginsToLoad = conf.Configs["LoadedPlugIns"].GetString("PluginsToLoad", string.Empty);
+
+                try
+                {
+                    if (epwd != string.Empty)
+                    {
+                        Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
+                        //string cpwd = cryp.Decrypting(epwd);
+                        string cpwd = cryp.Decrypt(epwd);
+
+                        config.PasswordMD5 = cpwd;
+                    }
+                    else
+                    {
+                        config.PasswordMD5 = epwd;
+                    }
+                }
+                catch
+                {
+                    epwd = config.PasswordMD5 = string.Empty;
+                    MessageBox.Show("An error occured while decrypting your stored password.\nThis could mean you have the old format INI file. \nYou will have to re-enter your password so it can be ecrypted with the new method.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\");
+                }
 
                 //added by GM on 2-JUL-2009
                 config.groupManagerUid = conf.Configs["PlugIn"].GetString("GroupManager", "ned49b54-325d-486a-af3m");
