@@ -669,18 +669,34 @@ namespace METAbolt
         {
             TreeNode node = e.Data.GetData(typeof(TreeNode)) as TreeNode;
 
+            if (node == null) return;
+
             if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                InventoryItem item = node.Tag as InventoryItem;
+                InventoryBase io = (InventoryBase)node.Tag;
 
-                if ((item.Permissions.OwnerMask & PermissionMask.Copy) != PermissionMask.Copy)
+                if (node.Tag is InventoryFolder)
                 {
-                    DialogResult res = MessageBox.Show("This is a 'no copy' item and you will lose ownership if you continue.", "Warning", MessageBoxButtons.OKCancel);
+                    //InventoryFolder folder = (InventoryFolder)io;
+                    InventoryFolder folder = node.Tag as InventoryFolder;
 
-                    if (res == DialogResult.Cancel) return;    
+                    client.Inventory.GiveFolder(folder.UUID, folder.Name, AssetType.Folder, agentID, true);
+                    instance.TabConsole.DisplayChatScreen("Offered inventory folder " + folder.Name + " to " + fullName + ".");
                 }
+                else
+                {
+                    InventoryItem item = (InventoryItem)io;
 
-                client.Inventory.GiveItem(item.UUID, item.Name, item.AssetType, agentID, true);
+                    if ((item.Permissions.OwnerMask & PermissionMask.Copy) != PermissionMask.Copy)
+                    {
+                        DialogResult res = MessageBox.Show("This is a 'no copy' item and you will lose ownership if you continue.", "Warning", MessageBoxButtons.OKCancel);
+
+                        if (res == DialogResult.Cancel) return;
+                    }
+
+                    client.Inventory.GiveItem(item.UUID, item.Name, item.AssetType, agentID, true);
+                    instance.TabConsole.DisplayChatScreen("Offered inventory item " + item.Name + " to " + fullName + ".");
+                }
             }
         }
 

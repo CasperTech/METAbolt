@@ -2352,7 +2352,7 @@ namespace METAbolt
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            (new frmPlayer(instance)).Show(this);
+            (new frmPlayer(instance)).Show();
         }
 
         #region Minimap

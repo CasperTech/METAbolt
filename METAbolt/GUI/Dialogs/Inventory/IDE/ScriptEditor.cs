@@ -63,6 +63,7 @@ namespace METAbolt
         string prevsearchtxt = string.Empty;
         private const int LINE_NUMBERS_MARGIN_WIDTH = 35;
         private UUID assetUUID = UUID.Zero;
+        private UUID itemUUID = UUID.Zero;  
 
         public frmScriptEditor(METAboltInstance instance, InventoryItem item)
         {
@@ -73,6 +74,7 @@ namespace METAbolt
             client = this.instance.Client;
             this.item = item;
             istaskobj = false;
+            panel1.Visible = false;  
 
             Disposed += new EventHandler(Script_Disposed);
 
@@ -95,6 +97,7 @@ namespace METAbolt
             client = this.instance.Client;
             this.item = item;
             istaskobj = true;
+            panel1.Visible = true;
 
             AddNetcomEvents();
 
@@ -103,7 +106,9 @@ namespace METAbolt
             SetScintilla();
 
             assetUUID = item.AssetUUID;
-            objectid = obj.ID;  
+            objectid = obj.ID;
+            itemUUID = item.UUID; 
+
             client.Assets.RequestInventoryAsset(assetUUID, item.UUID, obj.ID, obj.OwnerID, item.AssetType, true, Assets_OnAssetReceived);
         }
 
@@ -114,6 +119,7 @@ namespace METAbolt
             this.instance = instance;
             netcom = this.instance.Netcom;
             client = this.instance.Client;
+            panel1.Visible = false;
 
             AddNetcomEvents();
 
@@ -125,21 +131,32 @@ namespace METAbolt
 
         private void SetScintilla()
         {
-            rtbScript.Margins.Margin0.Width = LINE_NUMBERS_MARGIN_WIDTH;
-            rtbScript.AutoComplete.FillUpCharacters = ".([";
-            rtbScript.AutoComplete.AutomaticLengthEntered = true;
-            rtbScript.AutoComplete.AutoHide = true;
-            rtbScript.AutoComplete.IsCaseSensitive = false;
-            rtbScript.AutoComplete.RegisterImages(imageList1);
-            //rtbScript.Styles[rtbScript.Lexing.StyleNameMap["Keyword"]].ForeColor = Color.Fuchsia;
+            try
+            {
+                rtbScript.Margins.Margin0.Width = LINE_NUMBERS_MARGIN_WIDTH;
+                rtbScript.AutoComplete.FillUpCharacters = ".([";
+                rtbScript.AutoComplete.AutomaticLengthEntered = true;
+                rtbScript.AutoComplete.AutoHide = true;
+                rtbScript.AutoComplete.IsCaseSensitive = false;
+                rtbScript.AutoComplete.RegisterImages(imageList1);
+                //rtbScript.Styles[rtbScript.Lexing.StyleNameMap["Keyword"]].ForeColor = Color.Fuchsia;
 
-            rtbScript.Caret.Color = Color.Red;
-    
-            rtbScript.AutoComplete.SingleLineAccept = false;
-            rtbScript.AutoComplete.DropRestOfWord = true;  
-            rtbScript.AutoComplete.StopCharacters = ") ] // ; ' , - _ */ /*";
-            SetLanguage("lsl");
-            tscboLanguage.SelectedIndex = 0;
+                rtbScript.Caret.Color = Color.Red;
+
+                rtbScript.AutoComplete.SingleLineAccept = false;
+                rtbScript.AutoComplete.DropRestOfWord = true;
+                rtbScript.AutoComplete.StopCharacters = ") ] // ; ' , - _ */ /*";
+                SetLanguage("lsl");
+                tscboLanguage.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                ex.Message,
+                "METAbolt",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
         }
 
         private void SetupSort()
@@ -234,6 +251,13 @@ namespace METAbolt
                 receivedAsset = (AssetScriptText)asset;
                 scriptContent = Utils.BytesToString(transfer.AssetData);
                 SetScriptText(scriptContent, false);
+                string adta = string.Empty; 
+
+                if (istaskobj)
+                {
+                    client.Inventory.ScriptRunningReply += new EventHandler<ScriptRunningReplyEventArgs>(Inventory_ScriptRunningReply);
+                    client.Inventory.RequestGetScriptRunning(objectid, itemUUID);   //assetUUID);
+                }
             }
             catch (Exception ex)
             {
@@ -245,6 +269,17 @@ namespace METAbolt
             }
         }
 
+        private void Inventory_ScriptRunningReply(object sender, ScriptRunningReplyEventArgs e)
+        {
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                checkBox1.Checked = e.IsMono;
+                checkBox2.Checked = e.IsRunning;
+            }));
+             
+            client.Inventory.ScriptRunningReply -= new EventHandler<ScriptRunningReplyEventArgs>(Inventory_ScriptRunningReply);  
+        }
+
         //UI thread
         private delegate void OnSetScriptText(string text, bool readOnly);
         private void SetScriptText(string text, bool readOnly)
@@ -254,8 +289,7 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(delegate()
                 {
                     SetScriptText(text, readOnly);
-                }
-                ));
+                }));
 
                 return;
             }
@@ -351,7 +385,7 @@ namespace METAbolt
 
                 if (istaskobj)
                 {
-                    client.Inventory.RequestUpdateScriptTask(CreateScriptAsset(rtbScript.Text), this.item.UUID, objectid, true, true, new InventoryManager.ScriptUpdatedCallback(OnScriptUpdate));
+                    client.Inventory.RequestUpdateScriptTask(CreateScriptAsset(rtbScript.Text), this.item.UUID, objectid, checkBox1.Checked, checkBox2.Checked, new InventoryManager.ScriptUpdatedCallback(OnScriptUpdate));
                 }
                 else
                 {

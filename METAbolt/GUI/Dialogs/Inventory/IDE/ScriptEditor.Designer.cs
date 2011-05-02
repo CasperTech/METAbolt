@@ -129,6 +129,9 @@ namespace METAbolt
             this.toolStripButton17 = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.Menu1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB1)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -136,6 +139,7 @@ namespace METAbolt
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rtbScript)).BeginInit();
             this.toolStrip3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu1
@@ -851,7 +855,7 @@ namespace METAbolt
             this.rtbScript.Margins.Margin1.IsClickable = true;
             this.rtbScript.Margins.Margin2.Width = 16;
             this.rtbScript.Name = "rtbScript";
-            this.rtbScript.Size = new System.Drawing.Size(723, 569);
+            this.rtbScript.Size = new System.Drawing.Size(723, 532);
             this.rtbScript.Styles.BraceBad.BackColor = System.Drawing.Color.White;
             this.rtbScript.Styles.BraceBad.FontName = "Verdana";
             this.rtbScript.Styles.BraceLight.BackColor = System.Drawing.Color.White;
@@ -1056,12 +1060,46 @@ namespace METAbolt
             this.imageList1.Images.SetKeyName(0, "Audio_CD_16.png");
             this.imageList1.Images.SetKeyName(1, "Entire_Network_16.png");
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.checkBox2);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Location = new System.Drawing.Point(0, 591);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(731, 31);
+            this.panel1.TabIndex = 51;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(588, 7);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(65, 17);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "Running";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(666, 7);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(52, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Mono";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // frmScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(735, 647);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip3);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
@@ -1085,6 +1123,8 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.rtbScript)).EndInit();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1191,5 +1231,8 @@ namespace METAbolt
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripButton tsbSave;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

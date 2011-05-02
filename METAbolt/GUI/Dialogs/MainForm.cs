@@ -692,34 +692,45 @@ namespace METAbolt
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (netcom.IsLoggedIn)
+            try
             {
-                if (!logoff)
+                if (netcom.IsLoggedIn)
                 {
-                    MsgBoxCheck.MessageBox dlg = new MsgBoxCheck.MessageBox();
-                    DialogResult dr = dlg.Show(@"Software\METAbolt\CloseMBCheck", "DontShowAgain", DialogResult.Yes , "Don't ask me this again", "You are about to close METAbolt. Are you sure you want to continue?", "METAbolt",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (dr == DialogResult.No)
+                    if (!logoff)
                     {
-                        e.Cancel = true;
-                        return;
+                        MsgBoxCheck.MessageBox dlg = new MsgBoxCheck.MessageBox();
+                        DialogResult dr = dlg.Show(@"Software\METAbolt\CloseMBCheck", "DontShowAgain", DialogResult.Yes, "Don't ask me this again", "You are about to close METAbolt. Are you sure you want to continue?", "METAbolt",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (dr == DialogResult.No)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
                     }
                 }
+
+                // Save the window state. As the main application is exiting it will save the state to the config file.
+                this.Visible = false;
+                instance.Config.CurrentConfig.MainWindowState = (int)this.WindowState;
+
+                // I don't like setting this here, but this event is the only place to know if the user possibly clicked the X to close the window.
+                // I had a check for e.CloseReason here, but if anything calls this.Close(), it uses the same reason as if the user clicked the X.
+                // However, the code has been restructured to call Disconnect() first for non-user-initiated logout. Disconnect can only be executed
+                // once, so in those cases setting LogOffClicked to true here has no effect.
+                // -Apotheus
+                instance.LogOffClicked = true;
+
+                this.Disconnect(false);
             }
-
-            // Save the window state. As the main application is exiting it will save the state to the config file.
-            this.Visible = false;
-            instance.Config.CurrentConfig.MainWindowState = (int)this.WindowState;
-
-            // I don't like setting this here, but this event is the only place to know if the user possibly clicked the X to close the window.
-            // I had a check for e.CloseReason here, but if anything calls this.Close(), it uses the same reason as if the user clicked the X.
-            // However, the code has been restructured to call Disconnect() first for non-user-initiated logout. Disconnect can only be executed
-            // once, so in those cases setting LogOffClicked to true here has no effect.
-            // -Apotheus
-            instance.LogOffClicked = true;
-
-            this.Disconnect(false);
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                ex.Message,
+                "METAbolt",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
         }
 
         private void RefreshStatusBar()

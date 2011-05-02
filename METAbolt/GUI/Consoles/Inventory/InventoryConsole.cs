@@ -626,18 +626,25 @@ namespace METAbolt
 
         private void tmnuPaste_Click(object sender, EventArgs e)
         {
-            if (this.instance.State.CurrentTab != "&Inventory") return;
+            try
+            {
+                if (this.instance.State.CurrentTab != "&Inventory") return;
 
-            if (treeView1.SelectedNode == null) return;
- 
-            clip.PasteTo(treeView1.SelectedNode);
-            tmnuPaste.Enabled = false;
+                if (treeView1.SelectedNode == null) return;
 
-            RefreshInventory();
+                clip.PasteTo(treeView1.SelectedNode);
+                tmnuPaste.Enabled = false;
 
-            //iscut = false;
-            tmnuPaste.Enabled = false;
-            pasteMenu.Enabled = false;
+                RefreshInventory();
+
+                //iscut = false;
+                tmnuPaste.Enabled = false;
+                pasteMenu.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tmnuNewFolder_Click(object sender, EventArgs e)
@@ -689,13 +696,24 @@ namespace METAbolt
             TreeNode aNode = (TreeNode)e.Item;
 
             InventoryBase io = (InventoryBase)aNode.Tag;
-            InventoryItem item = (InventoryItem)io;
-            //string sItem = string.Empty;
-            //string sCopy = "False";
 
-            if ((item.Permissions.OwnerMask & PermissionMask.Transfer) != PermissionMask.Transfer)
+            if (aNode.Tag is InventoryFolder)
             {
-                return;
+                InventoryFolder folder = (InventoryFolder)io;
+
+                if (folder.PreferredType != AssetType.Unknown)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                InventoryItem item = (InventoryItem)io;
+
+                if ((item.Permissions.OwnerMask & PermissionMask.Transfer) != PermissionMask.Transfer)
+                {
+                    return;
+                }
             }
 
             treeView1.DoDragDrop(aNode, DragDropEffects.Move | DragDropEffects.Copy); 
@@ -1868,17 +1886,44 @@ namespace METAbolt
             if (treeView1.SelectedNode == null) return;
 
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
-            InventoryItem item = (InventoryItem)io;
 
-            if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
+            if (treeView1.SelectedNode.Tag is InventoryFolder)
             {
-                managerbusy = client.Appearance.ManagerBusy;
-                client.Appearance.AddToOutfit((InventoryItem)io);
+                InventoryFolder folder = (InventoryFolder)io;
+
+                List<InventoryBase> contents = client.Inventory.FolderContents(folder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByName, 20 * 1000);
+                List<InventoryItem> items = new List<InventoryItem>();
+
+                if (contents == null)
+                {
+                    instance.TabConsole.DisplayChatScreen("Failed to get the contents of the " + folder.Name + " folder to wear.");
+                    return;
+                }
+
+                foreach (InventoryBase item in contents)
+                {
+                    if (item is InventoryItem)
+                        items.Add((InventoryItem)item);
+                }
+
+                client.Appearance.ReplaceOutfit(items);
+                client.Appearance.RequestSetAppearance(true);
+                instance.TabConsole.DisplayChatScreen("Wearing the contents of folder " + folder.Name);
             }
-            else if (item.AssetType == AssetType.Object)
+            else
             {
-                client.Appearance.Attach(item, AttachmentPoint.Default);
-            }  
+                InventoryItem item = (InventoryItem)io;
+
+                if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
+                {
+                    managerbusy = client.Appearance.ManagerBusy;
+                    client.Appearance.AddToOutfit((InventoryItem)io);
+                }
+                else if (item.AssetType == AssetType.Object)
+                {
+                    client.Appearance.Attach(item, AttachmentPoint.Default);
+                }
+            }
         }
 
         private void takeOffToolStripMenuItem_Click(object sender, EventArgs e)

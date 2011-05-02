@@ -150,7 +150,7 @@ namespace METAbolt
 
                     if ((itemToDraw.Prim.Flags & PrimFlags.Touch) == PrimFlags.Touch)
                     {
-                        stas = "(Touch)";
+                        stas = " (Touch)";
                     }
                     else
                     {
