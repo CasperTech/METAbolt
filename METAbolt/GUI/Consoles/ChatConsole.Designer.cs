@@ -134,6 +134,7 @@ namespace METAbolt
             this.cboRender = new System.Windows.Forms.ComboBox();
             this.cboCapture = new System.Windows.Forms.ComboBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -1505,6 +1506,11 @@ namespace METAbolt
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 62000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // ChatConsole
             // 
             this.AccessibleDescription = "Chat window for entering and siplaying public chat";
@@ -1661,5 +1667,6 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Timer timer2;
     }
 }

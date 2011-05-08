@@ -57,6 +57,7 @@ namespace METAbolt
         private CustomToolTip customToolTip;
         private GridClient client;
         private bool loadingtimer = true;
+        private bool loadingtimer1 = true;
         private string headerfont = "Tahoma";
         private string headerfontstyle = "Regular";
         private float headerfontsize = 8.5f;
@@ -74,7 +75,7 @@ namespace METAbolt
             toolTip.FocusOnOpen = false;
             toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
 
-            string msg3 = "If you will be crossing SIMs or will be near SIM borders and want to see the avatars in the next SIM listed on your radar (radar above needs to be enabled) then you must enable this option.";
+            string msg3 = "If you will be crossing SIMs or will be near SIM borders and want to see the avatars in the next SIM listed on your radar then you must enable this option. This option requires a restart.";
             toolTip2 = new Popup(customToolTip = new CustomToolTip(instance, msg3));
             toolTip2.AutoClose = false;
             toolTip2.FocusOnOpen = false;
@@ -139,6 +140,7 @@ namespace METAbolt
             checkBox1.Checked = config.CurrentConfig.GivePresent;
             checkBox2.Checked = config.CurrentConfig.AutoRestart;
             nUD1.Value = config.CurrentConfig.LogOffTime;
+            nUD2.Value = config.CurrentConfig.ReStartTime;
             textBox4.Text = client.Settings.ASSET_CACHE_DIR;
             //trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);    
             //textBox5.Text = trackBar1.Value.ToString();
@@ -219,7 +221,8 @@ namespace METAbolt
             txtMavatar.Text = config.CurrentConfig.MasterAvatar.Trim();
             chkAutoTransfer.Checked = config.CurrentConfig.AutoTransfer;
             chkTray.Checked = config.CurrentConfig.DisableTrayIcon;
-            chkTyping.Checked = config.CurrentConfig.DisableTyping;    
+            chkTyping.Checked = config.CurrentConfig.DisableTyping;
+            chkAutoFriend.Checked = config.CurrentConfig.AutoAcceptFriends;
         }
 
         #region IPreferencePane Members
@@ -256,6 +259,7 @@ namespace METAbolt
             instance.Config.CurrentConfig.GivePresent = checkBox1.Checked;
             instance.Config.CurrentConfig.AutoRestart = checkBox2.Checked;
             instance.Config.CurrentConfig.LogOffTime = Convert.ToInt32(nUD1.Value);
+            instance.Config.CurrentConfig.ReStartTime = Convert.ToInt32(nUD2.Value);
             //instance.Config.CurrentConfig.BandwidthThrottle = Convert.ToSingle(trackBar1.Value);
 
             if (checkBox4.Checked)
@@ -291,7 +295,8 @@ namespace METAbolt
             config.CurrentConfig.MasterAvatar = txtMavatar.Text.Trim();
             config.CurrentConfig.AutoTransfer = chkAutoTransfer.Checked;
             config.CurrentConfig.DisableTrayIcon = chkTray.Checked;
-            config.CurrentConfig.DisableTyping = chkTyping.Checked;  
+            config.CurrentConfig.DisableTyping = chkTyping.Checked;
+            config.CurrentConfig.AutoAcceptFriends = chkAutoFriend.Checked;    
         }
 
         #endregion
@@ -766,6 +771,15 @@ namespace METAbolt
         {
             colorDialog1.ShowDialog();
             textBox9.BackColor = colorDialog1.Color;
+        }
+
+        private void nUD2_ValueChanged(object sender, EventArgs e)
+        {
+            if (loadingtimer1)
+            {
+                loadingtimer1 = false;
+                return;
+            }
         }
     }
 }

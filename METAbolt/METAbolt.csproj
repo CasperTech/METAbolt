@@ -64,7 +64,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
@@ -249,6 +249,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Components\DataChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Core\Components\ExListBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -750,6 +753,9 @@
     <EmbeddedResource Include="Core\Components\CustomToolTip.resx">
       <DependentUpon>CustomToolTip.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Components\DataChart.resx">
+      <DependentUpon>DataChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Components\Notification.resx">
       <DependentUpon>Notification.cs</DependentUpon>

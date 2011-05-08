@@ -48,11 +48,12 @@ namespace METAbolt
         private GridClient client;
 
         private System.Timers.Timer aTimer;
+        private System.Timers.Timer aTimer1;
         private NetworkTraffic networkTraffic = new NetworkTraffic();
         private float cntr = 0;
         private double ins = 0.0d;
         private double iny = 0.0d;
-        private int graphIncrement = 0;
+        //private int graphIncrement = 0;
 
         float pastval1 = 0f;
         float pastval2 = 0f;
@@ -84,6 +85,30 @@ namespace METAbolt
             AddClientEvents();
 
             this.Disposed += new EventHandler(frmDebugLog_Disposed);
+
+            this.dataChartIn.BackColor = System.Drawing.Color.Black;
+            this.dataChartIn.ChartType = SystemMonitor.ChartType.Line;
+            //this.dataChartIn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataChartIn.GridColor = System.Drawing.Color.Green;
+            //this.dataChartIn.GridPixels = 8;
+            this.dataChartIn.InitialHeight = 100;
+            this.dataChartIn.LineColor = System.Drawing.Color.Red;
+
+            this.dataChart2.BackColor = System.Drawing.Color.Black;
+            this.dataChart2.ChartType = SystemMonitor.ChartType.Line;
+            //this.dataChart2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataChart2.GridColor = System.Drawing.Color.Green;
+            //this.dataChart2.GridPixels = 8;
+            this.dataChart2.InitialHeight = 100;
+            this.dataChart2.LineColor = System.Drawing.Color.Yellow;
+
+            this.dataChart3.BackColor = System.Drawing.Color.Black;
+            this.dataChart3.ChartType = SystemMonitor.ChartType.Line;
+            //this.dataChart2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataChart3.GridColor = System.Drawing.Color.Green;
+            //this.dataChart2.GridPixels = 8;
+            this.dataChart3.InitialHeight = 300;
+            this.dataChart3.LineColor = System.Drawing.Color.White;
         }
 
         private void SetExceptionReporter()
@@ -211,6 +236,11 @@ namespace METAbolt
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if (button5.Enabled)
+            {
+                button5.PerformClick();
+            }
+
             Hide();
         }
 
@@ -318,9 +348,7 @@ namespace METAbolt
             }
 
             rtBox1.Text += "Pinging " + textBox1.Text + " [" + ip.ToString() + "] with 32 bytes of data:\n";
-            //Thread pingThread = new Thread(new ParameterizedThreadStart(StartPing));
-            //pingThread.Start(ip);
-            //pingThread.Join();
+
             PingHost ping = new PingHost();
             ping.Change += new PingHost.PingResponsereceived(ping_Change);
             ping.StartPing(ip);
@@ -328,14 +356,17 @@ namespace METAbolt
 
         private void ping_Change(object sender, PingEventArgs pa)
         {
-            rtBox1.Text += "\n" + pa.Message();  
+            BeginInvoke(new MethodInvoker(delegate()
+                {
+                    rtBox1.Text += "\n" + pa.Message();
+                }));
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            // Set the Interval to 10 seconds.
+            // Set the Interval to 1 second.
             aTimer.Interval = 1000;
             aTimer.Enabled = true;
             aTimer.Start();
@@ -343,7 +374,14 @@ namespace METAbolt
             label4.Text = "Instance name/PID: " + networkTraffic.GetInstanceNme();
 
             button5.Enabled = true;
-            button4.Enabled = false; 
+            button4.Enabled = false;
+
+            aTimer1 = new System.Timers.Timer();
+            aTimer1.Elapsed += new ElapsedEventHandler(OnTimedEvent1);
+            // Set the Interval to 5 seconds.
+            aTimer1.Interval = 5000;
+            aTimer1.Enabled = true;
+            aTimer1.Start();
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
@@ -355,11 +393,11 @@ namespace METAbolt
                         ins = Convert.ToDouble(networkTraffic.GetBytesSent()) * 0.0009765625;
                         iny = Convert.ToDouble(networkTraffic.GetBytesReceived()) * 0.0009765625;
 
-                        double chgout = Math.Round(ins - Convert.ToDouble(pastval1), 2);   // Math.Round(ins / Convert.ToDouble(cntr), 2);
-                        double chgin = Math.Round(iny - Convert.ToDouble(pastval2), 2);    //Math.Round(iny / Convert.ToDouble(cntr), 2);
+                        //double chgout = Math.Round(ins - Convert.ToDouble(pastval1), 2);   // Math.Round(ins / Convert.ToDouble(cntr), 2);
+                        //double chgin = Math.Round(iny - Convert.ToDouble(pastval2), 2);    //Math.Round(iny / Convert.ToDouble(cntr), 2);
 
-                        label2.Text = "out: " + ins.ToString("#0.00") + " kb (" + chgout.ToString() + " kb/s)";   // networkTraffic.GetBytesSent().ToString();
-                        label3.Text = "in: " + iny.ToString("#0.00") + " kb (" + chgin.ToString() + " kb/s)";    //networkTraffic.GetBytesReceived().ToString();
+                        label2.Text = "out: " + ins.ToString("#0.00") + " kb";   // (" + chgout.ToString() + " kb/s)";   // networkTraffic.GetBytesSent().ToString();
+                        label3.Text = "in: " + iny.ToString("#0.00") + " kb";   // +chgin.ToString() + " kb/s)";    //networkTraffic.GetBytesReceived().ToString();
 
                         double insm = ins * 0.0009765625;
                         double inym = iny * 0.0009765625;
@@ -375,7 +413,7 @@ namespace METAbolt
 
                         TimeSpan ts = TimeSpan.FromSeconds(Convert.ToInt32(cntr));
 
-                        label10.Text = Convert.ToInt32(ts.Hours).ToString("00") + ":" + Convert.ToInt32(ts.Minutes).ToString("00") + ":" + Convert.ToInt32(ts.Seconds).ToString("00");
+                        label10.Text = "Elapsed time: " + Convert.ToInt32(ts.Hours).ToString("00") + ":" + Convert.ToInt32(ts.Minutes).ToString("00") + ":" + Convert.ToInt32(ts.Seconds).ToString("00");
 
                         cntr += 1;
                         PlotGraph();
@@ -395,48 +433,44 @@ namespace METAbolt
 
             cntr = 0;
 
-            label2.Text = string.Empty;
-            label3.Text = string.Empty;
-            label4.Text = string.Empty;
-            label5.Text = string.Empty;
-            label6.Text = string.Empty;
-            label7.Text = string.Empty;
-            label8.Text = string.Empty;
+            //label2.Text = string.Empty;
+            //label3.Text = string.Empty;
+            //label4.Text = string.Empty;
+            //label5.Text = string.Empty;
+            //label6.Text = string.Empty;
+            //label7.Text = string.Empty;
+            //label8.Text = string.Empty;
 
             pastval1 = 0f;
             pastval2 = 0f;
 
             button5.Enabled = false;
             button4.Enabled = true;
+
+            aTimer1.Stop();
+            aTimer1.Enabled = false;
+            aTimer1.Dispose();
         }
 
         private void PlotGraph()
         {
-            //float currVal = (Convert.ToSingle(ins) / cntr) - pastval1;
             float currVal = Convert.ToSingle(ins) - pastval1;
+
+            double chgout = Math.Round(ins - Convert.ToDouble(pastval1), 2);
+            label11.Text = "Out (" + chgout.ToString() + " kb/s)";
             pastval1 = Convert.ToSingle(ins);
 
-            Graphics gfx = picGraph.CreateGraphics();
+            double valg = Convert.ToDouble(currVal) * 100.0d;
+            dataChart2.UpdateChart(valg);
 
-            Pen pn = new Pen(Color.RoyalBlue, 1);
-            gfx.DrawLine(pn, graphIncrement, 200, graphIncrement, 199 - (currVal * 10));
-
-            //currVal = (Convert.ToSingle(iny) / cntr) - pastval2;
             currVal = Convert.ToSingle(iny) - pastval2;
+
+            double chgin = Math.Round(iny - Convert.ToDouble(pastval2), 2);
+            label9.Text = "In: (" + chgin.ToString() + " kb/s)";
             pastval2 = Convert.ToSingle(iny);
 
-            graphIncrement += 1;
-
-            Pen pn1 = new Pen(Color.Red, 1);
-            gfx.DrawLine(pn1, graphIncrement, 200, graphIncrement, 199 - (currVal * 10));
-
-            graphIncrement += 2;
-
-            if (graphIncrement > 500)
-            {
-                picGraph.Invalidate();
-                graphIncrement = 0;
-            }
+            valg = Convert.ToDouble(currVal) * 100.0d;
+            dataChartIn.UpdateChart(valg);
         }
 
         private void frmDebugLog_FormClosing(object sender, FormClosingEventArgs e)
@@ -467,6 +501,57 @@ namespace METAbolt
                 }
             }
             catch { ; }
+        }
+
+        private void tpgMonitor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PingSIM()
+        {
+            IPAddress ip = null;
+
+            IPEndPoint simip = client.Network.CurrentSim.IPEndPoint;
+
+            ip = simip.Address; 
+
+            PingHost ping = new PingHost();
+            ping.Change += new PingHost.PingResponsereceived(ping_ChangeTimer);
+
+            ping.StartPing(ip);
+        }
+
+        private void ping_ChangeTimer(object sender, PingEventArgs pa)
+        {
+            BeginInvoke(new MethodInvoker(delegate()
+                {
+                    if (pa.Message().Contains("Approximate round trip times in milli-seconds"))
+                    {
+                        string[] ltimes = pa.Message().Split(new Char[] { '=' });
+                        int enrs = ltimes.Length;
+
+                        string lval = ltimes[enrs - 1].Trim();
+                        label12.Text = "Latency: " + lval;
+
+                        try
+                        {
+                            if (lval.Contains("ms"))
+                            {
+                                string valg = lval.Substring(0, lval.Length - 2);
+                                double dvalg = Convert.ToDouble(valg);
+
+                                dataChart3.UpdateChart(dvalg);
+                            }
+                        }
+                        catch { ; }
+                    }
+                }));
+        }
+
+        private void OnTimedEvent1(object sender, ElapsedEventArgs e)
+        {
+            PingSIM();
         }
     }
 }

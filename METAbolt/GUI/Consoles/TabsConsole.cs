@@ -886,6 +886,12 @@ namespace METAbolt
             if (TabExists(fromAgentID))
                 tabs[fromAgentID].Close();
 
+            if (instance.Config.CurrentConfig.AutoAcceptFriends)
+            {
+                client.Friends.AcceptFriendship(e.IM.FromAgentID, e.IM.IMSessionID);
+                return;
+            }
+
             FRTabWindow frTab = AddFRTab(e);
             tabs[frTab.TargetUUID.ToString()].Highlight();
 

@@ -155,6 +155,9 @@ namespace METAbolt
             CheckAdLicence();
 
             world.Cursor = Cursors.NoMove2D;
+
+            timer2.Enabled = true;
+            timer2.Start();  
         }
 
         private void SetExceptionReporter()
@@ -310,13 +313,16 @@ namespace METAbolt
 
             if (instance.Config.CurrentConfig.AutoSit)
             {
-                Logger.Log("AUTOSIT: Initialising...", Helpers.LogLevel.Info);
+                if (!instance.State.IsSitting)
+                {
+                    Logger.Log("AUTOSIT: Initialising...", Helpers.LogLevel.Info);
 
-                sitTimer = new System.Timers.Timer();
-                sitTimer.Interval = 61000;
-                sitTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                sitTimer.Enabled = true;
-                sitTimer.Start();
+                    sitTimer = new System.Timers.Timer();
+                    sitTimer.Interval = 61000;
+                    sitTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                    sitTimer.Enabled = true;
+                    sitTimer.Start();
+                }
             }
 
             try
@@ -3511,6 +3517,17 @@ namespace METAbolt
         {
             vgate.SpkrLevel = trackBar2.Value;
             toolTip1.SetToolTip(trackBar2, "Volume: " + trackBar2.Value.ToString());
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (!avrezzed)
+            {
+                client.Appearance.RequestSetAppearance(false);
+            }
+
+            timer2.Enabled = false;
+            timer2.Stop();  
         }
     }
 }

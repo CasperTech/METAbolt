@@ -1734,10 +1734,12 @@ namespace METAbolt
                     // Auto-restart
                     try
                     {
+                        int restartinterval = instance.Config.CurrentConfig.ReStartTime * 60; // convert to seconds
+
                         Process p = new Process();
                         p.StartInfo.FileName = "METArestart.exe";
                         p.StartInfo.WorkingDirectory = Application.StartupPath;
-                        p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|");
+                        p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
                         p.Start();
                     }
                     catch (Exception ex)

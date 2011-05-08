@@ -155,6 +155,8 @@ namespace METAbolt
         private bool disabletrayicon = false;
         private bool disablefriendsnotifications = false;
         private bool disabletyping = false;
+        private bool autoacceptfriends = false;
+        private int restarttime = 10;
 
 
         public Config()
@@ -222,6 +224,7 @@ namespace METAbolt
                 config.ClassicChatLayout = conf.Configs["General"].GetBoolean("ClassicChatLayout", false);
                 config.AutoRestart = conf.Configs["General"].GetBoolean("AutoRestart", false);
                 config.LogOffTime = conf.Configs["General"].GetInt("LogOffTime", 0);
+                config.ReStartTime = conf.Configs["General"].GetInt("ReStartTime", 10);
                 config.BandwidthThrottle = conf.Configs["General"].GetFloat("BandwidthThrottle", 3000f);
 
                 config.PlayFriendOnline = conf.Configs["General"].GetBoolean("PlayFriendOnline", false);
@@ -238,6 +241,7 @@ namespace METAbolt
                 config.DisableTrayIcon = conf.Configs["General"].GetBoolean("DisableTrayIcon", false);
                 config.DisableFriendsNotifications = conf.Configs["General"].GetBoolean("DisableFriendsNotifications", false);
                 config.DisableTyping = conf.Configs["General"].GetBoolean("DisableTyping", false);
+                config.AutoAcceptFriends = conf.Configs["General"].GetBoolean("AutoAcceptFriends", false);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -349,6 +353,7 @@ namespace METAbolt
             config.Set("DisableLookAt", disablelookat);
             config.Set("AutoRestart", autorestart.ToString());
             config.Set("LogOffTime", logofftime.ToString());
+            config.Set("ReStartTime", restarttime.ToString());
             config.Set("BandwidthThrottle", bandwidththrottle.ToString());
             config.Set("ClassicChatLayout", useclassicchatlayout.ToString());
 
@@ -390,7 +395,8 @@ namespace METAbolt
             config.Set("AutoTransfer", autotransfer.ToString());
             config.Set("DisableTrayIcon", disabletrayicon.ToString());
             config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString());
-            config.Set("DisableTyping", disabletyping.ToString());    
+            config.Set("DisableTyping", disabletyping.ToString());
+            config.Set("AutoAcceptFriends", autoacceptfriends.ToString());
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1118,6 +1124,18 @@ namespace METAbolt
         {
             get { return disabletyping ; }
             set { disabletyping = value; }
+        }
+
+        public bool AutoAcceptFriends
+        {
+            get { return autoacceptfriends; }
+            set { autoacceptfriends = value; }
+        }
+
+        public int ReStartTime
+        {
+            get { return restarttime; }
+            set { restarttime = value; }
         }
     }
 }

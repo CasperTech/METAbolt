@@ -91,10 +91,10 @@ namespace METAbolt
         {
             client.Friends.AcceptFriendship(targetUUID, isession);
 
-            fconsole = new FriendsConsole(instance); 
-            fconsole.InitializeFriendsList();
-            //BeginInvoke(new MethodInvoker(fconsole.InitializeFriendsList()));
-            //BeginInvoke(new MethodInvoker(fconsole.InitializeFriendsList()));
+            //fconsole = new FriendsConsole(instance); 
+            //fconsole.InitializeFriendsList();
+            ////BeginInvoke(new MethodInvoker(fconsole.InitializeFriendsList()));
+            ////BeginInvoke(new MethodInvoker(fconsole.InitializeFriendsList()));
             CloseTab();
         }
 
