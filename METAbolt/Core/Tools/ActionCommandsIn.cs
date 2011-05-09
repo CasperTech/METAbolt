@@ -187,7 +187,7 @@ namespace METAbolt
 
                     if (item == null)
                     {
-                        Logger.Log("IM GIVE COMMAND: Item " + imitem.ToString() + "not found in inventory", Helpers.LogLevel.Error);
+                        Logger.Log("IM GIVE COMMAND: Item " + imitem.ToString() + " not found in inventory", Helpers.LogLevel.Error);
                         return string.Empty;
                     }
 
