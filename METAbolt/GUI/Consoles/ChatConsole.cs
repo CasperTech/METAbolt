@@ -3521,13 +3521,12 @@ namespace METAbolt
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (!avrezzed)
+            if (!avrezzed && netcom.IsLoggedIn)
             {
                 client.Appearance.RequestSetAppearance(false);
-            }
-
-            timer2.Enabled = false;
-            timer2.Stop();  
+                timer2.Enabled = false;
+                timer2.Stop();
+            }  
         }
     }
 }
