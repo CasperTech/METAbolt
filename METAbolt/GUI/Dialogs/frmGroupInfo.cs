@@ -91,11 +91,11 @@ namespace METAbolt
             this.Group = group;
             grpid = group.ID;
 
-            while (!IsHandleCreated)
-            {
-                // Force handle creation
-                IntPtr temp = Handle;
-            }
+            //while (!IsHandleCreated)
+            //{
+            //    // Force handle creation
+            //    IntPtr temp = Handle;
+            //}
 
             AddGEvents();
 
@@ -119,11 +119,11 @@ namespace METAbolt
             Client = instance.Client;
             grpid = group.GroupID;
 
-            while (!IsHandleCreated)
-            {
-                // Force handle creation
-                IntPtr temp = Handle;
-            }
+            //while (!IsHandleCreated)
+            //{
+            //    // Force handle creation
+            //    IntPtr temp = Handle;
+            //}
 
             AddGEvents();
 
@@ -152,11 +152,11 @@ namespace METAbolt
             Client = instance.Client;
             grpid = groupid;
 
-            while (!IsHandleCreated)
-            {
-                // Force handle creation
-                IntPtr temp = Handle;
-            }
+            //while (!IsHandleCreated)
+            //{
+            //    // Force handle creation
+            //    IntPtr temp = Handle;
+            //}
 
             AddGEvents();
 
@@ -279,6 +279,8 @@ namespace METAbolt
                 return;
             }
 
+            lstNotices.Items.Clear();  
+
             foreach (GroupNoticesListEntry notice in notices)
             {
                 ListViewItem lvi = new ListViewItem();
@@ -324,6 +326,9 @@ namespace METAbolt
             {
                 string noticemsg =  e.IM.Message;
 
+                panel1.Visible = true;
+                panel2.Visible = false;
+ 
                 char[] deli = "|".ToCharArray();
                 string[] Msg = imsg.Message.Split(deli);
                 textBox5.Text = Msg[1].Replace("\n", System.Environment.NewLine);
@@ -989,7 +994,7 @@ namespace METAbolt
             panel2.Visible = false;
             button2.Enabled = false;
             objID = UUID.Zero;
-            textBox6.Text = "Drag-Drop attachment item here"; 
+            textBox6.Text = "Drag-Drop attachment item here";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -1029,23 +1034,35 @@ namespace METAbolt
 
         private void textBox6_DragDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            TreeNode node = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+
+            if (node == null) return;
+
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                string s = (string)e.Data.GetData(DataFormats.FileDrop, false);
+                InventoryBase io = (InventoryBase)node.Tag;
 
-                char[] deli = ",".ToCharArray();
-                string[] iDets = s.Split(deli);
+                if (node.Tag is InventoryItem)
+                {
+                    InventoryItem item = (InventoryItem)io;
 
-                objID = (UUID)iDets[0];
-                textBox6.Text = iDets[1];
+                    if ((item.Permissions.OwnerMask & PermissionMask.Copy) != PermissionMask.Copy)
+                    {
+                        MessageBox.Show("This is a 'no copy' item. You can't attach no transfer/copy items.", "Warning", MessageBoxButtons.OK);
+                        return;
+                    }
+
+                    objID = item.UUID;
+                    textBox6.Text = item.Name;
+                }
             }
         }
 
         private void textBox6_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                e.Effect = DragDropEffects.Move;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
@@ -1055,9 +1072,9 @@ namespace METAbolt
 
         private void textBox6_DragOver(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                e.Effect = DragDropEffects.Move;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {

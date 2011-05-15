@@ -232,8 +232,9 @@ namespace METAbolt
                 {
                     Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
 
-                    frmGroupInfo frm = new frmGroupInfo(group, instance);
-                    frm.ShowDialog();
+                    //frmGroupInfo frm = new frmGroupInfo(group, instance);
+                    //frm.ShowDialog();
+                    (new frmGroupInfo(group, instance)).Show();
                 }
             }
         }

@@ -84,24 +84,24 @@ namespace METAbolt
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabNotices = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cmdRefreshNotices = new System.Windows.Forms.Button();
             this.lstNotices = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.cmdApply = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -127,6 +127,7 @@ namespace METAbolt
             // tabs
             // 
             this.tabs.AccessibleName = "Tabs";
+            this.tabs.AllowDrop = true;
             this.tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabs.Controls.Add(this.tabGeneral);
             this.tabs.Controls.Add(this.tabMembersRoles);
@@ -731,13 +732,14 @@ namespace METAbolt
             // tabNotices
             // 
             this.tabNotices.AccessibleName = "Notices tab";
+            this.tabNotices.AllowDrop = true;
             this.tabNotices.BackColor = System.Drawing.Color.Lavender;
             this.tabNotices.Controls.Add(this.panel2);
             this.tabNotices.Controls.Add(this.button3);
-            this.tabNotices.Controls.Add(this.button2);
             this.tabNotices.Controls.Add(this.label3);
             this.tabNotices.Controls.Add(this.cmdRefreshNotices);
             this.tabNotices.Controls.Add(this.lstNotices);
+            this.tabNotices.Controls.Add(this.panel1);
             this.tabNotices.Location = new System.Drawing.Point(4, 25);
             this.tabNotices.Name = "tabNotices";
             this.tabNotices.Size = new System.Drawing.Size(409, 478);
@@ -747,48 +749,20 @@ namespace METAbolt
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.panel1);
+            this.panel2.AllowDrop = true;
             this.panel2.Controls.Add(this.textBox6);
             this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Location = new System.Drawing.Point(2, 203);
+            this.panel2.Location = new System.Drawing.Point(2, 208);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(404, 248);
+            this.panel2.Size = new System.Drawing.Size(404, 270);
             this.panel2.TabIndex = 4;
             this.panel2.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Location = new System.Drawing.Point(3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(399, 241);
-            this.panel1.TabIndex = 30;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 4);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(327, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "To send a new notice, click the \"Create New Notice\" button above.";
-            // 
-            // textBox5
-            // 
-            this.textBox5.AccessibleName = "Contents of the selected notice";
-            this.textBox5.Location = new System.Drawing.Point(3, 25);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox5.Size = new System.Drawing.Size(393, 214);
-            this.textBox5.TabIndex = 24;
             // 
             // textBox6
             // 
@@ -796,8 +770,9 @@ namespace METAbolt
             this.textBox6.AllowDrop = true;
             this.textBox6.BackColor = System.Drawing.SystemColors.Info;
             this.textBox6.ForeColor = System.Drawing.Color.Gray;
-            this.textBox6.Location = new System.Drawing.Point(62, 224);
+            this.textBox6.Location = new System.Drawing.Point(63, 224);
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(201, 21);
             this.textBox6.TabIndex = 2;
             this.textBox6.Text = "Drag-Drop attachment item here";
@@ -809,11 +784,24 @@ namespace METAbolt
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 224);
+            this.label9.Location = new System.Drawing.Point(4, 227);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 29;
             this.label9.Text = "Attach:";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.Enabled = false;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(326, 244);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "&Send";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
@@ -874,19 +862,6 @@ namespace METAbolt
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button2.Enabled = false;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(331, 455);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "&Send";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -944,6 +919,35 @@ namespace METAbolt
             // 
             this.columnHeader6.Text = "Date";
             this.columnHeader6.Width = 87;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Location = new System.Drawing.Point(2, 208);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(407, 270);
+            this.panel1.TabIndex = 30;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 7);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(327, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "To send a new notice, click the \"Create New Notice\" button above.";
+            // 
+            // textBox5
+            // 
+            this.textBox5.AccessibleName = "Contents of the selected notice";
+            this.textBox5.Location = new System.Drawing.Point(3, 25);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox5.Size = new System.Drawing.Size(400, 237);
+            this.textBox5.TabIndex = 24;
             // 
             // cmdApply
             // 
@@ -1011,6 +1015,7 @@ namespace METAbolt
             // 
             this.AccessibleName = "Group information window";
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
@@ -1021,7 +1026,7 @@ namespace METAbolt
             this.Controls.Add(this.cmdApply);
             this.Controls.Add(this.tabs);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmGroupInfo";

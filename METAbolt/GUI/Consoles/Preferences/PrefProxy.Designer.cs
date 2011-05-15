@@ -72,9 +72,9 @@
             this.label7.ForeColor = System.Drawing.Color.Gray;
             this.label7.Location = new System.Drawing.Point(76, 102);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 9;
-            this.label7.Text = "e.g. 80";
+            this.label7.Text = "e.g. 8080";
             // 
             // label6
             // 

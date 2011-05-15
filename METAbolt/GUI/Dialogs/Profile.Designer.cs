@@ -32,6 +32,7 @@ namespace METAbolt
             this.tabProfile = new System.Windows.Forms.TabControl();
             this.tpgProfile = new System.Windows.Forms.TabPage();
             this.gbDisplayName = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.pBar3 = new System.Windows.Forms.PictureBox();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -96,7 +97,6 @@ namespace METAbolt
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
             this.tabProfile.SuspendLayout();
             this.tpgProfile.SuspendLayout();
             this.gbDisplayName.SuspendLayout();
@@ -192,6 +192,15 @@ namespace METAbolt
             this.gbDisplayName.TabIndex = 56;
             this.gbDisplayName.TabStop = false;
             this.gbDisplayName.Visible = false;
+            // 
+            // label18
+            // 
+            this.label18.Location = new System.Drawing.Point(71, 35);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(299, 40);
+            this.label18.TabIndex = 61;
+            this.label18.Text = "The name you give your avatar is called your Display Name. You can change it once" +
+                " a week.";
             // 
             // pBar3
             // 
@@ -998,15 +1007,6 @@ namespace METAbolt
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // label18
-            // 
-            this.label18.Location = new System.Drawing.Point(71, 35);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(299, 40);
-            this.label18.TabIndex = 61;
-            this.label18.Text = "The name you give your avatar is called your Display Name. You can change it once" +
-                " a week.";
-            // 
             // frmProfile
             // 
             this.AccessibleName = "Avatar profile window";
@@ -1025,6 +1025,7 @@ namespace METAbolt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmProfile";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profile";
