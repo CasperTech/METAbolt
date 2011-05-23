@@ -129,6 +129,7 @@ namespace METAbolt
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.tsFlag = new System.Windows.Forms.ToolStripButton();
             this.tsTime = new System.Windows.Forms.ToolStripLabel();
+            this.tsTimeOut = new System.Windows.Forms.ToolStripLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tlblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblMoneyBalance = new System.Windows.Forms.ToolStripStatusLabel();
@@ -143,7 +144,6 @@ namespace METAbolt
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tsTimeOut = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
@@ -1014,6 +1014,13 @@ namespace METAbolt
             this.tsTime.Size = new System.Drawing.Size(30, 22);
             this.tsTime.Text = "--:--";
             // 
+            // tsTimeOut
+            // 
+            this.tsTimeOut.ForeColor = System.Drawing.Color.Red;
+            this.tsTimeOut.Name = "tsTimeOut";
+            this.tsTimeOut.Size = new System.Drawing.Size(34, 22);
+            this.tsTimeOut.Text = "00:00";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.AccessibleName = "Information strip";
@@ -1192,13 +1199,6 @@ namespace METAbolt
             this.timer1.Enabled = true;
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // tsTimeOut
-            // 
-            this.tsTimeOut.ForeColor = System.Drawing.Color.Red;
-            this.tsTimeOut.Name = "tsTimeOut";
-            this.tsTimeOut.Size = new System.Drawing.Size(34, 22);
-            this.tsTimeOut.Text = "00:00";
             // 
             // frmMain
             // 

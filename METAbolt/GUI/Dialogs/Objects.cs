@@ -1256,14 +1256,16 @@ namespace METAbolt
                     pictureBox1.Cursor = Cursors.Hand;   
                 }
 
-                if (lookup == client.Self.AgentID)
-                {
-                    btnReturn.Enabled =  btnTake.Enabled = true;
-                }
-                else
-                {
-                    btnReturn.Enabled = btnTake.Enabled = false;
-                }
+                //if (lookup == client.Self.AgentID)
+                //{
+                //    btnReturn.Enabled =  btnTake.Enabled = true;
+                //}
+                //else
+                //{
+                //    btnReturn.Enabled = btnTake.Enabled = false;
+                //}
+
+                btnReturn.Enabled = btnTake.Enabled = true;
 
                 PermissionMask sPerm = sPr.Properties.Permissions.NextOwnerMask;
                 PermissionMask sOPerm = sPr.Properties.Permissions.OwnerMask;
@@ -2646,9 +2648,19 @@ namespace METAbolt
 
             Primitive sPr = item.Prim;
 
-            if (sPr.Properties.OwnerID != client.Self.AgentID) return;
+            //if (sPr.Properties.OwnerID != client.Self.AgentID) return;
 
             client.Inventory.RequestDeRezToInventory(sPr.LocalID, DeRezDestination.ReturnToOwner, UUID.Zero, UUID.Random());
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            int iDx = lbxPrims.SelectedIndex;
+            ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
+
+            if (item == null) return;
+
+            (new META3D(instance, item.Prim.LocalID)).Show();
         }
     }
 }

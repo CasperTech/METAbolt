@@ -671,7 +671,7 @@ namespace METAbolt
 
             client.Throttle.Total = 4460000.0f;
 
-            client.Settings.THROTTLE_OUTGOING_PACKETS = true;
+            client.Settings.THROTTLE_OUTGOING_PACKETS = false;
         }
 
         private void InitializeConfig()
@@ -730,7 +730,15 @@ namespace METAbolt
             //    }
             //}
 
-            return client.Self.SimPosition;   // ppos;
+            try
+            {
+                return client.Self.SimPosition;   // ppos;
+            }
+            catch {
+
+                Vector3 ppos = new Vector3(0, 0,0);
+                return ppos;
+            }
         }
 
         public bool IMHistyoryExists(string filename, bool isgroup)
