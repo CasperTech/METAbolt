@@ -1,4 +1,4 @@
-﻿//  Copyright (c) 2008 - 2010, www.metabolt.net
+﻿//  Copyright (c) 2008-2011, www.metabolt.net
 //  All rights reserved.
 
 //  Redistribution and use in source and binary forms, with or without modification, 
@@ -328,13 +328,18 @@ namespace METAbolt
 
             int iDx = lbxPrims.SelectedIndex;
             lbxPrimGroup.Items.Clear();
-            label2.Text = string.Empty;   
+            label2.Text = string.Empty;
 
             if (iDx < 0)
             {
                 button1.Enabled = false;
                 btnTouch.Enabled = false;
+                button2.Enabled = false;
                 return;
+            }
+            else
+            {
+                button2.Enabled = true;
             }
 
             AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
@@ -400,7 +405,12 @@ namespace METAbolt
             {
                 button1.Enabled = false;
                 btnTouch.Enabled = false;
+                button2.Enabled = false;
                 return;
+            }
+            else
+            {
+                button2.Enabled = true;
             }
 
             AttachmentsListItem item = (AttachmentsListItem)lbxPrimGroup.Items[iDx];
@@ -415,6 +425,20 @@ namespace METAbolt
             }
 
             label5.Text = item.Prim.Text;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int iDx = lbxPrims.SelectedIndex;
+            AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
+
+            if (item == null) return;
+            (new META3D(instance, item.Prim.LocalID)).Show();
         }
     }
 }

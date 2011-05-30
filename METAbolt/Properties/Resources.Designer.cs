@@ -228,6 +228,12 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream camera_clic_with_flash {
+            get {
+                return ResourceManager.GetStream("camera_clic_with_flash", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to See the new Version .3 of METAbolt in action here!.
         /// </summary>
@@ -553,7 +559,7 @@ namespace METAbolt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.9.43.0 (BETA).
+        ///   Looks up a localized string similar to 0.9.44.0 (BETA).
         /// </summary>
         internal static string METAboltVersion {
             get {

@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTouch
@@ -47,7 +48,7 @@
             this.btnTouch.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnTouch.Enabled = false;
             this.btnTouch.ForeColor = System.Drawing.Color.White;
-            this.btnTouch.Location = new System.Drawing.Point(263, 388);
+            this.btnTouch.Location = new System.Drawing.Point(283, 388);
             this.btnTouch.Name = "btnTouch";
             this.btnTouch.Size = new System.Drawing.Size(77, 23);
             this.btnTouch.TabIndex = 5;
@@ -60,9 +61,9 @@
             this.btnClose.AccessibleName = "Close this window button";
             this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(346, 388);
+            this.btnClose.Location = new System.Drawing.Point(366, 388);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(71, 23);
+            this.btnClose.Size = new System.Drawing.Size(51, 23);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -93,9 +94,9 @@
             this.button1.BackColor = System.Drawing.Color.RoyalBlue;
             this.button1.Enabled = false;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(180, 388);
+            this.button1.Location = new System.Drawing.Point(221, 388);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 23);
+            this.button1.Size = new System.Drawing.Size(56, 23);
             this.button1.TabIndex = 4;
             this.button1.Text = "&Detach";
             this.button1.UseVisualStyleBackColor = false;
@@ -146,7 +147,7 @@
             this.label2.AccessibleName = "Total child objects textbox";
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(3, 385);
+            this.label2.Location = new System.Drawing.Point(3, 390);
             this.label2.Name = "label2";
             this.label2.ReadOnly = true;
             this.label2.Size = new System.Drawing.Size(149, 21);
@@ -166,6 +167,21 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(416, 59);
             this.label5.TabIndex = 26;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // button2
+            // 
+            this.button2.AccessibleName = "3D view button";
+            this.button2.BackColor = System.Drawing.Color.DarkGreen;
+            this.button2.Enabled = false;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(159, 388);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(56, 23);
+            this.button2.TabIndex = 56;
+            this.button2.Text = "&View 3D";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // WornAttachments
             // 
@@ -175,6 +191,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(420, 499);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -213,5 +230,6 @@
         private System.Windows.Forms.TextBox label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button2;
     }
 }

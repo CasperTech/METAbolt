@@ -144,6 +144,8 @@ namespace METAbolt
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.uploadImageL10PerUploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
@@ -753,7 +755,9 @@ namespace METAbolt
             this.toolStripSeparator19,
             this.toolStripMenuItem4,
             this.toolStripSeparator23,
-            this.tsMenuDetect});
+            this.tsMenuDetect,
+            this.toolStripSeparator11,
+            this.uploadImageL10PerUploadToolStripMenuItem});
             this.tlTools.Enabled = false;
             this.tlTools.Image = global::METAbolt.Properties.Resources.tools1;
             this.tlTools.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -767,21 +771,21 @@ namespace METAbolt
             this.tbtnTeleport.Image = global::METAbolt.Properties.Resources.tp;
             this.tbtnTeleport.Name = "tbtnTeleport";
             this.tbtnTeleport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.tbtnTeleport.Size = new System.Drawing.Size(205, 22);
+            this.tbtnTeleport.Size = new System.Drawing.Size(243, 22);
             this.tbtnTeleport.Text = "Teleport";
             this.tbtnTeleport.Click += new System.EventHandler(this.teleportToolStripMenuItem_Click);
             // 
             // toolStripSeparator22
             // 
             this.toolStripSeparator22.Name = "toolStripSeparator22";
-            this.toolStripSeparator22.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator22.Size = new System.Drawing.Size(240, 6);
             // 
             // btnMap
             // 
             this.btnMap.AccessibleName = "Map menu option";
             this.btnMap.Name = "btnMap";
             this.btnMap.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.btnMap.Size = new System.Drawing.Size(205, 22);
+            this.btnMap.Size = new System.Drawing.Size(243, 22);
             this.btnMap.Text = "Map";
             this.btnMap.Click += new System.EventHandler(this.mapToolStripMenuItem_Click);
             // 
@@ -791,14 +795,14 @@ namespace METAbolt
             this.tbtnObjects.Image = global::METAbolt.Properties.Resources.objects;
             this.tbtnObjects.Name = "tbtnObjects";
             this.tbtnObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tbtnObjects.Size = new System.Drawing.Size(205, 22);
+            this.tbtnObjects.Size = new System.Drawing.Size(243, 22);
             this.tbtnObjects.Text = "Object Manager";
             this.tbtnObjects.Click += new System.EventHandler(this.objectsToolStripMenuItem_Click);
             // 
             // toolStripSeparator21
             // 
             this.toolStripSeparator21.Name = "toolStripSeparator21";
-            this.toolStripSeparator21.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator21.Size = new System.Drawing.Size(240, 6);
             // 
             // scriptEditorToolStripMenuItem
             // 
@@ -806,14 +810,14 @@ namespace METAbolt
             this.scriptEditorToolStripMenuItem.Image = global::METAbolt.Properties.Resources.source_i;
             this.scriptEditorToolStripMenuItem.Name = "scriptEditorToolStripMenuItem";
             this.scriptEditorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.scriptEditorToolStripMenuItem.Text = "Script Manager";
             this.scriptEditorToolStripMenuItem.Click += new System.EventHandler(this.scriptEditorToolStripMenuItem_Click);
             // 
             // toolStripSeparator27
             // 
             this.toolStripSeparator27.Name = "toolStripSeparator27";
-            this.toolStripSeparator27.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator27.Size = new System.Drawing.Size(240, 6);
             // 
             // mETAplayerToolStripMenuItem
             // 
@@ -822,35 +826,35 @@ namespace METAbolt
             this.mETAplayerToolStripMenuItem.Name = "mETAplayerToolStripMenuItem";
             this.mETAplayerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt)
                         | System.Windows.Forms.Keys.Y)));
-            this.mETAplayerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.mETAplayerToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.mETAplayerToolStripMenuItem.Text = "METAplayer";
             this.mETAplayerToolStripMenuItem.Click += new System.EventHandler(this.mETAplayerToolStripMenuItem_Click);
             // 
             // toolStripSeparator19
             // 
             this.toolStripSeparator19.Name = "toolStripSeparator19";
-            this.toolStripSeparator19.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator19.Size = new System.Drawing.Size(240, 6);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.AccessibleName = "SIM stats menu option";
             this.toolStripMenuItem4.Image = global::METAbolt.Properties.Resources.stats1;
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(205, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(243, 22);
             this.toolStripMenuItem4.Text = "SIM Stats";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripSeparator23
             // 
             this.toolStripSeparator23.Name = "toolStripSeparator23";
-            this.toolStripSeparator23.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator23.Size = new System.Drawing.Size(240, 6);
             // 
             // tsMenuDetect
             // 
             this.tsMenuDetect.AccessibleName = "Detect spoken language menu option";
             this.tsMenuDetect.CheckOnClick = true;
             this.tsMenuDetect.Name = "tsMenuDetect";
-            this.tsMenuDetect.Size = new System.Drawing.Size(205, 22);
+            this.tsMenuDetect.Size = new System.Drawing.Size(243, 22);
             this.tsMenuDetect.Text = "Detect Spoken Language";
             this.tsMenuDetect.Click += new System.EventHandler(this.detectSpokenLanguageToolStripMenuItem_Click);
             // 
@@ -1200,6 +1204,18 @@ namespace METAbolt
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(240, 6);
+            // 
+            // uploadImageL10PerUploadToolStripMenuItem
+            // 
+            this.uploadImageL10PerUploadToolStripMenuItem.Name = "uploadImageL10PerUploadToolStripMenuItem";
+            this.uploadImageL10PerUploadToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.uploadImageL10PerUploadToolStripMenuItem.Text = "Upload Image (L$10 per image)";
+            this.uploadImageL10PerUploadToolStripMenuItem.Click += new System.EventHandler(this.uploadImageL10PerUploadToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AccessibleName = "Main METAbolt window";
@@ -1346,6 +1362,8 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem stopAnimationToolStripMenuItem;
         private System.Windows.Forms.ToolStripLabel tsTimeOut;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
     }
 }
 

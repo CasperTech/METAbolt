@@ -50,7 +50,7 @@
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.9.43.%2a</ApplicationVersion>
+    <ApplicationVersion>0.9.44.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -650,6 +650,12 @@
     <Compile Include="GUI\Dialogs\frmTranslate.Designer.cs">
       <DependentUpon>frmTranslate.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Dialogs\UploadImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialogs\UploadImage.Designer.cs">
+      <DependentUpon>UploadImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dialogs\Inventory\IDE\ArrayX.cs" />
     <Compile Include="GUI\Dialogs\Inventory\IDE\AutoCompleteListSorter.cs" />
     <Compile Include="GUI\Dialogs\Inventory\IDE\IniLexer.cs" />
@@ -978,6 +984,9 @@
     <EmbeddedResource Include="GUI\Dialogs\frmTranslate.resx">
       <DependentUpon>frmTranslate.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialogs\UploadImage.resx">
+      <DependentUpon>UploadImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\Inventory\NotecardEditor.resx">
       <DependentUpon>NotecardEditor.cs</DependentUpon>
@@ -1461,6 +1470,7 @@
     <None Include="Resources\cut_i.png" />
     <None Include="Resources\comment.png" />
     <None Include="Resources\camera.png" />
+    <None Include="Resources\camera_clic_with_flash.wav" />
     <Content Include="Resources\damage.png" />
     <None Include="Resources\debug.png" />
     <None Include="Resources\donate2.png" />

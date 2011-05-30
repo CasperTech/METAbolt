@@ -1,13 +1,32 @@
-Copyright (c) 2008 - 2011, www.metabolt.net 
+Copyright (c) 2008-2011, www.metabolt.net
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met.
-•	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
-•	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-•	Neither the name METAbolt nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS AS IS AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 
+* Neither the name METAbolt nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
 
-This software is not provided or supported by Linden Lab, the makers of Second Life.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-BY INSTALLING THIS SOFTWARE YOU ARE CONFIRMING THAT YOU UNDERSTAND, ACCEPT AND AGREE TO THE LICENCING STATED ABOVE, THE METABOLT PRIVACY/TERMS & CONDITIONS (http://www.metabolt.net/privacy.aspx), METABOLT BRANDING CONDITIONS(http://www.metabolt.net/METAwiki/Using-the-METAbolt-brand.ashx?NoRedirect=1) AND THE SECOND LIFE TERMS OF SERVICE (http://secondlife.com/corporate/tos.php).
+Uses artwork files are licenced under the 
+Creative Commons Share and Share Alike 3.0
+Copyright © 2002-2009 Linden Research Inc.
+
+Uses log4net (Apache 2.0 License)
+Copyright © Apache Software Foundation
+
+Uses Ogg Vorbis codec (BSD License)
+Copyright © 2002, Xiph.org Foundation
+
+Uses PrimMesher (BSD License)
+© 2010 Dahlia Trimble
+http://forge.opensimulator.org/gf/project/primmesher/
+
+Uses PrimWorkshop form of Radegast for 3D rendering. Radegast (BSD License)
+Copyright © 2009-2011, Radegast Development Team
+
+Uses camera shutter WAV file lincesed under the
+Creative Commons Sampling Plus 1.0
+Copyright Emmanual
+http://www.freesound.org/samplesViewSingle.php?id=16460

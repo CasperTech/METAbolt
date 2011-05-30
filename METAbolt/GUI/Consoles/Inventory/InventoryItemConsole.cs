@@ -245,6 +245,17 @@ namespace METAbolt
                     break;
             }
 
+            if (item.InventoryType == InventoryType.Wearable)
+            {
+                InventoryWearable werbl = item as InventoryWearable;
+
+                label9.Text = "Wearable type: " +  werbl.WearableType.ToString();
+            }
+            else
+            {
+                label9.Text = string.Empty;   
+            }
+
             if ((item.Permissions.OwnerMask & PermissionMask.Modify) != PermissionMask.Modify)
             {
                 checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = false;   

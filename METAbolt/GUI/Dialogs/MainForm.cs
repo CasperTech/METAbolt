@@ -82,7 +82,7 @@ namespace METAbolt
         private bool pluginsloaded = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private string strInfolast = string.Empty;
-        private string disconnectreason = "unknwon";
+        private string disconnectreason = "unknown";
 
         //auto update
         public string updaterModulePath = Application.StartupPath + "\\METAbolt Auto Updater.exe";
@@ -1778,9 +1778,104 @@ namespace METAbolt
             }
         }
 
+        /// <summary>
+        /// Disconnects from the server on request.
+        /// Always forks METArestart.exe overriding disconnectreason and restartinterval
+        /// Optionally closes the window.
+        /// 
+        /// This method ensures its logic executes only once to eliminate errors and unintentional conflicts.
+        /// </summary>
+        /// <param name="closeWindow">Determines whether this method should call this.Close()</param>
+        /// <returns>false if already run or failed to execute METArestart, otherwise true</returns>
+        public bool DisconnectClient(bool CloseWindow, string Reason, int ReconnectWaitMinutes)
+        {
+            // Only run this once
+            if (this.disconnectHasExecuted)
+            {
+                return false;
+            }
+
+            this.disconnectHasExecuted = true;
+
+            // Functional shutdown
+            statusTimer.Elapsed -= new ElapsedEventHandler(statusTimer_Elapsed);
+            statusTimer.Stop();
+
+            if (netcom.IsLoggedIn)
+            {
+                netcom.Logout();
+            }
+
+            try
+            {
+                int restartinterval = ReconnectWaitMinutes * 60; // convert to seconds
+                disconnectreason = Reason;
+
+                Process p = new Process();
+                p.StartInfo.FileName = "METArestart.exe";
+                p.StartInfo.WorkingDirectory = Application.StartupPath;
+                p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
+                p.Start();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Exception while trying to execute METArestart.exe: " + ex.Message, Helpers.LogLevel.Error);
+                return false;
+            }
+
+            try
+            {
+                // UI shutdown
+                tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
+                RefreshStatusBar();
+                RefreshWindowTitle();
+                if (debugLogForm != null && !debugLogForm.Disposing)
+                {
+                    debugLogForm.Dispose();
+                    debugLogForm.Close();
+                    debugLogForm = null;
+                }
+            }
+            catch
+            {
+                ;
+            }
+
+            if (CloseWindow)
+            {
+                this.Close();
+            }
+
+            return true;
+        }
+
         private void stopAnimationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             instance.State.StopAnimations(); 
+        }
+
+        private void uploadImageL10PerUploadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "Image Files(*.jpg; *.jpeg; *.tga; *.bmp; *.png)|*.jpg; *.jpeg; *.tga; *.bmp; *.png";
+
+                string ext = string.Empty;
+
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap bitmap = new Bitmap(open.FileName);
+                    ext = Path.GetExtension(open.FileName).ToLower();
+
+                    (new UploadImage(instance, bitmap, open.FileName, ext)).ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Failed loading image");
+            }
+ 
         }
     }
 }

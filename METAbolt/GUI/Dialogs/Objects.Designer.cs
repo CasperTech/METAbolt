@@ -46,6 +46,7 @@ namespace METAbolt
             this.lkLocation = new System.Windows.Forms.LinkLabel();
             this.btnTP = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblUUID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.TextBox();
@@ -94,6 +95,7 @@ namespace METAbolt
             this.pBar2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pBar3 = new System.Windows.Forms.PictureBox();
+            this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -102,8 +104,6 @@ namespace METAbolt
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.gbxInworld.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -123,6 +123,7 @@ namespace METAbolt
             this.gbxInworld.AccessibleName = "In world button panel";
             this.gbxInworld.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxInworld.BackColor = System.Drawing.Color.Transparent;
+            this.gbxInworld.Controls.Add(this.button1);
             this.gbxInworld.Controls.Add(this.btnReturn);
             this.gbxInworld.Controls.Add(this.button5);
             this.gbxInworld.Controls.Add(this.btnTake);
@@ -149,7 +150,7 @@ namespace METAbolt
             this.btnReturn.ForeColor = System.Drawing.Color.White;
             this.btnReturn.Location = new System.Drawing.Point(6, 50);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(54, 23);
+            this.btnReturn.Size = new System.Drawing.Size(52, 23);
             this.btnReturn.TabIndex = 3;
             this.btnReturn.Text = "&Return";
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -160,9 +161,9 @@ namespace METAbolt
             this.button5.AccessibleName = "Mute button";
             this.button5.BackColor = System.Drawing.Color.RoyalBlue;
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(83, 79);
+            this.button5.Location = new System.Drawing.Point(64, 79);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(73, 23);
+            this.button5.Size = new System.Drawing.Size(49, 23);
             this.button5.TabIndex = 8;
             this.button5.Text = "M&ute";
             this.button5.UseVisualStyleBackColor = false;
@@ -215,7 +216,7 @@ namespace METAbolt
             this.btnWalk1.ForeColor = System.Drawing.Color.White;
             this.btnWalk1.Location = new System.Drawing.Point(119, 50);
             this.btnWalk1.Name = "btnWalk1";
-            this.btnWalk1.Size = new System.Drawing.Size(54, 23);
+            this.btnWalk1.Size = new System.Drawing.Size(57, 23);
             this.btnWalk1.TabIndex = 5;
             this.btnWalk1.Text = "&Walk to";
             this.btnWalk1.UseVisualStyleBackColor = false;
@@ -226,9 +227,9 @@ namespace METAbolt
             this.btnLocation.AccessibleName = "Location button";
             this.btnLocation.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnLocation.ForeColor = System.Drawing.Color.White;
-            this.btnLocation.Location = new System.Drawing.Point(160, 79);
+            this.btnLocation.Location = new System.Drawing.Point(120, 79);
             this.btnLocation.Name = "btnLocation";
-            this.btnLocation.Size = new System.Drawing.Size(73, 23);
+            this.btnLocation.Size = new System.Drawing.Size(56, 23);
             this.btnLocation.TabIndex = 9;
             this.btnLocation.Text = "&Location";
             this.btnLocation.UseVisualStyleBackColor = false;
@@ -254,7 +255,7 @@ namespace METAbolt
             this.btnSitOn.ForeColor = System.Drawing.Color.White;
             this.btnSitOn.Location = new System.Drawing.Point(64, 50);
             this.btnSitOn.Name = "btnSitOn";
-            this.btnSitOn.Size = new System.Drawing.Size(52, 23);
+            this.btnSitOn.Size = new System.Drawing.Size(49, 23);
             this.btnSitOn.TabIndex = 4;
             this.btnSitOn.Text = "&Sit";
             this.btnSitOn.UseVisualStyleBackColor = false;
@@ -267,7 +268,7 @@ namespace METAbolt
             this.btnPay.ForeColor = System.Drawing.Color.White;
             this.btnPay.Location = new System.Drawing.Point(6, 79);
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(73, 23);
+            this.btnPay.Size = new System.Drawing.Size(56, 23);
             this.btnPay.TabIndex = 7;
             this.btnPay.Text = "&Pay/Buy";
             this.btnPay.UseVisualStyleBackColor = false;
@@ -326,7 +327,6 @@ namespace METAbolt
             this.groupBox1.AccessibleName = "Object information panel";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.lblUUID);
             this.groupBox1.Controls.Add(this.label9);
@@ -358,6 +358,19 @@ namespace METAbolt
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Object information";
+            // 
+            // button1
+            // 
+            this.button1.AccessibleName = "3D view button";
+            this.button1.BackColor = System.Drawing.Color.DarkGreen;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(177, 79);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 23);
+            this.button1.TabIndex = 55;
+            this.button1.Text = "&View 3D";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // pictureBox1
             // 
@@ -735,7 +748,7 @@ namespace METAbolt
             this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(114, 41);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(66, 17);
+            this.radioButton2.Size = new System.Drawing.Size(67, 17);
             this.radioButton2.TabIndex = 3;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Distance";
@@ -748,7 +761,7 @@ namespace METAbolt
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(56, 41);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(52, 17);
+            this.radioButton1.Size = new System.Drawing.Size(53, 17);
             this.radioButton1.TabIndex = 2;
             this.radioButton1.Text = "Name";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -914,7 +927,7 @@ namespace METAbolt
             // 
             this.pBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pBar1.Image = ((System.Drawing.Image)(resources.GetObject("pBar1.Image")));
-            this.pBar1.Location = new System.Drawing.Point(137, 350);
+            this.pBar1.Location = new System.Drawing.Point(137, 353);
             this.pBar1.Name = "pBar1";
             this.pBar1.Size = new System.Drawing.Size(45, 45);
             this.pBar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -978,6 +991,29 @@ namespace METAbolt
             this.pBar3.TabIndex = 58;
             this.pBar3.TabStop = false;
             this.pBar3.Visible = false;
+            // 
+            // lbxPrims
+            // 
+            this.lbxPrims.AccessibleName = "List of objects listbox";
+            this.lbxPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.lbxPrims.ForeColor = System.Drawing.Color.Black;
+            this.lbxPrims.FormattingEnabled = true;
+            this.lbxPrims.HorizontalScrollbar = true;
+            this.lbxPrims.IntegralHeight = false;
+            this.lbxPrims.ItemHeight = 18;
+            this.lbxPrims.Location = new System.Drawing.Point(6, 72);
+            this.lbxPrims.Name = "lbxPrims";
+            this.lbxPrims.Size = new System.Drawing.Size(304, 236);
+            this.lbxPrims.Sorted = true;
+            this.lbxPrims.TabIndex = 0;
+            this.lbxPrims.Visible = false;
+            this.lbxPrims.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxPrims_DrawItem);
+            this.lbxPrims.SelectedIndexChanged += new System.EventHandler(this.lbxPrims_SelectedIndexChanged);
+            this.lbxPrims.Leave += new System.EventHandler(this.lbxPrims_Leave);
             // 
             // textBox1
             // 
@@ -1081,42 +1117,6 @@ namespace METAbolt
             this.toolStripMenuItem3.Size = new System.Drawing.Size(169, 22);
             this.toolStripMenuItem3.Text = "Delete";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // button1
-            // 
-            this.button1.AccessibleName = "3D view button";
-            this.button1.BackColor = System.Drawing.Color.DarkGreen;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(180, 103);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 23);
-            this.button1.TabIndex = 55;
-            this.button1.Text = "&View 3D";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // lbxPrims
-            // 
-            this.lbxPrims.AccessibleName = "List of objects listbox";
-            this.lbxPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lbxPrims.ForeColor = System.Drawing.Color.Black;
-            this.lbxPrims.FormattingEnabled = true;
-            this.lbxPrims.HorizontalScrollbar = true;
-            this.lbxPrims.IntegralHeight = false;
-            this.lbxPrims.ItemHeight = 18;
-            this.lbxPrims.Location = new System.Drawing.Point(6, 72);
-            this.lbxPrims.Name = "lbxPrims";
-            this.lbxPrims.Size = new System.Drawing.Size(304, 236);
-            this.lbxPrims.Sorted = true;
-            this.lbxPrims.TabIndex = 0;
-            this.lbxPrims.Visible = false;
-            this.lbxPrims.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxPrims_DrawItem);
-            this.lbxPrims.SelectedIndexChanged += new System.EventHandler(this.lbxPrims_SelectedIndexChanged);
-            this.lbxPrims.Leave += new System.EventHandler(this.lbxPrims_Leave);
             // 
             // frmObjects
             // 

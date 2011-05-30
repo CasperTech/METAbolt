@@ -50,13 +50,14 @@ namespace METAbolt
             this.btnGive = new System.Windows.Forms.Button();
             this.btnDetach = new System.Windows.Forms.Button();
             this.btnWear = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.pnlItemTypeProp.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 126);
+            this.label5.Location = new System.Drawing.Point(3, 153);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 19;
@@ -68,7 +69,7 @@ namespace METAbolt
             this.txtItemOwner.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemOwner.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemOwner.Location = new System.Drawing.Point(73, 123);
+            this.txtItemOwner.Location = new System.Drawing.Point(73, 150);
             this.txtItemOwner.Name = "txtItemOwner";
             this.txtItemOwner.ReadOnly = true;
             this.txtItemOwner.Size = new System.Drawing.Size(230, 21);
@@ -77,7 +78,7 @@ namespace METAbolt
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 72);
+            this.label4.Location = new System.Drawing.Point(3, 99);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 13);
             this.label4.TabIndex = 16;
@@ -89,7 +90,7 @@ namespace METAbolt
             this.txtItemDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemDescription.Location = new System.Drawing.Point(73, 69);
+            this.txtItemDescription.Location = new System.Drawing.Point(73, 96);
             this.txtItemDescription.Name = "txtItemDescription";
             this.txtItemDescription.ReadOnly = true;
             this.txtItemDescription.Size = new System.Drawing.Size(230, 21);
@@ -112,7 +113,7 @@ namespace METAbolt
             this.txtItemCreator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemCreator.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemCreator.Location = new System.Drawing.Point(73, 96);
+            this.txtItemCreator.Location = new System.Drawing.Point(73, 123);
             this.txtItemCreator.Name = "txtItemCreator";
             this.txtItemCreator.ReadOnly = true;
             this.txtItemCreator.Size = new System.Drawing.Size(230, 21);
@@ -124,7 +125,7 @@ namespace METAbolt
             this.txtItemName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemName.Location = new System.Drawing.Point(73, 16);
+            this.txtItemName.Location = new System.Drawing.Point(73, 43);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.ReadOnly = true;
             this.txtItemName.Size = new System.Drawing.Size(230, 21);
@@ -133,7 +134,7 @@ namespace METAbolt
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 99);
+            this.label2.Location = new System.Drawing.Point(3, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 11;
@@ -142,7 +143,7 @@ namespace METAbolt
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 19);
+            this.label1.Location = new System.Drawing.Point(3, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 10;
@@ -154,7 +155,7 @@ namespace METAbolt
             this.txtUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtUUID.Location = new System.Drawing.Point(73, 42);
+            this.txtUUID.Location = new System.Drawing.Point(73, 69);
             this.txtUUID.Name = "txtUUID";
             this.txtUUID.ReadOnly = true;
             this.txtUUID.Size = new System.Drawing.Size(230, 21);
@@ -163,7 +164,7 @@ namespace METAbolt
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 45);
+            this.label6.Location = new System.Drawing.Point(3, 72);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 22;
@@ -173,7 +174,7 @@ namespace METAbolt
             // 
             this.label7.AccessibleName = "Teleport status label";
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(86, 99);
+            this.label7.Location = new System.Drawing.Point(49, 101);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(217, 32);
             this.label7.TabIndex = 25;
@@ -183,7 +184,7 @@ namespace METAbolt
             // progressBar1
             // 
             this.progressBar1.AccessibleName = "Teleport progress bar";
-            this.progressBar1.Location = new System.Drawing.Point(82, 135);
+            this.progressBar1.Location = new System.Drawing.Point(45, 137);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(221, 13);
             this.progressBar1.TabIndex = 26;
@@ -197,9 +198,9 @@ namespace METAbolt
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlItemTypeProp.Controls.Add(this.progressBar1);
             this.pnlItemTypeProp.Controls.Add(this.label7);
-            this.pnlItemTypeProp.Location = new System.Drawing.Point(0, 168);
+            this.pnlItemTypeProp.Location = new System.Drawing.Point(14, 207);
             this.pnlItemTypeProp.Name = "pnlItemTypeProp";
-            this.pnlItemTypeProp.Size = new System.Drawing.Size(306, 253);
+            this.pnlItemTypeProp.Size = new System.Drawing.Size(278, 214);
             this.pnlItemTypeProp.TabIndex = 8;
             this.pnlItemTypeProp.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlItemTypeProp_Paint);
             // 
@@ -207,7 +208,7 @@ namespace METAbolt
             // 
             this.checkBox1.AccessibleName = "Modify perms option";
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(75, 150);
+            this.checkBox1.Location = new System.Drawing.Point(75, 177);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(58, 17);
             this.checkBox1.TabIndex = 5;
@@ -219,7 +220,7 @@ namespace METAbolt
             // 
             this.checkBox2.AccessibleName = "Copy perms option";
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(136, 150);
+            this.checkBox2.Location = new System.Drawing.Point(136, 177);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 6;
@@ -231,7 +232,7 @@ namespace METAbolt
             // 
             this.checkBox3.AccessibleName = "transfer perms option";
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(190, 150);
+            this.checkBox3.Location = new System.Drawing.Point(190, 177);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(67, 17);
             this.checkBox3.TabIndex = 7;
@@ -242,7 +243,7 @@ namespace METAbolt
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 152);
+            this.label8.Location = new System.Drawing.Point(3, 179);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 30;
@@ -301,11 +302,23 @@ namespace METAbolt
             this.btnWear.Visible = false;
             this.btnWear.Click += new System.EventHandler(this.btnWear_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label9.Location = new System.Drawing.Point(3, 17);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(12, 13);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "t";
+            // 
             // InventoryItemConsole
             // 
             this.AccessibleName = "Item console";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnTP);
             this.Controls.Add(this.btnGive);
             this.Controls.Add(this.btnDetach);
@@ -360,5 +373,6 @@ namespace METAbolt
         private System.Windows.Forms.Button btnGive;
         private System.Windows.Forms.Button btnDetach;
         private System.Windows.Forms.Button btnWear;
+        private System.Windows.Forms.Label label9;
     }
 }
