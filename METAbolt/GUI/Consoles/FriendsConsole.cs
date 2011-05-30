@@ -295,7 +295,11 @@ namespace METAbolt
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new MethodInvoker(() => Friends_OnFriendNamesReceived(sender, e)));
+                if (IsHandleCreated)
+                {
+                    BeginInvoke(new MethodInvoker(() => Friends_OnFriendNamesReceived(sender, e)));
+                }
+
                 return;
             }
 
@@ -303,7 +307,10 @@ namespace METAbolt
             {
                 try
                 {
-                    RefreshFriendsList();
+                    if (IsHandleCreated)
+                    {
+                        RefreshFriendsList();
+                    }
                 }
                 catch { ; }
             }));

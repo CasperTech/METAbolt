@@ -187,6 +187,7 @@ namespace METAbolt
                 {
                     BeginInvoke(new MethodInvoker(() => Img_Upload(success, status, itemID, assetID)));
                 }
+
                 return;
             }
 
