@@ -231,7 +231,11 @@ namespace METAbolt
 
         private void ProcessLogMessage(DebugLogMessage logMessage)
         {
-            ReceivedLogMessage(logMessage.Message, logMessage.Level, logMessage.TimeStamp );
+            try
+            {
+                ReceivedLogMessage(logMessage.Message, logMessage.Level, logMessage.TimeStamp);
+            }
+            catch { ; }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -246,8 +250,12 @@ namespace METAbolt
 
         private void frmDebugLog_Shown(object sender, EventArgs e)
         {
-            if (initQueue.Count > 0)
-                foreach (DebugLogMessage msg in initQueue) ProcessLogMessage(msg);
+            try
+            {
+                if (initQueue.Count > 0)
+                    foreach (DebugLogMessage msg in initQueue) ProcessLogMessage(msg);
+            }
+            catch { ; }
         }
 
         private void frmDebugLog_Load(object sender, EventArgs e)

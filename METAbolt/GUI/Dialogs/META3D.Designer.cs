@@ -299,7 +299,6 @@
         public System.Windows.Forms.ToolStripMenuItem takeToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem returnToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private OpenTK.GLControl glControl;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.PictureBox picAutoSit;
