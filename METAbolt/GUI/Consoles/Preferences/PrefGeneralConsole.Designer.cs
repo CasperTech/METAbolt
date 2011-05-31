@@ -33,6 +33,10 @@ namespace METAbolt
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nUD2 = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.chkAutoFriend = new System.Windows.Forms.CheckBox();
             this.chkTyping = new System.Windows.Forms.CheckBox();
             this.chkFriends = new System.Windows.Forms.CheckBox();
             this.chkTray = new System.Windows.Forms.CheckBox();
@@ -112,13 +116,10 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.chkAutoFriend = new System.Windows.Forms.CheckBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.nUD2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUD2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUD1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -138,7 +139,6 @@ namespace METAbolt
             this.tabPage5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUD2)).BeginInit();
             this.SuspendLayout();
             // 
             // rdoSystemStyle
@@ -232,6 +232,60 @@ namespace METAbolt
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Options";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(171, 228);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.TabIndex = 62;
+            this.label12.Text = "minutes";
+            // 
+            // nUD2
+            // 
+            this.nUD2.AccessibleName = "Auto logout interval setting";
+            this.nUD2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nUD2.Location = new System.Drawing.Point(116, 225);
+            this.nUD2.Maximum = new decimal(new int[] {
+            2880,
+            0,
+            0,
+            0});
+            this.nUD2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUD2.Name = "nUD2";
+            this.nUD2.Size = new System.Drawing.Size(49, 21);
+            this.nUD2.TabIndex = 61;
+            this.nUD2.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUD2.ValueChanged += new System.EventHandler(this.nUD2_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 228);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(106, 13);
+            this.label11.TabIndex = 60;
+            this.label11.Text = "METArestart interval";
+            // 
+            // chkAutoFriend
+            // 
+            this.chkAutoFriend.AccessibleName = "Auto accept received friendship offers";
+            this.chkAutoFriend.AutoSize = true;
+            this.chkAutoFriend.Location = new System.Drawing.Point(8, 86);
+            this.chkAutoFriend.Name = "chkAutoFriend";
+            this.chkAutoFriend.Size = new System.Drawing.Size(166, 17);
+            this.chkAutoFriend.TabIndex = 59;
+            this.chkAutoFriend.Text = "Auto accept friendship offers";
+            this.chkAutoFriend.UseVisualStyleBackColor = true;
             // 
             // chkTyping
             // 
@@ -1142,60 +1196,6 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
-            // chkAutoFriend
-            // 
-            this.chkAutoFriend.AccessibleName = "Auto accept received friendship offers";
-            this.chkAutoFriend.AutoSize = true;
-            this.chkAutoFriend.Location = new System.Drawing.Point(8, 86);
-            this.chkAutoFriend.Name = "chkAutoFriend";
-            this.chkAutoFriend.Size = new System.Drawing.Size(166, 17);
-            this.chkAutoFriend.TabIndex = 59;
-            this.chkAutoFriend.Text = "Auto accept friendship offers";
-            this.chkAutoFriend.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 228);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(106, 13);
-            this.label11.TabIndex = 60;
-            this.label11.Text = "METArestart interval";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(171, 228);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 13);
-            this.label12.TabIndex = 62;
-            this.label12.Text = "minutes";
-            // 
-            // nUD2
-            // 
-            this.nUD2.AccessibleName = "Auto logout interval setting";
-            this.nUD2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nUD2.Location = new System.Drawing.Point(116, 225);
-            this.nUD2.Maximum = new decimal(new int[] {
-            2880,
-            0,
-            0,
-            0});
-            this.nUD2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUD2.Name = "nUD2";
-            this.nUD2.Size = new System.Drawing.Size(49, 21);
-            this.nUD2.TabIndex = 61;
-            this.nUD2.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUD2.ValueChanged += new System.EventHandler(this.nUD2_ValueChanged);
-            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1211,6 +1211,7 @@ namespace METAbolt
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUD2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUD1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1238,7 +1239,6 @@ namespace METAbolt
             this.groupBox3.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUD2)).EndInit();
             this.ResumeLayout(false);
 
         }

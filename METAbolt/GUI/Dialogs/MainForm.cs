@@ -489,7 +489,9 @@ namespace METAbolt
             {
                 // log off
                 logoff = true;
-                BeginInvoke(new MethodInvoker(tmnuExit.PerformClick));
+                //BeginInvoke(new MethodInvoker(tmnuExit.PerformClick));
+                int itrvl = instance.Config.CurrentConfig.ReStartTime;
+                DisconnectClient(true, "AutoRestart", itrvl);
             }
 
             TimeSpan ts = offtime - DateTime.Now;
