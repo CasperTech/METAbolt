@@ -35,6 +35,7 @@
             this.scrollYaw = new System.Windows.Forms.HScrollBar();
             this.scrollZoom = new System.Windows.Forms.HScrollBar();
             this.gbZoom = new System.Windows.Forms.GroupBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.picAutoSit = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnResetView = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnClose = new System.Windows.Forms.Button();
             this.gbZoom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             this.ctxObjects.SuspendLayout();
@@ -63,7 +63,6 @@
             this.scrollRoll.Size = new System.Drawing.Size(200, 16);
             this.scrollRoll.TabIndex = 9;
             this.scrollRoll.Visible = false;
-            this.scrollRoll.ValueChanged += new System.EventHandler(this.scroll_ValueChanged);
             // 
             // scrollPitch
             // 
@@ -73,7 +72,6 @@
             this.scrollPitch.Size = new System.Drawing.Size(200, 16);
             this.scrollPitch.TabIndex = 10;
             this.scrollPitch.Visible = false;
-            this.scrollPitch.ValueChanged += new System.EventHandler(this.scroll_ValueChanged);
             // 
             // scrollYaw
             // 
@@ -84,8 +82,6 @@
             this.scrollYaw.TabIndex = 11;
             this.scrollYaw.Value = 90;
             this.scrollYaw.Visible = false;
-            this.scrollYaw.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollYaw_Scroll);
-            this.scrollYaw.ValueChanged += new System.EventHandler(this.scroll_ValueChanged);
             // 
             // scrollZoom
             // 
@@ -98,7 +94,6 @@
             this.scrollZoom.TabIndex = 19;
             this.scrollZoom.Value = -30;
             this.scrollZoom.Visible = false;
-            this.scrollZoom.ValueChanged += new System.EventHandler(this.scrollZoom_ValueChanged);
             // 
             // gbZoom
             // 
@@ -111,6 +106,20 @@
             this.gbZoom.Size = new System.Drawing.Size(644, 45);
             this.gbZoom.TabIndex = 8;
             this.gbZoom.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.AccessibleName = "Close this window button";
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Location = new System.Drawing.Point(587, 14);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(51, 23);
+            this.btnClose.TabIndex = 40;
+            this.btnClose.Text = "&Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // picAutoSit
             // 
@@ -149,11 +158,12 @@
             this.btnResetView.Text = "Reset View";
             this.btnResetView.UseVisualStyleBackColor = true;
             this.btnResetView.Visible = false;
-            this.btnResetView.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // cbAA
             // 
             this.cbAA.AutoSize = true;
+            this.cbAA.Checked = true;
+            this.cbAA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbAA.Location = new System.Drawing.Point(435, 135);
             this.cbAA.Name = "cbAA";
             this.cbAA.Size = new System.Drawing.Size(82, 17);
@@ -172,7 +182,6 @@
             this.chkWireFrame.Text = "Wireframe";
             this.chkWireFrame.UseVisualStyleBackColor = true;
             this.chkWireFrame.Visible = false;
-            this.chkWireFrame.CheckedChanged += new System.EventHandler(this.chkWireFrame_CheckedChanged);
             // 
             // label1
             // 
@@ -195,21 +204,18 @@
             this.deleteToolStripMenuItem});
             this.ctxObjects.Name = "ctxObjects";
             this.ctxObjects.Size = new System.Drawing.Size(110, 120);
-            this.ctxObjects.Opening += new System.ComponentModel.CancelEventHandler(this.ctxObjects_Opening);
             // 
             // touchToolStripMenuItem
             // 
             this.touchToolStripMenuItem.Name = "touchToolStripMenuItem";
             this.touchToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.touchToolStripMenuItem.Text = "Touch";
-            this.touchToolStripMenuItem.Click += new System.EventHandler(this.touchToolStripMenuItem_Click);
             // 
             // sitToolStripMenuItem
             // 
             this.sitToolStripMenuItem.Name = "sitToolStripMenuItem";
             this.sitToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.sitToolStripMenuItem.Text = "Sit";
-            this.sitToolStripMenuItem.Click += new System.EventHandler(this.sitToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -221,39 +227,22 @@
             this.takeToolStripMenuItem.Name = "takeToolStripMenuItem";
             this.takeToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.takeToolStripMenuItem.Text = "Take";
-            this.takeToolStripMenuItem.Click += new System.EventHandler(this.takeToolStripMenuItem_Click);
             // 
             // returnToolStripMenuItem
             // 
             this.returnToolStripMenuItem.Name = "returnToolStripMenuItem";
             this.returnToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.returnToolStripMenuItem.Text = "Return";
-            this.returnToolStripMenuItem.Click += new System.EventHandler(this.returnToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "jpg";
-            // 
-            // btnClose
-            // 
-            this.btnClose.AccessibleName = "Close this window button";
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(587, 14);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(51, 23);
-            this.btnClose.TabIndex = 40;
-            this.btnClose.Text = "&Close";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // META3D
             // 

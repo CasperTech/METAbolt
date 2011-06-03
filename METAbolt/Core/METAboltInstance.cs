@@ -44,6 +44,12 @@ namespace METAbolt
 {
     public class METAboltInstance
     {
+        public event Action<METAboltForm> METAboltFormCreated;
+        public virtual void OnMETAboltFormCreated(METAboltForm form)
+        {
+            if (METAboltFormCreated != null) METAboltFormCreated(form);
+        }
+
         public class AvLocation
         {
             public Rectangle Rectangle { get; set; }

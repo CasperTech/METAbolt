@@ -64,7 +64,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
@@ -291,6 +291,9 @@
     <Compile Include="Core\ListItems\ListViewColumnSorter.cs" />
     <Compile Include="Core\ListItems\NumericStringComparer.cs" />
     <Compile Include="Core\ListItems\RadarSorter.cs" />
+    <Compile Include="Core\METAboltForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Core\Tools\ActionCommandsIn.cs" />
     <Compile Include="Core\ChatBufferItem.cs" />
     <Compile Include="Core\Components\NoFlickerLV.cs">
@@ -1443,15 +1446,6 @@
     </None>
     <Content Include="openmetaverse_data\avatar_lad.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OpenTK.Compatibility.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OpenTK.GLControl.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OpenTK.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PrimMesher.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
