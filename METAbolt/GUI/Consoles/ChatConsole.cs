@@ -90,7 +90,7 @@ namespace METAbolt
         private int start = 0;
         private int indexOfSearchText = 0;
         private string prevsearchtxt = string.Empty;
-        private bool voiceon = false;
+        //private bool voiceon = false;
 
         //static AutoResetEvent ParcelVoiceInfoEvent = new AutoResetEvent(false);
         //static AutoResetEvent ProvisionEvent = new AutoResetEvent(false);
@@ -101,8 +101,8 @@ namespace METAbolt
         //static string VoiceChannelURI = String.Empty;
         //private VoiceManager voice = null;
         private VoiceGateway vgate = null;
-        List<string> mics;
-        List<string> speakers;
+        //List<string> mics;
+        //List<string> speakers;
 
 
         internal class ThreadExceptionHandler
@@ -3452,7 +3452,7 @@ namespace METAbolt
                 vgate.OnSessionCreate += new EventHandler(vgate_OnSessionCreate);
 
                 vgate.Start();
-                voiceon = true;
+                //voiceon = true;
             }
             else
             {
@@ -3470,7 +3470,7 @@ namespace METAbolt
                     vgate.OnSessionCreate -= new EventHandler(vgate_OnSessionCreate);
 
                     
-                    voiceon = false;
+                    //voiceon = false;
 
                     if (!checkBox3.Checked)
                     {

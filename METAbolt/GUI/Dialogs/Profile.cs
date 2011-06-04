@@ -64,7 +64,7 @@ namespace METAbolt
         private int posX = 0;
         private int posY = 0;
         private int posZ = 0;
-        private bool displaynamechanged = false;
+        //private bool displaynamechanged = false;
         private string olddisplayname = string.Empty;
         private List<UUID> displaynames = new List<UUID>();
         string newname = string.Empty;

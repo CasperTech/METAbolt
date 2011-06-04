@@ -286,7 +286,7 @@ namespace METAbolt
                                 string cpwd = cryp.Decrypt(epwd);
                                 epwd = cpwd;
                             }
-                            catch (Exception ex)
+                            catch
                             {
                                 epwd = string.Empty;  
                             }

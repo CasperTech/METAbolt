@@ -1647,7 +1647,7 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripButton tsbSearch;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolBarButton toolBarButton1;
+        //private System.Windows.Forms.ToolBarButton toolBarButton1;
         private System.Windows.Forms.ToolBar toolBar1;
         private System.Windows.Forms.ToolBarButton tbBtn_Emoticons;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;

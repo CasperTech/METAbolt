@@ -47,6 +47,8 @@ using OpenMetaverse.Assets;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using OpenTK.Platform;
+using Utilities = OpenTK.Platform.Utilities;
 using SLNetworkComm;
 using System.Threading;
 using System.Diagnostics;
@@ -61,12 +63,12 @@ namespace METAbolt
         public OpenTK.GLControl glControl = null; 
         public bool UseMultiSampling = false;   //true;
         public bool RenderingEnabled = false;
-        public bool Wireframe = false;
         Dictionary<uint, FacetedMesh> Prims = new Dictionary<uint, FacetedMesh>();
         public uint RootPrimLocalID = 0;
         public OpenMetaverse.Vector3 Center = OpenMetaverse.Vector3.Zero;
+
 #pragma warning disable 0612
-        public TextPrinter Printer = new TextPrinter(OpenTK.Graphics.TextQuality.Default);
+        public TextPrinter Printer = new TextPrinter(OpenTK.Graphics.TextQuality.High);
 #pragma warning restore 0612
 
         private Popup toolTip;
@@ -88,6 +90,7 @@ namespace METAbolt
         bool dragging = false;
         int dragX, dragY, downX, downY;
         bool TextureThreadRunning = true;
+        private Color clearcolour = Color.RoyalBlue;
 
         static readonly Font TextFont = new Font(FontFamily.GenericSansSerif, 10);
         //Bitmap TextBitmap;   // = new Bitmap(512, 512);
@@ -123,9 +126,9 @@ namespace METAbolt
             toolTip.FocusOnOpen = false;
             toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
 
-            //Disposed += new EventHandler(META3D_Disposed);
+            Disposed += new EventHandler(META3D_Disposed);
 
-            UseMultiSampling = true; 
+            UseMultiSampling = false; 
 
             this.instance = instance;
             //client = this.instance.Client;
@@ -217,30 +220,7 @@ namespace METAbolt
 
             try
             {
-                if (!UseMultiSampling)
-                {
-                    GLMode = new OpenTK.Graphics.GraphicsMode(OpenTK.DisplayDevice.Default.BitsPerPixel, 24, 8, 0);
-                }
-                else
-                {
-                    for (int aa = 0; aa <= 4; aa += 2)
-                    {
-                        var testMode = new OpenTK.Graphics.GraphicsMode(OpenTK.DisplayDevice.Default.BitsPerPixel, 24, 8, aa);
-                        if (testMode.Samples == aa)
-                        {
-                            GLMode = testMode;
-                        }
-                    }
-                }
-
-                //for (int aa = 0; aa <= 4; aa += 2)
-                //{
-                //    var testMode = new OpenTK.Graphics.GraphicsMode(OpenTK.DisplayDevice.Default.BitsPerPixel, 24, 8, aa);
-                //    if (testMode.Samples == aa)
-                //    {
-                //        GLMode = testMode;
-                //    }
-                //}
+                GLMode = new OpenTK.Graphics.GraphicsMode(OpenTK.DisplayDevice.Default.BitsPerPixel, 24, 8, 4);
             }
             catch
             {
@@ -271,8 +251,19 @@ namespace METAbolt
                 return;
             }
 
+            //GameWindow window = new GameWindow();
+
+            
+
+            //glControl = new OpenTK.GLControl(new GraphicsMode(32, 24, 8, 4), 3, 0, GraphicsContextFlags.Default);
+
+            //IWindowInfo wi = null;
+            //wi = Utilities.CreateWindowsWindowInfo(glControl.Handle);
+
+            //// Construct a new IGraphicsContext using the IWindowInfo from above.
+            //IGraphicsContext context = new GraphicsContext(GraphicsMode.Default, wi);
+
             Logger.Log("Initializing OpenGL mode: " + GLMode.ToString(), Helpers.LogLevel.Info);
-            //Logger.Log("Initializing OpenGL control...", Helpers.LogLevel.Info);
 
             glControl.Paint += glControl_Paint;
             glControl.Resize += glControl_Resize;
@@ -283,11 +274,13 @@ namespace METAbolt
             glControl.Load += new EventHandler(glControl_Load);
             glControl.Disposed += new EventHandler(glControl_Disposed);
             glControl.Click += new EventHandler(glControl_Click);
-            glControl.BackColor = Color.RoyalBlue;
+            glControl.BackColor = clearcolour;
 
             glControl.Dock = DockStyle.Fill;
             glControl.TabIndex = 0;
+
             Controls.Add(glControl);
+
             glControl.BringToFront();
             glControl.Focus();
         }
@@ -311,7 +304,8 @@ namespace METAbolt
             try
             {
                 OpenTK.Graphics.OpenGL.GL.ShadeModel(OpenTK.Graphics.OpenGL.ShadingModel.Smooth);
-                OpenTK.Graphics.OpenGL.GL.ClearColor(Color.RoyalBlue);
+                OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+                glControl.BackColor = clearcolour;
 
                 OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Lighting);
                 OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Light0);
@@ -418,10 +412,10 @@ namespace METAbolt
         {
             if (!RenderingEnabled) return;
 
-            glControl.MakeCurrent();
-
             //// A LL
             OpenTK.Graphics.OpenGL.GL.Clear(OpenTK.Graphics.OpenGL.ClearBufferMask.ColorBufferBit | OpenTK.Graphics.OpenGL.ClearBufferMask.DepthBufferBit);
+
+            glControl.MakeCurrent();
 
             // A LL
             if (TakeScreenShot)
@@ -440,6 +434,8 @@ namespace METAbolt
 
             Render(false);
 
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+
             glControl.SwapBuffers();            
         }
 
@@ -448,8 +444,6 @@ namespace METAbolt
             if (!RenderingEnabled) return;
 
             glControl.MakeCurrent();
-
-            base.OnResize(e);
 
             //viewport_changed = true;
 
@@ -460,13 +454,12 @@ namespace METAbolt
             //OpenTK.Graphics.OpenGL.GL.TexSubImage2D(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, 0, 0, 0, TextBitmap.Width, TextBitmap.Height,
             //    OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, IntPtr.Zero);
 
-            OpenTK.Graphics.OpenGL.GL.ClearColor(Color.RoyalBlue);   //   0.39f, 0.58f, 0.93f, 1.0f);
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);   //   0.39f, 0.58f, 0.93f, 1.0f);
 
             if (glControl.ClientSize.Height == 0)
                 glControl.ClientSize = new System.Drawing.Size(glControl.ClientSize.Width, 1);
 
             OpenTK.Graphics.OpenGL.GL.Viewport(0, 0, glControl.ClientSize.Width, glControl.ClientSize.Height);
-
 
             OpenTK.Graphics.OpenGL.GL.PushMatrix();
             OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Projection);
@@ -480,7 +473,7 @@ namespace METAbolt
             OpenTK.Graphics.OpenGL.GL.PopMatrix();
 
             //// A LL
-            glControl.Invalidate();
+            GLInvalidate();
         }
 
         #region Mouse handling
@@ -494,7 +487,6 @@ namespace METAbolt
             {
                 scrollZoom.Value = newVal;
                 glControl_Resize(null, null);
-
                 GLInvalidate();
             }
         }
@@ -664,6 +656,7 @@ namespace METAbolt
                         OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureWrapT, (int)OpenTK.Graphics.OpenGL.TextureWrapMode.Repeat);
                         OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.GenerateMipmap, 1);
                         OpenTK.Graphics.OpenGL.GL.GenerateMipmap(OpenTK.Graphics.OpenGL.GenerateMipmapTarget.Texture2D);
+
                         bitmap.UnlockBits(bitmapData);
                         bitmap.Dispose();
 
@@ -675,7 +668,7 @@ namespace METAbolt
 
                 Logger.DebugLog("Texture thread exited");
             }
-            catch (Exception ex)
+            catch
             {
                 Logger.Log("META3D TextureThread: Your video card is too old and does not support Mipmap generation", Helpers.LogLevel.Warning);  
             }            
@@ -868,15 +861,15 @@ namespace METAbolt
 
         private void RenderText()
         {
-            //OpenTK.Graphics.OpenGL.GL.Clear(OpenTK.Graphics.OpenGL.ClearBufferMask.ColorBufferBit);
-
             lock (Prims)
             {
                 int primNr = 0;
+
                 foreach (FacetedMesh mesh in Prims.Values)
                 {
                     primNr++;
                     Primitive prim = mesh.Prim;
+
                     if (!string.IsNullOrEmpty(prim.Text))
                     {
                         string text = System.Text.RegularExpressions.Regex.Replace(prim.Text, "(\r?\n)+", "\n");
@@ -885,7 +878,7 @@ namespace METAbolt
                         OpenTK.Vector3 primPos = new OpenTK.Vector3();
                         primPos = OpenTK.Vector3.Zero;
 
-                        // Is it child prim
+                        // Is it a child prim
                         if (prim.ParentID == RootPrimLocalID)
                         {
                             primPos = new OpenTK.Vector3(prim.Position.X, prim.Position.Y, prim.Position.Z);
@@ -894,13 +887,9 @@ namespace METAbolt
                         primPos.Z += prim.Scale.Z * 0.7f;
                         screenPos = WorldToScreen(primPos);
 
-                        try
-                        {
-                            Printer.Begin();
-                        }
-                        catch { ; }
-
                         Color color = Color.FromArgb((int)(prim.TextColor.A * 255), (int)(prim.TextColor.R * 255), (int)(prim.TextColor.G * 255), (int)(prim.TextColor.B * 255));
+
+                        Printer.Begin();
 
                         using (Font f = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Bold))
                         {
@@ -912,31 +901,18 @@ namespace METAbolt
 
                             //writer.AddLine(text, new PointF(screenPos.X, screenPos.Y), Brushes.Black);
                             //writer.Draw();
+                            //writer.UpdateText(); 
 
                             //Shadow
-                            if (color != Color.Gray)
+                            if (color != Color.Black)
                             {
-                                try
-                                {
-                                    Printer.Print(text, f, Color.Gray, new RectangleF(screenPos.X + 1, screenPos.Y + 1, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
-                                }
-                                catch { ; }
+                                Printer.Print(text, f, Color.Black, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
                             }
 
-                            try
-                            {
-                                Printer.Print(text, f, color, new RectangleF(screenPos.X, screenPos.Y, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
-                            }
-                            catch { ; }
-
-
+                            Printer.Print(text, f, color, new RectangleF(screenPos.X, screenPos.Y, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
                         }
 
-                        try
-                        {
-                            Printer.End();
-                        }
-                        catch { ; }
+                        Printer.End();
                     }
                 }
             }              
@@ -1097,37 +1073,27 @@ namespace METAbolt
 
         private void Render(bool picking)
         {
+            OpenTK.Graphics.OpenGL.GL.Clear(OpenTK.Graphics.OpenGL.ClearBufferMask.ColorBufferBit | OpenTK.Graphics.OpenGL.ClearBufferMask.DepthBufferBit);
+            OpenTK.Graphics.OpenGL.GL.LoadIdentity();
+
             glControl.MakeCurrent();
 
             if (picking)
             {
-                OpenTK.Graphics.OpenGL.GL.ClearColor(Color.RoyalBlue);
+                OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
             }
             else
             {
                 OpenTK.Graphics.OpenGL.GL.ClearColor(0.39f, 0.58f, 0.93f, 1.0f);
             }
 
-            OpenTK.Graphics.OpenGL.GL.Clear(OpenTK.Graphics.OpenGL.ClearBufferMask.ColorBufferBit | OpenTK.Graphics.OpenGL.ClearBufferMask.DepthBufferBit);
-            OpenTK.Graphics.OpenGL.GL.LoadIdentity();
-
-            // Setup wireframe or solid fill drawing mode
-            if (Wireframe && !picking)
-            {
-                OpenTK.Graphics.OpenGL.GL.PolygonMode(OpenTK.Graphics.OpenGL.MaterialFace.FrontAndBack, OpenTK.Graphics.OpenGL.PolygonMode.Line);
-            }
-            else
-            {
-                OpenTK.Graphics.OpenGL.GL.PolygonMode(OpenTK.Graphics.OpenGL.MaterialFace.FrontAndBack, OpenTK.Graphics.OpenGL.PolygonMode.Fill);
-            }
+            OpenTK.Graphics.OpenGL.GL.PolygonMode(OpenTK.Graphics.OpenGL.MaterialFace.FrontAndBack, OpenTK.Graphics.OpenGL.PolygonMode.Fill);
 
             var mLookAt = OpenTK.Matrix4d.LookAt(
                     Center.X, (double)scrollZoom.Value * 0.1d + Center.Y, Center.Z,
                     Center.X, Center.Y, Center.Z,
                     0d, 0d, 1d);
             OpenTK.Graphics.OpenGL.GL.MultMatrix(ref mLookAt);
-
-            //GL.Light(LightName.Light0, LightParameter.Position, lightPos);
 
             // Push the world matrix
             OpenTK.Graphics.OpenGL.GL.PushMatrix();
@@ -1305,7 +1271,7 @@ namespace METAbolt
                     mesh = renderer.GenerateFacetedMesh(prim, DetailLevel.Highest);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return;
             }
@@ -1424,7 +1390,6 @@ namespace METAbolt
                 if (img != null)
                 {
                     texture = img;
-                    Wireframe = false;
                     return true;
                 }
                 return false;
@@ -1462,12 +1427,6 @@ namespace METAbolt
         private void scrollZoom_ValueChanged(object sender, EventArgs e)
         {
             glControl_Resize(null, null);
-            GLInvalidate();
-        }
-
-        private void chkWireFrame_CheckedChanged(object sender, EventArgs e)
-        {
-            Wireframe = chkWireFrame.Checked;
             GLInvalidate();
         }
 
@@ -1661,12 +1620,54 @@ namespace METAbolt
 
         private void picAutoSit_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/");
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/METAwiki/META3D.ashx");
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close(); 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            clearcolour = Color.RoyalBlue;  
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+            GLInvalidate(); 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            clearcolour = Color.White;
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+            GLInvalidate();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            clearcolour = Color.Black;
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+            GLInvalidate();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            clearcolour = Color.Red;
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+            GLInvalidate();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            clearcolour = Color.Green;
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+            GLInvalidate();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            clearcolour = Color.Yellow;
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+            GLInvalidate();
         }
     }
 
@@ -1959,7 +1960,7 @@ namespace METAbolt
         private int CreateTexture()
         {
             int textureId;
-            OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.Replace);//Important, or wrong color on some computers
+            OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);//Important, or wrong color on some computers
 
             Bitmap bitmap = TextBitmap;
             OpenTK.Graphics.OpenGL.GL.GenTextures(1, out textureId);
@@ -2029,7 +2030,7 @@ namespace METAbolt
             OpenTK.Graphics.OpenGL.GL.LoadMatrix(ref ortho_projection);
 
             OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
-            OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.One, OpenTK.Graphics.OpenGL.BlendingFactorDest.DstColor);
+            OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.One, OpenTK.Graphics.OpenGL.BlendingFactorDest.ConstantColor);
             OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Texture2D);
             OpenTK.Graphics.OpenGL.GL.BindTexture(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, _textureId);
 

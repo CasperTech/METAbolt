@@ -64,7 +64,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
@@ -116,9 +116,6 @@
     <Reference Include="CbtHook">
       <HintPath>..\Libs\CbtHook.dll</HintPath>
     </Reference>
-    <Reference Include="CSJ2K">
-      <HintPath>..\Libs\CSJ2K.dll</HintPath>
-    </Reference>
     <Reference Include="ExceptionReporter.WinForms">
       <HintPath>..\Libs\ExceptionReporter.WinForms.dll</HintPath>
     </Reference>
@@ -145,7 +142,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MD5library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MD5library, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\MD5library.dll</HintPath>
     </Reference>
@@ -171,11 +168,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse, Version=0.0.0.8132, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="OpenMetaverse, Version=0.0.0.25709, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse.Rendering.Meshmerizer">
+    <Reference Include="OpenMetaverse.Rendering.Meshmerizer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.Rendering.Meshmerizer.dll</HintPath>
     </Reference>
     <Reference Include="OpenMetaverse.StructuredData, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -192,15 +190,15 @@
     </Reference>
     <Reference Include="OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Users\Mustafa\Documents\OpenTK\1.0\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
+      <HintPath>..\Libs\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK.Compatibility, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Users\Mustafa\Documents\OpenTK\1.0\Binaries\OpenTK\Release\OpenTK.Compatibility.dll</HintPath>
+      <HintPath>..\Libs\OpenTK.Compatibility.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK.GLControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Users\Mustafa\Documents\OpenTK\1.0\Binaries\OpenTK\Release\OpenTK.GLControl.dll</HintPath>
+      <HintPath>..\Libs\OpenTK.GLControl.dll</HintPath>
     </Reference>
     <Reference Include="PopupControl, Version=1.4.0.968, Culture=neutral, PublicKeyToken=04c10344d6495b18, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1447,8 +1445,11 @@
     <Content Include="openmetaverse_data\avatar_lad.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="OpenTK.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="PrimMesher.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

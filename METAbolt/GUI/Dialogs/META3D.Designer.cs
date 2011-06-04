@@ -35,12 +35,17 @@
             this.scrollYaw = new System.Windows.Forms.HScrollBar();
             this.scrollZoom = new System.Windows.Forms.HScrollBar();
             this.gbZoom = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.picAutoSit = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnResetView = new System.Windows.Forms.Button();
             this.cbAA = new System.Windows.Forms.CheckBox();
-            this.chkWireFrame = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ctxObjects = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.touchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,6 +102,12 @@
             // 
             // gbZoom
             // 
+            this.gbZoom.Controls.Add(this.button7);
+            this.gbZoom.Controls.Add(this.button6);
+            this.gbZoom.Controls.Add(this.button5);
+            this.gbZoom.Controls.Add(this.button4);
+            this.gbZoom.Controls.Add(this.button3);
+            this.gbZoom.Controls.Add(this.button2);
             this.gbZoom.Controls.Add(this.btnClose);
             this.gbZoom.Controls.Add(this.picAutoSit);
             this.gbZoom.Controls.Add(this.button1);
@@ -106,6 +117,78 @@
             this.gbZoom.Size = new System.Drawing.Size(644, 45);
             this.gbZoom.TabIndex = 8;
             this.gbZoom.TabStop = false;
+            // 
+            // button7
+            // 
+            this.button7.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button7.BackColor = System.Drawing.Color.Yellow;
+            this.button7.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button7.Location = new System.Drawing.Point(208, 16);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(20, 20);
+            this.button7.TabIndex = 46;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button6.BackColor = System.Drawing.Color.Green;
+            this.button6.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button6.Location = new System.Drawing.Point(188, 16);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(20, 20);
+            this.button6.TabIndex = 45;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button5.BackColor = System.Drawing.Color.Red;
+            this.button5.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button5.Location = new System.Drawing.Point(167, 16);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(20, 20);
+            this.button5.TabIndex = 44;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button4.BackColor = System.Drawing.Color.Black;
+            this.button4.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button4.Location = new System.Drawing.Point(146, 16);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(20, 20);
+            this.button4.TabIndex = 43;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button3.Location = new System.Drawing.Point(125, 16);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(20, 20);
+            this.button3.TabIndex = 42;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button2.Location = new System.Drawing.Point(104, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(20, 20);
+            this.button2.TabIndex = 41;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnClose
             // 
@@ -171,17 +254,6 @@
             this.cbAA.Text = "Anti-aliasing";
             this.cbAA.UseVisualStyleBackColor = true;
             this.cbAA.Visible = false;
-            // 
-            // chkWireFrame
-            // 
-            this.chkWireFrame.AutoSize = true;
-            this.chkWireFrame.Location = new System.Drawing.Point(539, 135);
-            this.chkWireFrame.Name = "chkWireFrame";
-            this.chkWireFrame.Size = new System.Drawing.Size(74, 17);
-            this.chkWireFrame.TabIndex = 21;
-            this.chkWireFrame.Text = "Wireframe";
-            this.chkWireFrame.UseVisualStyleBackColor = true;
-            this.chkWireFrame.Visible = false;
             // 
             // label1
             // 
@@ -253,7 +325,6 @@
             this.Controls.Add(this.btnResetView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.scrollZoom);
-            this.Controls.Add(this.chkWireFrame);
             this.Controls.Add(this.cbAA);
             this.Controls.Add(this.scrollYaw);
             this.Controls.Add(this.scrollRoll);
@@ -279,7 +350,6 @@
         public System.Windows.Forms.GroupBox gbZoom;
         public System.Windows.Forms.ContextMenuStrip ctxObjects;
         public System.Windows.Forms.CheckBox cbAA;
-        public System.Windows.Forms.CheckBox chkWireFrame;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button btnResetView;
         public System.Windows.Forms.ToolStripMenuItem touchToolStripMenuItem;
@@ -292,6 +362,12 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.PictureBox picAutoSit;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
 
     }
 }
