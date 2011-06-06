@@ -429,9 +429,9 @@ namespace METAbolt
             this.chkDeclineInv.AutoSize = true;
             this.chkDeclineInv.Location = new System.Drawing.Point(8, 51);
             this.chkDeclineInv.Name = "chkDeclineInv";
-            this.chkDeclineInv.Size = new System.Drawing.Size(245, 17);
+            this.chkDeclineInv.Size = new System.Drawing.Size(269, 17);
             this.chkDeclineInv.TabIndex = 6;
-            this.chkDeclineInv.Text = "Auto decline inventory items (exc. notecards)";
+            this.chkDeclineInv.Text = "Auto decline inventory items (excluding notecards)";
             this.chkDeclineInv.UseVisualStyleBackColor = true;
             this.chkDeclineInv.CheckedChanged += new System.EventHandler(this.chkDeclineInv_CheckedChanged);
             // 

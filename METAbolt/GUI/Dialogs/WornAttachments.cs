@@ -53,14 +53,14 @@ namespace METAbolt
             client = this.instance.Client;
             this.av = av;
 
-            if (av.ID == client.Self.AgentID)
-            {
-                button1.Visible = true;
-            }
-            else
-            {
-                button1.Visible = false;
-            }
+            //if (av.ID == client.Self.AgentID)
+            //{
+            //    button1.Visible = true;
+            //}
+            //else
+            //{
+            //    button1.Visible = false;
+            //}
         }
 
         private void WornAssets_Load(object sender, EventArgs e)
@@ -242,12 +242,12 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int iDx = lbxPrims.SelectedIndex;
-            AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
+            //int iDx = lbxPrims.SelectedIndex;
+            //AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
 
-            if (item == null) return;
-
-            client.Appearance.Detach(item.Prim.ID);
+            //if (item == null) return;
+            
+            //client.Appearance.Detach(item.Prim.ID);
         }
 
         private void lbxPrimGroup_DrawItem(object sender, DrawItemEventArgs e)
@@ -332,7 +332,7 @@ namespace METAbolt
 
             if (iDx < 0)
             {
-                button1.Enabled = false;
+                //button1.Enabled = false;
                 btnTouch.Enabled = false;
                 button2.Enabled = false;
                 return;
@@ -353,8 +353,8 @@ namespace METAbolt
                 btnTouch.Enabled = false;
             }
 
-            if (button1.Visible)
-                button1.Enabled = true;
+            //if (button1.Visible)
+            //    button1.Enabled = true;
 
             List<Primitive> group = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
                 delegate(Primitive prim)
@@ -403,7 +403,7 @@ namespace METAbolt
 
             if (iDx < 0)
             {
-                button1.Enabled = false;
+                //button1.Enabled = false;
                 btnTouch.Enabled = false;
                 button2.Enabled = false;
                 return;

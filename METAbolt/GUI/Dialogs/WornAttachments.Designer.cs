@@ -94,13 +94,12 @@
             this.button1.BackColor = System.Drawing.Color.RoyalBlue;
             this.button1.Enabled = false;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(221, 388);
+            this.button1.Location = new System.Drawing.Point(361, 477);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(56, 23);
             this.button1.TabIndex = 4;
             this.button1.Text = "&Detach";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lbxPrimGroup
@@ -175,7 +174,7 @@
             this.button2.BackColor = System.Drawing.Color.DarkGreen;
             this.button2.Enabled = false;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(159, 388);
+            this.button2.Location = new System.Drawing.Point(221, 388);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 23);
             this.button2.TabIndex = 56;
