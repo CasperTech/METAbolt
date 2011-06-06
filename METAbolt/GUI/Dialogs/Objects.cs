@@ -2660,7 +2660,8 @@ namespace METAbolt
 
             if (item == null) return;
 
-            (new META3D(instance, item.Prim.LocalID)).Show();
+            //(new META3D(instance, item.Prim.LocalID)).Show();
+            (new META3D(instance, item)).Show();
         }
     }
 }

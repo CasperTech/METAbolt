@@ -51,6 +51,8 @@
             this.touchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.payBuyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.takeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -271,45 +273,60 @@
             this.touchToolStripMenuItem,
             this.sitToolStripMenuItem,
             this.toolStripMenuItem1,
+            this.payBuyToolStripMenuItem,
+            this.toolStripSeparator1,
             this.takeToolStripMenuItem,
             this.returnToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ctxObjects.Name = "ctxObjects";
-            this.ctxObjects.Size = new System.Drawing.Size(110, 120);
+            this.ctxObjects.Size = new System.Drawing.Size(153, 170);
+            this.ctxObjects.Opening += new System.ComponentModel.CancelEventHandler(this.ctxObjects_Opening);
             // 
             // touchToolStripMenuItem
             // 
             this.touchToolStripMenuItem.Name = "touchToolStripMenuItem";
-            this.touchToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.touchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.touchToolStripMenuItem.Text = "Touch";
             // 
             // sitToolStripMenuItem
             // 
             this.sitToolStripMenuItem.Name = "sitToolStripMenuItem";
-            this.sitToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.sitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sitToolStripMenuItem.Text = "Sit";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(106, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // payBuyToolStripMenuItem
+            // 
+            this.payBuyToolStripMenuItem.Name = "payBuyToolStripMenuItem";
+            this.payBuyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.payBuyToolStripMenuItem.Text = "Pay/Buy";
+            this.payBuyToolStripMenuItem.Click += new System.EventHandler(this.payBuyToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // takeToolStripMenuItem
             // 
             this.takeToolStripMenuItem.Name = "takeToolStripMenuItem";
-            this.takeToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.takeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.takeToolStripMenuItem.Text = "Take";
             // 
             // returnToolStripMenuItem
             // 
             this.returnToolStripMenuItem.Name = "returnToolStripMenuItem";
-            this.returnToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.returnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.returnToolStripMenuItem.Text = "Return";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // saveFileDialog1
@@ -368,6 +385,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem payBuyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 
     }
 }

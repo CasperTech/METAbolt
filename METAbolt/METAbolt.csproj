@@ -1441,9 +1441,6 @@
     <Content Include="openmetaverse_data\avatar_lad.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="OpenTK.Compatibility.xml" />
-    <Content Include="OpenTK.GLControl.xml" />
-    <Content Include="OpenTK.xml" />
     <Content Include="PrimMesher.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -91,6 +91,8 @@ namespace METAbolt
         int dragX, dragY, downX, downY;
         bool TextureThreadRunning = true;
         private Color clearcolour = Color.RoyalBlue;
+        public ObjectsListItem objectitem;
+        public bool isobject = true;
 
         static readonly Font TextFont = new Font(FontFamily.GenericSansSerif, 10);
         //Bitmap TextBitmap;   // = new Bitmap(512, 512);
@@ -133,6 +135,44 @@ namespace METAbolt
             this.instance = instance;
             //client = this.instance.Client;
             netcom = this.instance.Netcom;
+            isobject = false;
+
+            TexturePointers[0] = 0;
+
+            renderer = new MeshmerizerR();
+
+            client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
+            client.Objects.ObjectUpdate += new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
+            client.Objects.ObjectDataBlockUpdate += new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
+        }
+
+        public META3D(METAboltInstance instance, ObjectsListItem obtectitem)
+            : base(instance)
+        {
+            this.RootPrimLocalID = obtectitem.Prim.LocalID;
+
+            InitializeComponent();
+
+            string msg1 = "Drag (left mouse down) to rotate object\n" +
+                            "ALT+Drag to Zoom\n" +
+                            "Ctrl+Drag to Pan\n" +
+                            "Wheel in/out to Zoom in/out\n\n" +
+                            "Click camera then object for snapshot";
+
+            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            toolTip.AutoClose = false;
+            toolTip.FocusOnOpen = false;
+            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+
+            Disposed += new EventHandler(META3D_Disposed);
+
+            UseMultiSampling = false;
+
+            this.instance = instance;
+            //client = this.instance.Client;
+            netcom = this.instance.Netcom;
+            isobject = true;
+            this.objectitem = obtectitem; 
 
             TexturePointers[0] = 0;
 
@@ -250,18 +290,6 @@ namespace METAbolt
                 Logger.Log("Failed to initialize OpenGL control, cannot continue", Helpers.LogLevel.Error, client);
                 return;
             }
-
-            //GameWindow window = new GameWindow();
-
-            
-
-            //glControl = new OpenTK.GLControl(new GraphicsMode(32, 24, 8, 4), 3, 0, GraphicsContextFlags.Default);
-
-            //IWindowInfo wi = null;
-            //wi = Utilities.CreateWindowsWindowInfo(glControl.Handle);
-
-            //// Construct a new IGraphicsContext using the IWindowInfo from above.
-            //IGraphicsContext context = new GraphicsContext(GraphicsMode.Default, wi);
 
             Logger.Log("Initializing OpenGL mode: " + GLMode.ToString(), Helpers.LogLevel.Info);
 
@@ -887,6 +915,8 @@ namespace METAbolt
                         primPos.Z += prim.Scale.Z * 0.7f;
                         screenPos = WorldToScreen(primPos);
 
+                        OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);
+
                         Color color = Color.FromArgb((int)(prim.TextColor.A * 255), (int)(prim.TextColor.R * 255), (int)(prim.TextColor.G * 255), (int)(prim.TextColor.B * 255));
 
                         Printer.Begin();
@@ -904,9 +934,9 @@ namespace METAbolt
                             //writer.UpdateText(); 
 
                             //Shadow
-                            if (color != Color.Black)
+                            if (color != Color.Gray)
                             {
-                                Printer.Print(text, f, Color.Black, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
+                                Printer.Print(text, f, Color.Gray, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
                             }
 
                             Printer.Print(text, f, color, new RectangleF(screenPos.X, screenPos.Y, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
@@ -1481,6 +1511,15 @@ namespace METAbolt
                 sitToolStripMenuItem.Text = "Sit";
             }
 
+            if (!isobject)
+            {
+                sitToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                sitToolStripMenuItem.Enabled = true;
+            }
+
             if (RightclickedPrim.Prim.Properties != null
                 && !string.IsNullOrEmpty(RightclickedPrim.Prim.Properties.TouchName))
             {
@@ -1491,18 +1530,56 @@ namespace METAbolt
                 touchToolStripMenuItem.Text = "Touch";
             }
 
-            if (RightclickedPrim.Prim.Properties != null)
+            if ((RightclickedPrim.Prim.Flags & PrimFlags.Touch) == PrimFlags.Touch)
             {
-                if (RightclickedPrim.Prim.Properties.OwnerID == client.Self.AgentID)
+                touchToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                touchToolStripMenuItem.Enabled = false;
+            }
+
+            if ((RightclickedPrim.Prim.Flags & PrimFlags.Money) == PrimFlags.Money)
+            {
+                if (RightclickedPrim.Prim.Properties != null
+                && !string.IsNullOrEmpty(RightclickedPrim.Prim.Properties.TouchName))
                 {
-                    takeToolStripMenuItem.Enabled = true;
-                    deleteToolStripMenuItem.Enabled = true;
+                    payBuyToolStripMenuItem.Text = RightclickedPrim.Prim.Properties.TouchName;
                 }
                 else
                 {
-                    takeToolStripMenuItem.Enabled = false;
-                    deleteToolStripMenuItem.Enabled = false;
+                    payBuyToolStripMenuItem.Text = "Pay/Buy";
                 }
+
+                payBuyToolStripMenuItem.Enabled = true;
+            }
+
+            if (!isobject)
+            {
+                payBuyToolStripMenuItem.Enabled = false;
+            }
+
+            if (isobject)
+            {
+                if (RightclickedPrim.Prim.Properties != null)
+                {
+                    if (RightclickedPrim.Prim.Properties.OwnerID == client.Self.AgentID)
+                    {
+                        takeToolStripMenuItem.Enabled = true;
+                        deleteToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        takeToolStripMenuItem.Enabled = false;
+                        deleteToolStripMenuItem.Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                takeToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+                returnToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -1668,6 +1745,37 @@ namespace METAbolt
             clearcolour = Color.Yellow;
             OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
             GLInvalidate();
+        }
+
+        private void payBuyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Primitive sPr = RightclickedPrim.Prim;
+
+            if (sPr.Properties == null)
+            {
+                sPr = objectitem.Prim;
+
+                if (sPr.Properties == null)
+                {
+                    payBuyToolStripMenuItem.Enabled = false;
+                    return;
+                }
+            }
+
+            SaleType styp = sPr.Properties.SaleType;
+            int sprice = sPr.Properties.SalePrice;
+
+            //if (sprice > 0)
+            //{
+                if (styp != SaleType.Not)
+                {
+                    (new frmPay(instance, sPr.ID, sPr.Properties.Name, sprice, sPr)).ShowDialog();
+                }
+                else
+                {
+                    (new frmPay(instance, sPr.ID, sPr.Properties.Name)).ShowDialog();
+                }
+            //}
         }
     }
 
