@@ -273,6 +273,13 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap compass_needle {
+            get {
+                object obj = ResourceManager.GetObject("compass_needle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap computer_16 {
             get {
                 object obj = ResourceManager.GetObject("computer_16", resourceCulture);
@@ -911,6 +918,20 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap turn_right {
             get {
                 object obj = ResourceManager.GetObject("turn_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap turnleft {
+            get {
+                object obj = ResourceManager.GetObject("turnleft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap turnright {
+            get {
+                object obj = ResourceManager.GetObject("turnright", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

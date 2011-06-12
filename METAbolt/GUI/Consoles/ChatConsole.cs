@@ -1394,41 +1394,77 @@ namespace METAbolt
             int x = Convert.ToInt32(vDir.X);
             int y = Convert.ToInt32(vDir.Y);
 
+            float angle = 90;
+
             if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
             {
                 heading = "E";
+                //pictureBox4.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 90f);
+                angle = 90f;
             }
             else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
             {
                 heading = "W";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 270f);
+                angle = 270f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
             {
                 heading = "S";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 180f);
+                angle = 180f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
             {
                 heading = "N";
+                pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 0f);
+                angle = 0f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
             {
                 heading = "SE";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 135f);
+                angle = 135f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
             {
                 heading = "SW";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 225f);
+                angle = 225f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
             {
                 heading = "NW";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 315f);
+                angle = 315f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
             {
                 heading = "NE";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 45f);
+                angle = 45f;
             }
 
-            textBox1.Text = heading;
-            textBox1.Refresh();
+            pictureBox4.Image = RotateImage.RotateImg(picOriginal.Image, angle);
+
+            //textBox1.Text = heading;
+            //textBox1.Refresh();
+        }
+
+        private static Bitmap RotateImageByAngle(System.Drawing.Image oldBitmap, float angle)
+        {
+            var newBitmap = new Bitmap(oldBitmap.Width, oldBitmap.Height);
+            var graphics = Graphics.FromImage(newBitmap);
+
+            newBitmap.SetResolution(oldBitmap.HorizontalResolution, oldBitmap.VerticalResolution);
+
+            graphics.TranslateTransform((float)oldBitmap.Width / 2, (float)oldBitmap.Height / 2);
+            graphics.RotateTransform(angle);
+            graphics.TranslateTransform(-(float)oldBitmap.Width / 2, -(float)oldBitmap.Height / 2);
+            graphics.DrawImage(oldBitmap, new Point(0, 0));
+
+            return newBitmap;
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
@@ -2202,7 +2238,31 @@ namespace METAbolt
 
         private void button6_Click(object sender, EventArgs e)
         {
-            client.Self.AnimationStart(Animations.TURNLEFT, false); 
+            //client.Self.AnimationStart(Animations.TURNLEFT, false); 
+
+            ////ahead -= 45.0;
+
+            ////if (ahead < 0) ahead = 360 + ahead;
+
+            //////if (ahead > 360) ahead -= 360;
+            //////if (ahead < -360) ahead += 360;
+
+            ////client.Self.Movement.UpdateFromHeading(ahead, true);
+
+            //double hdg = Convert.ToDouble(GetAvHeading());
+            //hdg += 45.0f;
+
+            //if (hdg > 360f) hdg += 360;
+
+            //if (hdg == 360) hdg = 0;
+
+            //client.Self.Movement.UpdateFromHeading(hdg, true);
+
+            //client.Self.Movement.FinishAnim = true;
+            //System.Threading.Thread.Sleep(200);    
+            //client.Self.AnimationStop(Animations.TURNLEFT, false);
+
+            client.Self.AnimationStart(Animations.TURNLEFT, false);
 
             ahead += 45.0;
             if (ahead > 360) ahead = 135.0;
@@ -2210,7 +2270,7 @@ namespace METAbolt
             client.Self.Movement.UpdateFromHeading(ahead, true);
 
             client.Self.Movement.FinishAnim = true;
-            System.Threading.Thread.Sleep(200);    
+            System.Threading.Thread.Sleep(200);
             client.Self.AnimationStop(Animations.TURNLEFT, false);
         }
 
@@ -2235,17 +2295,119 @@ namespace METAbolt
 
         private void button8_Click(object sender, EventArgs e)
         {
+            //client.Self.AnimationStart(Animations.TURNRIGHT, false);
+
+            ////ahead += 45.0;
+
+            ////if (ahead > 360) ahead -= 360;
+            //////if (ahead < -360) ahead += 360;
+
+            //double hdg = Convert.ToDouble(GetAvHeading());
+            //hdg -= 45.0f;
+
+            //if (hdg < 0) hdg -= 360;
+
+            //if (hdg == 360) hdg = 0;
+
+            //client.Self.Movement.UpdateFromHeading(hdg, true);
+
+            ////client.Self.Movement.UpdateFromHeading(ahead, true);
+
+            //client.Self.Movement.FinishAnim = true;
+            //System.Threading.Thread.Sleep(200);
+            //client.Self.AnimationStop(Animations.TURNRIGHT, false);
+
             client.Self.AnimationStart(Animations.TURNRIGHT, false);
 
             ahead += -45.0;
-            if (ahead > 360) ahead = 135.0;
-
+            if (ahead < -360) ahead = -135.0;
+            //if (ahead < -360)
+            //{
+            //    ahead += 360;
+            //    ahead = ahead * -1;
+            //}
 
             client.Self.Movement.UpdateFromHeading(ahead, true);
 
             client.Self.Movement.FinishAnim = true;
             System.Threading.Thread.Sleep(200);
             client.Self.AnimationStop(Animations.TURNRIGHT, false);
+        }
+
+        private float GetAvHeading()
+        {
+            string heading = "~";
+
+            Quaternion avRot = client.Self.RelativeRotation;
+
+            Vector3 vdir = new Vector3(Vector3.Zero);
+            vdir.X = 0.0f;
+            vdir.Y = 1.0f;
+            vdir.Z = 0.0f;
+
+            Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
+
+            vDir = new Vector3(Vector3.Zero);
+            vDir.X = m.M11;
+            vDir.Y = m.M21;
+            vDir.Z = m.M31;
+
+            int x = Convert.ToInt32(vDir.X);
+            int y = Convert.ToInt32(vDir.Y);
+
+            float angle = 90;
+
+            if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
+            {
+                heading = "E";
+                //pictureBox4.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 90f);
+                angle = 90f;
+            }
+            else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
+            {
+                heading = "W";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 270f);
+                angle = 270f;
+            }
+            else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
+            {
+                heading = "S";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 180f);
+                angle = 180f;
+            }
+            else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
+            {
+                heading = "N";
+                pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 0f);
+                angle = 0f;
+            }
+            else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
+            {
+                heading = "SE";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 135f);
+                angle = 135f;
+            }
+            else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
+            {
+                heading = "SW";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 225f);
+                angle = 225f;
+            }
+            else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
+            {
+                heading = "NW";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 315f);
+                angle = 315f;
+            }
+            else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
+            {
+                heading = "NE";
+                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 45f);
+                angle = 45f;
+            }
+
+            return angle;
         }
 
         private void shoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3527,6 +3689,21 @@ namespace METAbolt
                 timer2.Enabled = false;
                 timer2.Stop();
             }  
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

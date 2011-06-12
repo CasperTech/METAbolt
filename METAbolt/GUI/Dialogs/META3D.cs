@@ -509,7 +509,7 @@ namespace METAbolt
 
         private void glControl_MouseWheel(object sender, MouseEventArgs e)
         {
-            int newVal = Utils.Clamp(scrollZoom.Value + e.Delta / 75, scrollZoom.Minimum, scrollZoom.Maximum);
+            int newVal = Utils.Clamp(scrollZoom.Value + e.Delta / 95, scrollZoom.Minimum, scrollZoom.Maximum);
 
             if (scrollZoom.Value != newVal)
             {

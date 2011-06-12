@@ -343,6 +343,7 @@
     <Compile Include="Core\Components\CustomToolTip.Designer.cs">
       <DependentUpon>CustomToolTip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Tools\RotateImage.cs" />
     <Compile Include="Core\Tools\SafeDictionary.cs" />
     <Compile Include="Core\Tools\WildCard.cs" />
     <Compile Include="GUI\Consoles\FindLand.cs">
@@ -1474,6 +1475,7 @@
     <None Include="Resources\comment.png" />
     <None Include="Resources\camera.png" />
     <None Include="Resources\camera_clic_with_flash.wav" />
+    <None Include="Resources\compass-needle.png" />
     <Content Include="Resources\damage.png" />
     <None Include="Resources\debug.png" />
     <None Include="Resources\donate2.png" />
@@ -1569,6 +1571,9 @@
     <None Include="Resources\source_i.png" />
     <None Include="Resources\texture.png" />
     <None Include="Resources\speaker.png" />
+    <None Include="Resources\turnleft.jpg" />
+    <None Include="Resources\turnright.png" />
+    <None Include="Resources\turnleft.png" />
     <Content Include="Resources\U-turn_icon.png" />
     <None Include="Resources\uncomment_i.png" />
     <None Include="Resources\undo_i.png" />
