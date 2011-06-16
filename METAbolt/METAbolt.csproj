@@ -1081,6 +1081,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Smileys.resx</DependentUpon>
     </Compile>
+    <None Include="ScintillaNet.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arrow-forward_16.png" />
@@ -1584,7 +1587,7 @@
     <Content Include="Resources\wmp.png" />
     <None Include="Resources\world.png" />
     <None Include="SciLexer.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="TP_History.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
