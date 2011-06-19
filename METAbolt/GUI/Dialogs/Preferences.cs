@@ -53,6 +53,7 @@ namespace METAbolt
             AddPreferencePane(new PrefChairAnn(instance));
             AddPreferencePane(new PrefProxy(instance));
             AddPreferencePane(new PrefPlugin(instance));
+            AddPreferencePane(new Pref3D(instance));
             lbxPanes.SelectedIndex = 0;
         }
 

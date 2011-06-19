@@ -382,6 +382,12 @@
     <Compile Include="GUI\Consoles\Inventory\InventoryGestureConsole.Designer.cs">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Consoles\Preferences\Pref3D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Consoles\Preferences\Pref3D.Designer.cs">
+      <DependentUpon>Pref3D.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Consoles\Preferences\PrefPlugin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -814,6 +820,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Inventory\InventoryGestureConsole.resx">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Consoles\Preferences\Pref3D.resx">
+      <DependentUpon>Pref3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\PrefPlugin.resx">
       <DependentUpon>PrefPlugin.cs</DependentUpon>
@@ -1453,6 +1463,7 @@
     </Content>
     <None Include="Resources\Audio_CD_16.png" />
     <None Include="Resources\acchist.png" />
+    <None Include="Resources\3d.png" />
     <Content Include="Resources\add_B16.png" />
     <None Include="Resources\arrow_back.png" />
     <None Include="Resources\arrow_right.png" />

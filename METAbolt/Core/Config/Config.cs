@@ -157,6 +157,7 @@ namespace METAbolt
         private bool disabletyping = false;
         private bool autoacceptfriends = false;
         private int restarttime = 10;
+        private bool disablemipmaps = false;
 
 
         public Config()
@@ -270,6 +271,13 @@ namespace METAbolt
                 config.ProxyPort = conf.Configs["Proxy"].GetString("ProxyPort", string.Empty);
                 config.ProxyUser = conf.Configs["Proxy"].GetString("ProxyUser", string.Empty);
                 config.ProxyPWD = conf.Configs["Proxy"].GetString("ProxyPWD", string.Empty);
+
+                // META3D    
+                try
+                {
+                    config.DisableMipmaps = conf.Configs["META3D"].GetBoolean("DisableMipmaps", false);
+                }
+                catch { ; }
                                    
                 //config.TweeterName = conf.Configs["Twitter"].GetString("TweeterName", string.Empty);
                 //config.TweeterPwd = conf.Configs["Twitter"].GetString("TweeterPwd", string.Empty);
@@ -473,6 +481,10 @@ namespace METAbolt
             config.Set("ProxyPort", proxyport);
             config.Set("ProxyUser", proxyuser);
             config.Set("ProxyPWD", proxypwd);
+
+            // META3D
+            config = source.AddConfig("META3D");
+            config.Set("DisableMipmaps", disablemipmaps.ToString());
 
             // Plugins Loaded
             config = source.AddConfig("LoadedPlugIns");
@@ -1136,6 +1148,12 @@ namespace METAbolt
         {
             get { return restarttime; }
             set { restarttime = value; }
+        }
+
+        public bool DisableMipmaps
+        {
+            get { return disablemipmaps; }
+            set { disablemipmaps = value; }
         }
     }
 }
