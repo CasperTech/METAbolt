@@ -34,6 +34,7 @@ using OpenMetaverse;
 using System.Media;
 using ExceptionReporting;
 using System.Threading;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -306,6 +307,12 @@ namespace METAbolt
                         tabs["chat"].Select();
 
                     client.Self.RetrieveInstantMessages();
+
+                    CultureInfo cult = CultureInfo.CurrentCulture;
+                    string land = cult.TwoLetterISOLanguageName;
+
+                    AgentManager avm = new AgentManager(client);
+                    avm.UpdateAgentLanguage(land, true);
                 }
             }
             catch (Exception ex)
