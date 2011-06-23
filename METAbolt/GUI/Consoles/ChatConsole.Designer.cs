@@ -59,10 +59,7 @@ namespace METAbolt
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button9 = new System.Windows.Forms.Button();
             this.tsFindText = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.cboLanguage = new METAbolt.ComboEx();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -111,7 +108,6 @@ namespace METAbolt
             this.tsbSearch = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -144,6 +140,8 @@ namespace METAbolt
             this.cboCapture = new System.Windows.Forms.ComboBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.cboLanguage = new METAbolt.ComboEx();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -151,7 +149,6 @@ namespace METAbolt
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
@@ -422,7 +419,6 @@ namespace METAbolt
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Interval = 300000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -442,7 +438,6 @@ namespace METAbolt
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Lavender;
             this.splitContainer1.Panel1.Controls.Add(this.panel7);
-            this.splitContainer1.Panel1.Controls.Add(this.panel4);
             this.splitContainer1.Panel1.Controls.Add(this.panel3);
             this.splitContainer1.Panel1.Controls.Add(this.rtbChat);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
@@ -464,7 +459,7 @@ namespace METAbolt
             this.panel7.Controls.Add(this.button9);
             this.panel7.Controls.Add(this.tsFindText);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 313);
+            this.panel7.Location = new System.Drawing.Point(0, 386);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(539, 28);
             this.panel7.TabIndex = 19;
@@ -512,40 +507,6 @@ namespace METAbolt
             this.tsFindText.Click += new System.EventHandler(this.tsFindText_Click);
             this.tsFindText.Enter += new System.EventHandler(this.tsFindText_Click);
             // 
-            // panel4
-            // 
-            this.panel4.AccessibleDescription = "Displays a new ad banner every 5 minutes";
-            this.panel4.AccessibleName = "METAbolt banner ad panel";
-            this.panel4.AutoSize = true;
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.webBrowser1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 341);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(539, 73);
-            this.panel4.TabIndex = 18;
-            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.AccessibleDescription = "The ad banner currently on display. Clicking it will open the related web site.";
-            this.webBrowser1.AccessibleName = "Ad banner";
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.IsWebBrowserContextMenuEnabled = false;
-            this.webBrowser1.Location = new System.Drawing.Point(38, 4);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(469, 65);
-            this.webBrowser1.TabIndex = 11;
-            this.webBrowser1.Url = new System.Uri("http://www.metabolt.net/Sponsor.asp", System.UriKind.Absolute);
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
-            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
-            this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
-            // 
             // panel3
             // 
             this.panel3.AccessibleName = "Translation panel";
@@ -560,21 +521,6 @@ namespace METAbolt
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(539, 29);
             this.panel3.TabIndex = 4;
-            // 
-            // cboLanguage
-            // 
-            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
-            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLanguage.Enabled = false;
-            this.cboLanguage.FormattingEnabled = true;
-            this.cboLanguage.ICImageList = this.imgFlags;
-            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
-            this.cboLanguage.Name = "cboLanguage";
-            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
-            this.cboLanguage.TabIndex = 6;
-            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -649,7 +595,7 @@ namespace METAbolt
             this.rtbChat.ReadOnly = true;
             this.rtbChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
             this.rtbChat.ShowSelectionMargin = true;
-            this.rtbChat.Size = new System.Drawing.Size(538, 333);
+            this.rtbChat.Size = new System.Drawing.Size(538, 410);
             this.rtbChat.TabIndex = 6;
             this.rtbChat.Text = "";
             this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
@@ -1234,32 +1180,6 @@ namespace METAbolt
             this.tabPage1.Text = "Radar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-                "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.Lavender;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(2, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(152, 301);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.List;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
-            // 
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Mini map and SIM statistics";
@@ -1506,7 +1426,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(51, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(72, 17);
+            this.checkBox5.Size = new System.Drawing.Size(69, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1651,6 +1571,47 @@ namespace METAbolt
             this.timer2.Interval = 62000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // cboLanguage
+            // 
+            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
+            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLanguage.Enabled = false;
+            this.cboLanguage.FormattingEnabled = true;
+            this.cboLanguage.ICImageList = this.imgFlags;
+            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
+            this.cboLanguage.Name = "cboLanguage";
+            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
+            this.cboLanguage.TabIndex = 6;
+            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
+            // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+                "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.Lavender;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(2, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(152, 301);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.List;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
+            // 
             // ChatConsole
             // 
             this.AccessibleDescription = "Chat window for entering and siplaying public chat";
@@ -1670,13 +1631,11 @@ namespace METAbolt
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1756,8 +1715,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton tsMusic;
         private System.Windows.Forms.ToolStripButton tbtnAttachments;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;

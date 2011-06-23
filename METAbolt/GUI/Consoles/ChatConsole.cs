@@ -83,7 +83,7 @@ namespace METAbolt
         private bool showing = false;
         private UUID avuuid = UUID.Zero;
         private string avname = string.Empty;
-        private bool removead = false;
+        //private bool removead = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private SafeDictionary<uint, Avatar> sfavatar = new SafeDictionary<uint,Avatar>();
         private List<string> avtyping = new List<string>();
@@ -388,36 +388,36 @@ namespace METAbolt
 
         private void CheckAdLicence()
         {
-            string lkey = instance.Config.CurrentConfig.AdRemove;
+            //string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            if (lkey != string.Empty)
-            {
-                METAMD5 md5 = new METAMD5();
+            //if (lkey != string.Empty)
+            //{
+            //    METAMD5 md5 = new METAMD5();
 
-                if (md5.ValidateMachinePasscode(lkey))
-                {
-                    panel4.Visible = false;
-                    rtbChat.Height += 73;
-                    removead = true;
-                }
-            }
+            //    if (md5.ValidateMachinePasscode(lkey))
+            //    {
+            //        panel4.Visible = false;
+            //        rtbChat.Height += 73;
+            //        //removead = true;
+            //    }
+            //}
         }
 
         private void CheckAvatarAdLicence()
         {
-            string lkey = instance.Config.CurrentConfig.AdRemove;
+            //string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            if (lkey != string.Empty)
-            {
-                METAMD5 md5 = new METAMD5();
+            //if (lkey != string.Empty)
+            //{
+            //    METAMD5 md5 = new METAMD5();
 
-                if (md5.ValidateAvatarPasscode(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-                {
-                    panel4.Visible = false;
-                    rtbChat.Height += 73;
-                    removead = true;
-                }
-            }
+            //    if (md5.ValidateAvatarPasscode(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
+            //    {
+            //        panel4.Visible = false;
+            //        rtbChat.Height += 73;
+            //        //removead = true;
+            //    }
+            //}
         }
 
         private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs e)
@@ -1375,7 +1375,7 @@ namespace METAbolt
                 return;
             }
 
-            string heading = "~";
+            //string heading = "~";
 
             Quaternion avRot = client.Self.RelativeRotation;
             
@@ -1398,50 +1398,50 @@ namespace METAbolt
 
             if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
             {
-                heading = "E";
+                //heading = "E";
                 //pictureBox4.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 90f);
                 angle = 90f;
             }
             else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
             {
-                heading = "W";
+                //heading = "W";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 270f);
                 angle = 270f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
             {
-                heading = "S";
+                //heading = "S";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 180f);
                 angle = 180f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
             {
-                heading = "N";
+                //heading = "N";
                 pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 0f);
                 angle = 0f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
             {
-                heading = "SE";
+                //heading = "SE";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 135f);
                 angle = 135f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
             {
-                heading = "SW";
+                //heading = "SW";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 225f);
                 angle = 225f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
             {
-                heading = "NW";
+                //heading = "NW";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 315f);
                 angle = 315f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
             {
-                heading = "NE";
+                //heading = "NE";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 45f);
                 angle = 45f;
             }
@@ -1917,7 +1917,7 @@ namespace METAbolt
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (!removead) webBrowser1.Refresh();
+            //if (!removead) webBrowser1.Refresh();
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
@@ -2336,7 +2336,7 @@ namespace METAbolt
 
         private float GetAvHeading()
         {
-            string heading = "~";
+            //string heading = "~";
 
             Quaternion avRot = client.Self.RelativeRotation;
 
@@ -2359,50 +2359,50 @@ namespace METAbolt
 
             if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
             {
-                heading = "E";
+                //heading = "E";
                 //pictureBox4.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 90f);
                 angle = 90f;
             }
             else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
             {
-                heading = "W";
+                //heading = "W";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 270f);
                 angle = 270f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
             {
-                heading = "S";
+                //heading = "S";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 180f);
                 angle = 180f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
             {
-                heading = "N";
+                //heading = "N";
                 pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 0f);
                 angle = 0f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
             {
-                heading = "SE";
+                //heading = "SE";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 135f);
                 angle = 135f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
             {
-                heading = "SW";
+                //heading = "SW";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 225f);
                 angle = 225f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
             {
-                heading = "NW";
+                //heading = "NW";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 315f);
                 angle = 315f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
             {
-                heading = "NE";
+                //heading = "NE";
                 //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 45f);
                 angle = 45f;
             }
@@ -3151,70 +3151,10 @@ namespace METAbolt
 
         }
 
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            HtmlElementCollection links = webBrowser1.Document.Links;
-
-            foreach (HtmlElement var in links)
-            {
-                var.AttachEventHandler("onclick", LinkClicked);
-            }
-        }
-
         private void LinkClicked(object sender, EventArgs e)
         {
-            HtmlElement link = webBrowser1.Document.ActiveElement;
-            clickedurl = link.GetAttribute("href");
-        }
-
-        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
-        {
-            if (clickedurl == string.Empty || clickedurl == null)
-            {
-                HtmlElement link = webBrowser1.Document.ActiveElement;
-                clickedurl = link.GetAttribute("href");
-            }
-
-            e.Cancel = true;
-
-            if (clickedurl.StartsWith("http://slurl."))
-            {
-                // Open up the TP form here
-                string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
-
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
-                clickedurl = string.Empty;
-                return;
-            }
-            if (clickedurl.StartsWith("http://maps.secondlife"))
-            {
-                // Open up the TP form here
-                string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
-
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
-                clickedurl = string.Empty;
-                return;
-            }
-
-            System.Diagnostics.Process.Start(clickedurl);
-            clickedurl = string.Empty;  
-        }
-
-        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            //if (clickedurl != string.Empty)
-            //{
-            //    e.Cancel = true;
-            //    System.Diagnostics.Process.Start(e.Url.ToString());
-            //}
+            //HtmlElement link = webBrowser1.Document.ActiveElement;
+            //clickedurl = link.GetAttribute("href");
         }
 
         private void cbxInput_SelectedIndexChanged(object sender, EventArgs e)
