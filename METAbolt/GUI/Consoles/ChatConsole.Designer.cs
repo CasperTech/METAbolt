@@ -80,7 +80,6 @@ namespace METAbolt
             this.button6 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -625,7 +624,6 @@ namespace METAbolt
             this.panel5.Controls.Add(this.button6);
             this.panel5.Controls.Add(this.textBox1);
             this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.label2);
             this.panel5.Controls.Add(this.label24);
             this.panel5.Controls.Add(this.label25);
             this.panel5.Controls.Add(this.label23);
@@ -641,6 +639,7 @@ namespace METAbolt
             // 
             this.pictureBox4.AccessibleDescription = "Compass that shows direction";
             this.pictureBox4.AccessibleName = "Compass";
+            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Image = global::METAbolt.Properties.Resources.compass_needle;
             this.pictureBox4.Location = new System.Drawing.Point(116, 25);
@@ -653,7 +652,7 @@ namespace METAbolt
             // 
             // label21
             // 
-            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -666,7 +665,7 @@ namespace METAbolt
             // 
             // label20
             // 
-            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -679,7 +678,7 @@ namespace METAbolt
             // 
             // label19
             // 
-            this.label19.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -699,7 +698,7 @@ namespace METAbolt
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button3.Location = new System.Drawing.Point(60, 33);
+            this.button3.Location = new System.Drawing.Point(60, 25);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(29, 29);
             this.button3.TabIndex = 12;
@@ -715,7 +714,7 @@ namespace METAbolt
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button4.Location = new System.Drawing.Point(31, 46);
+            this.button4.Location = new System.Drawing.Point(31, 38);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(29, 29);
             this.button4.TabIndex = 13;
@@ -731,7 +730,7 @@ namespace METAbolt
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(3, 33);
+            this.button2.Location = new System.Drawing.Point(3, 25);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(29, 29);
             this.button2.TabIndex = 14;
@@ -747,7 +746,7 @@ namespace METAbolt
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button5.Location = new System.Drawing.Point(31, 17);
+            this.button5.Location = new System.Drawing.Point(31, 9);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(29, 29);
             this.button5.TabIndex = 11;
@@ -776,7 +775,7 @@ namespace METAbolt
             this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(66, 79);
+            this.button8.Location = new System.Drawing.Point(66, 71);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(25, 25);
             this.button8.TabIndex = 16;
@@ -792,7 +791,7 @@ namespace METAbolt
             this.button7.BackgroundImage = global::METAbolt.Properties.Resources.fly1;
             this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(34, 79);
+            this.button7.Location = new System.Drawing.Point(34, 71);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(25, 25);
             this.button7.TabIndex = 17;
@@ -809,7 +808,7 @@ namespace METAbolt
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(3, 79);
+            this.button6.Location = new System.Drawing.Point(3, 71);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(25, 25);
             this.button6.TabIndex = 15;
@@ -836,7 +835,7 @@ namespace METAbolt
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -848,18 +847,9 @@ namespace METAbolt
             this.label1.Text = "N";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 12);
-            this.label2.TabIndex = 23;
-            // 
             // label24
             // 
-            this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label24.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -872,7 +862,7 @@ namespace METAbolt
             // 
             // label25
             // 
-            this.label25.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label25.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -885,7 +875,7 @@ namespace METAbolt
             // 
             // label23
             // 
-            this.label23.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label23.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -898,7 +888,7 @@ namespace METAbolt
             // 
             // label22
             // 
-            this.label22.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label22.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label22.AutoSize = true;
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1695,7 +1685,6 @@ namespace METAbolt
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripDropDownButton tbSay;
