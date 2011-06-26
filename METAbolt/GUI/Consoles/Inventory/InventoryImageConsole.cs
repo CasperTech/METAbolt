@@ -79,7 +79,11 @@ namespace METAbolt
                 return;
             }
 
-            BeginInvoke(new OnSetStatusText(SetStatusText), new object[] { "Image downloaded. Decoding..." });
+            try
+            {
+                BeginInvoke(new OnSetStatusText(SetStatusText), new object[] { "Image downloaded. Decoding..." });
+            }
+            catch { ; }
 
             //System.Drawing.Image decodedImage = ImageHelper.Decode(image.AssetData);
 

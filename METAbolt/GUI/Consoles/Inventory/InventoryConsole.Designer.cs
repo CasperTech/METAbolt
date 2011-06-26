@@ -78,31 +78,32 @@ namespace METAbolt
             this.refreshFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbtnSort = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.smM1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tstInventory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -123,8 +124,8 @@ namespace METAbolt
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Lavender;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(632, 432);
-            this.splitContainer1.SplitterDistance = 301;
+            this.splitContainer1.Size = new System.Drawing.Size(635, 432);
+            this.splitContainer1.SplitterDistance = 319;
             this.splitContainer1.TabIndex = 0;
             // 
             // treeView1
@@ -140,7 +141,7 @@ namespace METAbolt
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(297, 369);
+            this.treeView1.Size = new System.Drawing.Size(315, 369);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView1_AfterLabelEdit);
             this.treeView1.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCollapse);
@@ -324,7 +325,7 @@ namespace METAbolt
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 394);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(297, 34);
+            this.panel1.Size = new System.Drawing.Size(315, 34);
             this.panel1.TabIndex = 1;
             // 
             // button1
@@ -376,11 +377,12 @@ namespace METAbolt
             this.toolStripSeparator1,
             this.tbtnOrganize,
             this.tbtnSort,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.toolStripButton1});
             this.tstInventory.Location = new System.Drawing.Point(0, 0);
             this.tstInventory.Name = "tstInventory";
             this.tstInventory.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.tstInventory.Size = new System.Drawing.Size(297, 25);
+            this.tstInventory.Size = new System.Drawing.Size(315, 25);
             this.tstInventory.TabIndex = 2;
             this.tstInventory.Text = "toolStrip1";
             this.tstInventory.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tstInventory_ItemClicked);
@@ -579,171 +581,15 @@ namespace METAbolt
             this.toolStripButton2.ToolTipText = "Auto clothes changer";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // timer1
+            // toolStripButton1
             // 
-            this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // textBox2
-            // 
-            this.textBox2.AccessibleName = "Inventory folder textbox";
-            this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox2.Location = new System.Drawing.Point(18, 26);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(226, 21);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Text = "Select folder from inventory";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 13);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "Name of Clothes folder:";
-            // 
-            // button6
-            // 
-            this.button6.AccessibleName = "Add inventory folder button";
-            this.button6.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(250, 24);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(61, 23);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "A&dd";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.AccessibleName = "Frequency of clothes change trackbar";
-            this.trackBar1.Location = new System.Drawing.Point(12, 307);
-            this.trackBar1.Maximum = 120;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(185, 45);
-            this.trackBar1.SmallChange = 10;
-            this.trackBar1.TabIndex = 5;
-            this.trackBar1.TickFrequency = 10;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 291);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(216, 13);
-            this.label3.TabIndex = 29;
-            this.label3.Text = "Outfit change frequency (10 mins intervals)";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(197, 320);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 30;
-            // 
-            // button4
-            // 
-            this.button4.AccessibleName = "Start change timer button";
-            this.button4.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(18, 401);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "&Start";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.AccessibleName = "List of added folders listbox";
-            this.listBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(18, 98);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(226, 147);
-            this.listBox1.TabIndex = 2;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 13);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "Selected folders:";
-            // 
-            // button3
-            // 
-            this.button3.AccessibleName = "Remove selected folder from list button";
-            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button3.Enabled = false;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(18, 251);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Remo&ve selected";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button5
-            // 
-            this.button5.AccessibleName = "Close Changer button";
-            this.button5.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(236, 401);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "&Done";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button2
-            // 
-            this.button2.AccessibleName = "Wear selected folder button";
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button2.Enabled = false;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(155, 251);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "&Wear selected";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 377);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 13);
-            this.label5.TabIndex = 38;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 347);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 13);
-            this.label6.TabIndex = 39;
-            // 
-            // textBox3
-            // 
-            this.textBox3.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox3.Location = new System.Drawing.Point(18, 48);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(226, 21);
-            this.textBox3.TabIndex = 7;
+            this.toolStripButton1.Image = global::METAbolt.Properties.Resources.rebake;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(66, 20);
+            this.toolStripButton1.Text = "Refresh";
+            this.toolStripButton1.ToolTipText = "Refresh Inventory";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // panel2
             // 
@@ -767,9 +613,175 @@ namespace METAbolt
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(323, 428);
+            this.panel2.Size = new System.Drawing.Size(308, 428);
             this.panel2.TabIndex = 5;
             this.panel2.Visible = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.ForeColor = System.Drawing.Color.DimGray;
+            this.textBox3.Location = new System.Drawing.Point(18, 48);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(226, 21);
+            this.textBox3.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 347);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 13);
+            this.label6.TabIndex = 39;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 377);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 38;
+            // 
+            // button2
+            // 
+            this.button2.AccessibleName = "Wear selected folder button";
+            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.Enabled = false;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(155, 251);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(89, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "&Wear selected";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button5
+            // 
+            this.button5.AccessibleName = "Close Changer button";
+            this.button5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(236, 401);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "&Done";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button3
+            // 
+            this.button3.AccessibleName = "Remove selected folder from list button";
+            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button3.Enabled = false;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(18, 251);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(112, 23);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Remo&ve selected";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Selected folders:";
+            // 
+            // listBox1
+            // 
+            this.listBox1.AccessibleName = "List of added folders listbox";
+            this.listBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(18, 98);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(226, 147);
+            this.listBox1.TabIndex = 2;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // button4
+            // 
+            this.button4.AccessibleName = "Start change timer button";
+            this.button4.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(18, 401);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "&Start";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(197, 320);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 30;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 291);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(216, 13);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Outfit change frequency (10 mins intervals)";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.AccessibleName = "Frequency of clothes change trackbar";
+            this.trackBar1.Location = new System.Drawing.Point(12, 307);
+            this.trackBar1.Maximum = 120;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(185, 45);
+            this.trackBar1.SmallChange = 10;
+            this.trackBar1.TabIndex = 5;
+            this.trackBar1.TickFrequency = 10;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // button6
+            // 
+            this.button6.AccessibleName = "Add inventory folder button";
+            this.button6.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(250, 24);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(61, 23);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "A&dd";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Name of Clothes folder:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.AccessibleName = "Inventory folder textbox";
+            this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.ForeColor = System.Drawing.Color.DimGray;
+            this.textBox2.Location = new System.Drawing.Point(18, 26);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(226, 21);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.Text = "Select folder from inventory";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // InventoryConsole
             // 
@@ -778,7 +790,7 @@ namespace METAbolt
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "InventoryConsole";
-            this.Size = new System.Drawing.Size(632, 432);
+            this.Size = new System.Drawing.Size(635, 432);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -788,9 +800,9 @@ namespace METAbolt
             this.panel1.PerformLayout();
             this.tstInventory.ResumeLayout(false);
             this.tstInventory.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -863,5 +875,6 @@ namespace METAbolt
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

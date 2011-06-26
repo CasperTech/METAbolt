@@ -50,7 +50,7 @@
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.9.44.%2a</ApplicationVersion>
+    <ApplicationVersion>0.9.45.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -64,10 +64,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\METAbolt.XML</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -168,7 +167,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse, Version=0.0.0.25709, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="OpenMetaverse, Version=0.0.0.12597, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.dll</HintPath>
     </Reference>
@@ -382,6 +381,12 @@
     <Compile Include="GUI\Consoles\Inventory\InventoryGestureConsole.Designer.cs">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Consoles\Preferences\PrefIMETAgiver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Consoles\Preferences\PrefIMETAgiver.Designer.cs">
+      <DependentUpon>PrefIMETAgiver.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Consoles\Preferences\Pref3D.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -411,12 +416,6 @@
     </Compile>
     <Compile Include="GUI\Consoles\Preferences\PrefChairAnn.designer.cs">
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Dialogs\AdLicense.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Dialogs\AdLicense.Designer.cs">
-      <DependentUpon>AdLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Dialogs\frmGive.cs">
       <SubType>Form</SubType>
@@ -821,6 +820,10 @@
     <EmbeddedResource Include="GUI\Consoles\Inventory\InventoryGestureConsole.resx">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Consoles\Preferences\PrefIMETAgiver.resx">
+      <DependentUpon>PrefIMETAgiver.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\Pref3D.resx">
       <DependentUpon>Pref3D.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -838,10 +841,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\PrefChairAnn.resx">
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Dialogs\AdLicense.resx">
-      <DependentUpon>AdLicense.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmGive.resx">
@@ -1075,8 +1074,15 @@
     <None Include="License_METAbolt.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="OpenTK.Compatibility.dll.config" />
-    <None Include="OpenTK.dll.config" />
+    <None Include="OpenMetaverse.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="OpenTK.Compatibility.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="OpenTK.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1214,9 +1220,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="METAbolt Support.url">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="OpenMetaverse.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="openmetaverse_data\blush_alpha.tga">
@@ -1446,14 +1449,23 @@
     <Content Include="MuteList.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="openjpeg-dotnet-x86_64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="openjpeg-dotnet.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="openjpeg-dotnet-x86_64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="openjpeg-dotnet.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="openmetaverse_data\avatar_lad.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenTK.Compatibility.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenTK.GLControl.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenTK.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PrimMesher.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1588,6 +1600,7 @@
     <None Include="Resources\turnleft.jpg" />
     <None Include="Resources\turnright.png" />
     <None Include="Resources\turnleft.png" />
+    <None Include="Resources\top-hat.png" />
     <Content Include="Resources\U-turn_icon.png" />
     <None Include="Resources\uncomment_i.png" />
     <None Include="Resources\undo_i.png" />
@@ -1682,16 +1695,6 @@
       <TargetPath>
       </TargetPath>
       <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
-    <PublishFile Include="OpenMetaverse">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>

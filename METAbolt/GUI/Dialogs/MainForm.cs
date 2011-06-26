@@ -1041,7 +1041,7 @@ namespace METAbolt
 
         private void tmnuPrefs_Click(object sender, EventArgs e)
         {
-            (new frmPreferences(instance)).ShowDialog(this);
+            (new frmPreferences(instance)).Show(this);
         }
 
         private void tbtnObjects_Click(object sender, EventArgs e)
@@ -1594,7 +1594,7 @@ namespace METAbolt
 
         private void applyToDisableAdsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new AdLicense(this.instance)).ShowDialog(this);
+            //(new AdLicense(this.instance)).ShowDialog(this);
         }
 
         private void tbtnHelp_Click(object sender, EventArgs e)

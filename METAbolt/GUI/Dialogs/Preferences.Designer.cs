@@ -33,6 +33,8 @@ namespace METAbolt
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
+            this.picAutoSit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             this.SuspendLayout();
             // 
             // lbxPanes
@@ -50,6 +52,7 @@ namespace METAbolt
             // 
             // pnlPanes
             // 
+            this.pnlPanes.AllowDrop = true;
             this.pnlPanes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlPanes.Location = new System.Drawing.Point(146, 12);
@@ -100,12 +103,26 @@ namespace METAbolt
             this.btnApply.UseVisualStyleBackColor = false;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
+            // picAutoSit
+            // 
+            this.picAutoSit.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAutoSit.Location = new System.Drawing.Point(12, 340);
+            this.picAutoSit.Name = "picAutoSit";
+            this.picAutoSit.Size = new System.Drawing.Size(15, 15);
+            this.picAutoSit.TabIndex = 39;
+            this.picAutoSit.TabStop = false;
+            this.picAutoSit.Click += new System.EventHandler(this.picAutoSit_Click);
+            this.picAutoSit.MouseLeave += new System.EventHandler(this.picAutoSit_MouseLeave);
+            this.picAutoSit.MouseHover += new System.EventHandler(this.picAutoSit_MouseHover);
+            // 
             // frmPreferences
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(502, 362);
+            this.Controls.Add(this.picAutoSit);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -121,6 +138,7 @@ namespace METAbolt
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "METAbolt Preferences";
             this.Load += new System.EventHandler(this.frmPreferences_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -132,5 +150,6 @@ namespace METAbolt
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.PictureBox picAutoSit;
     }
 }

@@ -48,6 +48,8 @@ using System.Threading;
 using System.Linq;
 using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
+using PopupControl;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -83,26 +85,15 @@ namespace METAbolt
         private bool showing = false;
         private UUID avuuid = UUID.Zero;
         private string avname = string.Empty;
-        //private bool removead = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private SafeDictionary<uint, Avatar> sfavatar = new SafeDictionary<uint,Avatar>();
         private List<string> avtyping = new List<string>();
         private int start = 0;
         private int indexOfSearchText = 0;
         private string prevsearchtxt = string.Empty;
-        //private bool voiceon = false;
-
-        //static AutoResetEvent ParcelVoiceInfoEvent = new AutoResetEvent(false);
-        //static AutoResetEvent ProvisionEvent = new AutoResetEvent(false);
-        //static string VoiceAccount = String.Empty;
-        //static string VoicePassword = String.Empty;
-        //static string VoiceRegionName = String.Empty;
-        //static int VoiceLocalID = 0;
-        //static string VoiceChannelURI = String.Empty;
-        //private VoiceManager voice = null;
         private VoiceGateway vgate = null;
-        //List<string> mics;
-        //List<string> speakers;
+        private Popup toolTip;
+        private CustomToolTip customToolTip;        
 
 
         internal class ThreadExceptionHandler
@@ -120,6 +111,12 @@ namespace METAbolt
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+
+            string msg1 = "Click for help on how to enable Voice";
+            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            toolTip.AutoClose = false;
+            toolTip.FocusOnOpen = false;
+            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
 
             this.instance = instance;
             netcom = this.instance.Netcom;
@@ -301,6 +298,20 @@ namespace METAbolt
             //{
             //    rmsg = " Avatar has not rezzed as expected. ";
             //}
+
+            CultureInfo cult = CultureInfo.CurrentCulture;
+            string land = cult.TwoLetterISOLanguageName;
+
+            AgentManager avm = new AgentManager(client);
+
+            try
+            {
+                avm.UpdateAgentLanguage(land, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
+            }
 
             try
             {
@@ -675,8 +686,10 @@ namespace METAbolt
         {
             if (e.Properties.Description.Trim() == client.Self.AgentID.ToString().Trim())
             {
-                instance.State.SetSitting(true, e.Properties.ObjectID);
                 client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
+
+                instance.State.SetSitting(true, e.Properties.ObjectID);
+                
                 localids = null;
                 listnerdisposed = true;
                 Logger.Log("AUTOSIT: Found sit object and sitting", Helpers.LogLevel.Info);
@@ -3644,6 +3657,26 @@ namespace METAbolt
         private void label22_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton1_Click_3(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/Quick.ashx#~_Radar_Toolbar_~_3");
+        }
+
+        private void picAutoSit_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/How-to-enable-VOICE.ashx");
+        }
+
+        private void picHelp_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.Show(picHelp);
+        }
+
+        private void picHelp_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip.Close();  
         }
     }
 }

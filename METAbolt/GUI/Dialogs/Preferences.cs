@@ -29,6 +29,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using PopupControl;
 
 namespace METAbolt
 {
@@ -37,10 +38,18 @@ namespace METAbolt
         private METAboltInstance instance;
         private Dictionary<string, IPreferencePane> panes;
         private IPreferencePane selectedPane;
+        private Popup toolTip;
+        private CustomToolTip customToolTip;
 
         public frmPreferences(METAboltInstance instance)
         {
             InitializeComponent();
+
+            string msg1 = "Click for help on how to use Application/Preferences";
+            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            toolTip.AutoClose = false;
+            toolTip.FocusOnOpen = false;
+            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
 
             this.instance = instance;
             panes = new Dictionary<string, IPreferencePane>();
@@ -54,6 +63,7 @@ namespace METAbolt
             AddPreferencePane(new PrefProxy(instance));
             AddPreferencePane(new PrefPlugin(instance));
             AddPreferencePane(new Pref3D(instance));
+            AddPreferencePane(new PrefMETAgiver(instance));
             lbxPanes.SelectedIndex = 0;
         }
 
@@ -170,6 +180,21 @@ namespace METAbolt
         private void pnlPanes_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void picAutoSit_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/Using-Preferences.ashx");
+        }
+
+        private void picAutoSit_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.Show(picAutoSit);
+        }
+
+        private void picAutoSit_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip.Close();
         }
     }
 }

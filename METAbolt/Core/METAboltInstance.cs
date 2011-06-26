@@ -96,6 +96,7 @@ namespace METAbolt
         private int noticecount = 0;
         public AIMLbot.Bot myBot;
         private DataTable mutelist = null;
+        private DataTable giveritems = null;
         private DataTable tp = null;
         private bool detectlang = false;
         private UUID lookID = UUID.Zero; 
@@ -125,6 +126,8 @@ namespace METAbolt
             this.firstInstance = firstInstance;
 
             LoadXMLFile(appdir + "\\MuteList.xml");
+            LoadGiverItems(appdir + "\\METAgiverItems.xml");
+
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
@@ -173,6 +176,8 @@ namespace METAbolt
             this.firstInstance = firstInstance;
 
             LoadXMLFile(appdir + "\\MuteList.xml");
+            LoadGiverItems(appdir + "\\METAgiverItems.xml");
+
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
@@ -438,6 +443,94 @@ namespace METAbolt
             catch { return false; }
         }
 
+        public bool IsGiveItem(string item, UUID avid)
+        {
+            if (item == string.Empty) return false;
+
+            try
+            {
+                DataRow dr = giveritems.Rows.Find(item.ToString());
+
+                if (dr != null)
+                {
+                    UUID iid = (UUID)dr.ItemArray[1].ToString();
+                    string name = dr.ItemArray[2].ToString().ToString();
+
+                    string astype = dr.ItemArray[3].ToString();
+
+                    AssetType type;
+
+                    // You can't cast a string or an object to an AssetType!
+                    // TODO: Change this section when libopenmv gets any intelligence in this area
+
+                    switch (astype.ToLower())
+                    {
+                        case "animation":
+                            type = AssetType.Animation;
+                            break;
+                        case "bodypart":
+                            type = AssetType.Bodypart;
+                            break;
+                        case "callingcard":
+                            type = AssetType.CallingCard;
+                            break;
+                        case "clothing":
+                            type = AssetType.Clothing;
+                            break;
+                        case "gesture":
+                            type = AssetType.Gesture;
+                            break;
+                        case "landmark":
+                            type = AssetType.Landmark;
+                            break;
+                        case "mesh":
+                            type = AssetType.Mesh;
+                            break;
+                        case "notecard":
+                            type = AssetType.Notecard;
+                            break;
+                        case "object":
+                            type = AssetType.Object;
+                            break;
+                        case "lsltext":
+                            type = AssetType.LSLText;
+                            break;
+                        case "sound":
+                            type = AssetType.Sound;
+                            break;
+                        case "imagetga":
+                            type = AssetType.ImageTGA;
+                            break;
+                        case "imagejpeg":
+                            type = AssetType.ImageJPEG;
+                            break;
+                        case "texture":
+                            type = AssetType.Texture;
+                            break;
+                        case "texturetga":
+                            type = AssetType.TextureTGA;
+                            break;
+                        default:
+                            type = AssetType.Unknown;
+                            break;
+                    }                    
+
+                    client.Inventory.GiveItem(iid, name, type, avid, false);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("METAcourier: " + ex.Message, Helpers.LogLevel.Error);    
+                return false;             
+            }
+        }
+
         private void LoadXMLFile(string XmlFile)
         {
             if (!System.IO.File.Exists(XmlFile))
@@ -491,12 +584,78 @@ namespace METAbolt
             }
         }
 
+        private void LoadGiverItems(string XmlFile)
+        {
+            if (!System.IO.File.Exists(XmlFile))
+            {
+                DataTable tbl = MakeGiverDataTable();
+
+                giveritems = tbl;
+                giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
+                return;
+            }
+
+            DataSet dset = new DataSet();
+            FileStream fstr = null;
+
+            try
+            {
+                fstr = new FileStream(XmlFile, FileMode.Open, FileAccess.Read);
+                dset.ReadXml(fstr);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log("Load METAcourier items: " + exp.Message, Helpers.LogLevel.Warning);
+            }
+
+            try
+            {
+                if (dset.Tables.Count > 0)
+                {
+                    DataTable dtbl = dset.Tables[0];
+
+                    fstr.Close();
+                    dset.Dispose();
+
+                    giveritems = dtbl;
+                    giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
+                }
+                else
+                {
+                    fstr.Close();
+                    dset.Dispose();
+
+                    DataTable tbl = MakeGiverDataTable();
+
+                    giveritems = tbl;
+                    giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
+                }
+            }
+            catch
+            {
+                ;
+            }
+        }
+
         private void SaveXMLFile(string XmlFile)
         {
             try
             {
                 //int recs = mutelist.Rows.Count;  
                 mutelist.WriteXml(XmlFile);
+            }
+            catch
+            {
+                ;
+            }
+        }
+
+        private void SaveGiverItems(string XmlFile)
+        {
+            try
+            {
+                //int recs = mutelist.Rows.Count;  
+                giveritems.WriteXml(XmlFile);
             }
             catch
             {
@@ -520,6 +679,41 @@ namespace METAbolt
             //mutelist.Columns.Add(myColumn);
 
             //dtbl.PrimaryKey = new DataColumn[] { dtbl.Columns["uuid"] };
+
+            return dtbl;
+        }
+
+        private DataTable MakeGiverDataTable()
+        {
+            DataTable dtbl = new DataTable("list");
+            DataColumn myColumn = new DataColumn();
+
+            myColumn.DataType = System.Type.GetType("System.String");
+            myColumn.ColumnName = "Command";
+            dtbl.Columns.Add(myColumn);
+
+            //client.Inventory.GiveItem(iitem.UUID, iitem.Name, iitem.AssetType, avid, false);
+
+            DataColumn myColumn1 = new DataColumn();
+            myColumn1.DataType = System.Type.GetType("System.String");
+            myColumn1.ColumnName = "UUID";
+            dtbl.Columns.Add(myColumn1);
+
+            DataColumn myColumn2 = new DataColumn();
+            myColumn2 = new DataColumn();
+            myColumn2.DataType = System.Type.GetType("System.String");
+            myColumn2.ColumnName = "Name";
+            dtbl.Columns.Add(myColumn2);
+
+            DataColumn myColumn3 = new DataColumn();
+            myColumn3.DataType = System.Type.GetType("System.String");
+            myColumn3.ColumnName = "AssetType";
+            dtbl.Columns.Add(myColumn3);
+
+            DataColumn[] keys = new DataColumn[1];
+            keys[0] = myColumn;
+
+            dtbl.PrimaryKey = keys; 
 
             return dtbl;
         }
@@ -702,6 +896,7 @@ namespace METAbolt
             //}
 
             SaveXMLFile(appdir + "\\MuteList.xml");
+            SaveGiverItems(appdir + "\\METAgiverItems.xml");
 
             client = null;
             Environment.Exit(0); 
@@ -933,6 +1128,12 @@ namespace METAbolt
         {
             get { return dialogtimeout; }
             set { dialogtimeout = value; }
+        }
+
+        public DataTable GiverItems
+        {
+            get { return giveritems; }
+            set { giveritems = value; }
         }
     }
 }

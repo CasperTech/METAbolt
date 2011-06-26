@@ -573,7 +573,7 @@ namespace METAbolt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.9.44.0 (BETA).
+        ///   Looks up a localized string similar to 0.9.45.0 (BETA).
         /// </summary>
         internal static string METAboltVersion {
             get {
@@ -897,6 +897,13 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap tools1 {
             get {
                 object obj = ResourceManager.GetObject("tools1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap top_hat {
+            get {
+                object obj = ResourceManager.GetObject("top_hat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

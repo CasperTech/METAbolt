@@ -308,11 +308,19 @@ namespace METAbolt
 
                     client.Self.RetrieveInstantMessages();
 
-                    CultureInfo cult = CultureInfo.CurrentCulture;
-                    string land = cult.TwoLetterISOLanguageName;
+                    //CultureInfo cult = CultureInfo.CurrentCulture;
+                    //string land = cult.TwoLetterISOLanguageName;
 
-                    AgentManager avm = new AgentManager(client);
-                    avm.UpdateAgentLanguage(land, true);
+                    //AgentManager avm = new AgentManager(client);
+
+                    //try
+                    //{
+                    //    avm.UpdateAgentLanguage(land, true);
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);    
+                    //}
                 }
             }
             catch (Exception ex)
@@ -713,6 +721,11 @@ namespace METAbolt
                     }
                 }
 
+                return;
+            }
+
+            if (instance.IsGiveItem(e.IM.Message.ToLower(), e.IM.FromAgentID))
+            {
                 return;
             }
 
