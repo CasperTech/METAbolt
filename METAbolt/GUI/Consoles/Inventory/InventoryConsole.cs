@@ -594,7 +594,9 @@ namespace METAbolt
             else if (io is InventoryItem)
             {
                 InventoryItem item = (InventoryItem)io;
-                client.Inventory.RemoveItem(item.UUID);
+                //client.Inventory.RemoveItem(item.UUID);
+                client.Inventory.MoveItem(item.UUID, client.Inventory.FindFolderForType(AssetType.TrashFolder), item.Name);
+
                 item = null;
             }
 

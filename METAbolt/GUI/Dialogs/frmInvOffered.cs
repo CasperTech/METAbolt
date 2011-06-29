@@ -119,7 +119,8 @@ namespace METAbolt
 
                 try
                 {
-                    client.Inventory.RemoveItem(objectID);
+                    //client.Inventory.RemoveItem(objectID);
+                    client.Inventory.MoveItem(objectID, client.Inventory.FindFolderForType(AssetType.TrashFolder), msg.Message);
                 }
                 catch { ; }
             }
