@@ -455,7 +455,7 @@ namespace METAbolt
                 tsTimeOut.Visible = true;
 
                 TimeSpan ts = offtime - DateTime.Now;
-                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00");
             }
             else
             {
@@ -489,7 +489,7 @@ namespace METAbolt
 
             BeginInvoke((MethodInvoker)delegate
             {
-                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00");
             });
         }
 

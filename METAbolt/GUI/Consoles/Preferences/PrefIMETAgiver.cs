@@ -153,6 +153,8 @@ namespace METAbolt
 
                     instance.GiverItems.Rows.Add(dr);
 
+                    textBox1.Text = string.Empty;   
+
                     GW.Refresh();
                 }
             }
