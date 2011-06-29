@@ -149,7 +149,7 @@ namespace METAbolt
 
             sim = client.Network.CurrentSim;
 
-            CheckAdLicence();
+            //CheckAdLicence();
 
             world.Cursor = Cursors.NoMove2D;
 
@@ -199,16 +199,6 @@ namespace METAbolt
 
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs names)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Avatars_OnAvatarNames(sender, names);
-                }));
-
-                return;
-            }
-
             //lock (instance.avnames)
             //{
                 foreach (KeyValuePair<UUID, string> av in names.Names)
@@ -218,9 +208,6 @@ namespace METAbolt
                         instance.avnames.Add(av.Key, av.Value);
                     }
                 }
-
-            //    if (instance.avlocations.Contains(  
-            //client.Network.CurrentSim.ObjectsAvatars.
             //}
         }
 
@@ -249,7 +236,10 @@ namespace METAbolt
 
                         //SetLang();
 
-                        lvwRadar.Clear();
+                        BeginInvoke(new MethodInvoker(delegate()
+                        {
+                            lvwRadar.Clear();
+                        }));
  
                         if (instance.Config.CurrentConfig.AutoSit)
                         {
@@ -362,16 +352,6 @@ namespace METAbolt
             // not sure if this is an SL bug as at SIM V 1.40 (20/07/2010) or libopenmv bug
             // below is a work around and I beleive it should remain
             // permanently as a safeguard
-
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    CheckLocation();
-                }));
-
-                return;
-            }
 
             try
             {
@@ -613,7 +593,11 @@ namespace METAbolt
                             missing = missing.Remove(missing.Length - 2);   
                         }
 
-                        chatManager.PrintAlertMessage("Wearables missing: " + missing);
+                        BeginInvoke(new MethodInvoker(delegate()
+                        {
+                            chatManager.PrintAlertMessage("Wearables missing: " + missing);
+                        }
+                        ));
                     }
                 }
             }
@@ -693,13 +677,16 @@ namespace METAbolt
         {
             if (e.Properties.Description.Trim() == client.Self.AgentID.ToString().Trim())
             {
-                client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
+                if (!instance.State.IsSitting)
+                {
+                    client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
 
-                instance.State.SetSitting(true, e.Properties.ObjectID);
-                
-                localids = null;
-                listnerdisposed = true;
-                Logger.Log("AUTOSIT: Found sit object and sitting", Helpers.LogLevel.Info);
+                    instance.State.SetSitting(true, e.Properties.ObjectID);
+
+                    localids = null;
+                    listnerdisposed = true;
+                    Logger.Log("AUTOSIT: Found sit object and sitting", Helpers.LogLevel.Info);
+                }
             }
         }
 
@@ -713,6 +700,16 @@ namespace METAbolt
 
         private void AddLanguages()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    AddLanguages();
+                }));
+
+                return;
+            }
+
             // TODO: This should be converted into a language combobox component at
             // some stage
 
@@ -793,6 +790,16 @@ namespace METAbolt
 
         private void CreateSmileys()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    CreateSmileys();
+                }));
+
+                return;
+            }
+
             // TODO: This should be converted into a smiley menu component at
             // some stage
 
@@ -990,6 +997,16 @@ namespace METAbolt
 
         private void ApplyConfig(Config config)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ApplyConfig(config);
+                }));
+
+                return;
+            }
+
             if (config.InterfaceStyle == 0) //System
             {
                 toolStrip1.RenderMode = ToolStripRenderMode.System;
@@ -1018,12 +1035,6 @@ namespace METAbolt
 
             client.Self.MeanCollision += new EventHandler<MeanCollisionEventArgs>(Self_Collision);
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
-
-            //if (instance.Config.CurrentConfig.iRadar)
-            //{
-            //    //client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
-                
-            //}
         }
 
         // Seperate thread
@@ -1062,30 +1073,23 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Objects_OnObjectKilled(sender, e);
-                }));
-
-                return;
-            }
-
             if (e.Simulator != client.Network.CurrentSim) return;
             if (sfavatar == null) return;
             if (!sfavatar.ContainsKey(e.ObjectLocalID)) return;
 
-            foreach (ListViewItem litem in lvwRadar.Items)
-            {
-
-                if (litem.Tag.ToString() == sfavatar[e.ObjectLocalID].ID.ToString())
+            BeginInvoke(new MethodInvoker(delegate()
                 {
-                    lvwRadar.BeginUpdate();
-                    lvwRadar.Items.RemoveByKey(sfavatar[e.ObjectLocalID].Name);
-                    lvwRadar.EndUpdate();
-                }
-            }
+                    foreach (ListViewItem litem in lvwRadar.Items)
+                    {
+
+                        if (litem.Tag.ToString() == sfavatar[e.ObjectLocalID].ID.ToString())
+                        {
+                            lvwRadar.BeginUpdate();
+                            lvwRadar.Items.RemoveByKey(sfavatar[e.ObjectLocalID].Name);
+                            lvwRadar.EndUpdate();
+                        }
+                    }
+                }));
 
             try
             {
@@ -1100,18 +1104,8 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnNewAvatar(object sender, AvatarUpdateEventArgs e)
         {
-            if (InvokeRequired)
-            {
-
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Objects_OnNewAvatar(sender, e);
-                }));
-
-                return;
-            }
-
             if (e.Simulator != client.Network.CurrentSim) return;
+
             if (sfavatar.ContainsKey(e.Avatar.LocalID)) return;
 
             try
@@ -1419,57 +1413,45 @@ namespace METAbolt
             if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
             {
                 //heading = "E";
-                //pictureBox4.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 90f);
                 angle = 90f;
             }
             else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
             {
                 //heading = "W";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 270f);
                 angle = 270f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
             {
                 //heading = "S";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 180f);
                 angle = 180f;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
             {
                 //heading = "N";
-                pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 0f);
                 angle = 0f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
             {
                 //heading = "SE";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 135f);
                 angle = 135f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
             {
                 //heading = "SW";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 225f);
                 angle = 225f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
             {
                 //heading = "NW";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 315f);
                 angle = 315f;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
             {
                 //heading = "NE";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 45f);
                 angle = 45f;
             }
 
             pictureBox4.Image = RotateImage.RotateImg(picOriginal.Image, angle);
-
-            //textBox1.Text = heading;
-            //textBox1.Refresh();
         }
 
         private static Bitmap RotateImageByAngle(System.Drawing.Image oldBitmap, float angle)
@@ -1492,7 +1474,7 @@ namespace METAbolt
             if (e.Status != LoginStatus.Success) return;
 
             cbxInput.Enabled = true;
-            CheckAvatarAdLicence();
+            //CheckAvatarAdLicence();
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
@@ -1511,15 +1493,15 @@ namespace METAbolt
 
         private void netcom_ChatReceived(object sender, ChatEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    netcom_ChatReceived(sender, e);
-                }));
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        netcom_ChatReceived(sender, e);
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             if (e.SourceType != ChatSourceType.Agent)
             {
@@ -1531,12 +1513,20 @@ namespace METAbolt
                 return;
             }
 
-            int index = lvwRadar.Items.IndexOfKey(e.FromName);
-            if (index == -1) return;
+            int index = 0;
+
+            BeginInvoke(new MethodInvoker(delegate()
+                {
+                    index = lvwRadar.Items.IndexOfKey(e.FromName);
+                    if (index == -1) return;
+                }));
 
             if (e.Type == ChatType.StartTyping)
             {
-                lvwRadar.Items[index].ForeColor = Color.Red;
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    lvwRadar.Items[index].ForeColor = Color.Red;
+                }));
 
                 if (!avtyping.Contains(e.FromName))
                 {
@@ -1547,7 +1537,10 @@ namespace METAbolt
             }
             else
             {
-                lvwRadar.Items[index].ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    lvwRadar.Items[index].ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+                }));
 
                 if (avtyping.Contains(e.FromName))
                 {
@@ -1579,7 +1572,10 @@ namespace METAbolt
                             sindex -= 1;
                         }
 
-                        cboLanguage.SelectedIndex = sindex;
+                        BeginInvoke(new MethodInvoker(delegate()
+                        {
+                            cboLanguage.SelectedIndex = sindex;
+                        }));
                     }
                 }
             }
@@ -1588,6 +1584,16 @@ namespace METAbolt
         private void ProcessChatInput(string input, ChatType type)
         {
             if (string.IsNullOrEmpty(input)) return;
+
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ProcessChatInput(input, type);
+                }));
+
+                return;
+            }
 
             if (chkTranslate.Checked == true)
             {
@@ -1663,6 +1669,16 @@ namespace METAbolt
 
         private void ClearChatInput()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ClearChatInput();
+                }));
+
+                return;
+            }
+
             cbxInput.Items.Add(cbxInput.Text);
             cbxInput.Text = string.Empty;
         }
@@ -2354,82 +2370,6 @@ namespace METAbolt
             client.Self.AnimationStop(Animations.TURNRIGHT, false);
         }
 
-        private float GetAvHeading()
-        {
-            //string heading = "~";
-
-            Quaternion avRot = client.Self.RelativeRotation;
-
-            Vector3 vdir = new Vector3(Vector3.Zero);
-            vdir.X = 0.0f;
-            vdir.Y = 1.0f;
-            vdir.Z = 0.0f;
-
-            Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
-
-            vDir = new Vector3(Vector3.Zero);
-            vDir.X = m.M11;
-            vDir.Y = m.M21;
-            vDir.Z = m.M31;
-
-            int x = Convert.ToInt32(vDir.X);
-            int y = Convert.ToInt32(vDir.Y);
-
-            float angle = 90;
-
-            if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
-            {
-                //heading = "E";
-                //pictureBox4.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 90f);
-                angle = 90f;
-            }
-            else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
-            {
-                //heading = "W";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 270f);
-                angle = 270f;
-            }
-            else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
-            {
-                //heading = "S";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 180f);
-                angle = 180f;
-            }
-            else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
-            {
-                //heading = "N";
-                pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 0f);
-                angle = 0f;
-            }
-            else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
-            {
-                //heading = "SE";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 135f);
-                angle = 135f;
-            }
-            else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
-            {
-                //heading = "SW";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 225f);
-                angle = 225f;
-            }
-            else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
-            {
-                //heading = "NW";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 315f);
-                angle = 315f;
-            }
-            else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
-            {
-                //heading = "NE";
-                //pictureBox4.Image = RotateImageByAngle(picOriginal.Image, 45f);
-                angle = 45f;
-            }
-
-            return angle;
-        }
-
         private void shoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProcessChatInput(cbxInput.Text, ChatType.Shout);
@@ -2549,31 +2489,23 @@ namespace METAbolt
         {
             if (e.Simulator != client.Network.CurrentSim) return;
 
-            if (InvokeRequired)
-            {
-
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Grid_OnCoarseLocationUpdate(sender, e);
-                }));
-                
-                return;
-            }
-
             List<UUID> tremove = e.RemovedEntries;
 
-            foreach (UUID id in tremove)
-            {
-                foreach (ListViewItem litem in lvwRadar.Items)
-                {
-                    if (litem.Tag.ToString() == id.ToString())
-                    {
-                        lvwRadar.BeginUpdate();
-                        lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
-                        lvwRadar.EndUpdate();
-                    }
-                } 
-            }
+            BeginInvoke(new MethodInvoker(delegate()
+               {
+                   foreach (UUID id in tremove)
+                   {
+                       foreach (ListViewItem litem in lvwRadar.Items)
+                       {
+                           if (litem.Tag.ToString() == id.ToString())
+                           {
+                               lvwRadar.BeginUpdate();
+                               lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
+                               lvwRadar.EndUpdate();
+                           }
+                       }
+                   }
+               }));
 
             try
             {
@@ -3472,6 +3404,16 @@ namespace METAbolt
 
         private void LoadMics(List<string> list)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    LoadMics(list);
+                }));
+
+                return;
+            }
+
             try 
             {
                 cboCapture.Items.Clear();
@@ -3501,6 +3443,16 @@ namespace METAbolt
 
         private void LoadSpeakers(List<string> list)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    LoadSpeakers(list);
+                }));
+
+                return;
+            }
+
             try
             {
                 cboRender.Items.Clear();
@@ -3611,6 +3563,16 @@ namespace METAbolt
 
         private void EnableVoice(bool ebl)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    EnableVoice(ebl);
+                }));
+
+                return;
+            }
+
             cboCapture.Enabled = ebl;
             cboRender.Enabled = ebl;
             trackBar1.Enabled = ebl;

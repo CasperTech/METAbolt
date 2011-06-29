@@ -746,31 +746,31 @@ namespace METAbolt
         {
             // Timeouts and Intervals
 
-            /// <summary>Number of milliseconds before a teleport attempt will time
-            /// out</summary>
+            // <summary>Number of milliseconds before a teleport attempt will time
+            // out</summary>
             //client.Settings.TELEPORT_TIMEOUT = 120 * 1000;
-            /// <summary>Number of milliseconds before a CAPS call will time out 
-            /// and try again</summary>
-            /// <remarks>Setting this too low will cause web requests to repeatedly
-            /// time out and retry</remarks>
+            // <summary>Number of milliseconds before a CAPS call will time out 
+            // and try again</summary>
+            // <remarks>Setting this too low will cause web requests to repeatedly
+            // time out and retry</remarks>
             client.Settings.CAPS_TIMEOUT = 120 * 1000;   //60 * 1000;
             client.Settings.SIMULATOR_TIMEOUT = 120 * 1000;    //90 * 1000;
-            /// <summary>Number of milliseconds for xml-rpc to timeout</summary>
+            // <summary>Number of milliseconds for xml-rpc to timeout</summary>
             //client.Settings.RESEND_TIMEOUT = 8 * 1000;   //4 * 1000;
-            /// <summary>Milliseconds to wait for a simulator info request through
-            /// the grid interface</summary>
+            // <summary>Milliseconds to wait for a simulator info request through
+            // the grid interface</summary>
             client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
             client.Settings.MAX_CONCURRENT_TEXTURE_DOWNLOADS = 20;
              
 
             // Sizes
 
-            /// <summary>Maximum number of queued ACKs to be sent before SendAcks()
-            /// is forced</summary>
+            // <summary>Maximum number of queued ACKs to be sent before SendAcks()
+            // is forced</summary>
             //client.Settings.MAX_PENDING_ACKS = 10;
-            /// <summary>Maximum number of ACKs to append to a packet</summary>
+            // <summary>Maximum number of ACKs to append to a packet</summary>
             //client.Settings.MAX_APPENDED_ACKS = 10;
-            /// <summary>Network stats queue length (seconds)</summary>
+            // <summary>Network stats queue length (seconds)</summary>
             //client.Settings.STATS_QUEUE_SIZE = 5;
 
 
@@ -780,69 +780,69 @@ namespace METAbolt
             client.Settings.TRACK_UTILIZATION = true;
             //client.Settings.USE_LLSD_LOGIN = true;
 
-            /// <summary>Enable to process packets synchronously, where all of the
-            /// callbacks for each packet must return before the next packet is
-            /// processed</summary>
-            /// <remarks>This is an experimental feature and is not completely
-            /// reliable yet. Ideally it would reduce context switches and thread
-            /// overhead, but several calls currently block for a long time and
-            /// would need to be rewritten as asynchronous code before this is
-            /// feasible</remarks>
+            // <summary>Enable to process packets synchronously, where all of the
+            // callbacks for each packet must return before the next packet is
+            // processed</summary>
+            // <remarks>This is an experimental feature and is not completely
+            // reliable yet. Ideally it would reduce context switches and thread
+            // overhead, but several calls currently block for a long time and
+            // would need to be rewritten as asynchronous code before this is
+            // feasible</remarks>
             //client.Settings.SYNC_PACKETCALLBACKS = false;
 
             client.Settings.SEND_AGENT_APPEARANCE = true;
             //client.Settings.CLIENT_IDENTIFICATION_TAG = 
 
             //client.Settings.STORE_LAND_PATCHES = true;
-            /// <summary>Enable/disable sending periodic camera updates</summary>
+            // <summary>Enable/disable sending periodic camera updates</summary>
             client.Settings.SEND_AGENT_UPDATES = true;
-            /// <summary>Enable/disable libsecondlife automatically setting the
-            /// bandwidth throttle after connecting to each simulator</summary>
-            /// <remarks>The default libsecondlife throttle uses the equivalent of
-            /// the maximum bandwidth setting in the official client. If you do not
-            /// set a throttle your connection will by default be throttled well
-            /// below the minimum values and you may experience connection problems</remarks>
+            // <summary>Enable/disable libsecondlife automatically setting the
+            // bandwidth throttle after connecting to each simulator</summary>
+            // <remarks>The default libsecondlife throttle uses the equivalent of
+            // the maximum bandwidth setting in the official client. If you do not
+            // set a throttle your connection will by default be throttled well
+            // below the minimum values and you may experience connection problems</remarks>
             client.Settings.SEND_AGENT_THROTTLE = true;
-            /// <summary>Enable/disable the sending of pings to monitor lag and 
-            /// packet loss</summary>
+            // <summary>Enable/disable the sending of pings to monitor lag and 
+            // packet loss</summary>
             client.Settings.SEND_PINGS = false;
             client.Settings.LOG_RESENDS = false;
-            /// <summary>Should we connect to multiple sims? This will allow
-            /// viewing in to neighboring simulators and sim crossings
-            /// (Experimental)</summary>
+            // <summary>Should we connect to multiple sims? This will allow
+            // viewing in to neighboring simulators and sim crossings
+            // (Experimental)</summary>
             client.Settings.MULTIPLE_SIMS = config.CurrentConfig.Connect4;   // false;
-            /// <summary>If true, all object update packets will be decoded in to
-            /// native objects. If false, only updates for our own agent will be
-            /// decoded. Registering an event handler will force objects for that
-            /// type to always be decoded. If this is disabled the object tracking
-            /// will have missing or partial prim and avatar information</summary>
+            // <summary>If true, all object update packets will be decoded in to
+            // native objects. If false, only updates for our own agent will be
+            // decoded. Registering an event handler will force objects for that
+            // type to always be decoded. If this is disabled the object tracking
+            // will have missing or partial prim and avatar information</summary>
             client.Settings.ALWAYS_DECODE_OBJECTS = true;
-            /// <summary>If true, when a cached object check is received from the
-            /// server the full object info will automatically be requested</summary>
+            // <summary>If true, when a cached object check is received from the
+            // server the full object info will automatically be requested</summary>
             client.Settings.ALWAYS_REQUEST_OBJECTS = true;
-            /// <summary>Whether to establish connections to HTTP capabilities
-            /// servers for simulators</summary>
+            // <summary>Whether to establish connections to HTTP capabilities
+            // servers for simulators</summary>
             client.Settings.ENABLE_CAPS = true;
-            /// <summary>Whether to decode sim stats</summary>
+            // <summary>Whether to decode sim stats</summary>
             client.Settings.ENABLE_SIMSTATS = true;
-            /// <summary>The capabilities servers are currently designed to
-            /// periodically return a 502 error which signals for the client to
-            /// re-establish a connection. Set this to true to log those 502 errors</summary>
+            // <summary>The capabilities servers are currently designed to
+            // periodically return a 502 error which signals for the client to
+            // re-establish a connection. Set this to true to log those 502 errors</summary>
             client.Settings.LOG_ALL_CAPS_ERRORS = false;
-            /// <summary>If true, any reference received for a folder or item
-            /// libsecondlife is not aware of will automatically be fetched.</summary>
+            // <summary>If true, any reference received for a folder or item
+            // libsecondlife is not aware of will automatically be fetched.</summary>
             client.Settings.FETCH_MISSING_INVENTORY = true;
             ///// <summary>If true, and <code>SEND_AGENT_UPDATES</code> is true,
             ///// AgentUpdate packets will continuously be sent out to give the bot
             ///// smoother movement and autopiloting</summary>
             //client.Settings.SYNC_PACKETCALLBACKS = true;
-            /// <summary>If true, currently visible primitives and avatars will be
-            /// stored in dictionaries inside <code>Simulator.Objects</code>. If 
-            /// false, a new Avatar or Primitive object will be created each time
-            /// an object update packet is received</summary>
+            // <summary>If true, currently visible primitives and avatars will be
+            // stored in dictionaries inside <code>Simulator.Objects</code>. If 
+            // false, a new Avatar or Primitive object will be created each time
+            // an object update packet is received</summary>
             client.Settings.OBJECT_TRACKING = true;
-            /// <summary>If true, parcel details will be stored in the 
-            /// <code>Simulator.Parcels</code> dictionary as they are received</summary>
+            // <summary>If true, parcel details will be stored in the 
+            // <code>Simulator.Parcels</code> dictionary as they are received</summary>
             client.Settings.PARCEL_TRACKING = true;
             client.Settings.STORE_LAND_PATCHES = true;
 

@@ -45,7 +45,7 @@ namespace METAbolt
         private Popup toolTip;
         private CustomToolTip customToolTip;
         private GridClient client;
-        private bool isloading = true;
+        //private bool isloading = true;
 
         public PrefMETAgiver(METAboltInstance instance)
         {
@@ -63,7 +63,7 @@ namespace METAbolt
 
             GW.DataSource = instance.GiverItems;
 
-            isloading = false;
+            //isloading = false;
         }
 
         private void picAI_Click(object sender, EventArgs e)

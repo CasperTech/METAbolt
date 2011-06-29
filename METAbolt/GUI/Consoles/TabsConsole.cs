@@ -114,6 +114,16 @@ namespace METAbolt
 
         private void ApplyConfig(Config config)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ApplyConfig(config);
+                }));
+
+                return;
+            }
+
             if (config.InterfaceStyle == 0) //System
                 tstTabs.RenderMode = ToolStripRenderMode.System;
             else if (config.InterfaceStyle == 1) //Office 2003
@@ -301,10 +311,14 @@ namespace METAbolt
                     InitializeIMboxTab();
 
                     avname = netcom.LoginOptions.FullName;
-                    notifyIcon1.Text = "METAbolt [" + avname + "]";
 
-                    if (selectedTab.Name == "main")
-                        tabs["chat"].Select();
+                    BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        notifyIcon1.Text = "METAbolt [" + avname + "]";
+
+                        if (selectedTab.Name == "main")
+                            tabs["chat"].Select();
+                    }));                    
 
                     client.Self.RetrieveInstantMessages();
 
@@ -342,7 +356,11 @@ namespace METAbolt
 
             TidyUp();
 
-            notifyIcon1.Text = "METAbolt - " + avname + " [Disconnected]";
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                notifyIcon1.Text = "METAbolt - " + avname + " [Disconnected]";
+            }));
+
             TrayNotifiy("METAbolt - " + avname, "Disconnected");
         }
 
@@ -543,6 +561,16 @@ namespace METAbolt
 
         private void TrayNotifiy(string title, string msg)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    TrayNotifiy(title, msg);
+                }));
+
+                return;
+            }
+
             if (instance.State.IsBusy) return;
 
             notifyIcon1.Text = UpdateIconTitle();
@@ -571,6 +599,16 @@ namespace METAbolt
 
         private void TrayNotifiy(string title, string msg, bool makesound)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    TrayNotifiy(title, msg, makesound);
+                }));
+
+                return;
+            }
+
             if (instance.State.IsBusy) return;
 
             notifyIcon1.Text = UpdateIconTitle();
@@ -1594,6 +1632,7 @@ namespace METAbolt
             {
                 tabs.Remove(otherTab.Name);
             }
+
             AddTab(otherTab);
         }
 

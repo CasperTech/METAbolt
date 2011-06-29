@@ -171,19 +171,10 @@ namespace METAbolt
 
         private void Parcels_OnParcelProperties(object sender, ParcelPropertiesEventArgs e)
         {
-            if (e.Result != ParcelResult.Single) return;
-
-            if (InvokeRequired)
+            BeginInvoke(new MethodInvoker(delegate()
             {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Parcels_OnParcelProperties(sender, e);
-                }));
-
-                return;
-            }
-
-            UpdateLand(e.Parcel);
+                UpdateLand(e.Parcel);
+            }));
         }
 
         private void UpdateLand(Parcel parceln)
@@ -398,21 +389,7 @@ namespace METAbolt
 
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs e)
         {
-            //if (InvokeRequired)
-            //{
-
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        Avatars_OnAvatarNames(sender, e);
-            //    }));
-
-            //    return;
-            //}
-
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                NameReceived(e.Names);
-            }));
+            NameReceived(e.Names);
         }
 
         //runs on the GUI thread
@@ -478,7 +455,7 @@ namespace METAbolt
                 tsTimeOut.Visible = true;
 
                 TimeSpan ts = offtime - DateTime.Now;
-                tsTimeOut.Text = ts.Hours.ToString("00")  + ":" + ts.Minutes.ToString("00");
+                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
             }
             else
             {
@@ -511,9 +488,9 @@ namespace METAbolt
             TimeSpan ts = offtime - DateTime.Now;
 
             BeginInvoke((MethodInvoker)delegate
-                {
-                    tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-                });
+            {
+                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            });
         }
 
         public void InitializeControls()
@@ -524,16 +501,6 @@ namespace METAbolt
 
         private void statusTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    statusTimer_Elapsed(sender, e);
-                }));
-
-                return;
-            }
-
             try
             {
                 RefreshWindowTitle();
@@ -623,25 +590,18 @@ namespace METAbolt
         {
             if (e.Status != LoginStatus.Success) return;
 
-            if (InvokeRequired)
+            BeginInvoke(new MethodInvoker(delegate()
             {
-                BeginInvoke(new MethodInvoker(delegate()
+                tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
+                statusTimer.Enabled = true;
+                statusTimer.Start();
+                RefreshWindowTitle();
+
+                if (this.instance.Config.CurrentConfig.StartMinimised)
                 {
-                    netcom_ClientLoginStatus(sender, e);
-                }));
-
-                return;
-            }
-
-            tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
-            statusTimer.Enabled = true;
-            statusTimer.Start();
-            RefreshWindowTitle();
-
-            if (this.instance.Config.CurrentConfig.StartMinimised)
-            {
-                this.WindowState = FormWindowState.Minimized;
-            }
+                    this.WindowState = FormWindowState.Minimized;
+                }
+            }));
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
@@ -881,16 +841,6 @@ namespace METAbolt
 
         private void InitializeTabsConsole()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    InitializeTabsConsole();
-                });
-
-                return;
-            }
-
             tabsConsole = new TabsConsole(instance);
             tabsConsole.Dock = DockStyle.Fill;
             toolStripContainer1.ContentPanel.Controls.Add(tabsConsole);
@@ -898,16 +848,6 @@ namespace METAbolt
 
         private void InitializeDebugLogForm()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    InitializeDebugLogForm();
-                });
-
-                return;
-            }
-
             debugLogForm = new frmDebugLog(instance);
         }
 
@@ -1096,18 +1036,11 @@ namespace METAbolt
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/METAforums/yaf_topics22_Help.aspx");
         }
 
-        //private void visitLTekToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    System.Diagnostics.Process.Start(@"http://l-tek.vistalogic.co.uk");
-        //}
-
         private void avatarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                //client.Appearance.RequestCachedBakes();
                 client.Appearance.RequestSetAppearance(false);  
-                //client.Appearance.SetPreviousAppearance(false);
             }
             catch (Exception exp)
             {
@@ -1150,11 +1083,6 @@ namespace METAbolt
         {
             //System.Diagnostics.Process.Start(@"https://secure-web19.secondlife.com/currency/");
         }
-
-        //private void sLXToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    System.Diagnostics.Process.Start(@"http://www.xstreetsl.com/modules.php?name=Currency");
-        //}
 
         private void mnuDonate_Click(object sender, EventArgs e)
         {
@@ -1432,18 +1360,12 @@ namespace METAbolt
                 //DateTime SLdate = DateTime.UtcNow.AddHours(-8);
                 //tsTime.Text = SLdate.ToString();
 
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    tsTime.Text = _now.ToLongTimeString();   // ToString();
-                }));                
+                tsTime.Text = _now.ToLongTimeString();   // ToString();              
             }
             catch
             {
                 // do nothing
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    tsTime.Text = "?00:00:00";
-                })); 
+                tsTime.Text = "?00:00:00";
             }
         }
 
@@ -1636,14 +1558,14 @@ namespace METAbolt
 
         private void setPreviousAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //client.Appearance.SetPreviousAppearance(true);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
-            }
+        //    try
+        //    {
+        //        //client.Appearance.SetPreviousAppearance(true);
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
+        //    }
         }
 
         private void applyToDisableAdsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1851,7 +1773,7 @@ namespace METAbolt
         /// 
         /// This method ensures its logic executes only once to eliminate errors and unintentional conflicts.
         /// </summary>
-        /// <param name="closeWindow">Determines whether this method should call this.Close()</param>
+        /// <param name="CloseWindow">Determines whether this method should call this.Close()</param>
         /// <returns>false if already run or failed to execute METArestart, otherwise true</returns>
         public bool DisconnectClient(bool CloseWindow, string Reason, int ReconnectWaitMinutes)
         {
