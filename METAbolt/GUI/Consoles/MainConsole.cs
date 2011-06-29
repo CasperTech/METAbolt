@@ -116,6 +116,16 @@ namespace METAbolt
 
         private void LoadGrids()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    LoadGrids();
+                }));
+
+                return;
+            }
+
             try
             {
                 bool fext = System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Grids.txt");
@@ -164,6 +174,16 @@ namespace METAbolt
 
         private void InitGridCombo()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitGridCombo();
+                }));
+
+                return;
+            }
+
             cbxGrid.Items.Clear();
 
             cbxGrid.Items.Add("SL Main Grid (Agni)");
@@ -184,6 +204,16 @@ namespace METAbolt
 
         private void SaveUserSettings()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    SaveUserSettings();
+                }));
+
+                return;
+            }
+
             instance.Config.CurrentConfig.FirstName = txtFirstName.Text;
             instance.Config.CurrentConfig.LastName = txtLastName.Text;
 
@@ -258,6 +288,16 @@ namespace METAbolt
 
         private void InitializeConfig()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeConfig();
+                }));
+
+                return;
+            }
+
             // Populate usernames
             //usernlist
             string ulist = instance.Config.CurrentConfig.UserNameList;
@@ -331,163 +371,185 @@ namespace METAbolt
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
         {
-            try
+            BeginInvoke(new MethodInvoker(delegate()
             {
-                switch (e.Status)
+                try
                 {
-                    case LoginStatus.ConnectingToLogin:
-                        lblLoginStatus.Text = "Connecting to login server...";
-                        lblLoginStatus.ForeColor = Color.Black;
-                        break;
+                    switch (e.Status)
+                    {
+                        case LoginStatus.ConnectingToLogin:
+                            lblLoginStatus.Text = "Connecting to login server...";
+                            lblLoginStatus.ForeColor = Color.Black;
+                            break;
 
-                    case LoginStatus.ConnectingToSim:
-                        lblLoginStatus.Text = "Connecting to region...";
-                        lblLoginStatus.ForeColor = Color.Black;
-                        break;
+                        case LoginStatus.ConnectingToSim:
+                            lblLoginStatus.Text = "Connecting to region...";
+                            lblLoginStatus.ForeColor = Color.Black;
+                            break;
 
-                    case LoginStatus.Redirecting:
-                        lblLoginStatus.Text = "Redirecting...";
-                        lblLoginStatus.ForeColor = Color.Black;
-                        break;
+                        case LoginStatus.Redirecting:
+                            lblLoginStatus.Text = "Redirecting...";
+                            lblLoginStatus.ForeColor = Color.Black;
+                            break;
 
-                    case LoginStatus.ReadingResponse:
-                        lblLoginStatus.Text = "Reading response...";
-                        lblLoginStatus.ForeColor = Color.Black;
-                        break;
+                        case LoginStatus.ReadingResponse:
+                            lblLoginStatus.Text = "Reading response...";
+                            lblLoginStatus.ForeColor = Color.Black;
+                            break;
 
-                    case LoginStatus.Success:
-                        lblLoginStatus.Text = "Logged in as " + netcom.LoginOptions.FullName;
-                        lblLoginStatus.ForeColor = Color.Blue;
-     
-                        string uname = client.Self.FirstName + " " + client.Self.LastName + "\\";
+                        case LoginStatus.Success:
+                            lblLoginStatus.Text = "Logged in as " + netcom.LoginOptions.FullName;
+                            lblLoginStatus.ForeColor = Color.Blue;
 
-                        Wildcard wildcard = new Wildcard(client.Self.FirstName + " " + client.Self.LastName + "*", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                        List<string> torem = new List<string>(); 
+                            string uname = client.Self.FirstName + " " + client.Self.LastName + "\\";
 
-                        foreach (string s in usernlist)
-                        {
-                            if(wildcard.IsMatch(s))
+                            Wildcard wildcard = new Wildcard(client.Self.FirstName + " " + client.Self.LastName + "*", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            List<string> torem = new List<string>();
+
+                            foreach (string s in usernlist)
                             {
-                                torem.Add(s);
-                            }
-                        }
-
-                        foreach (string s in torem)
-                        {
-                            if (wildcard.IsMatch(s))
-                            {
-                                usernlist.Remove(s);
-                            }
-                        }
-
-                        string epwd1 = txtPassword.Text;
-
-                        if (chkPWD.Checked)
-                        {
-                            string epwd = txtPassword.Text;
-                            Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
-                            string cpwd = cryp.Encrypt(epwd);
-
-                            uname += cpwd;
-                        }
-
-                        usernlist.Add(uname);
-
-                        btnLogin.Text = "Logout";
-                        btnLogin.Enabled = true;
-
-                        instance.ReBooted = false;
-                        timer2.Enabled = false;
-                        timer2.Stop();
-                        timer1.Enabled = true;
-                        timer1.Start();  
-
-                        try
-                        {
-                            SaveUserSettings();
-
-                            string fname = client.Self.FirstName + "_" + client.Self.LastName;
-
-                            if (chkCmd.Checked)
-                            {
-                                // create the CMD file
-                                CreateCmdFile();
-
-                                FileInfo newFileInfo = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", fname + "_METAbolt.ini"));
-
-                                if (!newFileInfo.Exists)
+                                if (wildcard.IsMatch(s))
                                 {
-                                    string pth = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", fname + "_METAbolt.ini");
-                                    instance.Config.CurrentConfig.Save(pth);
+                                    torem.Add(s);
                                 }
                             }
 
-                            instance.Config.ChangeConfigFile(fname);
-
-                            if (instance.Config.CurrentConfig.AIon)
+                            foreach (string s in torem)
                             {
-                                instance.InitAI();
+                                if (wildcard.IsMatch(s))
+                                {
+                                    usernlist.Remove(s);
+                                }
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Log("Error trying to save user settings to METAbolt.ini ", Helpers.LogLevel.Warning, ex);
-                        }
 
-                        LoadWebPage();
+                            string epwd1 = txtPassword.Text;
 
-                        break;
+                            if (chkPWD.Checked)
+                            {
+                                string epwd = txtPassword.Text;
+                                Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
+                                string cpwd = cryp.Encrypt(epwd);
 
-                    case LoginStatus.Failed:
-                        lblLoginStatus.Text = e.Message;
-                        lblLoginStatus.ForeColor = Color.Red;
+                                uname += cpwd;
+                            }
 
-                        //proLogin.Visible = false;
+                            usernlist.Add(uname);
 
-                        btnLogin.Text = "Retry";
-                        btnLogin.Enabled = true;
-                        break;
+                            btnLogin.Text = "Logout";
+                            btnLogin.Enabled = true;
+
+                            instance.ReBooted = false;
+                            timer2.Enabled = false;
+                            timer2.Stop();
+                            timer1.Enabled = true;
+                            timer1.Start();
+
+                            try
+                            {
+                                SaveUserSettings();
+
+                                string fname = client.Self.FirstName + "_" + client.Self.LastName;
+
+                                if (chkCmd.Checked)
+                                {
+                                    // create the CMD file
+                                    CreateCmdFile();
+
+                                    FileInfo newFileInfo = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", fname + "_METAbolt.ini"));
+
+                                    if (!newFileInfo.Exists)
+                                    {
+                                        string pth = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", fname + "_METAbolt.ini");
+                                        instance.Config.CurrentConfig.Save(pth);
+                                    }
+                                }
+
+                                instance.Config.ChangeConfigFile(fname);
+
+                                if (instance.Config.CurrentConfig.AIon)
+                                {
+                                    instance.InitAI();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.Log("Error trying to save user settings to METAbolt.ini ", Helpers.LogLevel.Warning, ex);
+                            }
+
+                            LoadWebPage();
+
+                            break;
+
+                        case LoginStatus.Failed:
+                            lblLoginStatus.Text = e.Message;
+                            lblLoginStatus.ForeColor = Color.Red;
+
+                            //proLogin.Visible = false;
+
+                            btnLogin.Text = "Retry";
+                            btnLogin.Enabled = true;
+                            break;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log("Login (status): " + ex.Message, Helpers.LogLevel.Error);
-            }
+                catch (Exception ex)
+                {
+                    Logger.Log("Login (status): " + ex.Message, Helpers.LogLevel.Error);
+                }
+            }));
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
         {
-            pnlLoginPrompt.Visible = true;
-            pnlLoggingIn.Visible = false;
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                pnlLoginPrompt.Visible = true;
+                pnlLoggingIn.Visible = false;
 
-            btnLogin.Text = "Login";
-            btnLogin.Enabled = true;
+                btnLogin.Text = "Login";
+                btnLogin.Enabled = true;
+            }));
         }
 
         private void netcom_ClientLoggingOut(object sender, OverrideEventArgs e)
         {
-            btnLogin.Enabled = false;
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                btnLogin.Enabled = false;
 
-            lblLoginStatus.Text = "Logging out...";
-            lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+                lblLoginStatus.Text = "Logging out...";
+                lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
 
-            //proLogin.Visible = true;
+                //proLogin.Visible = true;
+            }));
         }
 
         private void netcom_ClientLoggingIn(object sender, OverrideEventArgs e)
         {
-            lblLoginStatus.Text = "Logging in...";
-            lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                lblLoginStatus.Text = "Logging in...";
+                lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
 
-            //proLogin.Visible = true;
-            pnlLoggingIn.Visible = true;
-            pnlLoginPrompt.Visible = false;
+                //proLogin.Visible = true;
+                pnlLoggingIn.Visible = true;
+                pnlLoginPrompt.Visible = false;
 
-            btnLogin.Enabled = false;
+                btnLogin.Enabled = false;
+            }));
         }
 
         private void InitializeWebBrowser()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeWebBrowser();
+                }));
+
+                return;
+            }
+
             lblInitWebBrowser.Visible = true;
             lblInitWebBrowser.Refresh();
 
@@ -530,6 +592,16 @@ namespace METAbolt
 
         private void LoadWebPage()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    LoadWebPage();
+                }));
+
+                return;
+            }
+
             string lkey = instance.Config.CurrentConfig.AdRemove;
 
             if (lkey != string.Empty)
@@ -605,6 +677,16 @@ namespace METAbolt
 
         private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    webBrowser_DocumentCompleted(sender, e);
+                }));
+
+                return;
+            }
+
             lblInitWebBrowser.Visible = false;
             btnInfo.Enabled = true;
 
@@ -768,6 +850,16 @@ namespace METAbolt
 
         private void CreateCmdFile()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    CreateCmdFile();
+                }));
+
+                return;
+            }
+
             try
             {
                 string cuser = txtFirstName.Text + "_" + txtLastName.Text;

@@ -535,16 +535,16 @@ namespace METAbolt
                     lookID = UUID.Random();
                 }
 
-                client.Self.LookAtEffect(client.Self.AgentID, target, Vector3d.Zero, LookAtType.Respond, lookID);
-                lookattarget = target;
+                client.Self.LookAtEffect(client.Self.AgentID, target, Vector3d.Zero, LookAtType.Idle, lookID);
+                //lookattarget = target;
             }
             else
             {
-                if (lookID == UUID.Zero) return;
+                //if (lookID == UUID.Zero) return;
 
-                Vector3d lkpos = new Vector3d(new Vector3(2, 0, 0) * Quaternion.Identity);
+                Vector3d lkpos = new Vector3d(new Vector3(3, 0, 0) * Quaternion.Identity);
                 client.Self.LookAtEffect(client.Self.AgentID, client.Self.AgentID, lkpos, LookAtType.Idle, lookID);
-                lookID = UUID.Zero;
+                //lookID = UUID.Zero;
             }
         }
 
@@ -567,21 +567,21 @@ namespace METAbolt
             }
             else
             {
-                if (lookID == UUID.Zero) return;
+                //if (lookID == UUID.Zero) return;
 
                 Vector3d lkpos = new Vector3d(new Vector3(2, 0, 0) * Quaternion.Identity);
                 client.Self.LookAtEffect(client.Self.AgentID, client.Self.AgentID, lkpos, LookAtType.Idle, lookID);
-                lookID = UUID.Zero;
+                //lookID = UUID.Zero;
             }
         }
 
-        private void LookIdle(float dist)
-        {
-            Vector3d lkpos = new Vector3d(new Vector3(dist, 0, 0) * Quaternion.Identity);
-            lookID = UUID.Random();
+        //private void LookIdle(float dist)
+        //{
+        //    Vector3d lkpos = new Vector3d(new Vector3(dist, 0, 0) * Quaternion.Identity);
+        //    lookID = UUID.Random();
 
-            client.Self.LookAtEffect(client.Self.AgentID, client.Self.AgentID, lkpos, LookAtType.Idle, lookID);
-        }
+        //    client.Self.LookAtEffect(client.Self.AgentID, client.Self.AgentID, lkpos, LookAtType.Idle, lookID);
+        //}
 
         public DateTime GetTimeStamp(DateTime dte)
         {

@@ -389,22 +389,25 @@ namespace METAbolt
                 }
             }
 
-            tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
+            }));
         }
 
 
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs e)
         {
-            if (InvokeRequired)
-            {
+            //if (InvokeRequired)
+            //{
 
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Avatars_OnAvatarNames(sender, e);
-                }));
+            //    BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        Avatars_OnAvatarNames(sender, e);
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             BeginInvoke(new MethodInvoker(delegate()
             {
@@ -433,6 +436,17 @@ namespace METAbolt
 
         private void ApplyConfig(Config config, bool doingInit)
         {
+            if (InvokeRequired)
+            {
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ApplyConfig(config, doingInit);
+                }));
+
+                return;
+            }
+
             if (doingInit)
                 this.WindowState = (FormWindowState)config.MainWindowState;
 
@@ -498,7 +512,7 @@ namespace METAbolt
 
             BeginInvoke((MethodInvoker)delegate
                 {
-                    tsTimeOut.Text = ts.Hours.ToString("00")  + ":" + ts.Minutes.ToString("00");
+                    tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
                 });
         }
 
@@ -510,6 +524,16 @@ namespace METAbolt
 
         private void statusTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    statusTimer_Elapsed(sender, e);
+                }));
+
+                return;
+            }
+
             try
             {
                 RefreshWindowTitle();
@@ -589,12 +613,25 @@ namespace METAbolt
             if (instance.Config.CurrentConfig.DisableGroupIMs || instance.Config.CurrentConfig.DisableGroupNotices)
                 return;
 
-            if (!this.Focused) FormFlash.Flash(this);
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                if (!this.Focused) FormFlash.Flash(this);
+            }));            
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
         {
             if (e.Status != LoginStatus.Success) return;
+
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    netcom_ClientLoginStatus(sender, e);
+                }));
+
+                return;
+            }
 
             tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
             statusTimer.Enabled = true;
@@ -1394,12 +1431,19 @@ namespace METAbolt
 
                 //DateTime SLdate = DateTime.UtcNow.AddHours(-8);
                 //tsTime.Text = SLdate.ToString();
-                tsTime.Text = _now.ToLongTimeString();   // ToString();
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    tsTime.Text = _now.ToLongTimeString();   // ToString();
+                }));                
             }
             catch
             {
                 // do nothing
-                tsTime.Text = "?00:00:00";
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    tsTime.Text = "?00:00:00";
+                })); 
             }
         }
 
@@ -1470,6 +1514,16 @@ namespace METAbolt
 
         public void SetFlag(Image img, string lang)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    SetFlag(img, lang);
+                });
+
+                return;
+            }
+
             tsFlag.Image = img;
             tsFlag.ToolTipText = "Detectected language: " + lang; 
         }
@@ -1566,8 +1620,8 @@ namespace METAbolt
         {
             try
             {
-            Process process = Process.Start(updaterModulePath, "/configure");
-            process.Close();
+                Process process = Process.Start(updaterModulePath, "/configure");
+                process.Close();
             }
             catch (Exception ex)
             {
@@ -1711,6 +1765,16 @@ namespace METAbolt
         /// <param name="closeWindow">Determines whether this method should call this.Close()</param>
         private void Disconnect(bool closeWindow)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Disconnect(closeWindow);
+                }));
+
+                return;
+            }
+
             // Only run this once
             if (this.disconnectHasExecuted)
             {
@@ -1791,6 +1855,16 @@ namespace METAbolt
         /// <returns>false if already run or failed to execute METArestart, otherwise true</returns>
         public bool DisconnectClient(bool CloseWindow, string Reason, int ReconnectWaitMinutes)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    DisconnectClient(CloseWindow, Reason, ReconnectWaitMinutes);
+                }));
+
+                return false;
+            }
+
             // Only run this once
             if (this.disconnectHasExecuted)
             {
@@ -1810,14 +1884,17 @@ namespace METAbolt
 
             try
             {
-                int restartinterval = ReconnectWaitMinutes * 60; // convert to seconds
-                disconnectreason = Reason;
+                if (!instance.Config.CurrentConfig.AutoRestart)
+                {
+                    int restartinterval = ReconnectWaitMinutes * 60; // convert to seconds
+                    disconnectreason = Reason;
 
-                Process p = new Process();
-                p.StartInfo.FileName = "METArestart.exe";
-                p.StartInfo.WorkingDirectory = Application.StartupPath;
-                p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
-                p.Start();
+                    Process p = new Process();
+                    p.StartInfo.FileName = "METArestart.exe";
+                    p.StartInfo.WorkingDirectory = Application.StartupPath;
+                    p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
+                    p.Start();
+                }
             }
             catch (Exception ex)
             {

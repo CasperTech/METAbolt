@@ -247,6 +247,8 @@ namespace METAbolt
                             sfavatar.Clear();
                         }
 
+                        //SetLang();
+
                         lvwRadar.Clear();
  
                         if (instance.Config.CurrentConfig.AutoSit)
@@ -280,6 +282,23 @@ namespace METAbolt
             chatManager = null;
         }
 
+        private void SetLang()
+        {
+            CultureInfo cult = CultureInfo.CurrentCulture;
+            string land = cult.TwoLetterISOLanguageName;
+
+            AgentManager avm = new AgentManager(client);
+
+            try
+            {
+                avm.UpdateAgentLanguage(land, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
+            }
+        }
+
         private void Appearance_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
         {
             string rmsg = string.Empty;
@@ -299,19 +318,7 @@ namespace METAbolt
             //    rmsg = " Avatar has not rezzed as expected. ";
             //}
 
-            CultureInfo cult = CultureInfo.CurrentCulture;
-            string land = cult.TwoLetterISOLanguageName;
-
-            AgentManager avm = new AgentManager(client);
-
-            try
-            {
-                avm.UpdateAgentLanguage(land, true);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
-            }
+            SetLang();
 
             try
             {
