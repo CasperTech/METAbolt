@@ -120,7 +120,12 @@ namespace METAbolt
                 try
                 {
                     //client.Inventory.RemoveItem(objectID);
-                    client.Inventory.MoveItem(objectID, client.Inventory.FindFolderForType(AssetType.TrashFolder), msg.Message);
+                    //client.Inventory.MoveItem(objectID, client.Inventory.FindFolderForType(AssetType.TrashFolder), msg.Message);
+
+                    InventoryBase item = client.Inventory.Store.Items[objectID].Data;
+                    InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[client.Inventory.FindFolderForType(AssetType.TrashFolder)].Data;
+
+                    client.Inventory.Move(item, folder, item.Name);    
                 }
                 catch { ; }
             }
