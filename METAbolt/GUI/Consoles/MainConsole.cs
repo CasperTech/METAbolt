@@ -254,18 +254,18 @@ namespace METAbolt
 
         private void AddNetcomEvents()
         {
-            netcom.ClientLoggingIn += new EventHandler<OverrideEventArgs>(netcom_ClientLoggingIn);
+            //netcom.ClientLoggingIn += new EventHandler<OverrideEventArgs>(netcom_ClientLoggingIn);
             netcom.ClientLoginStatus += new EventHandler<LoginProgressEventArgs>(netcom_ClientLoginStatus);
             netcom.ClientLoggingOut += new EventHandler<OverrideEventArgs>(netcom_ClientLoggingOut);
-            netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
+            //netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
         }
 
         void MainConsole_Disposed(object sender, EventArgs e)
         {
-            netcom.ClientLoggingIn -= new EventHandler<OverrideEventArgs>(netcom_ClientLoggingIn);
+            //netcom.ClientLoggingIn -= new EventHandler<OverrideEventArgs>(netcom_ClientLoggingIn);
             netcom.ClientLoginStatus -= new EventHandler<LoginProgressEventArgs>(netcom_ClientLoginStatus);
             netcom.ClientLoggingOut -= new EventHandler<OverrideEventArgs>(netcom_ClientLoggingOut);
-            netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
+            //netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             webBrowser.DocumentCompleted -= new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
             webBrowser.Navigating -= new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
         }
@@ -498,45 +498,53 @@ namespace METAbolt
             }));
         }
 
-        private void netcom_ClientLoggedOut(object sender, EventArgs e)
-        {
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                pnlLoginPrompt.Visible = true;
-                pnlLoggingIn.Visible = false;
+        //private void netcom_ClientLoggedOut(object sender, EventArgs e)
+        //{
+        //    BeginInvoke(new MethodInvoker(delegate()
+        //    {
+        //        pnlLoginPrompt.Visible = true;
+        //        pnlLoggingIn.Visible = false;
 
-                btnLogin.Text = "Login";
-                btnLogin.Enabled = true;
-            }));
-        }
+        //        btnLogin.Text = "Login";
+        //        btnLogin.Enabled = true;
+        //    }));
+        //}
 
         private void netcom_ClientLoggingOut(object sender, OverrideEventArgs e)
         {
             BeginInvoke(new MethodInvoker(delegate()
             {
-                btnLogin.Enabled = false;
+                try
+                {
+                    btnLogin.Enabled = false;
 
-                lblLoginStatus.Text = "Logging out...";
-                lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+                    lblLoginStatus.Text = "Logging out...";
+                    lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
 
-                //proLogin.Visible = true;
+                    //proLogin.Visible = true;
+                }
+                catch { ; }
             }));
         }
 
-        private void netcom_ClientLoggingIn(object sender, OverrideEventArgs e)
-        {
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                lblLoginStatus.Text = "Logging in...";
-                lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+        //private void netcom_ClientLoggingIn(object sender, OverrideEventArgs e)
+        //{
+        //    //BeginInvoke(new MethodInvoker(delegate()
+        //    //{
+        //    try
+        //    {
+        //        lblLoginStatus.Text = "Logging in...";
+        //        lblLoginStatus.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
 
-                //proLogin.Visible = true;
-                pnlLoggingIn.Visible = true;
-                pnlLoginPrompt.Visible = false;
+        //        //proLogin.Visible = true;
+        //        pnlLoggingIn.Visible = true;
+        //        pnlLoginPrompt.Visible = false;
 
-                btnLogin.Enabled = false;
-            }));
-        }
+        //        btnLogin.Enabled = false;
+        //    }
+        //    catch { ; }
+        //    //}));
+        //}
 
         private void InitializeWebBrowser()
         {

@@ -1075,27 +1075,41 @@ namespace METAbolt
         {
             if (e.Simulator != client.Network.CurrentSim) return;
             if (sfavatar == null) return;
+
+            string avname = string.Empty;
+
             if (!sfavatar.ContainsKey(e.ObjectLocalID)) return;
+
+            try
+            {
+                avname = sfavatar[e.ObjectLocalID].Name;
+            }
+            catch { ; }
+
+            if (avname == string.Empty) return;
 
             BeginInvoke(new MethodInvoker(delegate()
                 {
-                    foreach (ListViewItem litem in lvwRadar.Items)
+                    try
                     {
-
-                        if (litem.Tag.ToString() == sfavatar[e.ObjectLocalID].ID.ToString())
+                        if (lvwRadar.Items.ContainsKey(avname))
                         {
                             lvwRadar.BeginUpdate();
-                            lvwRadar.Items.RemoveByKey(sfavatar[e.ObjectLocalID].Name);
+                            lvwRadar.Items.RemoveByKey(avname);
                             lvwRadar.EndUpdate();
                         }
                     }
+                    catch { ; }
                 }));
 
             try
             {
                 lock (sfavatar)
                 {
-                    sfavatar.Remove(e.ObjectLocalID);
+                    if (sfavatar.ContainsKey(e.ObjectLocalID))
+                    {
+                        sfavatar.Remove(e.ObjectLocalID);
+                    }
                 }
             }
             catch { ; }
@@ -2749,7 +2763,10 @@ namespace METAbolt
 
                                 if (!sim.AvatarPositions.ContainsKey(sav.ID))
                                 {
-                                    sfavatar.Remove(sav.LocalID);
+                                    if (sfavatar.ContainsKey(sav.LocalID))
+                                    {
+                                        sfavatar.Remove(sav.LocalID);
+                                    }
 
                                     if (lvwRadar.Items.ContainsKey(sav.Name))
                                     {
