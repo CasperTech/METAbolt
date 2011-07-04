@@ -540,7 +540,7 @@ namespace METAbolt
                     //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    textPrinter.SetSelectionForeColor(Color.Gray);
+                    textPrinter.SetSelectionForeColor(Color.Black);
 
                     if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
                     {
@@ -592,7 +592,7 @@ namespace METAbolt
                     //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    //textPrinter.ForeColor = Color.Gray;
+                    //textPrinter.ForeColor = Color.DarkGray;
 
                     if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
                     {
@@ -845,12 +845,12 @@ namespace METAbolt
 
             if (classiclayout)
             {
-                textPrinter.SetSelectionForeColor(Color.Gray);
+                textPrinter.SetSelectionForeColor(Color.Black);
                 textPrinter.PrintText(prefix);
             }
             else
             {
-                //textPrinter.SetSelectionForeColor(Color.Gray);
+                //textPrinter.SetSelectionForeColor(Color.DarkGray);
                 //textPrinter.PrintText(dte.ToString("[HH:mm] "));
                 //textPrinter.SetOffset(6);
                 //textPrinter.SetFontSize(6.5f);
@@ -862,7 +862,7 @@ namespace METAbolt
             switch (item.Style)
             {
                 case ChatBufferTextStyle.Normal:
-                    textPrinter.SetSelectionForeColor(Color.Gray);
+                    textPrinter.SetSelectionForeColor(Color.Black);
                     break;
 
                 case ChatBufferTextStyle.StatusBlue:
@@ -870,7 +870,7 @@ namespace METAbolt
                     break;
 
                 case ChatBufferTextStyle.StatusDarkBlue:
-                    textPrinter.SetSelectionForeColor(Color.Gray);
+                    textPrinter.SetSelectionForeColor(Color.Black);
                     //textPrinter.BackColor = Color.LightSeaGreen;
                     break;
 
@@ -1028,7 +1028,7 @@ namespace METAbolt
                 dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
             }
 
-            //textPrinter.ForeColor = Color.Gray;
+            //textPrinter.ForeColor = Color.DarkGray;
             string prefix = dte.ToString("[HH:mm] ");
 
             try
@@ -1136,7 +1136,7 @@ namespace METAbolt
                 }
             }
 
-            textPrinter.SetSelectionForeColor(Color.Gray);
+            textPrinter.SetSelectionForeColor(Color.Black);
             DateTime dte = item.Timestamp;
 
             if (classiclayout)
@@ -1222,7 +1222,7 @@ namespace METAbolt
                     string header = string.Empty;
 
                     header = "   [HH:mm] ";
-                    //textPrinter.SetSelectionForeColor(Color.Gray);
+                    //textPrinter.SetSelectionForeColor(Color.DarkGray);
                     //textPrinter.SetOffset(6);
                     //textPrinter.SetFontSize(6.5f);
                     textPrinter.PrintDate(dte.ToString(header));

@@ -182,7 +182,7 @@ namespace METAbolt
             // 
             this.label2.AccessibleName = "SLurl of selected position textbox";
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.ForeColor = System.Drawing.Color.Gray;
+            this.label2.ForeColor = System.Drawing.Color.DarkGray;
             this.label2.Location = new System.Drawing.Point(6, 331);
             this.label2.Name = "label2";
             this.label2.ReadOnly = true;

@@ -156,6 +156,8 @@ namespace METAbolt
                 //lbxFriends.Sort();
                 lbxFriends.EndUpdate();
             }
+
+            lblFriendName.Text = string.Empty;  
         }
 
         private void DisplayNameReceived(bool success, AgentDisplayName[] names, UUID[] badIDs)
@@ -206,24 +208,12 @@ namespace METAbolt
 
         private void RefreshFriendsList()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => RefreshFriendsList()));
-                return;
-            }
-
             InitializeFriendsList();
             SetFriend(selectedFriend);
         }
 
         private void Friends_OnFriendResponse(object sender, FriendshipResponseEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => Friends_OnFriendResponse(sender, e)));
-                return;
-            }
-
             if (e.Accepted)
             {
                 BeginInvoke(new MethodInvoker(delegate()
@@ -235,12 +225,6 @@ namespace METAbolt
 
         private void Friends_OnFriendTerminated(object sender, FriendshipTerminatedEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => Friends_OnFriendTerminated(sender, e)));
-                return;
-            }
-
             BeginInvoke(new MethodInvoker(delegate()
             {
                 RefreshFriendsList();
@@ -250,12 +234,6 @@ namespace METAbolt
         //Separate thread
         private void Friends_OnFriendOffline(object sender, FriendInfoEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => Friends_OnFriendOffline(sender, e)));
-                return;
-            }
-
             BeginInvoke(new MethodInvoker(delegate()
             {
                 RefreshFriendsList();
@@ -265,12 +243,6 @@ namespace METAbolt
         //Separate thread
         private void Friends_OnFriendOnline(object sender, FriendInfoEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => Friends_OnFriendOnline(sender, e)));
-                return;
-            }
-
             BeginInvoke(new MethodInvoker(delegate()
             {
                 RefreshFriendsList();
@@ -279,12 +251,6 @@ namespace METAbolt
 
         private void Friends_OnFriendRights(object sender, FriendInfoEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => Friends_OnFriendRights(sender, e)));
-                return;
-            }
-
             BeginInvoke(new MethodInvoker(delegate()
             {
                 RefreshFriendsList();
@@ -293,24 +259,11 @@ namespace METAbolt
 
         private void Friends_OnFriendNamesReceived(object sender, FriendNamesEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                if (IsHandleCreated)
-                {
-                    BeginInvoke(new MethodInvoker(() => Friends_OnFriendNamesReceived(sender, e)));
-                }
-
-                return;
-            }
-
             BeginInvoke(new MethodInvoker(delegate()
             {
                 try
                 {
-                    if (IsHandleCreated)
-                    {
-                        RefreshFriendsList();
-                    }
+                    RefreshFriendsList();
                 }
                 catch { ; }
             }));

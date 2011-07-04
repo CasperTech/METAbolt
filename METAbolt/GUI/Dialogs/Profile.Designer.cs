@@ -960,7 +960,7 @@ namespace METAbolt
             this.textBox1.AllowDrop = true;
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox1.ForeColor = System.Drawing.Color.Gray;
+            this.textBox1.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox1.Location = new System.Drawing.Point(74, 509);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;

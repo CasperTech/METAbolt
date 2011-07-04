@@ -496,7 +496,7 @@ namespace METAbolt
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Gray;
+            this.label2.ForeColor = System.Drawing.Color.DarkGray;
             this.label2.Location = new System.Drawing.Point(158, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 13);
@@ -1037,7 +1037,7 @@ namespace METAbolt
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.Gray;
+            this.label16.ForeColor = System.Drawing.Color.DarkGray;
             this.label16.Location = new System.Drawing.Point(41, 124);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(142, 13);
@@ -1191,7 +1191,7 @@ namespace METAbolt
             // 
             this.fontDialog1.AllowSimulations = false;
             this.fontDialog1.AllowVerticalFonts = false;
-            this.fontDialog1.Color = System.Drawing.Color.Gray;
+            this.fontDialog1.Color = System.Drawing.Color.DarkGray;
             this.fontDialog1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;

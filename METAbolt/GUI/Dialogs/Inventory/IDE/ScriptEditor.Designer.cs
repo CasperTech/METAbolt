@@ -756,7 +756,7 @@ namespace METAbolt
             // 
             this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripStatusLabel2.Enabled = false;
-            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.DarkGray;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel2.Text = "|";
@@ -773,7 +773,7 @@ namespace METAbolt
             // 
             this.toolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripStatusLabel1.Enabled = false;
-            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.DarkGray;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel1.Text = "|";

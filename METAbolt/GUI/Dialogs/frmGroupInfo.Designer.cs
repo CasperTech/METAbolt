@@ -36,13 +36,13 @@ namespace METAbolt
             this.labelInsigniaProgress = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.grpPreferences = new System.Windows.Forms.GroupBox();
+            this.chkListInProfile = new System.Windows.Forms.CheckBox();
             this.chkMature = new System.Windows.Forms.CheckBox();
             this.numFee = new System.Windows.Forms.NumericUpDown();
             this.chkGroupNotices = new System.Windows.Forms.CheckBox();
             this.chkFee = new System.Windows.Forms.CheckBox();
             this.chkOpenEnrollment = new System.Windows.Forms.CheckBox();
             this.chkPublish = new System.Windows.Forms.CheckBox();
-            this.chkShow = new System.Windows.Forms.CheckBox();
             this.lstMembers = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,9 +54,11 @@ namespace METAbolt
             this.tabMembersRoles = new System.Windows.Forms.TabPage();
             this.tabsMRA = new System.Windows.Forms.TabControl();
             this.tabMembers = new System.Windows.Forms.TabPage();
+            this.lvAssignedRoles = new System.Windows.Forms.ListView();
             this.lvwAble = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
             this.cmdEject = new System.Windows.Forms.Button();
+            this.btnInvite = new System.Windows.Forms.Button();
             this.lstMembers2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,18 +67,20 @@ namespace METAbolt
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabRoles = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lvRoleMembers = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.lvwAbilities = new System.Windows.Forms.ListView();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.lvwAbilities = new System.Windows.Forms.ListView();
             this.button4 = new System.Windows.Forms.Button();
-            this.btnInvite = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.lstRoles = new System.Windows.Forms.ListView();
@@ -204,13 +208,13 @@ namespace METAbolt
             // 
             // grpPreferences
             // 
+            this.grpPreferences.Controls.Add(this.chkListInProfile);
             this.grpPreferences.Controls.Add(this.chkMature);
             this.grpPreferences.Controls.Add(this.numFee);
             this.grpPreferences.Controls.Add(this.chkGroupNotices);
             this.grpPreferences.Controls.Add(this.chkFee);
             this.grpPreferences.Controls.Add(this.chkOpenEnrollment);
             this.grpPreferences.Controls.Add(this.chkPublish);
-            this.grpPreferences.Controls.Add(this.chkShow);
             this.grpPreferences.Location = new System.Drawing.Point(10, 363);
             this.grpPreferences.Name = "grpPreferences";
             this.grpPreferences.Size = new System.Drawing.Size(393, 112);
@@ -218,11 +222,23 @@ namespace METAbolt
             this.grpPreferences.TabStop = false;
             this.grpPreferences.Text = "Group Preferences";
             // 
+            // chkListInProfile
+            // 
+            this.chkListInProfile.AccessibleName = "Receive group notices option";
+            this.chkListInProfile.AutoSize = true;
+            this.chkListInProfile.Location = new System.Drawing.Point(250, 64);
+            this.chkListInProfile.Name = "chkListInProfile";
+            this.chkListInProfile.Size = new System.Drawing.Size(130, 17);
+            this.chkListInProfile.TabIndex = 7;
+            this.chkListInProfile.Text = "List group in my profile";
+            this.chkListInProfile.UseVisualStyleBackColor = true;
+            this.chkListInProfile.CheckedChanged += new System.EventHandler(this.chkListInProfile_CheckedChanged);
+            // 
             // chkMature
             // 
             this.chkMature.AccessibleName = "Mature publish option";
             this.chkMature.AutoSize = true;
-            this.chkMature.Location = new System.Drawing.Point(162, 19);
+            this.chkMature.Location = new System.Drawing.Point(16, 90);
             this.chkMature.Name = "chkMature";
             this.chkMature.Size = new System.Drawing.Size(95, 17);
             this.chkMature.TabIndex = 1;
@@ -235,14 +251,14 @@ namespace METAbolt
             this.numFee.AccessibleName = "Enrollment fee text box";
             this.numFee.BackColor = System.Drawing.Color.WhiteSmoke;
             this.numFee.Enabled = false;
-            this.numFee.Location = new System.Drawing.Point(162, 87);
+            this.numFee.Location = new System.Drawing.Point(155, 65);
             this.numFee.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this.numFee.Name = "numFee";
-            this.numFee.Size = new System.Drawing.Size(82, 21);
+            this.numFee.Size = new System.Drawing.Size(64, 21);
             this.numFee.TabIndex = 5;
             this.numFee.ValueChanged += new System.EventHandler(this.numFee_ValueChanged);
             // 
@@ -262,7 +278,7 @@ namespace METAbolt
             // 
             this.chkFee.AccessibleName = "Enrollment fee option";
             this.chkFee.AutoSize = true;
-            this.chkFee.Location = new System.Drawing.Point(36, 88);
+            this.chkFee.Location = new System.Drawing.Point(36, 67);
             this.chkFee.Name = "chkFee";
             this.chkFee.Size = new System.Drawing.Size(114, 17);
             this.chkFee.TabIndex = 4;
@@ -274,7 +290,7 @@ namespace METAbolt
             // 
             this.chkOpenEnrollment.AccessibleName = "Open enrollment option";
             this.chkOpenEnrollment.AutoSize = true;
-            this.chkOpenEnrollment.Location = new System.Drawing.Point(16, 65);
+            this.chkOpenEnrollment.Location = new System.Drawing.Point(16, 44);
             this.chkOpenEnrollment.Name = "chkOpenEnrollment";
             this.chkOpenEnrollment.Size = new System.Drawing.Size(104, 17);
             this.chkOpenEnrollment.TabIndex = 3;
@@ -286,25 +302,13 @@ namespace METAbolt
             // 
             this.chkPublish.AccessibleName = "Publish on the web option";
             this.chkPublish.AutoSize = true;
-            this.chkPublish.Location = new System.Drawing.Point(16, 42);
+            this.chkPublish.Location = new System.Drawing.Point(16, 21);
             this.chkPublish.Name = "chkPublish";
             this.chkPublish.Size = new System.Drawing.Size(116, 17);
             this.chkPublish.TabIndex = 2;
             this.chkPublish.Text = "Publish on the web";
             this.chkPublish.UseVisualStyleBackColor = true;
             this.chkPublish.CheckedChanged += new System.EventHandler(this.chkPublish_CheckedChanged);
-            // 
-            // chkShow
-            // 
-            this.chkShow.AccessibleName = "Show in profile option";
-            this.chkShow.AutoSize = true;
-            this.chkShow.Location = new System.Drawing.Point(16, 19);
-            this.chkShow.Name = "chkShow";
-            this.chkShow.Size = new System.Drawing.Size(97, 17);
-            this.chkShow.TabIndex = 0;
-            this.chkShow.Text = "Show In Profile";
-            this.chkShow.UseVisualStyleBackColor = true;
-            this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
             // 
             // lstMembers
             // 
@@ -416,9 +420,11 @@ namespace METAbolt
             // 
             this.tabMembers.AccessibleName = "Members tab";
             this.tabMembers.BackColor = System.Drawing.Color.Lavender;
+            this.tabMembers.Controls.Add(this.lvAssignedRoles);
             this.tabMembers.Controls.Add(this.lvwAble);
             this.tabMembers.Controls.Add(this.button1);
             this.tabMembers.Controls.Add(this.cmdEject);
+            this.tabMembers.Controls.Add(this.btnInvite);
             this.tabMembers.Controls.Add(this.lstMembers2);
             this.tabMembers.Controls.Add(this.chkListRoles);
             this.tabMembers.Controls.Add(this.label2);
@@ -429,6 +435,20 @@ namespace METAbolt
             this.tabMembers.Size = new System.Drawing.Size(392, 440);
             this.tabMembers.TabIndex = 0;
             this.tabMembers.Text = "Members";
+            // 
+            // lvAssignedRoles
+            // 
+            this.lvAssignedRoles.AccessibleName = "Allowed abilities listbox";
+            this.lvAssignedRoles.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvAssignedRoles.CheckBoxes = true;
+            this.lvAssignedRoles.Location = new System.Drawing.Point(6, 241);
+            this.lvAssignedRoles.Name = "lvAssignedRoles";
+            this.lvAssignedRoles.Size = new System.Drawing.Size(147, 199);
+            this.lvAssignedRoles.TabIndex = 7;
+            this.lvAssignedRoles.UseCompatibleStateImageBehavior = false;
+            this.lvAssignedRoles.View = System.Windows.Forms.View.List;
+            this.lvAssignedRoles.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvAssignedRoles_ItemChecked);
+            this.lvAssignedRoles.SelectedIndexChanged += new System.EventHandler(this.lvAssignedRoles_SelectedIndexChanged);
             // 
             // lvwAble
             // 
@@ -468,6 +488,20 @@ namespace METAbolt
             this.cmdEject.Text = "E&ject From Group";
             this.cmdEject.UseVisualStyleBackColor = false;
             this.cmdEject.Click += new System.EventHandler(this.cmdEject_Click);
+            // 
+            // btnInvite
+            // 
+            this.btnInvite.AccessibleDescription = "Invites a new member to the selected role";
+            this.btnInvite.AccessibleName = "Invite a new member button";
+            this.btnInvite.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnInvite.ForeColor = System.Drawing.Color.White;
+            this.btnInvite.Location = new System.Drawing.Point(129, 194);
+            this.btnInvite.Name = "btnInvite";
+            this.btnInvite.Size = new System.Drawing.Size(123, 23);
+            this.btnInvite.TabIndex = 1;
+            this.btnInvite.Text = "&Invite New Member";
+            this.btnInvite.UseVisualStyleBackColor = false;
+            this.btnInvite.Click += new System.EventHandler(this.btnInvite_Click);
             // 
             // lstMembers2
             // 
@@ -512,9 +546,9 @@ namespace METAbolt
             this.chkListRoles.AccessibleName = "Assigned roles listbox";
             this.chkListRoles.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkListRoles.FormattingEnabled = true;
-            this.chkListRoles.Location = new System.Drawing.Point(6, 241);
+            this.chkListRoles.Location = new System.Drawing.Point(267, 167);
             this.chkListRoles.Name = "chkListRoles";
-            this.chkListRoles.Size = new System.Drawing.Size(147, 196);
+            this.chkListRoles.Size = new System.Drawing.Size(147, 68);
             this.chkListRoles.TabIndex = 3;
             // 
             // label2
@@ -539,10 +573,13 @@ namespace METAbolt
             // 
             this.tabRoles.AccessibleName = "Roles tab";
             this.tabRoles.BackColor = System.Drawing.Color.Lavender;
+            this.tabRoles.Controls.Add(this.label15);
+            this.tabRoles.Controls.Add(this.lvRoleMembers);
             this.tabRoles.Controls.Add(this.panel3);
+            this.tabRoles.Controls.Add(this.label14);
             this.tabRoles.Controls.Add(this.button5);
+            this.tabRoles.Controls.Add(this.lvwAbilities);
             this.tabRoles.Controls.Add(this.button4);
-            this.tabRoles.Controls.Add(this.btnInvite);
             this.tabRoles.Controls.Add(this.label8);
             this.tabRoles.Controls.Add(this.textBox3);
             this.tabRoles.Controls.Add(this.lstRoles);
@@ -553,55 +590,65 @@ namespace METAbolt
             this.tabRoles.TabIndex = 1;
             this.tabRoles.Text = "Roles";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(9, 224);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 13);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "Members:";
+            // 
+            // lvRoleMembers
+            // 
+            this.lvRoleMembers.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvRoleMembers.Location = new System.Drawing.Point(12, 239);
+            this.lvRoleMembers.Name = "lvRoleMembers";
+            this.lvRoleMembers.Size = new System.Drawing.Size(145, 107);
+            this.lvRoleMembers.TabIndex = 8;
+            this.lvRoleMembers.UseCompatibleStateImageBehavior = false;
+            this.lvRoleMembers.View = System.Windows.Forms.View.List;
+            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.lvwAbilities);
             this.panel3.Controls.Add(this.textBox9);
+            this.panel3.Controls.Add(this.button7);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.textBox8);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.textBox7);
             this.panel3.Controls.Add(this.label11);
-            this.panel3.Location = new System.Drawing.Point(6, 224);
+            this.panel3.Location = new System.Drawing.Point(6, 349);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(380, 213);
+            this.panel3.Size = new System.Drawing.Size(380, 89);
             this.panel3.TabIndex = 5;
             this.panel3.Visible = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(154, 87);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(87, 13);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Allowed Abilities:";
-            // 
-            // lvwAbilities
-            // 
-            this.lvwAbilities.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwAbilities.CheckBoxes = true;
-            this.lvwAbilities.Location = new System.Drawing.Point(157, 103);
-            this.lvwAbilities.Name = "lvwAbilities";
-            this.lvwAbilities.Size = new System.Drawing.Size(220, 107);
-            this.lvwAbilities.TabIndex = 3;
-            this.lvwAbilities.UseCompatibleStateImageBehavior = false;
-            this.lvwAbilities.View = System.Windows.Forms.View.List;
             // 
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox9.Location = new System.Drawing.Point(157, 25);
+            this.textBox9.Location = new System.Drawing.Point(157, 20);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(220, 59);
+            this.textBox9.Size = new System.Drawing.Size(220, 36);
             this.textBox9.TabIndex = 2;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(301, 62);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(76, 23);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "&Save role";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(157, 9);
+            this.label13.Location = new System.Drawing.Point(157, 4);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 13);
             this.label13.TabIndex = 4;
@@ -610,7 +657,7 @@ namespace METAbolt
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox8.Location = new System.Drawing.Point(6, 64);
+            this.textBox8.Location = new System.Drawing.Point(6, 59);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(145, 21);
             this.textBox8.TabIndex = 1;
@@ -618,7 +665,7 @@ namespace METAbolt
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 48);
+            this.label12.Location = new System.Drawing.Point(3, 43);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(31, 13);
             this.label12.TabIndex = 2;
@@ -627,7 +674,7 @@ namespace METAbolt
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox7.Location = new System.Drawing.Point(6, 25);
+            this.textBox7.Location = new System.Drawing.Point(6, 20);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(145, 21);
             this.textBox7.TabIndex = 0;
@@ -635,11 +682,20 @@ namespace METAbolt
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 9);
+            this.label11.Location = new System.Drawing.Point(3, 4);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 13);
             this.label11.TabIndex = 0;
             this.label11.Text = "Name:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(160, 223);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(87, 13);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Allowed Abilities:";
             // 
             // button5
             // 
@@ -654,6 +710,17 @@ namespace METAbolt
             this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // lvwAbilities
+            // 
+            this.lvwAbilities.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwAbilities.CheckBoxes = true;
+            this.lvwAbilities.Location = new System.Drawing.Point(163, 239);
+            this.lvwAbilities.Name = "lvwAbilities";
+            this.lvwAbilities.Size = new System.Drawing.Size(220, 107);
+            this.lvwAbilities.TabIndex = 3;
+            this.lvwAbilities.UseCompatibleStateImageBehavior = false;
+            this.lvwAbilities.View = System.Windows.Forms.View.List;
+            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.RoyalBlue;
@@ -666,20 +733,6 @@ namespace METAbolt
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // btnInvite
-            // 
-            this.btnInvite.AccessibleDescription = "Invites a new member to the selected role";
-            this.btnInvite.AccessibleName = "Invite a new member button";
-            this.btnInvite.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnInvite.ForeColor = System.Drawing.Color.White;
-            this.btnInvite.Location = new System.Drawing.Point(263, 195);
-            this.btnInvite.Name = "btnInvite";
-            this.btnInvite.Size = new System.Drawing.Size(123, 23);
-            this.btnInvite.TabIndex = 1;
-            this.btnInvite.Text = "&Invite New Member";
-            this.btnInvite.UseVisualStyleBackColor = false;
-            this.btnInvite.Click += new System.EventHandler(this.btnInvite_Click);
             // 
             // label8
             // 
@@ -769,7 +822,7 @@ namespace METAbolt
             this.textBox6.AccessibleDescription = "Drag and drop any inventory item in here to attach to the notice";
             this.textBox6.AllowDrop = true;
             this.textBox6.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox6.ForeColor = System.Drawing.Color.Gray;
+            this.textBox6.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox6.Location = new System.Drawing.Point(63, 224);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
@@ -1072,7 +1125,6 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox chkFee;
         private System.Windows.Forms.CheckBox chkOpenEnrollment;
         private System.Windows.Forms.CheckBox chkPublish;
-        private System.Windows.Forms.CheckBox chkShow;
         private System.Windows.Forms.ListView lstMembers;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colTitle;
@@ -1143,6 +1195,11 @@ namespace METAbolt
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.CheckBox chkListInProfile;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ListView lvRoleMembers;
+        private System.Windows.Forms.ListView lvAssignedRoles;
 
     }
 }

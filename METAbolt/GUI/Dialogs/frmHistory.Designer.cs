@@ -69,7 +69,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwList.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwList.ForeColor = System.Drawing.Color.Gray;
+            this.lvwList.ForeColor = System.Drawing.Color.DarkGray;
             this.lvwList.GridLines = true;
             this.lvwList.Location = new System.Drawing.Point(4, 3);
             this.lvwList.MultiSelect = false;
@@ -92,7 +92,7 @@
             this.rtbIMText.BackColor = System.Drawing.Color.White;
             this.rtbIMText.DetectUrls = true;
             this.rtbIMText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbIMText.ForeColor = System.Drawing.Color.Gray;
+            this.rtbIMText.ForeColor = System.Drawing.Color.DarkGray;
             this.rtbIMText.HideSelection = false;
             this.rtbIMText.HiglightColor = Khendys.Controls.RtfColor.White;
             this.rtbIMText.Location = new System.Drawing.Point(0, 4);

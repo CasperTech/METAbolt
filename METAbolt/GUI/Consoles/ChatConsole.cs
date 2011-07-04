@@ -1599,15 +1599,15 @@ namespace METAbolt
         {
             if (string.IsNullOrEmpty(input)) return;
 
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    ProcessChatInput(input, type);
-                }));
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        ProcessChatInput(input, type);
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             if (chkTranslate.Checked == true)
             {
@@ -2505,21 +2505,25 @@ namespace METAbolt
 
             List<UUID> tremove = e.RemovedEntries;
 
-            BeginInvoke(new MethodInvoker(delegate()
-               {
-                   foreach (UUID id in tremove)
+            try
+            {
+                BeginInvoke(new MethodInvoker(delegate()
                    {
-                       foreach (ListViewItem litem in lvwRadar.Items)
+                       foreach (UUID id in tremove)
                        {
-                           if (litem.Tag.ToString() == id.ToString())
+                           foreach (ListViewItem litem in lvwRadar.Items)
                            {
-                               lvwRadar.BeginUpdate();
-                               lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
-                               lvwRadar.EndUpdate();
+                               if (litem.Tag.ToString() == id.ToString())
+                               {
+                                   lvwRadar.BeginUpdate();
+                                   lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
+                                   lvwRadar.EndUpdate();
+                               }
                            }
                        }
-                   }
-               }));
+                   }));
+            }
+            catch { ; }
 
             try
             {
@@ -2550,16 +2554,6 @@ namespace METAbolt
 
         private void GetMap()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    GetMap();
-                }));
-
-                return;
-            }
-
             GridRegion region;
 
             if (_MapLayer == null || sim != client.Network.CurrentSim)
@@ -2589,8 +2583,8 @@ namespace METAbolt
             }
             else
             {
-                //UpdateMiniMap(sim);
-                BeginInvoke(new OnUpdateMiniMap(UpdateMiniMap), new object[] { sim });
+                UpdateMiniMap(sim);
+                //BeginInvoke(new OnUpdateMiniMap(UpdateMiniMap), new object[] { sim });
             }
         }
 

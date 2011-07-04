@@ -128,7 +128,7 @@ namespace METAbolt
                 rtb.SelectionFont = new Font(headerfont, headerfontsize, fontsy);
 
                 rtb.SelectionBackColor = bkcolour;
-                rtb.SelectionColor = Color.Gray;
+                rtb.SelectionColor = Color.Black;
                 rtb.AppendText(Environment.NewLine + " " + text);   // + Environment.NewLine);
 
                 int cwidth = rtb.Width - (text.Length + 1);
@@ -178,7 +178,7 @@ namespace METAbolt
             {
                 if (text == null) return;
 
-                rtb.SelectionColor = Color.Gray;
+                rtb.SelectionColor = Color.Black;
                 //rtb.SelectionCharOffset = 6;
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 2, rtb.SelectionFont.Style);
                 rtb.SelectionCharOffset = 10;

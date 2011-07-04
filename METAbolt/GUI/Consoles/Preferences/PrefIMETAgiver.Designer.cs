@@ -88,7 +88,7 @@
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox2.ForeColor = System.Drawing.Color.Gray;
+            this.textBox2.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox2.Location = new System.Drawing.Point(76, 33);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(263, 20);

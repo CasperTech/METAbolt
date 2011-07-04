@@ -165,7 +165,7 @@ namespace METAbolt
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Gray;
+            this.label4.ForeColor = System.Drawing.Color.DarkGray;
             this.label4.Location = new System.Drawing.Point(21, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 13);

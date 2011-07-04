@@ -33,6 +33,7 @@ using System.IO;
 using OpenMetaverse;
 using OpenMetaverse.Imaging;
 using OpenMetaverse.Assets;
+using OpenMetaverse.Packets; 
 using SLNetworkComm;
 using ExceptionReporting;
 using System.Threading;
@@ -67,7 +68,9 @@ namespace METAbolt
         private List<KeyValuePair<UUID, UUID>> grouprolesavs;
         private UUID grouprolesreply = UUID.Zero;
         private UUID grouprolemembersid = UUID.Zero;
-        private UUID founderid = UUID.Zero;  
+        private UUID founderid = UUID.Zero;
+        private GroupMemberData currentmember = new GroupMemberData();
+        private bool checkignore = false;
 
         internal class ThreadExceptionHandler
         {
@@ -263,8 +266,37 @@ namespace METAbolt
         {
             if (e.GroupID != grpid) return;
 
-            grouproles = e.Roles;
+            try
+            {
+                grouproles = e.Roles;
+            }
+            catch { ; }
+
             grouprolemembersid = Client.Groups.RequestGroupRolesMembers(grpid);
+
+            this.BeginInvoke(new MethodInvoker(delegate()
+            {
+                PopulateRoles();
+            }));
+        }
+
+        private void PopulateRoles()
+        {
+            lstRoles.Items.Clear();
+
+            foreach (GroupRole role in grouproles.Values)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = role.Name;
+                lvi.Tag = role;
+                //lstRoles.Items.Add(lvi);
+                lvi.SubItems.Add(role.ID.ToString());
+
+                //ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
+                //lvsi.Text = role.ID.ToString();
+                //lvi.SubItems.Add(lvsi);
+                lstRoles.Items.Add(lvi);
+            }
         }
 
         private void UpdateNotices(List<GroupNoticesListEntry> notices)
@@ -432,7 +464,8 @@ namespace METAbolt
 
             lblGroupName.Text = Profile.Name;
             txtCharter.Text = Profile.Charter;
-            chkShow.Checked = Profile.ShowInList;
+            chkListInProfile.Checked = Profile.ListInProfile;
+            chkGroupNotices.Checked = Profile.AcceptNotices; 
             chkPublish.Checked = Profile.AllowPublish;
             chkOpenEnrollment.Checked = Profile.OpenEnrollment;
 
@@ -565,6 +598,13 @@ namespace METAbolt
                 lstMembers.Items.Clear();
                 lstMembers2.Items.Clear();
 
+                txtCharter.Enabled = false;
+                chkPublish.Enabled = false;
+                chkOpenEnrollment.Enabled = false;
+                chkFee.Enabled = false;
+                numFee.Enabled = false;
+                chkMature.Enabled = false;
+
                 foreach (GroupMember member in Members.Values)
                 {
                     GroupMemberData memberData = new GroupMemberData();
@@ -587,8 +627,33 @@ namespace METAbolt
                         cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
                         button6.Enabled = false;
 
-                        //button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
-                        //button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
+                        button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
+                        button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
+
+                        if (instance.State.Groups.ContainsKey(Profile.ID))
+                        {
+                            if ((member.Powers & GroupPowers.ChangeIdentity) != 0)
+                            {
+                                txtCharter.Enabled = true;
+                            }
+
+                            if ((member.Powers & GroupPowers.ChangeOptions) != 0)
+                            {
+                                chkPublish.Enabled = true;
+                                chkOpenEnrollment.Enabled = true;
+                                chkFee.Enabled = true;
+                                numFee.Enabled = true;
+                                chkMature.Enabled = true;
+                            }
+
+                            chkListInProfile.Enabled = true;
+                            chkGroupNotices.Enabled = true;
+                        }
+                        else
+                        {
+                            chkListInProfile.Enabled = false;
+                            chkGroupNotices.Enabled = false;
+                        }
                     }
 
                     ListViewItem lvi = new ListViewItem();
@@ -677,39 +742,39 @@ namespace METAbolt
 
             Titles = e.Titles;
 
-            UpdateTitles();
+            //UpdateTitles();
         }
 
-        private void UpdateTitles()
-        {
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    UpdateTitles();
-                }));
+        ////private void UpdateTitles()
+        ////{
+        ////    if (this.InvokeRequired)
+        ////    {
+        ////        this.BeginInvoke(new MethodInvoker(delegate()
+        ////        {
+        ////            UpdateTitles();
+        ////        }));
 
-                return;
-            }
-            else
-            {
-                lock (Titles)
-                {
-                    lstRoles.Items.Clear();
+        ////        return;
+        ////    }
+        ////    else
+        ////    {
+        ////        lock (Titles)
+        ////        {
+        ////            lstRoles.Items.Clear();
 
-                    foreach (KeyValuePair<UUID, GroupTitle> kvp in Titles)
-                    {
-                        ListViewItem lvi = new ListViewItem();
-                        lvi.Text = kvp.Value.Title.ToString()   ;
+        ////            foreach (KeyValuePair<UUID, GroupTitle> kvp in Titles)
+        ////            {
+        ////                ListViewItem lvi = new ListViewItem();
+        ////                lvi.Text = kvp.Value.Title.ToString()   ;
 
-                        ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
-                        lvsi.Text = kvp.Key.ToString();
-                        lvi.SubItems.Add(lvsi);
-                        lstRoles.Items.Add(lvi);
-                    }
-                }
-            }
-        }
+        ////                ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
+        ////                lvsi.Text = kvp.Key.ToString();
+        ////                lvi.SubItems.Add(lvsi);
+        ////                lstRoles.Items.Add(lvi);
+        ////            }
+        ////        }
+        ////    }
+        ////}
 
         private void cmdEject_Click(object sender, EventArgs e)
         {
@@ -783,7 +848,8 @@ namespace METAbolt
 
         private void lstMembers2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chkListRoles.Items.Clear();  
+            //chkListRoles.Items.Clear();
+            lvAssignedRoles.Items.Clear();  
 
             if (lstMembers2.SelectedItems.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
             {
@@ -799,36 +865,53 @@ namespace METAbolt
                     }
                 }
 
-                int ind = chkListRoles.Items.Add("Everyone");
-                chkListRoles.SetItemChecked(ind, true);
-                chkListRoles.Enabled = false;
+                checkignore = true;
+
+                ListViewItem everyone = new ListViewItem();
+                everyone.Text = "Everyone";
+                everyone.Checked = true;
+                //everyone.Tag = null;
+                lvAssignedRoles.Items.Add(everyone);
 
                 GroupPowers power = GroupPowers.None;
 
-                foreach (KeyValuePair<UUID, UUID> member in grouprolesavs)
+                foreach (GroupRole role in grouproles.Values)
                 {
-                    UUID roleid = member.Key;  // role uuid
-
-                    if (member.Value == avid)
+                    if (role.Name.ToLower() != "everyone")
                     {
-                        GroupRole role = grouproles[roleid];
-                        ind = chkListRoles.Items.Add(role.Name);
-                        chkListRoles.SetItemChecked(ind, true);
-                        chkListRoles.Enabled = false;
+                        UUID roleid = role.ID;
+
+                        ListViewItem nme = new ListViewItem();
+                        nme.Text = role.Name;
+                        nme.Tag = role;
                         
-                        power = role.Powers;
+                        bool ismember = false;
+
+                        foreach (var el in grouprolesavs)
+                        {
+                            if (el.Value == avid && el.Key == roleid)
+                            {
+                                ismember = true;
+                                power = role.Powers;
+                            }
+                        }
+
+                        nme.Checked = ismember;
+                        lvAssignedRoles.Items.Add(nme);
                     }
-                }
 
-                lvwAble.Items.Clear();  
+                    lvwAble.Items.Clear();
 
-                foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
-                {
-                    if (p != GroupPowers.None && (power & p) == p)
+                    foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
                     {
-                        lvwAble.Items.Add(p.ToString());
+                        if (p != GroupPowers.None && (power & p) == p)
+                        {
+                            lvwAble.Items.Add(p.ToString());
+                        }
                     }
                 }
+
+                checkignore = false;
             }
         }
 
@@ -839,19 +922,42 @@ namespace METAbolt
 
         private void lstRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string li = UUID.Zero.ToString();
+   
             if (lstRoles.SelectedItems.Count > 0)
             {
                 for (int i = lstRoles.SelectedItems.Count - 1; i >= 0; i--)
                 {
-                    string li = lstRoles.SelectedItems[i].SubItems[1].Text;
+                    li = lstRoles.SelectedItems[i].SubItems[1].Text;
                     textBox3.Text = li;
                 }
 
                 //button5.Enabled = true;
-            }
-            else
-            {
-                //button5.Enabled = false; 
+
+                lvRoleMembers.Items.Clear();
+
+                if ((UUID)li == UUID.Zero)
+                {
+                    //lvRoleMembers
+
+                    foreach (GroupMemberData data in MemberData.Values)
+                    {
+                        lvRoleMembers.Items.Add(data.Name);
+                    }
+                }
+                else
+                {
+                    foreach (KeyValuePair<UUID, UUID> name in grouprolesavs)
+                    {
+                        if (name.Key == (UUID)li)
+                        {
+                            if (instance.avnames.ContainsKey(name.Value))
+                            {
+                                lvRoleMembers.Items.Add(instance.avnames[name.Value]);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -1082,14 +1188,6 @@ namespace METAbolt
             }
         }
 
-        private void chkShow_CheckedChanged(object sender, EventArgs e)
-        {
-            if (floading) return;
-
-            Profile.ShowInList = chkShow.Checked;
-            Client.Groups.UpdateGroup(Profile.ID, Profile); 
-        }
-
         private void chkPublish_CheckedChanged(object sender, EventArgs e)
         {
             if (floading) return;
@@ -1131,8 +1229,10 @@ namespace METAbolt
         {
             if (floading) return;
 
-            Profile.AcceptNotices = chkGroupNotices.Checked;
-            Client.Groups.UpdateGroup(Profile.ID, Profile); 
+            //Profile.AcceptNotices = chkGroupNotices.Checked;
+            //Client.Groups.UpdateGroup(Profile.ID, Profile);
+            Client.Groups.SetGroupAcceptNotices(Profile.ID, chkGroupNotices.Checked, chkListInProfile.Checked);
+            Client.Groups.RequestCurrentGroups();
         }
 
         private void chkMature_CheckedChanged(object sender, EventArgs e)
@@ -1162,15 +1262,7 @@ namespace METAbolt
 
         private void button4_Click(object sender, EventArgs e)
         {
-            GroupRole role = new GroupRole();
-            role.Name = textBox7.Text;
-            role.Title = textBox8.Text;
-            role.Description = textBox9.Text;
-
-            //GroupPowers powers = new GroupPowers();
-            //role.Powers
-
-            //Client.Groups.CreateRole(grpid, role);
+            panel3.Visible = true;
         }
 
         private void frmGroupInfo_FormClosing(object sender, FormClosingEventArgs e)
@@ -1293,6 +1385,148 @@ namespace METAbolt
         private void lstMembers2_MouseLeave(object sender, EventArgs e)
         {
             lstMembers2.Cursor = Cursors.Default;
+        }
+
+        private void chkListInProfile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (floading) return;
+
+            Client.Groups.SetGroupAcceptNotices(Profile.ID, chkGroupNotices.Checked, chkListInProfile.Checked);
+            Client.Groups.RequestCurrentGroups();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            GroupRole role = new GroupRole();
+            role.Name = textBox7.Text;
+            role.Title = textBox8.Text;
+            role.Description = textBox9.Text;
+
+            //GroupPowers powers = new GroupPowers();
+            //role.Powers
+
+            Client.Groups.CreateRole(grpid, role);
+
+            panel3.Visible = false;
+            textBox7.Text = string.Empty;
+            textBox8.Text = string.Empty;
+            textBox9.Text = string.Empty;
+        }
+
+        private void lvAssignedRoles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lvwAble.Items.Clear();
+
+            if (lvAssignedRoles.SelectedItems.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
+            {
+                if (lvAssignedRoles.SelectedItems[0].Tag == null)
+                {
+                    // everyone
+                    GroupPowers power = GroupPowers.None;
+
+                    foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                    {
+                        if (p != GroupPowers.None && (power & p) == p)
+                        {
+                            lvwAble.Items.Add(p.ToString());
+                        }
+                    }
+                }
+                else
+                {
+                    GroupPowers power = GroupPowers.None;
+                    GroupRole role = (GroupRole)lvAssignedRoles.SelectedItems[0].Tag;
+
+                    power = role.Powers;
+
+                    foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                    {
+                        if (p != GroupPowers.None && (power & p) == p)
+                        {
+                            lvwAble.Items.Add(p.ToString());
+                        }
+                    }
+                }
+            }
+        }
+
+        private void lvAssignedRoles_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (floading) return;
+
+            if (checkignore) return;
+
+            ListViewItem item = e.Item as ListViewItem;
+            //GroupRole role = (GroupRole)lvAssignedRoles.SelectedItems[0].Tag;
+
+            GroupRole role;
+
+            if (item.Tag != null)
+            {
+                role = (GroupRole)item.Tag;
+            }
+            else
+            {
+                role.Name = "Everyone";
+                role.ID = UUID.Zero;
+                role.Powers = GroupPowers.None;
+            }
+
+
+            string li = lstMembers2.SelectedItems[0].Text;
+            UUID avid = UUID.Zero;
+
+            try
+            {
+                foreach (GroupMemberData entry in MemberData.Values)
+                {
+                    if (li == entry.Name)
+                    {
+                        avid = entry.ID;
+                        break;
+                    }
+                }
+
+                if (item.Checked)
+                {
+                    foreach (var el in grouprolesavs)
+                    {
+                        if (el.Value == avid && el.Key == role.ID)
+                        {
+                            grouprolesavs.Add(new KeyValuePair<UUID, UUID>(role.ID, avid));
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var el in grouprolesavs)
+                    {
+                        if (el.Value == avid && el.Key == role.ID)
+                        {
+                            grouprolesavs.Remove(new KeyValuePair<UUID, UUID>(role.ID, avid));
+                        }
+                    }
+                }
+            }
+            catch { ; }
+
+            // The section below has been borrowed from Radegast (c) 2009-2011 Radegast Development Team
+            List<GroupRoleChangesPacket.RoleChangeBlock> changes = new List<GroupRoleChangesPacket.RoleChangeBlock>();
+            GroupRoleChangesPacket.RoleChangeBlock rc = new GroupRoleChangesPacket.RoleChangeBlock();
+
+            rc.MemberID = avid;
+            rc.RoleID = role.ID;
+            rc.Change = item.Checked ? 0u : 1u;
+            changes.Add(rc);
+
+            GroupRoleChangesPacket packet = new GroupRoleChangesPacket();
+            packet.AgentData.AgentID = Client.Self.AgentID;
+            packet.AgentData.SessionID = Client.Self.SessionID;
+            packet.AgentData.GroupID = Profile.ID;
+
+            GroupRoleChangesPacket.RoleChangeBlock bk = rc;
+            packet.RoleChange = changes.ToArray();
+            Client.Network.CurrentSim.SendPacket(packet);
         }
     }
 

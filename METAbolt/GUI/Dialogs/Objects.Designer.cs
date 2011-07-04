@@ -1021,7 +1021,7 @@ namespace METAbolt
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textBox1.ForeColor = System.Drawing.Color.Gray;
+            this.textBox1.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox1.Location = new System.Drawing.Point(6, 496);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;

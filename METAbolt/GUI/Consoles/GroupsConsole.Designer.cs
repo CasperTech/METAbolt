@@ -117,7 +117,7 @@
             this.label1.AccessibleDescription = "Currently active/worn group";
             this.label1.AccessibleName = "Current group";
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
             this.label1.Location = new System.Drawing.Point(136, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
@@ -259,7 +259,7 @@
             this.label6.AccessibleDescription = "Total number of groups in the list";
             this.label6.AccessibleName = "Total groups";
             this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Gray;
+            this.label6.ForeColor = System.Drawing.Color.DarkGray;
             this.label6.Location = new System.Drawing.Point(136, 57);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);

@@ -809,7 +809,7 @@ namespace METAbolt
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.Gray;
+            this.label21.ForeColor = System.Drawing.Color.DarkGray;
             this.label21.Location = new System.Drawing.Point(98, 43);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(18, 13);
@@ -822,7 +822,7 @@ namespace METAbolt
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Gray;
+            this.label20.ForeColor = System.Drawing.Color.DarkGray;
             this.label20.Location = new System.Drawing.Point(168, 43);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(13, 13);
@@ -835,7 +835,7 @@ namespace METAbolt
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Gray;
+            this.label19.ForeColor = System.Drawing.Color.DarkGray;
             this.label19.Location = new System.Drawing.Point(135, 76);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(14, 13);
@@ -1345,7 +1345,7 @@ namespace METAbolt
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Gray;
+            this.label13.ForeColor = System.Drawing.Color.DarkGray;
             this.label13.Location = new System.Drawing.Point(3, 31);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
@@ -1414,7 +1414,7 @@ namespace METAbolt
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Gray;
+            this.label7.ForeColor = System.Drawing.Color.DarkGray;
             this.label7.Location = new System.Drawing.Point(3, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
