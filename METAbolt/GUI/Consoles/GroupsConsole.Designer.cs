@@ -117,7 +117,7 @@
             this.label1.AccessibleDescription = "Currently active/worn group";
             this.label1.AccessibleName = "Current group";
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(136, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
@@ -208,7 +208,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Silver;
+            this.label4.ForeColor = System.Drawing.Color.DimGray;
             this.label4.Location = new System.Drawing.Point(22, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(197, 13);
@@ -239,7 +239,7 @@
             this.lstGroups.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lstGroups.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstGroups.FormattingEnabled = true;
-            this.lstGroups.Location = new System.Drawing.Point(0, 6);
+            this.lstGroups.Location = new System.Drawing.Point(0, 2);
             this.lstGroups.Name = "lstGroups";
             this.lstGroups.Size = new System.Drawing.Size(384, 286);
             this.lstGroups.TabIndex = 0;
@@ -259,7 +259,7 @@
             this.label6.AccessibleDescription = "Total number of groups in the list";
             this.label6.AccessibleName = "Total groups";
             this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.DarkGray;
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(136, 57);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);

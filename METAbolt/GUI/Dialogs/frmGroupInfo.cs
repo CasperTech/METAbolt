@@ -464,8 +464,8 @@ namespace METAbolt
 
             lblGroupName.Text = Profile.Name;
             txtCharter.Text = Profile.Charter;
-            chkListInProfile.Checked = Profile.ListInProfile;
-            chkGroupNotices.Checked = Profile.AcceptNotices; 
+            //chkListInProfile.Checked = Profile.ListInProfile;
+            //chkGroupNotices.Checked = Profile.AcceptNotices; 
             chkPublish.Checked = Profile.AllowPublish;
             chkOpenEnrollment.Checked = Profile.OpenEnrollment;
 
@@ -629,6 +629,9 @@ namespace METAbolt
 
                         button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
                         button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
+
+                        chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
+                        chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
 
                         if (instance.State.Groups.ContainsKey(Profile.ID))
                         {

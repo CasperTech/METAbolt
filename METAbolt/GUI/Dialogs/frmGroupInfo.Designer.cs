@@ -228,9 +228,9 @@ namespace METAbolt
             this.chkListInProfile.AutoSize = true;
             this.chkListInProfile.Location = new System.Drawing.Point(250, 64);
             this.chkListInProfile.Name = "chkListInProfile";
-            this.chkListInProfile.Size = new System.Drawing.Size(130, 17);
+            this.chkListInProfile.Size = new System.Drawing.Size(113, 17);
             this.chkListInProfile.TabIndex = 7;
-            this.chkListInProfile.Text = "List group in my profile";
+            this.chkListInProfile.Text = "Show in my profile";
             this.chkListInProfile.UseVisualStyleBackColor = true;
             this.chkListInProfile.CheckedChanged += new System.EventHandler(this.chkListInProfile_CheckedChanged);
             // 
@@ -240,7 +240,7 @@ namespace METAbolt
             this.chkMature.AutoSize = true;
             this.chkMature.Location = new System.Drawing.Point(16, 90);
             this.chkMature.Name = "chkMature";
-            this.chkMature.Size = new System.Drawing.Size(95, 17);
+            this.chkMature.Size = new System.Drawing.Size(96, 17);
             this.chkMature.TabIndex = 1;
             this.chkMature.Text = "Mature publish";
             this.chkMature.UseVisualStyleBackColor = true;
@@ -268,7 +268,7 @@ namespace METAbolt
             this.chkGroupNotices.AutoSize = true;
             this.chkGroupNotices.Location = new System.Drawing.Point(250, 87);
             this.chkGroupNotices.Name = "chkGroupNotices";
-            this.chkGroupNotices.Size = new System.Drawing.Size(137, 17);
+            this.chkGroupNotices.Size = new System.Drawing.Size(134, 17);
             this.chkGroupNotices.TabIndex = 6;
             this.chkGroupNotices.Text = "Receive Group Notices";
             this.chkGroupNotices.UseVisualStyleBackColor = true;
@@ -280,7 +280,7 @@ namespace METAbolt
             this.chkFee.AutoSize = true;
             this.chkFee.Location = new System.Drawing.Point(36, 67);
             this.chkFee.Name = "chkFee";
-            this.chkFee.Size = new System.Drawing.Size(114, 17);
+            this.chkFee.Size = new System.Drawing.Size(115, 17);
             this.chkFee.TabIndex = 4;
             this.chkFee.Text = "Enrollment Fee: L$";
             this.chkFee.UseVisualStyleBackColor = true;
@@ -292,7 +292,7 @@ namespace METAbolt
             this.chkOpenEnrollment.AutoSize = true;
             this.chkOpenEnrollment.Location = new System.Drawing.Point(16, 44);
             this.chkOpenEnrollment.Name = "chkOpenEnrollment";
-            this.chkOpenEnrollment.Size = new System.Drawing.Size(104, 17);
+            this.chkOpenEnrollment.Size = new System.Drawing.Size(105, 17);
             this.chkOpenEnrollment.TabIndex = 3;
             this.chkOpenEnrollment.Text = "Open Enrollment";
             this.chkOpenEnrollment.UseVisualStyleBackColor = true;
