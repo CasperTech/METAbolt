@@ -1531,7 +1531,12 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
                 {
-                    index = lvwRadar.Items.IndexOfKey(e.FromName);
+                    try
+                    {
+                        index = lvwRadar.Items.IndexOfKey(e.FromName);
+                    }
+                    catch { return; }
+
                     if (index == -1) return;
                 }));
 

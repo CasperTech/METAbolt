@@ -261,8 +261,7 @@ namespace METAbolt
 
             try
             {
-                //GLMode = new OpenTK.Graphics.GraphicsMode(OpenTK.DisplayDevice.Default.BitsPerPixel, 24, 8, 4);
-                GLMode = new OpenTK.Graphics.GraphicsMode(OpenTK.DisplayDevice.Default.BitsPerPixel, 24, 8, 0);
+                GLMode = new OpenTK.Graphics.GraphicsMode(OpenTK.DisplayDevice.Default.BitsPerPixel, 24, 8, 4);
             }
             catch
             {
@@ -385,9 +384,9 @@ namespace METAbolt
                 TextureThreadContextReady.WaitOne(1000, false);
                 glControl.MakeCurrent();
 
-                //GLInvalidate(); 
-                ////Application.Idle += Application_Idle;
-                ////sw.Start(); 
+                GLInvalidate(); 
+                //Application.Idle += Application_Idle;
+                //sw.Start(); 
             }
             catch (Exception ex)
             {
@@ -638,7 +637,7 @@ namespace METAbolt
                 TextureThreadContextReady.Set();
                 PendingTextures.Open();
 
-                //Logger.DebugLog("Started Texture Thread");
+                Logger.DebugLog("Started Texture Thread");
 
                 while (window.Exists && TextureThreadRunning)
                 {
@@ -699,8 +698,8 @@ namespace METAbolt
                         }
                         else
                         {
-                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMagFilter, (int)OpenTK.Graphics.OpenGL.TextureMagFilter.Linear);
-                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.Linear);
+                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMagFilter, (int)OpenTK.Graphics.OpenGL.TextureMagFilter.Nearest);
+                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.Nearest);
                         }
 
                         bitmap.UnlockBits(bitmapData);
@@ -716,7 +715,7 @@ namespace METAbolt
             }
             catch
             {
-                Logger.Log("META3D TextureThread: Your video card does not support Mipmaps. Try disabling Mipmaps from META3D tab under the Application/Preferences menu", Helpers.LogLevel.Warning);  
+                Logger.Log("META3D TextureThread: Your video card does not support Mipmap. Try disabling Mipmaps from META3D tab under the Application/Preferences menu", Helpers.LogLevel.Warning);  
             }            
         }
         #endregion Texture thread
@@ -930,15 +929,16 @@ namespace METAbolt
                             primPos = new OpenTK.Vector3(prim.Position.X, prim.Position.Y, prim.Position.Z);
                         }
 
-                        //OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Modelview);
+                        OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Modelview);
 
                         primPos.Z += prim.Scale.Z * 0.7f;
                         screenPos = WorldToScreen(primPos);
-                        Printer.Begin();
 
-                        //OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);
+                        OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);
 
                         Color color = Color.FromArgb((int)(prim.TextColor.A * 255), (int)(prim.TextColor.R * 255), (int)(prim.TextColor.G * 255), (int)(prim.TextColor.B * 255));
+
+                        Printer.Begin();
 
                         using (Font f = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Bold))
                         {
@@ -954,9 +954,9 @@ namespace METAbolt
                             //writer.UpdateText();                            
 
                             //Shadow
-                            if (color != Color.DarkGray)
+                            if (color != Color.Gray)
                             {
-                                Printer.Print(text, f, Color.DarkGray, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
+                                Printer.Print(text, f, Color.Gray, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
                             }
 
                             Printer.Print(text, f, color, new RectangleF(screenPos.X, screenPos.Y, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
@@ -1139,9 +1139,7 @@ namespace METAbolt
                 OpenTK.Graphics.OpenGL.GL.ClearColor(0.39f, 0.58f, 0.93f, 1.0f);
             }
 
-            //OpenTK.Graphics.OpenGL.GL.PolygonMode(OpenTK.Graphics.OpenGL.MaterialFace.FrontAndBack, OpenTK.Graphics.OpenGL.PolygonMode.Fill);
-            OpenTK.Graphics.OpenGL.GL.Clear(OpenTK.Graphics.OpenGL.ClearBufferMask.ColorBufferBit | OpenTK.Graphics.OpenGL.ClearBufferMask.DepthBufferBit);
-            OpenTK.Graphics.OpenGL.GL.LoadIdentity();
+            OpenTK.Graphics.OpenGL.GL.PolygonMode(OpenTK.Graphics.OpenGL.MaterialFace.FrontAndBack, OpenTK.Graphics.OpenGL.PolygonMode.Fill);
 
             var mLookAt = OpenTK.Matrix4d.LookAt(
                     Center.X, (double)scrollZoom.Value * 0.1d + Center.Y, Center.Z,
@@ -1170,7 +1168,7 @@ namespace METAbolt
                 RenderObjects(RenderPass.Simple);
                 RenderObjects(RenderPass.Alpha);
                 RenderText();
-                //RenderAvatar();
+                RenderAvatar();
             }
 
             // Pop the world matrix
@@ -1577,7 +1575,8 @@ namespace METAbolt
 
                 payBuyToolStripMenuItem.Enabled = true;
             }
-            else
+
+            if (!isobject)
             {
                 payBuyToolStripMenuItem.Enabled = false;
             }
@@ -1667,7 +1666,7 @@ namespace METAbolt
             snapped = false;
             TakeScreenShot = false;
 
-            Bitmap bmp = GrabMScreenshot();   // glControl.GrabScreenshot();   // GrabMScreenshot();
+            Bitmap bmp = GrabScreenshot();
             //Image img = (Image)bmp;
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
@@ -1684,52 +1683,22 @@ namespace METAbolt
             {
                 bmp.Save(saveFileDialog1.FileName, ImageFormat.Png);
             }
-
-            bmp.Dispose(); 
         }
 
-        public Bitmap GrabMScreenshot()
+        public Bitmap GrabScreenshot()
         {
-            //System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
-            //    System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-
-            ////System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
-            ////    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-            //OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgr, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
-            ////OpenTK.Graphics.OpenGL.GL.CopyPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelCopyType.Depth);    
-
-            //OpenTK.Graphics.OpenGL.GL.Finish();
-
-            //bmp.UnlockBits(data);
-            //bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
-
-            //System.Drawing.Imaging.BitmapData data = bmp.LockBits(new System.Drawing.Rectangle(0, 0, glControl.Width, glControl.Height), System.Drawing.Imaging.ImageLockMode.WriteOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb); // Lock the bitmap
-
-            //OpenTK.Graphics.OpenGL.GL.Finish();
-            //OpenTK.Graphics.OpenGL.GL.ReadBuffer(OpenTK.Graphics.OpenGL.ReadBufferMode.ColorAttachment0);
-            //OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
-
-            //bmp.UnlockBits(data); // Unlock the bitmap data.
-
-            //bmp.RotateFlip(RotateFlipType.RotateNoneFlipY); // Flip the bitmap as OpenGL stores it upside down.
-
-
-            //return bmp;
-
-            if (GraphicsContext.CurrentContext == null)
-                throw new GraphicsContextMissingException();
-
             Bitmap bmp = new Bitmap(glControl.Width, glControl.Height);
-            System.Drawing.Imaging.BitmapData data =
-                bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
-            
-            OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.ClientSize.Width, glControl.ClientSize.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
-            
-            bmp.UnlockBits(data);
+                
+            System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
+                System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
+            OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgr, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
+
+            OpenTK.Graphics.OpenGL.GL.Finish();
+
+            bmp.UnlockBits(data);
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            
+
             return bmp;
         }
 
@@ -1829,6 +1798,11 @@ namespace METAbolt
                     (new frmPay(instance, sPr.ID, sPr.Properties.Name)).ShowDialog();
                 }
             //}
+        }
+
+        private void chkMipmaps_CheckedChanged(object sender, EventArgs e)
+        {
+            //enablemipmapd = chkMipmaps.Checked; 
         }
     }
 
