@@ -199,6 +199,16 @@ namespace METAbolt
 
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs names)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Avatars_OnAvatarNames(sender, names);
+                }));
+
+                return;
+            }
+
             //lock (instance.avnames)
             //{
                 foreach (KeyValuePair<UUID, string> av in names.Names)
@@ -234,12 +244,7 @@ namespace METAbolt
                             sfavatar.Clear();
                         }
 
-                        //SetLang();
-
-                        BeginInvoke(new MethodInvoker(delegate()
-                        {
-                            lvwRadar.Clear();
-                        }));
+                        lvwRadar.Clear();
  
                         if (instance.Config.CurrentConfig.AutoSit)
                         {
@@ -420,10 +425,12 @@ namespace METAbolt
 
         private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs e)
         {
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                UpdateMedia();
-            }));           
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    UpdateMedia();
+            //}));
+
+            UpdateMedia();
         }
 
         private void UpdateMedia()
@@ -593,11 +600,7 @@ namespace METAbolt
                             missing = missing.Remove(missing.Length - 2);   
                         }
 
-                        BeginInvoke(new MethodInvoker(delegate()
-                        {
-                            chatManager.PrintAlertMessage("Wearables missing: " + missing);
-                        }
-                        ));
+                        chatManager.PrintAlertMessage("Wearables missing: " + missing);
                     }
                 }
             }
@@ -1046,8 +1049,8 @@ namespace METAbolt
 
             try
             {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
+                //BeginInvoke(new MethodInvoker(delegate()
+                //{
                     if (e.Type == MeanCollisionType.Bump)
                     {
                         cty = "Bumped in by: (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
@@ -1062,7 +1065,7 @@ namespace METAbolt
                     }
 
                     chatManager.PrintAlertMessage(cty + e.Aggressor.ToString());
-                }));
+                //}));
             }
             catch
             {
@@ -1073,6 +1076,16 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Objects_OnObjectKilled(sender, e);
+                }));
+
+                return;
+            }
+
             if (e.Simulator != client.Network.CurrentSim) return;
             if (sfavatar == null) return;
 
@@ -1088,19 +1101,16 @@ namespace METAbolt
 
             if (avname == string.Empty) return;
 
-            BeginInvoke(new MethodInvoker(delegate()
+            try
+            {
+                if (lvwRadar.Items.ContainsKey(avname))
                 {
-                    try
-                    {
-                        if (lvwRadar.Items.ContainsKey(avname))
-                        {
-                            lvwRadar.BeginUpdate();
-                            lvwRadar.Items.RemoveByKey(avname);
-                            lvwRadar.EndUpdate();
-                        }
-                    }
-                    catch { ; }
-                }));
+                    lvwRadar.BeginUpdate();
+                    lvwRadar.Items.RemoveByKey(avname);
+                    lvwRadar.EndUpdate();
+                }
+            }
+            catch { ; }
 
             try
             {
@@ -1118,6 +1128,17 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnNewAvatar(object sender, AvatarUpdateEventArgs e)
         {
+            if (InvokeRequired)
+            {
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Objects_OnNewAvatar(sender, e);
+                }));
+
+                return;
+            }
+
             if (e.Simulator != client.Network.CurrentSim) return;
 
             if (sfavatar.ContainsKey(e.Avatar.LocalID)) return;
@@ -1180,6 +1201,7 @@ namespace METAbolt
             if (name == string.Empty || name == null) return;
 
             lvwRadar.BeginUpdate();
+
             if (lvwRadar.Items.ContainsKey(name))
             {
                 lvwRadar.Items.RemoveByKey(name);  
@@ -1274,16 +1296,17 @@ namespace METAbolt
 
             if (name == string.Empty || name == null) return;
 
-            BeginInvoke(new MethodInvoker(delegate()
-            {
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
                 lvwRadar.BeginUpdate();
+
                 if (lvwRadar.Items.ContainsKey(name))
                 {
                     lvwRadar.Items.RemoveByKey(name);
                 }
 
                 lvwRadar.EndUpdate();
-            }));
+            //}));
 
             string sDist;
 
@@ -1350,8 +1373,8 @@ namespace METAbolt
 
                 string rentry = name + sDist + astate;
 
-                BeginInvoke(new MethodInvoker(delegate()
-                { 
+                //BeginInvoke(new MethodInvoker(delegate()
+                //{ 
                     lvwRadar.BeginUpdate();
 
                     if (name != client.Self.Name)
@@ -1383,7 +1406,7 @@ namespace METAbolt
                     }
 
                     lvwRadar.EndUpdate();
-                }));
+                //}));
             }
             catch (Exception ex)
             {
@@ -1507,15 +1530,15 @@ namespace METAbolt
 
         private void netcom_ChatReceived(object sender, ChatEventArgs e)
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        netcom_ChatReceived(sender, e);
-            //    }));
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    netcom_ChatReceived(sender, e);
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             if (e.SourceType != ChatSourceType.Agent)
             {
@@ -1529,8 +1552,8 @@ namespace METAbolt
 
             int index = 0;
 
-            BeginInvoke(new MethodInvoker(delegate()
-                {
+            //BeginInvoke(new MethodInvoker(delegate()
+                //{
                     try
                     {
                         index = lvwRadar.Items.IndexOfKey(e.FromName);
@@ -1538,14 +1561,14 @@ namespace METAbolt
                     catch { return; }
 
                     if (index == -1) return;
-                }));
+                //}));
 
             if (e.Type == ChatType.StartTyping)
             {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
+                //BeginInvoke(new MethodInvoker(delegate()
+                //{
                     lvwRadar.Items[index].ForeColor = Color.Red;
-                }));
+                //}));
 
                 if (!avtyping.Contains(e.FromName))
                 {
@@ -1556,10 +1579,10 @@ namespace METAbolt
             }
             else
             {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
+                //BeginInvoke(new MethodInvoker(delegate()
+                //{
                     lvwRadar.Items[index].ForeColor = Color.FromKnownColor(KnownColor.ControlText);
-                }));
+                //}));
 
                 if (avtyping.Contains(e.FromName))
                 {
@@ -1591,10 +1614,10 @@ namespace METAbolt
                             sindex -= 1;
                         }
 
-                        BeginInvoke(new MethodInvoker(delegate()
-                        {
+                        //BeginInvoke(new MethodInvoker(delegate()
+                        //{
                             cboLanguage.SelectedIndex = sindex;
-                        }));
+                        //}));
                     }
                 }
             }
@@ -1604,15 +1627,15 @@ namespace METAbolt
         {
             if (string.IsNullOrEmpty(input)) return;
 
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        ProcessChatInput(input, type);
-            //    }));
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ProcessChatInput(input, type);
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             if (chkTranslate.Checked == true)
             {
@@ -2422,6 +2445,16 @@ namespace METAbolt
 
         private void SaveChat()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    SaveChat();
+                }));
+
+                return;
+            }
+
             // Create a SaveFileDialog to request a path and file name to save to.
             SaveFileDialog saveFile1 = new SaveFileDialog();
 
@@ -2508,12 +2541,23 @@ namespace METAbolt
         {
             if (e.Simulator != client.Network.CurrentSim) return;
 
+            if (InvokeRequired)
+            {
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Grid_OnCoarseLocationUpdate(sender, e);
+                }));
+
+                return;
+            }
+
             List<UUID> tremove = e.RemovedEntries;
 
             try
             {
-                BeginInvoke(new MethodInvoker(delegate()
-                   {
+                //BeginInvoke(new MethodInvoker(delegate()
+                   //{
                        foreach (UUID id in tremove)
                        {
                            foreach (ListViewItem litem in lvwRadar.Items)
@@ -2526,7 +2570,7 @@ namespace METAbolt
                                }
                            }
                        }
-                   }));
+                   //}));
             }
             catch { ; }
 
@@ -2559,6 +2603,16 @@ namespace METAbolt
 
         private void GetMap()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    GetMap();
+                }));
+
+                return;
+            }
+
             GridRegion region;
 
             if (_MapLayer == null || sim != client.Network.CurrentSim)

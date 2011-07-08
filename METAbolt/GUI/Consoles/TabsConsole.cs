@@ -223,6 +223,12 @@ namespace METAbolt
         //Separate thread
         private void Friends_OnFriendOffline(object sender, FriendInfoEventArgs e)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(() => Friends_OnFriendOffline(sender, e)));
+                return;
+            }
+
             if (e.Friend.Name != null)
             {
                 if (instance.Config.CurrentConfig.PlayFriendOffline)
@@ -244,6 +250,12 @@ namespace METAbolt
         //Separate thread
         private void Friends_OnFriendOnline(object sender, FriendInfoEventArgs e)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(() => Friends_OnFriendOnline(sender, e)));
+                return;
+            }
+
             if (e.Friend.Name != null && avname != string.Empty)
             {
 
@@ -334,10 +346,7 @@ namespace METAbolt
 
             TidyUp();
 
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                notifyIcon1.Text = "METAbolt - " + avname + " [Disconnected]";
-            }));
+            notifyIcon1.Text = "METAbolt - " + avname + " [Disconnected]";
 
             TrayNotifiy("METAbolt - " + avname, "Disconnected");
         }
@@ -384,6 +393,16 @@ namespace METAbolt
 
         public void DisplayOnChat(InstantMessageEventArgs e)
         {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    DisplayOnChat(e);
+                }));
+
+                return;
+            }
+
             BeginInvoke(new MethodInvoker(delegate()
             {
                 ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
@@ -398,6 +417,16 @@ namespace METAbolt
 
         public void DisplayChatScreen(string msg)
         {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    DisplayChatScreen(msg);
+                }));
+
+                return;
+            }
+
             BeginInvoke(new MethodInvoker(delegate()
             {
                 ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
@@ -1013,15 +1042,15 @@ namespace METAbolt
 
         private void InitializeMainTab()
         {
-            //if (InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        InitializeMainTab();
-            //    }));
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeMainTab();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             MainConsole mainConsole = new MainConsole(instance);
             mainConsole.Dock = DockStyle.Fill;
@@ -1039,15 +1068,15 @@ namespace METAbolt
 
         private void InitializeChatTab()
         {
-            //if (InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        InitializeChatTab();
-            //    }));
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeChatTab();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             chatConsole = new ChatConsole(instance);
             chatConsole.Dock = DockStyle.Fill;
@@ -1063,15 +1092,15 @@ namespace METAbolt
 
         private void InitializeFriendsTab()
         {
-            //if (InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        InitializeFriendsTab();
-            //    }));
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeFriendsTab();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             FriendsConsole friendsConsole = new FriendsConsole(instance);
             friendsConsole.Dock = DockStyle.Fill;
@@ -1086,15 +1115,15 @@ namespace METAbolt
 
         private void InitializeIMboxTab()
         {
-            //if (InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        InitializeIMboxTab();
-            //    }));
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeIMboxTab();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             IMbox imboxConsole = new IMbox(instance);
             imboxConsole.Dock = DockStyle.Fill;
@@ -1109,15 +1138,15 @@ namespace METAbolt
 
         private void InitializeGroupsTab()
         {
-            //if (InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        InitializeGroupsTab();
-            //    }));
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeGroupsTab();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             try
             {
@@ -1140,15 +1169,15 @@ namespace METAbolt
 
         private void InitializeSearchTab()
         {
-            //if (InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        InitializeSearchTab();
-            //    }));
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeSearchTab();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             SearchConsole searchConsole = new SearchConsole(instance);
             searchConsole.Dock = DockStyle.Fill;
@@ -1163,15 +1192,15 @@ namespace METAbolt
 
         private void InitializeInventoryTab()
         {
-            //if (InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        InitializeInventoryTab();
-            //    }));
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    InitializeInventoryTab();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             InventoryConsole invConsole = new InventoryConsole(instance);
 
@@ -1370,30 +1399,30 @@ namespace METAbolt
 
         public void DisplayOnIM(IMTabWindow imTab, InstantMessageEventArgs e)
         {
-            //if (this.InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        DisplayOnIM(imTab, e);
-            //    }));
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    DisplayOnIM(imTab, e);
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             imTab.TextManager.ProcessIM(e);
         }
 
         public void DisplayOnIMGroup(IMTabWindowGroup imTab, InstantMessageEventArgs e)
         {
-            //if (this.InvokeRequired)
-            //{
-            //    this.BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        DisplayOnIMGroup(imTab, e);
-            //    }));
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    DisplayOnIMGroup(imTab, e);
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
             imTab.TextManager.ProcessIM(e);
         }

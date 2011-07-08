@@ -171,10 +171,19 @@ namespace METAbolt
 
         private void Parcels_OnParcelProperties(object sender, ParcelPropertiesEventArgs e)
         {
-            BeginInvoke(new MethodInvoker(delegate()
+            if (e.Result != ParcelResult.Single) return;
+
+            if (InvokeRequired)
             {
-                UpdateLand(e.Parcel);
-            }));
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Parcels_OnParcelProperties(sender, e);
+                }));
+
+                return;
+            }
+
+            UpdateLand(e.Parcel);
         }
 
         private void UpdateLand(Parcel parceln)
@@ -380,16 +389,32 @@ namespace METAbolt
                 }
             }
 
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
-            }));
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
+            //}));
+
+            tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
         }
 
 
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs e)
         {
-            NameReceived(e.Names);
+            if (InvokeRequired)
+            {
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Avatars_OnAvatarNames(sender, e);
+                }));
+
+                return;
+            }
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                NameReceived(e.Names);
+            }));
         }
 
         //runs on the GUI thread
@@ -580,28 +605,40 @@ namespace METAbolt
             if (instance.Config.CurrentConfig.DisableGroupIMs || instance.Config.CurrentConfig.DisableGroupNotices)
                 return;
 
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                if (!this.Focused) FormFlash.Flash(this);
-            }));            
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    if (!this.Focused) FormFlash.Flash(this);
+            //}));
+
+            if (!this.Focused) FormFlash.Flash(this);
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
         {
             if (e.Status != LoginStatus.Success) return;
 
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
-                statusTimer.Enabled = true;
-                statusTimer.Start();
-                RefreshWindowTitle();
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
+            //    statusTimer.Enabled = true;
+            //    statusTimer.Start();
+            //    RefreshWindowTitle();
 
-                if (this.instance.Config.CurrentConfig.StartMinimised)
-                {
-                    this.WindowState = FormWindowState.Minimized;
-                }
-            }));
+            //    if (this.instance.Config.CurrentConfig.StartMinimised)
+            //    {
+            //        this.WindowState = FormWindowState.Minimized;
+            //    }
+            //}));
+
+            tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
+            statusTimer.Enabled = true;
+            statusTimer.Start();
+            RefreshWindowTitle();
+
+            if (this.instance.Config.CurrentConfig.StartMinimised)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
@@ -841,6 +878,16 @@ namespace METAbolt
 
         private void InitializeTabsConsole()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    InitializeTabsConsole();
+                });
+
+                return;
+            }
+
             tabsConsole = new TabsConsole(instance);
             tabsConsole.Dock = DockStyle.Fill;
             toolStripContainer1.ContentPanel.Controls.Add(tabsConsole);
@@ -848,6 +895,16 @@ namespace METAbolt
 
         private void InitializeDebugLogForm()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    InitializeDebugLogForm();
+                });
+
+                return;
+            }
+
             debugLogForm = new frmDebugLog(instance);
         }
 
