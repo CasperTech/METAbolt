@@ -21,7 +21,7 @@
     <ManifestCertificateThumbprint>ABFC93D872784BACE4312D9CDA515213E437B6BC</ManifestCertificateThumbprint>
     <ManifestKeyFile>LegolasLuke.p12</ManifestKeyFile>
     <GenerateManifests>false</GenerateManifests>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
@@ -50,7 +50,7 @@
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.9.45.%2a</ApplicationVersion>
+    <ApplicationVersion>0.9.44.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -59,17 +59,16 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Debug\METAbolt.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>1591</NoWarn>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -81,7 +80,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -118,6 +116,9 @@
     <Reference Include="CbtHook">
       <HintPath>..\Libs\CbtHook.dll</HintPath>
     </Reference>
+    <Reference Include="CSJ2K">
+      <HintPath>..\Libs\CSJ2K.dll</HintPath>
+    </Reference>
     <Reference Include="ExceptionReporter.WinForms">
       <HintPath>..\Libs\ExceptionReporter.WinForms.dll</HintPath>
     </Reference>
@@ -144,7 +145,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MD5library, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MD5library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\MD5library.dll</HintPath>
     </Reference>
@@ -170,12 +171,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse, Version=0.0.0.12597, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="OpenMetaverse, Version=0.0.0.8132, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse.Rendering.Meshmerizer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OpenMetaverse.Rendering.Meshmerizer">
       <HintPath>..\Libs\OpenMetaverse.Rendering.Meshmerizer.dll</HintPath>
     </Reference>
     <Reference Include="OpenMetaverse.StructuredData, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -229,6 +229,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -383,17 +384,17 @@
     <Compile Include="GUI\Consoles\Inventory\InventoryGestureConsole.Designer.cs">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Consoles\Preferences\PrefIMETAgiver.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\Consoles\Preferences\PrefIMETAgiver.Designer.cs">
-      <DependentUpon>PrefIMETAgiver.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Consoles\Preferences\Pref3D.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\Consoles\Preferences\Pref3D.Designer.cs">
       <DependentUpon>Pref3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Consoles\Preferences\PrefIMETAgiver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Consoles\Preferences\PrefIMETAgiver.Designer.cs">
+      <DependentUpon>PrefIMETAgiver.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Consoles\Preferences\PrefPlugin.cs">
       <SubType>UserControl</SubType>
@@ -418,6 +419,12 @@
     </Compile>
     <Compile Include="GUI\Consoles\Preferences\PrefChairAnn.designer.cs">
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Dialogs\AdLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialogs\AdLicense.Designer.cs">
+      <DependentUpon>AdLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Dialogs\frmGive.cs">
       <SubType>Form</SubType>
@@ -822,13 +829,11 @@
     <EmbeddedResource Include="GUI\Consoles\Inventory\InventoryGestureConsole.resx">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Consoles\Preferences\PrefIMETAgiver.resx">
-      <DependentUpon>PrefIMETAgiver.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\Pref3D.resx">
       <DependentUpon>Pref3D.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Consoles\Preferences\PrefIMETAgiver.resx">
+      <DependentUpon>PrefIMETAgiver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\PrefPlugin.resx">
       <DependentUpon>PrefPlugin.cs</DependentUpon>
@@ -843,6 +848,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\PrefChairAnn.resx">
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialogs\AdLicense.resx">
+      <DependentUpon>AdLicense.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmGive.resx">
@@ -1076,9 +1085,6 @@
     <None Include="License_METAbolt.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="OpenMetaverse.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="OpenTK.Compatibility.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1099,9 +1105,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Smileys.resx</DependentUpon>
     </Compile>
-    <None Include="ScintillaNet.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arrow-forward_16.png" />
@@ -1222,6 +1225,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="METAbolt Support.url">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="OpenMetaverse.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="openmetaverse_data\blush_alpha.tga">
@@ -1451,12 +1457,12 @@
     <Content Include="MuteList.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="openjpeg-dotnet-x86_64.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="openjpeg-dotnet.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="openjpeg-dotnet-x86_64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="openjpeg-dotnet.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="openmetaverse_data\avatar_lad.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1470,7 +1476,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PrimMesher.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1599,10 +1605,9 @@
     <None Include="Resources\source_i.png" />
     <None Include="Resources\texture.png" />
     <None Include="Resources\speaker.png" />
-    <None Include="Resources\turnleft.jpg" />
-    <None Include="Resources\turnright.png" />
-    <None Include="Resources\turnleft.png" />
     <None Include="Resources\top-hat.png" />
+    <None Include="Resources\turnleft.png" />
+    <None Include="Resources\turnright.png" />
     <Content Include="Resources\U-turn_icon.png" />
     <None Include="Resources\uncomment_i.png" />
     <None Include="Resources\undo_i.png" />
@@ -1613,7 +1618,7 @@
     <Content Include="Resources\wmp.png" />
     <None Include="Resources\world.png" />
     <None Include="SciLexer.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="TP_History.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1697,6 +1702,16 @@
       <TargetPath>
       </TargetPath>
       <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="OpenMetaverse">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>

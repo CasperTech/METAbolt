@@ -42,7 +42,7 @@ namespace METAbolt
         private string targetName;
         private UUID targetUUID;
         private UUID isession;
-        //private FriendsConsole fconsole;
+        private FriendsConsole fconsole;
 
         public FRTabWindow(METAboltInstance instance, InstantMessageEventArgs e)
         {

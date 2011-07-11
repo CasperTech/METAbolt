@@ -55,7 +55,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenMetaverse, Version=0.0.0.20400, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="OpenMetaverse, Version=0.0.0.8132, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.dll</HintPath>
     </Reference>

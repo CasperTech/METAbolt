@@ -129,7 +129,7 @@ namespace METAbolt
 
                     if (sim != string.Empty)
                     {
-                        netcom.Teleport(sim, new Vector3(x, y, z));
+                        client.Self.Teleport(sim, new Vector3(x, y, z));
                     }
                     else
                     {

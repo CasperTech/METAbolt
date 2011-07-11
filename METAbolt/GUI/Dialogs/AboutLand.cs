@@ -440,20 +440,12 @@ namespace METAbolt
         // separate thread
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs names)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Avatars_OnAvatarNames(sender, names);
-                }));
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    OwnerReceived(names.Names);
+            //}));
 
-                return;
-            }
-
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                OwnerReceived(names.Names);
-            }));
+            OwnerReceived(names.Names);
         }
 
         //runs on the GUI thread

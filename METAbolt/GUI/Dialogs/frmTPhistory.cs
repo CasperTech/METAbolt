@@ -118,7 +118,7 @@ namespace METAbolt
 
                 //(new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
 
-                netcom.Teleport(sim.Trim(), new Vector3((float)x, (float)y, (float)z));
+                client.Self.Teleport(sim.Trim(), new Vector3((float)x, (float)y, (float)z));
             }
         }
 

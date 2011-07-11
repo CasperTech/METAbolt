@@ -121,7 +121,8 @@ namespace METAbolt
         private void AddNetcomEvents()
         {
             netcom.Teleporting += new EventHandler<TeleportingEventArgs>(netcom_Teleporting);
-            netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            //netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
             netcom.ClientDisconnected += new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
         }
 
@@ -134,7 +135,7 @@ namespace METAbolt
         {
             client.Grid.GridRegion -= new EventHandler<GridRegionEventArgs>(Grid_OnGridRegion);
             netcom.Teleporting -= new EventHandler<TeleportingEventArgs>(netcom_Teleporting);
-            netcom.TeleportStatusChanged -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
             netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
         }
 
@@ -299,15 +300,17 @@ namespace METAbolt
 
             pnlTeleporting.Visible = true;
 
-            if (selregion.RegionHandle == 0 && txtRegion.Text != string.Empty)
-            {
-                //RefreshControls();
-                netcom.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX.Value, (float)nudY.Value, (float)nudZ.Value));
-            }
-            else
-            {
-                client.Self.RequestTeleport(selregion.RegionHandle, new Vector3((float)nudX.Value, (float)nudY.Value, (float)nudZ.Value));
-            }
+            //if (selregion.RegionHandle == 0 && txtRegion.Text != string.Empty)
+            //{
+            //    //RefreshControls();
+            //    netcom.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX.Value, (float)nudY.Value, (float)nudZ.Value));
+            //}
+            //else
+            //{
+            //    client.Self.RequestTeleport(selregion.RegionHandle, new Vector3((float)nudX.Value, (float)nudY.Value, (float)nudZ.Value));
+            //}
+
+            client.Self.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX.Value, (float)nudY.Value, (float)nudZ.Value));
         }
 
         private void frmTeleport_FormClosing(object sender, FormClosingEventArgs e)

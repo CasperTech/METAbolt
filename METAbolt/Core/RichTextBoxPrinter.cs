@@ -178,7 +178,7 @@ namespace METAbolt
             {
                 if (text == null) return;
 
-                rtb.SelectionColor = Color.Black;
+                rtb.SelectionColor = Color.DarkGray;
                 //rtb.SelectionCharOffset = 6;
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 2, rtb.SelectionFont.Style);
                 rtb.SelectionCharOffset = 10;

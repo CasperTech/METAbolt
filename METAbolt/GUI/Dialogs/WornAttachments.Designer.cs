@@ -31,7 +31,6 @@
             this.btnTouch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lbxPrims = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.lbxPrimGroup = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.TextBox();
@@ -86,21 +85,6 @@
             this.lbxPrims.Visible = false;
             this.lbxPrims.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxPrims_DrawItem);
             this.lbxPrims.SelectedIndexChanged += new System.EventHandler(this.lbxPrims_SelectedIndexChanged);
-            // 
-            // button1
-            // 
-            this.button1.AccessibleDescription = "Detach selected object";
-            this.button1.AccessibleName = "Detach button";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button1.Enabled = false;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(361, 477);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "&Detach";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lbxPrimGroup
             // 
@@ -197,7 +181,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbxPrimGroup);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lbxPrims);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnTouch);
@@ -211,6 +194,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Worn Attachments";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WornAttachments_FormClosing);
             this.Load += new System.EventHandler(this.WornAssets_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -222,7 +206,6 @@
         private System.Windows.Forms.Button btnTouch;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ListBox lbxPrims;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox lbxPrimGroup;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox label1;

@@ -34,6 +34,7 @@ using System.Text;
 using System.Windows.Forms;
 using SLNetworkComm;
 using OpenMetaverse;
+using System.Threading;
 
 namespace METAbolt
 {
@@ -49,31 +50,127 @@ namespace METAbolt
         {
             InitializeComponent();
 
+            Disposed += new EventHandler(WornAttachments_Disposed);
+
             this.instance = instance;
             client = this.instance.Client;
             this.av = av;
 
-            //if (av.ID == client.Self.AgentID)
-            //{
-            //    button1.Visible = true;
-            //}
-            //else
-            //{
-            //    button1.Visible = false;
-            //}
+            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+        }
+
+        private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
+        {
+            lock (listItems)
+            {
+                listItems.Clear();
+            }
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                lbxPrims.Items.Clear();
+                lbxPrimGroup.Items.Clear();  
+            }));
+        }
+
+        private void Self_TeleportProgress(object sender, TeleportEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case TeleportStatus.Start:
+                case TeleportStatus.Progress:
+                case TeleportStatus.Failed:
+                case TeleportStatus.Cancelled:
+                    return;
+
+                case TeleportStatus.Finished:
+                    ThreadPool.QueueUserWorkItem(delegate(object sync)
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
+                        Thread.Sleep(5000);
+                        ReLoadItems();
+                        //GetAttachments();
+                        Cursor.Current = Cursors.Default;
+                    });
+
+                    return;
+            }
+        }
+
+        private void ReLoadItems()
+        {
+            Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+            {
+                return fa.ID == av.ID;
+            }
+            );
+
+            if (sav != null)
+            {
+                List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
+                        new Predicate<Primitive>(delegate(Primitive prim)
+                        {
+                            try
+                            {
+                                return (prim.ParentID == sav.LocalID);
+                            }
+                            catch { return false; }
+                        }));
+
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    lbxPrims.BeginUpdate();
+
+                    foreach (Primitive prim in prims)
+                    {
+                        try
+                        {
+                            AttachmentsListItem item = new AttachmentsListItem(prim, client, lbxPrims);
+
+                            if (!listItems.ContainsKey(prim.LocalID))
+                            {
+                                listItems.Add(prim.LocalID, item);
+
+                                item.PropertiesReceived += new EventHandler(item_PropertiesReceived);
+                                item.RequestProperties();
+                            }
+                        }
+                        catch (Exception exc)
+                        {
+                            string exp = exc.Message;
+                        }
+                    }
+
+                    lbxPrims.EndUpdate();
+                    lbxPrims.Visible = true;
+                }));
+            }
+            else
+            {
+                this.Close();
+                this.Dispose(); 
+            }
         }
 
         private void WornAssets_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
             
-            lbxPrims.BeginUpdate();
             GetAttachments();
         }
 
         private void GetAttachments()
         {
-            lbxPrims.Items.Clear();
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    GetAttachments();
+                }));
+
+                return;
+            }
 
             List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
                 new Predicate<Primitive>(delegate(Primitive prim)
@@ -84,6 +181,9 @@ namespace METAbolt
                     }
                     catch { return false; }
                 }));
+
+            lbxPrims.BeginUpdate();
+            lbxPrims.Items.Clear();
 
             foreach (Primitive prim in prims)
             {
@@ -192,15 +292,21 @@ namespace METAbolt
             {
                 AttachmentsListItem item = (AttachmentsListItem)sender;
 
-                lbxPrims.Items.Add(item);
+                if (listItems.ContainsKey(item.Prim.LocalID))
+                {
+                    lbxPrims.BeginUpdate();
+                    lbxPrims.Items.Add(item);
+                    lbxPrims.EndUpdate();
 
-                label1.Text = "Ttl: " + lbxPrims.Items.Count.ToString() + " attachments";
+                    label1.Text = "Ttl: " + lbxPrims.Items.Count.ToString() + " attachments";
+                }
             })); 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
+            this.Dispose();
         }
 
         private void btnTouch_Click(object sender, EventArgs e)
@@ -238,16 +344,6 @@ namespace METAbolt
             {
                 Logger.Log("Worn Attachments: " + ex.Message, Helpers.LogLevel.Error);   
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //int iDx = lbxPrims.SelectedIndex;
-            //AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
-
-            //if (item == null) return;
-            
-            //client.Appearance.Detach(item.Prim.ID);
         }
 
         private void lbxPrimGroup_DrawItem(object sender, DrawItemEventArgs e)
@@ -332,7 +428,6 @@ namespace METAbolt
 
             if (iDx < 0)
             {
-                //button1.Enabled = false;
                 btnTouch.Enabled = false;
                 button2.Enabled = false;
                 return;
@@ -352,9 +447,6 @@ namespace METAbolt
             {
                 btnTouch.Enabled = false;
             }
-
-            //if (button1.Visible)
-            //    button1.Enabled = true;
 
             List<Primitive> group = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
                 delegate(Primitive prim)
@@ -403,7 +495,6 @@ namespace METAbolt
 
             if (iDx < 0)
             {
-                //button1.Enabled = false;
                 btnTouch.Enabled = false;
                 button2.Enabled = false;
                 return;
@@ -438,7 +529,26 @@ namespace METAbolt
             AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
 
             if (item == null) return;
-            (new META3D(instance, item.Prim.LocalID)).Show();
+            (new META3D(instance, item.Prim.LocalID, item.Prim)).Show();
+        }
+
+        private void WornAttachments_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            //client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+        }
+
+        void WornAttachments_Disposed(object sender, EventArgs e)
+        {
+            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+            lock (listItems)
+            {
+                listItems.Clear();
+            }
+
+            GC.Collect(); 
         }
     }
 }

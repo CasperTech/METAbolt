@@ -221,9 +221,17 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
-                listItems.Clear();
-                ItemsProps.Clear();
-                AddAllObjects();
+                //this.Close();
+
+                //listItems.Clear();
+                //ItemsProps.Clear();
+                //childItems.Clear();
+                //objs.Clear();
+                //avatars.Clear();
+
+                //lbxPrims.Items.Clear();
+
+                //AddAllObjects();
             }));
         }
 
@@ -232,6 +240,9 @@ namespace METAbolt
             //this.Close();
             listItems.Clear();
             ItemsProps.Clear();
+            childItems.Clear();
+            objs.Clear();
+            avatars.Clear();  
         }
 
         private void lbxPrims_DrawItem(object sender, DrawItemEventArgs e)
@@ -312,6 +323,8 @@ namespace METAbolt
                     AddAllObjects();
                 }));
             }
+
+            Cursor.Current = Cursors.WaitCursor;
 
             pB1.Visible = true;
             bool inmem = false;
@@ -404,6 +417,8 @@ namespace METAbolt
                 //string exp = exc.Message;
                 reporter.Show(ex);
             }
+
+            Cursor.Current = Cursors.Default;
         }
 
         private void DisplayObjects()
@@ -1073,63 +1088,75 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnNewPrim(object sender, PrimEventArgs e)
         {
-            if (e.Prim.ParentID != 0)
+            try
             {
-                lock (childItems)
+                if (e.Prim.ParentID != 0)
                 {
-                    ObjectsListItem citem = new ObjectsListItem(e.Prim, client, lbxChildren);
-
-                    if (!childItems.ContainsKey(e.Prim.LocalID))
+                    lock (childItems)
                     {
-                        try
-                        {
-                            childItems.Add(e.Prim.LocalID, citem);
-                        }
-                        catch (Exception exc)
-                        {
-                            string exp = exc.Message;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                lock (listItems)
-                {
-                    if (listItems.ContainsKey(e.Prim.LocalID)) return;
+                        ObjectsListItem citem = new ObjectsListItem(e.Prim, client, lbxChildren);
 
-                    try
-                    {
-                        BeginInvoke(new MethodInvoker(delegate()
+                        if (!childItems.ContainsKey(e.Prim.LocalID))
                         {
-                            ObjectsListItem item = new ObjectsListItem(e.Prim, client, lbxPrims);
-
-                            if (listItems.ContainsKey(e.Prim.LocalID)) return;
-
                             try
                             {
-                                listItems.Add(e.Prim.LocalID, item);
-
-                                BeginInvoke(new MethodInvoker(delegate()
-                                {
-                                    pB1.Maximum += 1;
-                                }));                                
-
-                                item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
-                                item.RequestProperties();
+                                childItems.Add(e.Prim.LocalID, citem);
                             }
                             catch (Exception exc)
                             {
                                 string exp = exc.Message;
                             }
-                        }));
+                        }
                     }
-                    catch
+                }
+                else
+                {
+                    lock (listItems)
                     {
-                        ;
+                        try
+                        {
+                            if (listItems.ContainsKey(e.Prim.LocalID)) return;
+                        }
+                        catch { ; }
+
+                        try
+                        {
+                            BeginInvoke(new MethodInvoker(delegate()
+                            {
+                                ObjectsListItem item = new ObjectsListItem(e.Prim, client, lbxPrims);
+
+                                try
+                                {
+                                    if (listItems.ContainsKey(e.Prim.LocalID)) return;
+                                }
+                                catch { ; }
+
+                                try
+                                {
+                                    listItems.Add(e.Prim.LocalID, item);
+
+                                    BeginInvoke(new MethodInvoker(delegate()
+                                    {
+                                        pB1.Maximum += 1;
+                                    }));
+
+                                    item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
+                                    item.RequestProperties();
+                                }
+                                catch (Exception exc)
+                                {
+                                    string exp = exc.Message;
+                                }
+                            }));
+                        }
+                        catch
+                        {
+                            ;
+                        }
                     }
                 }
             }
+            catch { ; }
         }
 
         //Separate thread

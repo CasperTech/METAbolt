@@ -34,7 +34,6 @@ using OpenMetaverse;
 using System.Media;
 using ExceptionReporting;
 using System.Threading;
-using System.Globalization;
 
 namespace METAbolt
 {
@@ -114,35 +113,42 @@ namespace METAbolt
 
         private void ApplyConfig(Config config)
         {
-            if (config.InterfaceStyle == 0) //System
-                tstTabs.RenderMode = ToolStripRenderMode.System;
-            else if (config.InterfaceStyle == 1) //Office 2003
-                tstTabs.RenderMode = ToolStripRenderMode.ManagerRenderMode;
-
-            stopnotify = config.DisableNotifications;
-
-            if (config.DisableTrayIcon)
+            try
             {
-                if (stopnotify)
+                if (config.InterfaceStyle == 0) //System
+                    tstTabs.RenderMode = ToolStripRenderMode.System;
+                else if (config.InterfaceStyle == 1) //Office 2003
+                    tstTabs.RenderMode = ToolStripRenderMode.ManagerRenderMode;
+
+                stopnotify = config.DisableNotifications;
+
+                if (config.DisableTrayIcon)
                 {
-                    notifyIcon1.Visible = false;
-                    config.HideMeta = false;
-                }
-                else
-                {
-                    if (!config.HideMeta)
+                    if (stopnotify)
                     {
                         notifyIcon1.Visible = false;
+                        config.HideMeta = false;
                     }
                     else
                     {
-                        notifyIcon1.Visible = true;
+                        if (!config.HideMeta)
+                        {
+                            notifyIcon1.Visible = false;
+                        }
+                        else
+                        {
+                            notifyIcon1.Visible = true;
+                        }
                     }
                 }
+                else
+                {
+                    notifyIcon1.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                notifyIcon1.Visible = true;
+                reporter.Show(ex);
             }
         }
 
@@ -192,32 +198,39 @@ namespace METAbolt
 
         private void Self_MoneyBalanceReply(object sender, MoneyBalanceReplyEventArgs e)
         {
-            if (floading)
+            try
             {
+                if (floading)
+                {
+                    tmoneybalance = e.Balance;
+                    floading = false;
+                    return;
+                }
+
+                if (instance.Config.CurrentConfig.PlayPaymentReceived)
+                {
+                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.MoneyBeep);
+                    simpleSound.Play();
+                    simpleSound.Dispose();
+                }
+
+                //tabs["chat"].Highlight();
+
+                int bal = e.Balance - tmoneybalance;
+
+                if (bal > 0)
+                {
+                    string ttl = "METAbolt Alert";
+                    string body = "You have received a payment of L$" + bal.ToString();
+                    TrayNotifiy(ttl, body, false);
+                }
+
                 tmoneybalance = e.Balance;
-                floading = false;
-                return;
             }
-
-            if (instance.Config.CurrentConfig.PlayPaymentReceived)
+            catch (Exception ex)
             {
-                SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.MoneyBeep);
-                simpleSound.Play();
-                simpleSound.Dispose();
+                reporter.Show(ex);
             }
-
-            //tabs["chat"].Highlight();
-
-            int bal = e.Balance - tmoneybalance;
-
-            if (bal > 0)
-            {
-                string ttl = "METAbolt Alert";
-                string body = "You have received a payment of L$" + bal.ToString();
-                TrayNotifiy(ttl, body, false);
-            }
-
-            tmoneybalance = e.Balance;
         }
 
         //Separate thread
@@ -229,21 +242,28 @@ namespace METAbolt
                 return;
             }
 
-            if (e.Friend.Name != null)
+            try
             {
-                if (instance.Config.CurrentConfig.PlayFriendOffline)
+                if (e.Friend.Name != null)
                 {
-                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_Off);
-                    simpleSound.Play();
-                    simpleSound.Dispose();
-                }
+                    if (instance.Config.CurrentConfig.PlayFriendOffline)
+                    {
+                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_Off);
+                        simpleSound.Play();
+                        simpleSound.Dispose();
+                    }
 
-                if (!instance.Config.CurrentConfig.DisableFriendsNotifications)
-                {
-                    string ttl = "METAbolt Alert";
-                    string body = e.Friend.Name + " is offline";
-                    TrayNotifiy(ttl, body, false);
+                    if (!instance.Config.CurrentConfig.DisableFriendsNotifications)
+                    {
+                        string ttl = "METAbolt Alert";
+                        string body = e.Friend.Name + " is offline";
+                        TrayNotifiy(ttl, body, false);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
             }
         }
 
@@ -256,32 +276,46 @@ namespace METAbolt
                 return;
             }
 
-            if (e.Friend.Name != null && avname != string.Empty)
+            try
             {
-
-                if (instance.Config.CurrentConfig.PlayFriendOnline)
+                if (e.Friend.Name != null && avname != string.Empty)
                 {
-                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_On);
-                    simpleSound.Play();
-                    simpleSound.Dispose();
-                }
 
-                if (!instance.Config.CurrentConfig.DisableFriendsNotifications)
-                {
-                    string ttl = "METAbolt Alert";
-                    string body = e.Friend.Name + " is online";
-                    TrayNotifiy(ttl, body, false);
+                    if (instance.Config.CurrentConfig.PlayFriendOnline)
+                    {
+                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_On);
+                        simpleSound.Play();
+                        simpleSound.Dispose();
+                    }
+
+                    if (!instance.Config.CurrentConfig.DisableFriendsNotifications)
+                    {
+                        string ttl = "METAbolt Alert";
+                        string body = e.Friend.Name + " is online";
+                        TrayNotifiy(ttl, body, false);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
             }
         }
 
         private void GetGroupsName()
         {
-            this.instance.State.GroupStore.Clear();
-
-            foreach (Group group in this.instance.State.Groups.Values)
+            try
             {
-                this.instance.State.GroupStore.Add(group.ID, group.Name);
+                this.instance.State.GroupStore.Clear();
+
+                foreach (Group group in this.instance.State.Groups.Values)
+                {
+                    this.instance.State.GroupStore.Add(group.ID, group.Name);
+                }
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
             }
         }
 
@@ -301,35 +335,17 @@ namespace METAbolt
                     InitializeIMboxTab();
 
                     avname = netcom.LoginOptions.FullName;
+                    notifyIcon1.Text = "METAbolt [" + avname + "]";
 
-                    BeginInvoke(new MethodInvoker(delegate()
-                    {
-                        notifyIcon1.Text = "METAbolt [" + avname + "]";
-
-                        if (selectedTab.Name == "main")
-                            tabs["chat"].Select();
-                    }));                    
+                    if (selectedTab.Name == "main")
+                        tabs["chat"].Select();
 
                     client.Self.RetrieveInstantMessages();
-
-                    //CultureInfo cult = CultureInfo.CurrentCulture;
-                    //string land = cult.TwoLetterISOLanguageName;
-
-                    //AgentManager avm = new AgentManager(client);
-
-                    //try
-                    //{
-                    //    avm.UpdateAgentLanguage(land, true);
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);    
-                    //}
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log("login (tabs console): " + ex.Message, Helpers.LogLevel.Error);
+                reporter.Show(ex);
             }
         }
 
@@ -347,7 +363,6 @@ namespace METAbolt
             TidyUp();
 
             notifyIcon1.Text = "METAbolt - " + avname + " [Disconnected]";
-
             TrayNotifiy("METAbolt - " + avname, "Disconnected");
         }
 
@@ -380,15 +395,22 @@ namespace METAbolt
 
         private void netcom_ChatReceived(object sender, ChatEventArgs e)
         {
-            if (string.IsNullOrEmpty(e.Message)) return;
-
-            // Avoid form flash if RLV command
-            if (e.SourceType == ChatSourceType.Object)
+            try
             {
-                if (e.Message.StartsWith("@")) return;
-            }
+                if (string.IsNullOrEmpty(e.Message)) return;
 
-            tabs["chat"].Highlight();
+                // Avoid form flash if RLV command
+                if (e.SourceType == ChatSourceType.Object)
+                {
+                    if (e.Message.StartsWith("@")) return;
+                }
+
+                tabs["chat"].Highlight();
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         public void DisplayOnChat(InstantMessageEventArgs e)
@@ -403,16 +425,23 @@ namespace METAbolt
                 return;
             }
 
-            BeginInvoke(new MethodInvoker(delegate()
+            try
             {
-                ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
-                           e.IM.FromAgentName + " (" + e.IM.FromAgentID.ToString() + "): " + e.IM.Message,
-                           ChatBufferTextStyle.ObjectChat,
-                           null,
-                           e.IM.IMSessionID); //added by GM on 3-JUL-2009 - the FromAgentID
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
+                               e.IM.FromAgentName + " (" + e.IM.FromAgentID.ToString() + "): " + e.IM.Message,
+                               ChatBufferTextStyle.ObjectChat,
+                               null,
+                               e.IM.IMSessionID); //added by GM on 3-JUL-2009 - the FromAgentID
 
-                chatConsole.ChatManager.ProcessBufferItem(ready, false);
-            }));
+                    chatConsole.ChatManager.ProcessBufferItem(ready, false);
+                }));
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         public void DisplayChatScreen(string msg)
@@ -427,16 +456,23 @@ namespace METAbolt
                 return;
             }
 
-            BeginInvoke(new MethodInvoker(delegate()
+            try
             {
-                ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
-                           msg,
-                           ChatBufferTextStyle.Alert,
-                           null,
-                           UUID.Random()); //added by GM on 3-JUL-2009 - the FromAgentID
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
+                               msg,
+                               ChatBufferTextStyle.Alert,
+                               null,
+                               UUID.Random()); //added by GM on 3-JUL-2009 - the FromAgentID
 
-                chatConsole.ChatManager.ProcessBufferItem(ready, false);
-            }));
+                    chatConsole.ChatManager.ProcessBufferItem(ready, false);
+                }));
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void netcom_InstantMessageReceived(object sender, InstantMessageEventArgs e)
@@ -444,11 +480,13 @@ namespace METAbolt
             if (instance.IsAvatarMuted(e.IM.FromAgentID))
                 return;
 
-            switch (e.IM.Dialog)
+            try
             {
-                case InstantMessageDialog.MessageFromAgent:
-                    //if (e.IM.FromAgentID != client.Self.AgentID)
-                    //{
+                switch (e.IM.Dialog)
+                {
+                    case InstantMessageDialog.MessageFromAgent:
+                        //if (e.IM.FromAgentID != client.Self.AgentID)
+                        //{
                         if (e.IM.FromAgentName.ToLower() == "second life")
                         {
                             DisplayOnChat(e);
@@ -456,169 +494,168 @@ namespace METAbolt
                         }
 
                         HandleIM(e);
-                    //}
-                    
-                    break;
-                case InstantMessageDialog.SessionSend:
-                //case InstantMessageDialog.SessionGroupStart:
-                    HandleIM(e);
-                    break;
-                case InstantMessageDialog.MessageFromObject:
-                    if (instance.State.IsBusy) return;
-                    DisplayOnChat(e);
-                    
-                    break;
+                        //}
 
-                case InstantMessageDialog.StartTyping:
-                    if (TabExists(e.IM.FromAgentName))
-                    {
-                        // this is making the window flash and people don't like it
-                        // so I am taking it out. LL
-                        //METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
-                        //if (!tab.Highlighted) tab.PartialHighlight();
-                    }
+                        break;
+                    case InstantMessageDialog.SessionSend:
+                        //case InstantMessageDialog.SessionGroupStart:
+                        HandleIM(e);
+                        break;
+                    case InstantMessageDialog.MessageFromObject:
+                        if (instance.State.IsBusy) return;
+                        DisplayOnChat(e);
 
-                    break;
+                        break;
 
-                case InstantMessageDialog.StopTyping:
-                    if (TabExists(e.IM.FromAgentName))
-                    {
-                        // this is making the window flash and people don't like it
-                        // so I am taking it out. LL
-                        //METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
-                        //if (!tab.Highlighted) tab.Unhighlight();
-                    }
+                    case InstantMessageDialog.StartTyping:
+                        if (TabExists(e.IM.FromAgentName))
+                        {
+                            // this is making the window flash and people don't like it
+                            // so I am taking it out. LL
+                            //METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
+                            //if (!tab.Highlighted) tab.PartialHighlight();
+                        }
 
-                    break;
+                        break;
 
-                case InstantMessageDialog.RequestTeleport:
-                    HandleTP(e);
-                    break;
+                    case InstantMessageDialog.StopTyping:
+                        if (TabExists(e.IM.FromAgentName))
+                        {
+                            // this is making the window flash and people don't like it
+                            // so I am taking it out. LL
+                            //METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
+                            //if (!tab.Highlighted) tab.Unhighlight();
+                        }
 
-                case InstantMessageDialog.FriendshipOffered:
-                    HandleFriendship(e);
-                    break;
+                        break;
 
-                case InstantMessageDialog.ConsoleAndChatHistory:
-                    //HandleHistory(e);
-                    break;
+                    case InstantMessageDialog.RequestTeleport:
+                        HandleTP(e);
+                        break;
 
-                case InstantMessageDialog.TaskInventoryOffered:
-                case InstantMessageDialog.InventoryOffered:
-                    HandleInventory(e);
-                    break;
+                    case InstantMessageDialog.FriendshipOffered:
+                        HandleFriendship(e);
+                        break;
 
-                case InstantMessageDialog.InventoryAccepted:
-                    HandleInventoryReplyAccepted(e);
-                    break;
+                    case InstantMessageDialog.ConsoleAndChatHistory:
+                        //HandleHistory(e);
+                        break;
 
-                case InstantMessageDialog.InventoryDeclined:
-                    HandleInventoryReplyDeclined(e);
-                    break;
+                    case InstantMessageDialog.TaskInventoryOffered:
+                    case InstantMessageDialog.InventoryOffered:
+                        HandleInventory(e);
+                        break;
 
-                case InstantMessageDialog.GroupInvitation:
-                    HandleGroupInvite(e);
-                    break;
+                    case InstantMessageDialog.InventoryAccepted:
+                        HandleInventoryReplyAccepted(e);
+                        break;
 
-                case InstantMessageDialog.FriendshipAccepted:
-                    HandleFriendshipAccepted(e);
-                    break;
+                    case InstantMessageDialog.InventoryDeclined:
+                        HandleInventoryReplyDeclined(e);
+                        break;
 
-                case InstantMessageDialog.FriendshipDeclined:
-                    HandleFriendshipDeclined(e);
-                    break;
+                    case InstantMessageDialog.GroupInvitation:
+                        HandleGroupInvite(e);
+                        break;
 
-                case InstantMessageDialog.GroupNotice:
-                    HandleGroupNoticeReceived(e);
-                    break;
+                    case InstantMessageDialog.FriendshipAccepted:
+                        HandleFriendshipAccepted(e);
+                        break;
 
-                case InstantMessageDialog.GroupInvitationAccept:
-                    HandleGroupInvitationAccept(e);
-                    break;
+                    case InstantMessageDialog.FriendshipDeclined:
+                        HandleFriendshipDeclined(e);
+                        break;
 
-                case InstantMessageDialog.GroupInvitationDecline:
-                    HandleGroupInvitationDecline(e);
-                    break;
+                    case InstantMessageDialog.GroupNotice:
+                        HandleGroupNoticeReceived(e);
+                        break;
 
-                case InstantMessageDialog.MessageBox:
-                    HandleMessageBox(e);
-                    break;
+                    case InstantMessageDialog.GroupInvitationAccept:
+                        HandleGroupInvitationAccept(e);
+                        break;
+
+                    case InstantMessageDialog.GroupInvitationDecline:
+                        HandleGroupInvitationDecline(e);
+                        break;
+
+                    case InstantMessageDialog.MessageBox:
+                        HandleMessageBox(e);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
             }
         }
 
         private void TrayNotifiy(string title, string msg)
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        TrayNotifiy(title, msg);
-            //    }));
-
-            //    return;
-            //}
-
-            if (instance.State.IsBusy) return;
-
-            notifyIcon1.Text = UpdateIconTitle();
-
-            if (!stopnotify)
+            try
             {
-                notifyIcon1.BalloonTipText = msg;
-                notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
-                notifyIcon1.ShowBalloonTip(2000);
+                if (instance.State.IsBusy) return;
 
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                    chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
-                }));
+                notifyIcon1.Text = UpdateIconTitle();
 
-                if (this.instance.Config.CurrentConfig.PlaySound)
+                if (!stopnotify)
                 {
-                    //System.Media.SystemSounds..Play();
-                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.notify);
-                    simpleSound.Play();
-                    simpleSound.Dispose();
+                    notifyIcon1.BalloonTipText = msg;
+                    notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
+                    notifyIcon1.ShowBalloonTip(2000);
+
+                    BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                        chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
+                    }));
+
+                    if (this.instance.Config.CurrentConfig.PlaySound)
+                    {
+                        //System.Media.SystemSounds..Play();
+                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.notify);
+                        simpleSound.Play();
+                        simpleSound.Dispose();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
             }
         }
 
         private void TrayNotifiy(string title, string msg, bool makesound)
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        TrayNotifiy(title, msg, makesound);
-            //    }));
-
-            //    return;
-            //}
-
-            if (instance.State.IsBusy) return;
-
-            notifyIcon1.Text = UpdateIconTitle();
-
-            if (!stopnotify)
+            try
             {
-                notifyIcon1.BalloonTipText = msg;
-                notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
-                notifyIcon1.ShowBalloonTip(2000);
+                if (instance.State.IsBusy) return;
 
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                    chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
-                }));
+                notifyIcon1.Text = UpdateIconTitle();
 
-                if (this.instance.Config.CurrentConfig.PlaySound && makesound)
+                if (!stopnotify)
                 {
-                    //System.Media.SystemSounds..Play();
-                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.notify);
-                    simpleSound.Play();
-                    simpleSound.Dispose();
+                    notifyIcon1.BalloonTipText = msg;
+                    notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
+                    notifyIcon1.ShowBalloonTip(2000);
+
+                    BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                        chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
+                    }));
+
+                    if (this.instance.Config.CurrentConfig.PlaySound && makesound)
+                    {
+                        //System.Media.SystemSounds..Play();
+                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.notify);
+                        simpleSound.Play();
+                        simpleSound.Dispose();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
             }
         }
 
@@ -720,161 +757,163 @@ namespace METAbolt
 
         private void HandleIM(InstantMessageEventArgs e)
         {
-            if (e.IM.Dialog == InstantMessageDialog.SessionSend)
+            try
             {
+                if (e.IM.Dialog == InstantMessageDialog.SessionSend)
+                {
+                    if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+                    {
+                        // Check to see if group IMs are disabled
+                        if (instance.Config.CurrentConfig.DisableGroupIMs)
+                            return;
+
+                        if (instance.State.IsBusy) return;
+
+                        if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
+                        {
+                            METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower()];
+                            if (!tab.Selected) tab.Highlight();
+                            return;
+                        }
+                        else
+                        {
+                            IMTabWindowGroup imTab = AddIMTabGroup(e);
+                            //tabs[imTab.TargetName.ToLower()].Highlight();
+                            if (tabs[imTab.TargetName.ToLower()].Selected) tabs[imTab.TargetName.ToLower()].Highlight();
+
+                            return;
+                        }
+                    }
+
+                    return;
+                }
+
+                if (tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
+                {
+                    if (!tabs[e.IM.FromAgentName.ToLower()].Selected)
+                    {
+                        tabs["imbox"].PartialHighlight();
+                    }
+                }
+                else
+                {
+                    tabs["imbox"].PartialHighlight();
+                }
+
+                if (this.instance.MainForm.WindowState == FormWindowState.Minimized)
+                {
+                    if (!stopnotify)
+                    {
+                        string ttl = string.Empty;
+
+                        avname = netcom.LoginOptions.FullName;
+
+                        if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+                        {
+                            ttl = "Group IM notification [" + avname + "]";
+                        }
+                        else
+                        {
+                            ttl = "IM notification [" + avname + "]";
+                        }
+
+                        string imsg = e.IM.Message;
+
+                        if (imsg.Length > 125)
+                        {
+                            imsg = imsg.Substring(0, 125) + "...";
+                        }
+
+                        string body = e.IM.FromAgentName + ": " + imsg;
+
+                        Notification notifForm = new Notification();
+                        notifForm.Message = body;
+                        notifForm.Title = ttl;
+                        notifForm.Show();
+                    }
+                }
+
                 if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
                 {
                     // Check to see if group IMs are disabled
                     if (instance.Config.CurrentConfig.DisableGroupIMs)
+                    {
+                        Group grp = this.instance.State.Groups[e.IM.IMSessionID];
+                        client.Self.RequestLeaveGroupChat(grp.ID);
                         return;
+                    }
 
-                    if (instance.State.IsBusy) return;
+                    if (instance.State.IsBusy)
+                    {
+                        Group grp = this.instance.State.Groups[e.IM.IMSessionID];
+                        client.Self.RequestLeaveGroupChat(grp.ID);
+                        return;
+                    }
 
                     if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
                     {
                         METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower()];
                         if (!tab.Selected) tab.Highlight();
+                        //Logger.Log("Stored|ExistingGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                         return;
                     }
                     else
                     {
+                        //create a new tab
                         IMTabWindowGroup imTab = AddIMTabGroup(e);
-                        //tabs[imTab.TargetName.ToLower()].Highlight();
-                        if (tabs[imTab.TargetName.ToLower()].Selected) tabs[imTab.TargetName.ToLower()].Highlight();
+                        tabs[imTab.TargetName.ToLower()].Highlight();
 
+                        if (instance.Config.CurrentConfig.PlayGroupIMreceived)
+                        {
+                            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Group_Im_received);
+                            simpleSound.Play();
+                            simpleSound.Dispose();
+                        }
+
+                        //Logger.Log("Stored|NewGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                         return;
                     }
                 }
-
-                return;
-            }
-
-            if (instance.IsGiveItem(e.IM.Message.ToLower(), e.IM.FromAgentID))
-            {
-                return;
-            }
-
-            if (tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
-            {
-                if (!tabs[e.IM.FromAgentName.ToLower()].Selected)
+                else
                 {
-                    tabs["imbox"].PartialHighlight();
-                }
-            }
-            else
-            {
-                tabs["imbox"].PartialHighlight();
-            }
+                    //string agentname = e.IM.FromAgentName;
 
-            if (this.instance.MainForm.WindowState == FormWindowState.Minimized)
-            {
-                if (!stopnotify)
-                {
-                    string ttl = string.Empty;
+                    //if (!e.IM.FromAgentName.Contains("."))
+                    //{
+                    //    agentname.Replace(" ", ".");  
+                    //}
 
-                    avname = netcom.LoginOptions.FullName;
-
-                    if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+                    if (TabExists(e.IM.FromAgentName))
                     {
-                        ttl = "Group IM notification [" + avname + "]";
+                        METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
+                        if (!tab.Selected) tab.Highlight();
+                        //Logger.Log("NonStored|ExistingAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
+                        return;
                     }
                     else
                     {
-                        ttl = "IM notification [" + avname + "]";
+                        IMTabWindow imTab = AddIMTab(e);
+                        tabs[imTab.TargetName.ToLower()].Highlight();
+
+                        if (instance.Config.CurrentConfig.InitialIMReply.Length > 0)
+                        {
+                            client.Self.InstantMessage(e.IM.FromAgentID, instance.Config.CurrentConfig.InitialIMReply);
+                        }
+
+                        if (instance.Config.CurrentConfig.PlayIMreceived)
+                        {
+                            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.IM_received);
+                            simpleSound.Play();
+                            simpleSound.Dispose();
+                        }
+
+                        //Logger.Log("NonStored|NewAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                     }
-
-                    string imsg = e.IM.Message;
-
-                    if (imsg.Length > 125)
-                    {
-                        imsg = imsg.Substring(0, 125) + "...";
-                    }
-
-                    string body = e.IM.FromAgentName + ": " + imsg;
-
-                    Notification notifForm = new Notification();
-                    notifForm.Message = body;
-                    notifForm.Title = ttl;
-                    notifForm.Show();
                 }
             }
-
-            if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+            catch (Exception ex)
             {
-                // Check to see if group IMs are disabled
-                if (instance.Config.CurrentConfig.DisableGroupIMs)
-                {
-                    Group grp = this.instance.State.Groups[e.IM.IMSessionID];
-                    client.Self.RequestLeaveGroupChat(grp.ID);
-                    return;
-                }
-
-                if (instance.State.IsBusy)
-                {
-                    Group grp = this.instance.State.Groups[e.IM.IMSessionID];
-                    client.Self.RequestLeaveGroupChat(grp.ID);
-                    return;
-                }
-
-                if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
-                {
-                    METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower()];
-                    if (!tab.Selected) tab.Highlight();
-                    //Logger.Log("Stored|ExistingGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
-                    return;
-                }
-                else
-                {
-                    //create a new tab
-                    IMTabWindowGroup imTab = AddIMTabGroup(e);
-                    tabs[imTab.TargetName.ToLower()].Highlight();
-
-                    if (instance.Config.CurrentConfig.PlayGroupIMreceived)
-                    {
-                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Group_Im_received);
-                        simpleSound.Play();
-                        simpleSound.Dispose();
-                    }
-
-                    //Logger.Log("Stored|NewGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
-                    return;
-                }
-            }
-            else
-            {
-                //string agentname = e.IM.FromAgentName;
-
-                //if (!e.IM.FromAgentName.Contains("."))
-                //{
-                //    agentname.Replace(" ", ".");  
-                //}
-
-                if (TabExists(e.IM.FromAgentName))
-                {
-                    METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
-                    if (!tab.Selected) tab.Highlight();
-                    //Logger.Log("NonStored|ExistingAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
-                    return;
-                }
-                else
-                {
-                    IMTabWindow imTab = AddIMTab(e);
-                    tabs[imTab.TargetName.ToLower()].Highlight();
-
-                    if (instance.Config.CurrentConfig.InitialIMReply.Length > 0)
-                    {
-                        client.Self.InstantMessage(e.IM.FromAgentID, instance.Config.CurrentConfig.InitialIMReply);
-                    }
-
-                    if (instance.Config.CurrentConfig.PlayIMreceived)
-                    {
-                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.IM_received);
-                        simpleSound.Play();
-                        simpleSound.Dispose();
-                    }
-
-                    //Logger.Log("NonStored|NewAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
-                }
+                reporter.Show(ex);
             }
         }
 
@@ -996,8 +1035,8 @@ namespace METAbolt
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log("Inventory Received error: " + ex.Message, Helpers.LogLevel.Error);
-                    //reporter.Show(ex);
+                    //Logger.Log("Inventory Received error: " + ex.Message, Helpers.LogLevel.Error);
+                    reporter.Show(ex);
                 }
             }
         }
@@ -1052,18 +1091,25 @@ namespace METAbolt
                 return;
             }
 
-            MainConsole mainConsole = new MainConsole(instance);
-            mainConsole.Dock = DockStyle.Fill;
-            mainConsole.Visible = false;
+            try
+            {
+                MainConsole mainConsole = new MainConsole(instance);
+                mainConsole.Dock = DockStyle.Fill;
+                mainConsole.Visible = false;
 
-            toolStripContainer1.ContentPanel.Controls.Add(mainConsole);
+                toolStripContainer1.ContentPanel.Controls.Add(mainConsole);
 
-            METAboltTab tab = AddTab("main", "Main", mainConsole);
-            tab.AllowClose = false;
-            tab.AllowDetach = false;
-            tab.AllowMerge = false;
+                METAboltTab tab = AddTab("main", "Main", mainConsole);
+                tab.AllowClose = false;
+                tab.AllowDetach = false;
+                tab.AllowMerge = false;
 
-            mainConsole.RegisterTab(tab);
+                mainConsole.RegisterTab(tab);
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void InitializeChatTab()
@@ -1078,16 +1124,22 @@ namespace METAbolt
                 return;
             }
 
-            chatConsole = new ChatConsole(instance);
-            chatConsole.Dock = DockStyle.Fill;
-            chatConsole.Visible = false;
+            try
+            {
+                chatConsole = new ChatConsole(instance);
+                chatConsole.Dock = DockStyle.Fill;
+                chatConsole.Visible = false;
 
-            toolStripContainer1.ContentPanel.Controls.Add(chatConsole);
+                toolStripContainer1.ContentPanel.Controls.Add(chatConsole);
 
-            METAboltTab tab = AddTab("chat", "Chat", chatConsole);
-            tab.AllowClose = false;
-            tab.AllowDetach = false;
-
+                METAboltTab tab = AddTab("chat", "Chat", chatConsole);
+                tab.AllowClose = false;
+                tab.AllowDetach = false;
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void InitializeFriendsTab()
@@ -1102,15 +1154,22 @@ namespace METAbolt
                 return;
             }
 
-            FriendsConsole friendsConsole = new FriendsConsole(instance);
-            friendsConsole.Dock = DockStyle.Fill;
-            friendsConsole.Visible = false;
+            try
+            {
+                FriendsConsole friendsConsole = new FriendsConsole(instance);
+                friendsConsole.Dock = DockStyle.Fill;
+                friendsConsole.Visible = false;
 
-            toolStripContainer1.ContentPanel.Controls.Add(friendsConsole);
+                toolStripContainer1.ContentPanel.Controls.Add(friendsConsole);
 
-            METAboltTab tab = AddTab("friends", "Friends", friendsConsole);
-            tab.AllowClose = false;
-            tab.AllowDetach = true;
+                METAboltTab tab = AddTab("friends", "Friends", friendsConsole);
+                tab.AllowClose = false;
+                tab.AllowDetach = true;
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void InitializeIMboxTab()
@@ -1125,15 +1184,22 @@ namespace METAbolt
                 return;
             }
 
-            IMbox imboxConsole = new IMbox(instance);
-            imboxConsole.Dock = DockStyle.Fill;
-            imboxConsole.Visible = false;
+            try
+            {
+                IMbox imboxConsole = new IMbox(instance);
+                imboxConsole.Dock = DockStyle.Fill;
+                imboxConsole.Visible = false;
 
-            toolStripContainer1.ContentPanel.Controls.Add(imboxConsole);
+                toolStripContainer1.ContentPanel.Controls.Add(imboxConsole);
 
-            METAboltTab tab = AddTab("imbox", "IMbox", imboxConsole);
-            tab.AllowClose = false;
-            tab.AllowDetach = true;
+                METAboltTab tab = AddTab("imbox", "IMbox", imboxConsole);
+                tab.AllowClose = false;
+                tab.AllowDetach = true;
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void InitializeGroupsTab()
@@ -1179,15 +1245,22 @@ namespace METAbolt
                 return;
             }
 
-            SearchConsole searchConsole = new SearchConsole(instance);
-            searchConsole.Dock = DockStyle.Fill;
-            searchConsole.Visible = false;
+            try
+            {
+                SearchConsole searchConsole = new SearchConsole(instance);
+                searchConsole.Dock = DockStyle.Fill;
+                searchConsole.Visible = false;
 
-            toolStripContainer1.ContentPanel.Controls.Add(searchConsole);
+                toolStripContainer1.ContentPanel.Controls.Add(searchConsole);
 
-            METAboltTab tab = AddTab("search", "Search", searchConsole);
-            tab.AllowClose = false;
-            tab.AllowDetach = false;
+                METAboltTab tab = AddTab("search", "Search", searchConsole);
+                tab.AllowClose = false;
+                tab.AllowDetach = false;
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void InitializeInventoryTab()
@@ -1202,16 +1275,23 @@ namespace METAbolt
                 return;
             }
 
-            InventoryConsole invConsole = new InventoryConsole(instance);
+            try
+            {
+                InventoryConsole invConsole = new InventoryConsole(instance);
 
-            invConsole.Dock = DockStyle.Fill;
-            invConsole.Visible = false;
+                invConsole.Dock = DockStyle.Fill;
+                invConsole.Visible = false;
 
-            toolStripContainer1.ContentPanel.Controls.Add(invConsole);
+                toolStripContainer1.ContentPanel.Controls.Add(invConsole);
 
-            METAboltTab tab = AddTab("inventory", "Inventory", invConsole);
-            tab.AllowClose = false;
-            tab.AllowDetach = true;
+                METAboltTab tab = AddTab("inventory", "Inventory", invConsole);
+                tab.AllowClose = false;
+                tab.AllowDetach = true;
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void DisposeFriendsTab()
@@ -1619,7 +1699,6 @@ namespace METAbolt
             {
                 tabs.Remove(otherTab.Name);
             }
-
             AddTab(otherTab);
         }
 

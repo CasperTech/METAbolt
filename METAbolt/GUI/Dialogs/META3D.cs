@@ -99,6 +99,7 @@ namespace METAbolt
         //Bitmap TextBitmap;   // = new Bitmap(512, 512);
         //int texture;
         //bool viewport_changed = true;
+        private Primitive selitem = null;
 
 
         //private ExceptionReporter reporter = new ExceptionReporter();
@@ -112,9 +113,11 @@ namespace METAbolt
         //    }
         //}
 
-        public META3D(METAboltInstance instance, uint rootLocalID) : base(instance) 
+        public META3D(METAboltInstance instance, uint rootLocalID, Primitive item) : base(instance) 
         {
             this.RootPrimLocalID = rootLocalID;
+
+            selitem = item; 
 
             InitializeComponent();
 
@@ -145,12 +148,15 @@ namespace METAbolt
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
             client.Objects.ObjectUpdate += new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
             client.Objects.ObjectDataBlockUpdate += new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
+            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
         }
 
         public META3D(METAboltInstance instance, ObjectsListItem obtectitem)
             : base(instance)
         {
             this.RootPrimLocalID = obtectitem.Prim.LocalID;
+            selitem = obtectitem.Prim;
 
             InitializeComponent();
 
@@ -182,6 +188,8 @@ namespace METAbolt
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
             client.Objects.ObjectUpdate += new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
             client.Objects.ObjectDataBlockUpdate += new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
+            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
         }
 
         //private void SetExceptionReporter()
@@ -220,6 +228,90 @@ namespace METAbolt
             client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
             client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
             client.Objects.ObjectDataBlockUpdate -= new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
+            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+            lock (this.Prims)
+            {
+                Prims.Clear();
+            }
+
+            GC.Collect();
+        }
+
+        private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
+        {
+            lock (Prims)
+            {
+                Prims.Clear();  
+            }
+        }
+
+        private void Self_TeleportProgress(object sender, TeleportEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case TeleportStatus.Start:
+                case TeleportStatus.Progress:
+                    this.RenderingEnabled = false;
+                    return;
+
+                case TeleportStatus.Failed:
+                case TeleportStatus.Cancelled:
+                    this.RenderingEnabled = true;
+                    return;
+
+                case TeleportStatus.Finished:
+                    ThreadPool.QueueUserWorkItem(delegate(object sync)
+                    {
+                        Cursor.Current = Cursors.WaitCursor; 
+                        Thread.Sleep(5000);
+                        ReLoadObject();
+                        RenderingEnabled = true;
+                        Cursor.Current = Cursors.Default;
+                    });
+
+                    return;
+            }
+        }
+
+        private void ReLoadObject()
+        {
+            ThreadPool.QueueUserWorkItem(delegate(object sync)
+            {
+                // Search for the new local id of the object
+                List<Primitive> results = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
+                    new Predicate<Primitive>(delegate(Primitive prim)
+                    {
+                        try
+                        {
+                            return (prim.ID == selitem.ID);
+                        }
+                        catch
+                        {
+                            return false;
+                        }
+                    }));
+
+                if (results != null)
+                {
+                    selitem = results[0];
+
+                    RootPrimLocalID = selitem.LocalID;
+
+                    if (client.Network.CurrentSim.ObjectsPrimitives.ContainsKey(RootPrimLocalID))
+                    {
+                        UpdatePrimBlocking(client.Network.CurrentSim.ObjectsPrimitives[RootPrimLocalID]);
+                        var children = client.Network.CurrentSim.ObjectsPrimitives.FindAll((Primitive p) => { return p.ParentID == RootPrimLocalID; });
+                        children.ForEach(p => UpdatePrimBlocking(p));
+                    }
+                }
+                else
+                {
+                    this.Close();
+                    this.Dispose(); 
+                }
+            });
         }
 
         void Objects_TerseObjectUpdate(object sender, TerseObjectUpdateEventArgs e)
@@ -954,9 +1046,9 @@ namespace METAbolt
                             //writer.UpdateText();                            
 
                             //Shadow
-                            if (color != Color.Gray)
+                            if (color != Color.DarkGray)
                             {
-                                Printer.Print(text, f, Color.Gray, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
+                                Printer.Print(text, f, Color.DarkGray, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
                             }
 
                             Printer.Print(text, f, color, new RectangleF(screenPos.X, screenPos.Y, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);

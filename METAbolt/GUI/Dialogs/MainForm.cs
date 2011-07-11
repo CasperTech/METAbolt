@@ -173,15 +173,15 @@ namespace METAbolt
         {
             if (e.Result != ParcelResult.Single) return;
 
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Parcels_OnParcelProperties(sender, e);
-                }));
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        Parcels_OnParcelProperties(sender, e);
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             UpdateLand(e.Parcel);
         }
@@ -203,21 +203,9 @@ namespace METAbolt
 
             try
             {
-                if (parceln == null) return; 
+                if (parceln == null) return;
 
-                if (currentparcelid != 0)
-                {
-                    if (currentparcelid != parceln.LocalID)
-                    {
-                        currentparcelid = parceln.LocalID;
-                        this.parcel = parceln;
-                    }
-                }
-                else
-                {
-                    currentparcelid = parceln.LocalID;
-                    this.parcel = parceln;
-                }
+                this.parcel = parceln;
 
                 tb1.Visible = false;
                 tb2.Visible = false;
@@ -308,8 +296,8 @@ namespace METAbolt
                     AllowTerraform = true;
                 }
 
-                this.instance.Config.CurrentConfig.pURL = @parcel.MusicURL;
                 tlblParcel.Text = parcel.Name.ToString();
+                this.instance.Config.CurrentConfig.pURL = @parcel.MusicURL;                
 
                 if (currentparcelid != parceln.LocalID)
                 {
@@ -364,57 +352,66 @@ namespace METAbolt
             catch (Exception ex)
             {
                 string serr = ex.Message;
-                Logger.Log(String.Format("Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
-                //reporter.Show(ex);
+                //Logger.Log(String.Format("Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
+                reporter.Show(ex);
             }
         }
 
         private void netcom_MoneyBalanceUpdated(object sender, BalanceEventArgs e)
         {
-            if (instance.Config.CurrentConfig.AutoTransfer)
+            try
             {
-                UUID mavatar = (UUID)instance.Config.CurrentConfig.MasterAvatar;
-
-                if (mavatar == client.Self.AgentID)
+                if (instance.Config.CurrentConfig.AutoTransfer)
                 {
-                    instance.Config.CurrentConfig.AutoTransfer = false;
-                    return;
+                    UUID mavatar = (UUID)instance.Config.CurrentConfig.MasterAvatar;
+
+                    if (mavatar == client.Self.AgentID)
+                    {
+                        instance.Config.CurrentConfig.AutoTransfer = false;
+                        return;
+                    }
+
+                    int mamount = client.Self.Balance;
+
+                    if (mamount > 0 && mavatar != UUID.Zero)
+                    {
+                        client.Self.GiveAvatarMoney(mavatar, mamount, "METAbolt auto money transfer to master avatar");
+                    }
                 }
 
-                int mamount = client.Self.Balance;
-
-                if (mamount > 0 && mavatar != UUID.Zero)
-                {
-                    client.Self.GiveAvatarMoney(mavatar, mamount, "METAbolt auto money transfer to master avatar");
-                }
+                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
             }
-
-            //BeginInvoke(new MethodInvoker(delegate()
-            //{
-            //    tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
-            //}));
-
-            tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
 
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs e)
         {
-            if (InvokeRequired)
+            try
             {
+                if (InvokeRequired)
+                {
+
+                    BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        Avatars_OnAvatarNames(sender, e);
+                    }));
+
+                    return;
+                }
 
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    Avatars_OnAvatarNames(sender, e);
+                    NameReceived(e.Names);
                 }));
-
-                return;
             }
-
-            BeginInvoke(new MethodInvoker(delegate()
+            catch (Exception ex)
             {
-                NameReceived(e.Names);
-            }));
+                reporter.Show(ex);
+            }
         }
 
         //runs on the GUI thread
@@ -438,64 +435,60 @@ namespace METAbolt
 
         private void ApplyConfig(Config config, bool doingInit)
         {
-            if (InvokeRequired)
+            try
             {
+                if (doingInit)
+                    this.WindowState = (FormWindowState)config.MainWindowState;
 
-                BeginInvoke(new MethodInvoker(delegate()
+                if (config.InterfaceStyle == 0) //System
+                    toolStrip1.RenderMode = ToolStripRenderMode.System;
+                else if (config.InterfaceStyle == 1) //Office 2003
+                    toolStrip1.RenderMode = ToolStripRenderMode.ManagerRenderMode;
+
+                if (instance.Config.CurrentConfig.UseProxy)
                 {
-                    ApplyConfig(config, doingInit);
-                }));
-
-                return;
-            }
-
-            if (doingInit)
-                this.WindowState = (FormWindowState)config.MainWindowState;
-
-            if (config.InterfaceStyle == 0) //System
-                toolStrip1.RenderMode = ToolStripRenderMode.System;
-            else if (config.InterfaceStyle == 1) //Office 2003
-                toolStrip1.RenderMode = ToolStripRenderMode.ManagerRenderMode;
-
-            if (instance.Config.CurrentConfig.UseProxy)
-            {
-                // Apply proxy settings if any
-                METAproxy proxy = new METAproxy();
-                proxy.SetProxy(config.UseProxy, config.ProxyURL, config.ProxyPort, config.ProxyUser, config.ProxyPWD);
-            }
-
-            // Check for auto logoff and start time if set
-            if (config.LogOffTime > 0)
-            {
-                if (instance.Config.CurrentConfig.LogOffTimerChanged)
-                {
-                    logOffTimer.Stop();
-                    logOffTimer.Enabled = true;
-                    logOffTimer.Start();
-                    offtime = DateTime.Now.AddMinutes(Convert.ToDouble(instance.Config.CurrentConfig.LogOffTime));
-
-                    instance.Config.CurrentConfig.LogOffTimerChanged = false;
+                    // Apply proxy settings if any
+                    METAproxy proxy = new METAproxy();
+                    proxy.SetProxy(config.UseProxy, config.ProxyURL, config.ProxyPort, config.ProxyUser, config.ProxyPWD);
                 }
 
-                tsTimeOut.Visible = true;
-
-                TimeSpan ts = offtime - DateTime.Now;
-                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00");
-            }
-            else
-            {
-                tsTimeOut.Visible = false;
-
-                if (logOffTimer != null)
+                // Check for auto logoff and start time if set
+                if (config.LogOffTime > 0)
                 {
-                    logoff = false;
-                    logOffTimer.Stop();
-
-                    if (logOffTimer.Enabled)
+                    if (instance.Config.CurrentConfig.LogOffTimerChanged)
                     {
-                        logOffTimer.Enabled = false;
+                        logOffTimer.Stop();
+                        logOffTimer.Enabled = true;
+                        logOffTimer.Start();
+                        offtime = DateTime.Now.AddMinutes(Convert.ToDouble(instance.Config.CurrentConfig.LogOffTime));
+
+                        instance.Config.CurrentConfig.LogOffTimerChanged = false;
+                    }
+
+                    tsTimeOut.Visible = true;
+
+                    TimeSpan ts = offtime - DateTime.Now;
+                    tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00");
+                }
+                else
+                {
+                    tsTimeOut.Visible = false;
+
+                    if (logOffTimer != null)
+                    {
+                        logoff = false;
+                        logOffTimer.Stop();
+
+                        if (logOffTimer.Enabled)
+                        {
+                            logOffTimer.Enabled = false;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
             }
         }
 
@@ -513,9 +506,9 @@ namespace METAbolt
             TimeSpan ts = offtime - DateTime.Now;
 
             BeginInvoke((MethodInvoker)delegate
-            {
-                tsTimeOut.Text = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00");
-            });
+                {
+                    tsTimeOut.Text = ts.Hours.ToString("00")  + ":" + ts.Minutes.ToString("00");
+                });
         }
 
         public void InitializeControls()
@@ -580,9 +573,9 @@ namespace METAbolt
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                ;
+                reporter.Show(ex);
             }
         }
 
@@ -605,30 +598,12 @@ namespace METAbolt
             if (instance.Config.CurrentConfig.DisableGroupIMs || instance.Config.CurrentConfig.DisableGroupNotices)
                 return;
 
-            //BeginInvoke(new MethodInvoker(delegate()
-            //{
-            //    if (!this.Focused) FormFlash.Flash(this);
-            //}));
-
             if (!this.Focused) FormFlash.Flash(this);
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
         {
             if (e.Status != LoginStatus.Success) return;
-
-            //BeginInvoke(new MethodInvoker(delegate()
-            //{
-            //    tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
-            //    statusTimer.Enabled = true;
-            //    statusTimer.Start();
-            //    RefreshWindowTitle();
-
-            //    if (this.instance.Config.CurrentConfig.StartMinimised)
-            //    {
-            //        this.WindowState = FormWindowState.Minimized;
-            //    }
-            //}));
 
             tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
             statusTimer.Enabled = true;
@@ -781,30 +756,39 @@ namespace METAbolt
                 return;
             }
 
-            if (netcom.IsLoggedIn)
+            try
             {
-                tlblLoginName.Text = netcom.LoginOptions.FullName;
-                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
+                if (netcom.IsLoggedIn)
+                {
+                    tlblLoginName.Text = netcom.LoginOptions.FullName;
+                    tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
 
-                tlblRegionInfo.Text =
-                        client.Network.CurrentSim.Name +
-                        " (" + Math.Floor(instance.SIMsittingPos().X).ToString() + ", " +
-                        Math.Floor(instance.SIMsittingPos().Y).ToString() + ", " +
-                        Math.Floor(instance.SIMsittingPos().Z).ToString() + ")";
+                    tlblRegionInfo.Text =
+                            client.Network.CurrentSim.Name +
+                            " (" + Math.Floor(instance.SIMsittingPos().X).ToString() + ", " +
+                            Math.Floor(instance.SIMsittingPos().Y).ToString() + ", " +
+                            Math.Floor(instance.SIMsittingPos().Z).ToString() + ")";
+
+                    //client.Parcels.RequestParcelProperties(client.Network.CurrentSim,     
+                }
+                else
+                {
+                    tlblLoginName.Text = "Offline";
+                    tlblMoneyBalance.Text = "L$0";
+                    tlblRegionInfo.Text = "No Region";
+                    tlblParcel.Text = "No Parcel";
+
+                    tb1.Visible = false;
+                    tb2.Visible = false;
+                    tb3.Visible = false;
+                    tb4.Visible = false;
+                    tb5.Visible = false;
+                    tb6.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                tlblLoginName.Text = "Offline";
-                tlblMoneyBalance.Text = "L$0";
-                tlblRegionInfo.Text = "No Region";
-                tlblParcel.Text = "No Parcel";
-
-                tb1.Visible = false;
-                tb2.Visible = false;
-                tb3.Visible = false;
-                tb4.Visible = false;
-                tb5.Visible = false;
-                tb6.Visible = false;
+                reporter.Show(ex);
             }
         }
 
@@ -820,52 +804,59 @@ namespace METAbolt
                 return;
             }
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("METAbolt - ");
-
-            if (netcom.IsLoggedIn)
+            try
             {
-                sb.Append("[" + netcom.LoginOptions.FullName + "]");
+                StringBuilder sb = new StringBuilder();
+                sb.Append("METAbolt - ");
 
-                if (instance.State.IsSitting)
+                if (netcom.IsLoggedIn)
                 {
-                    sb.Append(" [Sitting]");
+                    sb.Append("[" + netcom.LoginOptions.FullName + "]");
+
+                    if (instance.State.IsSitting)
+                    {
+                        sb.Append(" [Sitting]");
+                    }
+
+                    if (instance.State.IsSittingOnGround)
+                    {
+                        sb.Append(" [Sitting on Ground]");
+                    }
+
+                    if (instance.State.IsFlying)
+                    {
+                        sb.Append(" - [Flying] ");
+                    }
+
+                    if (instance.State.IsAway)
+                    {
+                        sb.Append(" - Away");
+                        if (instance.State.IsBusy) sb.Append(", Busy");
+                    }
+                    else if (instance.State.IsBusy)
+                    {
+                        sb.Append(" - Busy");
+                    }
+
+                    if (instance.State.IsFollowing)
+                    {
+                        sb.Append(" - [Following] ");
+                        sb.Append(instance.State.FollowName);
+                    }
+                }
+                else
+                {
+                    sb.Append("Logged Out");
+                    statusTimer.Stop();
                 }
 
-                if (instance.State.IsSittingOnGround)
-                {
-                    sb.Append(" [Sitting on Ground]");
-                }
-
-                if (instance.State.IsFlying)
-                {
-                    sb.Append(" - [Flying] ");
-                }
-
-                if (instance.State.IsAway)
-                {
-                    sb.Append(" - Away");
-                    if (instance.State.IsBusy) sb.Append(", Busy");
-                }
-                else if (instance.State.IsBusy)
-                {
-                    sb.Append(" - Busy");
-                }
-
-                if (instance.State.IsFollowing)
-                {
-                    sb.Append(" - [Following] ");
-                    sb.Append(instance.State.FollowName);
-                }
+                this.Text = sb.ToString();
+                sb = null;
             }
-            else
+            catch (Exception ex)
             {
-                sb.Append("Logged Out");
-                statusTimer.Stop();
+                reporter.Show(ex);
             }
-
-            this.Text = sb.ToString();
-            sb = null;
         }
 
         private void InitializeStatusTimer()
@@ -888,9 +879,16 @@ namespace METAbolt
                 return;
             }
 
-            tabsConsole = new TabsConsole(instance);
-            tabsConsole.Dock = DockStyle.Fill;
-            toolStripContainer1.ContentPanel.Controls.Add(tabsConsole);
+            try
+            {
+                tabsConsole = new TabsConsole(instance);
+                tabsConsole.Dock = DockStyle.Fill;
+                toolStripContainer1.ContentPanel.Controls.Add(tabsConsole);
+            }
+            catch (Exception ex)
+            {
+                reporter.Show(ex);
+            }
         }
 
         private void InitializeDebugLogForm()
@@ -1075,7 +1073,7 @@ namespace METAbolt
 
         private void tmnuPrefs_Click(object sender, EventArgs e)
         {
-            (new frmPreferences(instance)).Show(this);
+            (new frmPreferences(instance)).ShowDialog(this);
         }
 
         private void tbtnObjects_Click(object sender, EventArgs e)
@@ -1093,11 +1091,18 @@ namespace METAbolt
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/METAforums/yaf_topics22_Help.aspx");
         }
 
+        //private void visitLTekToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    System.Diagnostics.Process.Start(@"http://l-tek.vistalogic.co.uk");
+        //}
+
         private void avatarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
+                //client.Appearance.RequestCachedBakes();
                 client.Appearance.RequestSetAppearance(false);  
+                //client.Appearance.SetPreviousAppearance(false);
             }
             catch (Exception exp)
             {
@@ -1140,6 +1145,11 @@ namespace METAbolt
         {
             //System.Diagnostics.Process.Start(@"https://secure-web19.secondlife.com/currency/");
         }
+
+        //private void sLXToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    System.Diagnostics.Process.Start(@"http://www.xstreetsl.com/modules.php?name=Currency");
+        //}
 
         private void mnuDonate_Click(object sender, EventArgs e)
         {
@@ -1416,8 +1426,7 @@ namespace METAbolt
 
                 //DateTime SLdate = DateTime.UtcNow.AddHours(-8);
                 //tsTime.Text = SLdate.ToString();
-
-                tsTime.Text = _now.ToLongTimeString();   // ToString();              
+                tsTime.Text = _now.ToLongTimeString();   // ToString();
             }
             catch
             {
@@ -1493,16 +1502,6 @@ namespace METAbolt
 
         public void SetFlag(Image img, string lang)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    SetFlag(img, lang);
-                });
-
-                return;
-            }
-
             tsFlag.Image = img;
             tsFlag.ToolTipText = "Detectected language: " + lang; 
         }
@@ -1599,8 +1598,8 @@ namespace METAbolt
         {
             try
             {
-                Process process = Process.Start(updaterModulePath, "/configure");
-                process.Close();
+            Process process = Process.Start(updaterModulePath, "/configure");
+            process.Close();
             }
             catch (Exception ex)
             {
@@ -1615,19 +1614,19 @@ namespace METAbolt
 
         private void setPreviousAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        //    try
-        //    {
-        //        //client.Appearance.SetPreviousAppearance(true);
-        //    }
-        //    catch (Exception exp)
-        //    {
-        //        Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
-        //    }
+            try
+            {
+                //client.Appearance.SetPreviousAppearance(true);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
+            }
         }
 
         private void applyToDisableAdsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //(new AdLicense(this.instance)).ShowDialog(this);
+            (new AdLicense(this.instance)).ShowDialog(this);
         }
 
         private void tbtnHelp_Click(object sender, EventArgs e)
@@ -1830,7 +1829,7 @@ namespace METAbolt
         /// 
         /// This method ensures its logic executes only once to eliminate errors and unintentional conflicts.
         /// </summary>
-        /// <param name="CloseWindow">Determines whether this method should call this.Close()</param>
+        /// <param name="closeWindow">Determines whether this method should call this.Close()</param>
         /// <returns>false if already run or failed to execute METArestart, otherwise true</returns>
         public bool DisconnectClient(bool CloseWindow, string Reason, int ReconnectWaitMinutes)
         {
@@ -1929,9 +1928,9 @@ namespace METAbolt
                     (new UploadImage(instance, bitmap, open.FileName, ext)).ShowDialog();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new ApplicationException("Failed loading image");
+                reporter.Show(ex);
             }
  
         }

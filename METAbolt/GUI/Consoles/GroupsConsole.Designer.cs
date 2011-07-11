@@ -208,7 +208,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.ForeColor = System.Drawing.Color.Silver;
             this.label4.Location = new System.Drawing.Point(22, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(197, 13);
@@ -239,7 +239,7 @@
             this.lstGroups.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lstGroups.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstGroups.FormattingEnabled = true;
-            this.lstGroups.Location = new System.Drawing.Point(0, 2);
+            this.lstGroups.Location = new System.Drawing.Point(0, 6);
             this.lstGroups.Name = "lstGroups";
             this.lstGroups.Size = new System.Drawing.Size(384, 286);
             this.lstGroups.TabIndex = 0;

@@ -36,39 +36,39 @@ namespace METAbolt
         {
 
         }
-            /// <summary>
-		/// Creates a new Image containing the same image only rotated
-		/// </summary>
-		/// <param name="image">The <see cref="System.Drawing.Image"/> to rotate</param>
-		/// <param name="angle">The amount to rotate the image, clockwise, in degrees</param>
-		/// <returns>A new <see cref="System.Drawing.Bitmap"/> that is just large enough
-		/// to contain the rotated image without cutting any corners off.</returns>
-		/// <exception cref="System.ArgumentNullException">Thrown if <see cref="image"/> is null.</exception>
-		public static Bitmap RotateImg(Image image, float angle)
-		{
-			if(image == null)
-				throw new ArgumentNullException("image");
+        /// <summary>
+        /// Creates a new Image containing the same image only rotated
+        /// </summary>
+        /// <param name="image">The <see cref="System.Drawing.Image"/> to rotate</param>
+        /// <param name="angle">The amount to rotate the image, clockwise, in degrees</param>
+        /// <returns>A new <see cref="System.Drawing.Bitmap"/> that is just large enough
+        /// to contain the rotated image without cutting any corners off.</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown if <see cref="image"/> is null.</exception>
+        public static Bitmap RotateImg(Image image, float angle)
+        {
+            if (image == null)
+                throw new ArgumentNullException("image");
 
-			const double pi2 = Math.PI / 2.0;
+            const double pi2 = Math.PI / 2.0;
 
-			// Why can't C# allow these to be const, or at least readonly
-			// *sigh*  I'm starting to talk like Christian Graus :omg:
-			double oldWidth = (double) image.Width;
-			double oldHeight = (double) image.Height;
-			
-			// Convert degrees to radians
-			double theta = ((double) angle) * Math.PI / 180.0;
-			double locked_theta = theta;
+            // Why can't C# allow these to be const, or at least readonly
+            // *sigh*  I'm starting to talk like Christian Graus :omg:
+            double oldWidth = (double)image.Width;
+            double oldHeight = (double)image.Height;
 
-			// Ensure theta is now [0, 2pi)
-			while( locked_theta < 0.0 )
-				locked_theta += 2 * Math.PI;
+            // Convert degrees to radians
+            double theta = ((double)angle) * Math.PI / 180.0;
+            double locked_theta = theta;
 
-			double newWidth, newHeight; 
-			int nWidth, nHeight; // The newWidth/newHeight expressed as ints
+            // Ensure theta is now [0, 2pi)
+            while (locked_theta < 0.0)
+                locked_theta += 2 * Math.PI;
 
-			#region Explaination of the calculations
-			/*
+            double newWidth, newHeight;
+            int nWidth, nHeight; // The newWidth/newHeight expressed as ints
+
+            #region Explaination of the calculations
+            /*
 			 * The trig involved in calculating the new width and height
 			 * is fairly simple; the hard part was remembering that when 
 			 * PI/2 <= theta <= PI and 3PI/2 <= theta < 2PI the width and 
@@ -116,98 +116,98 @@ namespace METAbolt
 			 * oppositeBottom while the height is calculate by adding 
 			 * together adjacentBottom and oppositeTop.
 			 */
-			#endregion
+            #endregion
 
-			double adjacentTop, oppositeTop;
-			double adjacentBottom, oppositeBottom;
+            double adjacentTop, oppositeTop;
+            double adjacentBottom, oppositeBottom;
 
-			// We need to calculate the sides of the triangles based
-			// on how much rotation is being done to the bitmap.
-			//   Refer to the first paragraph in the explaination above for 
-			//   reasons why.
-			if( (locked_theta >= 0.0 && locked_theta < pi2) ||
-				(locked_theta >= Math.PI && locked_theta < (Math.PI + pi2) ) )
-			{
-				adjacentTop = Math.Abs(Math.Cos(locked_theta)) * oldWidth;
-				oppositeTop = Math.Abs(Math.Sin(locked_theta)) * oldWidth;
+            // We need to calculate the sides of the triangles based
+            // on how much rotation is being done to the bitmap.
+            //   Refer to the first paragraph in the explaination above for 
+            //   reasons why.
+            if ((locked_theta >= 0.0 && locked_theta < pi2) ||
+                (locked_theta >= Math.PI && locked_theta < (Math.PI + pi2)))
+            {
+                adjacentTop = Math.Abs(Math.Cos(locked_theta)) * oldWidth;
+                oppositeTop = Math.Abs(Math.Sin(locked_theta)) * oldWidth;
 
-				adjacentBottom = Math.Abs(Math.Cos(locked_theta)) * oldHeight;
-				oppositeBottom = Math.Abs(Math.Sin(locked_theta)) * oldHeight;
-			}
-			else
-			{
-				adjacentTop = Math.Abs(Math.Sin(locked_theta)) * oldHeight;
-				oppositeTop = Math.Abs(Math.Cos(locked_theta)) * oldHeight;
+                adjacentBottom = Math.Abs(Math.Cos(locked_theta)) * oldHeight;
+                oppositeBottom = Math.Abs(Math.Sin(locked_theta)) * oldHeight;
+            }
+            else
+            {
+                adjacentTop = Math.Abs(Math.Sin(locked_theta)) * oldHeight;
+                oppositeTop = Math.Abs(Math.Cos(locked_theta)) * oldHeight;
 
-				adjacentBottom = Math.Abs(Math.Sin(locked_theta)) * oldWidth;
-				oppositeBottom = Math.Abs(Math.Cos(locked_theta)) * oldWidth;
-			}
-			
-			newWidth = adjacentTop + oppositeBottom;
-			newHeight = adjacentBottom + oppositeTop;
+                adjacentBottom = Math.Abs(Math.Sin(locked_theta)) * oldWidth;
+                oppositeBottom = Math.Abs(Math.Cos(locked_theta)) * oldWidth;
+            }
 
-			nWidth = (int) Math.Ceiling(newWidth);
-			nHeight = (int) Math.Ceiling(newHeight);
+            newWidth = adjacentTop + oppositeBottom;
+            newHeight = adjacentBottom + oppositeTop;
 
-			Bitmap rotatedBmp = new Bitmap(nWidth, nHeight);
+            nWidth = (int)Math.Ceiling(newWidth);
+            nHeight = (int)Math.Ceiling(newHeight);
 
-			using(Graphics g = Graphics.FromImage(rotatedBmp))
-			{
-				// This array will be used to pass in the three points that 
-				// make up the rotated image
-				Point [] points;
+            Bitmap rotatedBmp = new Bitmap(nWidth, nHeight);
 
-				/*
-				 * The values of opposite/adjacentTop/Bottom are referring to 
-				 * fixed locations instead of in relation to the
-				 * rotating image so I need to change which values are used
-				 * based on the how much the image is rotating.
-				 * 
-				 * For each point, one of the coordinates will always be 0, 
-				 * nWidth, or nHeight.  This because the Bitmap we are drawing on
-				 * is the bounding box for the rotated bitmap.  If both of the 
-				 * corrdinates for any of the given points wasn't in the set above
-				 * then the bitmap we are drawing on WOULDN'T be the bounding box
-				 * as required.
-				 */
-				if( locked_theta >= 0.0 && locked_theta < pi2 )
-				{
-					points = new Point[] { 
+            using (Graphics g = Graphics.FromImage(rotatedBmp))
+            {
+                // This array will be used to pass in the three points that 
+                // make up the rotated image
+                Point[] points;
+
+                /*
+                 * The values of opposite/adjacentTop/Bottom are referring to 
+                 * fixed locations instead of in relation to the
+                 * rotating image so I need to change which values are used
+                 * based on the how much the image is rotating.
+                 * 
+                 * For each point, one of the coordinates will always be 0, 
+                 * nWidth, or nHeight.  This because the Bitmap we are drawing on
+                 * is the bounding box for the rotated bitmap.  If both of the 
+                 * corrdinates for any of the given points wasn't in the set above
+                 * then the bitmap we are drawing on WOULDN'T be the bounding box
+                 * as required.
+                 */
+                if (locked_theta >= 0.0 && locked_theta < pi2)
+                {
+                    points = new Point[] { 
 											 new Point( (int) oppositeBottom, 0 ), 
 											 new Point( nWidth, (int) oppositeTop ),
 											 new Point( 0, (int) adjacentBottom )
 										 };
 
-				}
-				else if( locked_theta >= pi2 && locked_theta < Math.PI )
-				{
-					points = new Point[] { 
+                }
+                else if (locked_theta >= pi2 && locked_theta < Math.PI)
+                {
+                    points = new Point[] { 
 											 new Point( nWidth, (int) oppositeTop ),
 											 new Point( (int) adjacentTop, nHeight ),
 											 new Point( (int) oppositeBottom, 0 )						 
 										 };
-				}
-				else if( locked_theta >= Math.PI && locked_theta < (Math.PI + pi2) )
-				{
-					points = new Point[] { 
+                }
+                else if (locked_theta >= Math.PI && locked_theta < (Math.PI + pi2))
+                {
+                    points = new Point[] { 
 											 new Point( (int) adjacentTop, nHeight ), 
 											 new Point( 0, (int) adjacentBottom ),
 											 new Point( nWidth, (int) oppositeTop )
 										 };
-				}
-				else
-				{
-					points = new Point[] { 
+                }
+                else
+                {
+                    points = new Point[] { 
 											 new Point( 0, (int) adjacentBottom ), 
 											 new Point( (int) oppositeBottom, 0 ),
 											 new Point( (int) adjacentTop, nHeight )		
 										 };
-				}
+                }
 
-				g.DrawImage(image, points);
-			}
+                g.DrawImage(image, points);
+            }
 
-			return rotatedBmp;
-		}
-	}
+            return rotatedBmp;
+        }
+    }
 }

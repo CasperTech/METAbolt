@@ -463,7 +463,7 @@ namespace METAbolt
 
                     try
                     {
-                        textPrinter.SetSelectionForeColor(Color.Black);
+                        textPrinter.SetSelectionForeColor(Color.DarkGray);
                     }
                     catch (Exception ex)
                     {
@@ -561,7 +561,7 @@ namespace METAbolt
                     //    timestamp = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    textPrinter.SetSelectionForeColor(Color.Black);
+                    textPrinter.SetSelectionForeColor(Color.DarkGray);
                     textPrinter.SetOffset(6);
                     textPrinter.SetFontSize(6.5f);
                     textPrinter.PrintDate(timestamp.ToString("[HH:mm] "));
@@ -570,6 +570,7 @@ namespace METAbolt
                 }
             }
 
+            textPrinter.SetSelectionForeColor(Color.Black);
             textPrinter.PrintTextLine(sb.ToString());
 
             string groupname = string.Empty;
