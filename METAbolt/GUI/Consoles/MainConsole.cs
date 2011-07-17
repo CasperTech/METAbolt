@@ -38,6 +38,7 @@ using System.Diagnostics;
 using System.Linq;
 using ExceptionReporting;
 using System.Threading;
+using System.Globalization; 
 
 namespace METAbolt
 {
@@ -96,8 +97,8 @@ namespace METAbolt
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
             reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
             reporter.Config.CompanyName = "METAbolt";
-            reporter.Config.ContactEmail = "support@vistalogic.co.uk";
-            reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
             reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
             reporter.Config.AppName = "METAbolt";
             reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
@@ -224,7 +225,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -294,7 +296,7 @@ namespace METAbolt
                                     string cpwd = cryp.Decrypt(epwd);
                                     epwd = cpwd;
                                 }
-                                catch (Exception ex)
+                                catch
                                 {
                                     epwd = string.Empty;
                                 }
@@ -338,18 +340,13 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => netcom_ClientLoginStatus(sender, e)));
-                return;
-            }
-
             try
             {
                 switch (e.Status)
@@ -375,6 +372,7 @@ namespace METAbolt
                         break;
 
                     case LoginStatus.Success:
+                        SetLang();
                         lblLoginStatus.Text = "Logged in as " + netcom.LoginOptions.FullName;
                         lblLoginStatus.ForeColor = Color.Blue;
      
@@ -470,7 +468,26 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
+            }
+        }
+
+        private void SetLang()
+        {
+            CultureInfo cult = CultureInfo.CurrentCulture;
+            string land = cult.TwoLetterISOLanguageName;
+
+            AgentManager avm = new AgentManager(client);
+
+            try
+            {
+                avm.UpdateAgentLanguage(land, true);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
+                //reporter.Show(ex);
             }
         }
 
@@ -507,11 +524,11 @@ namespace METAbolt
 
         private void InitializeWebBrowser()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => InitializeWebBrowser()));
-                return;
-            }
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => InitializeWebBrowser()));
+            //    return;
+            //}
 
             lblInitWebBrowser.Visible = true;
             lblInitWebBrowser.Refresh();
@@ -572,9 +589,9 @@ namespace METAbolt
                 ////pnlLoginPage.Controls.Add(webBrowser);
                 //webBrowser.Visible = true;
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -604,11 +621,11 @@ namespace METAbolt
 
         private void LoadWebPage()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => LoadWebPage()));
-                return;
-            }
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => LoadWebPage()));
+            //    return;
+            //}
 
             try
             {
@@ -634,9 +651,9 @@ namespace METAbolt
 
                 webBrowser.Navigate(murl);
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -814,7 +831,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -939,11 +957,11 @@ namespace METAbolt
 
         private void DoBrowser()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => DoBrowser()));
-                return;
-            }
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => DoBrowser()));
+            //    return;
+            //}
 
             try
             {
@@ -973,7 +991,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
         

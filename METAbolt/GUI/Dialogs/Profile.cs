@@ -68,6 +68,9 @@ namespace METAbolt
         private string olddisplayname = string.Empty;
         private List<UUID> displaynames = new List<UUID>();
         string newname = string.Empty;
+        const int WM_NCHITTEST = 0x0084;
+        const int HTTRANSPARENT = -1;
+        const int HTCLIENT = 1;
 
         internal class ThreadExceptionHandler
         {
@@ -76,6 +79,17 @@ namespace METAbolt
                 ExceptionReporter reporter = new ExceptionReporter();
                 reporter.Show(e.Exception);
             }
+        }
+
+        protected override void WndProc(ref Message m) 
+        { 
+            base.WndProc(ref m);
+
+            if (m.Msg == WM_NCHITTEST) 
+            { 
+                if (m.Result.ToInt32() == HTTRANSPARENT)            
+                    m.Result = new IntPtr(HTCLIENT); 
+            } 
         }
 
         public frmProfile(METAboltInstance instance, string fullName, UUID agentID)
@@ -123,8 +137,8 @@ namespace METAbolt
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
             reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
             reporter.Config.CompanyName = "METAbolt";
-            reporter.Config.ContactEmail = "support@vistalogic.co.uk";
-            reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
             reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
             reporter.Config.AppName = "METAbolt";
             reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
@@ -807,9 +821,18 @@ namespace METAbolt
 
         private void picSLImage_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //{
+            //    e.Effect = DragDropEffects.Move;
+            //}
+            //else
+            //{
+            //    e.Effect = DragDropEffects.None;
+            //}
+
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                e.Effect = DragDropEffects.Move;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
@@ -819,63 +842,136 @@ namespace METAbolt
 
         private void picSLImage_DragDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //{
+            //    string s = (string)e.Data.GetData(DataFormats.FileDrop, false);
+
+            //    char[] deli = ",".ToCharArray();
+            //    string[] iDets = s.Split(deli);
+
+            //    bool isimage = false;
+
+            //    if (iDets[2].ToString() == "ImageJPEG")
+            //    {
+            //        isimage = true; 
+            //    }
+            //    else if (iDets[2].ToString() == "ImageTGA")
+            //    {
+            //        isimage = true;
+            //    }
+            //    else if (iDets[2].ToString() == "Texture")
+            //    {
+            //        isimage = true;
+            //    }
+            //    else if (iDets[2].ToString() == "TextureTGA")
+            //    {
+            //        isimage = true;
+            //    }
+            //    else
+            //    {
+            //        isimage = false;
+            //    }
+
+            //    if (!isimage) return;
+
+            //    SLImageID = (UUID)iDets[3];
+
+            //    props.ProfileImage = SLImageID;
+
+            //    client.Self.UpdateProfile(props);
+
+            //    proSLImage.Visible = true;
+
+            //    if (!instance.ImageCache.ContainsImage(SLImageID))
+            //    {
+            //        client.Assets.RequestImage(SLImageID, ImageType.Normal, Assets_OnImageReceived);
+            //    }
+            //    else
+            //    {
+            //        picSLImage.Image = instance.ImageCache.GetImage(SLImageID);
+            //        proSLImage.Visible = false;
+            //    }
+            //}
+
+            TreeNode node = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+
+            if (node == null) return;
+
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                string s = (string)e.Data.GetData(DataFormats.FileDrop, false);
+                InventoryBase io = (InventoryBase)node.Tag;
 
-                char[] deli = ",".ToCharArray();
-                string[] iDets = s.Split(deli);
+                if (node.Tag is InventoryFolder)
+                {
+                    //InventoryFolder folder = (InventoryFolder)io;
+                    InventoryFolder folder = node.Tag as InventoryFolder;
 
-                bool isimage = false;
-
-                if (iDets[2].ToString() == "ImageJPEG")
-                {
-                    isimage = true; 
-                }
-                else if (iDets[2].ToString() == "ImageTGA")
-                {
-                    isimage = true;
-                }
-                else if (iDets[2].ToString() == "Texture")
-                {
-                    isimage = true;
-                }
-                else if (iDets[2].ToString() == "TextureTGA")
-                {
-                    isimage = true;
+                    client.Inventory.GiveFolder(folder.UUID, folder.Name, AssetType.Folder, agentID, true);
+                    instance.TabConsole.DisplayChatScreen("Offered inventory folder " + folder.Name + " to " + fullName + ".");
                 }
                 else
                 {
-                    isimage = false;
-                }
+                    InventoryItem item = (InventoryItem)io;
 
-                if (!isimage) return;
+                    if (agentID != client.Self.AgentID)
+                    {
+                        if ((item.Permissions.OwnerMask & PermissionMask.Copy) != PermissionMask.Copy)
+                        {
+                            DialogResult res = MessageBox.Show("This is a 'no copy' item and you will lose ownership if you continue.", "Warning", MessageBoxButtons.OKCancel);
 
-                SLImageID = (UUID)iDets[3];
+                            if (res == DialogResult.Cancel) return;
+                        }
 
-                props.ProfileImage = SLImageID;
+                        client.Inventory.GiveItem(item.UUID, item.Name, item.AssetType, agentID, true);
+                        instance.TabConsole.DisplayChatScreen("Offered inventory item " + item.Name + " to " + fullName + ".");
+                    }
+                    else
+                    {
+                        // Change the picture
+                        if (item.AssetType == AssetType.ImageJPEG || item.AssetType == AssetType.ImageTGA || item.AssetType == AssetType.Texture || item.AssetType == AssetType.TextureTGA)
+                        {
+                            SLImageID = item.AssetUUID;
 
-                client.Self.UpdateProfile(props);
+                            props.ProfileImage = SLImageID;
 
-                proSLImage.Visible = true;
+                            client.Self.UpdateProfile(props);
 
-                if (!instance.ImageCache.ContainsImage(SLImageID))
-                {
-                    client.Assets.RequestImage(SLImageID, ImageType.Normal, Assets_OnImageReceived);
-                }
-                else
-                {
-                    picSLImage.Image = instance.ImageCache.GetImage(SLImageID);
-                    proSLImage.Visible = false;
+                            proSLImage.Visible = true;
+
+                            if (!instance.ImageCache.ContainsImage(SLImageID))
+                            {
+                                client.Assets.RequestImage(SLImageID, ImageType.Normal, Assets_OnImageReceived);
+                            }
+                            else
+                            {
+                                picSLImage.Image = instance.ImageCache.GetImage(SLImageID);
+                                proSLImage.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("To change your picture you must drag and drop an image or a texture", "METAbolt");
+                            return;
+                        }
+                    }
                 }
             }
         }
 
         private void picSLImage_DragOver(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //{
+            //    e.Effect = DragDropEffects.Move;
+            //}
+            //else
+            //{
+            //    e.Effect = DragDropEffects.None;
+            //}
+
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                e.Effect = DragDropEffects.Move;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
@@ -885,9 +981,11 @@ namespace METAbolt
 
         private void picFLImage_DragOver(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (agentID != client.Self.AgentID) return;
+
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                e.Effect = DragDropEffects.Move;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
@@ -897,9 +995,11 @@ namespace METAbolt
 
         private void picFLImage_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (agentID != client.Self.AgentID) return;
+
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                e.Effect = DragDropEffects.Move;
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
@@ -909,54 +1009,57 @@ namespace METAbolt
 
         private void picFLImage_DragDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (agentID != client.Self.AgentID) return;
+
+            TreeNode node = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+
+            if (node == null) return;
+
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
             {
-                string s = (string)e.Data.GetData(DataFormats.FileDrop, false);
+                InventoryBase io = (InventoryBase)node.Tag;
 
-                char[] deli = ",".ToCharArray();
-                string[] iDets = s.Split(deli);
-
-                bool isimage = false;
-
-                if (iDets[2].ToString() == "ImageJPEG")
+                if (node.Tag is InventoryFolder)
                 {
-                    isimage = true;
-                }
-                else if (iDets[2].ToString() == "ImageTGA")
-                {
-                    isimage = true;
-                }
-                else if (iDets[2].ToString() == "Texture")
-                {
-                    isimage = true;
-                }
-                else if (iDets[2].ToString() == "TextureTGA")
-                {
-                    isimage = true;
+                    return;
                 }
                 else
                 {
-                    isimage = false;
-                }
+                    InventoryItem item = (InventoryItem)io;
 
-                if (!isimage) return;
+                    if (agentID != client.Self.AgentID)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        // Change the picture
+                        if (item.AssetType == AssetType.ImageJPEG || item.AssetType == AssetType.ImageTGA || item.AssetType == AssetType.Texture || item.AssetType == AssetType.TextureTGA)
+                        {
+                            SLImageID = item.AssetUUID;
 
-                FLImageID = (UUID)iDets[3];
+                            props.ProfileImage = SLImageID;
 
-                props.FirstLifeImage = FLImageID;
+                            client.Self.UpdateProfile(props);
 
-                client.Self.UpdateProfile(props);
+                            proFLImage.Visible = true;
 
-                proFLImage.Visible = true;
-
-                if (!instance.ImageCache.ContainsImage(FLImageID))
-                {
-                    client.Assets.RequestImage(FLImageID, ImageType.Normal, Assets_OnImageReceived);
-                }
-                else
-                {
-                    picFLImage.Image = instance.ImageCache.GetImage(FLImageID);
-                    proFLImage.Visible = false;
+                            if (!instance.ImageCache.ContainsImage(SLImageID))
+                            {
+                                client.Assets.RequestImage(SLImageID, ImageType.Normal, Assets_OnImageReceived);
+                            }
+                            else
+                            {
+                                picFLImage.Image = instance.ImageCache.GetImage(SLImageID);
+                                proFLImage.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("To change your picture you must drag and drop an image or a texture", "METAbolt");
+                            return;
+                        }
+                    }
                 }
             }
         }
@@ -1199,6 +1302,11 @@ namespace METAbolt
         {
             gbDisplayName.Visible = false;
             txtDisplayName.Enabled = true;
+        }
+
+        private void tpgFirstLife_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

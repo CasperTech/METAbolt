@@ -315,8 +315,9 @@ namespace METAbolt
 
             //client.Self.Teleport(item.AssetUUID);
 
+            //client.Self.RequestTeleport(landmark);
+
             if (client.Self.Teleport(landmark))
-            //if (client.Self.Teleport(item.UUID))
             {
                 label7.Text = "Teleport Succesful";
                 label7.ForeColor = Color.LightGreen;

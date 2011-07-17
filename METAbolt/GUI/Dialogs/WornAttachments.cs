@@ -88,7 +88,7 @@ namespace METAbolt
                     ThreadPool.QueueUserWorkItem(delegate(object sync)
                     {
                         Cursor.Current = Cursors.WaitCursor;
-                        Thread.Sleep(5000);
+                        Thread.Sleep(6000);
                         ReLoadItems();
                         //GetAttachments();
                         Cursor.Current = Cursors.Default;
@@ -100,57 +100,61 @@ namespace METAbolt
 
         private void ReLoadItems()
         {
-            Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+            try
             {
-                return fa.ID == av.ID;
-            }
-            );
+                Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+                {
+                    return fa.ID == av.ID;
+                }
+                );
 
-            if (sav != null)
-            {
-                List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
-                        new Predicate<Primitive>(delegate(Primitive prim)
+                if (sav != null)
+                {
+                    List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
+                            new Predicate<Primitive>(delegate(Primitive prim)
+                            {
+                                try
+                                {
+                                    return (prim.ParentID == sav.LocalID);
+                                }
+                                catch { return false; }
+                            }));
+
+                    this.BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        lbxPrims.BeginUpdate();
+
+                        foreach (Primitive prim in prims)
                         {
                             try
                             {
-                                return (prim.ParentID == sav.LocalID);
+                                AttachmentsListItem item = new AttachmentsListItem(prim, client, lbxPrims);
+
+                                if (!listItems.ContainsKey(prim.LocalID))
+                                {
+                                    listItems.Add(prim.LocalID, item);
+
+                                    item.PropertiesReceived += new EventHandler(item_PropertiesReceived);
+                                    item.RequestProperties();
+                                }
                             }
-                            catch { return false; }
-                        }));
-
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    lbxPrims.BeginUpdate();
-
-                    foreach (Primitive prim in prims)
-                    {
-                        try
-                        {
-                            AttachmentsListItem item = new AttachmentsListItem(prim, client, lbxPrims);
-
-                            if (!listItems.ContainsKey(prim.LocalID))
+                            catch (Exception exc)
                             {
-                                listItems.Add(prim.LocalID, item);
-
-                                item.PropertiesReceived += new EventHandler(item_PropertiesReceived);
-                                item.RequestProperties();
+                                string exp = exc.Message;
                             }
                         }
-                        catch (Exception exc)
-                        {
-                            string exp = exc.Message;
-                        }
-                    }
 
-                    lbxPrims.EndUpdate();
-                    lbxPrims.Visible = true;
-                }));
+                        lbxPrims.EndUpdate();
+                        lbxPrims.Visible = true;
+                    }));
+                }
+                else
+                {
+                    this.Close();
+                    this.Dispose();
+                }
             }
-            else
-            {
-                this.Close();
-                this.Dispose(); 
-            }
+            catch { ; }
         }
 
         private void WornAssets_Load(object sender, EventArgs e)
@@ -536,6 +540,10 @@ namespace METAbolt
         {
             //client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             //client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+            listItems.Clear();
+            lbxPrims.Items.Clear();
+            lbxPrimGroup.Items.Clear();                
         }
 
         void WornAttachments_Disposed(object sender, EventArgs e)

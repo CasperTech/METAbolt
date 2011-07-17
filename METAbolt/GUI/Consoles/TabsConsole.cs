@@ -89,8 +89,8 @@ namespace METAbolt
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
             reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
             reporter.Config.CompanyName = "METAbolt";
-            reporter.Config.ContactEmail = "support@vistalogic.co.uk";
-            reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
             reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
             reporter.Config.AppName = "METAbolt";
             reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
@@ -148,7 +148,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -189,10 +190,10 @@ namespace METAbolt
                 this.instance.State.Groups = e.Groups;
                 BeginInvoke(new MethodInvoker(GetGroupsName));
             }
-            catch (Exception ex)
+            catch
             {
                 //string exp = ex.Message;
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -229,7 +230,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -263,7 +265,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -298,7 +301,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -313,9 +317,9 @@ namespace METAbolt
                     this.instance.State.GroupStore.Add(group.ID, group.Name);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -332,7 +336,7 @@ namespace METAbolt
                     InitializeInventoryTab();
                     InitializeSearchTab();
                     //InitializeMapTab();
-                    InitializeIMboxTab();
+                    InitializeIMboxTab();                   
 
                     avname = netcom.LoginOptions.FullName;
                     notifyIcon1.Text = "METAbolt [" + avname + "]";
@@ -345,7 +349,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -407,9 +412,9 @@ namespace METAbolt
 
                 tabs["chat"].Highlight();
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -427,20 +432,18 @@ namespace METAbolt
 
             try
             {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
+                ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
                                e.IM.FromAgentName + " (" + e.IM.FromAgentID.ToString() + "): " + e.IM.Message,
                                ChatBufferTextStyle.ObjectChat,
                                null,
                                e.IM.IMSessionID); //added by GM on 3-JUL-2009 - the FromAgentID
 
-                    chatConsole.ChatManager.ProcessBufferItem(ready, false);
-                }));
+                chatConsole.ChatManager.ProcessBufferItem(ready, false);
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -458,20 +461,18 @@ namespace METAbolt
 
             try
             {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
+                ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
                                msg,
                                ChatBufferTextStyle.Alert,
                                null,
                                UUID.Random()); //added by GM on 3-JUL-2009 - the FromAgentID
 
-                    chatConsole.ChatManager.ProcessBufferItem(ready, false);
-                }));
+                chatConsole.ChatManager.ProcessBufferItem(ready, false);
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -585,7 +586,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -618,9 +620,9 @@ namespace METAbolt
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -653,9 +655,9 @@ namespace METAbolt
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -913,7 +915,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -1035,8 +1038,8 @@ namespace METAbolt
                 }
                 catch (Exception ex)
                 {
-                    //Logger.Log("Inventory Received error: " + ex.Message, Helpers.LogLevel.Error);
-                    reporter.Show(ex);
+                    Logger.Log("Inventory Received error: " + ex.Message, Helpers.LogLevel.Error);
+                    //reporter.Show(ex);
                 }
             }
         }
@@ -1081,15 +1084,15 @@ namespace METAbolt
 
         private void InitializeMainTab()
         {
-            if (InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    InitializeMainTab();
-                }));
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        InitializeMainTab();
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -1106,23 +1109,23 @@ namespace METAbolt
 
                 mainConsole.RegisterTab(tab);
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
         private void InitializeChatTab()
         {
-            if (InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    InitializeChatTab();
-                }));
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        InitializeChatTab();
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -1138,21 +1141,22 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
         private void InitializeFriendsTab()
         {
-            if (InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    InitializeFriendsTab();
-                }));
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        InitializeFriendsTab();
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -1168,21 +1172,22 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
         private void InitializeIMboxTab()
         {
-            if (InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    InitializeIMboxTab();
-                }));
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        InitializeIMboxTab();
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -1198,21 +1203,22 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
         private void InitializeGroupsTab()
         {
-            if (InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    InitializeGroupsTab();
-                }));
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        InitializeGroupsTab();
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -1228,22 +1234,22 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                //Logger.Log("Group tab error: " + ex.Message, Helpers.LogLevel.Error);
-                reporter.Show(ex);
+                Logger.Log("Group tab error: " + ex.Message, Helpers.LogLevel.Error);
+                //reporter.Show(ex);
             }
         }
 
         private void InitializeSearchTab()
         {
-            if (InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    InitializeSearchTab();
-                }));
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        InitializeSearchTab();
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -1259,21 +1265,22 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
         private void InitializeInventoryTab()
         {
-            if (InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    InitializeInventoryTab();
-                }));
+            //if (InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        InitializeInventoryTab();
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -1290,7 +1297,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 

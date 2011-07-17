@@ -63,10 +63,12 @@ namespace METAbolt
         private SafeDictionary<UUID, string> avatars = new SafeDictionary<UUID, string>();
 
         private Popup toolTip;
+        private Popup toolTip1;
         private CustomToolTip customToolTip;
         private bool eventsremoved = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         //private System.Timers.Timer sittimer;
+
 
         internal class ThreadExceptionHandler
         {
@@ -93,11 +95,19 @@ namespace METAbolt
             netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
             netcom.ClientDisconnected += new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
             client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
 
             range = instance.Config.CurrentConfig.ObjectRange;
             newrange = range;
             //numericUpDown1.Maximum = instance.Config.CurrentConfig.RadarRange;
             numericUpDown1.Value = Convert.ToDecimal(range);
+
+            string msg1 = "Click for online help on how to use the Object Manager";
+            toolTip1 = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            toolTip1.AutoClose = false;
+            toolTip1.FocusOnOpen = false;
+            toolTip1.ShowingAnimation = toolTip1.HidingAnimation = PopupAnimations.Blend;
+
         }
 
         private void SetExceptionReporter()
@@ -105,8 +115,8 @@ namespace METAbolt
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
             reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
             reporter.Config.CompanyName = "METAbolt";
-            reporter.Config.ContactEmail = "support@vistalogic.co.uk";
-            reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
             reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
             reporter.Config.AppName = "METAbolt";
             reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
@@ -161,7 +171,6 @@ namespace METAbolt
         {
             client.Objects.ObjectUpdate += new EventHandler<PrimEventArgs>(Objects_OnNewPrim);
             client.Objects.KillObject += new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
-            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             eventsremoved = false;
         }
 
@@ -173,13 +182,13 @@ namespace METAbolt
             client.Network.Disconnected -= new EventHandler<DisconnectedEventArgs>(Network_OnDisconnected);
             netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
+            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
         }
 
         private void RemoveObjectEvents()
         {
             client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_OnNewPrim);
             client.Objects.KillObject -= new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
-            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             eventsremoved = true;
         }
 
@@ -221,28 +230,25 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
-                //this.Close();
-
-                //listItems.Clear();
-                //ItemsProps.Clear();
-                //childItems.Clear();
-                //objs.Clear();
-                //avatars.Clear();
-
-                //lbxPrims.Items.Clear();
+                //ClearLists();
+                lbxPrims.Items.Clear();  
 
                 //AddAllObjects();
             }));
         }
 
-        private void Network_OnDisconnected(object sender, DisconnectedEventArgs e)
+        private void ClearLists()
         {
-            //this.Close();
             listItems.Clear();
             ItemsProps.Clear();
             childItems.Clear();
             objs.Clear();
-            avatars.Clear();  
+            avatars.Clear();
+        }
+
+        private void Network_OnDisconnected(object sender, DisconnectedEventArgs e)
+        {
+            ClearLists();  
         }
 
         private void lbxPrims_DrawItem(object sender, DrawItemEventArgs e)
@@ -1117,7 +1123,10 @@ namespace METAbolt
                         {
                             if (listItems.ContainsKey(e.Prim.LocalID)) return;
                         }
-                        catch { ; }
+                        catch (Exception ex)
+                        { 
+                            string err = ex.Message; 
+                        }
 
                         try
                         {
@@ -1149,14 +1158,17 @@ namespace METAbolt
                                 }
                             }));
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            ;
+                            string err = ex.Message;
                         }
                     }
                 }
             }
-            catch { ; }
+            catch (Exception ex)
+            {
+                string err = ex.Message;  
+            }
         }
 
         //Separate thread
@@ -1188,8 +1200,20 @@ namespace METAbolt
                             BeginInvoke(new MethodInvoker(delegate()
                             {
                                 item = childItems[objectID];
-                                lbxChildren.Items.Remove(item);
-                                childItems.Remove(objectID);
+
+                                if (lbxChildren.Items.Contains(item))
+                                {
+                                    lbxChildren.Items.Remove(item);
+                                }
+
+                                try
+                                {
+                                    childItems.Remove(objectID);
+                                }
+                                catch (Exception ex)
+                                {
+                                    string err = ex.Message;
+                                }
                             }));
                         }
                         catch (Exception exc)
@@ -1209,9 +1233,22 @@ namespace METAbolt
                             BeginInvoke(new MethodInvoker(delegate()
                             {
                                 item = listItems[objectID];
-                                lbxPrims.Items.Remove(item);
+
+                                if (lbxPrims.Items.Contains(item))
+                                {
+                                    lbxPrims.Items.Remove(item);
+                                }
+
                                 pB1.Maximum -= 1;
-                                listItems.Remove(objectID);
+
+                                try
+                                {
+                                    listItems.Remove(objectID);
+                                }
+                                catch (Exception ex)
+                                {
+                                    string err = ex.Message;
+                                }
 
                                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
                                 tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
@@ -1224,9 +1261,10 @@ namespace METAbolt
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 // passed key wasn't available
+                string erc = ex.Message;
                 return;
             }
         }
@@ -1674,8 +1712,9 @@ namespace METAbolt
 
         private void frmObjects_FormClosing(object sender, FormClosingEventArgs e)
         {
-            listItems.Clear();
-            childItems.Clear();
+            ClearLists();
+            lbxPrims.Items.Clear();  
+
             RemoveObjectEvents();
             RemoveNetcomEvents(); 
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
@@ -2689,6 +2728,21 @@ namespace METAbolt
 
             //(new META3D(instance, item.Prim.LocalID)).Show();
             (new META3D(instance, item)).Show();
+        }
+
+        private void picAutoSit_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/ObjectManager.ashx");
+        }
+
+        private void picAutoSit_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(picAutoSit);
+        }
+
+        private void picAutoSit_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Close();  
         }
     }
 }

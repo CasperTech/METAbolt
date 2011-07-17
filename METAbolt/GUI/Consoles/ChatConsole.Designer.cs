@@ -52,6 +52,7 @@ namespace METAbolt
             this.tbBtn_Emoticons = new System.Windows.Forms.ToolBarButton();
             this.cmenu_Emoticons = new System.Windows.Forms.ContextMenu();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel7 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -59,13 +60,21 @@ namespace METAbolt
             this.button9 = new System.Windows.Forms.Button();
             this.tsFindText = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.cboLanguage = new METAbolt.ComboEx();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.chkTranslate = new System.Windows.Forms.CheckBox();
             this.rtbChat = new Khendys.Controls.ExRichTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.picOriginal = new System.Windows.Forms.PictureBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -90,13 +99,10 @@ namespace METAbolt
             this.tbtnFreeze = new System.Windows.Forms.ToolStripButton();
             this.tbtnEject = new System.Windows.Forms.ToolStripButton();
             this.tbtnBan = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbSearch = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -129,19 +135,13 @@ namespace METAbolt
             this.cboCapture = new System.Windows.Forms.ComboBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.picOriginal = new System.Windows.Forms.PictureBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.cboLanguage = new METAbolt.ComboEx();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -149,6 +149,7 @@ namespace METAbolt
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picOriginal)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -160,8 +161,6 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picOriginal)).BeginInit();
             this.SuspendLayout();
             // 
             // cbxInput
@@ -419,6 +418,21 @@ namespace METAbolt
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.AccessibleDescription = "Compass that shows direction";
+            this.pictureBox4.AccessibleName = "Compass";
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Image = global::METAbolt.Properties.Resources.compass_needle;
+            this.pictureBox4.Location = new System.Drawing.Point(117, 28);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 34;
+            this.pictureBox4.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox4, "Compass");
+            // 
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.Lavender;
@@ -513,21 +527,6 @@ namespace METAbolt
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(539, 29);
             this.panel3.TabIndex = 4;
-            // 
-            // cboLanguage
-            // 
-            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
-            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLanguage.Enabled = false;
-            this.cboLanguage.FormattingEnabled = true;
-            this.cboLanguage.ICImageList = this.imgFlags;
-            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
-            this.cboLanguage.Name = "cboLanguage";
-            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
-            this.cboLanguage.TabIndex = 6;
-            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -641,6 +640,123 @@ namespace METAbolt
             this.panel5.Size = new System.Drawing.Size(182, 105);
             this.panel5.TabIndex = 10;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
+            // 
+            // picOriginal
+            // 
+            this.picOriginal.BackColor = System.Drawing.Color.Transparent;
+            this.picOriginal.Image = global::METAbolt.Properties.Resources.compass_needle;
+            this.picOriginal.Location = new System.Drawing.Point(4, 3);
+            this.picOriginal.Name = "picOriginal";
+            this.picOriginal.Size = new System.Drawing.Size(25, 25);
+            this.picOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picOriginal.TabIndex = 42;
+            this.picOriginal.TabStop = false;
+            this.picOriginal.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.DarkGray;
+            this.label21.Location = new System.Drawing.Point(99, 46);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(18, 13);
+            this.label21.TabIndex = 37;
+            this.label21.Text = "W";
+            this.label21.Click += new System.EventHandler(this.label21_Click);
+            // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.DarkGray;
+            this.label20.Location = new System.Drawing.Point(169, 46);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(13, 13);
+            this.label20.TabIndex = 36;
+            this.label20.Text = "E";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.DarkGray;
+            this.label19.Location = new System.Drawing.Point(136, 79);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(14, 13);
+            this.label19.TabIndex = 35;
+            this.label19.Text = "S";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label1.Location = new System.Drawing.Point(136, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 13);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "N";
+            // 
+            // label24
+            // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.Red;
+            this.label24.Location = new System.Drawing.Point(164, 68);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(10, 13);
+            this.label24.TabIndex = 40;
+            this.label24.Text = ".";
+            // 
+            // label25
+            // 
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Red;
+            this.label25.Location = new System.Drawing.Point(112, 69);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(10, 13);
+            this.label25.TabIndex = 41;
+            this.label25.Text = ".";
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Red;
+            this.label23.Location = new System.Drawing.Point(164, 17);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(10, 13);
+            this.label23.TabIndex = 39;
+            this.label23.Text = ".";
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(111, 17);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(10, 13);
+            this.label22.TabIndex = 38;
+            this.label22.Text = ".";
             // 
             // button8
             // 
@@ -782,14 +898,13 @@ namespace METAbolt
             this.tbtnFreeze,
             this.tbtnEject,
             this.tbtnBan,
-            this.toolStripLabel2,
-            this.toolStripSeparator9,
             this.toolStripSeparator10,
-            this.tsbSearch});
-            this.toolStrip1.Location = new System.Drawing.Point(162, 0);
+            this.tsbSearch,
+            this.toolStripButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(154, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(24, 443);
+            this.toolStrip1.Size = new System.Drawing.Size(32, 443);
             this.toolStrip1.TabIndex = 20;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -797,17 +912,17 @@ namespace METAbolt
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(29, 6);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(29, 6);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(21, 15);
+            this.toolStripLabel1.Size = new System.Drawing.Size(29, 15);
             this.toolStripLabel1.Text = " ";
             // 
             // tbtnStartIM
@@ -820,7 +935,7 @@ namespace METAbolt
             this.tbtnStartIM.Image = global::METAbolt.Properties.Resources.im;
             this.tbtnStartIM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnStartIM.Name = "tbtnStartIM";
-            this.tbtnStartIM.Size = new System.Drawing.Size(21, 20);
+            this.tbtnStartIM.Size = new System.Drawing.Size(29, 20);
             this.tbtnStartIM.ToolTipText = "Start IM";
             this.tbtnStartIM.Click += new System.EventHandler(this.tbtnStartIM_Click);
             // 
@@ -834,7 +949,7 @@ namespace METAbolt
             this.tbtnProfile.Image = global::METAbolt.Properties.Resources.profile;
             this.tbtnProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnProfile.Name = "tbtnProfile";
-            this.tbtnProfile.Size = new System.Drawing.Size(21, 20);
+            this.tbtnProfile.Size = new System.Drawing.Size(29, 20);
             this.tbtnProfile.ToolTipText = "View Profile";
             this.tbtnProfile.Click += new System.EventHandler(this.tbtnProfile_Click);
             // 
@@ -847,14 +962,14 @@ namespace METAbolt
             this.tbtnAttachments.Image = global::METAbolt.Properties.Resources.attachment;
             this.tbtnAttachments.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAttachments.Name = "tbtnAttachments";
-            this.tbtnAttachments.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAttachments.Size = new System.Drawing.Size(29, 20);
             this.tbtnAttachments.Text = "View worn attachments";
             this.tbtnAttachments.Click += new System.EventHandler(this.tbtnAttachments_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(29, 6);
             // 
             // tbtnAddFriend
             // 
@@ -866,7 +981,7 @@ namespace METAbolt
             this.tbtnAddFriend.Image = global::METAbolt.Properties.Resources.friend;
             this.tbtnAddFriend.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAddFriend.Name = "tbtnAddFriend";
-            this.tbtnAddFriend.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAddFriend.Size = new System.Drawing.Size(29, 20);
             this.tbtnAddFriend.Text = "toolStripButton1";
             this.tbtnAddFriend.ToolTipText = "Add to Friends";
             this.tbtnAddFriend.Click += new System.EventHandler(this.tbtnAddFriend_Click);
@@ -874,7 +989,7 @@ namespace METAbolt
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(29, 6);
             // 
             // tbtnTurn
             // 
@@ -886,7 +1001,7 @@ namespace METAbolt
             this.tbtnTurn.Image = ((System.Drawing.Image)(resources.GetObject("tbtnTurn.Image")));
             this.tbtnTurn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnTurn.Name = "tbtnTurn";
-            this.tbtnTurn.Size = new System.Drawing.Size(21, 20);
+            this.tbtnTurn.Size = new System.Drawing.Size(29, 20);
             this.tbtnTurn.ToolTipText = "Turn to";
             this.tbtnTurn.Click += new System.EventHandler(this.tbtnTurn_Click);
             // 
@@ -900,7 +1015,7 @@ namespace METAbolt
             this.tbtnFollow.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFollow.Image")));
             this.tbtnFollow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFollow.Name = "tbtnFollow";
-            this.tbtnFollow.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFollow.Size = new System.Drawing.Size(29, 20);
             this.tbtnFollow.ToolTipText = "Follow";
             this.tbtnFollow.Click += new System.EventHandler(this.tbtnFollow_Click);
             // 
@@ -914,7 +1029,7 @@ namespace METAbolt
             this.tbtnGoto.Image = ((System.Drawing.Image)(resources.GetObject("tbtnGoto.Image")));
             this.tbtnGoto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnGoto.Name = "tbtnGoto";
-            this.tbtnGoto.Size = new System.Drawing.Size(21, 20);
+            this.tbtnGoto.Size = new System.Drawing.Size(29, 20);
             this.tbtnGoto.Text = "toolStripButton1";
             this.tbtnGoto.ToolTipText = "Go to";
             this.tbtnGoto.Click += new System.EventHandler(this.tbtnGoto_Click);
@@ -922,7 +1037,7 @@ namespace METAbolt
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(29, 6);
             // 
             // tbtnFreeze
             // 
@@ -934,7 +1049,7 @@ namespace METAbolt
             this.tbtnFreeze.Image = global::METAbolt.Properties.Resources.freeze;
             this.tbtnFreeze.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFreeze.Name = "tbtnFreeze";
-            this.tbtnFreeze.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFreeze.Size = new System.Drawing.Size(29, 20);
             this.tbtnFreeze.Text = "toolStripButton1";
             this.tbtnFreeze.ToolTipText = "Freeze";
             this.tbtnFreeze.Click += new System.EventHandler(this.tbtnFreeze_Click);
@@ -949,7 +1064,7 @@ namespace METAbolt
             this.tbtnEject.Image = global::METAbolt.Properties.Resources.arrow_up_16;
             this.tbtnEject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnEject.Name = "tbtnEject";
-            this.tbtnEject.Size = new System.Drawing.Size(21, 20);
+            this.tbtnEject.Size = new System.Drawing.Size(29, 20);
             this.tbtnEject.Text = "toolStripButton1";
             this.tbtnEject.ToolTipText = "Eject";
             this.tbtnEject.Click += new System.EventHandler(this.tbtnEject_Click_1);
@@ -964,26 +1079,15 @@ namespace METAbolt
             this.tbtnBan.Image = global::METAbolt.Properties.Resources.ban;
             this.tbtnBan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnBan.Name = "tbtnBan";
-            this.tbtnBan.Size = new System.Drawing.Size(21, 20);
+            this.tbtnBan.Size = new System.Drawing.Size(29, 20);
             this.tbtnBan.Text = "toolStripButton1";
             this.tbtnBan.ToolTipText = "Ban";
             this.tbtnBan.Click += new System.EventHandler(this.tbtnBan_Click);
             // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(21, 15);
-            this.toolStripLabel2.Text = " ";
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(21, 6);
-            // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(29, 6);
             // 
             // tsbSearch
             // 
@@ -991,7 +1095,7 @@ namespace METAbolt
             this.tsbSearch.Image = global::METAbolt.Properties.Resources.Search_32;
             this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSearch.Name = "tsbSearch";
-            this.tsbSearch.Size = new System.Drawing.Size(21, 20);
+            this.tsbSearch.Size = new System.Drawing.Size(29, 20);
             this.tsbSearch.Text = "toolStripButton1";
             this.tsbSearch.ToolTipText = "Show chat search";
             this.tsbSearch.Click += new System.EventHandler(this.toolStripButton1_Click_2);
@@ -1025,32 +1129,6 @@ namespace METAbolt
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Radar";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-                "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.Lavender;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(2, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(152, 301);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.List;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
             // 
             // tabPage2
             // 
@@ -1298,7 +1376,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(51, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(72, 17);
+            this.checkBox5.Size = new System.Drawing.Size(69, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1443,137 +1521,58 @@ namespace METAbolt
             this.timer2.Interval = 62000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // pictureBox4
+            // toolStripButton1
             // 
-            this.pictureBox4.AccessibleDescription = "Compass that shows direction";
-            this.pictureBox4.AccessibleName = "Compass";
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.Image = global::METAbolt.Properties.Resources.compass_needle;
-            this.pictureBox4.Location = new System.Drawing.Point(117, 28);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 34;
-            this.pictureBox4.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox4, "Compass");
+            this.toolStripButton1.AccessibleDescription = "Click for online help";
+            this.toolStripButton1.AccessibleName = "Help button";
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 20);
+            this.toolStripButton1.ToolTipText = "Click for online help";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_3);
             // 
-            // label21
+            // cboLanguage
             // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.DarkGray;
-            this.label21.Location = new System.Drawing.Point(99, 46);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(18, 13);
-            this.label21.TabIndex = 37;
-            this.label21.Text = "W";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
+            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
+            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLanguage.Enabled = false;
+            this.cboLanguage.FormattingEnabled = true;
+            this.cboLanguage.ICImageList = this.imgFlags;
+            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
+            this.cboLanguage.Name = "cboLanguage";
+            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
+            this.cboLanguage.TabIndex = 6;
+            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
             // 
-            // label20
+            // lvwRadar
             // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.DarkGray;
-            this.label20.Location = new System.Drawing.Point(169, 46);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(13, 13);
-            this.label20.TabIndex = 36;
-            this.label20.Text = "E";
-            // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.DarkGray;
-            this.label19.Location = new System.Drawing.Point(136, 79);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(14, 13);
-            this.label19.TabIndex = 35;
-            this.label19.Text = "S";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(136, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 13);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "N";
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.Red;
-            this.label24.Location = new System.Drawing.Point(164, 68);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(10, 13);
-            this.label24.TabIndex = 40;
-            this.label24.Text = ".";
-            // 
-            // label25
-            // 
-            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.Red;
-            this.label25.Location = new System.Drawing.Point(112, 69);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(10, 13);
-            this.label25.TabIndex = 41;
-            this.label25.Text = ".";
-            // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(164, 17);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(10, 13);
-            this.label23.TabIndex = 39;
-            this.label23.Text = ".";
-            // 
-            // label22
-            // 
-            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(111, 17);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(10, 13);
-            this.label22.TabIndex = 38;
-            this.label22.Text = ".";
-            // 
-            // picOriginal
-            // 
-            this.picOriginal.BackColor = System.Drawing.Color.Transparent;
-            this.picOriginal.Image = global::METAbolt.Properties.Resources.compass_needle;
-            this.picOriginal.Location = new System.Drawing.Point(4, 3);
-            this.picOriginal.Name = "picOriginal";
-            this.picOriginal.Size = new System.Drawing.Size(25, 25);
-            this.picOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picOriginal.TabIndex = 42;
-            this.picOriginal.TabStop = false;
-            this.picOriginal.Visible = false;
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+                "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.Lavender;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(2, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(152, 301);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.List;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
             // 
             // ChatConsole
             // 
@@ -1593,6 +1592,7 @@ namespace METAbolt
             this.toolStrip2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -1604,6 +1604,7 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picOriginal)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1618,8 +1619,6 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picOriginal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1701,11 +1700,8 @@ namespace METAbolt
         private System.Windows.Forms.TextBox tsFindText;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton tsbSearch;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolBarButton toolBarButton1;
         private System.Windows.Forms.ToolBar toolBar1;
         private System.Windows.Forms.ToolBarButton tbBtn_Emoticons;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
@@ -1736,5 +1732,6 @@ namespace METAbolt
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.PictureBox picOriginal;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

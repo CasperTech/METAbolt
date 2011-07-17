@@ -113,7 +113,8 @@ namespace METAbolt
             client.Parcels.ParcelProperties += new EventHandler<ParcelPropertiesEventArgs>(Parcels_OnParcelProperties);
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
-            netcom.MoneyBalanceUpdated +=new EventHandler<BalanceEventArgs>(netcom_MoneyBalanceUpdated); 
+            netcom.MoneyBalanceUpdated +=new EventHandler<BalanceEventArgs>(netcom_MoneyBalanceUpdated);
+            //client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
 
             AddNetcomEvents();
             InitializeStatusTimer();
@@ -140,8 +141,8 @@ namespace METAbolt
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
             reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
             reporter.Config.CompanyName = "METAbolt";
-            reporter.Config.ContactEmail = "support@vistalogic.co.uk";
-            reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
             reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
             reporter.Config.AppName = "METAbolt";
             reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
@@ -169,19 +170,44 @@ namespace METAbolt
             catch { ; }
         }
 
+        private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs e)
+        {
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => Parcels_OnParcelDwell(sender, e)));
+            //    return;
+            //}
+
+            //Parcel parcel;
+            //Vector3 apos = instance.SIMsittingPos();
+
+            //float f1 = 64.0f * (apos.Y / 256.0f);
+            //float f2 = 64.0f * (apos.X / 256.0f);
+            //int posY = Convert.ToInt32(f1);
+            //int posX = Convert.ToInt32(f2);
+
+            //int parcelid = client.Network.CurrentSim.ParcelMap[posY, posX];
+
+            //if (parcelid == 0)
+            //{
+            //    Logger.Log("Could not get parcel name", Helpers.LogLevel.Info);
+            //    return;
+            //}
+
+            //if (!client.Network.CurrentSim.Parcels.TryGetValue(parcelid, out parcel)) return;
+
+            //UpdateLand(parcel); 
+        }
+
         private void Parcels_OnParcelProperties(object sender, ParcelPropertiesEventArgs e)
         {
             if (e.Result != ParcelResult.Single) return;
 
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        Parcels_OnParcelProperties(sender, e);
-            //    }));
-
-            //    return;
-            //}
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(() => Parcels_OnParcelProperties(sender, e)));
+                return;
+            }
 
             UpdateLand(e.Parcel);
         }
@@ -352,8 +378,8 @@ namespace METAbolt
             catch (Exception ex)
             {
                 string serr = ex.Message;
-                //Logger.Log(String.Format("Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
-                reporter.Show(ex);
+                Logger.Log(String.Format("Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
+                //reporter.Show(ex);
             }
         }
 
@@ -383,7 +409,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -408,9 +435,9 @@ namespace METAbolt
                     NameReceived(e.Names);
                 }));
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -488,7 +515,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -573,9 +601,9 @@ namespace METAbolt
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -633,6 +661,7 @@ namespace METAbolt
             this.instance.Config.ConfigApplied -= new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
             client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
             netcom.MoneyBalanceUpdated -= new EventHandler<BalanceEventArgs>(netcom_MoneyBalanceUpdated);
+            //client.Parcels.ParcelDwellReply -= new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
 
             manager.AssemblyFailedLoading -= new ExtensionManager<IExtension, IHost>.AssemblyFailedLoadingEventHandler(manager_AssemblyFailedLoading);
             manager.AssemblyLoaded -= new ExtensionManager<IExtension, IHost>.AssemblyLoadedEventHandler(manager_AssemblyLoaded);
@@ -767,9 +796,7 @@ namespace METAbolt
                             client.Network.CurrentSim.Name +
                             " (" + Math.Floor(instance.SIMsittingPos().X).ToString() + ", " +
                             Math.Floor(instance.SIMsittingPos().Y).ToString() + ", " +
-                            Math.Floor(instance.SIMsittingPos().Z).ToString() + ")";
-
-                    //client.Parcels.RequestParcelProperties(client.Network.CurrentSim,     
+                            Math.Floor(instance.SIMsittingPos().Z).ToString() + ")"; 
                 }
                 else
                 {
@@ -786,9 +813,9 @@ namespace METAbolt
                     tb6.Visible = false;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -853,9 +880,9 @@ namespace METAbolt
                 this.Text = sb.ToString();
                 sb = null;
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -869,15 +896,15 @@ namespace METAbolt
 
         private void InitializeTabsConsole()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    InitializeTabsConsole();
-                });
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke((MethodInvoker)delegate
+            //    {
+            //        InitializeTabsConsole();
+            //    });
 
-                return;
-            }
+            //    return;
+            //}
 
             try
             {
@@ -887,21 +914,22 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
         private void InitializeDebugLogForm()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    InitializeDebugLogForm();
-                });
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke((MethodInvoker)delegate
+            //    {
+            //        InitializeDebugLogForm();
+            //    });
 
-                return;
-            }
+            //    return;
+            //}
 
             debugLogForm = new frmDebugLog(instance);
         }
@@ -1624,11 +1652,6 @@ namespace METAbolt
             }
         }
 
-        private void applyToDisableAdsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new AdLicense(this.instance)).ShowDialog(this);
-        }
-
         private void tbtnHelp_Click(object sender, EventArgs e)
         {
 
@@ -1829,7 +1852,9 @@ namespace METAbolt
         /// 
         /// This method ensures its logic executes only once to eliminate errors and unintentional conflicts.
         /// </summary>
-        /// <param name="closeWindow">Determines whether this method should call this.Close()</param>
+        /// <param name="CloseWindow">Determines whether this method should call this.Close()</param>
+        /// <param name="Reason">The reason for closing</param>
+        /// <param name="ReconnectWaitMinutes">Re-start interval in milliseconds</param>
         /// <returns>false if already run or failed to execute METArestart, otherwise true</returns>
         public bool DisconnectClient(bool CloseWindow, string Reason, int ReconnectWaitMinutes)
         {

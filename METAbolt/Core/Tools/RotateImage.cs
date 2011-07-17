@@ -43,7 +43,7 @@ namespace METAbolt
         /// <param name="angle">The amount to rotate the image, clockwise, in degrees</param>
         /// <returns>A new <see cref="System.Drawing.Bitmap"/> that is just large enough
         /// to contain the rotated image without cutting any corners off.</returns>
-        /// <exception cref="System.ArgumentNullException">Thrown if <see cref="image"/> is null.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown if image is null.</exception>
         public static Bitmap RotateImg(Image image, float angle)
         {
             if (image == null)

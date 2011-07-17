@@ -84,6 +84,7 @@ namespace METAbolt
             this.txtSlurl = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.lvwPicks = new METAbolt.FlickerFreeListView();
             this.tpgFirstLife = new System.Windows.Forms.TabPage();
             this.proFLImage = new System.Windows.Forms.PictureBox();
             this.rtbAboutFL = new System.Windows.Forms.RichTextBox();
@@ -96,7 +97,6 @@ namespace METAbolt
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lvwPicks = new METAbolt.FlickerFreeListView();
             this.tabProfile.SuspendLayout();
             this.tpgProfile.SuspendLayout();
             this.gbDisplayName.SuspendLayout();
@@ -118,6 +118,7 @@ namespace METAbolt
             // 
             this.tabProfile.AccessibleDescription = "Profile, web, picks, first life and notes tabs";
             this.tabProfile.AccessibleName = "Tabs";
+            this.tabProfile.AllowDrop = true;
             this.tabProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -340,7 +341,7 @@ namespace METAbolt
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 223);
+            this.label14.Location = new System.Drawing.Point(9, 226);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(29, 13);
             this.label14.TabIndex = 51;
@@ -817,9 +818,31 @@ namespace METAbolt
             this.txtTitle.Size = new System.Drawing.Size(296, 21);
             this.txtTitle.TabIndex = 2;
             // 
+            // lvwPicks
+            // 
+            this.lvwPicks.AccessibleName = "List of picks listbox";
+            this.lvwPicks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwPicks.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwPicks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvwPicks.FullRowSelect = true;
+            this.lvwPicks.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvwPicks.HideSelection = false;
+            this.lvwPicks.LabelWrap = false;
+            this.lvwPicks.Location = new System.Drawing.Point(3, 22);
+            this.lvwPicks.MultiSelect = false;
+            this.lvwPicks.Name = "lvwPicks";
+            this.lvwPicks.Size = new System.Drawing.Size(152, 393);
+            this.lvwPicks.TabIndex = 0;
+            this.lvwPicks.UseCompatibleStateImageBehavior = false;
+            this.lvwPicks.View = System.Windows.Forms.View.List;
+            this.lvwPicks.SelectedIndexChanged += new System.EventHandler(this.lvwPicks_SelectedIndexChanged);
+            // 
             // tpgFirstLife
             // 
             this.tpgFirstLife.AccessibleName = "First life tab";
+            this.tpgFirstLife.AllowDrop = true;
             this.tpgFirstLife.BackColor = System.Drawing.Color.Lavender;
             this.tpgFirstLife.Controls.Add(this.proFLImage);
             this.tpgFirstLife.Controls.Add(this.rtbAboutFL);
@@ -832,6 +855,7 @@ namespace METAbolt
             this.tpgFirstLife.Size = new System.Drawing.Size(460, 471);
             this.tpgFirstLife.TabIndex = 2;
             this.tpgFirstLife.Text = "First Life";
+            this.tpgFirstLife.Click += new System.EventHandler(this.tpgFirstLife_Click);
             // 
             // proFLImage
             // 
@@ -985,27 +1009,6 @@ namespace METAbolt
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // lvwPicks
-            // 
-            this.lvwPicks.AccessibleName = "List of picks listbox";
-            this.lvwPicks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwPicks.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwPicks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lvwPicks.FullRowSelect = true;
-            this.lvwPicks.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwPicks.HideSelection = false;
-            this.lvwPicks.LabelWrap = false;
-            this.lvwPicks.Location = new System.Drawing.Point(3, 22);
-            this.lvwPicks.MultiSelect = false;
-            this.lvwPicks.Name = "lvwPicks";
-            this.lvwPicks.Size = new System.Drawing.Size(152, 393);
-            this.lvwPicks.TabIndex = 0;
-            this.lvwPicks.UseCompatibleStateImageBehavior = false;
-            this.lvwPicks.View = System.Windows.Forms.View.List;
-            this.lvwPicks.SelectedIndexChanged += new System.EventHandler(this.lvwPicks_SelectedIndexChanged);
             // 
             // frmProfile
             // 

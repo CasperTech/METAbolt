@@ -197,8 +197,8 @@ namespace METAbolt
         //    reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
         //    reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
         //    reporter.Config.CompanyName = "METAbolt";
-        //    reporter.Config.ContactEmail = "support@vistalogic.co.uk";
-        //    reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+        //    reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+        //    reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
         //    reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
         //    reporter.Config.AppName = "METAbolt";
         //    reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
@@ -236,6 +236,11 @@ namespace METAbolt
                 Prims.Clear();
             }
 
+            lock (this.Textures)
+            {
+                Textures.Clear();
+            }
+
             GC.Collect();
         }
 
@@ -244,6 +249,11 @@ namespace METAbolt
             lock (Prims)
             {
                 Prims.Clear();  
+            }
+
+            lock (this.Textures)
+            {
+                Textures.Clear();
             }
         }
 
@@ -265,7 +275,7 @@ namespace METAbolt
                     ThreadPool.QueueUserWorkItem(delegate(object sync)
                     {
                         Cursor.Current = Cursors.WaitCursor; 
-                        Thread.Sleep(5000);
+                        Thread.Sleep(6000);
                         ReLoadObject();
                         RenderingEnabled = true;
                         Cursor.Current = Cursors.Default;
@@ -295,16 +305,20 @@ namespace METAbolt
 
                 if (results != null)
                 {
-                    selitem = results[0];
-
-                    RootPrimLocalID = selitem.LocalID;
-
-                    if (client.Network.CurrentSim.ObjectsPrimitives.ContainsKey(RootPrimLocalID))
+                    try
                     {
-                        UpdatePrimBlocking(client.Network.CurrentSim.ObjectsPrimitives[RootPrimLocalID]);
-                        var children = client.Network.CurrentSim.ObjectsPrimitives.FindAll((Primitive p) => { return p.ParentID == RootPrimLocalID; });
-                        children.ForEach(p => UpdatePrimBlocking(p));
+                        selitem = results[0];
+
+                        RootPrimLocalID = selitem.LocalID;
+
+                        if (client.Network.CurrentSim.ObjectsPrimitives.ContainsKey(RootPrimLocalID))
+                        {
+                            UpdatePrimBlocking(client.Network.CurrentSim.ObjectsPrimitives[RootPrimLocalID]);
+                            var children = client.Network.CurrentSim.ObjectsPrimitives.FindAll((Primitive p) => { return p.ParentID == RootPrimLocalID; });
+                            children.ForEach(p => UpdatePrimBlocking(p));
+                        }
                     }
+                    catch { ; }
                 }
                 else
                 {

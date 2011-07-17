@@ -31,6 +31,7 @@ namespace METAbolt
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmObjects));
             this.gbxInworld = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btnTake = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@ namespace METAbolt
             this.lkLocation = new System.Windows.Forms.LinkLabel();
             this.btnTP = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblUUID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.TextBox();
@@ -79,6 +79,7 @@ namespace METAbolt
             this.button3 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.picAutoSit = new System.Windows.Forms.PictureBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -109,6 +110,7 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBar1)).BeginInit();
@@ -141,6 +143,19 @@ namespace METAbolt
             this.gbxInworld.TabIndex = 7;
             this.gbxInworld.TabStop = false;
             this.gbxInworld.Text = "In-world";
+            // 
+            // button1
+            // 
+            this.button1.AccessibleName = "3D view button";
+            this.button1.BackColor = System.Drawing.Color.DarkGreen;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(177, 79);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 23);
+            this.button1.TabIndex = 55;
+            this.button1.Text = "&View 3D";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnReturn
             // 
@@ -359,19 +374,6 @@ namespace METAbolt
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Object information";
             // 
-            // button1
-            // 
-            this.button1.AccessibleName = "3D view button";
-            this.button1.BackColor = System.Drawing.Color.DarkGreen;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(177, 79);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 23);
-            this.button1.TabIndex = 55;
-            this.button1.Text = "&View 3D";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.AccessibleName = "Owner profile button";
@@ -472,7 +474,7 @@ namespace METAbolt
             this.checkBox5.Enabled = false;
             this.checkBox5.Location = new System.Drawing.Point(143, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(51, 17);
+            this.checkBox5.Size = new System.Drawing.Size(50, 17);
             this.checkBox5.TabIndex = 9;
             this.checkBox5.Text = "Copy";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -485,7 +487,7 @@ namespace METAbolt
             this.checkBox6.Enabled = false;
             this.checkBox6.Location = new System.Drawing.Point(102, 278);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(46, 17);
+            this.checkBox6.Size = new System.Drawing.Size(47, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mod";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -598,7 +600,7 @@ namespace METAbolt
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(143, 302);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(51, 17);
+            this.checkBox2.Size = new System.Drawing.Size(50, 17);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Copy";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -610,7 +612,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(102, 302);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(46, 17);
+            this.checkBox1.Size = new System.Drawing.Size(47, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Mod";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -728,6 +730,7 @@ namespace METAbolt
             this.groupBox2.AccessibleName = "Search panel";
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.picAutoSit);
             this.groupBox2.Controls.Add(this.radioButton2);
             this.groupBox2.Controls.Add(this.radioButton1);
             this.groupBox2.Controls.Add(this.label1);
@@ -740,6 +743,18 @@ namespace METAbolt
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
+            // 
+            // picAutoSit
+            // 
+            this.picAutoSit.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAutoSit.Location = new System.Drawing.Point(239, 43);
+            this.picAutoSit.Name = "picAutoSit";
+            this.picAutoSit.Size = new System.Drawing.Size(15, 15);
+            this.picAutoSit.TabIndex = 40;
+            this.picAutoSit.TabStop = false;
+            this.picAutoSit.Click += new System.EventHandler(this.picAutoSit_Click);
+            this.picAutoSit.MouseLeave += new System.EventHandler(this.picAutoSit_MouseLeave);
+            this.picAutoSit.MouseHover += new System.EventHandler(this.picAutoSit_MouseHover);
             // 
             // radioButton2
             // 
@@ -1151,6 +1166,7 @@ namespace METAbolt
             this.statusStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -1241,5 +1257,6 @@ namespace METAbolt
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.PictureBox pBar3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox picAutoSit;
     }
 }

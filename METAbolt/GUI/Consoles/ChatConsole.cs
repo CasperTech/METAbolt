@@ -84,14 +84,14 @@ namespace METAbolt
         private bool showing = false;
         private UUID avuuid = UUID.Zero;
         private string avname = string.Empty;
-        private bool removead = false;
+        //private bool removead = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private SafeDictionary<uint, Avatar> sfavatar = new SafeDictionary<uint,Avatar>();
         private List<string> avtyping = new List<string>();
         private int start = 0;
         private int indexOfSearchText = 0;
         private string prevsearchtxt = string.Empty;
-        private bool voiceon = false;
+        //private bool voiceon = false;
 
         //static AutoResetEvent ParcelVoiceInfoEvent = new AutoResetEvent(false);
         //static AutoResetEvent ProvisionEvent = new AutoResetEvent(false);
@@ -102,8 +102,8 @@ namespace METAbolt
         //static string VoiceChannelURI = String.Empty;
         //private VoiceManager voice = null;
         private VoiceGateway vgate = null;
-        List<string> mics;
-        List<string> speakers;
+        //List<string> mics;
+        //List<string> speakers;
 
 
         internal class ThreadExceptionHandler
@@ -166,8 +166,8 @@ namespace METAbolt
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
             reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
             reporter.Config.CompanyName = "METAbolt";
-            reporter.Config.ContactEmail = "support@vistalogic.co.uk";
-            reporter.Config.EmailReportAddress = "support@vistalogic.co.uk";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
             reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
             reporter.Config.AppName = "METAbolt";
             reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
@@ -231,7 +231,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -279,7 +280,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -311,23 +313,23 @@ namespace METAbolt
             chatManager = null;
         }
 
-        private void SetLang()
-        {
-            CultureInfo cult = CultureInfo.CurrentCulture;
-            string land = cult.TwoLetterISOLanguageName;
+        //private void SetLang()
+        //{
+        //    CultureInfo cult = CultureInfo.CurrentCulture;
+        //    string land = cult.TwoLetterISOLanguageName;
 
-            AgentManager avm = new AgentManager(client);
+        //    AgentManager avm = new AgentManager(client);
 
-            try
-            {
-                avm.UpdateAgentLanguage(land, true);
-            }
-            catch (Exception ex)
-            {
-                //Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
-                reporter.Show(ex);
-            }
-        }
+        //    try
+        //    {
+        //        avm.UpdateAgentLanguage(land, true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
+        //        reporter.Show(ex);
+        //    }
+        //}
 
         private void Appearance_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
         {
@@ -348,7 +350,7 @@ namespace METAbolt
             //    rmsg = " Avatar has not rezzed as expected. ";
             //}
 
-            SetLang();
+            //SetLang();
 
             try
             {
@@ -357,9 +359,9 @@ namespace METAbolt
                     chatManager.PrintAlertMessage(rmsg);
                 }));
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
 
             if (instance.Config.CurrentConfig.AutoSit)
@@ -381,58 +383,58 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(delegate()
                 {
                     CheckWearables();
-                    //CheckLocation();
+                    CheckLocation();
 
                     client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
                 }));
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
         private void CheckLocation()
         {
-            //// The land does not tie up with the location coords
-            //// not sure if this is an SL bug as at SIM V 1.40 (20/07/2010) or libopenmv bug
-            //// below is a work around and I beleive it should remain
-            //// permanently as a safeguard
+            // The land does not tie up with the location coords
+            // not sure if this is an SL bug as at SIM V 1.40 (20/07/2010) or libopenmv bug
+            // below is a work around and I beleive it should remain
+            // permanently as a safeguard
 
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        CheckLocation();
-            //    }));
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    CheckLocation();
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
-            //try
-            //{
-            //    Vector3 apos = client.Self.SimPosition;
+            try
+            {
+                Vector3 apos = client.Self.SimPosition;
 
-            //    float f1 = 64.0f * (apos.Y / 256.0f);
-            //    float f2 = 64.0f * (apos.X / 256.0f);
-            //    int posY = Convert.ToInt32(f1);
-            //    int posX = Convert.ToInt32(f2);
+                float f1 = 64.0f * (apos.Y / 256.0f);
+                float f2 = 64.0f * (apos.X / 256.0f);
+                int posY = Convert.ToInt32(f1);
+                int posX = Convert.ToInt32(f2);
 
-            //    int parcelid = client.Network.CurrentSim.ParcelMap[posY, posX];
+                int parcelid = client.Network.CurrentSim.ParcelMap[posY, posX];
 
-            //    if (parcelid == 0)
-            //    {
-            //        client.Self.Teleport(client.Network.CurrentSim.Name, apos);
-            //        return;
-            //    }
+                if (parcelid == 0)
+                {
+                    client.Self.Teleport(client.Network.CurrentSim.Name, apos);
+                    return;
+                }
 
-            //    if ((posX == 0 && posY == 0) || (posX == -1 && posY == -1) || (posX == -1 && posY == 0) || (posX == 0 && posY == -1))
-            //    {
-            //        client.Self.GoHome();
-            //        return;
-            //    }
-            //}
-            //catch { ; }
+                if ((posX == 0 && posY == 0) || (posX == -1 && posY == -1) || (posX == -1 && posY == 0) || (posX == 0 && posY == -1))
+                {
+                    client.Self.GoHome();
+                    return;
+                }
+            }
+            catch { ; }
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
@@ -478,7 +480,7 @@ namespace METAbolt
         {
             //BeginInvoke(new MethodInvoker(delegate()
             //{
-                UpdateMedia();
+            UpdateMedia();
             //}));           
         }
 
@@ -655,8 +657,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                //Logger.Log(ex.Message, Helpers.LogLevel.Error);
-                reporter.Show(ex);
+                Logger.Log(ex.Message, Helpers.LogLevel.Error);
+                //reporter.Show(ex);
             }
 
             client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
@@ -719,16 +721,16 @@ namespace METAbolt
                     }
                     catch (Exception ex)
                     {
-                        //string exp = exc.Message;
-                        reporter.Show(ex);
+                        string exp = ex.Message;
+                        //reporter.Show(ex);
                     }
                 }
 
                 client.Objects.SelectObjects(client.Network.CurrentSim, localids);
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -1094,9 +1096,9 @@ namespace METAbolt
                     chatManager.PrintAlertMessage(cty + e.Aggressor.ToString());
                 }));
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -1137,14 +1139,15 @@ namespace METAbolt
                         sfavatar.Remove(e.ObjectLocalID);
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    reporter.Show(ex);
+                    //reporter.Show(ex);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                ;
             }
         }
 
@@ -1172,9 +1175,9 @@ namespace METAbolt
                     sfavatar.Add(e.Avatar.LocalID, e.Avatar);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -1199,9 +1202,9 @@ namespace METAbolt
                             sfavatar.Add(av.LocalID, av);
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        reporter.Show(ex);
+                        //reporter.Show(ex);
                     }
                 }
             }
@@ -1265,11 +1268,13 @@ namespace METAbolt
 
                 string rentry = name + sDist;
 
+                ListViewItem item;
+
                 lvwRadar.BeginUpdate();
 
                 if (name != client.Self.Name)
                 {
-                    ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
+                    item = lvwRadar.Items.Add(name, rentry, string.Empty);
                     item.ForeColor = Color.DarkBlue;
                     item.Tag = key;
 
@@ -1284,16 +1289,16 @@ namespace METAbolt
                 }
                 else
                 {
-                    ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
+                    item = lvwRadar.Items.Add(name, name, string.Empty);
                     item.Font = new Font(item.Font, FontStyle.Bold);
                     item.Tag = key;
                 }
                 
                 lvwRadar.EndUpdate();
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -1410,13 +1415,15 @@ namespace METAbolt
 
                     string rentry = name + sDist + astate;
 
+                    ListViewItem item;
+
                     //BeginInvoke(new MethodInvoker(delegate()
                     //{ 
                     lvwRadar.BeginUpdate();
 
                     if (name != client.Self.Name)
                     {
-                        ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
+                        item = lvwRadar.Items.Add(name, rentry, string.Empty);
                         item.Tag = av.ID;
 
                         if (avtyping.Contains(name))
@@ -1430,14 +1437,16 @@ namespace METAbolt
                     }
                     else
                     {
-                        ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
+                        item = lvwRadar.Items.Add(name, name, string.Empty);
                         item.Font = new Font(item.Font, FontStyle.Bold);
                         item.Tag = av.ID;
                     }
 
+                    item = null;
+
                     if (!lvwRadar.Items.ContainsKey(client.Self.Name))
                     {
-                        ListViewItem item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
+                        item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
                         item.Font = new Font(item.Font, FontStyle.Bold);
                         item.Tag = av.ID;
                     }
@@ -1445,14 +1454,14 @@ namespace METAbolt
                     lvwRadar.EndUpdate();
                     //}));
                 }
-                catch (Exception ex)
+                catch
                 {
-                    reporter.Show(ex);
+                    //reporter.Show(ex);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -1468,7 +1477,7 @@ namespace METAbolt
                 return;
             }
 
-            string heading = "~";
+            //string heading = "~";
 
             Quaternion avRot = client.Self.RelativeRotation;
             
@@ -1553,7 +1562,7 @@ namespace METAbolt
             if (e.Status != LoginStatus.Success) return;
 
             cbxInput.Enabled = true;
-            CheckAvatarAdLicence();
+            //CheckAvatarAdLicence();
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
@@ -1594,62 +1603,77 @@ namespace METAbolt
                     return;
                 }
 
-                int index = lvwRadar.Items.IndexOfKey(e.FromName);
-                if (index == -1) return;
-
-                if (e.Type == ChatType.StartTyping)
+                try
                 {
-                    lvwRadar.Items[index].ForeColor = Color.Red;
+                    if (!lvwRadar.Items.ContainsKey(e.FromName)) return;
 
-                    if (!avtyping.Contains(e.FromName))
+                    int index = lvwRadar.Items.IndexOfKey(e.FromName);
+                    if (index == -1) return;
+
+                    if (e.Type == ChatType.StartTyping)
                     {
-                        avtyping.Add(e.FromName);
-                    }
+                        lvwRadar.Items[index].ForeColor = Color.Red;
 
-                    instance.State.LookAt(true, e.OwnerID);
-                }
-                else
-                {
-                    lvwRadar.Items[index].ForeColor = Color.FromKnownColor(KnownColor.ControlText);
-
-                    if (avtyping.Contains(e.FromName))
-                    {
-                        avtyping.Remove(e.FromName);
-                    }
-
-                    instance.State.LookAt(false, e.OwnerID);
-                }
-
-                if (instance.DetectLang)
-                {
-                    if (e.Message != string.Empty && e.Message != null)
-                    {
-                        GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
-
-                        int sindex = detect.LanguageIndex;
-
-                        if (sindex == 33)
-                            sindex = 0;
-
-                        this.instance.MainForm.SetFlag(imgFlags.Images[sindex], detect.SpokenLanguage);
-
-                        // select the language pair fro mthe combo
-                        if (sindex != 0 && sindex != 8)
+                        if (!avtyping.Contains(e.FromName))
                         {
-                            // English does not exist in the combo so adjust
-                            if (sindex > 7)
-                            {
-                                sindex -= 1;
-                            }
+                            avtyping.Add(e.FromName);
+                        }
 
-                            cboLanguage.SelectedIndex = sindex;
+                        instance.State.LookAt(true, e.OwnerID);
+                    }
+                    else
+                    {
+                        lvwRadar.Items[index].ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+
+                        if (avtyping.Contains(e.FromName))
+                        {
+                            avtyping.Remove(e.FromName);
+                        }
+
+                        instance.State.LookAt(false, e.OwnerID);
+                    }
+                }
+                catch { ; }
+
+                try
+                {
+                    if (instance.DetectLang)
+                    {
+                        if (e.Message != string.Empty && e.Message != null)
+                        {
+                            GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
+
+                            int sindex = detect.LanguageIndex;
+
+                            if (sindex == 33)
+                                sindex = 0;
+
+                            this.instance.MainForm.SetFlag(imgFlags.Images[sindex], detect.SpokenLanguage);
+
+                            // select the language pair fro mthe combo
+                            if (sindex != 0 && sindex != 8)
+                            {
+                                // English does not exist in the combo so adjust
+                                if (sindex > 7)
+                                {
+                                    sindex -= 1;
+                                }
+
+                                cboLanguage.SelectedIndex = sindex;
+                            }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    //reporter.Show(ex);
+                    Logger.Log(ex, Helpers.LogLevel.Error);  
+                } 
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -1714,9 +1738,9 @@ namespace METAbolt
 
                 ClearChatInput();
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -2526,14 +2550,14 @@ namespace METAbolt
                     BeginInvoke((MethodInvoker)delegate { UpdateMiniMap(e.Simulator); });
                     BeginInvoke((MethodInvoker)delegate { GetCompass(); });
                 }
-                catch (Exception ex)
+                catch
                 {
-                    reporter.Show(ex);
+                    //reporter.Show(ex);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -2603,9 +2627,9 @@ namespace METAbolt
                     BeginInvoke(new OnUpdateMiniMap(UpdateMiniMap), new object[] { sim });
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
             }
         }
 
@@ -2795,15 +2819,13 @@ namespace METAbolt
                                 else
                                 {
                                     BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { sav });
-                                }
-
-                                
+                                } 
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        //reporter.Show(ex);
+                        ;
                     }
 
                     client.Network.CurrentSim.AvatarPositions.ForEach(
@@ -2866,7 +2888,7 @@ namespace METAbolt
 
                     GetCompass();
                 }
-                catch (Exception ex)
+                catch
                 {
                     //reporter.Show(ex);
                     return;
@@ -3431,7 +3453,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                reporter.Show(ex);
+                //reporter.Show(ex);
+                Logger.Log(ex, Helpers.LogLevel.Error);
             }
         }
 
@@ -3539,7 +3562,7 @@ namespace METAbolt
                 vgate.OnSessionCreate += new EventHandler(vgate_OnSessionCreate);
 
                 vgate.Start();
-                voiceon = true;
+                //voiceon = true;
             }
             else
             {
@@ -3557,7 +3580,7 @@ namespace METAbolt
                     vgate.OnSessionCreate -= new EventHandler(vgate_OnSessionCreate);
 
                     
-                    voiceon = false;
+                    //voiceon = false;
 
                     if (!checkBox3.Checked)
                     {
@@ -3624,6 +3647,11 @@ namespace METAbolt
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void toolStripButton1_Click_3(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/Quick.aspx");
         }
     }
 }
