@@ -13,10 +13,46 @@ using System.Threading;
 
 namespace METAbolt
 {
-    public class NetworkTraffic
+    public class NetworkTraffic : IDisposable
     {
         private PerformanceCounter bytesSentPerformanceCounter;
         private PerformanceCounter bytesReceivedPerformanceCounter;
+        private bool disposed = false;
+
+        ~NetworkTraffic()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                bytesSentPerformanceCounter.Dispose();
+                bytesReceivedPerformanceCounter.Dispose(); 
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        }
 
         public NetworkTraffic()
         {

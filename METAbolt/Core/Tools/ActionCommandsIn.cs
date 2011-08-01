@@ -33,16 +33,55 @@ using OpenMetaverse;
 using System.Security.Cryptography;
 using MD5library;
 using System.Threading;
-
+using System.Runtime.InteropServices;  
 
 namespace METAbolt
 {
-    public class ActionCommandsIn
+    public class ActionCommandsIn : IDisposable
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
         private GridClient client;
-        ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
+        //private ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
+        private SafeHandle handle;
+        private bool disposed = false;
+
+        ~ActionCommandsIn()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                if (handle != null)
+                {
+                    handle.Dispose();
+                }
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        }
 
         public ActionCommandsIn(METAboltInstance instance)
         {
@@ -129,7 +168,7 @@ namespace METAbolt
 
                     if (sim != string.Empty)
                     {
-                        client.Self.Teleport(sim, new Vector3(x, y, z));
+                        netcom.Teleport(sim, new Vector3(x, y, z));
                     }
                     else
                     {

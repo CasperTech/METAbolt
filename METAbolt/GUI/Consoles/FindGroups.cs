@@ -74,19 +74,19 @@ namespace METAbolt
             });
         }
 
-        private void GroupsReply(UUID queryID, List<DirectoryManager.GroupSearchData> matchedGroups)
+        private void GroupsReply(UUID qqueryID, List<DirectoryManager.GroupSearchData> matchedGroups)
         {
             if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    GroupsReply(queryID, matchedGroups);
+                    GroupsReply(qqueryID, matchedGroups);
                 }));
 
                 return;
             }
 
-            if (queryID != this.queryID) return;
+            if (qqueryID != this.queryID) return;
 
             lvwFindGroups.BeginUpdate();
 

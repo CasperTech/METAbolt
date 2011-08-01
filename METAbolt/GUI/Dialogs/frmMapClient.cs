@@ -100,7 +100,7 @@ namespace METAbolt
 
             client.Grid.GridRegion += new EventHandler<GridRegionEventArgs>(Grid_OnGridRegion);
             netcom.Teleporting += new EventHandler<TeleportingEventArgs>(netcom_Teleporting);
-            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
 
             string msg1 = "Yellow dot with red border = your avatar \nGreen dots = avs at your altitude\nRed squares = avs 20m+ below you\nBlue squares = avs 20m+ above you\n\n Click on map area to get TP position.";
             toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
@@ -212,13 +212,15 @@ namespace METAbolt
             }
         }
 
-        private delegate void OnUpdateMiniMap(Simulator sim);
-        private void UpdateMiniMap(Simulator sim)
+        private delegate void OnUpdateMiniMap(Simulator ssim);
+        private void UpdateMiniMap(Simulator ssim)
         {
             if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { UpdateMiniMap(sim); });
             else
             {
-                if (sim != client.Network.CurrentSim) return;
+                if (ssim != client.Network.CurrentSim) return;
+
+                sim = ssim;
 
                 Bitmap bmp = _MapLayer == null ? new Bitmap(256, 256) : (Bitmap)_MapLayer.Clone();
 
@@ -483,7 +485,7 @@ namespace METAbolt
 
             client.Grid.GridRegion -= new EventHandler<GridRegionEventArgs>(Grid_OnGridRegion);
             netcom.Teleporting -= new EventHandler<TeleportingEventArgs>(netcom_Teleporting);
-            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            netcom.TeleportStatusChanged -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
 
             _LandLayer = _MapLayer;
             _MapLayer = null;
@@ -779,17 +781,15 @@ namespace METAbolt
 
             pnlTeleporting.Visible = true;
 
-            //if (selregion.RegionHandle == 0 && txtRegion.Text != string.Empty)
-            //{
-            //    //RefreshControls();
-            //    client.Self.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX1.Value, (float)nudY1.Value, (float)nudZ1.Value));
-            //}
-            //else
-            //{
-            //    client.Self.RequestTeleport(selregion.RegionHandle, new Vector3((float)nudX1.Value, (float)nudY1.Value, (float)nudZ1.Value));
-            //}
-
-            client.Self.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX1.Value, (float)nudY1.Value, (float)nudZ1.Value));
+            if (selregion.RegionHandle == 0 && txtRegion.Text != string.Empty)
+            {
+                //RefreshControls();
+                netcom.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX1.Value, (float)nudY1.Value, (float)nudZ1.Value));
+            }
+            else
+            {
+                client.Self.RequestTeleport(selregion.RegionHandle, new Vector3((float)nudX1.Value, (float)nudY1.Value, (float)nudZ1.Value));
+            }
         }
 
         private void txtSearchFor_TextChanged(object sender, EventArgs e)

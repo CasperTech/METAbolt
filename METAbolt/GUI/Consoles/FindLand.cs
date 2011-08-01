@@ -116,7 +116,7 @@ namespace METAbolt
 
                     if (findLandResults.ContainsKey(fullName))
                     {
-                        DirectoryManager.DirectoryParcel pcl = findLandResults[fullName];
+                        //DirectoryManager.DirectoryParcel pcl = findLandResults[fullName];
                         fx = true; 
                     }
 
@@ -137,9 +137,9 @@ namespace METAbolt
                     //double pricesqm = (Convert.ToDouble(places.SalePrice) / Convert.ToDouble(places.ActualArea));
                     //item.SubItems.Add(pricesqm.ToString("N2"));
                 }
-                catch (Exception exc)
+                catch
                 {
-                    string exp = exc.Message;
+                    ;
                 }
 
                 icnt += 1;

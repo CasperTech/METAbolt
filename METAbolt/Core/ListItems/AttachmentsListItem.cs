@@ -64,9 +64,9 @@ namespace METAbolt
                     OnPropertiesReceived(EventArgs.Empty);
                 }
             }
-            catch (Exception exp)
+            catch
             {
-                string sex = exp.Message;
+                ;
             }
         }
 
@@ -84,9 +84,9 @@ namespace METAbolt
                     new OnPropReceivedRaise(OnPropertiesReceived),
                     new object[] { EventArgs.Empty });
             }
-            catch (Exception exp)
+            catch
             {
-                string sex = exp.Message;
+                ;
             }
         }
 
@@ -97,9 +97,8 @@ namespace METAbolt
                 if (prim.Properties == null) return "???";
                 return (string.IsNullOrEmpty(prim.Properties.Name) ? "..." : prim.Properties.Name);
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message.ToString();
                 return "***";
             }
         }

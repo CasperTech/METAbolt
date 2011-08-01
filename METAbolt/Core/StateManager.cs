@@ -34,7 +34,7 @@ using SLNetworkComm;
 
 namespace METAbolt
 {
-    public class StateManager
+    public class StateManager : IDisposable
     {
         private METAboltInstance instance;
         private GridClient client;
@@ -82,7 +82,7 @@ namespace METAbolt
         private UUID crouchAnimationID = new UUID(Animations.CROUCH.ToString());
         //private Primitive sitprim = null;
         private UUID sitprim = UUID.Zero;
-        private ManualResetEvent PrimEvent = new ManualResetEvent(false);
+        //private ManualResetEvent PrimEvent = new ManualResetEvent(false);
         private bool groundsitting = false;
         private System.Timers.Timer pointtimer;
         private Vector3d offset = Vector3d.Zero; 
@@ -94,8 +94,42 @@ namespace METAbolt
         private Color4 tdcolour = new Color4(0, 255, 12, 0);
         private Color4 bkcolour = new Color4(255, 255, 255, 255);
         private Color4 ccolur = new Color4(0, 0, 255, 255);
-        private UUID lookattarget = UUID.Zero;  
- 
+        private UUID lookattarget = UUID.Zero;
+        private bool disposed = false;
+
+        ~StateManager()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                pointtimer.Dispose(); 
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        } 
 
         public StateManager(METAboltInstance instance)
         {
@@ -247,102 +281,102 @@ namespace METAbolt
             following = !string.IsNullOrEmpty(followName);
         }
 
-        public void SetTyping(bool typing)
+        public void SetTyping(bool ttyping)
         {
             Dictionary<UUID, bool> typingAnim = new Dictionary<UUID, bool>();
-            typingAnim.Add(typingAnimationID, typing);
+            typingAnim.Add(typingAnimationID, ttyping);
 
             if (!instance.Config.CurrentConfig.DisableTyping)
             {
                 client.Self.Animate(typingAnim, false);
             }
 
-            if (typing)
+            if (ttyping)
                 client.Self.Chat(string.Empty, 0, ChatType.StartTyping);
             else
                 client.Self.Chat(string.Empty, 0, ChatType.StopTyping);
 
-            this.typing = typing;
+            this.typing = ttyping;
         }
 
-        public void SetAway(bool away)
+        public void SetAway(bool aaway)
         {
             Dictionary<UUID, bool> awayAnim = new Dictionary<UUID, bool>();
-            awayAnim.Add(awayAnimationID, away);
+            awayAnim.Add(awayAnimationID, aaway);
 
             client.Self.Animate(awayAnim, true);
-            this.away = away;
+            this.away = aaway;
         }
 
-        public void SetBusy(bool busy)
+        public void SetBusy(bool bbusy)
         {
             Dictionary<UUID, bool> busyAnim = new Dictionary<UUID, bool>();
-            busyAnim.Add(busyAnimationID, busy);
+            busyAnim.Add(busyAnimationID, bbusy);
 
             client.Self.Animate(busyAnim, true);
-            this.busy = busy;
+            this.busy = bbusy;
         }
 
-        public void BellyDance(bool belly)
+        public void BellyDance(bool bbelly)
         {
             Dictionary<UUID, bool> bdanceAnim = new Dictionary<UUID, bool>();
-            bdanceAnim.Add(bellydanceAnimationID, belly);
+            bdanceAnim.Add(bellydanceAnimationID, bbelly);
 
             client.Self.Animate(bdanceAnim, true);
-            this.belly = belly;
+            this.belly = bbelly;
         }
 
-        public void ClubDance(bool club)
+        public void ClubDance(bool cclub)
         {
             Dictionary<UUID, bool> cdanceAnim = new Dictionary<UUID, bool>();
-            cdanceAnim.Add(clubdanceAnimationID, club);
+            cdanceAnim.Add(clubdanceAnimationID, cclub);
 
             client.Self.Animate(cdanceAnim, true);
-            this.club = club;
+            this.club = cclub;
         }
 
-        public void SalsaDance(bool salsa)
+        public void SalsaDance(bool ssalsa)
         {
             Dictionary<UUID, bool> sdanceAnim = new Dictionary<UUID, bool>();
-            sdanceAnim.Add(salsaAnimationID, salsa);
+            sdanceAnim.Add(salsaAnimationID, ssalsa);
 
             client.Self.Animate(sdanceAnim, true);
-            this.salsa = salsa;
+            this.salsa = ssalsa;
         }
 
-        public void FallOnFace(bool fall)
+        public void FallOnFace(bool ffall)
         {
             Dictionary<UUID, bool> ffallAnim = new Dictionary<UUID, bool>();
-            ffallAnim.Add(fallAnimationID, fall);
+            ffallAnim.Add(fallAnimationID, ffall);
 
             client.Self.Animate(ffallAnim, true);
-            this.fall = fall;
+            this.fall = ffall;
         }
 
-        public void Crouch(bool crouch)
+        public void Crouch(bool ccrouch)
         {
             Dictionary<UUID, bool> crouchAnim = new Dictionary<UUID, bool>();
-            crouchAnim.Add(crouchAnimationID, crouch);
+            crouchAnim.Add(crouchAnimationID, ccrouch);
 
             client.Self.Animate(crouchAnim, true);
-            this.crouch = crouch;
+            this.crouch = ccrouch;
         }
 
-        public void SetFlying(bool flying)
+        public void SetFlying(bool fflying)
         {
-            client.Self.Fly(flying);
-            this.flying = flying;
+            client.Self.Fly(fflying);
+            this.flying = fflying;
         }
 
-        public void SetAlwaysRun(bool alwaysrun)
+        public void SetAlwaysRun(bool aalwaysrun)
         {
-            client.Self.Movement.AlwaysRun = alwaysrun;
-            this.alwaysrun = alwaysrun;
+            this.alwaysrun = aalwaysrun;
+            client.Self.Movement.AlwaysRun = aalwaysrun;            
         }
 
-        public void SetSitting(bool sitting, UUID target)
+        public void SetSitting(bool ssitting, UUID target)
         {
-            if (sitting)
+            if (ssitting)
             {
                 this.sitting = false;
                 sitprim = UUID.Zero;
@@ -374,11 +408,11 @@ namespace METAbolt
             StopAnimations();
         }
 
-        public void SetPointing(bool pointing, UUID target)
+        public void SetPointing(bool ppointing, UUID target)
         {
-            this.pointing = pointing;
+            this.pointing = ppointing;
 
-            if (pointing)
+            if (ppointing)
             {
                 pointID = UUID.Random();
                 beamID = UUID.Random();
@@ -400,28 +434,28 @@ namespace METAbolt
             }
         }
 
-        public void SetPointing(bool pointing, UUID target, Vector3d offset, Vector3 primposition)
+        public void SetPointing(bool ppointing, UUID target, Vector3d ooffset, Vector3 primposition)
         {
-            this.pointing = pointing;
+            this.pointing = ppointing;
 
-            if (pointing)
+            if (ppointing)
             {
-                this.offset = offset;
+                this.offset = ooffset;
  
                 pointID = UUID.Random();
                 beamID = UUID.Random();
                 effectID = UUID.Random();
 
-                client.Self.SphereEffect(offset, ccolur, 0.80f, effectID);
+                client.Self.SphereEffect(ooffset, ccolur, 0.80f, effectID);
 
                 client.Self.PointAtEffect(client.Self.AgentID, target, Vector3d.Zero, PointAtType.Select, pointID);
 
                 beamID1 = UUID.Random();                
                 beamID2 = UUID.Random();
 
-                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, offset, mncolour, 1.0f, beamID);
-                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, offset + beamoffset1, spcolour, 1.0f, beamID1);
-                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, offset + beamoffset2, tdcolour, 1.0f, beamID2);
+                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, ooffset, mncolour, 1.0f, beamID);
+                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, ooffset + beamoffset1, spcolour, 1.0f, beamID1);
+                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, ooffset + beamoffset2, tdcolour, 1.0f, beamID2);
 
                 pointtimer.Enabled = true;
                 pointtimer.Start();
@@ -479,13 +513,13 @@ namespace METAbolt
             
         }
 
-        public void SetPointingTouch(bool pointing, UUID target, Vector3d offset, Vector3 primposition)
+        public void SetPointingTouch(bool ppointing, UUID target, Vector3d ooffset, Vector3 primposition)
         {
-            this.pointing = pointing;
+            this.pointing = ppointing;
 
-            if (pointing)
+            if (ppointing)
             {
-                this.offset = offset;
+                this.offset = ooffset;
 
                 pointID = UUID.Random();
                 beamID = UUID.Random();
@@ -495,9 +529,9 @@ namespace METAbolt
                 beamID1 = UUID.Random();
                 beamID2 = UUID.Random();
 
-                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, offset, mncolour, 1.0f, beamID);
-                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, offset + beamoffset1, spcolour, 1.0f, beamID1);
-                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, offset + beamoffset2, spcolour, 1.0f, beamID2);
+                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, ooffset, mncolour, 1.0f, beamID);
+                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, ooffset + beamoffset1, spcolour, 1.0f, beamID1);
+                client.Self.BeamEffect(client.Self.AgentID, UUID.Zero, ooffset + beamoffset2, spcolour, 1.0f, beamID2);
 
                 pointtimer.Start();
             }
@@ -521,14 +555,14 @@ namespace METAbolt
             }
         }
 
-        public void LookAt(bool looking, UUID target)
+        public void LookAt(bool llooking, UUID target)
         {
             if (instance.Config.CurrentConfig.DisableLookAt)
                 return;
 
-            this.looking = looking;
+            this.looking = llooking;
 
-            if (looking)
+            if (llooking)
             {
                 if (lookID == UUID.Zero)
                 {
@@ -548,14 +582,14 @@ namespace METAbolt
             }
         }
 
-        public void LookAtObject(bool looking, UUID target)
+        public void LookAtObject(bool llooking, UUID target)
         {
             if (instance.Config.CurrentConfig.DisableLookAt)
                 return;
 
-            this.looking = looking;
+            this.looking = llooking;
 
-            if (looking)
+            if (llooking)
             {
                 if (lookID == UUID.Zero)
                 {

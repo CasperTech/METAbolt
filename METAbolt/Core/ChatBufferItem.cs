@@ -72,10 +72,10 @@ namespace METAbolt
         /// Constructor for an item in the ChatBuffer
         /// </summary>
         /// <param name="timestamp"></param>
-        /// <param name="text">Test to be printed</param>
-        /// <param name="style">Buffer style</param>
-        /// <param name="name">Name of the sender</param>
-        /// <param name="uuid">UUID of the agent sending the message</param>
+        /// <param name="text"></param>
+        /// <param name="style"></param>
+        /// <param name="fromname"></param>
+        /// <param name="fromuuid">UUID of the agent sending the message</param>
         public ChatBufferItem(DateTime timestamp, string text, ChatBufferTextStyle style, string name, UUID uuid)
         {
             this.timestamp = timestamp;

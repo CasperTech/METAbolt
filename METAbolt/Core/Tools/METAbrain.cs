@@ -37,7 +37,7 @@ using System.Collections;
 
 namespace METAbolt
 {
-    public class METAbrain
+    public class METAbrain : IDisposable
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
@@ -51,6 +51,41 @@ namespace METAbolt
         private Timer metaTimer;
         private InstantMessageEventArgs emt;
         //private int cnt = 0;
+        private bool disposed = false;
+
+        ~METAbrain()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                metaTimer.Dispose(); 
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        }
 
         public METAbrain(METAboltInstance instance, AIMLbot.Bot myBot)
         {

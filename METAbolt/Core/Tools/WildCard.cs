@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace METAbolt
 {
+    [Serializable] 
     public class Wildcard : Regex
     {
         /// <summary>
@@ -20,7 +21,8 @@ namespace METAbolt
         /// Initializes a wildcard with the given search pattern and options.
         /// </summary>
         /// <param name="pattern">The wildcard pattern to match.</param>
-        /// <param name="options">A combination of one or more</param>
+        /// <param name="options">A combination of one or more
+        /// <see cref="System.Text.RegexOptions"/>.</param>
         public Wildcard(string pattern, RegexOptions options)
             : base(WildcardToRegex(pattern), options)
         {

@@ -24,7 +24,7 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //  POSSIBILITY OF SUCH DAMAGE.
 
-// this code was borrowed from: http://www.dotnet247.com/247reference/msgs/24/123878.aspx
+// this code was borrowed from: http://geekswithblogs.net/CPound/archive/2006/02/27/70834.aspx
 
 
 using System;
@@ -37,72 +37,29 @@ using System.Windows.Forms;
 
 namespace METAbolt
 {
+    [ToolboxBitmap(typeof(ListView))]
     /// <summary>
     /// Summary description for UserControl1.
     /// </summary>
-    public class FlickerFreeListView : System.Windows.Forms.ListView
+    public partial class FlickerFreeListView : System.Windows.Forms.ListView
     {
-
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.Container components = null;
-
         public FlickerFreeListView()
         {
-            // This call is required by the Windows.Forms Form Designer.
-            InitializeComponent();
+            //Activate double buffering
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
-            // Activate double buffering
-            SetStyle(ControlStyles.AllPaintingInWmPaint
-            | ControlStyles.DoubleBuffer
-            | ControlStyles.ResizeRedraw, true);
-
-            // Allows for catching the WM_ERASEBKGND message
-            SetStyle(ControlStyles.EnableNotifyMessage, true);
+            //Enable the OnNotifyMessage event so we get a chance to filter out 
+            // Windows messages before they get to the form's WndProc
+            this.SetStyle(ControlStyles.EnableNotifyMessage, true);
         }
 
         protected override void OnNotifyMessage(Message m)
         {
-            // filter WM_ERASEBKGND
-            if (m.Msg != 0x14)
+            //Filter out the WM_ERASEBKGND message
+            if(m.Msg != 0x14)
             {
                 base.OnNotifyMessage(m);
             }
         }
-
-        protected override void OnPaintBackground(PaintEventArgs pea)
-        {
-            // do nothing here since this event is now handled by OnPaint
-        }
-
-        protected override void OnPaint(PaintEventArgs pea)
-        {
-            base.OnPaint(pea);
-        }
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (components != null)
-                    components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        #region Component Designer generated code
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            components = new System.ComponentModel.Container();
-        }
-        #endregion
     }
 }

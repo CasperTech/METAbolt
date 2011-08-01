@@ -44,7 +44,7 @@ namespace METAbolt
             this.tbtnHelp = new System.Windows.Forms.ToolStripDropDownButton();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mETAboltQuickStartGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -253,7 +253,7 @@ namespace METAbolt
             this.tbtnHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.checkForUpdatesToolStripMenuItem,
             this.updateConfigurationToolStripMenuItem,
-            this.toolStripSeparator28,
+            this.toolStripSeparator26,
             this.helpToolStripMenuItem,
             this.mEToolStripMenuItem,
             this.mETAboltQuickStartGToolStripMenuItem,
@@ -290,10 +290,10 @@ namespace METAbolt
             this.updateConfigurationToolStripMenuItem.Text = "Update configuration";
             this.updateConfigurationToolStripMenuItem.Click += new System.EventHandler(this.updateConfigurationToolStripMenuItem_Click);
             // 
-            // toolStripSeparator28
+            // toolStripSeparator26
             // 
-            this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator26.Name = "toolStripSeparator26";
+            this.toolStripSeparator26.Size = new System.Drawing.Size(195, 6);
             // 
             // helpToolStripMenuItem
             // 
@@ -1331,11 +1331,11 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator25;
         private System.Windows.Forms.ToolStripDropDownButton tsPlugins;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
         private System.Windows.Forms.ToolStripMenuItem updateConfigurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator27;
         private System.Windows.Forms.ToolStripMenuItem setPreviousAppearanceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
         private System.Windows.Forms.ToolStripMenuItem groundSitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchLogsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadAIMLLibrariesToolStripMenuItem;

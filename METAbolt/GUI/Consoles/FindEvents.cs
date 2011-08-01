@@ -147,19 +147,19 @@ namespace METAbolt
         }
 
         //UI thread
-        private void EventsReply(UUID queryID, List<DirectoryManager.EventsSearchData> matchedEvents)
+        private void EventsReply(UUID qqueryID, List<DirectoryManager.EventsSearchData> matchedEvents)
         {
             if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    EventsReply(queryID, matchedEvents);
+                    EventsReply(qqueryID, matchedEvents);
                 }));
 
                 return;
             }
 
-            if (queryID != this.queryID) return;
+            if (qqueryID != this.queryID) return;
 
             lvwFindEvents.BeginUpdate();
 
@@ -190,9 +190,9 @@ namespace METAbolt
                     ListViewItem item = lvwFindEvents.Items.Add(fullName);
                     item.SubItems.Add(events.Date);   // + "-" + events.Time);
                 }
-                catch (Exception exc)
+                catch
                 {
-                    string exp = exc.Message; 
+                    ; 
                 }
 
                 icnt += 1;

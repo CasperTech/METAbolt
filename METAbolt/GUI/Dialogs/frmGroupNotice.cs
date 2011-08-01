@@ -91,9 +91,9 @@ namespace METAbolt
 
         private void PrepareGroupNotice()
         {
-            string fromAgent = imsg.FromAgentName;
+            //string fromAgent = imsg.FromAgentName;
             UUID fromAgentID = imsg.FromAgentID;
-            UUID Grp = UUID.Zero;
+            //UUID Grp = UUID.Zero;
 
             client.Groups.RequestGroupProfile(fromAgentID);
 
@@ -272,7 +272,7 @@ namespace METAbolt
                     {
                         if (item.Name.ToLower() == filename.ToLower())
                         {
-                            UUID itemid = item.AssetUUID;
+                            //UUID itemid = item.AssetUUID;
 
                             switch (assettype)
                             {

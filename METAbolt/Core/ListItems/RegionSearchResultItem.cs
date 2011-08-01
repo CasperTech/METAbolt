@@ -36,7 +36,7 @@ using OpenMetaverse.Assets;
 
 namespace METAbolt
 {
-    public class RegionSearchResultItem
+    public class RegionSearchResultItem : IDisposable
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
@@ -55,6 +55,41 @@ namespace METAbolt
         private bool gotAgentCount = false;
         private BackgroundWorker agentCountWorker;
         private List<MapItem> agentlocations = new List<MapItem>();
+        private bool disposed = false;
+
+        ~RegionSearchResultItem()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                agentCountWorker.Dispose();  
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        }
 
         public RegionSearchResultItem(METAboltInstance instance, GridRegion region, ListBox listBox)
         {

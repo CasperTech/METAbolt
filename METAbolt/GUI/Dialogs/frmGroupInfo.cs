@@ -366,7 +366,7 @@ namespace METAbolt
 
             if (e.IM.Dialog == InstantMessageDialog.GroupNoticeRequested && grpid == e.IM.FromAgentID)
             {
-                string noticemsg =  e.IM.Message;
+                //string noticemsg =  e.IM.Message;
 
                 panel1.Visible = true;
                 panel2.Visible = false;
@@ -555,9 +555,9 @@ namespace METAbolt
                             MemberData.Add(av.Key, memberData);
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        string exp = ex.Message; 
+                        ; 
                     }
                 }
 
@@ -820,9 +820,9 @@ namespace METAbolt
                 {
                     groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message; 
+                    ; 
                 }
             }
         }
@@ -1536,8 +1536,6 @@ namespace METAbolt
             packet.AgentData.AgentID = Client.Self.AgentID;
             packet.AgentData.SessionID = Client.Self.SessionID;
             packet.AgentData.GroupID = Profile.ID;
-
-            GroupRoleChangesPacket.RoleChangeBlock bk = rc;
             packet.RoleChange = changes.ToArray();
             Client.Network.CurrentSim.SendPacket(packet);
         }

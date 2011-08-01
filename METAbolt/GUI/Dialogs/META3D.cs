@@ -241,7 +241,7 @@ namespace METAbolt
                 Textures.Clear();
             }
 
-            GC.Collect();
+            //GC.Collect();
         }
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
@@ -1460,7 +1460,7 @@ namespace METAbolt
 
                 // Texture transform for this face
                 Primitive.TextureEntryFace teFace = prim.Textures.GetFace((uint)j);
-                renderer.TransformTexCoords(face.Vertices, face.Center, teFace);
+                renderer.TransformTexCoords(face.Vertices, face.Center, teFace, mesh.Prim.Scale);
 
                 // Texcoords for this face
                 data.TexCoords = new float[face.Vertices.Count * 2];
@@ -2167,137 +2167,137 @@ namespace METAbolt
     }
     #endregion Helper classes
     
-    class MBTextWriter
-    {
-        private readonly Font TextFont = new Font(FontFamily.GenericSansSerif, 8);
-        private readonly Bitmap TextBitmap;
-        private List<PointF> _positions;
-        private List<string> _lines;
-        private List<Brush> _colours;
-        private int _textureId;
-        private Size _clientSize;
+    //class MBTextWriter
+    //{
+    //    private readonly Font TextFont = new Font(FontFamily.GenericSansSerif, 8);
+    //    private readonly Bitmap TextBitmap;
+    //    private List<PointF> _positions;
+    //    private List<string> _lines;
+    //    private List<Brush> _colours;
+    //    private int _textureId;
+    //    private Size _clientSize;
  
-        public void Update(int ind, string newText)
-        {
-            if (ind < _lines.Count)
-            {
-                _lines[ind] = newText;
-                UpdateText();
-            }
-        }
+    //    public void Update(int ind, string newText)
+    //    {
+    //        if (ind < _lines.Count)
+    //        {
+    //            _lines[ind] = newText;
+    //            UpdateText();
+    //        }
+    //    }
  
  
-        public MBTextWriter(Size ClientSize, Size areaSize)
-        {
-            _positions = new List<PointF>();
-            _lines = new List<string>();
-            _colours = new List<Brush>();
+    //    public MBTextWriter(Size ClientSize, Size areaSize)
+    //    {
+    //        _positions = new List<PointF>();
+    //        _lines = new List<string>();
+    //        _colours = new List<Brush>();
  
-            TextBitmap = new Bitmap(areaSize.Width, areaSize.Height);
-            this._clientSize = ClientSize;
-            _textureId = CreateTexture();
-        }
+    //        TextBitmap = new Bitmap(areaSize.Width, areaSize.Height);
+    //        this._clientSize = ClientSize;
+    //        _textureId = CreateTexture();
+    //    }
  
-        private int CreateTexture()
-        {
-            int textureId;
-            OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);//Important, or wrong color on some computers
+    //    private int CreateTexture()
+    //    {
+    //        int textureId;
+    //        OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);//Important, or wrong color on some computers
 
-            Bitmap bitmap = TextBitmap;
-            OpenTK.Graphics.OpenGL.GL.GenTextures(1, out textureId);
-            OpenTK.Graphics.OpenGL.GL.BindTexture(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, textureId);
+    //        Bitmap bitmap = TextBitmap;
+    //        OpenTK.Graphics.OpenGL.GL.GenTextures(1, out textureId);
+    //        OpenTK.Graphics.OpenGL.GL.BindTexture(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, textureId);
  
-            BitmapData data = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            OpenTK.Graphics.OpenGL.GL.TexImage2D(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, 0, OpenTK.Graphics.OpenGL.PixelInternalFormat.Rgba, data.Width, data.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
+    //        BitmapData data = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+    //        OpenTK.Graphics.OpenGL.GL.TexImage2D(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, 0, OpenTK.Graphics.OpenGL.PixelInternalFormat.Rgba, data.Width, data.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
 
-            //if (enablemipmaps)
-            //{
-            //    // Enable mimaps. This doesn't work on older graphics cards i.e. the texture does not appear
-            //    //OpenTK.Graphics.OpenGL.GL.GenerateMipmap(OpenTK.Graphics.OpenGL.GenerateMipmapTarget.Texture2D);
-            //    //OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.LinearMipmapLinear);
-            //    ////OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMagFilter, (int)OpenTK.Graphics.OpenGL.TextureMagFilter.Linear);
-            //}
+    //        //if (enablemipmaps)
+    //        //{
+    //        //    // Enable mimaps. This doesn't work on older graphics cards i.e. the texture does not appear
+    //        //    //OpenTK.Graphics.OpenGL.GL.GenerateMipmap(OpenTK.Graphics.OpenGL.GenerateMipmapTarget.Texture2D);
+    //        //    //OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.LinearMipmapLinear);
+    //        //    ////OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMagFilter, (int)OpenTK.Graphics.OpenGL.TextureMagFilter.Linear);
+    //        //}
 
-            // disable mimaps to support older graphics cards
-            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMagFilter, (int)OpenTK.Graphics.OpenGL.TextureMagFilter.Nearest);
-            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.Nearest);
+    //        // disable mimaps to support older graphics cards
+    //        OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMagFilter, (int)OpenTK.Graphics.OpenGL.TextureMagFilter.Nearest);
+    //        OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.Nearest);
 
-            OpenTK.Graphics.OpenGL.GL.Finish();
+    //        OpenTK.Graphics.OpenGL.GL.Finish();
 
-            bitmap.UnlockBits(data);
-            return textureId;
-        }
+    //        bitmap.UnlockBits(data);
+    //        return textureId;
+    //    }
  
-        public void Dispose()
-        {
-            if (_textureId > 0)
-                OpenTK.Graphics.OpenGL.GL.DeleteTexture(_textureId);
-        }
+    //    public void Dispose()
+    //    {
+    //        if (_textureId > 0)
+    //            OpenTK.Graphics.OpenGL.GL.DeleteTexture(_textureId);
+    //    }
  
-        public void Clear()
-        {
-            _lines.Clear();
-            _positions.Clear();
-            _colours.Clear();
-        }
+    //    public void Clear()
+    //    {
+    //        _lines.Clear();
+    //        _positions.Clear();
+    //        _colours.Clear();
+    //    }
  
-        public void AddLine(string s, PointF pos, Brush col)
-        {
-            _lines.Add(s);
-            _positions.Add(pos);
-            _colours.Add(col);
-            UpdateText();
-        }
+    //    public void AddLine(string s, PointF pos, Brush col)
+    //    {
+    //        _lines.Add(s);
+    //        _positions.Add(pos);
+    //        _colours.Add(col);
+    //        UpdateText();
+    //    }
  
-        public void UpdateText()
-        {
-            if (_lines.Count > 0)
-            {
-                using (Graphics gfx = Graphics.FromImage(TextBitmap))
-                {
-                    gfx.Clear(Color.Black);
-                    gfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-                    for (int i = 0; i < _lines.Count; i++)
-                        gfx.DrawString(_lines[i], TextFont, _colours[i], _positions[i]);
-                }
+    //    public void UpdateText()
+    //    {
+    //        if (_lines.Count > 0)
+    //        {
+    //            using (Graphics gfx = Graphics.FromImage(TextBitmap))
+    //            {
+    //                gfx.Clear(Color.Black);
+    //                gfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+    //                for (int i = 0; i < _lines.Count; i++)
+    //                    gfx.DrawString(_lines[i], TextFont, _colours[i], _positions[i]);
+    //            }
  
-                System.Drawing.Imaging.BitmapData data = TextBitmap.LockBits(new Rectangle(0, 0, TextBitmap.Width, TextBitmap.Height),
-                    System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                OpenTK.Graphics.OpenGL.GL.TexSubImage2D(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, 0, 0, 0, TextBitmap.Width, TextBitmap.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
-                TextBitmap.UnlockBits(data);
-            }
-        }
+    //            System.Drawing.Imaging.BitmapData data = TextBitmap.LockBits(new Rectangle(0, 0, TextBitmap.Width, TextBitmap.Height),
+    //                System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+    //            OpenTK.Graphics.OpenGL.GL.TexSubImage2D(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, 0, 0, 0, TextBitmap.Width, TextBitmap.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
+    //            TextBitmap.UnlockBits(data);
+    //        }
+    //    }
  
-        public void Draw()
-        {
-            OpenTK.Graphics.OpenGL.GL.PushMatrix();
-            OpenTK.Graphics.OpenGL.GL.LoadIdentity();
+    //    public void Draw()
+    //    {
+    //        OpenTK.Graphics.OpenGL.GL.PushMatrix();
+    //        OpenTK.Graphics.OpenGL.GL.LoadIdentity();
 
-            OpenTK.Matrix4 ortho_projection = OpenTK.Matrix4.CreateOrthographicOffCenter(0, _clientSize.Width, _clientSize.Height, 0, -1, 1);
-            OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Projection);
+    //        OpenTK.Matrix4 ortho_projection = OpenTK.Matrix4.CreateOrthographicOffCenter(0, _clientSize.Width, _clientSize.Height, 0, -1, 1);
+    //        OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Projection);
 
-            OpenTK.Graphics.OpenGL.GL.PushMatrix();//
-            OpenTK.Graphics.OpenGL.GL.LoadMatrix(ref ortho_projection);
+    //        OpenTK.Graphics.OpenGL.GL.PushMatrix();//
+    //        OpenTK.Graphics.OpenGL.GL.LoadMatrix(ref ortho_projection);
 
-            OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
-            OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.One, OpenTK.Graphics.OpenGL.BlendingFactorDest.ConstantColor);
-            OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Texture2D);
-            OpenTK.Graphics.OpenGL.GL.BindTexture(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, _textureId);
+    //        OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
+    //        OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.One, OpenTK.Graphics.OpenGL.BlendingFactorDest.ConstantColor);
+    //        OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Texture2D);
+    //        OpenTK.Graphics.OpenGL.GL.BindTexture(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, _textureId);
 
 
-            OpenTK.Graphics.OpenGL.GL.Begin(OpenTK.Graphics.OpenGL.BeginMode.Quads);
-            OpenTK.Graphics.OpenGL.GL.TexCoord2(0, 0); OpenTK.Graphics.OpenGL.GL.Vertex2(0, 0);
-            OpenTK.Graphics.OpenGL.GL.TexCoord2(1, 0); OpenTK.Graphics.OpenGL.GL.Vertex2(TextBitmap.Width, 0);
-            OpenTK.Graphics.OpenGL.GL.TexCoord2(1, 1); OpenTK.Graphics.OpenGL.GL.Vertex2(TextBitmap.Width, TextBitmap.Height);
-            OpenTK.Graphics.OpenGL.GL.TexCoord2(0, 1); OpenTK.Graphics.OpenGL.GL.Vertex2(0, TextBitmap.Height);
-            OpenTK.Graphics.OpenGL.GL.End();
-            OpenTK.Graphics.OpenGL.GL.PopMatrix();
+    //        OpenTK.Graphics.OpenGL.GL.Begin(OpenTK.Graphics.OpenGL.BeginMode.Quads);
+    //        OpenTK.Graphics.OpenGL.GL.TexCoord2(0, 0); OpenTK.Graphics.OpenGL.GL.Vertex2(0, 0);
+    //        OpenTK.Graphics.OpenGL.GL.TexCoord2(1, 0); OpenTK.Graphics.OpenGL.GL.Vertex2(TextBitmap.Width, 0);
+    //        OpenTK.Graphics.OpenGL.GL.TexCoord2(1, 1); OpenTK.Graphics.OpenGL.GL.Vertex2(TextBitmap.Width, TextBitmap.Height);
+    //        OpenTK.Graphics.OpenGL.GL.TexCoord2(0, 1); OpenTK.Graphics.OpenGL.GL.Vertex2(0, TextBitmap.Height);
+    //        OpenTK.Graphics.OpenGL.GL.End();
+    //        OpenTK.Graphics.OpenGL.GL.PopMatrix();
 
-            OpenTK.Graphics.OpenGL.GL.Disable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
-            OpenTK.Graphics.OpenGL.GL.Disable(OpenTK.Graphics.OpenGL.EnableCap.Texture2D);
+    //        OpenTK.Graphics.OpenGL.GL.Disable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
+    //        OpenTK.Graphics.OpenGL.GL.Disable(OpenTK.Graphics.OpenGL.EnableCap.Texture2D);
 
-            OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Modelview);
-            OpenTK.Graphics.OpenGL.GL.PopMatrix();
-        }
-    }
+    //        OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Modelview);
+    //        OpenTK.Graphics.OpenGL.GL.PopMatrix();
+    //    }
+    //}
 }

@@ -111,9 +111,9 @@ namespace METAbolt
                     GetFile(ffiles[lvwList.Items[0].Text]);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message;
+                ;
             }
         }
 
@@ -123,9 +123,9 @@ namespace METAbolt
             {
                 rtbIMText.LoadFile(file, RichTextBoxStreamType.PlainText);
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message;
+                ;
             }
         }
 
@@ -148,9 +148,9 @@ namespace METAbolt
                     GetFile(ffiles[lvwList.SelectedItems[0].Text]);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message;
+               ;
             }
         }
 
@@ -185,9 +185,9 @@ namespace METAbolt
                     GetFile(ffiles[lvwList.SelectedItems[0].Text]);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message;
+                ;
             }
         }
     }

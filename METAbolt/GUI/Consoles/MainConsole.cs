@@ -38,7 +38,6 @@ using System.Diagnostics;
 using System.Linq;
 using ExceptionReporting;
 using System.Threading;
-using System.Globalization; 
 
 namespace METAbolt
 {
@@ -69,6 +68,7 @@ namespace METAbolt
         public MainConsole(METAboltInstance instance)
         {
             InitializeComponent();
+            Disposed += new EventHandler(MainConsole_Disposed);
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -82,9 +82,8 @@ namespace METAbolt
             if (webBrowser == null)
                 this.InitializeWebBrowser();
 
+            webBrowser.Visible = true;
             btnInfo.Text = "Hide Grid Status";
-
-            Disposed += new EventHandler(MainConsole_Disposed);
 
             LoadGrids();
             InitGridCombo();
@@ -184,50 +183,42 @@ namespace METAbolt
 
         private void SaveUserSettings()
         {
-            try
+            instance.Config.CurrentConfig.FirstName = txtFirstName.Text;
+            instance.Config.CurrentConfig.LastName = txtLastName.Text;
+
+            // Save user list
+            string ulist = string.Empty;
+
+            foreach (string s in usernlist)
             {
-                instance.Config.CurrentConfig.FirstName = txtFirstName.Text;
-                instance.Config.CurrentConfig.LastName = txtLastName.Text;
-
-                // Save user list
-                string ulist = string.Empty;
-
-                foreach (string s in usernlist)
-                {
-                    ulist += s + "|";
-                }
-
-                if (ulist.EndsWith("|"))
-                {
-                    ulist = ulist.Substring(0, ulist.Length - 1);
-                }
-
-                instance.Config.CurrentConfig.UserNameList = ulist;
-
-                instance.Config.CurrentConfig.iRemPWD = chkPWD.Checked;
-
-                if (netcom.LoginOptions.IsPasswordMD5)
-                {
-                    instance.Config.CurrentConfig.PasswordMD5 = txtPassword.Text;
-                }
-                else
-                {
-                    instance.Config.CurrentConfig.PasswordMD5 = Utils.MD5(txtPassword.Text);
-                }
-
-                instance.Config.CurrentConfig.LoginLocationType = cbxLocation.SelectedIndex;
-                instance.Config.CurrentConfig.LoginLocation = cbxLocation.Text;
-
-                instance.Config.CurrentConfig.LoginGrid = cbxGrid.SelectedIndex;
-                instance.Config.CurrentConfig.LoginUri = txtCustomLoginUri.Text;
-
-                instance.Config.SaveCurrentConfig();
+                ulist += s + "|";
             }
-            catch (Exception ex)
+
+            if (ulist.EndsWith("|"))
             {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
+                ulist = ulist.Substring(0, ulist.Length - 1);   
             }
+
+            instance.Config.CurrentConfig.UserNameList = ulist; 
+
+            instance.Config.CurrentConfig.iRemPWD = chkPWD.Checked;
+
+            if (netcom.LoginOptions.IsPasswordMD5)
+            {
+                instance.Config.CurrentConfig.PasswordMD5 = txtPassword.Text;
+            }
+            else
+            {
+                instance.Config.CurrentConfig.PasswordMD5 = Utils.MD5(txtPassword.Text);
+            }
+
+            instance.Config.CurrentConfig.LoginLocationType = cbxLocation.SelectedIndex;
+            instance.Config.CurrentConfig.LoginLocation = cbxLocation.Text;
+
+            instance.Config.CurrentConfig.LoginGrid = cbxGrid.SelectedIndex;
+            instance.Config.CurrentConfig.LoginUri = txtCustomLoginUri.Text;
+
+            instance.Config.SaveCurrentConfig();  
         }
 
         private void AddNetcomEvents()
@@ -266,82 +257,74 @@ namespace METAbolt
 
         private void InitializeConfig()
         {
-            try
+            // Populate usernames
+            //usernlist
+            string ulist = instance.Config.CurrentConfig.UserNameList;
+
+            if (ulist != string.Empty)
             {
-                // Populate usernames
-                //usernlist
-                string ulist = instance.Config.CurrentConfig.UserNameList;
+                string[] llist = ulist.Split('|');
 
-                if (ulist != string.Empty)
+                foreach (string s in llist)
                 {
-                    string[] llist = ulist.Split('|');
+                    string[] llist1 = s.Split('\\');
+                    usernlist.Add(s);
+                    //cboUserList.Items.Add(s);
 
-                    foreach (string s in llist)
+                    string epwd = string.Empty;  
+
+                    if (llist1.Length == 2)
                     {
-                        string[] llist1 = s.Split('\\');
-                        usernlist.Add(s);
-                        //cboUserList.Items.Add(s);
+                        epwd = llist1[1];
 
-                        string epwd = string.Empty;
-
-                        if (llist1.Length == 2)
+                        if (epwd != string.Empty)
                         {
-                            epwd = llist1[1];
-
-                            if (epwd != string.Empty)
+                            try
                             {
-                                try
-                                {
-                                    Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
-                                    string cpwd = cryp.Decrypt(epwd);
-                                    epwd = cpwd;
-                                }
-                                catch
-                                {
-                                    epwd = string.Empty;
-                                }
+                                Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
+                                string cpwd = cryp.Decrypt(epwd);
+                                epwd = cpwd;
                             }
+                            catch
+                            {
+                                epwd = string.Empty;  
+                            }
+                        }
 
-                            cboUserList.Items.Add(new Item(llist1[0], epwd));
-                        }
-                        else
-                        {
-                            cboUserList.Items.Add(new Item(llist1[0], string.Empty));
-                        }
+                        cboUserList.Items.Add(new Item(llist1[0], epwd));
+                    }
+                    else
+                    {
+                        cboUserList.Items.Add(new Item(llist1[0], string.Empty));
                     }
                 }
-
-                chkPWD.Checked = instance.Config.CurrentConfig.iRemPWD;
-                txtFirstName.Text = instance.Config.CurrentConfig.FirstName;
-                txtLastName.Text = instance.Config.CurrentConfig.LastName;
-
-                if (instance.Config.CurrentConfig.iRemPWD)
-                {
-                    string epwd = instance.Config.CurrentConfig.PasswordMD5;
-
-                    txtPassword.Text = epwd;
-                }
-
-                netcom.LoginOptions.IsPasswordMD5 = true;
-
-                cbxLocation.SelectedIndex = instance.Config.CurrentConfig.LoginLocationType;
-                cbxLocation.Text = instance.Config.CurrentConfig.LoginLocation;
-
-                cbxGrid.SelectedIndex = instance.Config.CurrentConfig.LoginGrid;
-                txtCustomLoginUri.Text = instance.Config.CurrentConfig.LoginUri;
-
-                if (instance.ReBooted)
-                {
-                    BeginLogin();
-                    //btnLogin.PerformClick();
-                    timer2.Enabled = true;
-                    timer2.Start();
-                }
             }
-            catch (Exception ex)
+
+            chkPWD.Checked = instance.Config.CurrentConfig.iRemPWD;
+            txtFirstName.Text = instance.Config.CurrentConfig.FirstName;
+            txtLastName.Text = instance.Config.CurrentConfig.LastName;
+
+            if (instance.Config.CurrentConfig.iRemPWD)
             {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
+                string epwd = instance.Config.CurrentConfig.PasswordMD5;
+
+                txtPassword.Text = epwd;
+            }
+
+            netcom.LoginOptions.IsPasswordMD5 = true;
+
+            cbxLocation.SelectedIndex = instance.Config.CurrentConfig.LoginLocationType;
+            cbxLocation.Text = instance.Config.CurrentConfig.LoginLocation;
+
+            cbxGrid.SelectedIndex = instance.Config.CurrentConfig.LoginGrid;
+            txtCustomLoginUri.Text = instance.Config.CurrentConfig.LoginUri;
+
+            if (instance.ReBooted)
+            {
+                BeginLogin();
+                //btnLogin.PerformClick();
+                timer2.Enabled = true;
+                timer2.Start(); 
             }
         }
 
@@ -372,7 +355,6 @@ namespace METAbolt
                         break;
 
                     case LoginStatus.Success:
-                        SetLang();
                         lblLoginStatus.Text = "Logged in as " + netcom.LoginOptions.FullName;
                         lblLoginStatus.ForeColor = Color.Blue;
      
@@ -468,26 +450,7 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
-            }
-        }
-
-        private void SetLang()
-        {
-            CultureInfo cult = CultureInfo.CurrentCulture;
-            string land = cult.TwoLetterISOLanguageName;
-
-            AgentManager avm = new AgentManager(client);
-
-            try
-            {
-                avm.UpdateAgentLanguage(land, true);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
-                //reporter.Show(ex);
+                Logger.Log("Login (status): " + ex.Message, Helpers.LogLevel.Error);
             }
         }
 
@@ -524,12 +487,6 @@ namespace METAbolt
 
         private void InitializeWebBrowser()
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(() => InitializeWebBrowser()));
-            //    return;
-            //}
-
             lblInitWebBrowser.Visible = true;
             lblInitWebBrowser.Refresh();
 
@@ -556,105 +513,43 @@ namespace METAbolt
                 murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
             }
 
-            //Thread webBrowseThread = new Thread(new ThreadStart(PerformWebBrowseOp));
-            //webBrowseThread.SetApartmentState(ApartmentState.STA);
-            //webBrowseThread.Start(); 
-
-            try
-            {
-                webBrowser = new WebBrowser();
-                webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
-                webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
-                webBrowser.Url = new Uri(murl);
-                webBrowser.AllowNavigation = true;
-                webBrowser.AllowWebBrowserDrop = false;
-                webBrowser.Dock = DockStyle.Fill;
-                webBrowser.IsWebBrowserContextMenuEnabled = false;
-                webBrowser.ScriptErrorsSuppressed = true;
-                webBrowser.ScrollBarsEnabled = true;
-                webBrowser.NewWindow += new CancelEventHandler(webBrowser_NewWindow);
-                pnlLoginPage.Controls.Add(webBrowser);
-                webBrowser.Visible = true;
-
-                //webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
-                //webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
-                //webBrowser.Url = new Uri(murl);
-                //webBrowser.AllowNavigation = true;
-                //webBrowser.AllowWebBrowserDrop = false;
-                //webBrowser.Dock = DockStyle.Fill;
-                //webBrowser.IsWebBrowserContextMenuEnabled = false;
-                //webBrowser.ScriptErrorsSuppressed = true;
-                //webBrowser.ScrollBarsEnabled = true;
-                //webBrowser.NewWindow += new CancelEventHandler(webBrowser_NewWindow);
-                ////pnlLoginPage.Controls.Add(webBrowser);
-                //webBrowser.Visible = true;
-            }
-            catch
-            {
-                //reporter.Show(ex);
-            }
+            webBrowser = new WebBrowser();
+            webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
+            webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
+            webBrowser.Url = new Uri(murl);
+            webBrowser.AllowNavigation = true;
+            webBrowser.AllowWebBrowserDrop = false;
+            webBrowser.Dock = DockStyle.Fill;
+            webBrowser.IsWebBrowserContextMenuEnabled = false;
+            webBrowser.ScriptErrorsSuppressed = true;
+            webBrowser.ScrollBarsEnabled = true;
+            webBrowser.NewWindow += new CancelEventHandler(webBrowser_NewWindow); 
+            pnlLoginPage.Controls.Add(webBrowser);
         }
-
-        //protected void PerformWebBrowseOp()
-        //{
-        //    if (InvokeRequired)
-        //    {
-        //        BeginInvoke(new MethodInvoker(() => PerformWebBrowseOp()));
-        //        return;
-        //    }
-
-        //    webBrowser = new WebBrowser();
-        //    webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
-        //    webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
-        //    webBrowser.Url = new Uri(murl);
-        //    webBrowser.AllowNavigation = true;
-        //    webBrowser.AllowWebBrowserDrop = false;
-        //    webBrowser.Dock = DockStyle.Fill;
-        //    webBrowser.IsWebBrowserContextMenuEnabled = false;
-        //    webBrowser.ScriptErrorsSuppressed = true;
-        //    webBrowser.ScrollBarsEnabled = true;
-        //    webBrowser.NewWindow += new CancelEventHandler(webBrowser_NewWindow);
-        //    pnlLoginPage.Controls.Add(webBrowser);
-        //    webBrowser.Visible = true; 
-        //} 
-
 
         private void LoadWebPage()
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(() => LoadWebPage()));
-            //    return;
-            //}
+            string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            try
+            if (lkey != string.Empty)
             {
-                string lkey = instance.Config.CurrentConfig.AdRemove;
+                METAMD5 md5 = new METAMD5();
 
-                if (lkey != string.Empty)
+                if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
                 {
-                    METAMD5 md5 = new METAMD5();
-
-                    if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-                    {
-                        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
-                    }
-                    else
-                    {
-                        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
-                    }
+                    murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
                 }
                 else
                 {
                     murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
                 }
-
-                webBrowser.Navigate(murl);
             }
-            catch
+            else
             {
-                //reporter.Show(ex);
+                murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
             }
+
+            webBrowser.Navigate(murl);
         }
 
         private void webBrowser_NewWindow(object sender, CancelEventArgs e)
@@ -831,8 +726,7 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
+                Logger.Log("Login (main): " + ex.Message, Helpers.LogLevel.Error);
             }
         }
 
@@ -957,45 +851,31 @@ namespace METAbolt
 
         private void DoBrowser()
         {
-            //if (InvokeRequired)
+            //string lkey = instance.Config.CurrentConfig.AdRemove;
+
+            //if (lkey != string.Empty)
             //{
-            //    BeginInvoke(new MethodInvoker(() => DoBrowser()));
-            //    return;
+            //    METAMD5 md5 = new METAMD5();
+
+            //    if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
+            //    {
+            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
+            //    }
+            //    else
+            //    {
+            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+            //    }
+            //}
+            //else
+            //{
+            //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
             //}
 
-            try
-            {
-                //string lkey = instance.Config.CurrentConfig.AdRemove;
+            ////murl = "http://www.metabolt.net/index.asp?user=none&ver=" + Properties.Resources.METAboltVersion.ToString();
 
-                //if (lkey != string.Empty)
-                //{
-                //    METAMD5 md5 = new METAMD5();
-
-                //    if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-                //    {
-                //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
-                //    }
-                //    else
-                //    {
-                //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
-                //    }
-                //}
-                //else
-                //{
-                //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
-                //}
-
-                ////murl = "http://www.metabolt.net/index.asp?user=none&ver=" + Properties.Resources.METAboltVersion.ToString();
-
-                webBrowser.Refresh();
-            }
-            catch (Exception ex)
-            {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
-            }
+            webBrowser.Refresh();
         }
-        
+
         private void chkPWD_CheckedChanged(object sender, EventArgs e)
         {
 

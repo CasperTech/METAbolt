@@ -72,19 +72,19 @@ namespace METAbolt
         }
 
         //UI thread
-        private void PeopleReply(UUID queryID, List<DirectoryManager.AgentSearchData> matchedPeople)
+        private void PeopleReply(UUID qqueryID, List<DirectoryManager.AgentSearchData> matchedPeople)
         {
             if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    PeopleReply(queryID, matchedPeople);
+                    PeopleReply(qqueryID, matchedPeople);
                 }));
 
                 return;
             }
 
-            if (queryID != this.queryID) return;
+            if (qqueryID != this.queryID) return;
 
             lvwFindPeople.BeginUpdate();
 

@@ -51,7 +51,6 @@ namespace METAbolt
                 else
                 {
                     METAboltInstance instance = new METAboltInstance(true, args);
-
                     Application.Run(instance.MainForm);
                     instance = null;
                 }

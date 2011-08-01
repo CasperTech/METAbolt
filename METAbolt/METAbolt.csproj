@@ -21,7 +21,7 @@
     <ManifestCertificateThumbprint>ABFC93D872784BACE4312D9CDA515213E437B6BC</ManifestCertificateThumbprint>
     <ManifestKeyFile>LegolasLuke.p12</ManifestKeyFile>
     <GenerateManifests>false</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
@@ -29,7 +29,6 @@
     <StartupObject>
     </StartupObject>
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <PublishUrl>C:\Dev\metabolt-publish\1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -50,7 +49,7 @@
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.9.46.%2a</ApplicationVersion>
+    <ApplicationVersion>0.9.47.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -59,16 +58,18 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Debug\METAbolt.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\..\METAbolt\METAbolt\MB_RuleSet.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1591</NoWarn>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -142,7 +143,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MD5library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MD5library, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\MD5library.dll</HintPath>
     </Reference>
@@ -168,11 +169,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse, Version=0.0.0.8132, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="OpenMetaverse, Version=0.0.0.25709, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse.Rendering.Meshmerizer">
+    <Reference Include="OpenMetaverse.Rendering.Meshmerizer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.Rendering.Meshmerizer.dll</HintPath>
     </Reference>
     <Reference Include="OpenMetaverse.StructuredData, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -293,12 +295,6 @@
     </Compile>
     <Compile Include="Core\Tools\ActionCommandsIn.cs" />
     <Compile Include="Core\ChatBufferItem.cs" />
-    <Compile Include="Core\Components\NoFlickerLV.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Core\Components\NoFlickerLV.Designer.cs">
-      <DependentUpon>NoFlickerLV.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\Components\RichTextBoxFR.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -342,7 +338,6 @@
     <Compile Include="Core\Components\CustomToolTip.Designer.cs">
       <DependentUpon>CustomToolTip.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Tools\RotateImage.cs" />
     <Compile Include="Core\Tools\SafeDictionary.cs" />
     <Compile Include="Core\Tools\WildCard.cs" />
     <Compile Include="GUI\Consoles\FindLand.cs">
@@ -416,12 +411,6 @@
     </Compile>
     <Compile Include="GUI\Consoles\Preferences\PrefChairAnn.designer.cs">
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Dialogs\AdLicense.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Dialogs\AdLicense.Designer.cs">
-      <DependentUpon>AdLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Dialogs\frmGive.cs">
       <SubType>Form</SubType>
@@ -847,10 +836,6 @@
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Dialogs\AdLicense.resx">
-      <DependentUpon>AdLicense.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmGive.resx">
       <DependentUpon>frmGive.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1082,9 +1067,6 @@
     <None Include="License_METAbolt.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="OpenMetaverse.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="OpenTK.Compatibility.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1106,7 +1088,7 @@
       <DependentUpon>Smileys.resx</DependentUpon>
     </Compile>
     <None Include="ScintillaNet.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1228,6 +1210,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="METAbolt Support.url">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="OpenMetaverse.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="openmetaverse_data\blush_alpha.tga">
@@ -1407,7 +1392,6 @@
     <None Include="openmetaverse_data\upperbody_shading_alpha.tga">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Properties\app.manifest" />
     <Content Include="config\DefaultPredicates.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1458,10 +1442,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="openjpeg-dotnet-x86_64.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="openjpeg-dotnet.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="openmetaverse_data\avatar_lad.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1469,15 +1453,15 @@
     <None Include="OpenTK.Compatibility.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="OpenTK.GLControl.xml">
+    <Content Include="OpenTK.GLControl.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="OpenTK.xml">
+    </Content>
+    <Content Include="OpenTK.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="PrimMesher.dll">
+    </Content>
+    <Content Include="PrimMesher.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1509,7 +1493,6 @@
     <None Include="Resources\comment.png" />
     <None Include="Resources\camera.png" />
     <None Include="Resources\camera_clic_with_flash.wav" />
-    <None Include="Resources\compass-needle.png" />
     <Content Include="Resources\damage.png" />
     <None Include="Resources\debug.png" />
     <None Include="Resources\donate2.png" />
@@ -1625,7 +1608,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="logs\" />
+    <PublishFile Include="METAbolt">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -1633,7 +1625,9 @@
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="logs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

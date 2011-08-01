@@ -539,9 +539,9 @@ namespace METAbolt
                             lbxPrims.EndUpdate();
                         }
                     }
-                    catch (Exception exc)
+                    catch
                     {
-                        string exp = exc.Message;
+                        ;
                     }
                 }
             }
@@ -1108,9 +1108,9 @@ namespace METAbolt
                             {
                                 childItems.Add(e.Prim.LocalID, citem);
                             }
-                            catch (Exception exc)
+                            catch
                             {
-                                string exp = exc.Message;
+                                ;
                             }
                         }
                     }
@@ -1123,9 +1123,9 @@ namespace METAbolt
                         {
                             if (listItems.ContainsKey(e.Prim.LocalID)) return;
                         }
-                        catch (Exception ex)
+                        catch
                         { 
-                            string err = ex.Message; 
+                            ; 
                         }
 
                         try
@@ -1152,9 +1152,9 @@ namespace METAbolt
                                     item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
                                     item.RequestProperties();
                                 }
-                                catch (Exception exc)
+                                catch
                                 {
-                                    string exp = exc.Message;
+                                    ;
                                 }
                             }));
                         }
@@ -1210,15 +1210,15 @@ namespace METAbolt
                                 {
                                     childItems.Remove(objectID);
                                 }
-                                catch (Exception ex)
+                                catch
                                 {
-                                    string err = ex.Message;
+                                    ;
                                 }
                             }));
                         }
-                        catch (Exception exc)
+                        catch
                         {
-                            string exp = exc.Message;
+                            ;
                         }
                     }
                 }
@@ -1245,26 +1245,25 @@ namespace METAbolt
                                 {
                                     listItems.Remove(objectID);
                                 }
-                                catch (Exception ex)
+                                catch
                                 {
-                                    string err = ex.Message;
+                                    ;
                                 }
 
                                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
                                 tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
                             }));
                         }
-                        catch (Exception exc)
+                        catch
                         {
-                            string exp = exc.Message;
+                            ;
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 // passed key wasn't available
-                string erc = ex.Message;
                 return;
             }
         }
@@ -2220,7 +2219,7 @@ namespace METAbolt
                 {
                     if (items[i] is InventoryFolder)
                     {
-                        ListViewItem fitem = lbxTask.Items.Add(items[i].Name, "- " + items[i].Name + " folder", string.Empty);
+                        //ListViewItem fitem = lbxTask.Items.Add(items[i].Name, "- " + items[i].Name + " folder", string.Empty);
                         //fitem.Tag = fitem;
                     }
                     else
@@ -2531,7 +2530,7 @@ namespace METAbolt
 
         private void Item_CopiedCallback(InventoryBase item)
         {
-            string citem = item.Name;
+            //string citem = item.Name;
         }
 
         private void textBox1_DragEnter(object sender, DragEventArgs e)
@@ -2587,7 +2586,7 @@ namespace METAbolt
             Primitive sPr = item.Prim;
 
             InventoryItem llitem = ((ListViewItem)lbxTask.SelectedItems[0]).Tag as InventoryItem;
-            ListViewItem selitem = lbxTask.SelectedItems[0];
+            //ListViewItem selitem = lbxTask.SelectedItems[0];
 
             client.Inventory.RemoveTaskInventory(sPr.LocalID, llitem.UUID, client.Network.CurrentSim);
 
@@ -2617,7 +2616,7 @@ namespace METAbolt
             Primitive sPr = item.Prim;
 
             InventoryItem llitem = ((ListViewItem)lbxTask.SelectedItems[0]).Tag as InventoryItem;
-            ListViewItem selitem = lbxTask.SelectedItems[0];
+            //ListViewItem selitem = lbxTask.SelectedItems[0];
 
 
             InventoryFolder ifolders = client.Inventory.Store.RootFolder;

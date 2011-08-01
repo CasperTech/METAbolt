@@ -63,7 +63,7 @@ namespace METAbolt
         private InventoryTreeSorter treeSorter = new InventoryTreeSorter();
         private bool ShowAuto = false;
         private string SortBy = "By Name";
-        ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
+        //ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
         //private SafeDictionary<UUID, TreeNode> treeLookup = new SafeDictionary<UUID, TreeNode>();
         //private Thread searchterm;
 
@@ -224,36 +224,36 @@ namespace METAbolt
 
         private void Store_OnInventoryObjectAdded(object sender, InventoryObjectAddedEventArgs e)
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        Store_OnInventoryObjectAdded(sender, e);
-            //    }));
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Store_OnInventoryObjectAdded(sender, e);
+                }));
 
-            //    return;
+                return;
+            }
+
+            try
+            {
+                addeditem = e.Obj.UUID;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
+
+            }
+            catch { ; }
+
+            //RefreshInventory();
+
+            //if (SortBy == "By Date")
+            //{
+            //    client.Inventory.RequestFolderContents(e.Obj.ParentUUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate | InventorySortOrder.FoldersByName);
+            //}
+            //else
+            //{
+            //    client.Inventory.RequestFolderContents(e.Obj.ParentUUID, client.Self.AgentID, true, true, InventorySortOrder.ByName | InventorySortOrder.FoldersByName);
             //}
 
-            //try
-            //{
-            //    addeditem = e.Obj.UUID;
-            //    ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
-
-            //}
-            //catch { ; }
-
-            ////RefreshInventory();
-
-            ////if (SortBy == "By Date")
-            ////{
-            ////    client.Inventory.RequestFolderContents(e.Obj.ParentUUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate | InventorySortOrder.FoldersByName);
-            ////}
-            ////else
-            ////{
-            ////    client.Inventory.RequestFolderContents(e.Obj.ParentUUID, client.Self.AgentID, true, true, InventorySortOrder.ByName | InventorySortOrder.FoldersByName);
-            ////}
-
-            ////RefreshInventory();
+            //RefreshInventory();
         }
 
         private void Inventory_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
@@ -285,34 +285,34 @@ namespace METAbolt
         //Seperate thread
         private void Inventory_OnFolderUpdated(object sender, FolderUpdatedEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Inventory_OnFolderUpdated(sender, e);
-                }));
-
-                return;
-            }
-
-            try
-            {
-                if (!searching)
-                {
-
-                    if (folderproc == e.FolderID)
-                    {
-                        ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
-                        folderproc = UUID.Zero;
-                    }
-                }
-            }
-            catch { ; }
-
-            //BeginInvoke(new MethodInvoker(delegate()
+            //if (InvokeRequired)
             //{
-            //    RefreshInventory();
-            //}));
+            //    BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        Inventory_OnFolderUpdated(sender, e);
+            //    }));
+
+            //    return;
+            //}
+
+            //try
+            //{
+            //    if (!searching)
+            //    {
+
+            //        if (folderproc == e.FolderID)
+            //        {
+            //            ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
+            //            folderproc = UUID.Zero;
+            //        }
+            //    }
+            //}
+            //catch { ; }
+
+            ////BeginInvoke(new MethodInvoker(delegate()
+            ////{
+            ////    RefreshInventory();
+            ////}));
         }
 
 
@@ -408,12 +408,12 @@ namespace METAbolt
         {
             try
             {
-                client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
+                //client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                 client.Inventory.ItemReceived += new EventHandler<ItemReceivedEventArgs>(Inventory_OnItemReceived);
                 //client.Inventory.InventoryObjectOffered += new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_OnInventoryObjectReceived);
                 //client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
                 client.Inventory.Store.InventoryObjectRemoved += new EventHandler<InventoryObjectRemovedEventArgs>(Store_OnInventoryObjectRemoved);
-                //client.Inventory.Store.InventoryObjectAdded += new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
+                client.Inventory.Store.InventoryObjectAdded += new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
 
                 foreach (ITreeSortMethod method in treeSorter.GetSortMethods())
                 {
@@ -446,12 +446,12 @@ namespace METAbolt
 
         private void InventoryConsole_Disposed(object sender, EventArgs e)
         {
-            client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
+            //client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
             client.Inventory.ItemReceived -= new EventHandler<ItemReceivedEventArgs>(Inventory_OnItemReceived);
             //client.Inventory.InventoryObjectOffered -= new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_OnInventoryObjectReceived);
             //client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
             client.Inventory.Store.InventoryObjectRemoved -= new EventHandler<InventoryObjectRemovedEventArgs>(Store_OnInventoryObjectRemoved);
-            //client.Inventory.Store.InventoryObjectAdded -= new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
+            client.Inventory.Store.InventoryObjectAdded -= new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
             //netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             //netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
         }

@@ -43,14 +43,14 @@ namespace METAbolt
             this.client = client;
         }
 
-        public void SetClipboardNode(TreeNode itemNode, bool cut)
+        public void SetClipboardNode(TreeNode itemNode, bool ccut)
         {
             clipNode = itemNode;
             clipItem = (InventoryBase)itemNode.Tag;
 
-            this.cut = cut;
+            this.cut = ccut;
 
-            if (cut)
+            if (ccut)
             {
                 if (clipNode.Parent != null)
                 {

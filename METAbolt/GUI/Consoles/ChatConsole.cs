@@ -48,7 +48,6 @@ using System.Threading;
 using System.Linq;
 using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
-using System.Globalization; 
 
 namespace METAbolt
 {
@@ -84,7 +83,7 @@ namespace METAbolt
         private bool showing = false;
         private UUID avuuid = UUID.Zero;
         private string avname = string.Empty;
-        //private bool removead = false;
+        private bool removead = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private SafeDictionary<uint, Avatar> sfavatar = new SafeDictionary<uint,Avatar>();
         private List<string> avtyping = new List<string>();
@@ -118,6 +117,7 @@ namespace METAbolt
         public ChatConsole(METAboltInstance instance)
         {
             InitializeComponent();
+            Disposed += new EventHandler(ChatConsole_Disposed);
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -125,6 +125,7 @@ namespace METAbolt
             this.instance = instance;
             netcom = this.instance.Netcom;
             client = this.instance.Client;
+
             AddNetcomEvents();
             AddClientEvents();
 
@@ -132,9 +133,10 @@ namespace METAbolt
             chatManager.PrintStartupMessage();
 
             this.instance.MainForm.Load += new EventHandler(MainForm_Load);
-
-            ApplyConfig(this.instance.Config.CurrentConfig);
+            
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
+            ApplyConfig(this.instance.Config.CurrentConfig);
+
             client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
             client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
 
@@ -144,21 +146,17 @@ namespace METAbolt
             //client.Appearance.OnAppearanceUpdated += new AppearanceManager.AppearanceUpdatedCallback(Appearance_OnAppearanceUpdated);
             client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
             client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
-            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
             client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
-
-            Disposed += new EventHandler(ChatConsole_Disposed);
 
             lvwRadar.ListViewItemSorter = new RadarSorter();
 
             sim = client.Network.CurrentSim;
 
-            //CheckAdLicence();
-
             world.Cursor = Cursors.NoMove2D;
 
             timer2.Enabled = true;
-            timer2.Start();  
+            timer2.Start();
         }
 
         private void SetExceptionReporter()
@@ -213,10 +211,8 @@ namespace METAbolt
                 return;
             }
 
-            try
-            {
-                //lock (instance.avnames)
-                //{
+            //lock (instance.avnames)
+            //{
                 foreach (KeyValuePair<UUID, string> av in names.Names)
                 {
                     if (!instance.avnames.ContainsKey(av.Key))
@@ -225,15 +221,9 @@ namespace METAbolt
                     }
                 }
 
-                //    if (instance.avlocations.Contains(  
-                //client.Network.CurrentSim.ObjectsAvatars.
-                //}
-            }
-            catch (Exception ex)
-            {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
-            }
+            //    if (instance.avlocations.Contains(  
+            //client.Network.CurrentSim.ObjectsAvatars.
+            //}
         }
 
         private void netcom_TeleportStatusChanged(object sender, TeleportEventArgs e)
@@ -245,7 +235,6 @@ namespace METAbolt
                 switch (e.Status)
                 {
                     case TeleportStatus.Start:
-                        IsFormOpen();
                         break;
                     case TeleportStatus.Progress:
                         break;
@@ -263,7 +252,7 @@ namespace METAbolt
                         BeginInvoke(new MethodInvoker(delegate()
                         {
                             lvwRadar.Clear();
-                        }));
+                        }));                        
  
                         if (instance.Config.CurrentConfig.AutoSit)
                         {
@@ -280,25 +269,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
+                reporter.Show(ex);
             }
-        }
-
-        private void IsFormOpen()
-        {
-            //foreach (Form OpenForm in Application.OpenForms)
-            //{
-            //    if (OpenForm.Name == "WornAttachments")
-            //    {
-            //        OpenForm.Close();  
-            //    }
-
-            //    if (OpenForm.Name == "META3D")
-            //    {
-            //        OpenForm.Close();
-            //    }
-            //}
         }
 
         void ChatConsole_Disposed(object sender, EventArgs e)
@@ -310,26 +282,8 @@ namespace METAbolt
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
 
             RemoveEvents();
-            chatManager = null;
+            chatManager.Dispose();
         }
-
-        //private void SetLang()
-        //{
-        //    CultureInfo cult = CultureInfo.CurrentCulture;
-        //    string land = cult.TwoLetterISOLanguageName;
-
-        //    AgentManager avm = new AgentManager(client);
-
-        //    try
-        //    {
-        //        avm.UpdateAgentLanguage(land, true);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
-        //        reporter.Show(ex);
-        //    }
-        //}
 
         private void Appearance_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
         {
@@ -350,8 +304,6 @@ namespace METAbolt
             //    rmsg = " Avatar has not rezzed as expected. ";
             //}
 
-            //SetLang();
-
             try
             {
                 BeginInvoke(new MethodInvoker(delegate()
@@ -359,10 +311,7 @@ namespace METAbolt
                     chatManager.PrintAlertMessage(rmsg);
                 }));
             }
-            catch
-            {
-                //reporter.Show(ex);
-            }
+            catch { ; }
 
             if (instance.Config.CurrentConfig.AutoSit)
             {
@@ -388,10 +337,7 @@ namespace METAbolt
                     client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
                 }));
             }
-            catch
-            {
-                //reporter.Show(ex);
-            }
+            catch { ; }
         }
 
         private void CheckLocation()
@@ -442,46 +388,12 @@ namespace METAbolt
             CheckAutoSit();
         }
 
-        private void CheckAdLicence()
-        {
-            //string lkey = instance.Config.CurrentConfig.AdRemove;
-
-            //if (lkey != string.Empty)
-            //{
-            //    METAMD5 md5 = new METAMD5();
-
-            //    if (md5.ValidateMachinePasscode(lkey))
-            //    {
-            //        panel4.Visible = false;
-            //        rtbChat.Height += 73;
-            //        removead = true;
-            //    }
-            //}
-        }
-
-        private void CheckAvatarAdLicence()
-        {
-            //string lkey = instance.Config.CurrentConfig.AdRemove;
-
-            //if (lkey != string.Empty)
-            //{
-            //    METAMD5 md5 = new METAMD5();
-
-            //    if (md5.ValidateAvatarPasscode(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-            //    {
-            //        panel4.Visible = false;
-            //        rtbChat.Height += 73;
-            //        removead = true;
-            //    }
-            //}
-        }
-
         private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs e)
         {
-            //BeginInvoke(new MethodInvoker(delegate()
-            //{
-            UpdateMedia();
-            //}));           
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                UpdateMedia();
+            }));           
         }
 
         private void UpdateMedia()
@@ -657,8 +569,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.Message, Helpers.LogLevel.Error);
-                //reporter.Show(ex);
+                //Logger.Log(ex.Message, Helpers.LogLevel.Error);
+                reporter.Show(ex);
             }
 
             client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
@@ -676,62 +588,55 @@ namespace METAbolt
                 return;
             }
 
-            try
-            {
-                if (!sitTimer.Enabled) return;
+            if (!sitTimer.Enabled) return;
 
-                sitTimer.Stop();
-                sitTimer.Enabled = false;
-                sitTimer.Dispose();
-                sitTimer.Elapsed -= new ElapsedEventHandler(OnTimedEvent);
+            sitTimer.Stop();
+            sitTimer.Enabled = false;
+            sitTimer.Dispose();
+            sitTimer.Elapsed -= new ElapsedEventHandler(OnTimedEvent);
 
-                Logger.Log("AUTOSIT: Searching for sit object", Helpers.LogLevel.Info);
+            Logger.Log("AUTOSIT: Searching for sit object", Helpers.LogLevel.Info);
+            
+            Vector3 location = client.Self.SimPosition;
+            float radius = 21;
 
-                Vector3 location = client.Self.SimPosition;
-                float radius = 21;
-
-                // *** find all objects in radius ***
-                List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
-                    delegate(Primitive prim)
-                    {
-                        Vector3 pos = prim.Position;
-                        return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < radius));
-                    }
-                );
-
-                localids = new uint[prims.Count];
-                int i = 0;
-
-                if (listnerdisposed)
+            // *** find all objects in radius ***
+            List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
+                delegate(Primitive prim)
                 {
-                    client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
-                    listnerdisposed = false;
+                    Vector3 pos = prim.Position;
+                    return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < radius));
                 }
+            );
 
-                foreach (Primitive prim in prims)
-                {
-                    try
-                    {
-                        if (prim.ParentID == 0) //root prims only
-                        {
-                            localids[i] = prims[i].LocalID;
-                            i += 1;
-                        }
+            localids = new uint[prims.Count];
+            int i = 0;
 
-                    }
-                    catch (Exception ex)
-                    {
-                        string exp = ex.Message;
-                        //reporter.Show(ex);
-                    }
-                }
-
-                client.Objects.SelectObjects(client.Network.CurrentSim, localids);
-            }
-            catch
+            if (listnerdisposed)
             {
-                //reporter.Show(ex);
+                client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
+                listnerdisposed = false;
             }
+
+            foreach (Primitive prim in prims)
+            {
+                try
+                {
+                    if (prim.ParentID == 0) //root prims only
+                    {
+                        localids[i] = prims[i].LocalID;
+                        i += 1;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    //string exp = exc.Message;
+                    reporter.Show(ex);
+                }
+            }
+
+            client.Objects.SelectObjects(client.Network.CurrentSim, localids);
         }
 
         private void Objects_OnObjectProperties(object sender, ObjectPropertiesEventArgs e)
@@ -845,16 +750,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[0].Tag = (object)"angelsmile;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.AngrySmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[1].Tag = "angry;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.Beer);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[2].Tag = "beer;";
+            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -862,16 +770,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[3].Tag = "brokenheart;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.bye);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[4].Tag = "bye";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.clap);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[5].Tag = "clap;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.ConfusedSmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -879,16 +790,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[6].Tag = ":S";
 
             _menuItem.BarBreak = true;
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.cool);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[7].Tag = "cool;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.CrySmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[8].Tag = "cry;";
+            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -896,16 +810,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[9].Tag = "devil;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.duh);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[10].Tag = "duh;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.EmbarassedSmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[11].Tag = "embarassed;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.happy0037);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -913,16 +830,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[12].Tag = ":)";
 
             _menuItem.BarBreak = true;
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.heart);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[13].Tag = "heart;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.kiss);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[14].Tag = "muah;";
+            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -930,16 +850,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[15].Tag = "help ";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.liar);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[16].Tag = "liar;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.lol);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[17].Tag = "lol";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.oops);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -947,16 +870,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[18].Tag = "oops";
 
             _menuItem.BarBreak = true;
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.sad);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[19].Tag = ":(";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.shhh);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[20].Tag = "shhh";
+            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -964,16 +890,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[21].Tag = "sigh ";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.silenced);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[22].Tag = ":X";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.think);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[23].Tag = "thinking;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.ThumbsUp);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -981,16 +910,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[24].Tag = "thumbsup;";
 
             _menuItem.BarBreak = true;
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.whistle);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[25].Tag = "whistle;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.wink);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[26].Tag = ";)";
+            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -998,16 +930,20 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[27].Tag = "wow ";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.yawn);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[28].Tag = "yawn;";
+            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.zzzzz);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[29].Tag = "zzz";
+
+            _menuItem.Dispose(); 
         }
 
         // When an emoticon is clicked, insert its image into RTF
@@ -1019,6 +955,8 @@ namespace METAbolt
             cbxInput.Text += _item.Tag.ToString();
             cbxInput.Select(cbxInput.Text.Length, 0);
             //cbxInput.Focus();
+
+            _item.Dispose(); 
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -1098,7 +1036,7 @@ namespace METAbolt
             }
             catch
             {
-                //reporter.Show(ex);
+               ;
             }
         }
 
@@ -1115,40 +1053,29 @@ namespace METAbolt
                 return;
             }
 
+            if (e.Simulator != client.Network.CurrentSim) return;
+            if (sfavatar == null) return;
+            if (!sfavatar.ContainsKey(e.ObjectLocalID)) return;
+
+            foreach (ListViewItem litem in lvwRadar.Items)
+            {
+
+                if (litem.Tag.ToString() == sfavatar[e.ObjectLocalID].ID.ToString())
+                {
+                    lvwRadar.BeginUpdate();
+                    lvwRadar.Items.RemoveByKey(sfavatar[e.ObjectLocalID].Name);
+                    lvwRadar.EndUpdate();
+                }
+            }
+
             try
             {
-                if (e.Simulator != client.Network.CurrentSim) return;
-                if (sfavatar == null) return;
-                if (!sfavatar.ContainsKey(e.ObjectLocalID)) return;
-
-                foreach (ListViewItem litem in lvwRadar.Items)
+                lock (sfavatar)
                 {
-
-                    if (litem.Tag.ToString() == sfavatar[e.ObjectLocalID].ID.ToString())
-                    {
-                        lvwRadar.BeginUpdate();
-                        lvwRadar.Items.RemoveByKey(sfavatar[e.ObjectLocalID].Name);
-                        lvwRadar.EndUpdate();
-                    }
-                }
-
-                try
-                {
-                    lock (sfavatar)
-                    {
-                        sfavatar.Remove(e.ObjectLocalID);
-                    }
-                }
-                catch
-                {
-                    //reporter.Show(ex);
+                    sfavatar.Remove(e.ObjectLocalID);
                 }
             }
-            catch
-            {
-                //reporter.Show(ex);
-                ;
-            }
+            catch { ; }
         }
 
         //Separate thread
@@ -1175,10 +1102,7 @@ namespace METAbolt
                     sfavatar.Add(e.Avatar.LocalID, e.Avatar);
                 }
             }
-            catch
-            {
-                //reporter.Show(ex);
-            }
+            catch { ; }
         }
 
         private void Objects_OnObjectUpdated(object sender, TerseObjectUpdateEventArgs e)
@@ -1202,10 +1126,7 @@ namespace METAbolt
                             sfavatar.Add(av.LocalID, av);
                         }
                     }
-                    catch
-                    {
-                        //reporter.Show(ex);
-                    }
+                    catch { ; }
                 }
             }
         }
@@ -1232,12 +1153,10 @@ namespace METAbolt
             if (name == string.Empty || name == null) return;
 
             lvwRadar.BeginUpdate();
-
             if (lvwRadar.Items.ContainsKey(name))
             {
                 lvwRadar.Items.RemoveByKey(name);  
             }
-
             lvwRadar.EndUpdate();
 
             string sDist;
@@ -1268,14 +1187,12 @@ namespace METAbolt
 
                 string rentry = name + sDist;
 
-                ListViewItem item;
-
                 lvwRadar.BeginUpdate();
 
                 if (name != client.Self.Name)
                 {
-                    item = lvwRadar.Items.Add(name, rentry, string.Empty);
-                    item.ForeColor = Color.DarkBlue;
+                    ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
+                    item.ForeColor = Color.DarkBlue; 
                     item.Tag = key;
 
                     if (avtyping.Contains(name))
@@ -1287,18 +1204,12 @@ namespace METAbolt
                         }
                     }
                 }
-                else
-                {
-                    item = lvwRadar.Items.Add(name, name, string.Empty);
-                    item.Font = new Font(item.Font, FontStyle.Bold);
-                    item.Tag = key;
-                }
                 
                 lvwRadar.EndUpdate();
             }
-            catch
+            catch (Exception ex)
             {
-                //reporter.Show(ex);
+                Logger.Log("Radar update: " + ex.Message, Helpers.LogLevel.Warning);
             }
         }
 
@@ -1329,101 +1240,96 @@ namespace METAbolt
                 return;
             }
 
-            try
+            if (selectedname != string.Empty) return;
+
+            if (av == null) return;
+            string name = av.Name;
+
+            if (name == string.Empty || name == null) return;
+
+            BeginInvoke(new MethodInvoker(delegate()
             {
-                if (selectedname != string.Empty) return;
-
-                if (av == null) return;
-                string name = av.Name;
-
-                if (name == string.Empty || name == null) return;
-
-                //BeginInvoke(new MethodInvoker(delegate()
-                //{
                 lvwRadar.BeginUpdate();
-
                 if (lvwRadar.Items.ContainsKey(name))
                 {
                     lvwRadar.Items.RemoveByKey(name);
                 }
 
                 lvwRadar.EndUpdate();
-                //}));
+            }));
 
-                string sDist;
+            string sDist;
 
-                Vector3 avpos = av.Position;
+            Vector3 avpos = av.Position;
 
-                uint oID = av.ParentID;
-                string astate = string.Empty;
+            uint oID = av.ParentID;
+            string astate = string.Empty;
 
-                if (!instance.avtags.ContainsKey(av.ID))
-                {
-                    instance.avtags.Add(av.ID, av.GroupName);
-                }
+            if (!instance.avtags.ContainsKey(av.ID))
+            {
+                instance.avtags.Add(av.ID, av.GroupName);
+            }
 
-                if (oID != 0)
-                {
-                    // the av is sitting
-                    Primitive prim;
-
-                    try
-                    {
-                        //// Stop following if in following mode
-                        //if (instance.State.IsFollowing)
-                        //{
-                        //    instance.State.Follow(string.Empty);
-                        //    tbtnFollow.ToolTipText = "Follow";
-                        //}
-
-                        client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
-
-                        if (prim == null) return;
-
-                        avpos = prim.Position + avpos;
-                        astate = " (SITTING)";
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Log("Chat console: (add avatar) when adding " + av.FirstName + " " + av.LastName + " - " + ex.Message, Helpers.LogLevel.Error, ex);
-                        //reporter.Show(ex);
-                    }
-                }
-                else
-                {
-                    astate = string.Empty;
-                }
+            if (oID != 0)
+            {
+                // the av is sitting
+                Primitive prim;
 
                 try
                 {
-                    Vector3 selfpos = client.Self.SimPosition;
+                    //// Stop following if in following mode
+                    //if (instance.State.IsFollowing)
+                    //{
+                    //    instance.State.Follow(string.Empty);
+                    //    tbtnFollow.ToolTipText = "Follow";
+                    //}
 
-                    double dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
+                    client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
 
-                    if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
+                    if (prim == null) return;
 
-                    if (avpos.Z < 0.1f)
-                    {
-                        avpos.Z = 1024f;
-                        dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
-                        sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
-                    }
-                    else
-                    {
-                        sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
-                    }
+                    avpos = prim.Position + avpos;
+                    astate = " (SITTING)";
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log("Chat console: (add avatar) when adding " + av.FirstName + " " + av.LastName + " - " + ex.Message, Helpers.LogLevel.Error, ex);
+                    //reporter.Show(ex);
+                }
+            }
+            else
+            {
+                astate = string.Empty;
+            }
 
-                    string rentry = name + sDist + astate;
+            try
+            {
+                Vector3 selfpos = client.Self.SimPosition;
 
-                    ListViewItem item;
+                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
 
-                    //BeginInvoke(new MethodInvoker(delegate()
-                    //{ 
+                if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
+
+                if (avpos.Z < 0.1f)
+                {
+                    avpos.Z = 1024f;
+                    dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
+                    sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
+                }
+                else
+                {
+                    sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
+                }
+
+                string rentry = name + sDist + astate;
+
+                BeginInvoke(new MethodInvoker(delegate()
+                { 
                     lvwRadar.BeginUpdate();
 
                     if (name != client.Self.Name)
                     {
-                        item = lvwRadar.Items.Add(name, rentry, string.Empty);
+                        ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
                         item.Tag = av.ID;
 
                         if (avtyping.Contains(name))
@@ -1437,31 +1343,24 @@ namespace METAbolt
                     }
                     else
                     {
-                        item = lvwRadar.Items.Add(name, name, string.Empty);
+                        ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
                         item.Font = new Font(item.Font, FontStyle.Bold);
                         item.Tag = av.ID;
                     }
 
-                    item = null;
-
                     if (!lvwRadar.Items.ContainsKey(client.Self.Name))
                     {
-                        item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
+                        ListViewItem item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
                         item.Font = new Font(item.Font, FontStyle.Bold);
                         item.Tag = av.ID;
                     }
 
                     lvwRadar.EndUpdate();
-                    //}));
-                }
-                catch
-                {
-                    //reporter.Show(ex);
-                }
+                }));
             }
-            catch
+            catch (Exception ex)
             {
-                //reporter.Show(ex);
+                Logger.Log("Radar update: " + ex.Message, Helpers.LogLevel.Warning);
             }
         }
 
@@ -1477,7 +1376,7 @@ namespace METAbolt
                 return;
             }
 
-            //string heading = "~";
+            string heading = "~";
 
             Quaternion avRot = client.Self.RelativeRotation;
             
@@ -1496,65 +1395,41 @@ namespace METAbolt
             int x = Convert.ToInt32(vDir.X);
             int y = Convert.ToInt32(vDir.Y);
 
-            float angle = 90;
-
             if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
             {
-                //heading = "E";
-                angle = 90f;
+                heading = "E";
             }
             else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
             {
-                //heading = "W";
-                angle = 270f;
+                heading = "W";
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
             {
-                //heading = "S";
-                angle = 180f;
+                heading = "S";
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
             {
-                //heading = "N";
-                angle = 0f;
+                heading = "N";
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
             {
-                //heading = "SE";
-                angle = 135f;
+                heading = "SE";
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
             {
-                //heading = "SW";
-                angle = 225f;
+                heading = "SW";
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
             {
-                //heading = "NW";
-                angle = 315f;
+                heading = "NW";
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
             {
-                //heading = "NE";
-                angle = 45f;
+                heading = "NE";
             }
 
-            pictureBox4.Image = RotateImage.RotateImg(picOriginal.Image, angle);
-        }
-
-        private static Bitmap RotateImageByAngle(System.Drawing.Image oldBitmap, float angle)
-        {
-            var newBitmap = new Bitmap(oldBitmap.Width, oldBitmap.Height);
-            var graphics = Graphics.FromImage(newBitmap);
-
-            newBitmap.SetResolution(oldBitmap.HorizontalResolution, oldBitmap.VerticalResolution);
-
-            graphics.TranslateTransform((float)oldBitmap.Width / 2, (float)oldBitmap.Height / 2);
-            graphics.RotateTransform(angle);
-            graphics.TranslateTransform(-(float)oldBitmap.Width / 2, -(float)oldBitmap.Height / 2);
-            graphics.DrawImage(oldBitmap, new Point(0, 0));
-
-            return newBitmap;
+            textBox1.Text = heading;
+            textBox1.Refresh();
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
@@ -1562,7 +1437,6 @@ namespace METAbolt
             if (e.Status != LoginStatus.Success) return;
 
             cbxInput.Enabled = true;
-            //CheckAvatarAdLicence();
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
@@ -1575,7 +1449,7 @@ namespace METAbolt
 
         public void PrintAvUUID()
         {
-            chatManager = new ChatTextManager(instance, new RichTextBoxPrinter(instance, rtbChat));
+            //chatManager = new ChatTextManager(instance, new RichTextBoxPrinter(instance, rtbChat));
             chatManager.PrintUUID();
         }
 
@@ -1591,89 +1465,67 @@ namespace METAbolt
                 return;
             }
 
-            try
+            if (e.SourceType != ChatSourceType.Agent)
             {
-                if (e.SourceType != ChatSourceType.Agent)
-                {
-                    return;
-                }
-
-                if (e.FromName.ToLower() == netcom.LoginOptions.FullName.ToLower())
-                {
-                    return;
-                }
-
-                try
-                {
-                    if (!lvwRadar.Items.ContainsKey(e.FromName)) return;
-
-                    int index = lvwRadar.Items.IndexOfKey(e.FromName);
-                    if (index == -1) return;
-
-                    if (e.Type == ChatType.StartTyping)
-                    {
-                        lvwRadar.Items[index].ForeColor = Color.Red;
-
-                        if (!avtyping.Contains(e.FromName))
-                        {
-                            avtyping.Add(e.FromName);
-                        }
-
-                        instance.State.LookAt(true, e.OwnerID);
-                    }
-                    else
-                    {
-                        lvwRadar.Items[index].ForeColor = Color.FromKnownColor(KnownColor.ControlText);
-
-                        if (avtyping.Contains(e.FromName))
-                        {
-                            avtyping.Remove(e.FromName);
-                        }
-
-                        instance.State.LookAt(false, e.OwnerID);
-                    }
-                }
-                catch { ; }
-
-                try
-                {
-                    if (instance.DetectLang)
-                    {
-                        if (e.Message != string.Empty && e.Message != null)
-                        {
-                            GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
-
-                            int sindex = detect.LanguageIndex;
-
-                            if (sindex == 33)
-                                sindex = 0;
-
-                            this.instance.MainForm.SetFlag(imgFlags.Images[sindex], detect.SpokenLanguage);
-
-                            // select the language pair fro mthe combo
-                            if (sindex != 0 && sindex != 8)
-                            {
-                                // English does not exist in the combo so adjust
-                                if (sindex > 7)
-                                {
-                                    sindex -= 1;
-                                }
-
-                                cboLanguage.SelectedIndex = sindex;
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //reporter.Show(ex);
-                    Logger.Log(ex, Helpers.LogLevel.Error);  
-                } 
+                return;
             }
-            catch (Exception ex)
+
+            if (e.FromName.ToLower() == netcom.LoginOptions.FullName.ToLower())
             {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
+                return;
+            }
+
+            int index = lvwRadar.Items.IndexOfKey(e.FromName);
+            if (index == -1) return;
+
+            if (e.Type == ChatType.StartTyping)
+            {
+                lvwRadar.Items[index].ForeColor = Color.Red;
+
+                if (!avtyping.Contains(e.FromName))
+                {
+                    avtyping.Add(e.FromName);
+                }
+
+                instance.State.LookAt(true, e.OwnerID);
+            }
+            else
+            {
+                lvwRadar.Items[index].ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+
+                if (avtyping.Contains(e.FromName))
+                {
+                    avtyping.Remove(e.FromName);
+                }
+
+                instance.State.LookAt(false, e.OwnerID);
+            }
+
+            if (instance.DetectLang)
+            {
+                if (e.Message != string.Empty && e.Message != null)
+                {
+                    GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
+
+                    int sindex = detect.LanguageIndex;
+
+                    if (sindex == 33)
+                        sindex = 0;
+
+                    this.instance.MainForm.SetFlag(imgFlags.Images[sindex], detect.SpokenLanguage);
+
+                    // select the language pair fro mthe combo
+                    if (sindex != 0 && sindex != 8)
+                    {
+                        // English does not exist in the combo so adjust
+                        if (sindex > 7)
+                        {
+                            sindex -= 1;
+                        }
+
+                        cboLanguage.SelectedIndex = sindex;
+                    }
+                }
             }
         }
 
@@ -1697,51 +1549,44 @@ namespace METAbolt
                 }
             }
 
-            try
+            string[] inputArgs = input.Split(' ');
+
+            if (inputArgs[0].StartsWith("//")) //Chat on previously used channel
             {
-                string[] inputArgs = input.Split(' ');
-
-                if (inputArgs[0].StartsWith("//")) //Chat on previously used channel
-                {
-                    string message = string.Join(" ", inputArgs).Substring(2);
-                    netcom.ChatOut(message, type, previousChannel);
-                }
-                else if (inputArgs[0].StartsWith("/")) //Chat on specific channel
-                {
-                    string message = string.Empty;
-                    string number = inputArgs[0].Substring(1);
-
-                    int channel = 0;
-                    int.TryParse(number, out channel);
-                    if (channel < 0) channel = 0;
-
-                    // VidaOrenstein on METAforum fix
-                    //string message = string.Join(" ", inputArgs, 1, inputArgs.GetUpperBound(0) - 1);
-
-                    if (input.StartsWith("/me "))
-                    {
-                        message = input;
-                    }
-                    else
-                    {
-                        message = string.Join(" ", inputArgs, 1, inputArgs.GetUpperBound(0));
-                    }
-
-                    netcom.ChatOut(message, type, channel);
-
-                    previousChannel = channel;
-                }
-                else //Chat on channel 0 (public chat)
-                {
-                    netcom.ChatOut(input, type, 0);
-                }
-
-                ClearChatInput();
+                string message = string.Join(" ", inputArgs).Substring(2);
+                netcom.ChatOut(message, type, previousChannel);
             }
-            catch
+            else if (inputArgs[0].StartsWith("/")) //Chat on specific channel
             {
-                //reporter.Show(ex);
+                string message = string.Empty;
+                string number = inputArgs[0].Substring(1);
+
+                int channel = 0;
+                int.TryParse(number, out channel);
+                if (channel < 0) channel = 0;
+
+                // VidaOrenstein on METAforum fix
+                //string message = string.Join(" ", inputArgs, 1, inputArgs.GetUpperBound(0) - 1);
+
+                if (input.StartsWith("/me "))
+                {
+                    message = input;
+                }
+                else
+                {
+                    message = string.Join(" ", inputArgs, 1, inputArgs.GetUpperBound(0));
+                }
+
+                netcom.ChatOut(message, type, channel);
+
+                previousChannel = channel;
             }
+            else //Chat on channel 0 (public chat)
+            {
+                netcom.ChatOut(input, type, 0);
+            }
+
+            ClearChatInput();
         }
 
         private string GetTranslation(string sTrStr)
@@ -2034,6 +1879,11 @@ namespace METAbolt
 
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!removead) webBrowser1.Refresh();
+        }
+
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
@@ -2061,7 +1911,7 @@ namespace METAbolt
 
             if (av == UUID.Zero || av == null) return;
 
-            string name = instance.avnames[av];
+            //string name = instance.avnames[av];
 
             Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
             {
@@ -2103,7 +1953,7 @@ namespace METAbolt
 
             if (av == UUID.Zero || av == null) return;
 
-            string name = instance.avnames[av];
+            //string name = instance.avnames[av];
 
             Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
             {
@@ -2168,14 +2018,14 @@ namespace METAbolt
                 try
                 {
                     string[] split = e.LinkText.Split(new Char[] { '#' });
-                    string avname = split[0].ToString();
+                    string aavname = split[0].ToString();
                     split = e.LinkText.Split(new Char[] { ':' });
                     string elink = split[2].ToString();
                     split = elink.Split(new Char[] { '&' });
 
                     UUID avid = (UUID)split[0].ToString();
 
-                    (new frmProfile(instance, avname, avid)).Show();
+                    (new frmProfile(instance, aavname, avid)).Show();
                 }
                 catch { ; }
             }
@@ -2528,37 +2378,27 @@ namespace METAbolt
                 return;
             }
 
+            List<UUID> tremove = e.RemovedEntries;
+
+            foreach (UUID id in tremove)
+            {
+                foreach (ListViewItem litem in lvwRadar.Items)
+                {
+                    if (litem.Tag.ToString() == id.ToString())
+                    {
+                        lvwRadar.BeginUpdate();
+                        lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
+                        lvwRadar.EndUpdate();
+                    }
+                } 
+            }
+
             try
             {
-                List<UUID> tremove = e.RemovedEntries;
-
-                foreach (UUID id in tremove)
-                {
-                    foreach (ListViewItem litem in lvwRadar.Items)
-                    {
-                        if (litem.Tag.ToString() == id.ToString())
-                        {
-                            lvwRadar.BeginUpdate();
-                            lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
-                            lvwRadar.EndUpdate();
-                        }
-                    }
-                }
-
-                try
-                {
-                    BeginInvoke((MethodInvoker)delegate { UpdateMiniMap(e.Simulator); });
-                    BeginInvoke((MethodInvoker)delegate { GetCompass(); });
-                }
-                catch
-                {
-                    //reporter.Show(ex);
-                }
+                BeginInvoke((MethodInvoker)delegate { UpdateMiniMap(e.Simulator); });
+                BeginInvoke((MethodInvoker)delegate { GetCompass(); });
             }
-            catch
-            {
-                //reporter.Show(ex);
-            }
+            catch { ; } 
         }
 
         // Seperate thread
@@ -2592,56 +2432,52 @@ namespace METAbolt
                 return;
             }
 
-            try
+            GridRegion region;
+
+            if (_MapLayer == null || sim != client.Network.CurrentSim)
             {
-                GridRegion region;
+                sim = client.Network.CurrentSim;
+                label8.Text = client.Network.CurrentSim.Name;
 
-                if (_MapLayer == null || sim != client.Network.CurrentSim)
+                if (client.Grid.GetGridRegion(client.Network.CurrentSim.Name, GridLayerType.Objects, out region))
                 {
-                    sim = client.Network.CurrentSim;
-                    label8.Text = client.Network.CurrentSim.Name;
-
-                    if (client.Grid.GetGridRegion(client.Network.CurrentSim.Name, GridLayerType.Objects, out region))
+                    if (region.MapImageID != UUID.Zero)
                     {
-                        if (region.MapImageID != UUID.Zero)
+                        _MapImageID = region.MapImageID;
+                        client.Assets.RequestImage(_MapImageID, ImageType.Baked, Assets_OnImageReceived);
+                    }
+                    else
+                    {
+                        if (client.Grid.GetGridRegion(client.Network.CurrentSim.Name, GridLayerType.Terrain, out region))
                         {
-                            _MapImageID = region.MapImageID;
-                            client.Assets.RequestImage(_MapImageID, ImageType.Baked, Assets_OnImageReceived);
-                        }
-                        else
-                        {
-                            if (client.Grid.GetGridRegion(client.Network.CurrentSim.Name, GridLayerType.Terrain, out region))
+                            if (region.MapImageID != UUID.Zero)
                             {
-                                if (region.MapImageID != UUID.Zero)
-                                {
-                                    _MapImageID = region.MapImageID;
-                                    client.Assets.RequestImage(_MapImageID, ImageType.Baked, Assets_OnImageReceived);
-                                }
+                                _MapImageID = region.MapImageID;
+                                client.Assets.RequestImage(_MapImageID, ImageType.Baked, Assets_OnImageReceived);
                             }
                         }
                     }
                 }
-                else
-                {
-                    //UpdateMiniMap(sim);
-                    BeginInvoke(new OnUpdateMiniMap(UpdateMiniMap), new object[] { sim });
-                }
             }
-            catch
+            else
             {
-                //reporter.Show(ex);
+                //UpdateMiniMap(sim);
+                BeginInvoke(new OnUpdateMiniMap(UpdateMiniMap), new object[] { sim });
             }
         }
 
-        private delegate void OnUpdateMiniMap(Simulator sim);
-        private void UpdateMiniMap(Simulator sim)
+        private delegate void OnUpdateMiniMap(Simulator ssim);
+        private void UpdateMiniMap(Simulator ssim)
         {
             if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { UpdateMiniMap(sim); });
             else
             {
                 try
                 {
-                    if (sim != client.Network.CurrentSim) return;
+                    if (ssim != client.Network.CurrentSim) return;
+
+                    // SIM stats
+                    Simulator sims = sim = ssim;   // client.Network.Simulators[0];
 
                     Bitmap bmp = _MapLayer == null ? new Bitmap(256, 256) : (Bitmap)_MapLayer.Clone();
                     Graphics g = Graphics.FromImage(bmp);
@@ -2655,10 +2491,7 @@ namespace METAbolt
                     else
                     {
                         label11.Visible = false;
-                    }
-
-                    // SIM stats
-                    Simulator sims = sim = client.Network.CurrentSim;   // client.Network.Simulators[0];
+                    }                    
 
                     try
                     {
@@ -2780,6 +2613,18 @@ namespace METAbolt
                                 }
                                 
                                 instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
+
+                                Avatar fav = sim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
+
+                                if (fav == null)
+                                {
+                                    if (instance.avnames.ContainsKey(pos.Key))
+                                    {
+                                        string name = instance.avnames[pos.Key];
+
+                                        BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
+                                    }
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -2819,31 +2664,11 @@ namespace METAbolt
                                 else
                                 {
                                     BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { sav });
-                                } 
+                                }
                             }
                         }
                     }
-                    catch
-                    {
-                        ;
-                    }
-
-                    client.Network.CurrentSim.AvatarPositions.ForEach(
-                    delegate(KeyValuePair<UUID, Vector3> pos)
-                    {
-                        Avatar fav = sim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
-                        
-                        if (fav == null)
-                        {
-                            if (instance.avnames.ContainsKey(pos.Key))
-                            {
-                                string name = instance.avnames[pos.Key];
-
-                                BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
-                            }
-                        }
-                    }
-                    );
+                    catch { ; }
 
                     // Draw self position
                     Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
@@ -2888,9 +2713,9 @@ namespace METAbolt
 
                     GetCompass();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    //reporter.Show(ex);
+                    Logger.Log("Chatconsole MiniMap: " + ex.Message, Helpers.LogLevel.Error);
                     return;
                 }
             }
@@ -3064,7 +2889,7 @@ namespace METAbolt
 
             if (av == UUID.Zero || av == null) return;
 
-            string name = instance.avnames[av];
+            //string name = instance.avnames[av];
 
             Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
             {
@@ -3078,7 +2903,7 @@ namespace METAbolt
             }
             else
             {
-                MessageBox.Show("Avatar is out of range for this function.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Avatar is out of range for this function.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);  
             }
         }
 
@@ -3155,6 +2980,72 @@ namespace METAbolt
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            HtmlElementCollection links = webBrowser1.Document.Links;
+
+            foreach (HtmlElement var in links)
+            {
+                var.AttachEventHandler("onclick", LinkClicked);
+            }
+        }
+
+        private void LinkClicked(object sender, EventArgs e)
+        {
+            HtmlElement link = webBrowser1.Document.ActiveElement;
+            clickedurl = link.GetAttribute("href");
+        }
+
+        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        {
+            if (clickedurl == string.Empty || clickedurl == null)
+            {
+                HtmlElement link = webBrowser1.Document.ActiveElement;
+                clickedurl = link.GetAttribute("href");
+            }
+
+            e.Cancel = true;
+
+            if (clickedurl.StartsWith("http://slurl."))
+            {
+                // Open up the TP form here
+                string[] split = clickedurl.Split(new Char[] { '/' });
+                string ssim = split[4].ToString();
+                double x = Convert.ToDouble(split[5].ToString());
+                double y = Convert.ToDouble(split[6].ToString());
+                double z = Convert.ToDouble(split[7].ToString());
+
+                (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
+                clickedurl = string.Empty;
+                return;
+            }
+            if (clickedurl.StartsWith("http://maps.secondlife"))
+            {
+                // Open up the TP form here
+                string[] split = clickedurl.Split(new Char[] { '/' });
+                string ssim = split[4].ToString();
+                double x = Convert.ToDouble(split[5].ToString());
+                double y = Convert.ToDouble(split[6].ToString());
+                double z = Convert.ToDouble(split[7].ToString());
+
+                (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
+                clickedurl = string.Empty;
+                return;
+            }
+
+            System.Diagnostics.Process.Start(clickedurl);
+            clickedurl = string.Empty;  
+        }
+
+        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            //if (clickedurl != string.Empty)
+            //{
+            //    e.Cancel = true;
+            //    System.Diagnostics.Process.Start(e.Url.ToString());
+            //}
         }
 
         private void cbxInput_SelectedIndexChanged(object sender, EventArgs e)
@@ -3430,32 +3321,24 @@ namespace METAbolt
 
         private void vgate_OnSessionCreate(object sender, EventArgs e)
         {
-            try
-            {
-                vgate.AuxGetCaptureDevices();
-                vgate.AuxGetRenderDevices();
+            vgate.AuxGetCaptureDevices();
+            vgate.AuxGetRenderDevices();
 
-                BeginInvoke(new MethodInvoker(delegate()
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                vgate.MicMute = true;
+                vgate.SpkrMute = false;
+                vgate.SpkrLevel = 70;
+                vgate.MicLevel = 70;
+                checkBox5.ForeColor = Color.Red;
+                label18.Text = "Session started";
+                EnableVoice(true);
+
+                if (!checkBox3.Checked)
                 {
-                    vgate.MicMute = true;
-                    vgate.SpkrMute = false;
-                    vgate.SpkrLevel = 70;
-                    vgate.MicLevel = 70;
-                    checkBox5.ForeColor = Color.Red;
-                    label18.Text = "Session started";
-                    EnableVoice(true);
-
-                    if (!checkBox3.Checked)
-                    {
-                        checkBox3.Checked = true;
-                    }
-                }));
-            }
-            catch (Exception ex)
-            {
-                //reporter.Show(ex);
-                Logger.Log(ex, Helpers.LogLevel.Error);
-            }
+                    checkBox3.Checked = true;
+                }
+            }));
         }
 
         private void LoadMics(List<string> list)
@@ -3590,9 +3473,9 @@ namespace METAbolt
                     checkBox5.ForeColor = Color.Black;
                     label18.Text = string.Empty;
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message;
+                    ;
                 }
             }
         }
@@ -3637,21 +3520,6 @@ namespace METAbolt
                 timer2.Enabled = false;
                 timer2.Stop();
             }  
-        }
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void toolStripButton1_Click_3(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/Quick.aspx");
         }
     }
 }

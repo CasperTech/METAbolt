@@ -57,12 +57,12 @@ namespace METAbolt
 
             ProcessEventArgs(e);
 
-            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
         }
 
         private void TPTabWindow_Disposed(object sender, EventArgs e)
         {
-            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+            netcom.TeleportStatusChanged -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
         }
 
         private void netcom_TeleportStatusChanged(object sender, TeleportEventArgs e)

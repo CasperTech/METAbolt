@@ -479,9 +479,9 @@ namespace METAbolt
                         foundItem.Text = av.Value;
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message; 
+                   ; 
                 }
             }
 

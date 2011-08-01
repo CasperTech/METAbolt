@@ -86,9 +86,9 @@ namespace METAbolt
                     configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", "METAbolt.ini");
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string ph = ex.Message ;
+                ;
             }
         }
 

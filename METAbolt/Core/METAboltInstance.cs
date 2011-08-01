@@ -38,11 +38,12 @@ using METAxCommon;
 using System.Drawing;
 using ExceptionReporting;
 using System.Threading;
+using System.Runtime.InteropServices; 
 
 
 namespace METAbolt
 {
-    public class METAboltInstance
+    public class METAboltInstance : IDisposable
     {
         public event Action<METAboltForm> METAboltFormCreated;
         public virtual void OnMETAboltFormCreated(METAboltForm form)
@@ -96,7 +97,6 @@ namespace METAbolt
         private int noticecount = 0;
         public AIMLbot.Bot myBot;
         private DataTable mutelist = null;
-        private DataTable giveritems = null;
         private DataTable tp = null;
         private bool detectlang = false;
         private UUID lookID = UUID.Zero; 
@@ -108,6 +108,48 @@ namespace METAbolt
         public string InventoryCache = string.Empty;
         public string appdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";
         public bool startfrombat = false;
+        private DataTable giveritems = null;
+        private SafeHandle handle;
+        private bool disposed = false;
+
+        ~METAboltInstance()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                if (handle != null)
+                {
+                    handle.Dispose();
+                }
+
+                mainForm.Dispose(); 
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        }
 
         internal class ThreadExceptionHandler
         {
@@ -126,8 +168,6 @@ namespace METAbolt
             this.firstInstance = firstInstance;
 
             LoadXMLFile(appdir + "\\MuteList.xml");
-            LoadGiverItems(appdir + "\\METAgiverItems.xml");
-
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
@@ -176,8 +216,6 @@ namespace METAbolt
             this.firstInstance = firstInstance;
 
             LoadXMLFile(appdir + "\\MuteList.xml");
-            LoadGiverItems(appdir + "\\METAgiverItems.xml");
-
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
@@ -513,7 +551,7 @@ namespace METAbolt
                         default:
                             type = AssetType.Unknown;
                             break;
-                    }                    
+                    }
 
                     client.Inventory.GiveItem(iid, name, type, avid, false);
 
@@ -526,8 +564,8 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                Logger.Log("METAcourier: " + ex.Message, Helpers.LogLevel.Error);    
-                return false;             
+                Logger.Log("METAcourier: " + ex.Message, Helpers.LogLevel.Error);
+                return false;
             }
         }
 
@@ -584,78 +622,12 @@ namespace METAbolt
             }
         }
 
-        private void LoadGiverItems(string XmlFile)
-        {
-            if (!System.IO.File.Exists(XmlFile))
-            {
-                DataTable tbl = MakeGiverDataTable();
-
-                giveritems = tbl;
-                giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
-                return;
-            }
-
-            DataSet dset = new DataSet();
-            FileStream fstr = null;
-
-            try
-            {
-                fstr = new FileStream(XmlFile, FileMode.Open, FileAccess.Read);
-                dset.ReadXml(fstr);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log("Load METAcourier items: " + exp.Message, Helpers.LogLevel.Warning);
-            }
-
-            try
-            {
-                if (dset.Tables.Count > 0)
-                {
-                    DataTable dtbl = dset.Tables[0];
-
-                    fstr.Close();
-                    dset.Dispose();
-
-                    giveritems = dtbl;
-                    giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
-                }
-                else
-                {
-                    fstr.Close();
-                    dset.Dispose();
-
-                    DataTable tbl = MakeGiverDataTable();
-
-                    giveritems = tbl;
-                    giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
-                }
-            }
-            catch
-            {
-                ;
-            }
-        }
-
         private void SaveXMLFile(string XmlFile)
         {
             try
             {
                 //int recs = mutelist.Rows.Count;  
                 mutelist.WriteXml(XmlFile);
-            }
-            catch
-            {
-                ;
-            }
-        }
-
-        private void SaveGiverItems(string XmlFile)
-        {
-            try
-            {
-                //int recs = mutelist.Rows.Count;  
-                giveritems.WriteXml(XmlFile);
             }
             catch
             {
@@ -679,41 +651,6 @@ namespace METAbolt
             //mutelist.Columns.Add(myColumn);
 
             //dtbl.PrimaryKey = new DataColumn[] { dtbl.Columns["uuid"] };
-
-            return dtbl;
-        }
-
-        private DataTable MakeGiverDataTable()
-        {
-            DataTable dtbl = new DataTable("list");
-            DataColumn myColumn = new DataColumn();
-
-            myColumn.DataType = System.Type.GetType("System.String");
-            myColumn.ColumnName = "Command";
-            dtbl.Columns.Add(myColumn);
-
-            //client.Inventory.GiveItem(iitem.UUID, iitem.Name, iitem.AssetType, avid, false);
-
-            DataColumn myColumn1 = new DataColumn();
-            myColumn1.DataType = System.Type.GetType("System.String");
-            myColumn1.ColumnName = "UUID";
-            dtbl.Columns.Add(myColumn1);
-
-            DataColumn myColumn2 = new DataColumn();
-            myColumn2 = new DataColumn();
-            myColumn2.DataType = System.Type.GetType("System.String");
-            myColumn2.ColumnName = "Name";
-            dtbl.Columns.Add(myColumn2);
-
-            DataColumn myColumn3 = new DataColumn();
-            myColumn3.DataType = System.Type.GetType("System.String");
-            myColumn3.ColumnName = "AssetType";
-            dtbl.Columns.Add(myColumn3);
-
-            DataColumn[] keys = new DataColumn[1];
-            keys[0] = myColumn;
-
-            dtbl.PrimaryKey = keys; 
 
             return dtbl;
         }
@@ -746,105 +683,106 @@ namespace METAbolt
         {
             // Timeouts and Intervals
 
-            // <summary>Number of milliseconds before a teleport attempt will time
-            // out</summary>
+            /// <summary>Number of milliseconds before a teleport attempt will time
+            /// out</summary>
             //client.Settings.TELEPORT_TIMEOUT = 120 * 1000;
-            // <summary>Number of milliseconds before a CAPS call will time out 
-            // and try again</summary>
-            // <remarks>Setting this too low will cause web requests to repeatedly
-            // time out and retry</remarks>
+            /// <summary>Number of milliseconds before a CAPS call will time out 
+            /// and try again</summary>
+            /// <remarks>Setting this too low will cause web requests to repeatedly
+            /// time out and retry</remarks>
             client.Settings.CAPS_TIMEOUT = 120 * 1000;   //60 * 1000;
             client.Settings.SIMULATOR_TIMEOUT = 120 * 1000;    //90 * 1000;
-            // <summary>Number of milliseconds for xml-rpc to timeout</summary>
+            /// <summary>Number of milliseconds for xml-rpc to timeout</summary>
             //client.Settings.RESEND_TIMEOUT = 8 * 1000;   //4 * 1000;
-            // <summary>Milliseconds to wait for a simulator info request through
-            // the grid interface</summary>
+            /// <summary>Milliseconds to wait for a simulator info request through
+            /// the grid interface</summary>
             client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
             client.Settings.MAX_CONCURRENT_TEXTURE_DOWNLOADS = 20;
              
 
             // Sizes
 
-            // <summary>Maximum number of queued ACKs to be sent before SendAcks()
-            // is forced</summary>
+            /// <summary>Maximum number of queued ACKs to be sent before SendAcks()
+            /// is forced</summary>
             //client.Settings.MAX_PENDING_ACKS = 10;
-            // <summary>Maximum number of ACKs to append to a packet</summary>
+            /// <summary>Maximum number of ACKs to append to a packet</summary>
             //client.Settings.MAX_APPENDED_ACKS = 10;
-            // <summary>Network stats queue length (seconds)</summary>
+            /// <summary>Network stats queue length (seconds)</summary>
             //client.Settings.STATS_QUEUE_SIZE = 5;
 
 
             // Configuration options (mostly booleans)
 
             // Enable stats
-            client.Settings.TRACK_UTILIZATION = true;
+            //client.Settings.TRACK_UTILIZATION = true;
             //client.Settings.USE_LLSD_LOGIN = true;
+            client.Settings.USE_INTERPOLATION_TIMER = false;  
 
-            // <summary>Enable to process packets synchronously, where all of the
-            // callbacks for each packet must return before the next packet is
-            // processed</summary>
-            // <remarks>This is an experimental feature and is not completely
-            // reliable yet. Ideally it would reduce context switches and thread
-            // overhead, but several calls currently block for a long time and
-            // would need to be rewritten as asynchronous code before this is
-            // feasible</remarks>
+            /// <summary>Enable to process packets synchronously, where all of the
+            /// callbacks for each packet must return before the next packet is
+            /// processed</summary>
+            /// <remarks>This is an experimental feature and is not completely
+            /// reliable yet. Ideally it would reduce context switches and thread
+            /// overhead, but several calls currently block for a long time and
+            /// would need to be rewritten as asynchronous code before this is
+            /// feasible</remarks>
             //client.Settings.SYNC_PACKETCALLBACKS = false;
 
             client.Settings.SEND_AGENT_APPEARANCE = true;
             //client.Settings.CLIENT_IDENTIFICATION_TAG = 
 
             //client.Settings.STORE_LAND_PATCHES = true;
-            // <summary>Enable/disable sending periodic camera updates</summary>
+            /// <summary>Enable/disable sending periodic camera updates</summary>
             client.Settings.SEND_AGENT_UPDATES = true;
-            // <summary>Enable/disable libsecondlife automatically setting the
-            // bandwidth throttle after connecting to each simulator</summary>
-            // <remarks>The default libsecondlife throttle uses the equivalent of
-            // the maximum bandwidth setting in the official client. If you do not
-            // set a throttle your connection will by default be throttled well
-            // below the minimum values and you may experience connection problems</remarks>
+            /// <summary>Enable/disable libsecondlife automatically setting the
+            /// bandwidth throttle after connecting to each simulator</summary>
+            /// <remarks>The default libsecondlife throttle uses the equivalent of
+            /// the maximum bandwidth setting in the official client. If you do not
+            /// set a throttle your connection will by default be throttled well
+            /// below the minimum values and you may experience connection problems</remarks>
             client.Settings.SEND_AGENT_THROTTLE = true;
-            // <summary>Enable/disable the sending of pings to monitor lag and 
-            // packet loss</summary>
-            client.Settings.SEND_PINGS = false;
-            client.Settings.LOG_RESENDS = false;
-            // <summary>Should we connect to multiple sims? This will allow
-            // viewing in to neighboring simulators and sim crossings
-            // (Experimental)</summary>
+            /// <summary>Enable/disable the sending of pings to monitor lag and 
+            /// packet loss</summary>
+            //client.Settings.SEND_PINGS = false;
+            //client.Settings.LOG_RESENDS = false;
+            /// <summary>Should we connect to multiple sims? This will allow
+            /// viewing in to neighboring simulators and sim crossings
+            /// (Experimental)</summary>
             client.Settings.MULTIPLE_SIMS = config.CurrentConfig.Connect4;   // false;
-            // <summary>If true, all object update packets will be decoded in to
-            // native objects. If false, only updates for our own agent will be
-            // decoded. Registering an event handler will force objects for that
-            // type to always be decoded. If this is disabled the object tracking
-            // will have missing or partial prim and avatar information</summary>
+            /// <summary>If true, all object update packets will be decoded in to
+            /// native objects. If false, only updates for our own agent will be
+            /// decoded. Registering an event handler will force objects for that
+            /// type to always be decoded. If this is disabled the object tracking
+            /// will have missing or partial prim and avatar information</summary>
             client.Settings.ALWAYS_DECODE_OBJECTS = true;
-            // <summary>If true, when a cached object check is received from the
-            // server the full object info will automatically be requested</summary>
+            /// <summary>If true, when a cached object check is received from the
+            /// server the full object info will automatically be requested</summary>
             client.Settings.ALWAYS_REQUEST_OBJECTS = true;
-            // <summary>Whether to establish connections to HTTP capabilities
-            // servers for simulators</summary>
-            client.Settings.ENABLE_CAPS = true;
-            // <summary>Whether to decode sim stats</summary>
+            /// <summary>Whether to establish connections to HTTP capabilities
+            /// servers for simulators</summary>
+            //client.Settings.ENABLE_CAPS = true;
+            /// <summary>Whether to decode sim stats</summary>
             client.Settings.ENABLE_SIMSTATS = true;
-            // <summary>The capabilities servers are currently designed to
-            // periodically return a 502 error which signals for the client to
-            // re-establish a connection. Set this to true to log those 502 errors</summary>
-            client.Settings.LOG_ALL_CAPS_ERRORS = false;
-            // <summary>If true, any reference received for a folder or item
-            // libsecondlife is not aware of will automatically be fetched.</summary>
+            /// <summary>The capabilities servers are currently designed to
+            /// periodically return a 502 error which signals for the client to
+            /// re-establish a connection. Set this to true to log those 502 errors</summary>
+            //client.Settings.LOG_ALL_CAPS_ERRORS = false;
+            /// <summary>If true, any reference received for a folder or item
+            /// libsecondlife is not aware of will automatically be fetched.</summary>
             client.Settings.FETCH_MISSING_INVENTORY = true;
             ///// <summary>If true, and <code>SEND_AGENT_UPDATES</code> is true,
             ///// AgentUpdate packets will continuously be sent out to give the bot
             ///// smoother movement and autopiloting</summary>
             //client.Settings.SYNC_PACKETCALLBACKS = true;
-            // <summary>If true, currently visible primitives and avatars will be
-            // stored in dictionaries inside <code>Simulator.Objects</code>. If 
-            // false, a new Avatar or Primitive object will be created each time
-            // an object update packet is received</summary>
+            /// <summary>If true, currently visible primitives and avatars will be
+            /// stored in dictionaries inside <code>Simulator.Objects</code>. If 
+            /// false, a new Avatar or Primitive object will be created each time
+            /// an object update packet is received</summary>
             client.Settings.OBJECT_TRACKING = true;
-            // <summary>If true, parcel details will be stored in the 
-            // <code>Simulator.Parcels</code> dictionary as they are received</summary>
+            /// <summary>If true, parcel details will be stored in the 
+            /// <code>Simulator.Parcels</code> dictionary as they are received</summary>
             client.Settings.PARCEL_TRACKING = true;
-            client.Settings.STORE_LAND_PATCHES = true;
+            //client.Settings.STORE_LAND_PATCHES = true;
 
             client.Settings.USE_ASSET_CACHE = true;
             //client.Settings.ASSET_CACHE_DIR = Application.StartupPath + System.IO.Path.DirectorySeparatorChar + "cache";
@@ -896,7 +834,6 @@ namespace METAbolt
             //}
 
             SaveXMLFile(appdir + "\\MuteList.xml");
-            SaveGiverItems(appdir + "\\METAgiverItems.xml");
 
             client = null;
             Environment.Exit(0); 

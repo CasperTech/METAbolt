@@ -91,15 +91,15 @@ namespace METAbolt
             }));
         }
 
-        private void PlacesReply(UUID queryID, List<DirectoryManager.DirectoryParcel> matchedPlaces)
+        private void PlacesReply(UUID qqueryID, List<DirectoryManager.DirectoryParcel> matchedPlaces)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new MethodInvoker(() => PlacesReply(queryID, matchedPlaces)));
+                BeginInvoke(new MethodInvoker(() => PlacesReply(qqueryID, matchedPlaces)));
                 return;
             }
 
-            if (queryID != this.queryID) return;
+            if (qqueryID != this.queryID) return;
 
             lvwFindPlaces.BeginUpdate();
 
@@ -114,7 +114,7 @@ namespace METAbolt
 
                     if (findPlacesResults.ContainsKey(fullName))
                     {
-                        DirectoryManager.DirectoryParcel pcl = findPlacesResults[fullName];
+                        //DirectoryManager.DirectoryParcel pcl = findPlacesResults[fullName];
                         fx = true; 
                     }
 
@@ -131,9 +131,9 @@ namespace METAbolt
                     ListViewItem item = lvwFindPlaces.Items.Add(fullName);
                     item.SubItems.Add(places.Dwell.ToString());   // + "-" + events.Time);
                 }
-                catch (Exception exc)
+                catch
                 {
-                    string exp = exc.Message;
+                    ;
                 }
 
                 icnt += 1;

@@ -163,7 +163,7 @@
             // textBox1
             // 
             this.textBox1.AccessibleName = "The folder to backup the files to";
-            this.textBox1.ForeColor = System.Drawing.Color.DarkGray;
+            this.textBox1.ForeColor = System.Drawing.Color.Gray;
             this.textBox1.Location = new System.Drawing.Point(12, 74);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(336, 20);
@@ -308,7 +308,7 @@
             // textBox2
             // 
             this.textBox2.AccessibleName = "Folder to restore from";
-            this.textBox2.ForeColor = System.Drawing.Color.DarkGray;
+            this.textBox2.ForeColor = System.Drawing.Color.Gray;
             this.textBox2.Location = new System.Drawing.Point(12, 22);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(336, 20);

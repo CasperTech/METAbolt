@@ -76,31 +76,6 @@ namespace METAbolt
             }
         }
 
-        //public IMTextManager(METAboltInstance instance, ITextPrinter textPrinter, UUID sessionID)
-        //{
-        //    this.sessionID = sessionID;
-
-        //    this.textPrinter = textPrinter;
-        //    this.textBuffer = new ArrayList();
-
-        //    this.instance = instance;
-        //    client = this.instance.Client;
-        //    netcom = this.instance.Netcom;
-        //    AddNetcomEvents();
-
-        //    showTimestamps = this.instance.Config.CurrentConfig.IMTimestamps;
-        //    tName = this.instance.Config.CurrentConfig.TweeterName;
-        //    tPwd = this.instance.Config.CurrentConfig.TweeterPwd;
-        //    TEnabled = this.instance.Config.CurrentConfig.EnableTweeter;
-        //    tweet = this.instance.Config.CurrentConfig.Tweet;
-        //    tweetname = this.instance.Config.CurrentConfig.TweeterUser;
-        //    classiclayout = this.instance.Config.CurrentConfig.ClassicChatLayout;
-
-        //    this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
-
-        //    myBot = this.instance.ABot;
-        //}
-
         public IMTextManager(METAboltInstance instance, ITextPrinter textPrinter, UUID sessionID, string groupname, Group grp)
         {
             SetExceptionReporter();
@@ -443,7 +418,7 @@ namespace METAbolt
             }
         }
 
-        private void PrintIM(DateTime timestamp, string uuid, string fromName, string message, UUID sessionID)
+        private void PrintIM(DateTime timestamp, string uuid, string fromName, string message, UUID ssessionID)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -463,7 +438,7 @@ namespace METAbolt
 
                     try
                     {
-                        textPrinter.SetSelectionForeColor(Color.DarkGray);
+                        textPrinter.SetSelectionForeColor(Color.Gray);
                     }
                     catch (Exception ex)
                     {
@@ -520,7 +495,7 @@ namespace METAbolt
                     sb.Append(message);
                 }
 
-                textPrinter.SetSelectionForeColor(Color.Black);
+                textPrinter.SetSelectionForeColor(Color.Gray);
 
                 try
                 {
@@ -561,7 +536,7 @@ namespace METAbolt
                     //    timestamp = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    textPrinter.SetSelectionForeColor(Color.DarkGray);
+                    textPrinter.SetSelectionForeColor(Color.Gray);
                     textPrinter.SetOffset(6);
                     textPrinter.SetFontSize(6.5f);
                     textPrinter.PrintDate(timestamp.ToString("[HH:mm] "));
@@ -570,11 +545,10 @@ namespace METAbolt
                 }
             }
 
-            textPrinter.SetSelectionForeColor(Color.Black);
             textPrinter.PrintTextLine(sb.ToString());
 
             string groupname = string.Empty;
-            bool groupfound = this.instance.State.GroupStore.TryGetValue(sessionID, out groupname);
+            bool groupfound = this.instance.State.GroupStore.TryGetValue(ssessionID, out groupname);
 
             LogMessage(timestamp, uuid, fromName, sb.ToString(), groupfound, groupname);
 

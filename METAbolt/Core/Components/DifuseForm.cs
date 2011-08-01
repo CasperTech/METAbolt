@@ -57,7 +57,7 @@ namespace METAbolt
         {
             components = new System.ComponentModel.Container();
             this.m_clock = new Timer(components);
-            this.m_clock.Interval = 100;
+            this.m_clock.Interval = 1000;
             this.SuspendLayout();
 
             this.m_clock.Tick += new EventHandler(Animate);

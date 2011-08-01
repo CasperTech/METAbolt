@@ -145,9 +145,9 @@ namespace METAbolt
         }
 
         //UI thread
-        private void PeopleReply(UUID queryID, List<DirectoryManager.AgentSearchData> matchedPeople)
+        private void PeopleReply(UUID qqueryID, List<DirectoryManager.AgentSearchData> matchedPeople)
         {
-            if (queryID != this.queryID) return;
+            if (qqueryID != this.queryID) return;
 
             lvwFindFriends.BeginUpdate();
 
@@ -332,9 +332,9 @@ namespace METAbolt
             {
                 queryID = client.Directory.StartPeopleSearch(textBox1.Text, 0);
             }
-            catch (Exception exc)
+            catch
             {
-                string exp = exc.Message;
+                ;
             }
         }
 
@@ -541,14 +541,14 @@ namespace METAbolt
                 {
                     lock (MemberData)
                     {
-                        foreach (KeyValuePair<UUID, string> name in Names)
+                        foreach (KeyValuePair<UUID, string> nname in Names)
                         {
-                            if (!MemberData.ContainsKey(name.Key))
+                            if (!MemberData.ContainsKey(nname.Key))
                             {
-                                MemberData[name.Key] = new GroupMemberData();
+                                MemberData[nname.Key] = new GroupMemberData();
                             }
 
-                            MemberData[name.Key].Name = name.Value;
+                            MemberData[nname.Key].Name = nname.Value;
                         }
                     }
                 }

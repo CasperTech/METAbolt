@@ -59,6 +59,7 @@ namespace METAbolt
         public FriendsConsole(METAboltInstance instance)
         {
             InitializeComponent();
+            Disposed += new EventHandler(FriendsConsole_Disposed);
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -74,10 +75,6 @@ namespace METAbolt
             client.Friends.FriendOnline += new EventHandler<FriendInfoEventArgs>(Friends_OnFriendOnline);
             client.Friends.FriendRightsUpdate += new EventHandler<FriendInfoEventArgs>(Friends_OnFriendRights);
             //client.Avatars.DisplayNameUpdate += new EventHandler<DisplayNameUpdateEventArgs>(Avatar_DisplayNameUpdated);    
-
-            Disposed += new EventHandler(FriendsConsole_Disposed);
-
-            InitializeFriendsList();
         }
 
         private void SetExceptionReporter()

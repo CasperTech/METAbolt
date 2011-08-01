@@ -127,7 +127,7 @@ namespace METAbolt
             }
 
             /// <summary>
-            /// Text Image Index Only
+            /// Text & Image Index Only
             /// </summary>
             /// <param name="ICIItemText"></param>
             /// <param name="ICImageIndex"></param>

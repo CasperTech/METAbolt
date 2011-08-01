@@ -39,19 +39,18 @@ using MD5library;
 using System.Diagnostics;
 using System.Timers;
 using ExceptionReporting;
+using System.Runtime.InteropServices;  
 
 namespace METAbolt
 {
-    public class ChatTextManager
+    public class ChatTextManager : IDisposable
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
         private GridClient client;
         private ITextPrinter textPrinter;
         //private frmMain mainForm;
-
         private List<ChatBufferItem> textBuffer;
-
         private bool showTimestamps;
 
         //added by GM on 3-JUL-2009 for chair group IM calling
@@ -95,6 +94,50 @@ namespace METAbolt
         private int invitecounter = 0;
         private bool classiclayout = false;
         private ExceptionReporter reporter = new ExceptionReporter();
+        private SafeHandle handle;
+        private bool disposed = false;
+
+        ~ChatTextManager()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                if (handle != null)
+                {
+                    handle.Dispose();
+                }
+
+                // TODO: dispose managed resources
+                waitGroupIMSession.Close();
+                waitGroupIMLeaveSession.Close();
+                aTimer.Dispose(); 
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here 
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        }
 
         internal class ThreadExceptionHandler
         {
@@ -500,10 +543,9 @@ namespace METAbolt
                 if (instance.IsAvatarMuted(item.FromUUID))
                     return;
             }
-            catch (Exception ex)
+            catch
             {
-                // do nothing
-                string dfdf = ex.Message; 
+                ; 
             }
 
             string smsg = item.Text;
@@ -540,7 +582,7 @@ namespace METAbolt
                     //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    textPrinter.SetSelectionForeColor(Color.DarkGray);
+                    textPrinter.SetSelectionForeColor(Color.Gray);
 
                     if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
                     {
@@ -592,7 +634,7 @@ namespace METAbolt
                     //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    //textPrinter.ForeColor = Color.DarkGray;
+                    //textPrinter.ForeColor = Color.Gray;
 
                     if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
                     {
@@ -725,7 +767,6 @@ namespace METAbolt
                 }
                 catch (Exception excp)
                 {
-                    string eex = excp.ToString();
                     textPrinter.PrintTextLine(String.Format("\n(GroupMan Pro @ " + gmanlocation + ")\nGroupMan Pro has encountered an error and a group invite could not be sent to: " + gavname));
                     OpenMetaverse.Logger.Log(String.Format("GroupMan Pro Error: {0}", excp), Helpers.LogLevel.Error);
                     return;
@@ -738,6 +779,7 @@ namespace METAbolt
                 // process the command
                 ActionCommandsIn act = new ActionCommandsIn(this.instance);
                 string ret = act.ProcessCommand(smsg.Trim());
+                act.Dispose(); 
                 return;
             }
             //added by GM on 2-JUL-2009
@@ -845,12 +887,12 @@ namespace METAbolt
 
             if (classiclayout)
             {
-                textPrinter.SetSelectionForeColor(Color.Black);
+                textPrinter.SetSelectionForeColor(Color.Gray);
                 textPrinter.PrintText(prefix);
             }
             else
             {
-                //textPrinter.SetSelectionForeColor(Color.Black);
+                //textPrinter.SetSelectionForeColor(Color.Gray);
                 //textPrinter.PrintText(dte.ToString("[HH:mm] "));
                 //textPrinter.SetOffset(6);
                 //textPrinter.SetFontSize(6.5f);
@@ -862,7 +904,7 @@ namespace METAbolt
             switch (item.Style)
             {
                 case ChatBufferTextStyle.Normal:
-                    textPrinter.SetSelectionForeColor(Color.Black);
+                    textPrinter.SetSelectionForeColor(Color.Gray);
                     break;
 
                 case ChatBufferTextStyle.StatusBlue:
@@ -870,7 +912,7 @@ namespace METAbolt
                     break;
 
                 case ChatBufferTextStyle.StatusDarkBlue:
-                    textPrinter.SetSelectionForeColor(Color.Black);
+                    textPrinter.SetSelectionForeColor(Color.Gray);
                     //textPrinter.BackColor = Color.LightSeaGreen;
                     break;
 
@@ -1028,7 +1070,7 @@ namespace METAbolt
                 dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
             }
 
-            //textPrinter.ForeColor = Color.Black;
+            //textPrinter.ForeColor = Color.Gray;
             string prefix = dte.ToString("[HH:mm] ");
 
             try
@@ -1045,7 +1087,6 @@ namespace METAbolt
             }
             catch (Exception excp)
             {
-                string eex = excp.ToString();
                 //PrintIM(DateTime.Now, e.IM.FromAgentName, "GroupMan Pro has encountered an error and a group invite could not be sent to: " + sGrp[2].ToString());
                 textPrinter.PrintTextLine(String.Format(prefix + "(\nGroupMan Pro @ " + gmanlocation + ")\nGroupMan Pro has encountered an error and a group invite could not be sent to: " + gavname));
                 OpenMetaverse.Logger.Log(String.Format(prefix + "GroupMan Pro Error: {0}", excp), Helpers.LogLevel.Error);
@@ -1136,7 +1177,7 @@ namespace METAbolt
                 }
             }
 
-            textPrinter.SetSelectionForeColor(Color.DarkGray);
+            textPrinter.SetSelectionForeColor(Color.Gray);
             DateTime dte = item.Timestamp;
 
             if (classiclayout)
@@ -1222,7 +1263,7 @@ namespace METAbolt
                     string header = string.Empty;
 
                     header = "   [HH:mm] ";
-                    //textPrinter.SetSelectionForeColor(Color.DarkGray);
+                    //textPrinter.SetSelectionForeColor(Color.Gray);
                     //textPrinter.SetOffset(6);
                     //textPrinter.SetFontSize(6.5f);
                     textPrinter.PrintDate(dte.ToString(header));
@@ -1495,9 +1536,9 @@ namespace METAbolt
             {
                 exists = File.Exists(path);
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message;
+                ;
             }
 
             if (exists)
