@@ -100,7 +100,7 @@ namespace METAbolt
                 // purchase of Land and other payments to Linden etc.
                 if (target != UUID.Zero)
                 {
-                    if (textBox1.Text != string.Empty && textBox1.Text.Trim().Length > 1)
+                    if (!string.IsNullOrEmpty(textBox1.Text) && textBox1.Text.Trim().Length > 1)
                     {
                         client.Self.GiveAvatarMoney(target, iprice);
                     }

@@ -34,6 +34,8 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using OpenMetaverse.Imaging;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -77,12 +79,12 @@ namespace METAbolt
 
         private byte[] LoadImage(string fileName)
         {
-            string lowfilename = fileName.ToLower();
+            string lowfilename = fileName.ToLower(CultureInfo.CurrentCulture);
             Bitmap bitmap = null;
 
             try
             {
-                if (lowfilename.EndsWith(".jp2") || lowfilename.EndsWith(".j2c"))
+                if (lowfilename.EndsWith(".jp2", StringComparison.CurrentCulture) || lowfilename.EndsWith(".j2c", StringComparison.CurrentCulture))
                 {
                     Image image;
                     ManagedImage managedImage;
@@ -95,7 +97,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    if (lowfilename.EndsWith(".tga"))
+                    if (lowfilename.EndsWith(".tga", StringComparison.CurrentCulture))
                         bitmap = LoadTGAClass.LoadTGA(fileName);
                     else
                         bitmap = (Bitmap)System.Drawing.Image.FromFile(fileName);
@@ -171,7 +173,7 @@ namespace METAbolt
         {
             if (ImgUp != null)
             {
-                string name = System.IO.Path.GetFileNameWithoutExtension(file);
+                //string name = System.IO.Path.GetFileNameWithoutExtension(file);
                 UUID folder = client.Inventory.FindFolderForType(AssetType.Texture);
 
                 client.Inventory.RequestCreateItemFromAsset(ImgUp, fname, desc, AssetType.Texture, InventoryType.Texture,

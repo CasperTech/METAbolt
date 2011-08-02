@@ -30,6 +30,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using PopupControl;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -160,7 +162,7 @@ namespace METAbolt
 
             // Screen size change to accomodate initial IM feature thx to Elmo Clarity 20/12/2010
 
-            if (item.Name.ToLower() == "text")
+            if (item.Name.ToLower(CultureInfo.CurrentCulture) == "text")
             {
                 this.Height = 460;
             }

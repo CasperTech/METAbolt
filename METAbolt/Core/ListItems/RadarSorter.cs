@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 using System.Windows.Forms;
+using System.Globalization;
 
 
 namespace METAbolt
@@ -46,8 +47,8 @@ namespace METAbolt
             ListViewItem item1 = (ListViewItem)x;
             ListViewItem item2 = (ListViewItem)y;
 
-            int distx = int.Parse(ExtractNumbers(item1.Text));
-            int disty = int.Parse(ExtractNumbers(item2.Text));
+            int distx = int.Parse(ExtractNumbers(item1.Text), CultureInfo.CurrentCulture);
+            int disty = int.Parse(ExtractNumbers(item2.Text), CultureInfo.CurrentCulture);
 
             if (distx > disty)
             {
@@ -67,7 +68,7 @@ namespace METAbolt
         { 
             string number = System.Text.RegularExpressions.Regex.Match(expr, @"\[(?<r>\d+)m").Groups[1].Value;
 
-            if (number == "") number = "0";
+            if (string.IsNullOrEmpty(number)) number = "0";
 
             return number;
         }

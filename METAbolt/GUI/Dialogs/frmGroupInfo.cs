@@ -37,7 +37,9 @@ using OpenMetaverse.Packets;
 using SLNetworkComm;
 using ExceptionReporting;
 using System.Threading;
-using System.Management; 
+using System.Management;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -712,7 +714,7 @@ namespace METAbolt
                     }
 
                     lvsi = new ListViewItem.ListViewSubItem();
-                    lvsi.Text = member.Contribution.ToString();
+                    lvsi.Text = member.Contribution.ToString(CultureInfo.CurrentCulture);
                     lvi.SubItems.Add(lvsi);
 
                     lvsi = new ListViewItem.ListViewSubItem();
@@ -890,7 +892,7 @@ namespace METAbolt
 
                 foreach (GroupRole role in grouproles.Values)
                 {
-                    if (role.Name.ToLower() != "everyone")
+                    if (role.Name.ToLower(CultureInfo.CurrentCulture) != "everyone")
                     {
                         UUID roleid = role.ID;
 
@@ -1051,7 +1053,7 @@ namespace METAbolt
                         {
                             StreamWriter SW = new StreamWriter(tstream);
 
-                            SW.WriteLine("Group: " + this.Group.Name + ",UUID: " + grpid.ToString() + ",Ttl members: " + lstMembers2.Items.Count.ToString() + ",");
+                            SW.WriteLine("Group: " + this.Group.Name + ",UUID: " + grpid.ToString() + ",Ttl members: " + lstMembers2.Items.Count.ToString(CultureInfo.CurrentCulture) + ",");
                             SW.WriteLine(",,,");
                             SW.WriteLine("Name,UUID,Title,Last online");
 
@@ -1059,7 +1061,7 @@ namespace METAbolt
                             {
                                 try
                                 {
-                                    string line = entry.Name + "," + entry.ID.ToString() + "," + entry.Title + "," + entry.LastOnline.ToString();
+                                    string line = entry.Name + "," + entry.ID.ToString() + "," + entry.Title + "," + entry.LastOnline.ToString(CultureInfo.CurrentCulture);
                                     SW.WriteLine(line);
                                 }
                                 catch (Exception ex)

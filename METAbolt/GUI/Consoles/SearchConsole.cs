@@ -31,6 +31,8 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using SLNetworkComm;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -317,7 +319,7 @@ namespace METAbolt
             if (groupsconsole.QueryID != queryID) return;
 
             totalResults += matchedGroups.Count;
-            lblGroupsFound.Text = totalResults.ToString() + " groups found";
+            lblGroupsFound.Text = totalResults.ToString(CultureInfo.CurrentCulture) + " groups found";
 
             txtGroups.Enabled = true;
             btnFindGroups.Enabled = true;
@@ -338,7 +340,7 @@ namespace METAbolt
             if (console.QueryID != queryID) return;
 
             totalResults += matchedPeople.Count;
-            lblResultCount.Text = totalResults.ToString() + " people found";
+            lblResultCount.Text = totalResults.ToString(CultureInfo.CurrentCulture) + " people found";
 
             txtPersonName.Enabled = true;
             btnFind.Enabled = true;
@@ -358,7 +360,7 @@ namespace METAbolt
             if (eventsconsole.QueryID != queryID) return;
 
             totalResults += matchedEvents.Count;
-            lblEventsCount.Text = totalResults.ToString() + " events found";
+            lblEventsCount.Text = totalResults.ToString(CultureInfo.CurrentCulture) + " events found";
 
             txtEvents.Enabled = true;
             btnFindEvents.Enabled = true;
@@ -378,7 +380,7 @@ namespace METAbolt
             if (placesconsole.QueryID != queryID) return;
 
             totalResults += matchedPlaces.Count;
-            lblPlacesCount.Text = totalResults.ToString() + " places found";
+            lblPlacesCount.Text = totalResults.ToString(CultureInfo.CurrentCulture) + " places found";
 
             txtPlaces.Enabled = true;
             btnFindPlaces.Enabled = true;
@@ -398,7 +400,7 @@ namespace METAbolt
             //if (placesconsole.QueryID != queryID) return;
 
             totalResults += matchedPlaces.Count;
-            lblLandCount.Text = totalResults.ToString() + " parcels found";
+            lblLandCount.Text = totalResults.ToString(CultureInfo.CurrentCulture) + " parcels found";
 
             txtLand.Enabled = true;
             btnFindLand.Enabled = true;
@@ -506,9 +508,9 @@ namespace METAbolt
                 console.ClearResults();
                 console.QueryID = client.Directory.StartPeopleSearch(lastQuery, startResult);
             }
-            catch (Exception exc)
+            catch
             {
-                string exp = exc.Message;
+                ;
             }
         }
 
@@ -531,9 +533,9 @@ namespace METAbolt
                     lastQuery,
                     (uint)startResult);
             }
-            catch (Exception exc)
+            catch
             {
-                string exp = exc.Message;
+                ;
             }
         }
 
@@ -565,9 +567,9 @@ namespace METAbolt
                     ParcelCategory.Any,
                     startResult);
             }
-            catch (Exception exc)
+            catch
             {
-                string exp = exc.Message;
+                ;
             }
         }
 
@@ -594,9 +596,9 @@ namespace METAbolt
                     DirectoryManager.DirFindFlags.Groups
                     );
             }
-            catch (Exception exc)
+            catch
             {
-                string exp = exc.Message;
+                ;
             }
 
         }
@@ -945,9 +947,9 @@ namespace METAbolt
                     }
                 }
             }
-            catch (Exception exc)
+            catch
             {
-                string exp = exc.Message;
+                ;
             }
         }
 

@@ -36,6 +36,8 @@ using System.Xml;
 using SLNetworkComm;
 using OpenMetaverse;
 using PopupControl;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -89,9 +91,9 @@ namespace METAbolt
                     textBox2.Text = string.Empty;
                 }
             }
-            catch (Exception exp)
+            catch
             {
-                string ex = exp.Message; 
+                ; 
             }
         }
 
@@ -107,14 +109,14 @@ namespace METAbolt
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text != string.Empty)
+            if (!string.IsNullOrEmpty(textBox2.Text))
             {
                 // Open up the TP form here
                 string[] split = textBox2.Text.Split(new Char[] { '/' });
                 string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 //(new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
 
@@ -131,7 +133,7 @@ namespace METAbolt
                 file = file.Substring(0, 32);
             }
 
-            string pos = instance.SIMsittingPos().X.ToString() + ", " + instance.SIMsittingPos().Y.ToString() + ", " + instance.SIMsittingPos().Z.ToString();
+            string pos = instance.SIMsittingPos().X.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Y.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Z.ToString(CultureInfo.CurrentCulture);
 
             string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
 

@@ -34,6 +34,8 @@ using OpenMetaverse;
 using Khendys.Controls;
 using ExceptionReporting;
 using System.Threading;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -523,32 +525,32 @@ namespace METAbolt
 
         private void rtbIMText_LinkClicked_1(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText.StartsWith("http://slurl."))
+            if (e.LinkText.StartsWith("http://slurl.", StringComparison.CurrentCulture))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string sim = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 }
                 catch { ; }
 
             }
-            if (e.LinkText.StartsWith("http://maps.secondlife"))
+            if (e.LinkText.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string sim = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 }
@@ -571,7 +573,7 @@ namespace METAbolt
                 }
                 catch { ; }
             }
-            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
+            else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("https://", StringComparison.CurrentCulture))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
             }

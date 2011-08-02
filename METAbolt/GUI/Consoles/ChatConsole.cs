@@ -48,6 +48,8 @@ using System.Threading;
 using System.Linq;
 using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -433,7 +435,7 @@ namespace METAbolt
                 Logger.Log("Chat Console Error updating Land Media: " + ex.Message, Helpers.LogLevel.Error);   
             }
 
-            if (this.instance.Config.CurrentConfig.mURL == string.Empty)
+            if (string.IsNullOrEmpty(this.instance.Config.CurrentConfig.mURL))
             {
                 tsMovie.Enabled = false;
             }
@@ -442,7 +444,7 @@ namespace METAbolt
                 tsMovie.Enabled = true;
             }
 
-            if (this.instance.Config.CurrentConfig.pURL == string.Empty)
+            if (string.IsNullOrEmpty(this.instance.Config.CurrentConfig.pURL))
             {
                 tsMusic.Enabled = false;
             }
@@ -556,9 +558,9 @@ namespace METAbolt
                         missing += "pants/skirt & underpants, ";
                     }
 
-                    if (missing != string.Empty)
+                    if (!string.IsNullOrEmpty(missing))
                     {
-                        if (missing.EndsWith(", "))
+                        if (missing.EndsWith(", ", StringComparison.CurrentCulture))
                         {
                             missing = missing.Remove(missing.Length - 2);   
                         }
@@ -1020,15 +1022,15 @@ namespace METAbolt
                 {
                     if (e.Type == MeanCollisionType.Bump)
                     {
-                        cty = "Bumped in by: (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
+                        cty = "Bumped in by: (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
                     }
                     else if (e.Type == MeanCollisionType.LLPushObject)
                     {
-                        cty = "Pushed by: (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
+                        cty = "Pushed by: (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
                     }
                     else if (e.Type == MeanCollisionType.PhysicalObjectCollide)
                     {
-                        cty = "Physical object collided (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
+                        cty = "Physical object collided (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
                     }
 
                     chatManager.PrintAlertMessage(cty + e.Aggressor.ToString());
@@ -1145,12 +1147,12 @@ namespace METAbolt
                 return;
             }
 
-            if (selectedname != string.Empty) return;
+            if (!string.IsNullOrEmpty(selectedname)) return;
 
             if (av == null) return;
             string name = av;
 
-            if (name == string.Empty || name == null) return;
+            if (string.IsNullOrEmpty(name)) return;
 
             lvwRadar.BeginUpdate();
             if (lvwRadar.Items.ContainsKey(name))
@@ -1178,11 +1180,11 @@ namespace METAbolt
                 {
                     avpos.Z = 1024f;
                     dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
-                    sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = " >[" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
                 }
                 else
                 {
-                    sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = " [" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
                 }
 
                 string rentry = name + sDist;
@@ -1240,12 +1242,12 @@ namespace METAbolt
                 return;
             }
 
-            if (selectedname != string.Empty) return;
+            if (!string.IsNullOrEmpty(selectedname)) return;
 
             if (av == null) return;
             string name = av.Name;
 
-            if (name == string.Empty || name == null) return;
+            if (string.IsNullOrEmpty(name)) return;
 
             BeginInvoke(new MethodInvoker(delegate()
             {
@@ -1314,11 +1316,11 @@ namespace METAbolt
                 {
                     avpos.Z = 1024f;
                     dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
-                    sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = " >[" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
                 }
                 else
                 {
-                    sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = " [" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
                 }
 
                 string rentry = name + sDist + astate;
@@ -1470,7 +1472,7 @@ namespace METAbolt
                 return;
             }
 
-            if (e.FromName.ToLower() == netcom.LoginOptions.FullName.ToLower())
+            if (e.FromName.ToLower(CultureInfo.CurrentCulture) == netcom.LoginOptions.FullName.ToLower(CultureInfo.CurrentCulture))
             {
                 return;
             }
@@ -1503,7 +1505,7 @@ namespace METAbolt
 
             if (instance.DetectLang)
             {
-                if (e.Message != string.Empty && e.Message != null)
+                if (!string.IsNullOrEmpty(e.Message))
                 {
                     GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
 
@@ -1551,12 +1553,12 @@ namespace METAbolt
 
             string[] inputArgs = input.Split(' ');
 
-            if (inputArgs[0].StartsWith("//")) //Chat on previously used channel
+            if (inputArgs[0].StartsWith("//", StringComparison.CurrentCulture)) //Chat on previously used channel
             {
                 string message = string.Join(" ", inputArgs).Substring(2);
                 netcom.ChatOut(message, type, previousChannel);
             }
-            else if (inputArgs[0].StartsWith("/")) //Chat on specific channel
+            else if (inputArgs[0].StartsWith("/", StringComparison.CurrentCulture)) //Chat on specific channel
             {
                 string message = string.Empty;
                 string number = inputArgs[0].Substring(1);
@@ -1568,7 +1570,7 @@ namespace METAbolt
                 // VidaOrenstein on METAforum fix
                 //string message = string.Join(" ", inputArgs, 1, inputArgs.GetUpperBound(0) - 1);
 
-                if (input.StartsWith("/me "))
+                if (input.StartsWith("/me ", StringComparison.CurrentCulture))
                 {
                     message = input;
                 }
@@ -1617,7 +1619,7 @@ namespace METAbolt
             {
                 tbSay.Enabled = true;
 
-                if (!cbxInput.Text.StartsWith("/"))
+                if (!cbxInput.Text.StartsWith("/", StringComparison.CurrentCulture))
                 {
                     if (!instance.State.IsTyping)
                         instance.State.SetTyping(true);
@@ -1981,32 +1983,32 @@ namespace METAbolt
 
         private void rtbChat_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText.StartsWith("http://slurl."))
+            if (e.LinkText.StartsWith("http://slurl.", StringComparison.CurrentCulture))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).ShowDialog();
                 }
                 catch { ; }
 
             }
-            if (e.LinkText.StartsWith("http://maps.secondlife"))
+            if (e.LinkText.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).ShowDialog();
                 }
@@ -2038,7 +2040,7 @@ namespace METAbolt
             //    //frmGroupInfo frm = new frmGroupInfo(uuid, instance);
             //    //frm.Show();
             //}
-            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
+            else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("https://", StringComparison.CurrentCulture))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
             }
@@ -2497,13 +2499,13 @@ namespace METAbolt
                     {
                         //sims = client.Network.Simulators[0];
 
-                        label4.Text = "Ttl objects: " + sims.Stats.Objects.ToString();
-                        label5.Text = "Scripted objects: " + sims.Stats.ScriptedObjects.ToString();
+                        label4.Text = "Ttl objects: " + sims.Stats.Objects.ToString(CultureInfo.CurrentCulture);
+                        label5.Text = "Scripted objects: " + sims.Stats.ScriptedObjects.ToString(CultureInfo.CurrentCulture);
                         label8.Text = client.Network.CurrentSim.Name;
 
                         Simulator csim = client.Network.CurrentSim;
 
-                        label9.Text = "FPS: " + csim.Stats.FPS.ToString();
+                        label9.Text = "FPS: " + csim.Stats.FPS.ToString(CultureInfo.CurrentCulture);
 
                         // Maximum value changes for OSDGrid compatibility V 0.9.32.0
 
@@ -2514,7 +2516,7 @@ namespace METAbolt
 
                         progressBar7.Value = csim.Stats.FPS;
 
-                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString();
+                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString(CultureInfo.CurrentCulture);
 
                         if ((int)(csim.Stats.Dilation * 10) > progressBar1.Maximum)
                         {
@@ -2536,7 +2538,7 @@ namespace METAbolt
                     {
                         myPos = instance.SIMsittingPos();
                         label12.Text = sims.SimVersion;
-                        strInfo = string.Format("Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count + 1);
+                        strInfo = string.Format(CultureInfo.CurrentCulture,"Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count + 1);
                     }
                     else
                     {
@@ -2560,7 +2562,7 @@ namespace METAbolt
                                 label12.Text = "na";
                             }
 
-                            strInfo = string.Format("Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
+                            strInfo = string.Format(CultureInfo.CurrentCulture,"Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
                         }
                         catch { ; }
                     }
@@ -2831,7 +2833,7 @@ namespace METAbolt
                 {
                     UUID akey = (UUID)CurrentLoc.LocationName;
 
-                    string apstn = "\nCoords.: " + CurrentLoc.Position.X.ToString() + "/" + CurrentLoc.Position.Y.ToString() + "/" + CurrentLoc.Position.Z.ToString();
+                    string apstn = "\nCoords.: " + CurrentLoc.Position.X.ToString(CultureInfo.CurrentCulture) + "/" + CurrentLoc.Position.Y.ToString(CultureInfo.CurrentCulture) + "/" + CurrentLoc.Position.Z.ToString(CultureInfo.CurrentCulture);
 
                     world.Cursor = Cursors.Hand;
 
@@ -3000,7 +3002,7 @@ namespace METAbolt
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
         {
-            if (clickedurl == string.Empty || clickedurl == null)
+            if (string.IsNullOrEmpty(clickedurl))
             {
                 HtmlElement link = webBrowser1.Document.ActiveElement;
                 clickedurl = link.GetAttribute("href");
@@ -3008,27 +3010,27 @@ namespace METAbolt
 
             e.Cancel = true;
 
-            if (clickedurl.StartsWith("http://slurl."))
+            if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCulture))
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
                 string ssim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
                 clickedurl = string.Empty;
                 return;
             }
-            if (clickedurl.StartsWith("http://maps.secondlife"))
+            if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
                 string ssim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
                 clickedurl = string.Empty;
@@ -3164,7 +3166,7 @@ namespace METAbolt
 
             int startindex = 0;
 
-            if (prevsearchtxt != string.Empty)
+            if (!string.IsNullOrEmpty(prevsearchtxt))
             {
                 if (prevsearchtxt != tsFindText.Text.Trim())
                 {
@@ -3356,7 +3358,7 @@ namespace METAbolt
 
             string cmic = vgate.CurrentCaptureDevice;
 
-            if (cmic == string.Empty)
+            if (string.IsNullOrEmpty(cmic))
             {
                 cboCapture.SelectedItem = cmic;    //cmic = mics[0];
             }
@@ -3385,7 +3387,7 @@ namespace METAbolt
 
             string cspk = vgate.PlaybackDevice;
 
-            if (cspk == string.Empty)
+            if (string.IsNullOrEmpty(cspk))
             {
                 cboRender.SelectedItem = cspk; //speakers[0];
             }
@@ -3503,13 +3505,13 @@ namespace METAbolt
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             vgate.MicLevel = trackBar1.Value;
-            toolTip1.SetToolTip(trackBar1, "Volume: " + trackBar1.Value.ToString()); 
+            toolTip1.SetToolTip(trackBar1, "Volume: " + trackBar1.Value.ToString(CultureInfo.CurrentCulture)); 
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             vgate.SpkrLevel = trackBar2.Value;
-            toolTip1.SetToolTip(trackBar2, "Volume: " + trackBar2.Value.ToString());
+            toolTip1.SetToolTip(trackBar2, "Volume: " + trackBar2.Value.ToString(CultureInfo.CurrentCulture));
         }
 
         private void timer2_Tick(object sender, EventArgs e)

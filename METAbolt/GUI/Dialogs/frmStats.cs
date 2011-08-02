@@ -60,7 +60,7 @@ namespace METAbolt
 
         private void GetStats()
         {
-            StringBuilder output = new StringBuilder();
+            //StringBuilder output = new StringBuilder();
 
             try
             {
@@ -147,9 +147,9 @@ namespace METAbolt
             progressBar12.Value = (int)csim.Stats.ActiveScripts;
 
             }
-            catch (Exception exc)
+            catch
             {
-                string exp = exc.Message;
+                ;
             }
         }
 

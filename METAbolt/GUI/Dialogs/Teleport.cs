@@ -36,6 +36,8 @@ using SLNetworkComm;
 using System.Net;
 using System.Diagnostics;
 using ExceptionReporting;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -77,7 +79,7 @@ namespace METAbolt
             AddNetcomEvents();
             AddClientEvents();
 
-            if (sSIM == string.Empty)
+            if (string.IsNullOrEmpty(sSIM))
             {
                 SetDefaultValues();
             }
@@ -299,7 +301,7 @@ namespace METAbolt
 
             pnlTeleporting.Visible = true;
 
-            if (selregion.RegionHandle == 0 && txtRegion.Text != string.Empty)
+            if (selregion.RegionHandle == 0 && !string.IsNullOrEmpty(txtRegion.Text))
             {
                 //RefreshControls();
                 netcom.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX.Value, (float)nudY.Value, (float)nudZ.Value));
@@ -403,8 +405,8 @@ namespace METAbolt
                 {
                     peeps = " people";
                 }
-                
-                string s = System.Convert.ToString(itemToDraw.Region.Agents);
+
+                string s = System.Convert.ToString(itemToDraw.Region.Agents, CultureInfo.CurrentCulture);
 
                 e.Graphics.DrawString(s + peeps, e.Font, textBrush, new PointF(leftTextMargin + stringSize.Width + 6.0f, topTextMargin));
             }

@@ -67,6 +67,7 @@ namespace METAbolt
             if (disposing)
             {
                 mergedTab.Dispose();
+                owner.Dispose(); 
             }
 
             // TODO: Call the appropriate methods to clean up unmanaged resources here

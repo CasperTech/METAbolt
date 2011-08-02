@@ -33,6 +33,8 @@ using System.Drawing;
 using MD5library;
 using System.IO;
 using System.Diagnostics;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -290,7 +292,7 @@ namespace METAbolt
 
                 try
                 {
-                    if (epwd != string.Empty)
+                    if (!string.IsNullOrEmpty(epwd))
                     {
                         Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
                         //string cpwd = cryp.Decrypting(epwd);
@@ -346,24 +348,24 @@ namespace METAbolt
 
             // General
             IConfig config = source.AddConfig("General");
-            config.Set("Version", configVersion.ToString());
+            config.Set("Version", configVersion.ToString(CultureInfo.CurrentCulture));
             //config.Set("iRadar", iradar.ToString());
-            config.Set("Connect4", connect4.ToString());
-            config.Set("DisableNotifications", disablenotifications.ToString());
-            config.Set("DisableInboundGroupInvites", disableinboundgroupinvites.ToString());
-            config.Set("AutoSit", autosit.ToString());
-            config.Set("RadarRange", radarrange.ToString());
-            config.Set("ObjectRange", objectrange.ToString());
+            config.Set("Connect4", connect4.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableNotifications", disablenotifications.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableInboundGroupInvites", disableinboundgroupinvites.ToString(CultureInfo.CurrentCulture));
+            config.Set("AutoSit", autosit.ToString(CultureInfo.CurrentCulture));
+            config.Set("RadarRange", radarrange.ToString(CultureInfo.CurrentCulture));
+            config.Set("ObjectRange", objectrange.ToString(CultureInfo.CurrentCulture));
             config.Set("GroupManPro", groupmanpro);
-            config.Set("GivePresent", givepressie.ToString());  
-            config.Set("HideMeta", metahide.ToString());
-            config.Set("DeclineInv", declineinv.ToString());
+            config.Set("GivePresent", givepressie.ToString(CultureInfo.CurrentCulture));
+            config.Set("HideMeta", metahide.ToString(CultureInfo.CurrentCulture));
+            config.Set("DeclineInv", declineinv.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableLookAt", disablelookat);
-            config.Set("AutoRestart", autorestart.ToString());
-            config.Set("LogOffTime", logofftime.ToString());
-            config.Set("ReStartTime", restarttime.ToString());
-            config.Set("BandwidthThrottle", bandwidththrottle.ToString());
-            config.Set("ClassicChatLayout", useclassicchatlayout.ToString());
+            config.Set("AutoRestart", autorestart.ToString(CultureInfo.CurrentCulture));
+            config.Set("LogOffTime", logofftime.ToString(CultureInfo.CurrentCulture));
+            config.Set("ReStartTime", restarttime.ToString(CultureInfo.CurrentCulture));
+            config.Set("BandwidthThrottle", bandwidththrottle.ToString(CultureInfo.CurrentCulture));
+            config.Set("ClassicChatLayout", useclassicchatlayout.ToString(CultureInfo.CurrentCulture));
 
             if (headerfont == null)
             {
@@ -375,8 +377,8 @@ namespace METAbolt
 
             config.Set("HeaderFont", headerfont);
             config.Set("HeaderFontStyle", headerfontstyle);
-            config.Set("HeaderFontSize", headerfontsize.ToString());
-            config.Set("HeaderBackColour", headerbackcolour.ToString());
+            config.Set("HeaderFontSize", headerfontsize.ToString(CultureInfo.CurrentCulture));
+            config.Set("HeaderBackColour", headerbackcolour.ToString(CultureInfo.CurrentCulture));
             //config.Set("BgColour", bgcolour.ToString());
 
             if (textfont == null)
@@ -388,28 +390,28 @@ namespace METAbolt
 
             config.Set("TextFont", textfont);
             config.Set("TextFontStyle", textfontstyle);
-            config.Set("TextFontSize", textfontsize.ToString());
-            config.Set("PlayFriendOnline", playfriendonline.ToString());
-            config.Set("PlayFriendOffline", playfriendoffline.ToString());
-            config.Set("PlayIMreceived", playimreceived.ToString());
-            config.Set("PlayGroupIMreceived", playgroupimreceived.ToString());
-            config.Set("PlayGroupNoticeReceived", playgroupnotice.ToString());
-            config.Set("PlayInventoryItemReceived", playintentoryitem.ToString());
-            config.Set("PlayPaymentReceived", playpaymentreceived.ToString());
-            config.Set("AutoAcceptItems", autoacceptitems.ToString());
-            config.Set("StartMinimised", startminimised.ToString());
+            config.Set("TextFontSize", textfontsize.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlayFriendOnline", playfriendonline.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlayFriendOffline", playfriendoffline.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlayIMreceived", playimreceived.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlayGroupIMreceived", playgroupimreceived.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlayGroupNoticeReceived", playgroupnotice.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlayInventoryItemReceived", playintentoryitem.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlayPaymentReceived", playpaymentreceived.ToString(CultureInfo.CurrentCulture));
+            config.Set("AutoAcceptItems", autoacceptitems.ToString(CultureInfo.CurrentCulture));
+            config.Set("StartMinimised", startminimised.ToString(CultureInfo.CurrentCulture));
             config.Set("AdRemove", adremove);
             config.Set("MasterAvatar", masteravatar);
-            config.Set("AutoTransfer", autotransfer.ToString());
-            config.Set("DisableTrayIcon", disabletrayicon.ToString());
-            config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString());
-            config.Set("DisableTyping", disabletyping.ToString());
-            config.Set("AutoAcceptFriends", autoacceptfriends.ToString());
+            config.Set("AutoTransfer", autotransfer.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableTrayIcon", disabletrayicon.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableTyping", disabletyping.ToString(CultureInfo.CurrentCulture));
+            config.Set("AutoAcceptFriends", autoacceptfriends.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
-            config.Set("MainWindowState", mainWindowState.ToString());
-            config.Set("Style", interfaceStyle.ToString());
+            config.Set("MainWindowState", mainWindowState.ToString(CultureInfo.CurrentCulture));
+            config.Set("Style", interfaceStyle.ToString(CultureInfo.CurrentCulture));
 
             // Login
             config = source.AddConfig("Login");
@@ -420,7 +422,7 @@ namespace METAbolt
             {
                 string epwd = passwordMD5;
 
-                if (epwd != string.Empty)
+                if (!string.IsNullOrEmpty(epwd))
                 {
                     Crypto cryp = new Crypto(Crypto.SymmProvEnum.Rijndael);
                     //string cpwd = cryp.Encrypting(epwd);
@@ -435,35 +437,35 @@ namespace METAbolt
             }
 
             config.Set("UserNameList", usernamelist);
-            config.Set("Grid", loginGrid.ToString());
+            config.Set("Grid", loginGrid.ToString(CultureInfo.CurrentCulture));
             config.Set("Uri", loginUri);
-            config.Set("LocationType", loginLocationType.ToString());
+            config.Set("LocationType", loginLocationType.ToString(CultureInfo.CurrentCulture));
             config.Set("Location", loginLocation);
-            config.Set("iRemPWD", irempwd.ToString());
+            config.Set("iRemPWD", irempwd.ToString(CultureInfo.CurrentCulture));
 
             // AI
             config = source.AddConfig("AI");
-            config.Set("AIon", aion.ToString());
-            config.Set("ReplyAI", replyAI.ToString());
+            config.Set("AIon", aion.ToString(CultureInfo.CurrentCulture));
+            config.Set("ReplyAI", replyAI.ToString(CultureInfo.CurrentCulture));
             config.Set("ReplyText", replyText);
 
             // Text
             config = source.AddConfig("Text");
-            config.Set("ChatTimestamps", chatTimestamps.ToString());
-            config.Set("IMTimestamps", imTimestamps.ToString());
-            config.Set("ChatSmileys", chatSmileys.ToString());
-            config.Set("ParcelMusic", parcelmusic.ToString());
-            config.Set("ParcelMedia", parcelmedia.ToString());
-            config.Set("lineMax", linemax.ToString());
-            config.Set("UseSLT", useslt.ToString());
-            config.Set("PlaySound", playsound.ToString());
+            config.Set("ChatTimestamps", chatTimestamps.ToString(CultureInfo.CurrentCulture));
+            config.Set("IMTimestamps", imTimestamps.ToString(CultureInfo.CurrentCulture));
+            config.Set("ChatSmileys", chatSmileys.ToString(CultureInfo.CurrentCulture));
+            config.Set("ParcelMusic", parcelmusic.ToString(CultureInfo.CurrentCulture));
+            config.Set("ParcelMedia", parcelmedia.ToString(CultureInfo.CurrentCulture));
+            config.Set("lineMax", linemax.ToString(CultureInfo.CurrentCulture));
+            config.Set("UseSLT", useslt.ToString(CultureInfo.CurrentCulture));
+            config.Set("PlaySound", playsound.ToString(CultureInfo.CurrentCulture));
             config.Set("BusyReply", busyreply);
             config.Set("InitialIMReply", initialIMreply);
-            config.Set("SaveIMs", saveims.ToString());
-            config.Set("SaveChat", savechat.ToString());
+            config.Set("SaveIMs", saveims.ToString(CultureInfo.CurrentCulture));
+            config.Set("SaveChat", savechat.ToString(CultureInfo.CurrentCulture));
             config.Set("LogDir", logdir);
-            config.Set("DisableGroupNotices", disablegnotices.ToString());
-            config.Set("DisableGroupIMs", disablegims.ToString());
+            config.Set("DisableGroupNotices", disablegnotices.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableGroupIMs", disablegims.ToString(CultureInfo.CurrentCulture));
 
             //// Twitter
             //config = source.AddConfig("Twitter");
@@ -476,7 +478,7 @@ namespace METAbolt
 
             // Proxy
             config = source.AddConfig("Proxy");
-            config.Set("UseProxy", useproxy.ToString());
+            config.Set("UseProxy", useproxy.ToString(CultureInfo.CurrentCulture));
             config.Set("ProxyURL", proxyurl);
             config.Set("ProxyPort", proxyport);
             config.Set("ProxyUser", proxyuser);
@@ -484,7 +486,7 @@ namespace METAbolt
 
             // META3D
             config = source.AddConfig("META3D");
-            config.Set("DisableMipmaps", disablemipmaps.ToString());
+            config.Set("DisableMipmaps", disablemipmaps.ToString(CultureInfo.CurrentCulture));
 
             // Plugins Loaded
             config = source.AddConfig("LoadedPlugIns");

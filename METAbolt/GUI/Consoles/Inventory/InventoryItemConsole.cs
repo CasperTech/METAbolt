@@ -280,7 +280,7 @@ namespace METAbolt
 
             if ((item.Permissions.OwnerMask & PermissionMask.Transfer) != PermissionMask.Transfer)
             {
-                DialogResult res = MessageBox.Show("This is a NO TRANSFER item and cannot be given away.", "STOP", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
+                MessageBox.Show("This is a NO TRANSFER item and cannot be given away.", "STOP", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
                 return;
             }
 

@@ -55,6 +55,8 @@ using System.Diagnostics;
 using PopupControl;
 using System.Media;
 //using ExceptionReporting;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -1965,7 +1967,7 @@ namespace METAbolt
 
                     if (face.Vertices.Count > 2)
                     {
-                        string mtlName = String.Format("material{0}-{1}", primNr, face.ID);
+                        string mtlName = String.Format(CultureInfo.CurrentCulture,"material{0}-{1}", primNr, face.ID);
                         Primitive.TextureEntryFace tex = face.TextureFace;
                         string texName = tex.TextureID.ToString() + ".tga";
 
@@ -1988,8 +1990,8 @@ namespace METAbolt
                         obj.AppendFormat("g face{0}-{1}{2}", primNr, face.ID, Environment.NewLine);
 
                         mtl.AppendLine("newmtl " + mtlName);
-                        mtl.AppendFormat("Ka {0} {1} {2}{3}", tex.RGBA.R, tex.RGBA.G, tex.RGBA.B, Environment.NewLine);
-                        mtl.AppendFormat("Kd {0} {1} {2}{3}", tex.RGBA.R, tex.RGBA.G, tex.RGBA.B, Environment.NewLine);
+                        mtl.AppendFormat(CultureInfo.CurrentCulture,"Ka {0} {1} {2}{3}", tex.RGBA.R, tex.RGBA.G, tex.RGBA.B, Environment.NewLine);
+                        mtl.AppendFormat(CultureInfo.CurrentCulture,"Kd {0} {1} {2}{3}", tex.RGBA.R, tex.RGBA.G, tex.RGBA.B, Environment.NewLine);
                         //mtl.AppendFormat("Ks {0} {1} {2}{3}");
                         mtl.AppendLine("Tr " + tex.RGBA.A);
                         mtl.AppendLine("Ns " + shiny);
@@ -2019,7 +2021,7 @@ namespace METAbolt
                             if (mesh.Prim.ParentID != 0)
                                 pos += mesh.Prim.Position;
 
-                            obj.AppendFormat("v {0} {1} {2}{3}", pos.X, pos.Y, pos.Z, Environment.NewLine);
+                            obj.AppendFormat(CultureInfo.CurrentCulture,"v {0} {1} {2}{3}", pos.X, pos.Y, pos.Z, Environment.NewLine);
 
                             #endregion Vertex
 
@@ -2034,7 +2036,7 @@ namespace METAbolt
 
                             // HACK: Sometimes normals are getting set to <NaN,NaN,NaN>
                             if (!Single.IsNaN(vertex.Normal.X) && !Single.IsNaN(vertex.Normal.Y) && !Single.IsNaN(vertex.Normal.Z))
-                                obj.AppendFormat("vn {0} {1} {2}{3}", vertex.Normal.X, vertex.Normal.Y, vertex.Normal.Z,
+                                obj.AppendFormat(CultureInfo.CurrentCulture,"vn {0} {1} {2}{3}", vertex.Normal.X, vertex.Normal.Y, vertex.Normal.Z,
                                     Environment.NewLine);
                             else
                                 obj.AppendLine("vn 0.0 1.0 0.0");
@@ -2042,7 +2044,7 @@ namespace METAbolt
                             #endregion Vertex Normal
                         }
 
-                        obj.AppendFormat("# {0} vertices{1}", face.Vertices.Count, Environment.NewLine);
+                        obj.AppendFormat(CultureInfo.CurrentCulture,"# {0} vertices{1}", face.Vertices.Count, Environment.NewLine);
                         obj.AppendLine();
                         obj.AppendLine("usemtl " + mtlName);
 
@@ -2051,7 +2053,7 @@ namespace METAbolt
                         // Write all of the faces (triangles) for this side
                         for (int k = 0; k < face.Indices.Count / 3; k++)
                         {
-                            obj.AppendFormat("f -{0}/-{0}/-{0} -{1}/-{1}/-{1} -{2}/-{2}/-{2}{3}",
+                            obj.AppendFormat(CultureInfo.CurrentCulture,"f -{0}/-{0}/-{0} -{1}/-{1}/-{1} -{2}/-{2}/-{2}{3}",
                                 face.Vertices.Count - face.Indices[k * 3 + 0],
                                 face.Vertices.Count - face.Indices[k * 3 + 1],
                                 face.Vertices.Count - face.Indices[k * 3 + 2],

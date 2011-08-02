@@ -57,13 +57,13 @@ namespace METAbolt
 
             plugins = config.CurrentConfig.PluginsToLoad;
 
-            if (plugins != null && plugins != string.Empty)
+            if (!string.IsNullOrEmpty(plugins))
             {
                 string[] lplugs = plugins.Split('|');
 
                 foreach (string plug in lplugs)
                 {
-                    if (plug != null && plug != string.Empty)
+                    if (!string.IsNullOrEmpty(plug))
                     {
                         listBox2.Items.Add(plug);
                     }
@@ -99,7 +99,7 @@ namespace METAbolt
 
             if (pluginschanged)
             {
-                if (plugins.EndsWith("|"))
+                if (plugins.EndsWith("|", StringComparison.CurrentCulture))
                 {
                     plugins = plugins.Substring(0, plugins.Length - 1);    
                 }

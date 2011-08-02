@@ -38,6 +38,8 @@ using OpenMetaverse;
 using System.Threading;
 using ExceptionReporting;
 using TreeViewUtilities;
+using System.Globalization;
+
 
 // Some parts of this code has been adopted from OpenMetaverse.GUI
 //
@@ -285,29 +287,29 @@ namespace METAbolt
         //Seperate thread
         private void Inventory_OnFolderUpdated(object sender, FolderUpdatedEventArgs e)
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        Inventory_OnFolderUpdated(sender, e);
-            //    }));
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Inventory_OnFolderUpdated(sender, e);
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
-            //try
-            //{
-            //    if (!searching)
-            //    {
+            try
+            {
+                if (!searching)
+                {
 
-            //        if (folderproc == e.FolderID)
-            //        {
-            //            ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
-            //            folderproc = UUID.Zero;
-            //        }
-            //    }
-            //}
-            //catch { ; }
+                    if (folderproc == e.FolderID)
+                    {
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
+                        folderproc = UUID.Zero;
+                    }
+                }
+            }
+            catch { ; }
 
             ////BeginInvoke(new MethodInvoker(delegate()
             ////{
@@ -408,7 +410,7 @@ namespace METAbolt
         {
             try
             {
-                //client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
+                client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                 client.Inventory.ItemReceived += new EventHandler<ItemReceivedEventArgs>(Inventory_OnItemReceived);
                 //client.Inventory.InventoryObjectOffered += new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_OnInventoryObjectReceived);
                 //client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
@@ -446,7 +448,7 @@ namespace METAbolt
 
         private void InventoryConsole_Disposed(object sender, EventArgs e)
         {
-            //client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
+            client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
             client.Inventory.ItemReceived -= new EventHandler<ItemReceivedEventArgs>(Inventory_OnItemReceived);
             //client.Inventory.InventoryObjectOffered -= new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_OnInventoryObjectReceived);
             //client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
@@ -580,9 +582,8 @@ namespace METAbolt
                         //}
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message;
                     return;
                 }
 
@@ -826,7 +827,7 @@ namespace METAbolt
         private void tmnuNewNotecard_Click(object sender, EventArgs e)
         {
             string newNotecardName = "New Notecard";
-            string newNotecardDescription = String.Format("{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
+            string newNotecardDescription = String.Format(CultureInfo.CurrentCulture,"{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
             string newNotecardContent = string.Empty;
 
 
@@ -849,24 +850,24 @@ namespace METAbolt
             if (node == null) return;
 
             InventoryFolder folder = null;
-            TreeNode folderNode = null;
+            //TreeNode folderNode = null;
 
             if (node.Tag is InventoryFolder)
             {
                 folder = (InventoryFolder)node.Tag;
-                folderNode = node;
+                //folderNode = node;
             }
             else if (node.Tag is InventoryItem)
             {
 
                 folder = (InventoryFolder)node.Parent.Tag;
-                folderNode = node.Parent;
+                //folderNode = node.Parent;
             }
 
             if (node.Text == "(empty)")
             {
                 folder = (InventoryFolder)node.Parent.Tag;
-                folderNode = node.Parent;
+                //folderNode = node.Parent;
             }
 
             ifolder = folder;
@@ -975,12 +976,12 @@ namespace METAbolt
 
         private void FindByText()
         {
-            Boolean found = false;
-            TreeNodeCollection nodes = sellectednode.Nodes;
+            //Boolean found = false;
+            //TreeNodeCollection nodes = sellectednode.Nodes;
             //TreeNodeCollection nodes = treeView1.Nodes;
 
             sellectednode.Expand();
-            found = FindRecursive(sellectednode);
+            FindRecursive(sellectednode);
 
             //foreach (TreeNode n in nodes)
             //{
@@ -1035,13 +1036,13 @@ namespace METAbolt
             }
 
             string searchstring = textBox1.Text.Trim();
-            searchstring = searchstring.ToLower();
+            searchstring = searchstring.ToLower(CultureInfo.CurrentCulture);
             Boolean found = false;
 
             foreach (TreeNode tn in treeNode.Nodes)
             {
                 // if the text properties match, color the item
-                if (tn.Text.ToLower().Contains(searchstring))
+                if (tn.Text.ToLower(CultureInfo.CurrentCulture).Contains(searchstring))
                 {
                     tn.BackColor = Color.Yellow;
                     tn.ForeColor = Color.Red;
@@ -1132,7 +1133,7 @@ namespace METAbolt
             if (e.CancelEdit) return;
 
             //protect against an empty name
-            if (e.Label == null || e.Label == string.Empty)
+            if (string.IsNullOrEmpty(e.Label))
             {
                 e.CancelEdit = true;
                 //Logger.Log("Attempt to give inventory item a blank name was foiled!", Helpers.LogLevel.Warning);
@@ -1192,23 +1193,23 @@ namespace METAbolt
                 if (node.Text == "(empty)") return;
 
                 InventoryFolder folder = null;
-                TreeNode folderNode = null;
+                //TreeNode folderNode = null;
 
                 if (node.Tag is InventoryFolder)
                 {
                     folder = (InventoryFolder)node.Tag;
-                    folderNode = node;
+                    //folderNode = node;
                 }
                 else if (node.Tag is InventoryItem)
                 {
                     folder = (InventoryFolder)node.Parent.Tag;
-                    folderNode = node.Parent;
+                    //folderNode = node.Parent;
                 }
 
                 if (node.Text == "(empty)")
                 {
                     folder = (InventoryFolder)node.Parent.Tag;
-                    folderNode = node.Parent;
+                    //folderNode = node.Parent;
                 }
 
                 //InventoryBase invObj = client.Inventory.Store[folder.UUID];
@@ -1276,7 +1277,6 @@ namespace METAbolt
             catch (Exception ex)
             {
                 Logger.Log(ex.Message, Helpers.LogLevel.Error);
-                string exp = ex.Message.ToString();
             }
 
             if (x < (listBox1.Items.Count - 1))
@@ -1418,7 +1418,7 @@ namespace METAbolt
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            label4.Text = "Every " + trackBar1.Value.ToString() + " minutes";
+            label4.Text = "Every " + trackBar1.Value.ToString(CultureInfo.CurrentCulture) + " minutes";
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -1507,7 +1507,6 @@ namespace METAbolt
             catch (Exception ex)
             {
                 Logger.Log(ex.Message, Helpers.LogLevel.Error);
-                string exp = ex.Message.ToString();
             }
         }
 
@@ -1535,7 +1534,7 @@ namespace METAbolt
         private void tmnuNewScript_Click(object sender, EventArgs e)
         {
             string newScriptName = "New Script";
-            string newScriptDescription = String.Format("{0} created with METAbolt {1}", newScriptName, DateTime.Now); ;
+            string newScriptDescription = String.Format(CultureInfo.CurrentCulture,"{0} created with METAbolt {1}", newScriptName, DateTime.Now); ;
             string newScriptContent = string.Empty;
 
 
@@ -1558,24 +1557,24 @@ namespace METAbolt
             if (node == null) return;
 
             InventoryFolder folder = null;
-            TreeNode folderNode = null;
+            //TreeNode folderNode = null;
 
             if (node.Tag is InventoryFolder)
             {
                 folder = (InventoryFolder)node.Tag;
-                folderNode = node;
+                //folderNode = node;
             }
             else if (node.Tag is InventoryItem)
             {
 
                 folder = (InventoryFolder)node.Parent.Tag;
-                folderNode = node.Parent;
+                //folderNode = node.Parent;
             }
 
             if (node.Text == "(empty)")
             {
                 folder = (InventoryFolder)node.Parent.Tag;
-                folderNode = node.Parent;
+                //folderNode = node.Parent;
             }
 
             ifolder = folder;
@@ -1718,7 +1717,7 @@ namespace METAbolt
             //string sitem = treeView1.SelectedNode.Tag.ToString();
             string sitem = treeView1.SelectedNode.Text;
 
-            if (sitem.ToLower().Contains("worn"))
+            if (sitem.ToLower(CultureInfo.CurrentCulture).Contains("worn"))
             {
                 takeOffToolStripMenuItem.Visible = true;
                 wearToolStripMenuItem.Visible = false;
@@ -1868,7 +1867,7 @@ namespace METAbolt
 
         private void treeViewWalker_ProcessNode_HighlightMatchingNodes(object sender, ProcessNodeEventArgs e)
         {
-            if (e.Node.Text.ToLower().IndexOf(textBox1.Text.ToLower()) > -1)
+            if (e.Node.Text.ToLower(CultureInfo.CurrentCulture).IndexOf(textBox1.Text.ToLower(CultureInfo.CurrentCulture), StringComparison.CurrentCulture) > -1)
             {
                 e.Node.BackColor = Color.Yellow;
                 e.Node.ForeColor = Color.Red;

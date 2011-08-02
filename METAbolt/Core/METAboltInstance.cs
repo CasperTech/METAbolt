@@ -38,7 +38,8 @@ using METAxCommon;
 using System.Drawing;
 using ExceptionReporting;
 using System.Threading;
-using System.Runtime.InteropServices; 
+using System.Runtime.InteropServices;
+using System.Globalization;
 
 
 namespace METAbolt
@@ -296,7 +297,7 @@ namespace METAbolt
 
         private void RandomPwd()
         {
-            if (config.CurrentConfig.GroupManPro == string.Empty || config.CurrentConfig.GroupManPro == null)
+            if (string.IsNullOrEmpty(config.CurrentConfig.GroupManPro))
             {
                 // assign a random pwd
                 config.CurrentConfig.GroupManPro = GetRandomPassword(15);
@@ -483,7 +484,7 @@ namespace METAbolt
 
         public bool IsGiveItem(string item, UUID avid)
         {
-            if (item == string.Empty) return false;
+            if (string.IsNullOrEmpty(item)) return false;
 
             try
             {
@@ -501,7 +502,7 @@ namespace METAbolt
                     // You can't cast a string or an object to an AssetType!
                     // TODO: Change this section when libopenmv gets any intelligence in this area
 
-                    switch (astype.ToLower())
+                    switch (astype.ToLower(CultureInfo.CurrentCulture))
                     {
                         case "animation":
                             type = AssetType.Animation;
@@ -581,6 +582,7 @@ namespace METAbolt
             }
  
             DataSet dset = new DataSet();
+            dset.Locale = CultureInfo.CurrentCulture;  
             FileStream fstr = null;
 
             try
@@ -639,6 +641,7 @@ namespace METAbolt
         {
             DataColumn myColumn = new DataColumn();
             DataTable dtbl = new DataTable("list");
+            dtbl.Locale = CultureInfo.CurrentCulture;   
 
             myColumn.DataType = System.Type.GetType("System.String");
             myColumn.ColumnName = "mute_name";
@@ -659,6 +662,7 @@ namespace METAbolt
         {
             DataColumn myColumn = new DataColumn();
             DataTable dtbl = new DataTable("history");
+            dtbl.Locale = CultureInfo.CurrentCulture;   
 
             myColumn.DataType = System.Type.GetType("System.String");
             myColumn.ColumnName = "time";
@@ -896,7 +900,7 @@ namespace METAbolt
 
                 foreach (FileInfo fi in di.GetFiles())
                 {
-                    string inFile = fi.FullName;
+                    //string inFile = fi.FullName;
                     string finname = fi.Name;
 
                     if (finname.Contains(filename))
@@ -907,10 +911,10 @@ namespace METAbolt
                             {
                                 if (finname.Contains(client.Self.FirstName + " " + client.Self.LastName))
                                 {
-                                    string filedate = string.Empty;
-                                    string[] file = finname.Split('-');
+                                    //string filedate = string.Empty;
+                                    //string[] file = finname.Split('-');
 
-                                    filedate = file[1].Trim() + "/" + file[2].Trim() + "/" + file[3].Substring(0, 4).Trim();
+                                    //filedate = file[1].Trim() + "/" + file[2].Trim() + "/" + file[3].Substring(0, 4).Trim();
 
                                     cnt += 1;
                                 }
@@ -922,10 +926,10 @@ namespace METAbolt
                             {
                                 if (finname.Contains(client.Self.FirstName + " " + client.Self.LastName))
                                 {
-                                    string filedate = string.Empty;
-                                    string[] file = finname.Split('-');
+                                    //string filedate = string.Empty;
+                                    //string[] file = finname.Split('-');
 
-                                    filedate = file[1].Trim() + "/" + file[2].Trim() + "/" + file[3].Substring(0, 4).Trim();
+                                    //filedate = file[1].Trim() + "/" + file[2].Trim() + "/" + file[3].Substring(0, 4).Trim();
 
                                     cnt += 1;
                                 }

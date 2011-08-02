@@ -36,6 +36,8 @@ using PopupControl;
 using ExceptionReporting;
 using System.Threading;
 using System.Timers;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -290,7 +292,7 @@ namespace METAbolt
                     Vector3 pos = itemToDraw.Prim.Position;
                     double dist = Math.Round(Vector3.Distance(pos, location), MidpointRounding.ToEven);
 
-                    distance = " [" + dist.ToString() + "m]";
+                    distance = " [" + dist.ToString(CultureInfo.CurrentCulture) + "m]";
 
                     name = itemToDraw.Prim.Properties.Name;
                     description = itemToDraw.Prim.Properties.Description + distance;
@@ -416,7 +418,7 @@ namespace METAbolt
                 txtSearch.Enabled = true;
 
                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -474,7 +476,7 @@ namespace METAbolt
                 txtSearch.Enabled = true;
 
                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -490,7 +492,7 @@ namespace METAbolt
             lbxPrims.Items.Clear();
             pB1.Visible = true;
 
-            string query = text.ToLower();
+            string query = text.ToLower(CultureInfo.CurrentCulture);
             bool inmem = false;
 
             List<Primitive> results =
@@ -501,11 +503,11 @@ namespace METAbolt
                     {
                         //evil comparison of death!
                         return (prim.ParentID == 0 && prim.Properties != null) &&
-                            (prim.Properties.Name.ToLower().Contains(query) ||
-                            prim.Properties.Description.ToLower().Contains(query) ||
-                            prim.Properties.OwnerID.ToString().ToLower().Contains(query) ||
-                            prim.Text.ToLower().Contains(query) ||
-                            prim.ID.ToString().ToLower().Contains(query));
+                            (prim.Properties.Name.ToLower(CultureInfo.CurrentCulture).Contains(query) ||
+                            prim.Properties.Description.ToLower(CultureInfo.CurrentCulture).Contains(query) ||
+                            prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(query) ||
+                            prim.Text.ToLower(CultureInfo.CurrentCulture).Contains(query) ||
+                            prim.ID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(query));
                     }
                     catch
                     {
@@ -554,7 +556,7 @@ namespace METAbolt
             }
 
             //tlbStatus.Text = listItems.Count.ToString() + " objects";
-            tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+            tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
         }
 
         private void DisplayForSale()
@@ -601,7 +603,7 @@ namespace METAbolt
                 txtSearch.Enabled = true;
 
                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -653,7 +655,7 @@ namespace METAbolt
                 txtSearch.Enabled = true;
 
                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -679,7 +681,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && item.Prim.Properties.OwnerID.ToString().ToLower().Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -698,7 +700,7 @@ namespace METAbolt
 
                 txtSearch.Enabled = true;
 
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -724,7 +726,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && !item.Prim.Properties.OwnerID.ToString().ToLower().Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && !item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -743,7 +745,7 @@ namespace METAbolt
 
                 txtSearch.Enabled = true;
 
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -788,7 +790,7 @@ namespace METAbolt
 
                 txtSearch.Enabled = true;
 
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -833,7 +835,7 @@ namespace METAbolt
 
                 txtSearch.Enabled = true;
 
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -868,7 +870,7 @@ namespace METAbolt
                                 string sEp = sPerm.ToString();
                                 //string sOEp = sOPerm.ToString();
 
-                                if (sEp.ToLower().Contains("modify") && sEp.ToLower().Contains("copy") & sEp.ToLower().Contains("transfer"))
+                                if (sEp.ToLower(CultureInfo.CurrentCulture).Contains("modify") && sEp.ToLower(CultureInfo.CurrentCulture).Contains("copy") & sEp.ToLower(CultureInfo.CurrentCulture).Contains("transfer"))
                                 {
                                     lbxPrims.BeginUpdate();
                                     lbxPrims.Items.Add(item);
@@ -886,7 +888,7 @@ namespace METAbolt
 
                 txtSearch.Enabled = true;
 
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -921,7 +923,7 @@ namespace METAbolt
                                 string sEp = sPerm.ToString();
                                 //string sOEp = sOPerm.ToString();
 
-                                if (sEp.ToLower().Contains("modify") && sEp.ToLower().Contains("copy") & sEp.ToLower().Contains("transfer"))
+                                if (sEp.ToLower(CultureInfo.CurrentCulture).Contains("modify") && sEp.ToLower(CultureInfo.CurrentCulture).Contains("copy") & sEp.ToLower(CultureInfo.CurrentCulture).Contains("transfer"))
                                 {
                                     lbxPrims.BeginUpdate();
                                     lbxPrims.Items.Add(item);
@@ -939,7 +941,7 @@ namespace METAbolt
 
                 txtSearch.Enabled = true;
 
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
             }
             catch (Exception ex)
             {
@@ -979,7 +981,7 @@ namespace METAbolt
                     }                
                 }
 
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
 
                 if (pB1.Value + 1 <= pB1.Maximum)
                     pB1.Value += 1;
@@ -1034,7 +1036,7 @@ namespace METAbolt
                 }
 
                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
 
                 if (pB1.Value + 1 <= pB1.Maximum)
                     pB1.Value += 1;
@@ -1158,16 +1160,16 @@ namespace METAbolt
                                 }
                             }));
                         }
-                        catch (Exception ex)
+                        catch
                         {
-                            string err = ex.Message;
+                            ;
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string err = ex.Message;  
+                ;  
             }
         }
 
@@ -1251,7 +1253,7 @@ namespace METAbolt
                                 }
 
                                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                                tlbDisplay.Text = lbxPrims.Items.Count.ToString() + " objects";
+                                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
                             }));
                         }
                         catch
@@ -1338,7 +1340,7 @@ namespace METAbolt
 
                 if (sPr.Properties.SaleType != 0)
                 {
-                    label3.Text = "L$" + sPr.Properties.SalePrice.ToString();
+                    label3.Text = "L$" + sPr.Properties.SalePrice.ToString(CultureInfo.CurrentCulture);
                 }
                 else
                 {
@@ -1372,9 +1374,9 @@ namespace METAbolt
 
                 double dist = Math.Round(Vector3.Distance(primpos, instance.SIMsittingPos()), MidpointRounding.ToEven);
 
-                label13.Text = " " + dist.ToString() + "m - [ Elev.:" + vZ.ToString() + "m]";
+                label13.Text = " " + dist.ToString(CultureInfo.CurrentCulture) + "m - [ Elev.:" + vZ.ToString(CultureInfo.CurrentCulture) + "m]";
 
-                label5.Text = "L$" + sPr.Properties.OwnershipCost.ToString();
+                label5.Text = "L$" + sPr.Properties.OwnershipCost.ToString(CultureInfo.CurrentCulture);
                 //label3.Text = sPr.Properties.SaleType.ToString(); 
 
                 // Owner perms
@@ -2627,7 +2629,7 @@ namespace METAbolt
 
             foreach (InventoryBase o in foundfolders)
             {
-                if (o.Name.ToLower() == llitem.Name.ToLower())
+                if (o.Name.ToLower(CultureInfo.CurrentCulture) == llitem.Name.ToLower(CultureInfo.CurrentCulture))
                 {
                     if (o is InventoryFolder)
                     {

@@ -34,6 +34,8 @@ using Khendys.Controls;
 using System.Resources;
 using System.Threading;
 //using System.Runtime.InteropServices;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -75,7 +77,7 @@ namespace METAbolt
                 bkcolour = config.CurrentConfig.HeaderBackColour;   
             }
 
-            switch (headerfontstyle.ToLower())
+            switch (headerfontstyle.ToLower(CultureInfo.CurrentCulture))
             {
                 case "bold":
                     fontsy = FontStyle.Bold;
@@ -95,7 +97,7 @@ namespace METAbolt
                 textfontsize = config.CurrentConfig.TextFontSize;
             }
 
-            switch (textfontstyle.ToLower())
+            switch (textfontstyle.ToLower(CultureInfo.CurrentCulture))
             {
                 case "bold":
                     fontst = FontStyle.Bold;

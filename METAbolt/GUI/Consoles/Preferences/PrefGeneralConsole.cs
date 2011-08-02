@@ -37,6 +37,7 @@ using System.IO;
 //using System.Web;
 //using System.Web.UI;
 //using System.IO;
+using System.Globalization;
 
 
 namespace METAbolt
@@ -126,12 +127,12 @@ namespace METAbolt
             chkFriends.Checked = config.CurrentConfig.DisableFriendsNotifications; 
             chkAutoSit.Checked = config.CurrentConfig.AutoSit;
             tBar1.Value = config.CurrentConfig.RadarRange;
-            textBox1.Text = tBar1.Value.ToString();
+            textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
 
             tbar2.Maximum = tBar1.Value;
             tbar2.Value = config.CurrentConfig.ObjectRange;
 
-            textBox2.Text = tbar2.Value.ToString();
+            textBox2.Text = tbar2.Value.ToString(CultureInfo.CurrentCulture);
             textBox3.Text = config.CurrentConfig.GroupManPro;
             chkHide.Checked = config.CurrentConfig.HideMeta;
             chkDeclineInv.Checked = config.CurrentConfig.DeclineInv;
@@ -166,7 +167,7 @@ namespace METAbolt
 
                 FontStyle fontsy;
 
-                switch (headerfontstyle.ToLower())
+                switch (headerfontstyle.ToLower(CultureInfo.CurrentCulture))
                 {
                     case "bold":
                         fontsy = FontStyle.Bold;
@@ -180,7 +181,7 @@ namespace METAbolt
                 }
 
                 textBox7.Font = new Font(headerfont, headerfontsize, fontsy);
-                textBox7.Text = "size " + headerfontsize.ToString();
+                textBox7.Text = "size " + headerfontsize.ToString(CultureInfo.CurrentCulture);
             }
 
             if (config.CurrentConfig.TextFont != null)
@@ -191,7 +192,7 @@ namespace METAbolt
 
                 FontStyle fontst;
 
-                switch (textfontstyle.ToLower())
+                switch (textfontstyle.ToLower(CultureInfo.CurrentCulture))
                 {
                     case "bold":
                         fontst = FontStyle.Bold;
@@ -205,7 +206,7 @@ namespace METAbolt
                 }
 
                 textBox8.Font = new Font(textfont, textfontsize, fontst);
-                textBox8.Text = "size " + textfontsize.ToString();
+                textBox8.Text = "size " + textfontsize.ToString(CultureInfo.CurrentCulture);
             }
 
             checkBox6.Checked = config.CurrentConfig.PlayFriendOnline;
@@ -365,7 +366,7 @@ namespace METAbolt
 
         private void tBar1_Scroll(object sender, EventArgs e)
         {
-            textBox1.Text = tBar1.Value.ToString();
+            textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
             tbar2.Maximum = tBar1.Value;   
         }
 
@@ -421,7 +422,7 @@ namespace METAbolt
 
         private void tbar2_Scroll(object sender, EventArgs e)
         {
-            textBox2.Text = tbar2.Value.ToString();
+            textBox2.Text = tbar2.Value.ToString(CultureInfo.CurrentCulture);
         }
 
         private void groupBox4_Enter(object sender, EventArgs e)
@@ -640,12 +641,12 @@ namespace METAbolt
 
         private void tBar1_ValueChanged(object sender, EventArgs e)
         {
-            textBox1.Text = tBar1.Value.ToString();    
+            textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);    
         }
 
         private void tbar2_ValueChanged(object sender, EventArgs e)
         {
-            textBox2.Text = tbar2.Value.ToString();
+            textBox2.Text = tbar2.Value.ToString(CultureInfo.CurrentCulture);
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
@@ -672,9 +673,9 @@ namespace METAbolt
             {
                 fontDialog1.ShowDialog();
                 textBox7.Font = new Font(fontDialog1.Font.FontFamily, fontDialog1.Font.Size, fontDialog1.Font.Style);
-                textBox7.Text = "size " + fontDialog1.Font.Size.ToString();
+                textBox7.Text = "size " + fontDialog1.Font.Size.ToString(CultureInfo.CurrentCulture);
 
-                headerfont = fontDialog1.Font.FontFamily.Name.ToString();
+                headerfont = fontDialog1.Font.FontFamily.Name.ToString(CultureInfo.CurrentCulture);
                 headerfontstyle = fontDialog1.Font.Style.ToString();
                 headerfontsize = fontDialog1.Font.Size;  
             }
@@ -690,9 +691,9 @@ namespace METAbolt
             {
                 fontDialog1.ShowDialog();
                 textBox8.Font = new Font(fontDialog1.Font.FontFamily, fontDialog1.Font.Size, fontDialog1.Font.Style);
-                textBox8.Text = "size " + fontDialog1.Font.Size.ToString();
+                textBox8.Text = "size " + fontDialog1.Font.Size.ToString(CultureInfo.CurrentCulture);
 
-                textfont = fontDialog1.Font.FontFamily.Name.ToString();
+                textfont = fontDialog1.Font.FontFamily.Name.ToString(CultureInfo.CurrentCulture);
                 textfontstyle = fontDialog1.Font.Style.ToString();
                 textfontsize = fontDialog1.Font.Size;
             }

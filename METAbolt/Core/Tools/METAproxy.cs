@@ -44,7 +44,7 @@ namespace METAbolt
                 return;
             }
 
-            if (proxy_url == string.Empty || proxy_url == null)
+            if (string.IsNullOrEmpty(proxy_url))
             {
                 UseProxy = false;
                 Logger.Log("Proxy Error: A proxy URI has not been specified", Helpers.LogLevel.Warning);   
@@ -54,7 +54,7 @@ namespace METAbolt
             {
                 string purl = proxy_url.Trim();
 
-                if (!purl.StartsWith("http://"))
+                if (!purl.StartsWith("http://", StringComparison.CurrentCulture))
                 {
                     purl = @"http://" + purl; 
                 }

@@ -37,6 +37,7 @@ using Khendys.Controls;
 using System.Threading;
 using OpenMetaverse.Packets;
 using ExceptionReporting;
+using System.Globalization;
 
 
 namespace METAbolt
@@ -325,9 +326,9 @@ namespace METAbolt
                                     }
                                 }
                             }
-                            catch (Exception ex)
+                            catch
                             {
-                                string exp = ex.Message;
+                                ;
                             }
 
                             lvwList.Sort();
@@ -674,9 +675,9 @@ namespace METAbolt
                 frmGroupInfo frm = new frmGroupInfo(imgroup, instance);
                 frm.ShowDialog();
             }
-            catch (Exception exp)
+            catch
             {
-                string sexp = exp.Message; 
+                ; 
             }
         }
 
@@ -726,32 +727,32 @@ namespace METAbolt
 
         private void rtbIMText_LinkClicked_1(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText.StartsWith("http://slurl."))
+            if (e.LinkText.StartsWith("http://slurl.", StringComparison.CurrentCulture))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string sim = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 }
                 catch { ; }
 
             }
-            if (e.LinkText.StartsWith("http://maps.secondlife"))
+            if (e.LinkText.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string sim = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 }
@@ -763,18 +764,18 @@ namespace METAbolt
                 try
                 {
                     string[] split = e.LinkText.Split(new Char[] { '#' });
-                    string avname = split[0].ToString();
+                    string avname = split[0].ToString(CultureInfo.CurrentCulture);
                     split = e.LinkText.Split(new Char[] { ':' });
-                    string elink = split[2].ToString();
+                    string elink = split[2].ToString(CultureInfo.CurrentCulture);
                     split = elink.Split(new Char[] { '&' });
 
-                    UUID avid = (UUID)split[0].ToString();
+                    UUID avid = (UUID)split[0].ToString(CultureInfo.CurrentCulture);
 
                     (new frmProfile(instance, avname, avid)).Show();
                 }
                 catch { ; }
             }
-            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
+            else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("https://", StringComparison.CurrentCulture))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
             }

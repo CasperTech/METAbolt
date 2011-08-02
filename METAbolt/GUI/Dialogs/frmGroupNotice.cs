@@ -37,7 +37,9 @@ using SLNetworkComm;
 using OpenMetaverse.Imaging;
 using OpenMetaverse.Assets;
 using OpenMetaverse.StructuredData;
-using System.Media; 
+using System.Media;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -99,7 +101,7 @@ namespace METAbolt
 
             if (instance.State.Groups.ContainsKey(fromAgentID))
             {
-                string grp = instance.State.Groups[fromAgentID].Name.ToUpper();
+                string grp = instance.State.Groups[fromAgentID].Name.ToUpper(CultureInfo.CurrentCulture);
                 label2.Text = "Sent by: " + imsg.FromAgentName + ", " + grp;
             }
             else
@@ -270,7 +272,7 @@ namespace METAbolt
                 {
                     foreach (InventoryItem item in contents)
                     {
-                        if (item.Name.ToLower() == filename.ToLower())
+                        if (item.Name.ToLower(CultureInfo.CurrentCulture) == filename.ToLower(CultureInfo.CurrentCulture))
                         {
                             //UUID itemid = item.AssetUUID;
 

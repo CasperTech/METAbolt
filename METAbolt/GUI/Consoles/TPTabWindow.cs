@@ -32,6 +32,8 @@ using System.Windows.Forms;
 using OpenMetaverse;
 using SLNetworkComm;
 using System.Threading;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -144,26 +146,26 @@ namespace METAbolt
 
         private void rtbOfferMessage_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText.StartsWith("http://slurl."))
+            if (e.LinkText.StartsWith("http://slurl.", StringComparison.CurrentCulture))
             {
                 // Open up the TP form here
                 string[] split = e.LinkText.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
 
             }
-            if (e.LinkText.StartsWith("http://maps.secondlife"))
+            if (e.LinkText.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
             {
                 // Open up the TP form here
                 string[] split = e.LinkText.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
 
@@ -189,7 +191,7 @@ namespace METAbolt
             //    //frmGroupInfo frm = new frmGroupInfo(uuid, instance);
             //    //frm.Show();
             //}
-            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
+            else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("https://", StringComparison.CurrentCulture))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
             }

@@ -38,11 +38,11 @@ namespace METAbolt
         {
             ManagedImage mImg;
             Image image = null;
-            Boolean bRet;
+            //Boolean bRet;
 
             try
             {
-                bRet = OpenJPEG.DecodeToImage(j2cdata, out mImg,out image);
+                OpenJPEG.DecodeToImage(j2cdata, out mImg,out image);
             }
             catch
             {

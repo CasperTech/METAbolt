@@ -39,7 +39,7 @@ namespace METAbolt
         {
             string folder = instance.Config.CurrentConfig.LogDir;
 
-            if (!folder.EndsWith("\\"))
+            if (!folder.EndsWith("\\", StringComparison.CurrentCulture))
             {
                 folder += "\\";
             }

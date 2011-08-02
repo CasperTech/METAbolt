@@ -25,6 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Windows.Forms;
+using System.Globalization;
 
 
 namespace METAbolt
@@ -59,7 +60,7 @@ namespace METAbolt
             OrderOfSort = SortOrder.None;
 
             // Initialize the CaseInsensitiveComparer object
-            ObjectCompare = new CaseInsensitiveComparer();
+            ObjectCompare = new CaseInsensitiveComparer(CultureInfo.CurrentCulture);
         }
 
         /// <summary>

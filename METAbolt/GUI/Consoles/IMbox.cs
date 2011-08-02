@@ -11,6 +11,8 @@ using SLNetworkComm;
 using ExceptionReporting;
 using System.Threading;
 using PopupControl;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -65,12 +67,12 @@ namespace METAbolt
             label8.Visible = this.instance.Config.CurrentConfig.DisableGroupIMs;
             label9.Visible = this.instance.Config.CurrentConfig.ReplyAI;
 
-            if (label5.Text == string.Empty)
+            if (string.IsNullOrEmpty(label5.Text))
             {
                 label5.Text = "<empty>";
             }
 
-            if (label6.Text == string.Empty)
+            if (string.IsNullOrEmpty(label6.Text))
             {
                 label6.Text = "<empty>";
             }
@@ -113,12 +115,12 @@ namespace METAbolt
             label8.Visible = e.AppliedConfig.DisableGroupIMs;
             label9.Visible = e.AppliedConfig.ReplyAI;
 
-            if (label5.Text == string.Empty)
+            if (string.IsNullOrEmpty(label5.Text))
             {
                 label5.Text = "<empty>";
             }
 
-            if (label6.Text == string.Empty)
+            if (string.IsNullOrEmpty(label6.Text))
             {
                 label6.Text = "<empty>";
             }
@@ -129,9 +131,9 @@ namespace METAbolt
             if (instance.IsAvatarMuted(e.IM.FromAgentID))
                 return;
 
-            if (tabsconsole.tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
+            if (tabsconsole.tabs.ContainsKey(e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)))
             {
-                if (tabsconsole.tabs[e.IM.FromAgentName.ToLower()].Selected)
+                if (tabsconsole.tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)].Selected)
                 {
                     return;
                 }
@@ -140,7 +142,7 @@ namespace METAbolt
             switch (e.IM.Dialog)
             {
                 case InstantMessageDialog.MessageFromAgent:
-                    if (e.IM.FromAgentName.ToLower() == "second life")
+                    if (e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture) == "second life")
                     {
                         return;
                     }
@@ -188,7 +190,7 @@ namespace METAbolt
             }
             else
             {
-                string fullName = Convert.ToString(lbxIMs.Items[s]);
+                string fullName = Convert.ToString(lbxIMs.Items[s], CultureInfo.CurrentCulture);
                 string imcount = string.Empty;
                 int cnt = 0;
 
@@ -201,9 +203,9 @@ namespace METAbolt
                     string[] splits1 = imcount.Split(')');
 
                     imcount = splits1[0].ToString();
-                    cnt = Convert.ToInt32(imcount) + 1;
+                    cnt = Convert.ToInt32(imcount, CultureInfo.CurrentCulture) + 1;
 
-                    fullName = TabAgentName + " (" + cnt.ToString() + ")";
+                    fullName = TabAgentName + " (" + cnt.ToString(CultureInfo.CurrentCulture) + ")";
 
                     lbxIMs.BeginUpdate();
                     lbxIMs.Items[s] = fullName;
@@ -232,7 +234,7 @@ namespace METAbolt
                 tabsconsole.tabs["imbox"].Unhighlight();
             }
 
-            label3.Text = lbxIMs.Items.Count.ToString();
+            label3.Text = lbxIMs.Items.Count.ToString(CultureInfo.CurrentCulture);
 
             lbxIMs.SelectedIndex = -1;
         }

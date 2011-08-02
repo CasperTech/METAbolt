@@ -39,6 +39,7 @@ using METAbrain;
 using System.Timers;
 using System.IO;
 using ExceptionReporting;
+using System.Globalization;
  
 
 namespace METAbolt
@@ -241,7 +242,7 @@ namespace METAbolt
             }
             //GM new bit to show our Chair Announcing
             //not pretty but how else can we catch just the calling stuff?
-            else if (e.IM.FromAgentID == client.Self.AgentID && e.IM.Message.StartsWith(cp))
+            else if (e.IM.FromAgentID == client.Self.AgentID && e.IM.Message.StartsWith(cp, StringComparison.CurrentCulture))
             {
                 textBuffer.Add(e);
 
@@ -292,7 +293,7 @@ namespace METAbolt
             
             PrintIM(DateTime.Now, e.IM.FromAgentID.ToString(), e.IM.FromAgentName, e.IM.Message, e.IM.IMSessionID);
 
-            string msg = ">>> " + e.IM.FromAgentName + ": " + e.IM.Message;
+            //string msg = ">>> " + e.IM.FromAgentName + ": " + e.IM.Message;
 
             //// Handles twitter
             //if (TEnabled)
@@ -353,7 +354,7 @@ namespace METAbolt
 
             string folder = instance.Config.CurrentConfig.LogDir;
 
-            if (!folder.EndsWith("\\"))
+            if (!folder.EndsWith("\\", StringComparison.CurrentCulture))
             {
                 folder += "\\";
             }
@@ -385,9 +386,9 @@ namespace METAbolt
             {
                 exists = File.Exists(path);
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message; 
+                ; 
             }
 
             if (exists)
@@ -440,12 +441,12 @@ namespace METAbolt
                     {
                         textPrinter.SetSelectionForeColor(Color.Gray);
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        string exp = ex.Message;
+                        ;
                     }
 
-                    textPrinter.PrintText(timestamp.ToString("[HH:mm] "));
+                    textPrinter.PrintText(timestamp.ToString("[HH:mm] ", CultureInfo.CurrentCulture));
                 }
 
                 try
@@ -457,7 +458,7 @@ namespace METAbolt
                     string exp = ex.Message;
                 }
 
-                if (message.StartsWith("/me "))
+                if (message.StartsWith("/me ", StringComparison.CurrentCulture))
                 {
                     sb.Append(fromName);
                     sb.Append(message.Substring(3));
@@ -469,9 +470,9 @@ namespace METAbolt
 
                     string avid = "http://mbprofile:" + uuid.ToString();
 
-                    if (fromName.ToLower() != client.Self.Name.ToLower())
+                    if (fromName.ToLower(CultureInfo.CurrentCulture) != client.Self.Name.ToLower(CultureInfo.CurrentCulture))
                     {
-                        if (fromName != null && fromName != string.Empty)
+                        if (!string.IsNullOrEmpty(fromName))
                         {
                             textPrinter.PrintLink(fromName, avid + "&" + fromName);
                         }
@@ -486,7 +487,7 @@ namespace METAbolt
             }
             else
             {
-                if (message.StartsWith("/me "))
+                if (message.StartsWith("/me ", StringComparison.CurrentCulture))
                 {
                     sb.Append(message.Substring(3));
                 }
@@ -503,7 +504,7 @@ namespace METAbolt
 
                     if (lastspeaker != fromName)
                     {
-                        if (fromName.ToLower() != client.Self.Name.ToLower())
+                        if (fromName.ToLower(CultureInfo.CurrentCulture) != client.Self.Name.ToLower(CultureInfo.CurrentCulture))
                         {
                             textPrinter.PrintLinkHeader(fromName, avid + "&" + fromName);
                         }
@@ -539,7 +540,7 @@ namespace METAbolt
                     textPrinter.SetSelectionForeColor(Color.Gray);
                     textPrinter.SetOffset(6);
                     textPrinter.SetFontSize(6.5f);
-                    textPrinter.PrintDate(timestamp.ToString("[HH:mm] "));
+                    textPrinter.PrintDate(timestamp.ToString("[HH:mm] ", CultureInfo.CurrentCulture));
                     textPrinter.SetFontSize(8.5f);
                     textPrinter.SetOffset(0);
                 }

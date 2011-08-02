@@ -34,6 +34,8 @@ using System.Timers;
 using SLNetworkComm;
 using OpenMetaverse;
 using System.Collections;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -154,7 +156,7 @@ namespace METAbolt
 
             string sanswer = answer.ProcessInput(emt.IM.Message, "");
 
-            if (sanswer == string.Empty)
+            if (string.IsNullOrEmpty(sanswer))
             {
                 string imsg = emt.IM.Message;
                 imsg = answer.ProcessSmileys(imsg);
@@ -172,13 +174,13 @@ namespace METAbolt
         {
             string reply = GetResp(msg, user);
 
-            if (reply == string.Empty || reply == null )
+            if (string.IsNullOrEmpty(reply))
             {
                 if (instance.Config.CurrentConfig.ReplyAI)
                 {
                     reply = instance.Config.CurrentConfig.ReplyText;
 
-                    if (reply == null || reply == string.Empty)
+                    if (string.IsNullOrEmpty(reply))
                     {
                         reply = "I am sorry but I didn't understand what you said or I haven't been taught a response for it. Can you try again, making sure your sentences are short and clear.";
                     }
@@ -204,7 +206,7 @@ namespace METAbolt
 
                 if (reply.Length > 5)
                 {
-                    if (reply.Substring(0, 5).ToLower() == "error")
+                    if (reply.Substring(0, 5).ToLower(CultureInfo.CurrentCulture) == "error")
                     {
                         return string.Empty;
                     }

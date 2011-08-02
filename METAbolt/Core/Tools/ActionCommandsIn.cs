@@ -33,7 +33,9 @@ using OpenMetaverse;
 using System.Security.Cryptography;
 using MD5library;
 using System.Threading;
-using System.Runtime.InteropServices;  
+using System.Runtime.InteropServices;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -162,11 +164,11 @@ namespace METAbolt
                 case "TP":
                     // Format: cmd identifier|password|command type|SIM|coord x|coord y|coord z
                     string sim = sGrp[3].Trim();
-                    float x = float.Parse(sGrp[4].Trim());
-                    float y = float.Parse(sGrp[5].Trim());
-                    float z = float.Parse(sGrp[6].Trim());
+                    float x = float.Parse(sGrp[4].Trim(), CultureInfo.CurrentCulture);
+                    float y = float.Parse(sGrp[5].Trim(), CultureInfo.CurrentCulture);
+                    float z = float.Parse(sGrp[6].Trim(), CultureInfo.CurrentCulture);
 
-                    if (sim != string.Empty)
+                    if (!string.IsNullOrEmpty(sim))
                     {
                         netcom.Teleport(sim, new Vector3(x, y, z));
                     }
@@ -178,9 +180,9 @@ namespace METAbolt
 
                 case "SAY":
                     // Format: cmd identifier|password|command type|channel|message|message type
-                    int channel = Convert.ToInt32(sGrp[3].Trim());
+                    int channel = Convert.ToInt32(sGrp[3].Trim(), CultureInfo.CurrentCulture);
                     string msgtosay = sGrp[4].Trim();
-                    string ctypein = sGrp[5].Trim().ToLower();
+                    string ctypein = sGrp[5].Trim().ToLower(CultureInfo.CurrentCulture);
                     ChatType ctype = ChatType.Normal;
 
                     switch (ctypein)

@@ -40,7 +40,9 @@ using OpenMetaverse.Imaging;
 using PopupControl;
 using OpenMetaverse.Assets;
 using System.Threading;
-using ExceptionReporting; 
+using ExceptionReporting;
+using System.Globalization;
+
 
 /* Some of this code has been borrowed from the libsecondlife GUI */
 
@@ -351,10 +353,10 @@ namespace METAbolt
 
                 g.Dispose();
 
-                string strInfo = string.Format("Total Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
+                string strInfo = string.Format(CultureInfo.CurrentCulture,"Total Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
                 lblSimData.Text = strInfo;
 
-                strInfo = string.Format("{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
+                strInfo = string.Format(CultureInfo.CurrentCulture,"{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
                                                                             Math.Round(myPos.X, 0),
                                                                             Math.Round(myPos.Y, 0),
                                                                             Math.Round(myPos.Z, 0));
@@ -540,7 +542,7 @@ namespace METAbolt
                 if (!showing)
                 {
                     UUID akey = (UUID)CurrentLoc.LocationName;
-                    string apstn = "\nCoords.: " + CurrentLoc.Position.X.ToString() + "/" + CurrentLoc.Position.Y.ToString() + "/" + CurrentLoc.Position.Z.ToString();
+                    string apstn = "\nCoords.: " + CurrentLoc.Position.X.ToString(CultureInfo.CurrentCulture) + "/" + CurrentLoc.Position.Y.ToString(CultureInfo.CurrentCulture) + "/" + CurrentLoc.Position.Z.ToString(CultureInfo.CurrentCulture);
 
                     world.Cursor = Cursors.Hand;
                     string anme = string.Empty;
@@ -781,7 +783,7 @@ namespace METAbolt
 
             pnlTeleporting.Visible = true;
 
-            if (selregion.RegionHandle == 0 && txtRegion.Text != string.Empty)
+            if (selregion.RegionHandle == 0 && !string.IsNullOrEmpty(txtRegion.Text))
             {
                 //RefreshControls();
                 netcom.Teleport(txtRegion.Text.Trim(), new Vector3((float)nudX1.Value, (float)nudY1.Value, (float)nudZ1.Value));
@@ -868,7 +870,7 @@ namespace METAbolt
                     peeps = " people";
                 }
 
-                string s = System.Convert.ToString(itemToDraw.Region.Agents);
+                string s = System.Convert.ToString(itemToDraw.Region.Agents, CultureInfo.CurrentCulture);
 
                 e.Graphics.DrawString(s + peeps, e.Font, textBrush, new PointF(leftTextMargin + stringSize.Width + 6.0f, topTextMargin));
             }

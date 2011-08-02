@@ -88,9 +88,9 @@ namespace METAbolt
                 instance.TabConsole.GetTab("chat").Select();
                 instance.TabConsole.GetTab(targetUUID.ToString()).Close();
             }
-            catch (Exception exp)
+            catch
             {
-                string sexp = exp.Message;
+                ;
             }
         }
 
@@ -117,9 +117,9 @@ namespace METAbolt
                 client.Self.InstantMessage(client.Self.Name, targetUUID, string.Empty, isession, InstantMessageDialog.GroupInvitationAccept, InstantMessageOnline.Offline, instance.SIMsittingPos(), UUID.Zero, new byte[0]); // Accept Group Invitation (Join Group)
                 CloseTab();
             }
-            catch (Exception exp)
+            catch
             {
-                string sex = exp.Message; 
+                ; 
             }
         }
 

@@ -34,6 +34,8 @@ using System.Windows.Forms;
 using OpenMetaverse;
 using OpenMetaverse.Packets;
 using SLNetworkComm;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -77,7 +79,7 @@ namespace METAbolt
 
             for (int i = 0; i < count; i++)
             {
-                cboReply.Items.Add(i.ToString() + "-" + btns[i]);     
+                cboReply.Items.Add(i.ToString(CultureInfo.CurrentCulture) + "-" + btns[i]);     
             }
 
             if (this.instance.DialogCount == 7)

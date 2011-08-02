@@ -36,13 +36,13 @@ namespace METAbolt
 {
     public partial class CustomToolTip : UserControl
     {
-        private METAboltInstance instance;
+        //private METAboltInstance instance;
 
         public CustomToolTip(METAboltInstance instance, string text)
         {
             InitializeComponent();
 
-            this.instance = instance; 
+            //this.instance = instance; 
 
             label1.Text = text;  
         }

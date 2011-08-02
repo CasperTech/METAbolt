@@ -36,6 +36,8 @@ using OpenMetaverse;
 using System.Threading;
 using System.IO;
 using ExceptionReporting;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -274,12 +276,12 @@ namespace METAbolt
                     txtGroupOwner.Text = "";   //this.instance.MainForm.AboutlandOwneridname; 
                 }
 
-                txtClaimDate.Text = parcel.ClaimDate.ToString();
-                txtArea.Text = parcel.Area.ToString() + "sq. m.";
+                txtClaimDate.Text = parcel.ClaimDate.ToString(CultureInfo.CurrentCulture);
+                txtArea.Text = parcel.Area.ToString(CultureInfo.CurrentCulture) + "sq. m.";
 
                 if (this.instance.MainForm.Aboutlandforsale)
                 {
-                    txtForsale.Text = "L$ " + parcel.SalePrice.ToString();
+                    txtForsale.Text = "L$ " + parcel.SalePrice.ToString(CultureInfo.CurrentCulture);
                     btnBuy.Visible = true; 
                 }
                 else
@@ -289,20 +291,20 @@ namespace METAbolt
                 }
 
                 // Obects tab
-                txtSimprim.Text = parcel.SimWideTotalPrims.ToString() + " out of " + parcel.SimWideMaxPrims.ToString() + " (" + (parcel.SimWideMaxPrims - parcel.SimWideTotalPrims).ToString() + " available)";
-                txtParcelprim.Text = Math.Round(parcel.MaxPrims * parcel.ParcelPrimBonus).ToString();
-                txtPrimonparcel.Text = parcel.TotalPrims.ToString();
-                txtPrimOwnedowner.Text = parcel.OwnerPrims.ToString();
-                txtPrimsettogroup.Text = parcel.GroupPrims.ToString();
-                txtPrimownedothers.Text = parcel.OtherPrims.ToString();
+                txtSimprim.Text = parcel.SimWideTotalPrims.ToString(CultureInfo.CurrentCulture) + " out of " + parcel.SimWideMaxPrims.ToString(CultureInfo.CurrentCulture) + " (" + (parcel.SimWideMaxPrims - parcel.SimWideTotalPrims).ToString(CultureInfo.CurrentCulture) + " available)";
+                txtParcelprim.Text = Math.Round(parcel.MaxPrims * parcel.ParcelPrimBonus).ToString(CultureInfo.CurrentCulture);
+                txtPrimonparcel.Text = parcel.TotalPrims.ToString(CultureInfo.CurrentCulture);
+                txtPrimOwnedowner.Text = parcel.OwnerPrims.ToString(CultureInfo.CurrentCulture);
+                txtPrimsettogroup.Text = parcel.GroupPrims.ToString(CultureInfo.CurrentCulture);
+                txtPrimownedothers.Text = parcel.OtherPrims.ToString(CultureInfo.CurrentCulture);
                 txtPrimsel.Text = "";  // parcel. .SelectedPrims.ToString();
-                txtPrimreturn.Text = parcel.OtherCleanTime.ToString();
-                lblTraffic.Text = parcel.Dwell.ToString();
+                txtPrimreturn.Text = parcel.OtherCleanTime.ToString(CultureInfo.CurrentCulture);
+                lblTraffic.Text = parcel.Dwell.ToString(CultureInfo.CurrentCulture);
                 txtMusic.Text = parcel.MusicURL;
 
                 //pictureBox1.Image = OpenJPEGNet.OpenJPEG.DecodeToImage(parcel.Bitmap);  
 
-                if (parcel.ParcelPrimBonus != 1) txtPrimBonus.Text = "Region Object Bonus Factor: " + parcel.ParcelPrimBonus.ToString();
+                if (parcel.ParcelPrimBonus != 1) txtPrimBonus.Text = "Region Object Bonus Factor: " + parcel.ParcelPrimBonus.ToString(CultureInfo.CurrentCulture);
                 else txtPrimBonus.Text = "";
                 // Options tab
                 if (this.instance.MainForm.AboutlandCreateObj) cbcreater.Checked = false;
@@ -408,7 +410,7 @@ namespace METAbolt
                     {
                         ListViewItem item = lvwPrimOwners.Items.Add(primOwners[i].OwnerID.ToString());
                         item.Tag = primOwners[i].OwnerID;
-                        item.SubItems.Add(primOwners[i].Count.ToString());
+                        item.SubItems.Add(primOwners[i].Count.ToString(CultureInfo.CurrentCulture));
 
                         if (!instance.avnames.ContainsKey(primOwners[i].OwnerID))
                         {
@@ -497,9 +499,9 @@ namespace METAbolt
                 {
                     foundItem.Text = av.Value;
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message;
+                    ;
                 }
             }
 
@@ -950,7 +952,7 @@ namespace METAbolt
 
                             string parcelname = client.Network.CurrentSim.ToString() + "/" + txtParcelname.Text.Replace(",", " ");
 
-                            SW.WriteLine("Land: " + parcelname + ",List Type: Blacklist,Ttl avatars: " + lvwBlackList.Items.Count.ToString());
+                            SW.WriteLine("Land: " + parcelname + ",List Type: Blacklist,Ttl avatars: " + lvwBlackList.Items.Count.ToString(CultureInfo.CurrentCulture));
                             SW.WriteLine(",,");
                             SW.WriteLine("Name,UUID,");
 

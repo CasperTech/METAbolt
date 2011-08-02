@@ -35,6 +35,8 @@ using System.Windows.Forms;
 using SLNetworkComm;
 using OpenMetaverse;
 using System.Threading;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -138,9 +140,9 @@ namespace METAbolt
                                     item.RequestProperties();
                                 }
                             }
-                            catch (Exception exc)
+                            catch
                             {
-                                string exp = exc.Message;
+                                ;
                             }
                         }
 
@@ -203,9 +205,9 @@ namespace METAbolt
                         item.RequestProperties();
                     }
                 }
-                catch (Exception exc)
+                catch
                 {
-                    string exp = exc.Message;
+                    ;
                 }
             }
 
@@ -302,7 +304,7 @@ namespace METAbolt
                     lbxPrims.Items.Add(item);
                     lbxPrims.EndUpdate();
 
-                    label1.Text = "Ttl: " + lbxPrims.Items.Count.ToString() + " attachments";
+                    label1.Text = "Ttl: " + lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " attachments";
                 }
             })); 
         }
@@ -470,9 +472,9 @@ namespace METAbolt
                     gitem.PropertiesReceived += new EventHandler(gitem_PropertiesReceived);
                     gitem.RequestProperties();
                 }
-                catch (Exception exc)
+                catch
                 {
-                    string exp = exc.Message;
+                    ;
                 }
             }
 
@@ -487,7 +489,7 @@ namespace METAbolt
 
                 lbxPrimGroup.Items.Add(item);
 
-                label2.Text = "Ttl: " + lbxPrimGroup.Items.Count.ToString() + " linked objects";
+                label2.Text = "Ttl: " + lbxPrimGroup.Items.Count.ToString(CultureInfo.CurrentCulture) + " linked objects";
             }));
         }
 

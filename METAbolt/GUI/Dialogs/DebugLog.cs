@@ -38,6 +38,8 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.Timers;
 using ExceptionReporting;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -404,24 +406,24 @@ namespace METAbolt
                         //double chgout = Math.Round(ins - Convert.ToDouble(pastval1), 2);   // Math.Round(ins / Convert.ToDouble(cntr), 2);
                         //double chgin = Math.Round(iny - Convert.ToDouble(pastval2), 2);    //Math.Round(iny / Convert.ToDouble(cntr), 2);
 
-                        label2.Text = "out: " + ins.ToString("#0.00") + " kb";   // (" + chgout.ToString() + " kb/s)";   // networkTraffic.GetBytesSent().ToString();
-                        label3.Text = "in: " + iny.ToString("#0.00") + " kb";   // +chgin.ToString() + " kb/s)";    //networkTraffic.GetBytesReceived().ToString();
+                        label2.Text = "out: " + ins.ToString("#0.00", CultureInfo.CurrentCulture) + " kb";   // (" + chgout.ToString() + " kb/s)";   // networkTraffic.GetBytesSent().ToString();
+                        label3.Text = "in: " + iny.ToString("#0.00", CultureInfo.CurrentCulture) + " kb";   // +chgin.ToString() + " kb/s)";    //networkTraffic.GetBytesReceived().ToString();
 
                         double insm = ins * 0.0009765625;
                         double inym = iny * 0.0009765625;
 
-                        label5.Text = "out: " + insm.ToString("#0.00") + " mb";
-                        label6.Text = "in: " + inym.ToString("#0.00") + " mb";
+                        label5.Text = "out: " + insm.ToString("#0.00", CultureInfo.CurrentCulture) + " mb";
+                        label6.Text = "in: " + inym.ToString("#0.00", CultureInfo.CurrentCulture) + " mb";
 
                         double insg = insm * 0.0009765625;
                         double inyg = inym * 0.0009765625;
 
-                        label7.Text = "out: " + insg.ToString("#0.00") + " gb";
-                        label8.Text = "in: " + inyg.ToString("#0.00") + " gb";
+                        label7.Text = "out: " + insg.ToString("#0.00", CultureInfo.CurrentCulture) + " gb";
+                        label8.Text = "in: " + inyg.ToString("#0.00", CultureInfo.CurrentCulture) + " gb";
 
                         TimeSpan ts = TimeSpan.FromSeconds(Convert.ToInt32(cntr));
 
-                        label10.Text = "Elapsed time: " + Convert.ToInt32(ts.Hours).ToString("00") + ":" + Convert.ToInt32(ts.Minutes).ToString("00") + ":" + Convert.ToInt32(ts.Seconds).ToString("00");
+                        label10.Text = "Elapsed time: " + Convert.ToInt32(ts.Hours, CultureInfo.CurrentCulture).ToString("00", CultureInfo.CurrentCulture) + ":" + Convert.ToInt32(ts.Minutes, CultureInfo.CurrentCulture).ToString("00", CultureInfo.CurrentCulture) + ":" + Convert.ToInt32(ts.Seconds, CultureInfo.CurrentCulture).ToString("00", CultureInfo.CurrentCulture);
 
                         cntr += 1;
                         PlotGraph();
@@ -462,22 +464,22 @@ namespace METAbolt
 
         private void PlotGraph()
         {
-            float currVal = Convert.ToSingle(ins) - pastval1;
+            float currVal = Convert.ToSingle(ins, CultureInfo.CurrentCulture) - pastval1;
 
-            double chgout = Math.Round(ins - Convert.ToDouble(pastval1), 2);
-            label11.Text = "Out (" + chgout.ToString() + " kb/s)";
-            pastval1 = Convert.ToSingle(ins);
+            double chgout = Math.Round(ins - Convert.ToDouble(pastval1, CultureInfo.CurrentCulture), 2);
+            label11.Text = "Out (" + chgout.ToString(CultureInfo.CurrentCulture) + " kb/s)";
+            pastval1 = Convert.ToSingle(ins, CultureInfo.CurrentCulture);
 
-            double valg = Convert.ToDouble(currVal) * 100.0d;
+            double valg = Convert.ToDouble(currVal, CultureInfo.CurrentCulture) * 100.0d;
             dataChart2.UpdateChart(valg);
 
-            currVal = Convert.ToSingle(iny) - pastval2;
+            currVal = Convert.ToSingle(iny, CultureInfo.CurrentCulture) - pastval2;
 
-            double chgin = Math.Round(iny - Convert.ToDouble(pastval2), 2);
-            label9.Text = "In: (" + chgin.ToString() + " kb/s)";
-            pastval2 = Convert.ToSingle(iny);
+            double chgin = Math.Round(iny - Convert.ToDouble(pastval2, CultureInfo.CurrentCulture), 2);
+            label9.Text = "In: (" + chgin.ToString(CultureInfo.CurrentCulture) + " kb/s)";
+            pastval2 = Convert.ToSingle(iny, CultureInfo.CurrentCulture);
 
-            valg = Convert.ToDouble(currVal) * 100.0d;
+            valg = Convert.ToDouble(currVal, CultureInfo.CurrentCulture) * 100.0d;
             dataChartIn.UpdateChart(valg);
         }
 
@@ -547,7 +549,7 @@ namespace METAbolt
                             if (lval.Contains("ms"))
                             {
                                 string valg = lval.Substring(0, lval.Length - 2);
-                                double dvalg = Convert.ToDouble(valg);
+                                double dvalg = Convert.ToDouble(valg, CultureInfo.CurrentCulture);
 
                                 dataChart3.UpdateChart(dvalg);
                             }

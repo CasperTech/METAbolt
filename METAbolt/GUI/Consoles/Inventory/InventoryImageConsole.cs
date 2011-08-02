@@ -98,7 +98,7 @@ namespace METAbolt
 
             //System.Drawing.Image decodedImage = ImageHelper.Decode(image.AssetData);
             //System.Drawing.Image decodedImage = OpenJPEGNet.OpenJPEG.DecodeToImage(image.AssetData);
-            Boolean iret = OpenJPEG.DecodeToImage(texture.AssetData, out mImg, out sImage);
+            OpenJPEG.DecodeToImage(texture.AssetData, out mImg, out sImage);
             System.Drawing.Image decodedImage = sImage;
 
             if (decodedImage == null)

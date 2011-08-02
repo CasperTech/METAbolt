@@ -38,6 +38,8 @@ using System.Diagnostics;
 using System.Linq;
 using ExceptionReporting;
 using System.Threading;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -194,7 +196,7 @@ namespace METAbolt
                 ulist += s + "|";
             }
 
-            if (ulist.EndsWith("|"))
+            if (ulist.EndsWith("|", StringComparison.CurrentCulture))
             {
                 ulist = ulist.Substring(0, ulist.Length - 1);   
             }
@@ -261,7 +263,7 @@ namespace METAbolt
             //usernlist
             string ulist = instance.Config.CurrentConfig.UserNameList;
 
-            if (ulist != string.Empty)
+            if (!string.IsNullOrEmpty(ulist))
             {
                 string[] llist = ulist.Split('|');
 
@@ -277,7 +279,7 @@ namespace METAbolt
                     {
                         epwd = llist1[1];
 
-                        if (epwd != string.Empty)
+                        if (!string.IsNullOrEmpty(epwd))
                         {
                             try
                             {
@@ -379,7 +381,7 @@ namespace METAbolt
                             }
                         }
 
-                        string epwd1 = txtPassword.Text;
+                        //string epwd1 = txtPassword.Text;
 
                         if (chkPWD.Checked)
                         {
@@ -495,7 +497,7 @@ namespace METAbolt
 
             string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            if (lkey != string.Empty)
+            if (!string.IsNullOrEmpty(lkey))
             {
                 METAMD5 md5 = new METAMD5();
 
@@ -531,7 +533,7 @@ namespace METAbolt
         {
             string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            if (lkey != string.Empty)
+            if (!string.IsNullOrEmpty(lkey))
             {
                 METAMD5 md5 = new METAMD5();
 
@@ -554,7 +556,7 @@ namespace METAbolt
 
         private void webBrowser_NewWindow(object sender, CancelEventArgs e)
         {
-            if (clickedurl == string.Empty || clickedurl == null)
+            if (string.IsNullOrEmpty(clickedurl))
             {
                 HtmlElement link = webBrowser.Document.ActiveElement;
                 clickedurl = link.GetAttribute("href");
@@ -562,27 +564,27 @@ namespace METAbolt
 
             e.Cancel = true;
 
-            if (clickedurl.StartsWith("http://slurl."))
+            if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCulture))
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 clickedurl = string.Empty;
                 return;
             }
-            if (clickedurl.StartsWith("http://maps.secondlife"))
+            if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString());
-                double y = Convert.ToDouble(split[6].ToString());
-                double z = Convert.ToDouble(split[7].ToString());
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 clickedurl = string.Empty;
@@ -626,7 +628,7 @@ namespace METAbolt
         {
             try
             {
-                if (txtLastName.Text == string.Empty)
+                if (string.IsNullOrEmpty(txtLastName.Text))
                 {
                     txtLastName.Text = "Resident";
                 }
@@ -692,9 +694,9 @@ namespace METAbolt
                             // Check for http beginning
                             string hhder = string.Empty;
 
-                            if (!txtCustomLoginUri.Text.StartsWith("http://"))
+                            if (!txtCustomLoginUri.Text.StartsWith("http://", StringComparison.CurrentCulture))
                             {
-                                if (!txtCustomLoginUri.Text.StartsWith("https://"))
+                                if (!txtCustomLoginUri.Text.StartsWith("https://", StringComparison.CurrentCulture))
                                 {
                                     hhder = "http://";
                                 }

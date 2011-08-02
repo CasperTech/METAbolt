@@ -33,6 +33,8 @@ using System.Text;
 using System.Windows.Forms;
 using SLNetworkComm;
 using OpenMetaverse;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -323,7 +325,7 @@ namespace METAbolt
 
             pb1.Visible = false;
             label1.Visible = true;
-            label1.Text = "SEND/GIVE COMPLETED TO " + c.ToString() + " AVATARS.";  
+            label1.Text = "SEND/GIVE COMPLETED TO " + c.ToString(CultureInfo.CurrentCulture) + " AVATARS.";  
         }
 
         private void StartFindingGroups()

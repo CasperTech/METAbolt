@@ -33,6 +33,8 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using SLNetworkComm;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -124,12 +126,12 @@ namespace METAbolt
                     }
                     else
                     {
-                        fullName += " (" + icnt.ToString() + ")"; 
+                        fullName += " (" + icnt.ToString(CultureInfo.CurrentCulture) + ")"; 
                         findPlacesResults.Add(fullName, places);
                     }
 
                     ListViewItem item = lvwFindPlaces.Items.Add(fullName);
-                    item.SubItems.Add(places.Dwell.ToString());   // + "-" + events.Time);
+                    item.SubItems.Add(places.Dwell.ToString(CultureInfo.CurrentCulture));   // + "-" + events.Time);
                 }
                 catch
                 {
@@ -160,13 +162,13 @@ namespace METAbolt
 
             if (place.SalePrice > 0)
             {
-                sForSale = "For Sale for L$" + place.SalePrice.ToString();   
+                sForSale = "For Sale for L$" + place.SalePrice.ToString(CultureInfo.CurrentCulture);   
             }
 
             txtName.Text = place.Name;
 
             txtDescription.Text = place.Description;
-            txtInformation.Text = "Traffic: " + place.Dwell + " Area: " + place.ActualArea.ToString() + " sq. m. " + sForSale;
+            txtInformation.Text = "Traffic: " + place.Dwell + " Area: " + place.ActualArea.ToString(CultureInfo.CurrentCulture) + " sq. m. " + sForSale;
 
 
             // Convert Global pos to local
@@ -179,9 +181,9 @@ namespace METAbolt
             fX = locX1;
             fY = locY1;
             fZ = (float)place.GlobalZ;
-            sSIM = place.SimName;  
+            sSIM = place.SimName;
 
-            txtLocation.Text = place.SimName.ToString() + " " + fX.ToString() + ", " + fY.ToString() + ", " + fZ.ToString();
+            txtLocation.Text = place.SimName.ToString(CultureInfo.CurrentCulture) + " " + fX.ToString(CultureInfo.CurrentCulture) + ", " + fY.ToString(CultureInfo.CurrentCulture) + ", " + fZ.ToString(CultureInfo.CurrentCulture);
         }
 
         public void ClearResults()

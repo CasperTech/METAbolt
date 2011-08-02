@@ -37,6 +37,8 @@ using OpenMetaverse.Assets;
 using ExceptionReporting;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -170,10 +172,10 @@ namespace METAbolt
         {
             this.BeginInvoke(new MethodInvoker(delegate()
             {
-                string old = e.OldDisplayName;
+                //string old = e.OldDisplayName;
                 string newname = e.DisplayName.DisplayName;
 
-                if (!newname.ToLower().Contains("resident") && !newname.ToLower().Contains(" "))
+                if (!newname.ToLower(CultureInfo.CurrentCulture).Contains("resident") && !newname.ToLower(CultureInfo.CurrentCulture).Contains(" "))
                 {
                     txtDisplayName.Text = newname;
                     button7.Enabled = false;
@@ -285,7 +287,7 @@ namespace METAbolt
                 posY = (int)e.Parcel.GlobalY % 256;
                 posZ = (int)e.Parcel.GlobalZ % 256;
 
-                txtSlurl.Text = parcelname + ", " + simname + "(" + posX.ToString() + "," + posY.ToString() + "," + posZ.ToString() + ")";     
+                txtSlurl.Text = parcelname + ", " + simname + "(" + posX.ToString(CultureInfo.CurrentCulture) + "," + posY.ToString(CultureInfo.CurrentCulture) + "," + posZ.ToString(CultureInfo.CurrentCulture) + ")";     
             })); 
         }
 
@@ -348,7 +350,7 @@ namespace METAbolt
             {
                 if (texture.AssetID != PickImageID) return;
 
-                Boolean iret1 = OpenJPEG.DecodeToImage(texture.AssetData, out mImg, out sImage);
+                OpenJPEG.DecodeToImage(texture.AssetData, out mImg, out sImage);
                 System.Drawing.Image decodedImage1 = sImage;
 
                 if (decodedImage1 != null)
@@ -366,7 +368,7 @@ namespace METAbolt
             {
                 //System.Drawing.Image decodedImage = ImageHelper.Decode(image.AssetData);
                 //System.Drawing.Image decodedImage = OpenJPEGNet.OpenJPEG.DecodeToImage(image.AssetData);
-                Boolean iret = OpenJPEG.DecodeToImage(texture.AssetData, out mImg, out sImage);
+                OpenJPEG.DecodeToImage(texture.AssetData, out mImg, out sImage);
                 System.Drawing.Image decodedImage = sImage;
 
                 if (decodedImage == null)
@@ -511,7 +513,7 @@ namespace METAbolt
                     }
                 }
 
-                if (fullName.EndsWith("Linden")) rtbAccountInfo.AppendText("Linden Lab Employee\n");
+                if (fullName.EndsWith("Linden", StringComparison.CurrentCulture)) rtbAccountInfo.AppendText("Linden Lab Employee\n");
                 else rtbAccountInfo.AppendText("Resident\n");
 
                 if (properties.Identified && !properties.Transacted) rtbAccountInfo.AppendText("Payment Info On File\n");
@@ -532,7 +534,7 @@ namespace METAbolt
             }
             catch (Exception exp)
             {
-                OpenMetaverse.Logger.Log(String.Format("frmProfile.SetProfileProperties: {0}", exp.ToString()), Helpers.LogLevel.Error);
+                OpenMetaverse.Logger.Log(String.Format(CultureInfo.CurrentCulture,"frmProfile.SetProfileProperties: {0}", exp.ToString()), Helpers.LogLevel.Error);
             }
         }
 
@@ -564,7 +566,7 @@ namespace METAbolt
             {
                 this.BeginInvoke(new MethodInvoker(delegate()
                 {
-                    if (!names[0].DisplayName.ToLower().Contains("resident") && !names[0].DisplayName.ToLower().Contains(" "))
+                    if (!names[0].DisplayName.ToLower(CultureInfo.CurrentCulture).Contains("resident") && !names[0].DisplayName.ToLower(CultureInfo.CurrentCulture).Contains(" "))
                     {
                         txtDisplayName.Text = olddisplayname = names[0].DisplayName;
                     }
@@ -592,7 +594,7 @@ namespace METAbolt
             web.Dock = DockStyle.Fill;
 
             string url = txtWebURL.Text;
-            if (!url.StartsWith("http") && !url.StartsWith("https"))
+            if (!url.StartsWith("http", StringComparison.CurrentCulture) && !url.StartsWith("https", StringComparison.CurrentCulture))
             {
                 url = "http://" + url;
             }
@@ -604,7 +606,7 @@ namespace METAbolt
 
         private void ProcessWebURL(string url)
         {
-            if (url.StartsWith("http://") || url.StartsWith("ftp://"))
+            if (url.StartsWith("http://", StringComparison.CurrentCulture) || url.StartsWith("ftp://", StringComparison.CurrentCulture))
                 System.Diagnostics.Process.Start(url);
             else
                 System.Diagnostics.Process.Start("http://" + url);
@@ -1107,9 +1109,9 @@ namespace METAbolt
                 frmGroupInfo frm = new frmGroupInfo(group, instance);
                 frm.ShowDialog();
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message; 
+                ; 
             }
         }
 
@@ -1163,7 +1165,7 @@ namespace METAbolt
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (simname != string.Empty)
+            if (!string.IsNullOrEmpty(simname))
             {
                 Vector3 pos = new Vector3();
                 pos.X = (float)posX;
@@ -1225,7 +1227,7 @@ namespace METAbolt
             {
                 string reason = e.Reason;
 
-                if (reason.Trim().ToLower() == "bad request")
+                if (reason.Trim().ToLower(CultureInfo.CurrentCulture) == "bad request")
                 {
                     MessageBox.Show("Display name could not be set.\nYou can only change your display name once per week!", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

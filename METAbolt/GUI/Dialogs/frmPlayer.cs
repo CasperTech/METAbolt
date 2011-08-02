@@ -132,7 +132,7 @@ namespace METAbolt
                 if (currenttrack.Contains("("))
                 {
                     // get them out
-                    int pos = currenttrack.IndexOf("(");
+                    int pos = currenttrack.IndexOf("(", StringComparison.CurrentCulture);
                     currenttrack = currenttrack.Substring(0, pos).Trim();
                 }
 
@@ -169,7 +169,7 @@ namespace METAbolt
                     list.Text = timestamp.ToShortTimeString() + ": " + track;
                     list.Tag = dets;
 
-                    if (dets != String.Empty && dets != null)
+                    if (!string.IsNullOrEmpty(dets))
                     {
                         list.ForeColor = Color.Cyan;
                     }
@@ -221,7 +221,7 @@ namespace METAbolt
             //LyricsResult result;
             //bool sexists = true;   // false;
 
-            if (currentartist == string.Empty || currenttrack == string.Empty)
+            if (string.IsNullOrEmpty(currentartist) || string.IsNullOrEmpty(currenttrack))
                 return;
 
             if (currentlyrics == currenttrack)
@@ -396,7 +396,7 @@ namespace METAbolt
                                     iurl = item.SmallImage.URL;
                                 }
 
-                                string asin = item.ASIN;
+                                //string asin = item.ASIN;
                                 dets = HttpUtility.HtmlDecode(item.DetailPageURL);
                                 dets = HttpUtility.UrlDecode(dets);
                                 dets = dets.Trim();
@@ -413,7 +413,7 @@ namespace METAbolt
                                 //    label4.Text = "Rank: " + item.SalesRank;
                                 //}
 
-                                if (dets != String.Empty && dets != null)
+                                if (!string.IsNullOrEmpty(dets))
                                 {
                                     //dets = dets.Replace(".com", ".co.uk");
                                     //dets = dets.Replace("&tag=ws", "&tag=" + amtag);
@@ -424,7 +424,7 @@ namespace METAbolt
                                     pictureBox2.Visible = false;
                                 }
 
-                                if (iurl != string.Empty)
+                                if (!string.IsNullOrEmpty(iurl))
                                 {
                                     pictureBox1.Image = LoadPicture(item.SmallImage.URL);
                                     pictureBox1.Refresh();
@@ -447,9 +447,9 @@ namespace METAbolt
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.InnerException.ToString() + " - " + ex.Message;
+                ;
             }
         }
 
@@ -521,7 +521,7 @@ namespace METAbolt
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            if (dets != null && dets != string.Empty)
+            if (!string.IsNullOrEmpty(dets))
             {
                 System.Diagnostics.Process.Start(@dets);
             }
@@ -529,7 +529,7 @@ namespace METAbolt
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            if (dets != null && dets != string.Empty)
+            if (!string.IsNullOrEmpty(dets))
             {
                 System.Diagnostics.Process.Start(@dets);
             }
@@ -556,7 +556,7 @@ namespace METAbolt
             ListViewItem idx = listView1.SelectedItems[0];
             string track = idx.Tag.ToString();
 
-            if (track != string.Empty)
+            if (!string.IsNullOrEmpty(track))
             {
                 System.Diagnostics.Process.Start(@track);
             }
@@ -566,7 +566,7 @@ namespace METAbolt
         {
             string mlink = e.LinkText.Replace("http//", string.Empty);
 
-            if (!e.LinkText.StartsWith("http://"))
+            if (!e.LinkText.StartsWith("http://", StringComparison.CurrentCulture))
             {
                 System.Diagnostics.Process.Start("http://" + mlink);
             }

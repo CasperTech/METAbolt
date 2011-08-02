@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -103,7 +104,7 @@ namespace METAbolt
 
                     if (letter1 && letter2)
                     {
-                        r = Char.ToUpper(c1).ToString().CompareTo(Char.ToUpper(c2).ToString());
+                        r = Char.ToUpper(c1, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture).CompareTo(Char.ToUpper(c2, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture));
                         if (r != 0) return r;
                     }
                     else if (!letter1 && !letter2)

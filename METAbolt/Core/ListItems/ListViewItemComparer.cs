@@ -51,7 +51,7 @@ namespace METAbolt
             try
             {
                 returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text,
-                ((ListViewItem)y).SubItems[col].Text);
+                ((ListViewItem)y).SubItems[col].Text, StringComparison.CurrentCulture);
                 return returnVal;
             }
             catch { return returnVal; }

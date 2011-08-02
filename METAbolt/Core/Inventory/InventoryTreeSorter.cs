@@ -110,7 +110,6 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                string exp = ex.Message;
                 Logger.Log("Inventory error", Helpers.LogLevel.Error, ex);  
                 return 0;
             }

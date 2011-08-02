@@ -43,6 +43,8 @@ using System.IO;
 using METAx;
 using METAxCommon;
 using ExceptionReporting;
+using System.Globalization;
+
 
 namespace METAbolt
 {
@@ -203,7 +205,7 @@ namespace METAbolt
 
             try
             {
-                if (parceln == null) return; 
+                if (parceln == null) return;
 
                 if (currentparcelid != 0)
                 {
@@ -218,6 +220,13 @@ namespace METAbolt
                     currentparcelid = parceln.LocalID;
                     this.parcel = parceln;
                 }
+
+                List<UUID> avIDs = new List<UUID>();
+                avIDs.Add(parcel.OwnerID);
+                avIDs.Add(parcel.GroupID);
+
+                client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
+                client.Avatars.RequestAvatarNames(avIDs);
 
                 tb1.Visible = false;
                 tb2.Visible = false;
@@ -311,17 +320,17 @@ namespace METAbolt
                 this.instance.Config.CurrentConfig.pURL = @parcel.MusicURL;
                 tlblParcel.Text = parcel.Name.ToString();
 
-                if (currentparcelid != parceln.LocalID)
-                {
-                    List<UUID> avIDs = new List<UUID>();
-                    avIDs.Add(parcel.OwnerID);
-                    avIDs.Add(parcel.GroupID);
+                //if (currentparcelid != parceln.LocalID)
+                //{
+                //    List<UUID> avIDs = new List<UUID>();
+                //    avIDs.Add(parcel.OwnerID);
+                //    avIDs.Add(parcel.GroupID);
 
-                    client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
-                    client.Avatars.RequestAvatarNames(avIDs);
+                //    client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
+                //    client.Avatars.RequestAvatarNames(avIDs);
 
-                    currentparcelid = parceln.LocalID;
-                }
+                //    currentparcelid = parceln.LocalID;
+                //}
 
                 //throw new Exception("Test");
 
@@ -338,7 +347,7 @@ namespace METAbolt
                 //    timestamp = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                 //}
 
-                string strInfo = string.Format("{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
+                string strInfo = string.Format(CultureInfo.CurrentCulture,"{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
                                                                             Math.Round(instance.SIMsittingPos().X, 0),
                                                                             Math.Round(instance.SIMsittingPos().Y, 0),
                                                                             Math.Round(instance.SIMsittingPos().Z, 0));
@@ -346,12 +355,12 @@ namespace METAbolt
 
                 if (strInfolast == strInfo) return;
 
-                strInfolast = strInfo; 
+                strInfolast = strInfo;
 
                 try
                 {
                     DataRow dr = instance.TP.NewRow();
-                    dr["time"] = timestamp.ToString();
+                    dr["time"] = timestamp.ToString(CultureInfo.CurrentCulture);
                     dr["name"] = this.parcel.Name;
                     dr["slurl"] = strInfo;
                     instance.TP.Rows.Add(dr);
@@ -364,7 +373,7 @@ namespace METAbolt
             catch (Exception ex)
             {
                 string serr = ex.Message;
-                Logger.Log(String.Format("Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
+                Logger.Log(String.Format(CultureInfo.CurrentCulture,"Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
                 //reporter.Show(ex);
             }
         }
@@ -389,7 +398,7 @@ namespace METAbolt
                 }
             }
 
-            tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
+            tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString(CultureInfo.CurrentCulture);
         }
 
 
@@ -464,7 +473,7 @@ namespace METAbolt
                 tsTimeOut.Visible = true;
 
                 TimeSpan ts = offtime - DateTime.Now;
-                tsTimeOut.Text = ts.Hours.ToString("00")  + ":" + ts.Minutes.ToString("00");
+                tsTimeOut.Text = ts.Hours.ToString("00", CultureInfo.CurrentCulture) + ":" + ts.Minutes.ToString("00", CultureInfo.CurrentCulture);
             }
             else
             {
@@ -498,7 +507,7 @@ namespace METAbolt
 
             BeginInvoke((MethodInvoker)delegate
                 {
-                    tsTimeOut.Text = ts.Hours.ToString("00")  + ":" + ts.Minutes.ToString("00");
+                    tsTimeOut.Text = ts.Hours.ToString("00", CultureInfo.CurrentCulture) + ":" + ts.Minutes.ToString("00", CultureInfo.CurrentCulture);
                 });
         }
 
@@ -750,13 +759,13 @@ namespace METAbolt
             if (netcom.IsLoggedIn)
             {
                 tlblLoginName.Text = netcom.LoginOptions.FullName;
-                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
+                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString(CultureInfo.CurrentCulture);
 
                 tlblRegionInfo.Text =
                         client.Network.CurrentSim.Name +
-                        " (" + Math.Floor(instance.SIMsittingPos().X).ToString() + ", " +
-                        Math.Floor(instance.SIMsittingPos().Y).ToString() + ", " +
-                        Math.Floor(instance.SIMsittingPos().Z).ToString() + ")";
+                        " (" + Math.Floor(instance.SIMsittingPos().X).ToString(CultureInfo.CurrentCulture) + ", " +
+                        Math.Floor(instance.SIMsittingPos().Y).ToString(CultureInfo.CurrentCulture) + ", " +
+                        Math.Floor(instance.SIMsittingPos().Z).ToString(CultureInfo.CurrentCulture) + ")";
             }
             else
             {
@@ -1018,7 +1027,7 @@ namespace METAbolt
             msg.AppendLine("Compiler Errors: ");
 
             foreach (System.CodeDom.Compiler.CompilerError errorOn in e.SourceFileCompilerErrors)
-                msg.AppendLine("  #" + errorOn.ErrorNumber.ToString() + " on Line: " + errorOn.Line.ToString() + " at Column: " + errorOn.Column.ToString() + " - " + errorOn.ErrorText);
+                msg.AppendLine("  #" + errorOn.ErrorNumber.ToString(CultureInfo.CurrentCulture) + " on Line: " + errorOn.Line.ToString(CultureInfo.CurrentCulture) + " at Column: " + errorOn.Column.ToString(CultureInfo.CurrentCulture) + " - " + errorOn.ErrorText);
 
             //Show the user
             //MessageBox.Show(this, msg.ToString(), "Extension Compilation Error", MessageBoxButtons.OK);
@@ -1307,7 +1316,7 @@ namespace METAbolt
             // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
             String SecondLifeExe = GetSecondLifeExe();
 
-            if (SecondLifeExe == string.Empty)
+            if (string.IsNullOrEmpty(SecondLifeExe))
                 return;
 
             Process thisProcess = new Process();
@@ -1418,7 +1427,7 @@ namespace METAbolt
                 file = file.Substring(0, 32); 
             }
 
-            string pos = instance.SIMsittingPos().X.ToString() + ", " + instance.SIMsittingPos().Y.ToString() + ", " + instance.SIMsittingPos().Z.ToString();
+            string pos = instance.SIMsittingPos().X.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Y.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Z.ToString(CultureInfo.CurrentCulture);
                
             string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
 
@@ -1533,7 +1542,7 @@ namespace METAbolt
             }
             catch (Exception exp)
             {
-                Logger.Log(String.Format("Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
+                Logger.Log(String.Format(CultureInfo.CurrentCulture,"Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
             }
         }
 
@@ -1733,11 +1742,12 @@ namespace METAbolt
                     try
                     {
                         int restartinterval = instance.Config.CurrentConfig.ReStartTime * 60; // convert to seconds
+                        //long.MaxValue 
 
                         Process p = new Process();
                         p.StartInfo.FileName = "METArestart.exe";
                         p.StartInfo.WorkingDirectory = Application.StartupPath;
-                        p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
+                        p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString(CultureInfo.CurrentCulture);
                         p.Start();
                     }
                     catch (Exception ex)
@@ -1814,7 +1824,7 @@ namespace METAbolt
                     Process p = new Process();
                     p.StartInfo.FileName = "METArestart.exe";
                     p.StartInfo.WorkingDirectory = Application.StartupPath;
-                    p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
+                    p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString(CultureInfo.CurrentCulture);
                     p.Start();
                 }
                 catch (Exception ex)
@@ -1871,7 +1881,7 @@ namespace METAbolt
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     Bitmap bitmap = new Bitmap(open.FileName);
-                    ext = Path.GetExtension(open.FileName).ToLower();
+                    ext = Path.GetExtension(open.FileName).ToLower(CultureInfo.CurrentCulture);
 
                     (new UploadImage(instance, bitmap, open.FileName, ext)).ShowDialog();
 

@@ -103,7 +103,7 @@ namespace METAbolt
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == string.Empty)
+            if (string.IsNullOrEmpty(textBox1.Text))
             {
                 MessageBox.Show("You must select a destination folder first", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return; 
@@ -248,7 +248,7 @@ namespace METAbolt
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text == string.Empty)
+            if (string.IsNullOrEmpty(textBox2.Text))
             {
                 MessageBox.Show("You must select a source folder first", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -267,7 +267,7 @@ namespace METAbolt
                 {
                     System.IO.File.Copy(filename, destFile, true);
 
-                    if (destFile.EndsWith(".cmd") || destFile.EndsWith(".bat"))
+                    if (destFile.EndsWith(".cmd", StringComparison.CurrentCulture) || destFile.EndsWith(".bat", StringComparison.CurrentCulture))
                     {
                         cmdfiles[a] = "CALL " + destFile;
 

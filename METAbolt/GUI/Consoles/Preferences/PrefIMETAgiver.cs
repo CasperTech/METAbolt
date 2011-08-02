@@ -131,7 +131,7 @@ namespace METAbolt
                         if (res == DialogResult.Cancel) return;
                     }
 
-                    if (textBox1.Text == string.Empty)
+                    if (string.IsNullOrEmpty(textBox1.Text))
                     {
                         MessageBox.Show("Command cannot be empty. Enter a UNIQUE command first.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
