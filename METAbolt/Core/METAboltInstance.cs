@@ -109,7 +109,7 @@ namespace METAbolt
         public string appdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";
         public bool startfrombat = false;
         private DataTable giveritems = null;
-        private SafeHandle handle;
+        //private SafeHandle handle;
         private bool disposed = false;
 
         ~METAboltInstance()
@@ -123,10 +123,10 @@ namespace METAbolt
 
             if (disposing)
             {
-                if (handle != null)
-                {
-                    handle.Dispose();
-                }
+                //if (handle != null)
+                //{
+                //    handle.Dispose();
+                //}
 
                 mainForm.Dispose(); 
             }

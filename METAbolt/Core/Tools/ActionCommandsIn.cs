@@ -37,51 +37,51 @@ using System.Runtime.InteropServices;
 
 namespace METAbolt
 {
-    public class ActionCommandsIn : IDisposable
+    public class ActionCommandsIn //: IDisposable
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
         private GridClient client;
         //private ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
-        private SafeHandle handle;
-        private bool disposed = false;
+        //private SafeHandle handle;
+        //private bool disposed = false;
 
-        ~ActionCommandsIn()
-        {
-            Dispose(false);
-        }
+        //~ActionCommandsIn()
+        //{
+        //    Dispose(false);
+        //}
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (disposed) return;
 
-            if (disposing)
-            {
-                if (handle != null)
-                {
-                    handle.Dispose();
-                }
-            }
+        //    if (disposing)
+        //    {
+        //        //if (handle != null)
+        //        //{
+        //        //    handle.Dispose();
+        //        //}
+        //    }
 
-            // TODO: Call the appropriate methods to clean up unmanaged resources here
+        //    // TODO: Call the appropriate methods to clean up unmanaged resources here
 
-            // we're done
-            disposed = true;
-        }
+        //    // we're done
+        //    disposed = true;
+        //}
 
-        #region IDisposable
-        public void Close()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        #endregion
+        //#region IDisposable
+        //public void Close()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
+        //#endregion
 
-        public void Dispose()
-        {
-            //Dispose(true);
-            this.Close();  
-        }
+        //public void Dispose()
+        //{
+        //    //Dispose(true);
+        //    this.Close();  
+        //}
 
         public ActionCommandsIn(METAboltInstance instance)
         {

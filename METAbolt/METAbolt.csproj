@@ -67,7 +67,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
-    <CodeAnalysisRuleSet>..\..\..\METAbolt\METAbolt\MB_RuleSet.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MB_RuleSet.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1591</NoWarn>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>

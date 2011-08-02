@@ -94,7 +94,7 @@ namespace METAbolt
         private int invitecounter = 0;
         private bool classiclayout = false;
         private ExceptionReporter reporter = new ExceptionReporter();
-        private SafeHandle handle;
+        //private SafeHandle handle;
         private bool disposed = false;
 
         ~ChatTextManager()
@@ -108,10 +108,10 @@ namespace METAbolt
 
             if (disposing)
             {
-                if (handle != null)
-                {
-                    handle.Dispose();
-                }
+                //if (handle != null)
+                //{
+                //    handle.Dispose();
+                //}
 
                 // TODO: dispose managed resources
                 waitGroupIMSession.Close();
@@ -779,7 +779,7 @@ namespace METAbolt
                 // process the command
                 ActionCommandsIn act = new ActionCommandsIn(this.instance);
                 string ret = act.ProcessCommand(smsg.Trim());
-                act.Dispose(); 
+                //act.Dispose(); 
                 return;
             }
             //added by GM on 2-JUL-2009
