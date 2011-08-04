@@ -234,6 +234,8 @@ namespace METAbolt
 
             control = container;
             tab.Control = container;
+
+            container.Dispose();  
             
             mergedTab = tab;
             tab.mergedTab = this;

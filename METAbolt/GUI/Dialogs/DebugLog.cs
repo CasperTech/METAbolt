@@ -30,7 +30,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using SLNetworkComm;
+//using SLNetworkComm;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -46,7 +46,7 @@ namespace METAbolt
     public partial class frmDebugLog : Form
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
 
         private System.Timers.Timer aTimer;
@@ -82,7 +82,7 @@ namespace METAbolt
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddClientEvents();
 

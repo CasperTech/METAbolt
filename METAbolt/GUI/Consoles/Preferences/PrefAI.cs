@@ -44,7 +44,7 @@ namespace METAbolt
         private ConfigManager config;
         private Popup toolTip3;
         private CustomToolTip customToolTip;
-        private GridClient client;
+        //private GridClient client;
         private bool isloading = true;
 
         public PrefAI(METAboltInstance instance)
@@ -58,7 +58,7 @@ namespace METAbolt
             toolTip3.ShowingAnimation = toolTip3.HidingAnimation = PopupAnimations.Blend;
 
             this.instance = instance;
-            client = this.instance.Client;
+            //client = this.instance.Client;
             config = this.instance.Config;
 
             chkAI.Checked = config.CurrentConfig.AIon;
@@ -142,6 +142,7 @@ namespace METAbolt
                             FormFlash.Flash(instance.MainForm);
 
                             MessageBox.Show("Download complete. \n\nLook for 'METAbrain.zip' \n\nand unzip the contents into the folder \nthat's now visible in Windows Explorer.", "METAbrain");
+                            webClient.Dispose();  
                         }
                         catch (Exception ex)
                         {

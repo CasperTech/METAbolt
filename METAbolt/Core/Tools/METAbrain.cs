@@ -43,7 +43,7 @@ namespace METAbolt
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
-        private GridClient client;
+        //private GridClient client;
         public mBrain answer;
 
         //private ArrayList textBuffer;
@@ -92,7 +92,7 @@ namespace METAbolt
         public METAbrain(METAboltInstance instance, AIMLbot.Bot myBot)
         {
             this.instance = instance;
-            client = this.instance.Client;
+            //client = this.instance.Client;
             netcom = this.instance.Netcom;
             this.myBot = myBot;
 
@@ -195,7 +195,7 @@ namespace METAbolt
             try
             {
                 myUser = null;
-                GC.Collect();  
+                //GC.Collect();  
 
                 myUser = new AIMLbot.User(user, myBot);
 

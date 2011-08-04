@@ -36,10 +36,10 @@ namespace METAbolt
 {
     public partial class frmNotecard : Form
     {
-        private METAboltInstance instance;
+        //private METAboltInstance instance;
 
-        private string lheader = string.Empty;
-        private string notecardContent = string.Empty;  
+        //private string lheader = string.Empty;
+        //private string notecardContent = string.Empty;  
 
         int start = 0;
         int indexOfSearchText = 0;
@@ -51,7 +51,7 @@ namespace METAbolt
         {
             InitializeComponent();
 
-            this.instance = instance;            
+            //this.instance = instance;            
             this.Text = file + " - METAbolt";
 
             rtbNotecard.LoadFile(file, RichTextBoxStreamType.PlainText);

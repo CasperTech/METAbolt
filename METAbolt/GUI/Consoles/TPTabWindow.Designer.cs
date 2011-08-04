@@ -15,6 +15,7 @@ namespace METAbolt
         {
             if (disposing && (components != null))
             {
+                TPEvent.Close();  
                 components.Dispose();
             }
             base.Dispose(disposing);

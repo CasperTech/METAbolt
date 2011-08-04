@@ -51,10 +51,10 @@ namespace METAbolt
         private ITextPrinter textPrinter;
         private UUID sessionID = UUID.Zero;
         private string sessionAVname = string.Empty;
-        private string sessionGroupName = string.Empty;  
+        //private string sessionGroupName = string.Empty;  
         private GridClient client;
-        private string tName = string.Empty;
-        private string tPwd = string.Empty;
+        //private string tName = string.Empty;
+        //private string tPwd = string.Empty;
         //private bool TEnabled = false;
         //private bool tweet = true;
         //private string tweetname = string.Empty;
@@ -83,7 +83,7 @@ namespace METAbolt
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             this.sessionID = sessionID;
-            this.sessionGroupName = groupname; 
+            //this.sessionGroupName = groupname; 
 
             this.textPrinter = textPrinter;
             this.textBuffer = new ArrayList();
@@ -399,9 +399,9 @@ namespace METAbolt
                     SW.WriteLine(line);
                     SW.Close(); 
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message;
+                    ;
                 }
             }
             else
@@ -412,9 +412,9 @@ namespace METAbolt
                     SW.WriteLine(line);
                     SW.Close();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message;
+                    ;
                 }
             }
         }
@@ -453,9 +453,9 @@ namespace METAbolt
                 {
                     textPrinter.SetSelectionForeColor(Color.Black);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message;
+                    ;
                 }
 
                 if (message.StartsWith("/me ", StringComparison.CurrentCulture))

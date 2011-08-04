@@ -50,7 +50,7 @@ namespace METAbolt
         private bool closePending = false;
         private bool saving = false;
         private bool changed = false;
-        private UUID aid = UUID.Zero;
+        //private UUID aid = UUID.Zero;
         private string lheader = string.Empty;
         private UUID assetUUID = UUID.Zero;
         private string notecardContent = string.Empty;  
@@ -452,6 +452,8 @@ namespace METAbolt
                     rtbNotecard.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
                 }
             }
+
+            saveFile1.Dispose();  
         }
 
         private void tsSave_Click(object sender, EventArgs e)

@@ -2310,6 +2310,8 @@ namespace METAbolt
                     rtbChat.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
                 }
             }
+
+            saveFile1.Dispose();  
         }
 
         private void saveChatToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2481,8 +2483,11 @@ namespace METAbolt
                     // SIM stats
                     Simulator sims = sim = ssim;   // client.Network.Simulators[0];
 
-                    Bitmap bmp = _MapLayer == null ? new Bitmap(256, 256) : (Bitmap)_MapLayer.Clone();
+                    Bitmap newbmp = new Bitmap(256, 256);
+                    Bitmap bmp = _MapLayer == null ? newbmp : (Bitmap)_MapLayer.Clone();
                     Graphics g = Graphics.FromImage(bmp);
+
+                    newbmp.Dispose(); 
 
                     if (_MapLayer == null)
                     {
@@ -2674,10 +2679,16 @@ namespace METAbolt
 
                     // Draw self position
                     Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
-                    g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
-                    g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
+
+                    SolidBrush sb = new SolidBrush(Color.Yellow);
+                    Pen pen = new Pen(Brushes.Red, 3);
+
+                    g.FillEllipse(sb, myrect);
+                    g.DrawEllipse(pen, myrect);
 
                     g.DrawImage(bmp, 0, 0);
+                    sb.Dispose();
+                    pen.Dispose();  
 
                     // Draw compass points
                     StringFormat strFormat = new StringFormat();
@@ -2687,30 +2698,35 @@ namespace METAbolt
                     //g.FillEllipse(new SolidBrush(Color.Black), myrect);
                     //g.DrawEllipse(new Pen(Brushes.Red, 2), myrect);
 
-                    g.DrawString("N", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("N", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
+                    Font font1 = new Font("Arial", 13);
+                    Font font2 = new Font("Arial", 10, FontStyle.Bold);
+
+                    g.DrawString("N", font1, Brushes.Black, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("N", font2, Brushes.White, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
 
                     strFormat.LineAlignment = StringAlignment.Center;
                     strFormat.Alignment = StringAlignment.Near;
 
-                    g.DrawString("W", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("W", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(2, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("W", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("W", font2, Brushes.White, new RectangleF(2, 0, bmp.Width, bmp.Height), strFormat);
 
                     strFormat.LineAlignment = StringAlignment.Center;
                     strFormat.Alignment = StringAlignment.Far;
 
-                    g.DrawString("E", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("E", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(-2, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("E", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("E", font2, Brushes.White, new RectangleF(-2, 0, bmp.Width, bmp.Height), strFormat);
 
                     strFormat.LineAlignment = StringAlignment.Far;
                     strFormat.Alignment = StringAlignment.Center;
 
-                    g.DrawString("S", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("S", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("S", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("S", font2, Brushes.White, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
 
                     world.Image = bmp;
                     //world.Cursor = Cursors.NoMove2D;
 
+                    font1.Dispose();
+                    font2.Dispose();  
                     g.Dispose();
 
                     GetCompass();

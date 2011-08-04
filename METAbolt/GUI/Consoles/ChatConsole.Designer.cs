@@ -15,7 +15,13 @@ namespace METAbolt
         {
             if (disposing && (components != null))
             {
-                components.Dispose();
+                try
+                {
+                    components.Dispose();
+                    chatManager.Dispose();
+                    vgate.Dispose();
+                }
+                catch { ; }
             }
             base.Dispose(disposing);
         }

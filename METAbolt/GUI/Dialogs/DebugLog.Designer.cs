@@ -16,6 +16,7 @@ namespace METAbolt
             if (disposing && (components != null))
             {
                 components.Dispose();
+                networkTraffic.Dispose();  
             }
             base.Dispose(disposing);
         }

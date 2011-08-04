@@ -29,7 +29,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using SLNetworkComm;
+//using SLNetworkComm;
 using OpenMetaverse;
 using System.Threading; 
 
@@ -38,7 +38,7 @@ namespace METAbolt
     public partial class InventoryItemConsole : UserControl
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
         private InventoryItem item;
         //private bool thisTP = false;
@@ -51,7 +51,7 @@ namespace METAbolt
             InitializeComponent();
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             this.item = item;
             
@@ -202,23 +202,27 @@ namespace METAbolt
                     btnDetach.Text = "Detach";
                     objectConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(objectConsole);
+                    objectConsole.Dispose(); 
                     break;
 
                 case InventoryType.Notecard:
                     InventoryNotecardConsole notecardConsole = new InventoryNotecardConsole(instance, item);
                     notecardConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(notecardConsole);
+                    notecardConsole.Dispose(); 
                     break;
 
                 case InventoryType.LSL:
                     InventoryScriptConsole scriptConsole = new InventoryScriptConsole(instance, item);
                     scriptConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(scriptConsole);
+                    scriptConsole.Dispose(); 
                     break;
                 case InventoryType.Snapshot:
                     InventoryImageConsole imageConsole = new InventoryImageConsole(instance, item);
                     imageConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(imageConsole);
+                    imageConsole.Dispose();
                     break;
                 case InventoryType.Wearable:
                     btnDetach.Text = "Take off";
@@ -232,16 +236,19 @@ namespace METAbolt
                     InventoryAnimationConsole animationConsole = new InventoryAnimationConsole(instance, item);
                     animationConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(animationConsole);
+                    animationConsole.Dispose(); 
                     break;
                 case InventoryType.Texture:
                     imageConsole = new InventoryImageConsole(instance, item);
                     imageConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(imageConsole);
+                    imageConsole.Dispose();
                     break;
                 case InventoryType.Gesture:
                     InventoryGestureConsol gestureConsole = new InventoryGestureConsol(instance, item);
                     gestureConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(gestureConsole);
+                    gestureConsole.Dispose(); 
                     break;
             }
 

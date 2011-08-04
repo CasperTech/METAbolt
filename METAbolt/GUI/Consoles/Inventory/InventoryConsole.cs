@@ -53,7 +53,7 @@ namespace METAbolt
 {
     public partial class InventoryConsole : UserControl
     {
-        InventoryFolder ifolder;
+        //InventoryFolder ifolder;
 
         private GridClient client;
         //private SLNetCom netcom;
@@ -77,7 +77,7 @@ namespace METAbolt
         //private bool iscut = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private bool searching = false;
-        private UUID addeditem = UUID.Zero;
+        //private UUID addeditem = UUID.Zero;
         private UUID folderproc = UUID.Zero;
         private TreeNode sellectednode = new TreeNode();
 
@@ -203,7 +203,7 @@ namespace METAbolt
         {
             try
             {
-                addeditem = item.UUID;
+                //addeditem = item.UUID;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), item.ParentUUID);
             }
             catch { ; }
@@ -238,7 +238,7 @@ namespace METAbolt
 
             try
             {
-                addeditem = e.Obj.UUID;
+                //addeditem = e.Obj.UUID;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
 
             }
@@ -870,7 +870,7 @@ namespace METAbolt
                 //folderNode = node.Parent;
             }
 
-            ifolder = folder;
+            //ifolder = folder;
 
             client.Inventory.RequestCreateItem(folder.UUID,
                     notecardName, notecardDescription, AssetType.Notecard, UUID.Random(), InventoryType.Notecard, PermissionMask.All,
@@ -1347,7 +1347,7 @@ namespace METAbolt
                     sr.WriteLine(o.ToString());
                 }
 
-                sr.Close();
+                //sr.Close();
                 sr.Dispose();
             }
         }
@@ -1372,7 +1372,7 @@ namespace METAbolt
                         listBox1.Items.Add(s);
                     }
 
-                    sr.Close();
+                    //sr.Close();
                     sr.Dispose();
                 }
             }
@@ -1577,7 +1577,7 @@ namespace METAbolt
                 //folderNode = node.Parent;
             }
 
-            ifolder = folder;
+            //ifolder = folder;
 
             client.Inventory.RequestCreateItem(folder.UUID,
                     scriptName, scriptDescription, AssetType.LSLText, UUID.Random(), InventoryType.LSL, PermissionMask.All,

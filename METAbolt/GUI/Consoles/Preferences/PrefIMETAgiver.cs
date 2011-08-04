@@ -41,10 +41,10 @@ namespace METAbolt
     public partial class PrefMETAgiver : System.Windows.Forms.UserControl, IPreferencePane
     {
         private METAboltInstance instance;
-        private ConfigManager config;
+        //private ConfigManager config;
         private Popup toolTip;
         private CustomToolTip customToolTip;
-        private GridClient client;
+        //private GridClient client;
         //private bool isloading = true;
 
         public PrefMETAgiver(METAboltInstance instance)
@@ -58,8 +58,8 @@ namespace METAbolt
             toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
 
             this.instance = instance;
-            client = this.instance.Client;
-            config = this.instance.Config;
+            //client = this.instance.Client;
+            //config = this.instance.Config;
 
             GW.DataSource = instance.GiverItems;
 

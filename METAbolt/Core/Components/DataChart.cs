@@ -203,6 +203,8 @@ namespace SystemMonitor
 				}
 			}
 
+            pen.Dispose();
+
 			base.OnPaint(e);
 		}
 		#endregion

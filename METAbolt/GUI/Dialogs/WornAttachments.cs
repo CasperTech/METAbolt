@@ -64,6 +64,8 @@ namespace METAbolt
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             lock (listItems)
             {
                 listItems.Clear();
@@ -78,6 +80,8 @@ namespace METAbolt
 
         private void Self_TeleportProgress(object sender, TeleportEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             switch (e.Status)
             {
                 case TeleportStatus.Start:
@@ -152,7 +156,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    this.Close();
+                    //this.Close();
                     this.Dispose();
                 }
             }
@@ -312,7 +316,7 @@ namespace METAbolt
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Dispose();
+            //this.Dispose();
         }
 
         private void btnTouch_Click(object sender, EventArgs e)
@@ -536,6 +540,11 @@ namespace METAbolt
 
             if (item == null) return;
             (new META3D(instance, item.Prim.LocalID, item.Prim)).Show();
+
+            //using (META3D frm = new META3D(instance, item.Prim.LocalID, item.Prim))
+            //{
+            //    frm.Show(); 
+            //}
         }
 
         private void WornAttachments_FormClosing(object sender, FormClosingEventArgs e)
@@ -558,7 +567,7 @@ namespace METAbolt
                 listItems.Clear();
             }
 
-            GC.Collect(); 
+           //GC.Collect(); 
         }
     }
 }

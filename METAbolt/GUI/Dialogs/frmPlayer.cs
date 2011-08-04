@@ -58,11 +58,10 @@ namespace METAbolt
         public frmPlayer(METAboltInstance instance)
         {
             InitializeComponent();
+            Disposed += new EventHandler(Player_Disposed);
 
             this.instance = instance;
-            client = this.instance.Client;
-
-            Disposed += new EventHandler(Player_Disposed);
+            client = this.instance.Client;            
 
             client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(TP_Callback);
         }
@@ -71,6 +70,8 @@ namespace METAbolt
         {
             if (e.Status == TeleportStatus.Finished)
             {
+                if (!this.IsHandleCreated) return;
+
                 BeginInvoke((MethodInvoker)delegate 
                 {
                     axWindowsMediaPlayer1.Ctlcontrols.stop();

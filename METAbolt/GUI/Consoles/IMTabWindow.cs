@@ -289,6 +289,8 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[29].Tag = "zzzzz";
+
+            _menuItem.Dispose(); 
         }
 
         // When an emoticon is clicked, insert its image into to RTF

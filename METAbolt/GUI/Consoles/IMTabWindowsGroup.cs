@@ -509,6 +509,8 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[29].Tag = "zzzzz";
+
+            _menuItem.Dispose(); 
         }
 
         // When an emoticon is clicked, insert its image into to RTF
@@ -812,6 +814,8 @@ namespace METAbolt
                 // Save the contents of the RichTextBox into the file.
                 rtbIMText.SaveFile(saveFile1.FileName, RichTextBoxStreamType.RichText);
             }
+
+            saveFile1.Dispose();  
         }
 
         private void tsbClear_Click(object sender, EventArgs e)

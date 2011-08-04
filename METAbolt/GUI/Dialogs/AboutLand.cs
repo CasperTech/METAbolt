@@ -31,7 +31,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using SLNetworkComm;
+//using SLNetworkComm;
 using OpenMetaverse;
 using System.Threading;
 using System.IO;
@@ -45,7 +45,7 @@ namespace METAbolt
     {
         private METAboltInstance instance;
         private GridClient client;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private bool parcelowner = false;
         //private bool detsloading = true;
         //private bool detschanged = false;
@@ -73,7 +73,7 @@ namespace METAbolt
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
 
             while (!IsHandleCreated)

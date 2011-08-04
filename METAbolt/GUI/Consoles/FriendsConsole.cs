@@ -30,7 +30,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using SLNetworkComm;
+//using SLNetworkComm;
 using System.Media;
 using ExceptionReporting;
 using System.Threading;
@@ -42,7 +42,7 @@ namespace METAbolt
         private METAboltInstance instance;
         private GridClient client;
         private FriendInfo selectedFriend;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
 
         private bool settingFriend = false;
         private ExceptionReporter reporter = new ExceptionReporter();
@@ -66,7 +66,7 @@ namespace METAbolt
 
             this.instance = instance;
             client = this.instance.Client;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
 
             client.Friends.FriendshipTerminated += new EventHandler<FriendshipTerminatedEventArgs>(Friends_OnFriendTerminated);
             client.Friends.FriendshipResponse += new EventHandler<FriendshipResponseEventArgs>(Friends_OnFriendResponse);

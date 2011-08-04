@@ -47,8 +47,8 @@ namespace METAbolt
         private GridClient client;
         private SLNetCom netcom;
 
-        Quaternion BodyRotation = Quaternion.Identity;
-        Quaternion HeadRotation = Quaternion.Identity;
+        //Quaternion BodyRotation = Quaternion.Identity;
+        //Quaternion HeadRotation = Quaternion.Identity;
         //private Quaternion LastBodyRotation;
         //private Quaternion LastHeadRotation;
         public AgentFlags Flags = AgentFlags.None;
@@ -229,6 +229,8 @@ namespace METAbolt
                     SIM_OnSimChanged(sender, e);
                 }));
             }
+
+            if (!this.IsHandleCreated) return;
 
             BeginInvoke(new MethodInvoker(delegate()
             {
@@ -1096,6 +1098,8 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnNewPrim(object sender, PrimEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             try
             {
                 if (e.Prim.ParentID != 0)
@@ -1176,6 +1180,8 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             ObjectsListItem item;
 
             uint objectID = e.ObjectLocalID; 
@@ -2518,17 +2524,24 @@ namespace METAbolt
 
                 if (item.InventoryType == InventoryType.LSL)
                 {
-                    client.Inventory.CopyScriptToTask(sPr.LocalID, item, true);  
+                    client.Inventory.CopyScriptToTask(sPr.LocalID, item, true);
                 }
                 else
                 {
-                    client.Inventory.UpdateTaskInventory(sPr.LocalID, item);    
+                    client.Inventory.UpdateTaskInventory(sPr.LocalID, item);
                 }
+
+                //client.Inventory.TaskInventoryReply += new EventHandler<TaskInventoryReplyEventArgs>(Inventory_TaskInventoryReply); 
 
                 button4.PerformClick();  
                 button6.PerformClick();  
             }
         }
+
+        //void Inventory_TaskInventoryReply(object sender, TaskInventoryReplyEventArgs e)
+        //{
+        //    e.AssetFilename
+        //}
 
         private void Item_CopiedCallback(InventoryBase item)
         {

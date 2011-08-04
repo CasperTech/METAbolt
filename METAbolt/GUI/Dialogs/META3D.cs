@@ -49,7 +49,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
 using Utilities = OpenTK.Platform.Utilities;
-using SLNetworkComm;
+//using SLNetworkComm;
 using System.Threading;
 using System.Diagnostics;
 using PopupControl;
@@ -80,7 +80,7 @@ namespace METAbolt
         Dictionary<UUID, Image> Textures = new Dictionary<UUID, Image>();
         METAboltInstance instance;
         //private GridClient client;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         MeshmerizerR renderer;
         OpenTK.Graphics.GraphicsMode GLMode = null;
         AutoResetEvent TextureThreadContextReady = new AutoResetEvent(false);
@@ -97,7 +97,7 @@ namespace METAbolt
         public bool isobject = true;
         public bool enablemipmapd = true;
 
-        static readonly Font TextFont = new Font(FontFamily.GenericSansSerif, 10);
+        //static readonly Font TextFont = new Font(FontFamily.GenericSansSerif, 10);
         //Bitmap TextBitmap;   // = new Bitmap(512, 512);
         //int texture;
         //bool viewport_changed = true;
@@ -117,11 +117,11 @@ namespace METAbolt
 
         public META3D(METAboltInstance instance, uint rootLocalID, Primitive item) : base(instance) 
         {
-            this.RootPrimLocalID = rootLocalID;
-
-            selitem = item; 
-
             InitializeComponent();
+            Disposed += new EventHandler(META3D_Disposed);
+
+            this.RootPrimLocalID = rootLocalID;
+            selitem = item; 
 
             string msg1 = "Drag (left mouse down) to rotate object\n" +
                             "ALT+Drag to Zoom\n" +
@@ -134,13 +134,11 @@ namespace METAbolt
             toolTip.FocusOnOpen = false;
             toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
 
-            Disposed += new EventHandler(META3D_Disposed);
-
             UseMultiSampling = false; 
 
             this.instance = instance;
             //client = this.instance.Client;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             isobject = false;
 
             TexturePointers[0] = 0;
@@ -157,10 +155,11 @@ namespace METAbolt
         public META3D(METAboltInstance instance, ObjectsListItem obtectitem)
             : base(instance)
         {
+            InitializeComponent();
+            Disposed += new EventHandler(META3D_Disposed);
+
             this.RootPrimLocalID = obtectitem.Prim.LocalID;
             selitem = obtectitem.Prim;
-
-            InitializeComponent();
 
             string msg1 = "Drag (left mouse down) to rotate object\n" +
                             "ALT+Drag to Zoom\n" +
@@ -173,13 +172,11 @@ namespace METAbolt
             toolTip.FocusOnOpen = false;
             toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
 
-            Disposed += new EventHandler(META3D_Disposed);
-
             UseMultiSampling = false;
 
             this.instance = instance;
             //client = this.instance.Client;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             isobject = true;
             this.objectitem = obtectitem; 
 
@@ -244,10 +241,14 @@ namespace METAbolt
             }
 
             //GC.Collect();
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
         }
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             lock (Prims)
             {
                 Prims.Clear();  
@@ -261,6 +262,8 @@ namespace METAbolt
 
         private void Self_TeleportProgress(object sender, TeleportEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             switch (e.Status)
             {
                 case TeleportStatus.Start:
@@ -324,7 +327,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    this.Close();
+                    //this.Close();
                     this.Dispose(); 
                 }
             });
@@ -332,6 +335,8 @@ namespace METAbolt
 
         void Objects_TerseObjectUpdate(object sender, TerseObjectUpdateEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             if (Prims.ContainsKey(e.Prim.LocalID))
             {
                 UpdatePrimBlocking(e.Prim);
@@ -340,6 +345,8 @@ namespace METAbolt
 
         void Objects_ObjectUpdate(object sender, PrimEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             if (Prims.ContainsKey(e.Prim.LocalID) || Prims.ContainsKey(e.Prim.ParentID))
             {
                 UpdatePrimBlocking(e.Prim);
@@ -348,6 +355,8 @@ namespace METAbolt
 
         void Objects_ObjectDataBlockUpdate(object sender, ObjectDataBlockUpdateEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             if (Prims.ContainsKey(e.Prim.LocalID))
             {
                 UpdatePrimBlocking(e.Prim);
@@ -739,9 +748,13 @@ namespace METAbolt
         {
             try
             {
-                OpenTK.INativeWindow window = new OpenTK.NativeWindow();
-                OpenTK.Graphics.IGraphicsContext context = new OpenTK.Graphics.GraphicsContext(GLMode, window.WindowInfo);
+                OpenTK.INativeWindow newwindow = new OpenTK.NativeWindow();
+                OpenTK.INativeWindow window = newwindow;
+
+                OpenTK.Graphics.IGraphicsContext newcontext = new OpenTK.Graphics.GraphicsContext(GLMode, window.WindowInfo);
+                OpenTK.Graphics.IGraphicsContext context = newcontext;
                 context.MakeCurrent(window.WindowInfo);
+
                 TextureThreadContextReady.Set();
                 PendingTextures.Open();
 
@@ -763,6 +776,7 @@ namespace METAbolt
                         Bitmap bitmap = new Bitmap(item.Data.Texture);
 
                         bool hasAlpha;
+
                         if (item.Data.Texture.PixelFormat == System.Drawing.Imaging.PixelFormat.Format32bppArgb)
                         {
                             hasAlpha = true;
@@ -771,6 +785,7 @@ namespace METAbolt
                         {
                             hasAlpha = false;
                         }
+
                         item.Data.IsAlpha = hasAlpha;
 
                         bitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
@@ -818,6 +833,9 @@ namespace METAbolt
                         GLInvalidate();
                     }
                 }
+
+                newcontext.Dispose();
+                newwindow.Dispose(); 
 
                 Logger.DebugLog("Texture thread exited");
             }
@@ -1422,8 +1440,17 @@ namespace METAbolt
                                 gotMesh.Set();
                             });
 
-                        if (!gotMesh.WaitOne(20 * 1000, false)) return;
-                        if (!meshSuccess) return;
+                        if (!gotMesh.WaitOne(20 * 1000, false))
+                        {
+                            gotMesh.Close(); 
+                            return;
+                        }
+
+                        if (!meshSuccess)
+                        {
+                            gotMesh.Close();
+                            return;
+                        }
                     }
                 }
                 else
@@ -1540,18 +1567,28 @@ namespace METAbolt
                             }
                         }
 
-                        img = LoadTGAClass.LoadTGA(new MemoryStream(mi.ExportTGA()));
+                        MemoryStream mem = new MemoryStream(mi.ExportTGA());
+                        img = LoadTGAClass.LoadTGA(mem);
+
                         Textures[textureID] = (System.Drawing.Image)img.Clone();
+
+                        mem.Dispose(); 
                     }
+
                     gotImage.Set();
                 }
                 );
+
                 gotImage.WaitOne(30 * 1000, false);
+
+                gotImage.Close(); 
+
                 if (img != null)
                 {
                     texture = img;
                     return true;
                 }
+
                 return false;
             }
             catch (Exception e)
@@ -1614,6 +1651,8 @@ namespace METAbolt
                         ". Ensure that you have permission to write to that file and it is currently not in use");
                 }
             }
+
+            dialog.Dispose(); 
         }
 
         private void cbAA_CheckedChanged(object sender, EventArgs e)
@@ -1774,8 +1813,21 @@ namespace METAbolt
             snapped = false;
             TakeScreenShot = false;
 
-            Bitmap bmp = GrabScreenshot();
+            //Bitmap bmp = GrabScreenshot();
             //Image img = (Image)bmp;
+
+            Bitmap newbmp = new Bitmap(glControl.Width, glControl.Height);
+            Bitmap bmp = newbmp;
+
+            System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
+                System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+
+            OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgr, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
+
+            OpenTK.Graphics.OpenGL.GL.Finish();
+
+            bmp.UnlockBits(data);
+            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
             string filename = "Object_Snaphot_" + DateTime.Now.ToString() + ".png";
@@ -1791,24 +1843,30 @@ namespace METAbolt
             {
                 bmp.Save(saveFileDialog1.FileName, ImageFormat.Png);
             }
+
+            newbmp.Dispose();
+            //bmp.Dispose();  
         }
 
-        public Bitmap GrabScreenshot()
-        {
-            Bitmap bmp = new Bitmap(glControl.Width, glControl.Height);
+        //public Bitmap GrabScreenshot()
+        //{
+        //    Bitmap newbmp = new Bitmap(glControl.Width, glControl.Height);
+        //    Bitmap bmp = newbmp;
                 
-            System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
-                System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+        //    System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
+        //        System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
-            OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgr, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
+        //    OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgr, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
 
-            OpenTK.Graphics.OpenGL.GL.Finish();
+        //    OpenTK.Graphics.OpenGL.GL.Finish();
 
-            bmp.UnlockBits(data);
-            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+        //    bmp.UnlockBits(data);
+        //    bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
-            return bmp;
-        }
+        //    newbmp.Dispose(); 
+
+        //    return bmp;
+        //}
 
         private void label2_Click(object sender, EventArgs e)
         {

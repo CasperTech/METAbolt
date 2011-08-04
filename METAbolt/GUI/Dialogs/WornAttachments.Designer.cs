@@ -16,6 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                listItems.Clear(); 
             }
             base.Dispose(disposing);
         }

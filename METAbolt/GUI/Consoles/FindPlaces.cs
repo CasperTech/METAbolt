@@ -32,7 +32,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using SLNetworkComm;
+//using SLNetworkComm;
 using System.Globalization;
 
 
@@ -41,12 +41,12 @@ namespace METAbolt
     public partial class FindPlaces : UserControl
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
         private float fX;
         private float fY;
         private float fZ;
-        private string sSIM;
+        //private string sSIM;
 
         //private ListViewItemComparer lvcompare;
 
@@ -64,7 +64,7 @@ namespace METAbolt
             this.queryID = queryID;
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddClientEvents();
         }
@@ -181,7 +181,7 @@ namespace METAbolt
             fX = locX1;
             fY = locY1;
             fZ = (float)place.GlobalZ;
-            sSIM = place.SimName;
+            //sSIM = place.SimName;
 
             txtLocation.Text = place.SimName.ToString(CultureInfo.CurrentCulture) + " " + fX.ToString(CultureInfo.CurrentCulture) + ", " + fY.ToString(CultureInfo.CurrentCulture) + ", " + fZ.ToString(CultureInfo.CurrentCulture);
         }

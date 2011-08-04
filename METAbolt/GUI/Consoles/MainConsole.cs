@@ -792,7 +792,7 @@ namespace METAbolt
                     line = "START \"\" /D \"" + Application.StartupPath + "\\\" \"" + Application.StartupPath + "\\metabolt.exe" + "\"" + " " + cuser.Replace("_", " ") + " " + txtPassword.Text;
                     sr.WriteLine(line);
 
-                    sr.Close();
+                    //sr.Close();
                     sr.Dispose();
                 }
             }

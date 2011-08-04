@@ -41,13 +41,13 @@ namespace METAbolt
         private Popup toolTip;
         private CustomToolTip customToolTip;
 
-        private METAboltInstance instance;
+        //private METAboltInstance instance;
 
         public frmMutes(METAboltInstance instance)
         {
             InitializeComponent();
 
-            this.instance = instance;
+            //this.instance = instance;
 
             GW.DataSource = instance.MuteList;
 

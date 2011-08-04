@@ -148,7 +148,9 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(() => Grid_OnGridRegion(sender, e)));
                 return;
             }
-            
+
+            if (!this.IsHandleCreated) return;
+
             BeginInvoke(new MethodInvoker(delegate()
             {
                 RegionSearchResult(e.Region);
@@ -196,6 +198,8 @@ namespace METAbolt
                 return;
             }
 
+            if (!this.IsHandleCreated) return;
+
             try
             {
                 switch (e.Status)
@@ -238,6 +242,8 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(() => netcom_Teleporting(sender, e)));
                 return;
             }
+
+            if (!this.IsHandleCreated) return;
 
             try
             {

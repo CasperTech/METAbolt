@@ -38,16 +38,16 @@ namespace METAbolt
 {
     public partial class ImageViewer : Form
     {
-        private METAboltInstance instance;
-        private GridClient client;
+        //private METAboltInstance instance;
+        //private GridClient client;
         private Image img;
 
         public ImageViewer(METAboltInstance instance, Image img)
         {
             InitializeComponent();
 
-            this.instance = instance;
-            client = this.instance.Client;
+            //this.instance = instance;
+            //client = this.instance.Client;
 
             this.img = img;
         }

@@ -30,14 +30,14 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using SLNetworkComm;
+//using SLNetworkComm;
 
 namespace METAbolt
 {
     public partial class FindPeopleConsole : UserControl
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
 
         private UUID queryID;
@@ -53,7 +53,7 @@ namespace METAbolt
             this.queryID = queryID;
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddClientEvents();
         }

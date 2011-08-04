@@ -29,7 +29,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using SLNetworkComm;
+//using SLNetworkComm;
 using OpenMetaverse;
 
 namespace METAbolt
@@ -37,8 +37,8 @@ namespace METAbolt
     public partial class InventoryScriptConsole : UserControl
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
-        private GridClient client;
+        //private SLNetCom netcom;
+        //private GridClient client;
         private InventoryItem item;
 
         public InventoryScriptConsole(METAboltInstance instance, InventoryItem item)
@@ -46,8 +46,8 @@ namespace METAbolt
             InitializeComponent();
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
-            client = this.instance.Client;
+            //netcom = this.instance.Netcom;
+            //client = this.instance.Client;
             this.item = item;
         }
 

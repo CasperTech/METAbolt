@@ -16,6 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                WaitForSessionStart.Close();  
             }
             base.Dispose(disposing);
         }

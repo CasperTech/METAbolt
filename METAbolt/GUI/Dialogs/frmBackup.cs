@@ -42,7 +42,7 @@ namespace METAbolt
     public partial class frmBackup : Form
     {
         string currentDirectory =string.Empty;
-        string destinationDirectory = string.Empty;
+        //string destinationDirectory = string.Empty;
 
         public frmBackup()
         {
@@ -164,7 +164,7 @@ namespace METAbolt
                 //    }
                 //}
 
-                sr.Close();
+                //sr.Close();
                 sr.Dispose();
             }
 

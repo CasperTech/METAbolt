@@ -44,7 +44,7 @@ namespace METAbolt
         private METAboltInstance instance;
         private GridClient client;
         private Bitmap img;
-        private string ext;
+        //private string ext;
         private string file;
         private byte[] ImgUp;
 
@@ -56,7 +56,7 @@ namespace METAbolt
             client = this.instance.Client;
 
             this.img = (Bitmap)img;
-            this.ext = ext;
+            //this.ext = ext;
             this.file = file;
         }
 
@@ -115,8 +115,10 @@ namespace METAbolt
                            System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                         graphics.DrawImage(bitmap, 0, 0, 256, 256);
 
-                        bitmap.Dispose();
                         bitmap = resized;
+
+                        //resized.Dispose();
+                        graphics.Dispose();
 
                         oldwidth = 256;
                         oldheight = 256;
@@ -135,11 +137,15 @@ namespace METAbolt
                         graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                         graphics.DrawImage(bitmap, 0, 0, newwidth, newheight);
 
-                        bitmap.Dispose();
                         bitmap = resized;
+
+                        //resized.Dispose();
+                        graphics.Dispose(); 
                     }
 
                     ImgUp = OpenJPEG.EncodeFromImage(bitmap, false);
+
+                    //bitmap.Dispose();
                 }
             }
             catch (Exception ex)

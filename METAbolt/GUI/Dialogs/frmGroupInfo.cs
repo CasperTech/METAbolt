@@ -68,10 +68,10 @@ namespace METAbolt
         private UUID grpid = UUID.Zero;
         private Dictionary<UUID, GroupRole> grouproles;
         private List<KeyValuePair<UUID, UUID>> grouprolesavs;
-        private UUID grouprolesreply = UUID.Zero;
-        private UUID grouprolemembersid = UUID.Zero;
+        //private UUID grouprolesreply = UUID.Zero;
+        //private UUID grouprolemembersid = UUID.Zero;
         private UUID founderid = UUID.Zero;
-        private GroupMemberData currentmember = new GroupMemberData();
+        //private GroupMemberData currentmember = new GroupMemberData();
         private bool checkignore = false;
 
         internal class ThreadExceptionHandler
@@ -142,7 +142,7 @@ namespace METAbolt
             grouptitles = Client.Groups.RequestGroupTitles(group.GroupID);
             // and the notices
             Client.Groups.RequestGroupNoticesList(group.GroupID);
-            grouprolesreply = Client.Groups.RequestGroupRoles(group.GroupID);
+            Client.Groups.RequestGroupRoles(group.GroupID);
         }
 
         public frmGroupInfo(UUID groupid, METAboltInstance instance)
@@ -175,7 +175,7 @@ namespace METAbolt
             grouptitles = Client.Groups.RequestGroupTitles(groupid);
             // and the notices
             Client.Groups.RequestGroupNoticesList(groupid);
-            grouprolesreply = Client.Groups.RequestGroupRoles(groupid);
+            Client.Groups.RequestGroupRoles(groupid);
         }
 
         private void SetExceptionReporter()
@@ -224,7 +224,7 @@ namespace METAbolt
             grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
             // and the notices
             Client.Groups.RequestGroupNoticesList(Group.ID);
-            grouprolesreply = Client.Groups.RequestGroupRoles(Group.ID); 
+            Client.Groups.RequestGroupRoles(Group.ID); 
         }
 
         ~frmGroupInfo()
@@ -253,7 +253,7 @@ namespace METAbolt
             grouprolesavs.Clear();
 
             this.Dispose();
-            GC.Collect();
+            //GC.Collect();
         }
 
         public void GroupNoticesHandler(object sender, GroupNoticesListReplyEventArgs e)
@@ -284,7 +284,7 @@ namespace METAbolt
             }
             catch { ; }
 
-            grouprolemembersid = Client.Groups.RequestGroupRolesMembers(grpid);
+            Client.Groups.RequestGroupRolesMembers(grpid);
 
             this.BeginInvoke(new MethodInvoker(delegate()
             {
@@ -841,7 +841,7 @@ namespace METAbolt
             groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
             grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
             Client.Groups.RequestGroupNoticesList(Group.ID);
-            grouprolesreply = Client.Groups.RequestGroupRoles(Group.ID); 
+            Client.Groups.RequestGroupRoles(Group.ID); 
         }
 
         private void cmdApply_Click(object sender, EventArgs e)

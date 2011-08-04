@@ -129,6 +129,7 @@ namespace METAbolt
                 //    handle.Dispose();
                 //}
 
+                state.Dispose();  
                 mainForm.Dispose(); 
             }
 
@@ -334,7 +335,7 @@ namespace METAbolt
             if (direxists)
             {
                 myBot = null;
-                GC.Collect();  
+                //GC.Collect();  
                 //myBot = new AIMLbot.Bot();
                 ////string a1 = myBot.PathToAIML;
                 ////string a2 = myBot.PathToConfigFiles;
@@ -655,6 +656,8 @@ namespace METAbolt
 
             //dtbl.PrimaryKey = new DataColumn[] { dtbl.Columns["uuid"] };
 
+            myColumn.Dispose(); 
+
             return dtbl;
         }
 
@@ -681,6 +684,9 @@ namespace METAbolt
             dtbl.PrimaryKey = new DataColumn[] { dtbl.Columns["time"] };
 
             tp = dtbl;
+
+            myColumn.Dispose();
+            dtbl.Dispose();  
         }
 
         private void SetSettings()

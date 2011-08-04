@@ -31,7 +31,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using SLNetworkComm;
+//using SLNetworkComm;
 using OpenMetaverse;
 using System.Globalization;
 
@@ -41,7 +41,7 @@ namespace METAbolt
     public partial class frmGive : Form
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
         private InventoryItem item;
         private UUID queryID;
@@ -54,7 +54,7 @@ namespace METAbolt
         private UUID rle = UUID.Zero;
         private bool inventorymode = true;
         private bool groupmode = false;
-        private string name = string.Empty;
+        //private string name = string.Empty;
 
         //GroupManager.GroupMembersCallback GroupMembersCallback;
         //AvatarManager.AvatarNamesCallback AvatarNamesCallback;
@@ -64,7 +64,7 @@ namespace METAbolt
             InitializeComponent();
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             this.item = item;
 
@@ -93,7 +93,7 @@ namespace METAbolt
             inventorymode = false; 
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             
             this.grp = group;
@@ -121,12 +121,12 @@ namespace METAbolt
             inventorymode = false;
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
 
             this.grp = group;
             this.rle = role;
-            this.name = name;
+            //this.name = name;
 
             textBox1.GotFocus += textBox1_GotFocus;
             textBox1.MouseUp += textBox1_MouseUp;

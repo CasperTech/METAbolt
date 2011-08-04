@@ -33,7 +33,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using SLNetworkComm;
+//using SLNetworkComm;
 using OpenMetaverse.Imaging;
 using OpenMetaverse.Assets;
 using OpenMetaverse.StructuredData;
@@ -47,7 +47,7 @@ namespace METAbolt
     {
         private METAboltInstance instance;
         private GridClient client;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private InstantMessage imsg;
         private UUID assetfolder = UUID.Zero;
         private AssetType assettype;
@@ -59,7 +59,7 @@ namespace METAbolt
             InitializeComponent();
             this.instance = instance;
             client = this.instance.Client;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             imsg = e.IM;
 
             Disposed += new EventHandler(GroupNotice_Disposed);
@@ -215,7 +215,9 @@ namespace METAbolt
         {
             Font nFont = new Font("Microsoft Sans Serif", 10, bold);
             rtbTitle.Select(start, otext.Length);
-            rtbTitle.SelectionFont = nFont;  
+            rtbTitle.SelectionFont = nFont;
+
+            nFont.Dispose();  
         }
 
         private void GroupProfileHandler(object sender, GroupProfileEventArgs e)

@@ -54,7 +54,8 @@ namespace METAbolt
                 {
                     METAboltInstance instance = new METAboltInstance(true, args);
                     Application.Run(instance.MainForm);
-                    instance = null;
+                    //instance = null;
+                    instance.Dispose();  
                 }
             }
             else
@@ -63,7 +64,8 @@ namespace METAbolt
                 {
                     METAboltInstance instance = new METAboltInstance(true);
                     Application.Run(instance.MainForm);
-                    instance = null;
+                    //instance = null;
+                    instance.Dispose();
                 }
                 catch (Exception ex)
                 {

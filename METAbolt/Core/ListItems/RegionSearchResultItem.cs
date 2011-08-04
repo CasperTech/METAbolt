@@ -31,7 +31,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using OpenMetaverse.Packets;
-using SLNetworkComm;
+//using SLNetworkComm;
 using OpenMetaverse.Assets;
 
 namespace METAbolt
@@ -39,7 +39,7 @@ namespace METAbolt
     public class RegionSearchResultItem : IDisposable
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
 
         private GridRegion region;
@@ -94,7 +94,7 @@ namespace METAbolt
         public RegionSearchResultItem(METAboltInstance instance, GridRegion region, ListBox listBox)
         {
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             this.region = region;
             this.listBox = listBox;

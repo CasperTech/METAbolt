@@ -49,7 +49,7 @@ namespace METAbolt
         private GridClient client;
         private InventoryItem item;
         //private UUID transferID;
-        private AssetScriptText receivedAsset;
+        //private AssetScriptText receivedAsset;
 
         //private UUID uploadID;
         private bool closePending = false;
@@ -62,7 +62,7 @@ namespace METAbolt
 
         //int start = 0;
         //int indexOfSearchText = 0;
-        string prevsearchtxt = string.Empty;
+        //string prevsearchtxt = string.Empty;
         private const int LINE_NUMBERS_MARGIN_WIDTH = 35;
         private UUID assetUUID = UUID.Zero;
         private UUID itemUUID = UUID.Zero;  
@@ -250,7 +250,7 @@ namespace METAbolt
                     return;
                 }
 
-                receivedAsset = (AssetScriptText)asset;
+                //receivedAsset = (AssetScriptText)asset;
                 scriptContent = Utils.BytesToString(transfer.AssetData);
                 SetScriptText(scriptContent, false);
                 //string adta = string.Empty; 
@@ -550,9 +550,9 @@ namespace METAbolt
                 using (BinaryWriter bw = new BinaryWriter(fs))
                     bw.Write(rtbScript.RawText, 0, rtbScript.RawText.Length - 1); // Omit trailing NULL
 
-            rtbScript.Modified = false;
+                rtbScript.Modified = false;
 
-            tsSaveDisk.Enabled = false;
+                tsSaveDisk.Enabled = false;
 
                 //if (saveFile1.FileName.Substring(saveFile1.FileName.Length - 3) == "rtf")
                 //{
@@ -569,6 +569,8 @@ namespace METAbolt
                 //    rtbScript.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
                 //}
             }
+
+            saveFile1.Dispose();  
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)

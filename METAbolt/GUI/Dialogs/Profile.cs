@@ -67,7 +67,7 @@ namespace METAbolt
         private int posY = 0;
         private int posZ = 0;
         //private bool displaynamechanged = false;
-        private string olddisplayname = string.Empty;
+        //private string olddisplayname = string.Empty;
         private List<UUID> displaynames = new List<UUID>();
         string newname = string.Empty;
         const int WM_NCHITTEST = 0x0084;
@@ -182,7 +182,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    txtDisplayName.Text = olddisplayname = string.Empty;
+                    txtDisplayName.Text = string.Empty;
                     button7.Enabled = true;
                 }
             }));
@@ -568,11 +568,11 @@ namespace METAbolt
                 {
                     if (!names[0].DisplayName.ToLower(CultureInfo.CurrentCulture).Contains("resident") && !names[0].DisplayName.ToLower(CultureInfo.CurrentCulture).Contains(" "))
                     {
-                        txtDisplayName.Text = olddisplayname = names[0].DisplayName;
+                        txtDisplayName.Text = names[0].DisplayName;
                     }
                     else
                     {
-                        txtDisplayName.Text = olddisplayname = string.Empty;
+                        txtDisplayName.Text = string.Empty;
                     }
                 }));
             }

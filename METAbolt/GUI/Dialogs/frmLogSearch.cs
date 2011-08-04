@@ -157,6 +157,8 @@ namespace METAbolt
             {
                 FoundFiles.Add(name); 
             }
+
+            testTxt.Dispose();  
         }
 
         private void button1_Click(object sender, EventArgs e)

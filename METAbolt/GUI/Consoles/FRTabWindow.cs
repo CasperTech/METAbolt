@@ -30,14 +30,14 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using SLNetworkComm;
+//using SLNetworkComm;
 
 namespace METAbolt
 {
     public partial class FRTabWindow : UserControl
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
         private string targetName;
         private UUID targetUUID;
@@ -49,7 +49,7 @@ namespace METAbolt
             InitializeComponent();
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             ProcessEventArgs(e);
         }

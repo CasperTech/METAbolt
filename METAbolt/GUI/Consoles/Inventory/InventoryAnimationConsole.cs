@@ -32,7 +32,7 @@ using System.Data;
 //using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SLNetworkComm;
+//using SLNetworkComm;
 using OpenMetaverse;
 
 namespace METAbolt
@@ -40,7 +40,7 @@ namespace METAbolt
     public partial class InventoryAnimationConsole : UserControl
     {
         private METAboltInstance instance;
-        private SLNetCom netcom;
+        //private SLNetCom netcom;
         private GridClient client;
         private InventoryItem item;
 
@@ -49,7 +49,7 @@ namespace METAbolt
             InitializeComponent();
 
             this.instance = instance;
-            netcom = this.instance.Netcom;
+            //netcom = this.instance.Netcom;
             client = this.instance.Client;
             this.item = item;
 

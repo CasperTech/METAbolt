@@ -1323,7 +1323,7 @@ namespace METAbolt
             thisProcess.StartInfo.FileName = SecondLifeExe;
             thisProcess.StartInfo.UseShellExecute = false;
             thisProcess.StartInfo.RedirectStandardInput = true;
-            thisProcess.Start();  
+            thisProcess.Start();
         }
 
         private String GetSecondLifeExe()
@@ -1887,12 +1887,14 @@ namespace METAbolt
 
                     bitmap.Dispose();  
                 }
+
+                open.Dispose(); 
             }
             catch (Exception)
             {
                 throw new ApplicationException("Failed loading image");
             }
- 
+
         }
     }
 }

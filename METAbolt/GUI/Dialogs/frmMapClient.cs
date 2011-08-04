@@ -154,6 +154,8 @@ namespace METAbolt
         {
             //GetMap();
 
+            if (!this.IsHandleCreated) return;
+
             this.BeginInvoke(new MethodInvoker(delegate()
             {
                 if (chkForSale.Checked)
@@ -224,9 +226,13 @@ namespace METAbolt
 
                 sim = ssim;
 
-                Bitmap bmp = _MapLayer == null ? new Bitmap(256, 256) : (Bitmap)_MapLayer.Clone();
+                Bitmap nbm = new Bitmap(256, 256);
+
+                Bitmap bmp = _MapLayer == null ? nbm : (Bitmap)_MapLayer.Clone();
 
                 Graphics g = Graphics.FromImage(bmp);
+
+                nbm.Dispose();  
 
                 if (_MapLayer == null)
                 {
@@ -241,10 +247,13 @@ namespace METAbolt
 
                 if (_LandLayer != null)
                 {
-                    bmp = _LandLayer == null ? new Bitmap(256, 256) : (Bitmap)_LandLayer.Clone();
+                    Bitmap nbm1 = new Bitmap(256, 256);
+
+                    bmp = _LandLayer == null ? nbm1 : (Bitmap)_LandLayer.Clone();
                     //g = Graphics.FromImage((Bitmap)_LandLayer.Clone());
 
                     g = Graphics.FromImage(bmp);
+                    nbm1.Dispose(); 
 
                     //ColorMatrix cm = new ColorMatrix();
                     //cm.Matrix00 = cm.Matrix11 = cm.Matrix22 = cm.Matrix44 = 1f;
@@ -263,26 +272,32 @@ namespace METAbolt
                 StringFormat strFormat = new StringFormat();
                 strFormat.Alignment = StringAlignment.Center;
 
-                g.DrawString("N", new Font("Arial", 12), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                g.DrawString("N", new Font("Arial", 9, FontStyle.Bold), Brushes.White, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
+                Font font1 = new Font("Arial", 12);
+                Font font2 = new Font("Arial", 9, FontStyle.Bold);
+
+                g.DrawString("N", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                g.DrawString("N", font2, Brushes.White, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
 
                 strFormat.LineAlignment = StringAlignment.Center;
                 strFormat.Alignment = StringAlignment.Near;
 
-                g.DrawString("W", new Font("Arial", 12), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                g.DrawString("W", new Font("Arial", 9, FontStyle.Bold), Brushes.White, new RectangleF(2, 0, bmp.Width, bmp.Height), strFormat);
+                g.DrawString("W", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                g.DrawString("W", font2, Brushes.White, new RectangleF(2, 0, bmp.Width, bmp.Height), strFormat);
 
                 strFormat.LineAlignment = StringAlignment.Center;
                 strFormat.Alignment = StringAlignment.Far;
 
-                g.DrawString("E", new Font("Arial", 12), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                g.DrawString("E", new Font("Arial", 9, FontStyle.Bold), Brushes.White, new RectangleF(-2, 0, bmp.Width, bmp.Height), strFormat);
+                g.DrawString("E", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                g.DrawString("E", font2, Brushes.White, new RectangleF(-2, 0, bmp.Width, bmp.Height), strFormat);
 
                 strFormat.LineAlignment = StringAlignment.Far;
                 strFormat.Alignment = StringAlignment.Center;
 
-                g.DrawString("S", new Font("Arial", 12), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                g.DrawString("S", new Font("Arial", 9, FontStyle.Bold), Brushes.White, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                g.DrawString("S", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                g.DrawString("S", font2, Brushes.White, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+
+                font1.Dispose();
+                font2.Dispose();  
 
                 // V0.9.8.0 changes for OpenSIM compatibility
                 Vector3 myPos;
@@ -302,6 +317,9 @@ namespace METAbolt
                     int i = 0;
                     Rectangle rect = new Rectangle();
 
+                    Pen pen1 = new Pen(Brushes.Red, 1);
+                    Pen pen2 = new Pen(Brushes.Green, 1);
+
                     client.Network.CurrentSim.AvatarPositions.ForEach(
                         delegate(KeyValuePair<UUID, Vector3> pos)
                         {
@@ -315,23 +333,26 @@ namespace METAbolt
                                 if (myPos.Z - pos.Value.Z > 20)
                                 {
                                     g.FillRectangle(Brushes.DarkRed, rect);
-                                    g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
+                                    g.DrawRectangle(pen1, rect);
                                 }
                                 else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
                                 {
                                     g.FillEllipse(Brushes.LightGreen, rect);
-                                    g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
+                                    g.DrawEllipse(pen2, rect);
                                 }
                                 else
                                 {
                                     g.FillRectangle(Brushes.MediumBlue, rect);
-                                    g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
+                                    g.DrawRectangle(pen1, rect);
                                 }
                             }
 
                             i++;
                         }
                     );
+
+                    pen1.Dispose();
+                    pen2.Dispose();  
                 }
                 
 
@@ -366,6 +387,8 @@ namespace METAbolt
 
         private void Grid_OnCoarseLocationUpdate(object sender, CoarseLocationUpdateEventArgs e)
         {
+            if (!this.IsHandleCreated) return;
+
             try
             {
                 //UpdateMiniMap(sim);
@@ -652,6 +675,8 @@ namespace METAbolt
                 return;
             }
 
+            if (!this.IsHandleCreated) return;
+
             BeginInvoke(new MethodInvoker(delegate()
             {
                 RegionSearchResult(e.Region);
@@ -687,6 +712,8 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(() => netcom_TeleportStatusChanged(sender, e)));
                 return;
             }
+
+            if (!this.IsHandleCreated) return;
 
             try
             {
@@ -757,6 +784,8 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(() => netcom_Teleporting(sender, e)));
                 return;
             }
+
+            if (!this.IsHandleCreated) return;
 
             try
             {

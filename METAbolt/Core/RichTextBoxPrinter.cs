@@ -55,7 +55,7 @@ namespace METAbolt
         private string textfontstyle = "Normal";
         private float textfontsize = 8.5f;
         //private int _findex = 0;
-        private Color bgcolour = Color.White;  
+        //private Color bgcolour = Color.White;  
 
         public RichTextBoxPrinter(METAboltInstance instance, ExRichTextBox textBox)
         {

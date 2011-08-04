@@ -209,7 +209,8 @@ namespace METAbolt
 
             //tabs["chat"].Highlight();
 
-            int bal = e.Balance - tmoneybalance;
+            //int bal = e.Balance - tmoneybalance;
+            int bal = client.Self.Balance - tmoneybalance;
 
             if (bal > 0)
             {
