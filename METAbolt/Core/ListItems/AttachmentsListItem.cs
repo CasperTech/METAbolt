@@ -32,13 +32,48 @@ using OpenMetaverse;
 
 namespace METAbolt
 {
-    public class AttachmentsListItem
+    public class AttachmentsListItem : IDisposable
     {
         private Primitive prim;
         private GridClient client;
         private ListBox listBox;
         private bool gotProperties = false;
         private bool gettingProperties = false;
+        private bool disposed = false;
+
+        ~AttachmentsListItem()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
+            }
+
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
+
+            // we're done
+            disposed = true;
+        }
+
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();  
+        }
 
         public AttachmentsListItem(Primitive prim, GridClient client, ListBox listBox)
         {
@@ -80,9 +115,16 @@ namespace METAbolt
                 gotProperties = true;
                 prim.Properties = e.Properties;
 
-                listBox.BeginInvoke(
-                    new OnPropReceivedRaise(OnPropertiesReceived),
-                    new object[] { EventArgs.Empty });
+                if (listBox.Created)
+                {
+                    listBox.BeginInvoke(
+                        new OnPropReceivedRaise(OnPropertiesReceived),
+                        new object[] { EventArgs.Empty });
+                }
+                else
+                {
+                    this.Dispose(); 
+                }
             }
             catch
             {

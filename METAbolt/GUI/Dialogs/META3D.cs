@@ -240,7 +240,7 @@ namespace METAbolt
                 Textures.Clear();
             }
 
-            //GC.Collect();
+            GC.Collect();
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
         }

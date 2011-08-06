@@ -19,7 +19,11 @@ namespace METAbolt
                 {
                     components.Dispose();
                     chatManager.Dispose();
-                    vgate.Dispose();
+
+                    if (vgate != null)
+                    {
+                        vgate.Dispose();
+                    }
                 }
                 catch { ; }
             }

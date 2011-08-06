@@ -562,12 +562,12 @@ namespace METAbolt
             client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
 
-            lock (listItems)
-            {
-                listItems.Clear();
-            }
+            //lock (listItems)
+            //{
+            //    listItems.Clear();
+            //}
 
-           //GC.Collect(); 
+           GC.Collect(); 
         }
     }
 }

@@ -115,10 +115,18 @@ namespace METAbolt
                 //    handle.Dispose();
                 //}
 
-                // TODO: dispose managed resources
-                waitGroupIMSession.Close();
-                waitGroupIMLeaveSession.Close();
-                aTimer.Dispose(); 
+
+                try
+                {
+                    waitGroupIMSession.Close();
+                    waitGroupIMLeaveSession.Close();
+
+                    if (aTimer != null)
+                    {
+                        aTimer.Dispose();
+                    }
+                }
+                catch { ; }
             }
 
             // TODO: Call the appropriate methods to clean up unmanaged resources here 

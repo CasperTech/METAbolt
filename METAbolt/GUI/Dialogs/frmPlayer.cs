@@ -103,6 +103,8 @@ namespace METAbolt
             axWindowsMediaPlayer1.CurrentItemChange -= new AxWMPLib._WMPOCXEvents_CurrentItemChangeEventHandler(player_CurrentItemChange);
             axWindowsMediaPlayer1.CurrentPlaylistChange -= new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(player_CurrentPlaylistChange);
             axWindowsMediaPlayer1.MediaChange -= new AxWMPLib._WMPOCXEvents_MediaChangeEventHandler(player_MediaChange);
+
+            GC.Collect(); 
         }
 
         private void player_MediaChange(object sender, AxWMPLib._WMPOCXEvents_MediaChangeEvent e)

@@ -85,6 +85,8 @@ namespace METAbolt
         {
             InitializeComponent();
 
+            Disposed += new EventHandler(Objects_Disposed);
+
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
@@ -2757,6 +2759,11 @@ namespace METAbolt
         private void picAutoSit_MouseLeave(object sender, EventArgs e)
         {
             toolTip1.Close();  
+        }
+
+        void Objects_Disposed(object sender, EventArgs e)
+        {
+            GC.Collect();
         }
     }
 }

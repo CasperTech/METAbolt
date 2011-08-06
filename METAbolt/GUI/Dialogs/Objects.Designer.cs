@@ -15,13 +15,14 @@ namespace METAbolt
         {
             if (disposing && (components != null))
             {
-                components.Dispose();
                 listItems.Clear();
                 ItemsProps.Clear();
                 childItems.Clear();
                 avatars.Clear();
-                objs.Clear(); 
+                objs.Clear();
+                components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
