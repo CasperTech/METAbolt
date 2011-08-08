@@ -39,61 +39,62 @@ using System.Globalization;
 
 namespace METAbolt
 {
-    public class ActionCommandsIn //: IDisposable
+    public class ActionCommandsIn : IDisposable
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
         private GridClient client;
+        private TabsConsole tconsole;
         //private ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
         //private SafeHandle handle;
-        //private bool disposed = false;
+        private bool disposed = false;
 
-        //~ActionCommandsIn()
-        //{
-        //    Dispose(false);
-        //}
+        ~ActionCommandsIn()
+        {
+            Dispose(false);
+        }
 
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (disposed) return;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
 
-        //    if (disposing)
-        //    {
-        //        //if (handle != null)
-        //        //{
-        //        //    handle.Dispose();
-        //        //}
-        //    }
+            if (disposing)
+            {
+                tconsole.Dispose();   
+            }
 
-        //    // TODO: Call the appropriate methods to clean up unmanaged resources here
+            // TODO: Call the appropriate methods to clean up unmanaged resources here
 
-        //    // we're done
-        //    disposed = true;
-        //}
+            // we're done
+            disposed = true;
+        }
 
-        //#region IDisposable
-        //public void Close()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
-        //#endregion
+        #region IDisposable
+        public void Close()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
 
-        //public void Dispose()
-        //{
-        //    //Dispose(true);
-        //    this.Close();  
-        //}
+        public void Dispose()
+        {
+            //Dispose(true);
+            this.Close();
+        }
 
         public ActionCommandsIn(METAboltInstance instance)
         {
             this.instance = instance;
             client = this.instance.Client;
             netcom = this.instance.Netcom;
+            tconsole = new TabsConsole(instance); 
         }
 
-        public string ProcessCommand(string command)
+        public string ProcessCommand(string command, string name, UUID fromid)
         {
+            tconsole.DisplayChatScreen("Recevided LSL (action) command: " + command + " >>> from " + name + " (" + fromid + ")");
+    
             char[] deli = "|".ToCharArray();
             string[] sGrp = command.Split(deli);
 
@@ -275,6 +276,98 @@ namespace METAbolt
                         Logger.Log("ERROR IM GIVEFOLDER COMMAND: " + ex.Message, Helpers.LogLevel.Error);
                     }
 
+                    break;
+
+                case "EJECTFROMGROUP":
+                    UUID groupid = (UUID)sGrp[3].Trim();
+                    UUID avatarid = (UUID)sGrp[4].Trim();
+
+                    if (groupid == UUID.Zero || avatarid == UUID.Zero)
+                        return string.Empty;
+
+                    client.Groups.EjectUser(groupid, avatarid);
+                    break;
+
+                case "TOUCH":
+                    UUID itemid = (UUID)sGrp[3].Trim();
+
+                    if (itemid == UUID.Zero) return string.Empty;
+
+                    Primitive fav = client.Network.Simulators[0].ObjectsPrimitives.Find((Primitive av) => { return av.ID == itemid; });
+
+                    if (fav == null) return string.Empty;
+
+                    client.Self.Touch(fav.LocalID);
+                    break;
+
+                case "SIT":
+                    UUID oid = (UUID)sGrp[3].Trim();
+
+                    if (oid == UUID.Zero) return string.Empty;
+
+                    client.Self.AutoPilotCancel();
+                    instance.State.SetSitting(true, oid);
+                    break;
+
+                case "STAND":
+                    UUID sid = (UUID)sGrp[3].Trim();
+
+                    if (sid == UUID.Zero) return string.Empty;
+
+                    instance.State.SetSitting(false, sid);
+                    break;
+
+                case "MOVETO":
+                    string typ = sGrp[3].Trim().ToLower();
+                    float xx = Convert.ToSingle(sGrp[4].Trim());
+                    float yy = Convert.ToSingle(sGrp[5].Trim());
+                    float zz = Convert.ToSingle(sGrp[6].Trim());
+
+                    client.Self.AutoPilotCancel();
+
+                    if (typ == "walk")
+                    {
+                        client.Self.Movement.Fly = false;
+                        client.Self.Fly(false);
+                        client.Self.Movement.AlwaysRun = false;
+                    }
+
+                    if (typ == "run")
+                    {
+                        client.Self.Movement.Fly = false;
+                        client.Self.Fly(false);
+                        client.Self.Movement.AlwaysRun = true;
+                    }
+
+                    if (typ == "fly")
+                    {
+                        client.Self.Movement.Fly = true;
+                        client.Self.Fly(true);   
+                        client.Self.Movement.AlwaysRun = false;
+                    }
+
+                    ulong regionHandle = client.Network.CurrentSim.Handle;
+
+                    int followRegionX = (int)(regionHandle >> 32);
+                    int followRegionY = (int)(regionHandle & 0xFFFFFFFF);
+                    ulong ux = (ulong)(xx + followRegionX);
+                    ulong uy = (ulong)(yy + followRegionY);
+
+                    client.Self.AutoPilotCancel();
+                    client.Self.AutoPilot(xx, yy, zz);
+                    break;
+
+                case "FOLLOW":
+                    string flname = sGrp[3].Trim();
+
+                    if (string.IsNullOrEmpty(flname))
+                    {
+                        instance.State.Follow(string.Empty);
+                    }
+                    else
+                    {
+                        instance.State.Follow(flname);
+                    }
                     break;
             }
 

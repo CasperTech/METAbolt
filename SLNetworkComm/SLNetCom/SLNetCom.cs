@@ -325,7 +325,7 @@ namespace SLNetworkComm
             }
         }
 
-        public string GetMACAddress()
+        public static string GetMACAddress()
         {
             ManagementObjectSearcher query = null;
             ManagementObjectCollection queryCollection = null;
@@ -351,6 +351,7 @@ namespace SLNetworkComm
                 macad = string.Empty;  
             }
 
+            query.Dispose();  
             return macad; 
         } 
 

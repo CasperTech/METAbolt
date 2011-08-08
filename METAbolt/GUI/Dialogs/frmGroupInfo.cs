@@ -253,7 +253,7 @@ namespace METAbolt
             grouprolesavs.Clear();
 
             this.Dispose();
-            //GC.Collect();
+            GC.Collect();
         }
 
         public void GroupNoticesHandler(object sender, GroupNoticesListReplyEventArgs e)

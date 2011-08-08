@@ -49,6 +49,7 @@ using System.Linq;
 using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
 using System.Globalization;
+using PopupControl;
 
 
 namespace METAbolt
@@ -85,7 +86,7 @@ namespace METAbolt
         private bool showing = false;
         private UUID avuuid = UUID.Zero;
         private string avname = string.Empty;
-        private bool removead = false;
+        //private bool removead = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private SafeDictionary<uint, Avatar> sfavatar = new SafeDictionary<uint,Avatar>();
         private List<string> avtyping = new List<string>();
@@ -105,6 +106,9 @@ namespace METAbolt
         private VoiceGateway vgate = null;
         //List<string> mics;
         //List<string> speakers;
+        private Popup toolTip;
+        private CustomToolTip customToolTip;
+        private bool formloading = false;
 
 
         internal class ThreadExceptionHandler
@@ -159,6 +163,12 @@ namespace METAbolt
 
             timer2.Enabled = true;
             timer2.Start();
+
+            string msg1 = "Yellow dot with red border = your avatar \nGreen dots = avs at your altitude\nRed squares = avs 20m+ below you\nBlue squares = avs 20m+ above you\n[Hover mouse on avatar icons for info. Click for profile]";
+            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            toolTip.AutoClose = false;
+            toolTip.FocusOnOpen = false;
+            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
         }
 
         private void SetExceptionReporter()
@@ -1378,7 +1388,7 @@ namespace METAbolt
                 return;
             }
 
-            string heading = "~";
+            //string heading = "~";
 
             Quaternion avRot = client.Self.RelativeRotation;
             
@@ -1399,39 +1409,47 @@ namespace METAbolt
 
             if ((Math.Abs(x) > Math.Abs(y)) && (x > 0))
             {
-                heading = "E";
+                //heading = "E";
+                picCompass.Image = Properties.Resources.c_e;
             }
             else if ((Math.Abs(x) > Math.Abs(y)) && (x < 0))
             {
-                heading = "W";
+                //heading = "W";
+                picCompass.Image = Properties.Resources.c_w;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y > 0))
             {
-                heading = "S";
+                //heading = "S";
+                picCompass.Image = Properties.Resources.c_s;
             }
             else if ((Math.Abs(y) > Math.Abs(x)) && (y < 0))
             {
-                heading = "N";
+                //heading = "N";
+                picCompass.Image = Properties.Resources.c_n;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y > 0))
             {
-                heading = "SE";
+                //heading = "SE";
+                picCompass.Image = Properties.Resources.c_se;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y > 0))
             {
-                heading = "SW";
+                //heading = "SW";
+                picCompass.Image = Properties.Resources.c_sw;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x < 0 && y < 0))
             {
-                heading = "NW";
+                //heading = "NW";
+                picCompass.Image = Properties.Resources.c_nw;
             }
             else if ((Math.Abs(y) == Math.Abs(x)) && (x > 0 && y < 0))
             {
-                heading = "NE";
+                //heading = "NE";
+                picCompass.Image = Properties.Resources.c_ne;
             }
 
-            textBox1.Text = heading;
-            textBox1.Refresh();
+            //textBox1.Text = heading;
+            //textBox1.Refresh();
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
@@ -1881,11 +1899,6 @@ namespace METAbolt
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (!removead) webBrowser1.Refresh();
-        }
-
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
@@ -2094,6 +2107,7 @@ namespace METAbolt
             // it works both ways...
             if (cbxInput.Focused) return false;
 
+           
             if (instance.State.IsFlying)
             {
                 switch (key)
@@ -2172,18 +2186,26 @@ namespace METAbolt
 
         private void fwd()
         {
-            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_AT_POS, client.Self.Movement.Camera.Position,
-                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
-                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
-                    AgentState.None, true);
+            //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_AT_POS, client.Self.Movement.Camera.Position,
+            //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+            //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+            //        AgentState.None, true);
+
+            client.Self.Movement.AutoResetControls = false;
+            client.Self.Movement.AtPos = true;
+            client.Self.Movement.SendUpdate();
         }
 
         private void bck()
         {
-            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_AT_NEG, client.Self.Movement.Camera.Position,
-                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
-                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
-                    AgentState.None, true);
+            //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_AT_NEG, client.Self.Movement.Camera.Position,
+            //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+            //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+            //        AgentState.None, true);
+
+            client.Self.Movement.AutoResetControls = false;
+            client.Self.Movement.AtNeg = true;
+            client.Self.Movement.SendUpdate();
         }
 
         private void lft()
@@ -2539,9 +2561,10 @@ namespace METAbolt
                     Vector3 myPos = new Vector3(0,0,0);
                     string strInfo = string.Empty;
 
+                    myPos = instance.SIMsittingPos();
+
                     if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
                     {
-                        myPos = instance.SIMsittingPos();
                         label12.Text = sims.SimVersion;
                         strInfo = string.Format(CultureInfo.CurrentCulture,"Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count + 1);
                     }
@@ -2549,7 +2572,7 @@ namespace METAbolt
                     {
                         try
                         {
-                            myPos = sim.AvatarPositions[client.Self.AgentID];
+                            //myPos = sim.AvatarPositions[client.Self.AgentID];
 
                             try
                             {
@@ -2593,20 +2616,28 @@ namespace METAbolt
 
                         if (pos.Key != client.Self.AgentID)
                         {
-                            if (myPos.Z - pos.Value.Z > 20)
-                            {
-                                g.FillRectangle(Brushes.DarkRed, rect);
-                                g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
-                            }
-                            else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
-                            {
-                                g.FillEllipse(Brushes.LightGreen, rect);
-                                g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
-                            }
-                            else
+                            if (pos.Value.Z < 0.1f)
                             {
                                 g.FillRectangle(Brushes.MediumBlue, rect);
                                 g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
+                            }
+                            else
+                            {
+                                if (myPos.Z - pos.Value.Z > 20)
+                                {
+                                    g.FillRectangle(Brushes.DarkRed, rect);
+                                    g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
+                                }
+                                else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
+                                {
+                                    g.FillEllipse(Brushes.LightGreen, rect);
+                                    g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
+                                }
+                                else
+                                {
+                                    g.FillRectangle(Brushes.MediumBlue, rect);
+                                    g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
+                                }
                             }
 
                             Point mouse = new Point(x, y);
@@ -3000,71 +3031,52 @@ namespace METAbolt
 
         }
 
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            HtmlElementCollection links = webBrowser1.Document.Links;
+        //private void LinkClicked(object sender, EventArgs e)
+        //{
+        //    HtmlElement link = webBrowser1.Document.ActiveElement;
+        //    clickedurl = link.GetAttribute("href");
+        //}
 
-            foreach (HtmlElement var in links)
-            {
-                var.AttachEventHandler("onclick", LinkClicked);
-            }
-        }
+        //private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(clickedurl))
+        //    {
+        //        HtmlElement link = webBrowser1.Document.ActiveElement;
+        //        clickedurl = link.GetAttribute("href");
+        //    }
 
-        private void LinkClicked(object sender, EventArgs e)
-        {
-            HtmlElement link = webBrowser1.Document.ActiveElement;
-            clickedurl = link.GetAttribute("href");
-        }
+        //    e.Cancel = true;
 
-        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(clickedurl))
-            {
-                HtmlElement link = webBrowser1.Document.ActiveElement;
-                clickedurl = link.GetAttribute("href");
-            }
+        //    if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCulture))
+        //    {
+        //        // Open up the TP form here
+        //        string[] split = clickedurl.Split(new Char[] { '/' });
+        //        string ssim = split[4].ToString();
+        //        double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+        //        double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+        //        double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
-            e.Cancel = true;
+        //        (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
+        //        clickedurl = string.Empty;
+        //        return;
+        //    }
+        //    if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
+        //    {
+        //        // Open up the TP form here
+        //        string[] split = clickedurl.Split(new Char[] { '/' });
+        //        string ssim = split[4].ToString();
+        //        double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+        //        double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+        //        double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
-            if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCulture))
-            {
-                // Open up the TP form here
-                string[] split = clickedurl.Split(new Char[] { '/' });
-                string ssim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+        //        (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
+        //        clickedurl = string.Empty;
+        //        return;
+        //    }
 
-                (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
-                clickedurl = string.Empty;
-                return;
-            }
-            if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
-            {
-                // Open up the TP form here
-                string[] split = clickedurl.Split(new Char[] { '/' });
-                string ssim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-
-                (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
-                clickedurl = string.Empty;
-                return;
-            }
-
-            System.Diagnostics.Process.Start(clickedurl);
-            clickedurl = string.Empty;  
-        }
-
-        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            //if (clickedurl != string.Empty)
-            //{
-            //    e.Cancel = true;
-            //    System.Diagnostics.Process.Start(e.Url.ToString());
-            //}
-        }
+        //    System.Diagnostics.Process.Start(clickedurl);
+        //    clickedurl = string.Empty;  
+        //}
 
         private void cbxInput_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3086,6 +3098,12 @@ namespace METAbolt
 
         private void ChatConsole_SizeChanged(object sender, EventArgs e)
         {
+            if (!formloading)
+            {
+                formloading = true;
+                return;
+            }            
+
             newsize = tabPage2.Width - 30;
 
             px = world.Top;
@@ -3538,6 +3556,31 @@ namespace METAbolt
                 timer2.Enabled = false;
                 timer2.Stop();
             }  
+        }
+
+        private void toolStripButton1_Click_3(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/Quick.aspx");
+        }
+
+        private void picAutoSit_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/How-to-enable-VOICE.ashx");
+        }
+
+        private void pictureBox4_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.Show(pictureBox1);
+        }
+
+        private void pictureBox4_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip.Close();
+        }
+
+        private void ChatConsole_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

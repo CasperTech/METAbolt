@@ -364,12 +364,17 @@ namespace METAbolt
 
         public void SetFlying(bool fflying)
         {
+            client.Self.AutoPilotCancel();
+
             client.Self.Fly(fflying);
+            client.Self.Movement.Fly = fflying;
             this.flying = fflying;
         }
 
         public void SetAlwaysRun(bool aalwaysrun)
         {
+            client.Self.AutoPilotCancel();
+
             this.alwaysrun = aalwaysrun;
             client.Self.Movement.AlwaysRun = aalwaysrun;            
         }
@@ -378,6 +383,8 @@ namespace METAbolt
         {
             if (ssitting)
             {
+                client.Self.AutoPilotCancel();
+
                 this.sitting = false;
                 sitprim = UUID.Zero;
                 client.Self.RequestSit(target, Vector3.Zero);

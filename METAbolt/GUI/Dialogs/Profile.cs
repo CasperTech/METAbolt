@@ -134,6 +134,12 @@ namespace METAbolt
             }
         }
 
+        ~frmProfile()
+        {
+            this.Dispose();
+            GC.Collect(); 
+        }
+
         private void SetExceptionReporter()
         {
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically

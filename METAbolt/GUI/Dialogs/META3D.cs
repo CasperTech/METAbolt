@@ -241,8 +241,7 @@ namespace METAbolt
             }
 
             GC.Collect();
-            //GC.Collect();
-            //GC.WaitForPendingFinalizers();
+            GC.WaitForPendingFinalizers();
         }
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)

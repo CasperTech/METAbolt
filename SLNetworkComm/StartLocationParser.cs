@@ -32,26 +32,26 @@ namespace SLNetworkComm
     {
         private string location;
 
-        public StartLocationParser(string location)
+        public StartLocationParser(string llocation)
         {
-            if (location == null) throw new Exception("Location cannot be null.");
+            if (llocation == null) throw new Exception("Location cannot be null.");
 
-            this.location = location;
+            this.location = llocation;
         }
 
-        private string GetSim(string location)
+        private string GetSim(string llocation)
         {
-            if (!location.Contains("/")) return location;
+            if (!llocation.Contains("/")) return llocation;
 
-            string[] locSplit = location.Split('/');
+            string[] locSplit = llocation.Split('/');
             return locSplit[0];
         }
 
-        private int GetX(string location)
+        private int GetX(string llocation)
         {
-            if (!location.Contains("/")) return 128;
+            if (!llocation.Contains("/")) return 128;
 
-            string[] locSplit = location.Split('/');
+            string[] locSplit = llocation.Split('/');
 
             int returnResult;
             bool stringToInt = int.TryParse(locSplit[1], out returnResult);
@@ -62,11 +62,11 @@ namespace SLNetworkComm
                 return 128;
         }
 
-        private int GetY(string location)
+        private int GetY(string llocation)
         {
-            if (!location.Contains("/")) return 128;
+            if (!llocation.Contains("/")) return 128;
 
-            string[] locSplit = location.Split('/');
+            string[] locSplit = llocation.Split('/');
 
             int returnResult;
             bool stringToInt = int.TryParse(locSplit[2], out returnResult);
@@ -77,11 +77,11 @@ namespace SLNetworkComm
                 return 128;
         }
 
-        private int GetZ(string location)
+        private int GetZ(string llocation)
         {
-            if (!location.Contains("/")) return 0;
+            if (!llocation.Contains("/")) return 0;
 
-            string[] locSplit = location.Split('/');
+            string[] locSplit = llocation.Split('/');
 
             int returnResult;
             bool stringToInt = int.TryParse(locSplit[3], out returnResult);

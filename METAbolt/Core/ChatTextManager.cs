@@ -788,8 +788,8 @@ namespace METAbolt
 
                 // process the command
                 ActionCommandsIn act = new ActionCommandsIn(this.instance);
-                string ret = act.ProcessCommand(smsg.Trim());
-                //act.Dispose(); 
+                string ret = act.ProcessCommand(smsg.Trim(), item.FromName, item.FromUUID);
+                act.Dispose(); 
                 return;
             }
             //added by GM on 2-JUL-2009

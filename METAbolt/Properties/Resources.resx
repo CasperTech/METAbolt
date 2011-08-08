@@ -516,7 +516,6 @@
   <data name="camera_clic_with_flash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\camera_clic_with_flash.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="top_hat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\top-hat.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -528,5 +527,30 @@
   </data>
   <data name="_3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="c_e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_e.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_n.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c_ne" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_ne.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c_nw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_nw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_s.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c_se" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_se.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c_sw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_sw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c_w.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

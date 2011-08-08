@@ -421,6 +421,30 @@ namespace METAbolt
             }));
         }
 
+        public void DisplayChatScreen(string msg, ChatBufferTextStyle type)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    DisplayChatScreen(msg, type);
+                }));
+
+                return;
+            }
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
+                           msg,
+                           type,
+                           null,
+                           UUID.Random()); //added by GM on 3-JUL-2009 - the FromAgentID
+
+                chatConsole.ChatManager.ProcessBufferItem(ready, false);
+            }));
+        }
+
         private void netcom_InstantMessageReceived(object sender, InstantMessageEventArgs e)
         {
             if (instance.IsAvatarMuted(e.IM.FromAgentID))

@@ -302,15 +302,17 @@ namespace METAbolt
                 // V0.9.8.0 changes for OpenSIM compatibility
                 Vector3 myPos;
 
-                // Rollback change from 9.2.1
-                if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
-                {
-                    myPos = instance.SIMsittingPos();
-                }
-                else
-                {
-                    myPos = sim.AvatarPositions[client.Self.AgentID];
-                }
+                //// Rollback change from 9.2.1
+                //if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
+                //{
+                //    myPos = instance.SIMsittingPos();
+                //}
+                //else
+                //{
+                //    myPos = sim.AvatarPositions[client.Self.AgentID];
+                //}
+
+                myPos = instance.SIMsittingPos();
 
                 if (chkResident.Checked)
                 {
@@ -330,20 +332,28 @@ namespace METAbolt
 
                             if (pos.Key != client.Self.AgentID)
                             {
-                                if (myPos.Z - pos.Value.Z > 20)
+                                if (pos.Value.Z < 0.1f)
                                 {
-                                    g.FillRectangle(Brushes.DarkRed, rect);
-                                    g.DrawRectangle(pen1, rect);
-                                }
-                                else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
-                                {
-                                    g.FillEllipse(Brushes.LightGreen, rect);
-                                    g.DrawEllipse(pen2, rect);
+                                    g.FillRectangle(Brushes.MediumBlue, rect);
+                                    g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
                                 }
                                 else
                                 {
-                                    g.FillRectangle(Brushes.MediumBlue, rect);
-                                    g.DrawRectangle(pen1, rect);
+                                    if (myPos.Z - pos.Value.Z > 20)
+                                    {
+                                        g.FillRectangle(Brushes.DarkRed, rect);
+                                        g.DrawRectangle(pen1, rect);
+                                    }
+                                    else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
+                                    {
+                                        g.FillEllipse(Brushes.LightGreen, rect);
+                                        g.DrawEllipse(pen2, rect);
+                                    }
+                                    else
+                                    {
+                                        g.FillRectangle(Brushes.MediumBlue, rect);
+                                        g.DrawRectangle(pen1, rect);
+                                    }
                                 }
                             }
 
