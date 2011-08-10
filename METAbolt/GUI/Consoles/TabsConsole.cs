@@ -564,11 +564,15 @@ namespace METAbolt
                 notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
                 notifyIcon1.ShowBalloonTip(2000);
 
-                BeginInvoke(new MethodInvoker(delegate()
+                try
                 {
-                    //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                    chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
-                }));
+                    BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                        chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
+                    }));
+                }
+                catch { ; }
 
                 if (this.instance.Config.CurrentConfig.PlaySound)
                 {

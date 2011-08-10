@@ -12,6 +12,7 @@ using ExceptionReporting;
 using System.Threading;
 using PopupControl;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 
 namespace METAbolt
@@ -196,25 +197,70 @@ namespace METAbolt
 
                 if (fullName.Contains("("))
                 {
-                    string[] splits = fullName.Split('(');
+                    try
+                    {
+                        string[] splits = fullName.Split('(');
 
-                    fullName = splits[0].ToString().Trim();
-                    imcount = splits[1].ToString();
-                    string[] splits1 = imcount.Split(')');
+                        fullName = splits[0].ToString(CultureInfo.CurrentCulture).Trim();
+                        imcount = splits[1].ToString(CultureInfo.CurrentCulture).Trim();
+                        string[] splits1 = imcount.Split(')');
 
-                    imcount = splits1[0].ToString();
-                    cnt = Convert.ToInt32(imcount, CultureInfo.CurrentCulture) + 1;
+                        imcount = splits1[0].ToString(CultureInfo.CurrentCulture).Trim();
 
-                    fullName = TabAgentName + " (" + cnt.ToString(CultureInfo.CurrentCulture) + ")";
+                        if (!string.IsNullOrEmpty(imcount))
+                        {
+                            if (IsNumeric(imcount))
+                            {
+                                cnt = Convert.ToInt32(imcount, CultureInfo.CurrentCulture) + 1;
+                            }
+                        }
 
-                    lbxIMs.BeginUpdate();
-                    lbxIMs.Items[s] = fullName;
-                    lbxIMs.EndUpdate();
+                        fullName = TabAgentName + " (" + cnt.ToString(CultureInfo.CurrentCulture) + ")";
+
+                        lbxIMs.BeginUpdate();
+                        lbxIMs.Items[s] = fullName;
+                        lbxIMs.EndUpdate();
+                    }
+                    catch { ; }
                 }
 
             }
 
             SetSets();
+        }
+
+        //private bool IsTextValidated(string strTextEntry)
+        public static Boolean IsNumeric(System.Object Expression)
+        {
+            //Regex objNotWholePattern = new Regex("[^0-9]");
+            //return !objNotWholePattern.IsMatch(strTextEntry)
+            //     && (strTextEntry != "");
+
+            if (Expression == null || Expression is DateTime)
+                return false;
+
+            if (Expression is Int16 || Expression is Int32 || Expression is Int64 || Expression is Decimal || Expression is Single || Expression is Double || Expression is Boolean)
+                return true;
+
+            double Num = 0;
+
+            try
+            {
+                bool isNum = double.TryParse(Expression.ToString(), out Num);
+
+                if (isNum)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void IMbox_Load(object sender, EventArgs e)
