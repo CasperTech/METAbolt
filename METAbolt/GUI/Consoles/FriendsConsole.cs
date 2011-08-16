@@ -362,11 +362,24 @@ namespace METAbolt
             float stringX = e.Bounds.Left + 4 + Properties.Resources.GreenOrb_16.Width;
             float stringY = e.Bounds.Top + 2 + ((Properties.Resources.GreenOrb_16.Height / 2) - (stringSize.Height / 2));
 
+            //if (itemToDraw.Friend.IsOnline)
+            //{
+            //    e.Graphics.DrawImage(Properties.Resources.GreenOrb_16, e.Bounds.Left + 2, e.Bounds.Top + 2);
+            //}
+            //else
+            //{
+            //    e.Graphics.DrawImage(Properties.Resources.GreenOrbFaded_16, e.Bounds.Left + 2, e.Bounds.Top + 2);
+            //}
+
             if (itemToDraw.Friend.IsOnline)
-                e.Graphics.DrawImage(Properties.Resources.GreenOrb_16, e.Bounds.Left + 2, e.Bounds.Top + 2);
+            {
+                e.Graphics.DrawImage(Properties.Resources.green_orb, e.Bounds.Left + 2, e.Bounds.Top + 2);
+            }
             else
-                e.Graphics.DrawImage(Properties.Resources.GreenOrbFaded_16, e.Bounds.Left + 2, e.Bounds.Top + 2);
-            
+            {
+                e.Graphics.DrawImage(Properties.Resources.green_orb_off, e.Bounds.Left + 2, e.Bounds.Top + 2);
+            }
+                        
             e.Graphics.DrawString(itemToDraw.Friend.Name, textFont, textBrush, stringX, stringY);
 
             e.DrawFocusRectangle();

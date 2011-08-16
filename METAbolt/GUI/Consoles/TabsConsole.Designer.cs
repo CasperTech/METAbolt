@@ -83,7 +83,8 @@ namespace METAbolt
             // tstTabs
             // 
             this.tstTabs.AccessibleName = "METAbolt tabs toolbar";
-            this.tstTabs.BackColor = System.Drawing.Color.Gainsboro;
+            this.tstTabs.BackColor = System.Drawing.Color.Transparent;
+            this.tstTabs.BackgroundImage = global::METAbolt.Properties.Resources.smoke_bg;
             this.tstTabs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tstTabs.Dock = System.Windows.Forms.DockStyle.None;
             this.tstTabs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {

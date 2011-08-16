@@ -1569,6 +1569,8 @@
     <None Include="Resources\Group Im received.wav" />
     <None Include="Resources\Group Notice.WAV" />
     <None Include="Resources\history.png" />
+    <None Include="Resources\green_orb.png" />
+    <None Include="Resources\green_orb_off.png" />
     <Content Include="Resources\logo_watermark.png" />
     <None Include="Resources\METAbolt_icon.png" />
     <None Include="Resources\My_Documents.png" />
@@ -1634,6 +1636,7 @@
     <None Include="Resources\top-hat.png" />
     <None Include="Resources\turnleft.png" />
     <None Include="Resources\turnright.png" />
+    <None Include="Resources\smoke_bg.png" />
     <Content Include="Resources\U-turn_icon.png" />
     <None Include="Resources\uncomment_i.png" />
     <None Include="Resources\undo_i.png" />
@@ -1653,12 +1656,12 @@
   <ItemGroup>
     <PublishFile Include="METAbolt">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

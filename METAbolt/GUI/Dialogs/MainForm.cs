@@ -1444,15 +1444,15 @@ namespace METAbolt
 
         //    if (m.Msg == WM_KEYUP)
         //    {
-        //        if (key == (int)Keys.ControlKey)                                              
+        //        if (key == (int)Keys.ControlKey)
         //        {
         //            if (Control.ModifierKeys == Keys.L)
         //            {
-        //                aboutLandToolStripMenuItem.PerformClick(); 
+        //                toolStripButton14.PerformClick();
         //            }
         //            else if (Control.ModifierKeys == Keys.P)
         //            {
-        //                tmnuPrefs.PerformClick(); 
+        //                toolStripButton1.PerformClick();
         //            }
         //            else if (Control.ModifierKeys == Keys.E)
         //            {
@@ -1460,35 +1460,19 @@ namespace METAbolt
         //            }
         //            else if (Control.ModifierKeys == Keys.R)
         //            {
-        //                avatarToolStripMenuItem.PerformClick(); 
-        //            }
-        //            else if (Control.ModifierKeys == Keys.W)
-        //            {
-        //                awayToolStripMenuItem.PerformClick(); 
-        //            }
-        //            else if (Control.ModifierKeys == Keys.B)
-        //            {
-        //                busyToolStripMenuItem.PerformClick(); 
-        //            }
-        //            else if (Control.ModifierKeys == Keys.F)
-        //            {
-        //                fallOnFaceToolStripMenuItem.PerformClick(); 
-        //            }
-        //            else if (Control.ModifierKeys == Keys.H)
-        //            {
-        //                tPHomeToolStripMenuItem.PerformClick(); 
+        //                toolStripButton12.PerformClick();
         //            }
         //            else if (Control.ModifierKeys == Keys.T)
         //            {
-        //                tbtnTeleport.PerformClick(); 
+        //                toolStripButton4.PerformClick();
         //            }
         //            else if (Control.ModifierKeys == Keys.M)
         //            {
-        //                btnMap.PerformClick(); 
+        //                tlbtnMap.PerformClick();
         //            }
         //            else if (Control.ModifierKeys == Keys.O)
         //            {
-        //                tbtnObjects.PerformClick(); 
+        //                toolStripButton6.PerformClick();
         //            }
         //            //else if (Control.ModifierKeys == Keys.D)
         //            //{
@@ -1496,16 +1480,16 @@ namespace METAbolt
         //            //}
         //            else if (Control.ModifierKeys == Keys.Y)
         //            {
-        //                helpToolStripMenuItem.PerformClick(); 
+        //                helpToolStripMenuItem.PerformClick();
         //            }
         //        }
-        //        else if (key == (int)Keys.Alt)
-        //        {
-        //            if (Control.ModifierKeys == Keys.D)
-        //            {
-        //                tbtnDebug.Visible = !tbtnDebug.Visible;
-        //            }
-        //        }
+        //        //else if (key == (int)Keys.Alt)
+        //        //{
+        //        //    if (Control.ModifierKeys == Keys.D)
+        //        //    {
+        //        //        tbtnDebug.Visible = !tbtnDebug.Visible;
+        //        //    }
+        //        //}
         //    }
 
         //    return false;
@@ -1721,7 +1705,7 @@ namespace METAbolt
             tssPlugins.Visible = false;
         }
 
-        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        public void toolStripButton1_Click_1(object sender, EventArgs e)
         {
             (new frmPreferences(instance)).ShowDialog(this);
         }
@@ -1731,7 +1715,7 @@ namespace METAbolt
             (new frmBackup()).Show(); 
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        public void toolStripButton3_Click(object sender, EventArgs e)
         {
             instance.LogOffClicked = true;
             this.Close();
@@ -2035,6 +2019,71 @@ namespace METAbolt
             thisProcess.Start();
 
             thisProcess.Dispose();  
+        }
+
+        private void tsApplication_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        //private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.Shift | Keys.C)) 
+            {
+                toolStripButton3.PerformClick();
+                return true; 
+            }
+            if (keyData == (Keys.Control | Keys.P))
+            {
+                toolStripButton1.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys.Control | Keys.R))
+            {
+                toolStripButton12.PerformClick();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.L))
+            {
+                toolStripButton14.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys.Control | Keys.T))
+            {
+                toolStripButton4.PerformClick();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.M))
+            {
+                tlbtnMap.PerformClick();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.O))
+            {
+                toolStripButton6.PerformClick();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.E))
+            {
+                toolStripButton16.PerformClick();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.Y))
+            {
+                toolStripButton17.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys.Control | Keys.D))
+            {
+                toolStripButton25.PerformClick();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
