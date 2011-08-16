@@ -49,7 +49,7 @@
             // 
             this.lvwFindPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.lvwFindPlaces.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwFindPlaces.BackColor = System.Drawing.Color.White;
             this.lvwFindPlaces.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdTime});
@@ -187,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.txtInformation);
             this.Controls.Add(this.txtDescription);

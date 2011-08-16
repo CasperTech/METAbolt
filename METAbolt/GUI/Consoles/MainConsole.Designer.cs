@@ -151,7 +151,7 @@ namespace METAbolt
             this.pnlLoginPrompt.AccessibleName = "Login detail entry";
             this.pnlLoginPrompt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlLoginPrompt.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlLoginPrompt.BackColor = System.Drawing.Color.White;
             this.pnlLoginPrompt.Controls.Add(this.txtFirstName);
             this.pnlLoginPrompt.Controls.Add(this.cboUserList);
             this.pnlLoginPrompt.Controls.Add(this.chkCmd);
@@ -356,8 +356,7 @@ namespace METAbolt
             this.AccessibleName = "Login Console";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Controls.Add(this.pnlLoginPrompt);
             this.Controls.Add(this.pnlLoggingIn);

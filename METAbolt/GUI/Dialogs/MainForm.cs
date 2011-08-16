@@ -605,7 +605,7 @@ namespace METAbolt
         {
             if (e.Status != LoginStatus.Success) return;
 
-            tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
+            tlTools.Enabled = btnAvatar.Enabled = mnuDonate.Enabled = tsPlugins.Enabled = true;
             statusTimer.Enabled = true;
             statusTimer.Start();
             RefreshWindowTitle();
@@ -888,12 +888,6 @@ namespace METAbolt
             (new frmAbout()).ShowDialog(this);
         }
 
-        private void tmnuExit_Click(object sender, EventArgs e)
-        {
-            instance.LogOffClicked = true;
-            this.Close();
-        }
-
         private void tbtnTeleport_Click(object sender, EventArgs e)
         {
             (new frmTeleport(instance,"",0,0,0)).ShowDialog();
@@ -943,15 +937,21 @@ namespace METAbolt
                 //ToolStrip ts = new ToolStrip();
                 //ts = toolStrip1;
 
-                ToolStripDropDownItem mitem;   // = tsPlugins.OwnerItem as ToolStripDropDownItem;
-                mitem = tsPlugins;
+                //ToolStripDropDownItem mitem;   // = tsPlugins.OwnerItem as ToolStripDropDownItem;
+                //mitem = tsPlugins;
+
+                ToolStrip mitem = new ToolStrip();
+                mitem = tssPlugins;
 
                 ToolStripButton item = new ToolStripButton();
+                //ToolStripItem item = new 
+
                 item.Tag = extOn.Instance;
                 item.Text = extOn.Instance.Title;
                 item.Width = extOn.Instance.Title.Length * 6;   // 200;
                 item.Click += new System.EventHandler(AnyMenuItem_Click);
-                mitem.DropDownItems.Add(item);
+                //mitem.DropDownItems.Add(item);
+                mitem.Items.Add(item);
 
                 elist.Add(extOn.Instance);
             }
@@ -1049,11 +1049,6 @@ namespace METAbolt
             //(new METAboltInstance(false)).MainForm.Show();
         }
 
-        private void tmnuPrefs_Click(object sender, EventArgs e)
-        {
-            (new frmPreferences(instance)).ShowDialog(this);
-        }
-
         private void tbtnObjects_Click(object sender, EventArgs e)
         {
             (new frmObjects(instance)).Show();
@@ -1069,49 +1064,14 @@ namespace METAbolt
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/METAforums/yaf_topics22_Help.aspx");
         }
 
-        //private void visitLTekToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    System.Diagnostics.Process.Start(@"http://l-tek.vistalogic.co.uk");
-        //}
-
-        private void avatarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //client.Appearance.RequestCachedBakes();
-                client.Appearance.RequestSetAppearance(false);  
-                //client.Appearance.SetPreviousAppearance(false);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log("Rebake (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
-            }
-        }
-
         private void setHomeToolStripMenuItem_Click(object sender, EventArgs e)
         {
                
         }
 
-        private void setHomeToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            client.Self.SetHome();
-        }
-
-        private void tPHomeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            client.Self.GoHome();
-        }
-
         private void standToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-        }
-
-        private void standToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.SetStanding();  
-            RefreshWindowTitle();
         }
 
         private void btnMap_Click(object sender, EventArgs e)
@@ -1205,31 +1165,6 @@ namespace METAbolt
             toolTip1.SetToolTip(statusStrip1, "Avatar Name");
         }
 
-        private void landMonitorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //(new frmLand(instance)).Show();
-        }
-
-        private void awayToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.SetAway(awayToolStripMenuItem.Checked);
-        }
-
-        private void busyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.SetBusy(busyToolStripMenuItem.Checked);
-        }
-
-        private void flyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.SetFlying(flyToolStripMenuItem.Checked);
-        }
-
-        private void alwaysRunToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.SetAlwaysRun(alwaysRunToolStripMenuItem.Checked);
-        }
-
         private void toolStripDropDownButton1_Click(object sender, EventArgs e)
         {
             //System.Diagnostics.Process.Start(@"https://www.euroslex.com?r=48c");
@@ -1250,19 +1185,9 @@ namespace METAbolt
             }
         }
 
-        private void accountHistoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"https://secure-web4.secondlife.com/account/transactions.php?lang=en");
-        }
-
         private void sLHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://secondlife.com/support/");
-        }
-
-        private void sLKnowledgebaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"https://support.secondlife.com/ics/support/default.asp?deptID=4417");
         }
 
         private void mEToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1278,52 +1203,6 @@ namespace METAbolt
         private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/METAforums/yaf_topics26_Bugs-and-Fixes.aspx");
-        }
-
-        private void aboutLandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmAboutLand(instance)).ShowDialog(this);
-        }
-
-        private void bellyDanceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.BellyDance(bellyDanceToolStripMenuItem.Checked);
-        }
-
-        private void clubToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.ClubDance(clubToolStripMenuItem.Checked);
-        }
-
-        private void salsaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.SalsaDance(salsaToolStripMenuItem.Checked);
-        }
-
-        private void fallOnFaceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.FallOnFace(fallOnFaceToolStripMenuItem.Checked);
-        }
-
-        private void crouchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.Crouch(crouchToolStripMenuItem.Checked);
-        }
-
-        private void launchSLViewerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // The following line was borrowed from Kitten Lulu's SLRun1CPU
-            // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
-            String SecondLifeExe = GetSecondLifeExe();
-
-            if (string.IsNullOrEmpty(SecondLifeExe))
-                return;
-
-            Process thisProcess = new Process();
-            thisProcess.StartInfo.FileName = SecondLifeExe;
-            thisProcess.StartInfo.UseShellExecute = false;
-            thisProcess.StartInfo.RedirectStandardInput = true;
-            thisProcess.Start();
         }
 
         private String GetSecondLifeExe()
@@ -1378,21 +1257,6 @@ namespace METAbolt
 
         }
 
-        private void teleportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmTeleport(instance, "", 0, 0, 0)).Show();
-        }
-
-        private void mapToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmMapClient(instance)).Show();
-        }
-
-        private void objectsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmObjects(instance)).Show();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
@@ -1411,36 +1275,6 @@ namespace METAbolt
                 // do nothing
                 tsTime.Text = "?00:00:00";
             }
-        }
-
-        private void tmnuBackup_Click(object sender, EventArgs e)
-        {
-            (new frmBackup()).Show(); 
-        }
-
-        private void createLandmarkHereToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string file = parcel.Name;
-
-            if (file.Length > 32)
-            {
-                file = file.Substring(0, 32); 
-            }
-
-            string pos = instance.SIMsittingPos().X.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Y.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Z.ToString(CultureInfo.CurrentCulture);
-               
-            string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
-
-            client.Inventory.RequestCreateItem(client.Inventory.FindFolderForType(AssetType.Landmark),
-                    file, desc, AssetType.Landmark, UUID.Random(), InventoryType.Landmark, PermissionMask.All,
-                    delegate(bool success, InventoryItem item)
-                    {
-                        if (!success)
-                        {
-                            MessageBox.Show("Landmark could not be created", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                );  
         }
 
         private void addToPicksToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1475,28 +1309,33 @@ namespace METAbolt
 
         private void tsUtilities_Click(object sender, EventArgs e)
         {
+            tlUtilities.BackColor = Color.White;
+            tlUtilities.ForeColor = Color.Black;
 
+            tbtnMETAbolt.BackColor = Color.Transparent;
+            btnAvatar.BackColor = Color.Transparent;
+            tlLogs.BackColor = Color.Transparent;
+            tlTools.BackColor = Color.Transparent;
+            tsPlugins.BackColor = Color.Transparent;   
+
+            tbtnMETAbolt.ForeColor = Color.White;
+            tlLogs.ForeColor = Color.White;
+            btnAvatar.ForeColor = Color.White;
+            tlTools.ForeColor = Color.White;
+            tsPlugins.ForeColor = Color.White;   
+
+            tsApplication.Visible = false;
+            tsWorld.Visible = false;
+            tsLogs.Visible = false;
+            tsUtilities.Visible = true;
+            tsTools.Visible = false;
+            tssPlugins.Visible = false;
         }
 
         public void SetFlag(Image img, string lang)
         {
             tsFlag.Image = img;
             tsFlag.ToolTipText = "Detectected language: " + lang; 
-        }
-
-        private void detectSpokenLanguageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.DetectLang = tsMenuDetect.Checked;
-        }
-
-        private void mETAplayerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmPlayer(instance)).Show();
-        }
-
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
-        {
-            (new frmStats(instance)).Show();
         }
 
         private void aLphToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1524,36 +1363,29 @@ namespace METAbolt
 
         }
 
-        private void teleportHistoryToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            (new frmTPhistory(instance)).Show(this);
-        }
-
-        private void muteListToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            (new frmMutes(instance)).Show(this);
-        }
-
-        private void debugLogsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                debugLogForm.Show(this);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log(String.Format(CultureInfo.CurrentCulture,"Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
-            }
-        }
-
-        private void chatLogsToolStripMenuItem_Click(object sender, EventArgs e)                                       
-        {
-            Process.Start("explorer.exe", instance.Config.CurrentConfig.LogDir);
-        }
-
         private void tsPlugins_Click(object sender, EventArgs e)
         {
+            tsPlugins.BackColor = Color.White;
+            tsPlugins.ForeColor = Color.Black;
 
+            btnAvatar.BackColor = Color.Transparent;
+            tlLogs.BackColor = Color.Transparent;
+            tlTools.BackColor = Color.Transparent;
+            tlUtilities.BackColor = Color.Transparent;
+            tbtnMETAbolt.BackColor = Color.Transparent;
+
+            btnAvatar.ForeColor = Color.White;
+            tlLogs.ForeColor = Color.White;
+            tlTools.ForeColor = Color.White;
+            tlUtilities.ForeColor = Color.White;
+            tbtnMETAbolt.ForeColor = Color.White;
+
+            tsApplication.Visible = false;
+            tsWorld.Visible = false;
+            tsTools.Visible = false;
+            tsLogs.Visible = false;
+            tsUtilities.Visible = false;
+            tssPlugins.Visible = true;
         }
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1585,23 +1417,6 @@ namespace METAbolt
             }
         }
 
-        private void scriptEditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmScriptEditor(instance)).Show();
-        }
-
-        private void setPreviousAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //client.Appearance.SetPreviousAppearance(true);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
-            }
-        }
-
         private void tbtnHelp_Click(object sender, EventArgs e)
         {
 
@@ -1613,11 +1428,6 @@ namespace METAbolt
             instance.State.SetGroundSit(true);  
         }
 
-        private void searchLogsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmLogSearch(instance)).Show();
-        }
-
         private void frmMain_LocationChanged(object sender, EventArgs e)
         {
               
@@ -1626,11 +1436,6 @@ namespace METAbolt
         private void tlblRegionInfo_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void reloadAIMLLibrariesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.instance.InitAI(); 
         }
 
         //protected override bool ProcessKeyPreview(ref System.Windows.Forms.Message m)
@@ -1765,7 +1570,8 @@ namespace METAbolt
             try
             {
                 // UI shutdown
-                tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
+                tlTools.Enabled = btnAvatar.Enabled = mnuDonate.Enabled = tsPlugins.Enabled = false;
+
                 RefreshStatusBar();
                 RefreshWindowTitle();
                 if (debugLogForm != null && !debugLogForm.Disposing)
@@ -1841,7 +1647,8 @@ namespace METAbolt
             try
             {
                 // UI shutdown
-                tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
+                tlTools.Enabled = btnAvatar.Enabled = mnuDonate.Enabled = tsPlugins.Enabled = false;
+
                 RefreshStatusBar();
                 RefreshWindowTitle();
                 if (debugLogForm != null && !debugLogForm.Disposing)
@@ -1864,12 +1671,241 @@ namespace METAbolt
             return true;
         }
 
-        private void stopAnimationToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnAvatar_Click(object sender, EventArgs e)
         {
-            instance.State.StopAnimations(); 
+            btnAvatar.BackColor = Color.White;
+            btnAvatar.ForeColor = Color.Black;
+
+            tbtnMETAbolt.BackColor = Color.Transparent;
+            tlTools.BackColor = Color.Transparent;
+            tlLogs.BackColor = Color.Transparent;
+            tlUtilities.BackColor = Color.Transparent;
+            tsPlugins.BackColor = Color.Transparent;  
+
+            tbtnMETAbolt.ForeColor = Color.White;
+            tlLogs.ForeColor = Color.White;
+            tlTools.ForeColor = Color.White;
+            tlUtilities.ForeColor = Color.White;
+            tsPlugins.ForeColor = Color.White;   
+            
+            tsApplication.Visible = false;
+            tsWorld.Visible = true;
+            tsTools.Visible = false;
+            tsLogs.Visible = false;
+            tsUtilities.Visible = false;
+            tssPlugins.Visible = false;
         }
 
-        private void uploadImageL10PerUploadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tbtnMETAbolt_Click(object sender, EventArgs e)
+        {
+            tbtnMETAbolt.BackColor = Color.White;
+            tbtnMETAbolt.ForeColor = Color.Black;
+
+            btnAvatar.BackColor = Color.Transparent;
+            tlLogs.BackColor = Color.Transparent;
+            tlTools.BackColor = Color.Transparent;
+            tlUtilities.BackColor = Color.Transparent;
+            tsPlugins.BackColor = Color.Transparent;
+
+            btnAvatar.ForeColor = Color.White;
+            tlLogs.ForeColor = Color.White;
+            tlTools.ForeColor = Color.White;
+            tlUtilities.ForeColor = Color.White;
+            tsPlugins.ForeColor = Color.White;
+
+            tsApplication.Visible = true;
+            tsWorld.Visible = false;
+            tsTools.Visible = false;
+            tsLogs.Visible = false;
+            tsUtilities.Visible = false;
+            tssPlugins.Visible = false;
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            (new frmPreferences(instance)).ShowDialog(this);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            (new frmBackup()).Show(); 
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            instance.LogOffClicked = true;
+            this.Close();
+        }
+
+        private void awayToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.SetAway(awayToolStripMenuItem1.Checked);
+        }
+
+        private void busyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.SetBusy(busyToolStripMenuItem1.Checked);
+        }
+
+        private void fallOnFaceToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.FallOnFace(fallOnFaceToolStripMenuItem1.Checked);
+        }
+
+        private void bellyDanceToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.BellyDance(bellyDanceToolStripMenuItem1.Checked);
+        }
+
+        private void salsaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.SalsaDance(salsaToolStripMenuItem1.Checked);
+        }
+
+        private void clubDanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.ClubDance(clubDanceToolStripMenuItem.Checked);
+        }
+
+        private void flyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.SetFlying(flyToolStripMenuItem1.Checked);
+        }
+
+        private void alwaysRunToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.SetAlwaysRun(alwaysRunToolStripMenuItem1.Checked);
+        }
+
+        private void teleportHomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            client.Self.GoHome();
+        }
+
+        private void setHomeHereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            client.Self.SetHome();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            string file = parcel.Name;
+
+            if (file.Length > 32)
+            {
+                file = file.Substring(0, 32);
+            }
+
+            string pos = instance.SIMsittingPos().X.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Y.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Z.ToString(CultureInfo.CurrentCulture);
+
+            string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
+
+            client.Inventory.RequestCreateItem(client.Inventory.FindFolderForType(AssetType.Landmark),
+                    file, desc, AssetType.Landmark, UUID.Random(), InventoryType.Landmark, PermissionMask.All,
+                    delegate(bool success, InventoryItem item)
+                    {
+                        if (!success)
+                        {
+                            MessageBox.Show("Landmark could not be created", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                );  
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            client.Self.SitOnGround();
+            instance.State.SetGroundSit(true);
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            instance.State.SetStanding();
+            RefreshWindowTitle();
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            instance.State.Crouch(toolStripButton10.Checked);
+        }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+            instance.State.StopAnimations();
+        }
+
+        private void toolStripButton12_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //client.Appearance.RequestCachedBakes();
+                client.Appearance.RequestSetAppearance(false);
+                //client.Appearance.SetPreviousAppearance(false);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log("Rebake (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
+            }
+        }
+
+        private void toolStripButton15_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //client.Appearance.SetPreviousAppearance(true);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
+            }
+        }
+
+        private void toolStripButton13_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://secure-web4.secondlife.com/account/transactions.php?lang=en");
+        }
+
+        private void toolStripButton14_Click(object sender, EventArgs e)
+        {
+            (new frmAboutLand(instance)).ShowDialog(this);
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            (new frmTeleport(instance, "", 0, 0, 0)).Show();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            (new frmMapClient(instance)).Show();
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            (new frmObjects(instance)).Show();
+        }
+
+        private void toolStripButton16_Click(object sender, EventArgs e)
+        {
+            (new frmScriptEditor(instance)).Show();
+        }
+
+        private void toolStripButton17_Click(object sender, EventArgs e)
+        {
+            (new frmPlayer(instance)).Show();
+        }
+
+        private void toolStripButton18_Click(object sender, EventArgs e)
+        {
+            (new frmStats(instance)).Show();
+        }
+
+        private void toolStripButton19_Click(object sender, EventArgs e)
+        {
+            instance.DetectLang = toolStripButton19.Checked;
+        }
+
+        private void toolStripButton20_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1885,16 +1921,120 @@ namespace METAbolt
 
                     (new UploadImage(instance, bitmap, open.FileName, ext)).ShowDialog();
 
-                    bitmap.Dispose();  
+                    bitmap.Dispose();
                 }
 
-                open.Dispose(); 
+                open.Dispose();
             }
             catch (Exception)
             {
                 throw new ApplicationException("Failed loading image");
             }
+        }
 
+        private void tlTools_Click(object sender, EventArgs e)
+        {
+            tlTools.BackColor = Color.White;
+            tlTools.ForeColor = Color.Black; 
+
+            tbtnMETAbolt.BackColor = Color.Transparent;
+            btnAvatar.BackColor = Color.Transparent;
+            tlLogs.BackColor = Color.Transparent;
+            tlUtilities.BackColor = Color.Transparent;
+            tsPlugins.BackColor = Color.Transparent;   
+
+            tbtnMETAbolt.ForeColor = Color.White;
+            tlLogs.ForeColor = Color.White;
+            btnAvatar.ForeColor = Color.White;
+            tlUtilities.ForeColor = Color.White;
+            tsPlugins.ForeColor = Color.White;   
+
+            tsApplication.Visible = false;
+            tsWorld.Visible = false;
+            tsLogs.Visible = false;
+            tsUtilities.Visible = false;
+            tsTools.Visible = true;
+            tssPlugins.Visible = false; 
+        }
+
+        private void toolStripButton21_Click(object sender, EventArgs e)
+        {
+            (new frmTPhistory(instance)).ShowDialog(this);
+        }
+
+        private void toolStripButton22_Click(object sender, EventArgs e)
+        {
+            (new frmMutes(instance)).ShowDialog(this);
+        }
+
+        private void toolStripButton23_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", instance.Config.CurrentConfig.LogDir);
+        }
+
+        private void toolStripButton24_Click(object sender, EventArgs e)
+        {
+            (new frmLogSearch(instance)).Show();
+        }
+
+        private void toolStripButton25_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                debugLogForm.Show(this);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log(String.Format(CultureInfo.CurrentCulture, "Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
+            }
+        }
+
+        private void tlLogs_Click(object sender, EventArgs e)
+        {
+            tlLogs.BackColor = Color.White;
+            tlLogs.ForeColor = Color.Black; 
+
+            tbtnMETAbolt.BackColor = Color.Transparent;
+            tlTools.BackColor = Color.Transparent;
+            btnAvatar.BackColor = Color.Transparent;
+            tlUtilities.BackColor = Color.Transparent;
+            tsPlugins.BackColor = Color.Transparent;   
+
+            tbtnMETAbolt.ForeColor = Color.White;
+            tlTools.ForeColor = Color.White;
+            btnAvatar.ForeColor = Color.White;
+            tlUtilities.ForeColor = Color.White;
+            tsPlugins.ForeColor = Color.White;   
+
+            tsApplication.Visible = false;
+            tsWorld.Visible = false;
+            tsTools.Visible = false;
+            tsLogs.Visible = true;
+            tsUtilities.Visible = false;
+            tssPlugins.Visible = false;
+        }
+
+        private void toolStripButton5_Click_1(object sender, EventArgs e)
+        {
+            this.instance.InitAI();
+        }
+
+        private void toolStripButton26_Click(object sender, EventArgs e)
+        {
+            // The following line was borrowed from Kitten Lulu's SLRun1CPU
+            // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
+            String SecondLifeExe = GetSecondLifeExe();
+
+            if (string.IsNullOrEmpty(SecondLifeExe))
+                return;
+
+            Process thisProcess = new Process();
+            thisProcess.StartInfo.FileName = SecondLifeExe;
+            thisProcess.StartInfo.UseShellExecute = false;
+            thisProcess.StartInfo.RedirectStandardInput = true;
+            thisProcess.Start();
+
+            thisProcess.Dispose();  
         }
     }
 }

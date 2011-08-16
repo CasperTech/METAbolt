@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTPhistory));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,7 +48,7 @@
             this.dataGridView1.AccessibleName = "List of teleported locations";
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightSteelBlue;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(2, 3);
             this.dataGridView1.MultiSelect = false;
@@ -154,7 +155,7 @@
             // 
             // picHelp
             // 
-            this.picHelp.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picHelp.Image = ((System.Drawing.Image)(resources.GetObject("picHelp.Image")));
             this.picHelp.Location = new System.Drawing.Point(2, 318);
             this.picHelp.Name = "picHelp";
             this.picHelp.Size = new System.Drawing.Size(15, 15);
@@ -169,7 +170,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(568, 345);
             this.ControlBox = false;
             this.Controls.Add(this.picHelp);

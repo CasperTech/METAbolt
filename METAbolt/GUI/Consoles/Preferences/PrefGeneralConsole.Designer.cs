@@ -28,6 +28,7 @@ namespace METAbolt
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrefGeneralConsole));
             this.rdoSystemStyle = new System.Windows.Forms.RadioButton();
             this.rdoOfficeStyle = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -147,7 +148,7 @@ namespace METAbolt
             this.rdoSystemStyle.Checked = true;
             this.rdoSystemStyle.Location = new System.Drawing.Point(6, 20);
             this.rdoSystemStyle.Name = "rdoSystemStyle";
-            this.rdoSystemStyle.Size = new System.Drawing.Size(59, 17);
+            this.rdoSystemStyle.Size = new System.Drawing.Size(60, 17);
             this.rdoSystemStyle.TabIndex = 1;
             this.rdoSystemStyle.TabStop = true;
             this.rdoSystemStyle.Text = "System";
@@ -159,7 +160,7 @@ namespace METAbolt
             this.rdoOfficeStyle.AutoSize = true;
             this.rdoOfficeStyle.Location = new System.Drawing.Point(72, 20);
             this.rdoOfficeStyle.Name = "rdoOfficeStyle";
-            this.rdoOfficeStyle.Size = new System.Drawing.Size(80, 17);
+            this.rdoOfficeStyle.Size = new System.Drawing.Size(81, 17);
             this.rdoOfficeStyle.TabIndex = 2;
             this.rdoOfficeStyle.Text = "Office 2003";
             this.rdoOfficeStyle.UseVisualStyleBackColor = true;
@@ -199,7 +200,7 @@ namespace METAbolt
             // tabPage1
             // 
             this.tabPage1.AccessibleName = "Options tab";
-            this.tabPage1.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.nUD2);
             this.tabPage1.Controls.Add(this.label11);
@@ -449,7 +450,7 @@ namespace METAbolt
             // 
             // picAutoSit
             // 
-            this.picAutoSit.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
             this.picAutoSit.Location = new System.Drawing.Point(315, 184);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
@@ -472,7 +473,7 @@ namespace METAbolt
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(152, 143);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
@@ -505,7 +506,7 @@ namespace METAbolt
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(313, 5);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(15, 15);
@@ -530,7 +531,7 @@ namespace METAbolt
             // tabPage4
             // 
             this.tabPage4.AccessibleName = "Radar tab";
-            this.tabPage4.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage4.BackColor = System.Drawing.Color.White;
             this.tabPage4.Controls.Add(this.textBox2);
             this.tabPage4.Controls.Add(this.tbar2);
             this.tabPage4.Controls.Add(this.pictureBox5);
@@ -561,7 +562,7 @@ namespace METAbolt
             // 
             this.tbar2.AccessibleName = "Object select range trackbar";
             this.tbar2.AutoSize = false;
-            this.tbar2.BackColor = System.Drawing.Color.Lavender;
+            this.tbar2.BackColor = System.Drawing.Color.White;
             this.tbar2.Location = new System.Drawing.Point(124, 98);
             this.tbar2.Maximum = 512;
             this.tbar2.Minimum = 5;
@@ -575,7 +576,7 @@ namespace METAbolt
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(314, 103);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(15, 15);
@@ -594,7 +595,7 @@ namespace METAbolt
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(313, 57);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(15, 15);
@@ -626,7 +627,7 @@ namespace METAbolt
             // 
             this.tBar1.AccessibleName = "Radar range trackbar";
             this.tBar1.AutoSize = false;
-            this.tBar1.BackColor = System.Drawing.Color.Lavender;
+            this.tBar1.BackColor = System.Drawing.Color.White;
             this.tBar1.LargeChange = 10;
             this.tBar1.Location = new System.Drawing.Point(73, 53);
             this.tBar1.Maximum = 2048;
@@ -643,7 +644,7 @@ namespace METAbolt
             // 
             this.tabPage2.AccessibleDescription = "Displays the folder the cache is stored in";
             this.tabPage2.AccessibleName = "Cache location textbox";
-            this.tabPage2.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.textBox4);
             this.tabPage2.Controls.Add(this.button2);
@@ -705,7 +706,7 @@ namespace METAbolt
             // tabPage3
             // 
             this.tabPage3.AccessibleName = "Security tab";
-            this.tabPage3.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Controls.Add(this.groupBox5);
             this.tabPage3.Controls.Add(this.groupBox4);
             this.tabPage3.Controls.Add(this.groupBox2);
@@ -736,7 +737,7 @@ namespace METAbolt
             this.chkAutoTransfer.AutoSize = true;
             this.chkAutoTransfer.Location = new System.Drawing.Point(67, 56);
             this.chkAutoTransfer.Name = "chkAutoTransfer";
-            this.chkAutoTransfer.Size = new System.Drawing.Size(245, 17);
+            this.chkAutoTransfer.Size = new System.Drawing.Size(252, 17);
             this.chkAutoTransfer.TabIndex = 1;
             this.chkAutoTransfer.Text = "Transfer all received amounts to Master avatar";
             this.chkAutoTransfer.UseVisualStyleBackColor = true;
@@ -815,7 +816,7 @@ namespace METAbolt
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(306, 62);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(15, 15);
@@ -835,7 +836,7 @@ namespace METAbolt
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(306, 41);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(15, 15);
@@ -865,7 +866,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(35, 62);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(210, 17);
+            this.checkBox1.Size = new System.Drawing.Size(211, 17);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Give a present when invite is accepted";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -874,7 +875,7 @@ namespace METAbolt
             // tabPage5
             // 
             this.tabPage5.AccessibleName = "Layout tab";
-            this.tabPage5.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage5.BackColor = System.Drawing.Color.White;
             this.tabPage5.Controls.Add(this.groupBox3);
             this.tabPage5.Controls.Add(this.label10);
             this.tabPage5.Controls.Add(this.button8);
@@ -924,7 +925,7 @@ namespace METAbolt
             // textBox7
             // 
             this.textBox7.AccessibleName = "Header font textbox";
-            this.textBox7.BackColor = System.Drawing.Color.AliceBlue;
+            this.textBox7.BackColor = System.Drawing.Color.Lavender;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.textBox7.Location = new System.Drawing.Point(122, 61);
@@ -947,7 +948,7 @@ namespace METAbolt
             // textBox6
             // 
             this.textBox6.AccessibleName = "Header colour display";
-            this.textBox6.BackColor = System.Drawing.Color.AliceBlue;
+            this.textBox6.BackColor = System.Drawing.Color.Lavender;
             this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(172, 33);
             this.textBox6.Name = "textBox6";
@@ -1082,7 +1083,7 @@ namespace METAbolt
             this.checkBox4.AutoSize = true;
             this.checkBox4.Location = new System.Drawing.Point(25, 107);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(229, 17);
+            this.checkBox4.Size = new System.Drawing.Size(231, 17);
             this.checkBox4.TabIndex = 2;
             this.checkBox4.Text = "Use \'modern\' layout in chat and IM screens";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -1092,7 +1093,7 @@ namespace METAbolt
             // 
             this.tabPage6.AccessibleDescription = "Sounds to play on selected events";
             this.tabPage6.AccessibleName = "Sounds tab";
-            this.tabPage6.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage6.BackColor = System.Drawing.Color.White;
             this.tabPage6.Controls.Add(this.checkBox5);
             this.tabPage6.Controls.Add(this.checkBox11);
             this.tabPage6.Controls.Add(this.checkBox10);
@@ -1112,7 +1113,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(58, 200);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(217, 17);
+            this.checkBox5.Size = new System.Drawing.Size(220, 17);
             this.checkBox5.TabIndex = 13;
             this.checkBox5.Text = "Play sound when payments are received";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1123,7 +1124,7 @@ namespace METAbolt
             this.checkBox11.AutoSize = true;
             this.checkBox11.Location = new System.Drawing.Point(58, 177);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(221, 17);
+            this.checkBox11.Size = new System.Drawing.Size(227, 17);
             this.checkBox11.TabIndex = 12;
             this.checkBox11.Text = "Play sound when Inventory Item received";
             this.checkBox11.UseVisualStyleBackColor = true;
@@ -1134,7 +1135,7 @@ namespace METAbolt
             this.checkBox10.AutoSize = true;
             this.checkBox10.Location = new System.Drawing.Point(58, 154);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(217, 17);
+            this.checkBox10.Size = new System.Drawing.Size(216, 17);
             this.checkBox10.TabIndex = 11;
             this.checkBox10.Text = "Play sound when Group Notice received";
             this.checkBox10.UseVisualStyleBackColor = true;
@@ -1156,7 +1157,7 @@ namespace METAbolt
             this.checkBox8.AutoSize = true;
             this.checkBox8.Location = new System.Drawing.Point(58, 108);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(171, 17);
+            this.checkBox8.Size = new System.Drawing.Size(169, 17);
             this.checkBox8.TabIndex = 9;
             this.checkBox8.Text = "Play sound when IM Received";
             this.checkBox8.UseVisualStyleBackColor = true;
@@ -1167,7 +1168,7 @@ namespace METAbolt
             this.checkBox7.AutoSize = true;
             this.checkBox7.Location = new System.Drawing.Point(58, 85);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(170, 17);
+            this.checkBox7.Size = new System.Drawing.Size(173, 17);
             this.checkBox7.TabIndex = 8;
             this.checkBox7.Text = "Play sound when Friend offline";
             this.checkBox7.UseVisualStyleBackColor = true;
@@ -1178,14 +1179,14 @@ namespace METAbolt
             this.checkBox6.AutoSize = true;
             this.checkBox6.Location = new System.Drawing.Point(58, 62);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(170, 17);
+            this.checkBox6.Size = new System.Drawing.Size(171, 17);
             this.checkBox6.TabIndex = 7;
             this.checkBox6.Text = "Play sound when Friend online";
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // colorDialog1
             // 
-            this.colorDialog1.Color = System.Drawing.Color.AliceBlue;
+            this.colorDialog1.Color = System.Drawing.Color.Lavender;
             // 
             // fontDialog1
             // 
@@ -1200,6 +1201,7 @@ namespace METAbolt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

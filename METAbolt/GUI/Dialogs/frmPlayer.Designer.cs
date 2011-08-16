@@ -292,7 +292,6 @@
             this.MaximizeBox = false;
             this.Name = "frmPlayer";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "METAplayer";
             this.Load += new System.EventHandler(this.frmPlayer_Load);
             this.ResizeEnd += new System.EventHandler(this.frmPlayer_ResizeEnd);

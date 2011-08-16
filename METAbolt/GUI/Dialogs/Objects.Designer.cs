@@ -480,7 +480,7 @@ namespace METAbolt
             this.checkBox5.Enabled = false;
             this.checkBox5.Location = new System.Drawing.Point(143, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(50, 17);
+            this.checkBox5.Size = new System.Drawing.Size(51, 17);
             this.checkBox5.TabIndex = 9;
             this.checkBox5.Text = "Copy";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -493,7 +493,7 @@ namespace METAbolt
             this.checkBox6.Enabled = false;
             this.checkBox6.Location = new System.Drawing.Point(102, 278);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(47, 17);
+            this.checkBox6.Size = new System.Drawing.Size(46, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mod";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -606,7 +606,7 @@ namespace METAbolt
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(143, 302);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(50, 17);
+            this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Copy";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -618,7 +618,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(102, 302);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(47, 17);
+            this.checkBox1.Size = new System.Drawing.Size(46, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Mod";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -752,7 +752,7 @@ namespace METAbolt
             // 
             // picAutoSit
             // 
-            this.picAutoSit.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
             this.picAutoSit.Location = new System.Drawing.Point(239, 43);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
@@ -1143,7 +1143,7 @@ namespace METAbolt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(570, 585);
@@ -1159,7 +1159,6 @@ namespace METAbolt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmObjects";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Object Manager - METAbolt";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmObjects_FormClosing);

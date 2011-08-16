@@ -92,7 +92,7 @@
             // rtbTitle
             // 
             this.rtbTitle.AccessibleName = "Notice subject label";
-            this.rtbTitle.BackColor = System.Drawing.Color.Lavender;
+            this.rtbTitle.BackColor = System.Drawing.Color.White;
             this.rtbTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbTitle.Location = new System.Drawing.Point(108, 57);
@@ -107,7 +107,7 @@
             // rtbBody
             // 
             this.rtbBody.AccessibleName = "Notice body textbox";
-            this.rtbBody.BackColor = System.Drawing.Color.Lavender;
+            this.rtbBody.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rtbBody.Location = new System.Drawing.Point(108, 97);
             this.rtbBody.Name = "rtbBody";
             this.rtbBody.ReadOnly = true;
@@ -181,7 +181,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(404, 291);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
@@ -196,7 +196,6 @@
             this.MinimizeBox = false;
             this.Name = "frmGroupNotice";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group Notice";

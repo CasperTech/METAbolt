@@ -55,7 +55,7 @@
             this.lvwFindLand.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwFindLand.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwFindLand.BackColor = System.Drawing.Color.White;
             this.lvwFindLand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdTime,
@@ -233,7 +233,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pLand);
             this.Controls.Add(this.lvwFindLand);

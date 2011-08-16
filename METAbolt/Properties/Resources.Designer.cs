@@ -596,6 +596,13 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap menu_bg {
+            get {
+                object obj = ResourceManager.GetObject("menu_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap METAbolt_icon {
             get {
                 object obj = ResourceManager.GetObject("METAbolt_icon", resourceCulture);

@@ -78,6 +78,11 @@ namespace METAbolt
             this.chkTranslate = new System.Windows.Forms.CheckBox();
             this.rtbChat = new Khendys.Controls.ExRichTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.picCompass = new System.Windows.Forms.PictureBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -85,6 +90,10 @@ namespace METAbolt
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -139,15 +148,6 @@ namespace METAbolt
             this.label10 = new System.Windows.Forms.Label();
             this.cboRender = new System.Windows.Forms.ComboBox();
             this.cboCapture = new System.Windows.Forms.ComboBox();
-            this.picCompass = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.cboLanguage = new METAbolt.ComboEx();
             this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.panel1.SuspendLayout();
@@ -161,6 +161,7 @@ namespace METAbolt
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompass)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -173,7 +174,6 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompass)).BeginInit();
             this.SuspendLayout();
             // 
             // cbxInput
@@ -182,7 +182,7 @@ namespace METAbolt
             this.cbxInput.AccessibleName = "Chat input box";
             this.cbxInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxInput.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxInput.BackColor = System.Drawing.Color.White;
             this.cbxInput.Enabled = false;
             this.cbxInput.FormattingEnabled = true;
             this.cbxInput.Location = new System.Drawing.Point(3, 5);
@@ -236,7 +236,7 @@ namespace METAbolt
             // panel1
             // 
             this.panel1.AccessibleName = "Chat panel";
-            this.panel1.BackColor = System.Drawing.Color.Lavender;
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.toolStrip2);
             this.panel1.Controls.Add(this.cbxInput);
@@ -253,7 +253,7 @@ namespace METAbolt
             this.toolStrip2.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
             this.toolStrip2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.toolStrip2.AutoSize = false;
-            this.toolStrip2.BackColor = System.Drawing.Color.Lavender;
+            this.toolStrip2.BackColor = System.Drawing.Color.Gainsboro;
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbSay,
@@ -434,7 +434,7 @@ namespace METAbolt
             // picAutoSit
             // 
             this.picAutoSit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.picAutoSit.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
             this.picAutoSit.Location = new System.Drawing.Point(3, 310);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
@@ -456,7 +456,7 @@ namespace METAbolt
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.Color.Lavender;
+            this.splitContainer1.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -471,6 +471,7 @@ namespace METAbolt
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Panel2.Controls.Add(this.panel5);
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
@@ -480,6 +481,7 @@ namespace METAbolt
             // 
             // panel7
             // 
+            this.panel7.BackColor = System.Drawing.Color.White;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel7.Controls.Add(this.checkBox2);
             this.panel7.Controls.Add(this.checkBox1);
@@ -537,7 +539,7 @@ namespace METAbolt
             // panel3
             // 
             this.panel3.AccessibleName = "Translation panel";
-            this.panel3.BackColor = System.Drawing.Color.Lavender;
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.cboLanguage);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.label3);
@@ -635,7 +637,7 @@ namespace METAbolt
             this.panel5.AccessibleName = "Movement panel";
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.BackColor = System.Drawing.Color.Lavender;
+            this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel5.Controls.Add(this.picCompass);
@@ -659,6 +661,66 @@ namespace METAbolt
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(194, 105);
             this.panel5.TabIndex = 10;
+            // 
+            // picCompass
+            // 
+            this.picCompass.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.picCompass.BackColor = System.Drawing.Color.Transparent;
+            this.picCompass.Image = global::METAbolt.Properties.Resources.c_n;
+            this.picCompass.Location = new System.Drawing.Point(114, 23);
+            this.picCompass.Name = "picCompass";
+            this.picCompass.Size = new System.Drawing.Size(65, 65);
+            this.picCompass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCompass.TabIndex = 24;
+            this.picCompass.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.SlateGray;
+            this.label20.Location = new System.Drawing.Point(98, 48);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(18, 13);
+            this.label20.TabIndex = 28;
+            this.label20.Text = "W";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.SlateGray;
+            this.label19.Location = new System.Drawing.Point(141, 91);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(14, 13);
+            this.label19.TabIndex = 27;
+            this.label19.Text = "S";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.SlateGray;
+            this.label2.Location = new System.Drawing.Point(179, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "E";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label1.Location = new System.Drawing.Point(141, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "N";
             // 
             // button8
             // 
@@ -774,13 +836,60 @@ namespace METAbolt
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label21
+            // 
+            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Red;
+            this.label21.Location = new System.Drawing.Point(175, 12);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(10, 13);
+            this.label21.TabIndex = 29;
+            this.label21.Text = ".";
+            // 
+            // label22
+            // 
+            this.label22.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(108, 12);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(10, 13);
+            this.label22.TabIndex = 30;
+            this.label22.Text = ".";
+            // 
+            // label23
+            // 
+            this.label23.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Red;
+            this.label23.Location = new System.Drawing.Point(109, 78);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(10, 13);
+            this.label23.TabIndex = 31;
+            this.label23.Text = ".";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.Red;
+            this.label24.Location = new System.Drawing.Point(176, 78);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(10, 13);
+            this.label24.TabIndex = 32;
+            this.label24.Text = ".";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.AccessibleDescription = "Contains icons to performs tasks on the selected avatar in the radar list such as" +
                 " IM, display profile, follow etc";
             this.toolStrip1.AccessibleName = "Radar Function toolbox";
             this.toolStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.toolStrip1.BackColor = System.Drawing.Color.Lavender;
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Right;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1011,7 +1120,7 @@ namespace METAbolt
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(21, 20);
@@ -1051,7 +1160,7 @@ namespace METAbolt
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Mini map and SIM statistics";
-            this.tabPage2.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.pictureBox4);
             this.tabPage2.Controls.Add(this.progressBar7);
             this.tabPage2.Controls.Add(this.progressBar1);
@@ -1075,7 +1184,7 @@ namespace METAbolt
             // pictureBox4
             // 
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(151, 44);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(15, 15);
@@ -1255,7 +1364,7 @@ namespace METAbolt
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Controls.Add(this.picAutoSit);
             this.tabPage3.Controls.Add(this.pictureBox3);
             this.tabPage3.Controls.Add(this.pictureBox2);
@@ -1442,113 +1551,6 @@ namespace METAbolt
             this.cboCapture.TabIndex = 0;
             this.cboCapture.SelectedIndexChanged += new System.EventHandler(this.cboCapture_SelectedIndexChanged);
             // 
-            // picCompass
-            // 
-            this.picCompass.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.picCompass.BackColor = System.Drawing.Color.Transparent;
-            this.picCompass.Image = global::METAbolt.Properties.Resources.c_n;
-            this.picCompass.Location = new System.Drawing.Point(114, 23);
-            this.picCompass.Name = "picCompass";
-            this.picCompass.Size = new System.Drawing.Size(65, 65);
-            this.picCompass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCompass.TabIndex = 24;
-            this.picCompass.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(141, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 13);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "N";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.SlateGray;
-            this.label2.Location = new System.Drawing.Point(179, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 13);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "E";
-            // 
-            // label19
-            // 
-            this.label19.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.SlateGray;
-            this.label19.Location = new System.Drawing.Point(141, 91);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(14, 13);
-            this.label19.TabIndex = 27;
-            this.label19.Text = "S";
-            // 
-            // label20
-            // 
-            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.SlateGray;
-            this.label20.Location = new System.Drawing.Point(98, 48);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(18, 13);
-            this.label20.TabIndex = 28;
-            this.label20.Text = "W";
-            // 
-            // label21
-            // 
-            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.Red;
-            this.label21.Location = new System.Drawing.Point(175, 12);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(10, 13);
-            this.label21.TabIndex = 29;
-            this.label21.Text = ".";
-            // 
-            // label22
-            // 
-            this.label22.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(108, 12);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(10, 13);
-            this.label22.TabIndex = 30;
-            this.label22.Text = ".";
-            // 
-            // label23
-            // 
-            this.label23.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(109, 78);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(10, 13);
-            this.label23.TabIndex = 31;
-            this.label23.Text = ".";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.Red;
-            this.label24.Location = new System.Drawing.Point(176, 78);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(10, 13);
-            this.label24.TabIndex = 32;
-            this.label24.Text = ".";
-            // 
             // cboLanguage
             // 
             this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
@@ -1572,7 +1574,7 @@ namespace METAbolt
             this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.Lavender;
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
             this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvwRadar.FullRowSelect = true;
             this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -1621,6 +1623,7 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompass)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1636,7 +1639,6 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompass)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -138,7 +138,7 @@ namespace METAbolt
             // 
             this.tpgProfile.AccessibleName = "Profile tab";
             this.tpgProfile.AllowDrop = true;
-            this.tpgProfile.BackColor = System.Drawing.Color.Lavender;
+            this.tpgProfile.BackColor = System.Drawing.Color.White;
             this.tpgProfile.Controls.Add(this.gbDisplayName);
             this.tpgProfile.Controls.Add(this.button7);
             this.tpgProfile.Controls.Add(this.txtDisplayName);
@@ -179,6 +179,7 @@ namespace METAbolt
             // 
             // gbDisplayName
             // 
+            this.gbDisplayName.BackColor = System.Drawing.Color.White;
             this.gbDisplayName.Controls.Add(this.label18);
             this.gbDisplayName.Controls.Add(this.pBar3);
             this.gbDisplayName.Controls.Add(this.button10);
@@ -631,7 +632,7 @@ namespace METAbolt
             // tpgWeb
             // 
             this.tpgWeb.AccessibleName = "Web tab";
-            this.tpgWeb.BackColor = System.Drawing.Color.Lavender;
+            this.tpgWeb.BackColor = System.Drawing.Color.White;
             this.tpgWeb.Controls.Add(this.pnlWeb);
             this.tpgWeb.Controls.Add(this.btnWebOpen);
             this.tpgWeb.Controls.Add(this.btnWebView);
@@ -710,7 +711,7 @@ namespace METAbolt
             // tpgPicks
             // 
             this.tpgPicks.AccessibleName = "Picks tab";
-            this.tpgPicks.BackColor = System.Drawing.Color.Lavender;
+            this.tpgPicks.BackColor = System.Drawing.Color.White;
             this.tpgPicks.Controls.Add(this.loadwait2);
             this.tpgPicks.Controls.Add(this.loadwait1);
             this.tpgPicks.Controls.Add(this.button5);
@@ -843,7 +844,7 @@ namespace METAbolt
             // 
             this.tpgFirstLife.AccessibleName = "First life tab";
             this.tpgFirstLife.AllowDrop = true;
-            this.tpgFirstLife.BackColor = System.Drawing.Color.Lavender;
+            this.tpgFirstLife.BackColor = System.Drawing.Color.White;
             this.tpgFirstLife.Controls.Add(this.proFLImage);
             this.tpgFirstLife.Controls.Add(this.rtbAboutFL);
             this.tpgFirstLife.Controls.Add(this.label8);
@@ -922,7 +923,7 @@ namespace METAbolt
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.rtbNotes);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
@@ -1017,7 +1018,7 @@ namespace METAbolt
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(492, 536);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tabProfile);
@@ -1028,7 +1029,6 @@ namespace METAbolt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmProfile";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profile";

@@ -57,6 +57,7 @@ namespace METAbolt
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.White;
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(623, 436);
             this.toolStripContainer1.ContentPanel.Load += new System.EventHandler(this.toolStripContainer1_ContentPanel_Load);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -82,6 +83,8 @@ namespace METAbolt
             // tstTabs
             // 
             this.tstTabs.AccessibleName = "METAbolt tabs toolbar";
+            this.tstTabs.BackColor = System.Drawing.Color.Gainsboro;
+            this.tstTabs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tstTabs.Dock = System.Windows.Forms.DockStyle.None;
             this.tstTabs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbtnCloseTab,

@@ -97,6 +97,7 @@ namespace METAbolt
             // toolStrip1
             // 
             this.toolStrip1.AccessibleName = "IM toolbar menu";
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbtnProfile,
@@ -240,7 +241,7 @@ namespace METAbolt
             this.AccessibleName = "Private IM window";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.cbxInput);
             this.Controls.Add(this.tbar_SendMessage);
             this.Controls.Add(this.rtbIMText);

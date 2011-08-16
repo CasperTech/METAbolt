@@ -200,7 +200,7 @@
             // tabPage3
             // 
             this.tabPage3.AccessibleName = "Friends tab";
-            this.tabPage3.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(454, 251);
@@ -211,7 +211,7 @@
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Groups tab";
-            this.tabPage2.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.pic1);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -248,7 +248,7 @@
             // tabPage1
             // 
             this.tabPage1.AccessibleName = "Search tab";
-            this.tabPage1.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.btnFind);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
@@ -309,7 +309,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(476, 318);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pb1);

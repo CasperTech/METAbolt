@@ -134,7 +134,7 @@ namespace METAbolt
         private string headerfont = "Tahoma";
         private string headerfontstyle = "Regular";
         private float headerfontsize = 8.5f;
-        private int headerbackcolour = Color.AliceBlue.ToArgb();
+        private int headerbackcolour = Color.Lavender.ToArgb();
         //private int bgcolour = Color.White.ToArgb();   
         private string textfont = "Tahoma";
         private string textfontstyle = "Regular";
@@ -209,12 +209,12 @@ namespace METAbolt
 
                 try
                 {
-                    int clr = conf.Configs["General"].GetInt("HeaderBackColour", Color.AliceBlue.ToArgb());
+                    int clr = conf.Configs["General"].GetInt("HeaderBackColour", Color.Lavender.ToArgb());
                     config.HeaderBackColour = Color.FromArgb(clr);
                 }
                 catch
                 {
-                    config.HeaderBackColour = Color.AliceBlue;
+                    config.HeaderBackColour = Color.Lavender;
                 }
 
                 config.TextFont = conf.Configs["General"].GetString("TextFont", "Tahoma");
@@ -372,7 +372,7 @@ namespace METAbolt
                 headerfont = "Tahoma";
                 headerfontstyle = "Regular";
                 headerfontsize = 8.5f;
-                headerbackcolour = Color.AliceBlue.ToArgb();
+                headerbackcolour = Color.Lavender.ToArgb();
             }
 
             config.Set("HeaderFont", headerfont);

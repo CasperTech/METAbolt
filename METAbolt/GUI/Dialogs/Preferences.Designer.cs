@@ -28,6 +28,7 @@ namespace METAbolt
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPreferences));
             this.lbxPanes = new System.Windows.Forms.ListBox();
             this.pnlPanes = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@ namespace METAbolt
             // 
             // lbxPanes
             // 
-            this.lbxPanes.BackColor = System.Drawing.Color.Lavender;
+            this.lbxPanes.BackColor = System.Drawing.Color.White;
             this.lbxPanes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxPanes.IntegralHeight = false;
             this.lbxPanes.ItemHeight = 36;
@@ -105,7 +106,7 @@ namespace METAbolt
             // 
             // picAutoSit
             // 
-            this.picAutoSit.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
             this.picAutoSit.Location = new System.Drawing.Point(12, 340);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
@@ -120,7 +121,7 @@ namespace METAbolt
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(502, 362);
             this.Controls.Add(this.picAutoSit);
             this.Controls.Add(this.btnApply);

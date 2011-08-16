@@ -99,7 +99,7 @@
             // txtTo
             // 
             this.txtTo.AccessibleName = "Translation result textbox";
-            this.txtTo.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtTo.BackColor = System.Drawing.Color.White;
             this.txtTo.Location = new System.Drawing.Point(12, 186);
             this.txtTo.Name = "txtTo";
             this.txtTo.ReadOnly = true;
@@ -180,7 +180,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(459, 352);
             this.Controls.Add(this.cboLanguage);
             this.Controls.Add(this.button3);

@@ -118,10 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="picAutoSit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKMSURBVDhPrZNPSBRRHMe3QxAIQR2klRBqSxIMCgrMOnkI
+        7FKXCCLCPASdsovUQYnwoimbkBamqBFFYZKBfyC0aBNNiTRLjdpl19w/M/Nmxpl5Mzv7nJlvb9e2DhZe
+        +sGPH+/xfp/f7/t77/l8/9sopX7bZrUZxx1IO84Mj0OMOfWabZdsWovSdI3FHDXheJBcDwr3bIzztcYc
+        2zTNmwC2/BXEGKtL2i5CGQ9pfiprDrxczHCfZB6+p12sMbt7A0AzzXKFMgTJGqxshuchKDs4R1xc5055
+        Bw7fblIdxDQGalkXf0NErplZ1uCDBQNXE8C84eFZwkHhG6BoHNg6CoyT9U6aCNAwR2GZ5mIqldqbgyiK
+        ckHXqV49ruLkR6B0DPC/ALY/BnydHio5wOLl+ShwfhY49UrHiqRBkqTLOYAgCC2RpIzKfgnHeXLgObCj
+        x4WvzcLZYRvpbO/cbkx7ODAIHOvXMbGUACGkJQdIckA4IaGiK4KjvPKehwwFd1dR1itjzeWD5KWrR3UU
+        dFCUPXVxqOsHQgvLEIRfAIlL0HRDr7r/AYcfrSLQrWJbaxLXxtR13ZMafI3L2H1PxME+BUeCM4ilZKTy
+        EkRR9Ft8iLeHP6Ek+BmlnXEU3omh6kkcL78aONG7jJ2tEQTaY9gfXMCVvkmYlC7G8kPMyiCaVi5rBs50
+        TGBfyxyKWxfRNiVDz7hofCuiqPkLAny/ovk1IgkZiqb9ucb8fVJq1cXJKi71vEfxrXeYimo5CSNLCnY1
+        hHC6PYT5qADDMDc+pDxkJSnWGJSqI7Mx9Ia+8QQRHWNL6J8Og6iaLUjSv59yHhKNRv2plFgryvJAkigz
+        RFGGCBHrw+GVzT/Tpr/tLwd+AqtUL6VhYDaPAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAXsAAAF7CAYAAAAzPisLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8
+        YQUAAAAJcEhZcwAACxAAAAsQAa0jvXUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8
         AABfBklEQVR4Xu2debQdxX3nQdsTS3lCMj52QGI8cTxeeHd5T08SElpAgIQWNgkBZl8Exthg7CQnsYUk
         QCsIS4CQntg3gQGzSIAdJ0byAtgGeXdscCbGmQw4TjKTDMTjeP5ifr/qrr7VdXup6u7q9cc5de57qN99
         71ZXf/rb3/otBxxA/9EM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQ

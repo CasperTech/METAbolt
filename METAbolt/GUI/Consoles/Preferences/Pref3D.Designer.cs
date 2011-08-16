@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pref3D));
             this.picAI = new System.Windows.Forms.PictureBox();
             this.chkAI = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picAI)).BeginInit();
@@ -35,7 +36,7 @@
             // 
             // picAI
             // 
-            this.picAI.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAI.Image = ((System.Drawing.Image)(resources.GetObject("picAI.Image")));
             this.picAI.Location = new System.Drawing.Point(199, 72);
             this.picAI.Name = "picAI";
             this.picAI.Size = new System.Drawing.Size(15, 15);
@@ -58,14 +59,15 @@
             this.chkAI.UseVisualStyleBackColor = true;
             this.chkAI.CheckedChanged += new System.EventHandler(this.chkAI_CheckedChanged);
             // 
-            // PrefAI
+            // Pref3D
             // 
             this.AccessibleName = "AI tab";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.picAI);
             this.Controls.Add(this.chkAI);
-            this.Name = "PrefAI";
+            this.Name = "Pref3D";
             this.Size = new System.Drawing.Size(344, 300);
             this.Load += new System.EventHandler(this.PrefAI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picAI)).EndInit();

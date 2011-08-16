@@ -75,11 +75,24 @@ namespace METAbolt
 
             List<string> btns = ed.ButtonLabels;
 
+            
+
             int count = btns.Count;
 
             for (int i = 0; i < count; i++)
             {
-                cboReply.Items.Add(i.ToString(CultureInfo.CurrentCulture) + "-" + btns[i]);     
+                //cboReply.Items.Add(i.ToString(CultureInfo.CurrentCulture) + "-" + btns[i]);
+                cboReply.Items.Add(btns[i]);
+
+                ToolStripSeparator sep = new ToolStripSeparator();
+
+                tsButtons.Items.Add(sep);
+
+                ToolStripButton btn = new ToolStripButton();
+                btn.Click += new System.EventHandler(AnyMenuItem_Click);
+                btn.Text = btns[i];
+
+                tsButtons.Items.Add(btn);
             }
 
             if (this.instance.DialogCount == 7)
@@ -95,29 +108,23 @@ namespace METAbolt
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void AnyMenuItem_Click(object sender, System.EventArgs e)
         {
+            ToolStripItem mitem = (ToolStripItem)sender;
+
+            //cboReply.Text = mitem.Text;
+
+            int butindex = cboReply.SelectedIndex = cboReply.FindStringExact(mitem.Text);   //(int)sGrp[2];
+            string butlabel = mitem.Text;   // sGrp[1];
+
+            client.Self.ReplyToScriptDialog(ed.Channel, butindex, butlabel, ed.ObjectID);
+
             CleanUp();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            if (cboReply.Text != "Select...")
-            {
-                char[] deli = "-".ToCharArray();
-                string[] sGrp = cboReply.Text.Split(deli);
-
-                int butindex = cboReply.SelectedIndex;   //(int)sGrp[2];
-                string butlabel = sGrp[1];
-
-                client.Self.ReplyToScriptDialog(ed.Channel, butindex, butlabel, ed.ObjectID);
-
-                CleanUp();
-            }
-            else
-            {
-                MessageBox.Show("\n Select a 'Reply Option' from the dropdown box \n","METAbolt",MessageBoxButtons.OK);   
-            }
+            CleanUp();
         }
 
         private void CleanUp()

@@ -583,7 +583,8 @@ namespace METAbolt
             {
                 if (showTimestamps)
                 {
-                    dte = this.instance.State.GetTimeStamp(dte);   
+                    dte = this.instance.State.GetTimeStamp(dte);
+
                     //if (instance.Config.CurrentConfig.UseSLT)
                     //{
                     //    string _timeZoneId = "Pacific Standard Time";
@@ -629,7 +630,7 @@ namespace METAbolt
                 }
 
                 textPrinter.SetFontStyle(FontStyle.Regular);
-                textPrinter.SetSelectionBackColor(Color.White);
+                //textPrinter.SetSelectionBackColor(Color.White);
                 //textPrinter.SetSelectionBackColor(instance.Config.CurrentConfig.BgColour);
 
                 if (showTimestamps)
@@ -914,7 +915,7 @@ namespace METAbolt
             switch (item.Style)
             {
                 case ChatBufferTextStyle.Normal:
-                    textPrinter.SetSelectionForeColor(Color.Gray);
+                    textPrinter.SetSelectionForeColor(Color.Black);
                     break;
 
                 case ChatBufferTextStyle.StatusBlue:
@@ -1255,7 +1256,7 @@ namespace METAbolt
                 }
 
                 textPrinter.SetFontStyle(FontStyle.Regular);
-                textPrinter.SetSelectionBackColor(Color.White);
+                //textPrinter.SetSelectionBackColor(Color.White);
                 //textPrinter.SetSelectionBackColor(instance.Config.CurrentConfig.BgColour);
 
                 if (showTimestamps)

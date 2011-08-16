@@ -70,6 +70,9 @@ namespace METAbolt
             this.lblGroupsFound = new System.Windows.Forms.Label();
             this.btnJoin = new System.Windows.Forms.Button();
             this.tpgLand = new System.Windows.Forms.TabPage();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.cboPrice = new System.Windows.Forms.ComboBox();
             this.cboArea = new System.Windows.Forms.ComboBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
@@ -107,9 +110,6 @@ namespace METAbolt
             this.button16 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.button17 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -258,7 +258,7 @@ namespace METAbolt
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Lavender;
+            this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
@@ -268,7 +268,7 @@ namespace METAbolt
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.pnlFindEvents);
             this.tabPage2.Controls.Add(this.btnNextEvents);
@@ -368,7 +368,7 @@ namespace METAbolt
             // 
             // tpgPlaces
             // 
-            this.tpgPlaces.BackColor = System.Drawing.Color.Lavender;
+            this.tpgPlaces.BackColor = System.Drawing.Color.White;
             this.tpgPlaces.Controls.Add(this.label7);
             this.tpgPlaces.Controls.Add(this.pnlFindPlaces);
             this.tpgPlaces.Controls.Add(this.btnNextPlaces);
@@ -469,7 +469,7 @@ namespace METAbolt
             // 
             // tpgPeople
             // 
-            this.tpgPeople.BackColor = System.Drawing.Color.Lavender;
+            this.tpgPeople.BackColor = System.Drawing.Color.White;
             this.tpgPeople.Controls.Add(this.button10);
             this.tpgPeople.Controls.Add(this.btnFriend);
             this.tpgPeople.Controls.Add(this.label1);
@@ -516,7 +516,7 @@ namespace METAbolt
             // 
             // tpgGroups
             // 
-            this.tpgGroups.BackColor = System.Drawing.Color.Lavender;
+            this.tpgGroups.BackColor = System.Drawing.Color.White;
             this.tpgGroups.Controls.Add(this.cmdInfo);
             this.tpgGroups.Controls.Add(this.label10);
             this.tpgGroups.Controls.Add(this.pnlFindGroups);
@@ -644,7 +644,7 @@ namespace METAbolt
             // 
             // tpgLand
             // 
-            this.tpgLand.BackColor = System.Drawing.Color.Lavender;
+            this.tpgLand.BackColor = System.Drawing.Color.White;
             this.tpgLand.Controls.Add(this.checkBox3);
             this.tpgLand.Controls.Add(this.checkBox2);
             this.tpgLand.Controls.Add(this.checkBox1);
@@ -662,6 +662,40 @@ namespace METAbolt
             this.tpgLand.Size = new System.Drawing.Size(540, 374);
             this.tpgLand.TabIndex = 6;
             this.tpgLand.Text = "Land for sale";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(383, 11);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(51, 17);
+            this.checkBox3.TabIndex = 26;
+            this.checkBox3.Text = "Adult";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(325, 11);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(60, 17);
+            this.checkBox2.TabIndex = 25;
+            this.checkBox2.Text = "Mature";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(287, 11);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(39, 17);
+            this.checkBox1.TabIndex = 24;
+            this.checkBox1.Text = "PG";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // cboPrice
             // 
@@ -1050,45 +1084,11 @@ namespace METAbolt
             this.button17.Text = "New IM";
             this.button17.UseVisualStyleBackColor = false;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(287, 11);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(39, 17);
-            this.checkBox1.TabIndex = 24;
-            this.checkBox1.Text = "PG";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(325, 11);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(60, 17);
-            this.checkBox2.TabIndex = 25;
-            this.checkBox2.Text = "Mature";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(383, 11);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(51, 17);
-            this.checkBox3.TabIndex = 26;
-            this.checkBox3.Text = "Adult";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
             // SearchConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "SearchConsole";

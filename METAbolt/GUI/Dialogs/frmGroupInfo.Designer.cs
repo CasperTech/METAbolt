@@ -144,7 +144,7 @@ namespace METAbolt
             // tabGeneral
             // 
             this.tabGeneral.AccessibleName = "General tab";
-            this.tabGeneral.BackColor = System.Drawing.Color.Lavender;
+            this.tabGeneral.BackColor = System.Drawing.Color.White;
             this.tabGeneral.Controls.Add(this.button6);
             this.tabGeneral.Controls.Add(this.label10);
             this.tabGeneral.Controls.Add(this.labelInsigniaProgress);
@@ -394,7 +394,7 @@ namespace METAbolt
             // tabMembersRoles
             // 
             this.tabMembersRoles.AccessibleName = "Members and roles tab";
-            this.tabMembersRoles.BackColor = System.Drawing.Color.Lavender;
+            this.tabMembersRoles.BackColor = System.Drawing.Color.White;
             this.tabMembersRoles.Controls.Add(this.tabsMRA);
             this.tabMembersRoles.Location = new System.Drawing.Point(4, 25);
             this.tabMembersRoles.Name = "tabMembersRoles";
@@ -418,7 +418,7 @@ namespace METAbolt
             // tabMembers
             // 
             this.tabMembers.AccessibleName = "Members tab";
-            this.tabMembers.BackColor = System.Drawing.Color.Lavender;
+            this.tabMembers.BackColor = System.Drawing.Color.White;
             this.tabMembers.Controls.Add(this.lvAssignedRoles);
             this.tabMembers.Controls.Add(this.lvwAble);
             this.tabMembers.Controls.Add(this.button1);
@@ -560,7 +560,7 @@ namespace METAbolt
             // tabRoles
             // 
             this.tabRoles.AccessibleName = "Roles tab";
-            this.tabRoles.BackColor = System.Drawing.Color.Lavender;
+            this.tabRoles.BackColor = System.Drawing.Color.White;
             this.tabRoles.Controls.Add(this.label15);
             this.tabRoles.Controls.Add(this.lvRoleMembers);
             this.tabRoles.Controls.Add(this.panel3);
@@ -774,7 +774,7 @@ namespace METAbolt
             // 
             this.tabNotices.AccessibleName = "Notices tab";
             this.tabNotices.AllowDrop = true;
-            this.tabNotices.BackColor = System.Drawing.Color.Lavender;
+            this.tabNotices.BackColor = System.Drawing.Color.White;
             this.tabNotices.Controls.Add(this.panel2);
             this.tabNotices.Controls.Add(this.button3);
             this.tabNotices.Controls.Add(this.label3);
@@ -1059,7 +1059,7 @@ namespace METAbolt
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(431, 548);
             this.Controls.Add(this.cmdRefresh);
             this.Controls.Add(this.cmdOK);
@@ -1071,7 +1071,6 @@ namespace METAbolt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmGroupInfo";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group Information";

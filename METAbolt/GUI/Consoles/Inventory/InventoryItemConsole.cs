@@ -202,27 +202,27 @@ namespace METAbolt
                     btnDetach.Text = "Detach";
                     objectConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(objectConsole);
-                    objectConsole.Dispose(); 
+                    //objectConsole.Dispose(); 
                     break;
 
                 case InventoryType.Notecard:
                     InventoryNotecardConsole notecardConsole = new InventoryNotecardConsole(instance, item);
                     notecardConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(notecardConsole);
-                    notecardConsole.Dispose(); 
+                    //notecardConsole.Dispose(); 
                     break;
 
                 case InventoryType.LSL:
                     InventoryScriptConsole scriptConsole = new InventoryScriptConsole(instance, item);
                     scriptConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(scriptConsole);
-                    scriptConsole.Dispose(); 
+                    //scriptConsole.Dispose(); 
                     break;
                 case InventoryType.Snapshot:
                     InventoryImageConsole imageConsole = new InventoryImageConsole(instance, item);
                     imageConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(imageConsole);
-                    imageConsole.Dispose();
+                    //imageConsole.Dispose();
                     break;
                 case InventoryType.Wearable:
                     btnDetach.Text = "Take off";
@@ -236,19 +236,19 @@ namespace METAbolt
                     InventoryAnimationConsole animationConsole = new InventoryAnimationConsole(instance, item);
                     animationConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(animationConsole);
-                    animationConsole.Dispose(); 
+                    //animationConsole.Dispose(); 
                     break;
                 case InventoryType.Texture:
                     imageConsole = new InventoryImageConsole(instance, item);
                     imageConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(imageConsole);
-                    imageConsole.Dispose();
+                    //imageConsole.Dispose();
                     break;
                 case InventoryType.Gesture:
                     InventoryGestureConsol gestureConsole = new InventoryGestureConsol(instance, item);
                     gestureConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(gestureConsole);
-                    gestureConsole.Dispose(); 
+                    //gestureConsole.Dispose(); 
                     break;
             }
 

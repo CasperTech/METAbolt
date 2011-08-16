@@ -93,6 +93,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPrimBonus = new System.Windows.Forms.Label();
             this.tabGenral = new System.Windows.Forms.TabPage();
+            this.btnBuy = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTraffic = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -111,7 +112,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.btnBuy = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabOptions.SuspendLayout();
@@ -124,7 +124,7 @@
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Access tab";
-            this.tabPage2.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.chkPublic);
@@ -257,7 +257,7 @@
             // tabPage1
             // 
             this.tabPage1.AccessibleName = "Media tab";
-            this.tabPage1.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.txtMusic);
             this.tabPage1.Controls.Add(this.label25);
@@ -302,7 +302,7 @@
             // tabOptions
             // 
             this.tabOptions.AccessibleName = "Options tab";
-            this.tabOptions.BackColor = System.Drawing.Color.Lavender;
+            this.tabOptions.BackColor = System.Drawing.Color.White;
             this.tabOptions.Controls.Add(this.comboBox2);
             this.tabOptions.Controls.Add(this.label24);
             this.tabOptions.Controls.Add(this.label23);
@@ -651,7 +651,7 @@
             // tabObjects
             // 
             this.tabObjects.AccessibleName = "Objects tab";
-            this.tabObjects.BackColor = System.Drawing.Color.Lavender;
+            this.tabObjects.BackColor = System.Drawing.Color.White;
             this.tabObjects.Controls.Add(this.btnReturn);
             this.tabObjects.Controls.Add(this.lvwPrimOwners);
             this.tabObjects.Controls.Add(this.txtPrimreturn);
@@ -897,7 +897,7 @@
             // tabGenral
             // 
             this.tabGenral.AccessibleName = "General tab";
-            this.tabGenral.BackColor = System.Drawing.Color.Lavender;
+            this.tabGenral.BackColor = System.Drawing.Color.White;
             this.tabGenral.Controls.Add(this.btnBuy);
             this.tabGenral.Controls.Add(this.btnClose);
             this.tabGenral.Controls.Add(this.lblTraffic);
@@ -923,6 +923,20 @@
             this.tabGenral.TabIndex = 0;
             this.tabGenral.Text = "General";
             this.tabGenral.Click += new System.EventHandler(this.tabGenral_Click);
+            // 
+            // btnBuy
+            // 
+            this.btnBuy.AccessibleName = "Buy Parcel";
+            this.btnBuy.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnBuy.ForeColor = System.Drawing.Color.White;
+            this.btnBuy.Location = new System.Drawing.Point(73, 174);
+            this.btnBuy.Name = "btnBuy";
+            this.btnBuy.Size = new System.Drawing.Size(44, 23);
+            this.btnBuy.TabIndex = 2;
+            this.btnBuy.Text = "&Buy";
+            this.btnBuy.UseVisualStyleBackColor = false;
+            this.btnBuy.Visible = false;
+            this.btnBuy.Click += new System.EventHandler(this.btnBuy_Click);
             // 
             // btnClose
             // 
@@ -1124,20 +1138,6 @@
             this.tabControl1.Size = new System.Drawing.Size(445, 355);
             this.tabControl1.TabIndex = 0;
             // 
-            // btnBuy
-            // 
-            this.btnBuy.AccessibleName = "Buy Parcel";
-            this.btnBuy.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnBuy.ForeColor = System.Drawing.Color.White;
-            this.btnBuy.Location = new System.Drawing.Point(73, 174);
-            this.btnBuy.Name = "btnBuy";
-            this.btnBuy.Size = new System.Drawing.Size(44, 23);
-            this.btnBuy.TabIndex = 2;
-            this.btnBuy.Text = "&Buy";
-            this.btnBuy.UseVisualStyleBackColor = false;
-            this.btnBuy.Visible = false;
-            this.btnBuy.Click += new System.EventHandler(this.btnBuy_Click);
-            // 
             // frmAboutLand
             // 
             this.AccessibleDescription = "ABout Land window displays information about the land your avatar is on";
@@ -1145,7 +1145,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(445, 355);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

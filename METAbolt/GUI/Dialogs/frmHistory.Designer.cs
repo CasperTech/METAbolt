@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHistory));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lvwList = new System.Windows.Forms.ListView();
+            this.label1 = new System.Windows.Forms.Label();
             this.rtbIMText = new Khendys.Controls.ExRichTextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -82,6 +82,16 @@
             this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
             this.lvwList.Click += new System.EventHandler(this.lvwList_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "History doesn\'t exist";
+            // 
             // rtbIMText
             // 
             this.rtbIMText.AccessibleDescription = "IM window where incoming and outgoing IMs are displayed";
@@ -119,20 +129,11 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "History doesn\'t exist";
-            // 
             // frmHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(559, 402);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.splitContainer1);
@@ -140,7 +141,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmHistory";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "IM chat history";
             this.Load += new System.EventHandler(this.frmHistory_Load);

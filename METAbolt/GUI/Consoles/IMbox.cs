@@ -151,11 +151,14 @@ namespace METAbolt
                     HandleIM(e);
                     break;
                 case InstantMessageDialog.SessionSend:
-                    HandleIM(e);
-                    break;
+                    //HandleIM(e);
+                    return;
+                    //break;
                 case InstantMessageDialog.StartTyping:
                     return;
                 case InstantMessageDialog.StopTyping:
+                    return;
+                default:
                     return;
             }
         }

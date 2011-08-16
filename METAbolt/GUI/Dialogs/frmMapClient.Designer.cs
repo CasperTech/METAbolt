@@ -116,7 +116,7 @@ namespace METAbolt
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.chkResident);
             this.tabPage1.Controls.Add(this.chkForSale);
             this.tabPage1.Controls.Add(this.button1);
@@ -320,6 +320,7 @@ namespace METAbolt
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.btnTeleport);
             this.tabPage2.Controls.Add(this.pnlTeleporting);
@@ -333,7 +334,6 @@ namespace METAbolt
             this.tabPage2.Size = new System.Drawing.Size(267, 405);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Search";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -562,7 +562,7 @@ namespace METAbolt
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(6, 445);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
@@ -584,7 +584,7 @@ namespace METAbolt
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(283, 469);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.TabCont);
@@ -594,7 +594,6 @@ namespace METAbolt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmMapClient";
-            this.ShowInTaskbar = false;
             this.Text = "METAbolt Map";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMapClient_FormClosing);
             this.Load += new System.EventHandler(this.frmMapClient_Load);

@@ -151,12 +151,13 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(313, 412);
             this.Controls.Add(this.pbView);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UploadImage";
+            this.ShowInTaskbar = false;
             this.Text = "Image Upload";
             this.Load += new System.EventHandler(this.ImageViewer_Load);
             this.panel1.ResumeLayout(false);

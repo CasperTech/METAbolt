@@ -28,6 +28,7 @@ namespace METAbolt
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrefTextConsole));
             this.chkIMTimestamps = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkGroupNotices = new System.Windows.Forms.CheckBox();
@@ -216,7 +217,7 @@ namespace METAbolt
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(125, 20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
@@ -378,6 +379,7 @@ namespace METAbolt
             this.AccessibleName = "text tab";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);

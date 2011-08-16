@@ -49,6 +49,7 @@
             this.AccessibleName = "Gesture console";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnGesture);
             this.Name = "InventoryGestureConsol";
             this.Size = new System.Drawing.Size(272, 251);

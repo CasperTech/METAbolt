@@ -50,7 +50,7 @@ namespace METAbolt
         private float headerfontsize = 8.5f;
         private FontStyle fontsy;
         private FontStyle fontst;
-        private Color bkcolour = Color.AliceBlue ;
+        private Color bkcolour = Color.Lavender ;
         private string textfont = "Tahoma";
         private string textfontstyle = "Normal";
         private float textfontsize = 8.5f;
@@ -113,6 +113,15 @@ namespace METAbolt
 
         private void Config_ConfigApplied(object sender, ConfigAppliedEventArgs e)
         {
+            headerfont = config.CurrentConfig.HeaderFont;
+            headerfontstyle = config.CurrentConfig.HeaderFontStyle;
+            headerfontsize = config.CurrentConfig.HeaderFontSize;
+            bkcolour = config.CurrentConfig.HeaderBackColour;
+
+            textfont = config.CurrentConfig.TextFont;
+            textfontstyle = config.CurrentConfig.TextFontStyle;
+            textfontsize = config.CurrentConfig.TextFontSize;
+
             hideSmileys = e.AppliedConfig.ChatSmileys;
         }
 
@@ -125,6 +134,8 @@ namespace METAbolt
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintHeader(text); });
             else
             {
+                // bkcolour = config.CurrentConfig.HeaderBackColour;
+
                 if (text == null) return;
 
                 rtb.SelectionFont = new Font(headerfont, headerfontsize, fontsy);
@@ -141,7 +152,7 @@ namespace METAbolt
                     buff += " ";
                 }
 
-                rtb.SelectionBackColor = bkcolour;
+                //rtb.SelectionBackColor = bkcolour;
                 rtb.AppendText(buff + Environment.NewLine);
             }
         }
@@ -151,6 +162,8 @@ namespace METAbolt
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintLinkHeader(text, link); });
             else
             {
+                // bkcolour = config.CurrentConfig.HeaderBackColour;
+
                 if (text == null) return;
 
                 rtb.SelectionFont = new Font(headerfont, headerfontsize, fontsy);
@@ -168,7 +181,7 @@ namespace METAbolt
                     buff += " ";
                 }
 
-                rtb.SelectionBackColor = bkcolour;
+                //rtb.SelectionBackColor = bkcolour;
                 rtb.AppendText(buff);   
             }
         }
@@ -211,6 +224,8 @@ namespace METAbolt
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintText(text); });
             else
             {
+                // bkcolour = config.CurrentConfig.HeaderBackColour;
+
                 if (text == null) return;
 
                 rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
@@ -228,6 +243,8 @@ namespace METAbolt
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintTextLine(text); });
             else
             {
+                // bkcolour = config.CurrentConfig.HeaderBackColour;
+
                 if (text == null) return;
 
                 rtb.SelectionFont = new Font(textfont, textfontsize, fontst);

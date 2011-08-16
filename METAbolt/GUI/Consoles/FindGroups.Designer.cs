@@ -38,7 +38,7 @@
             // 
             // lvwFindGroups
             // 
-            this.lvwFindGroups.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwFindGroups.BackColor = System.Drawing.Color.White;
             this.lvwFindGroups.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdGroupName,
             this.chdDescription});
@@ -81,6 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pGroups);
             this.Controls.Add(this.lvwFindGroups);
             this.Name = "FindGroups";

@@ -121,7 +121,7 @@ namespace METAbolt
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Lavender;
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(635, 432);
@@ -132,7 +132,7 @@ namespace METAbolt
             // 
             this.treeView1.AccessibleName = "Inventory list";
             this.treeView1.AllowDrop = true;
-            this.treeView1.BackColor = System.Drawing.Color.Lavender;
+            this.treeView1.BackColor = System.Drawing.Color.White;
             this.treeView1.ContextMenuStrip = this.smM1;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.ImageIndex = 0;
@@ -318,7 +318,7 @@ namespace METAbolt
             // panel1
             // 
             this.panel1.AccessibleName = "Inventory search panel";
-            this.panel1.BackColor = System.Drawing.Color.Lavender;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.textBox1);
@@ -370,7 +370,7 @@ namespace METAbolt
             // 
             this.tstInventory.AccessibleName = "Inventory menubar";
             this.tstInventory.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.tstInventory.BackColor = System.Drawing.Color.Lavender;
+            this.tstInventory.BackColor = System.Drawing.Color.White;
             this.tstInventory.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tstInventory.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbtnNew,
@@ -594,7 +594,7 @@ namespace METAbolt
             // panel2
             // 
             this.panel2.AccessibleName = "Changer panel";
-            this.panel2.BackColor = System.Drawing.Color.Lavender;
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.textBox3);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
@@ -787,6 +787,7 @@ namespace METAbolt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "InventoryConsole";
@@ -859,6 +860,7 @@ namespace METAbolt
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem wearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem takeOffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
@@ -875,6 +877,5 @@ namespace METAbolt
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

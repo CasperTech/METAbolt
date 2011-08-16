@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrefAI));
             this.label4 = new System.Windows.Forms.Label();
             this.picAI = new System.Windows.Forms.PictureBox();
             this.chkAI = new System.Windows.Forms.CheckBox();
@@ -56,7 +57,7 @@
             // 
             // picAI
             // 
-            this.picAI.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picAI.Image = ((System.Drawing.Image)(resources.GetObject("picAI.Image")));
             this.picAI.Location = new System.Drawing.Point(317, 28);
             this.picAI.Name = "picAI";
             this.picAI.Size = new System.Drawing.Size(15, 15);
@@ -162,6 +163,7 @@
             this.AccessibleName = "AI tab";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrefMETAgiver));
             this.GW = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picHelp = new System.Windows.Forms.PictureBox();
@@ -47,7 +48,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.GW.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.GW.BackgroundColor = System.Drawing.Color.LightSteelBlue;
+            this.GW.BackgroundColor = System.Drawing.Color.White;
             this.GW.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GW.Location = new System.Drawing.Point(0, 4);
             this.GW.MultiSelect = false;
@@ -73,7 +74,7 @@
             // picHelp
             // 
             this.picHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picHelp.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picHelp.Image = ((System.Drawing.Image)(resources.GetObject("picHelp.Image")));
             this.picHelp.Location = new System.Drawing.Point(359, 3);
             this.picHelp.Name = "picHelp";
             this.picHelp.Size = new System.Drawing.Size(15, 15);
@@ -134,6 +135,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.GW);
             this.Name = "PrefMETAgiver";

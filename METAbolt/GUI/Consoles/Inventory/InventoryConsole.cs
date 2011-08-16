@@ -341,15 +341,22 @@ namespace METAbolt
                 //BackgroundWorker bw = new BackgroundWorker();
                 //bw.RunWorkerAsync(new object[] { treeView1 });
 
-                ThreadPool.QueueUserWorkItem(delegate
+                try
                 {
-                    treeView1.BeginInvoke((ThreadStart)delegate
+                    ThreadPool.QueueUserWorkItem(delegate
                     {
-                        //treeViewElement.LoadChildren();
-                        TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
-                        treeViewWalker.LoadInventory(instance, folderID);
+                        if (treeView1.IsHandleCreated)
+                        {
+                            treeView1.BeginInvoke((ThreadStart)delegate
+                            {
+                                //treeViewElement.LoadChildren();
+                                TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
+                                treeViewWalker.LoadInventory(instance, folderID);
+                            });
+                        }
                     });
-                });
+                }
+                catch { ; }
 
                 ////TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
                 ////treeViewWalker.LoadInventory(instance, folderID);

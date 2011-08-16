@@ -81,7 +81,7 @@
             // tabPage1
             // 
             this.tabPage1.AccessibleName = "Backup tab";
-            this.tabPage1.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.listBox1);
@@ -203,7 +203,7 @@
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Restore tab";
-            this.tabPage2.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.checkBox2);
             this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Controls.Add(this.button5);
@@ -372,7 +372,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(470, 324);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button3);
@@ -380,7 +380,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBackup";
-            this.ShowInTaskbar = false;
             this.Text = "METAbolt File Backup/Restore";
             this.Load += new System.EventHandler(this.frmBackup_Load);
             this.tabControl1.ResumeLayout(false);

@@ -668,6 +668,12 @@
     <Compile Include="GUI\Dialogs\frmMutes.Designer.cs">
       <DependentUpon>frmMutes.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Dialogs\frmNotecard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialogs\frmNotecard.Designer.cs">
+      <DependentUpon>frmNotecard.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dialogs\frmStats.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -712,12 +718,6 @@
     </Compile>
     <Compile Include="GUI\Dialogs\Inventory\IDE\ScriptStudio.Designer.cs">
       <DependentUpon>ScriptStudio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Dialogs\frmNotecard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Dialogs\frmNotecard.Designer.cs">
-      <DependentUpon>frmNotecard.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Dialogs\META3D.cs">
       <SubType>Form</SubType>
@@ -1011,6 +1011,10 @@
       <DependentUpon>frmMutes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialogs\frmNotecard.resx">
+      <DependentUpon>frmNotecard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmStats.resx">
       <DependentUpon>frmStats.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1044,10 +1048,6 @@
     <EmbeddedResource Include="GUI\Consoles\TabsConsole.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TabsConsole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Dialogs\frmNotecard.resx">
-      <DependentUpon>frmNotecard.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\META3D.resx">
       <DependentUpon>META3D.cs</DependentUpon>
@@ -1593,6 +1593,7 @@
     <None Include="Resources\proxy.png" />
     <None Include="Resources\MoneyBeep.wav" />
     <None Include="Resources\Mic.png" />
+    <None Include="Resources\menu_bg.png" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />

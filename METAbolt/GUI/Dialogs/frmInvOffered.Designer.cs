@@ -100,7 +100,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(380, 199);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDecline);
@@ -111,7 +111,6 @@
             this.MinimizeBox = false;
             this.Name = "frmInvOffered";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Inventory item received";
             this.Load += new System.EventHandler(this.frmInvOffered_Load);
