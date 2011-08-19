@@ -79,7 +79,6 @@ namespace METAbolt
             this.label7 = new System.Windows.Forms.Label();
             this.txtMavatar = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.txtAdRemove = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -117,6 +116,8 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtMObject = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -148,7 +149,7 @@ namespace METAbolt
             this.rdoSystemStyle.Checked = true;
             this.rdoSystemStyle.Location = new System.Drawing.Point(6, 20);
             this.rdoSystemStyle.Name = "rdoSystemStyle";
-            this.rdoSystemStyle.Size = new System.Drawing.Size(60, 17);
+            this.rdoSystemStyle.Size = new System.Drawing.Size(59, 17);
             this.rdoSystemStyle.TabIndex = 1;
             this.rdoSystemStyle.TabStop = true;
             this.rdoSystemStyle.Text = "System";
@@ -160,7 +161,7 @@ namespace METAbolt
             this.rdoOfficeStyle.AutoSize = true;
             this.rdoOfficeStyle.Location = new System.Drawing.Point(72, 20);
             this.rdoOfficeStyle.Name = "rdoOfficeStyle";
-            this.rdoOfficeStyle.Size = new System.Drawing.Size(81, 17);
+            this.rdoOfficeStyle.Size = new System.Drawing.Size(80, 17);
             this.rdoOfficeStyle.TabIndex = 2;
             this.rdoOfficeStyle.Text = "Office 2003";
             this.rdoOfficeStyle.UseVisualStyleBackColor = true;
@@ -735,11 +736,11 @@ namespace METAbolt
             this.chkAutoTransfer.AccessibleDescription = "Transfers received funds to master avatar as and when they are received";
             this.chkAutoTransfer.AccessibleName = "Transfer funds option";
             this.chkAutoTransfer.AutoSize = true;
-            this.chkAutoTransfer.Location = new System.Drawing.Point(67, 56);
+            this.chkAutoTransfer.Location = new System.Drawing.Point(67, 59);
             this.chkAutoTransfer.Name = "chkAutoTransfer";
-            this.chkAutoTransfer.Size = new System.Drawing.Size(252, 17);
+            this.chkAutoTransfer.Size = new System.Drawing.Size(222, 17);
             this.chkAutoTransfer.TabIndex = 1;
-            this.chkAutoTransfer.Text = "Transfer all received amounts to Master avatar";
+            this.chkAutoTransfer.Text = "Transfer all received L$ to Master avatar";
             this.chkAutoTransfer.UseVisualStyleBackColor = true;
             // 
             // label7
@@ -754,7 +755,7 @@ namespace METAbolt
             // 
             this.txtMavatar.AccessibleName = "UUID textbox";
             this.txtMavatar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMavatar.Location = new System.Drawing.Point(67, 27);
+            this.txtMavatar.Location = new System.Drawing.Point(67, 31);
             this.txtMavatar.Name = "txtMavatar";
             this.txtMavatar.Size = new System.Drawing.Size(240, 21);
             this.txtMavatar.TabIndex = 0;
@@ -763,31 +764,25 @@ namespace METAbolt
             // 
             this.groupBox4.AccessibleName = "METAbolt licensing panel";
             this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.txtMObject);
             this.groupBox4.Controls.Add(this.txtAdRemove);
             this.groupBox4.Location = new System.Drawing.Point(3, 189);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(330, 70);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "METAbolt Licensing";
-            // 
-            // label17
-            // 
-            this.label17.Location = new System.Drawing.Point(21, 20);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(192, 14);
-            this.label17.TabIndex = 58;
-            this.label17.Text = "Ad removal license key:";
+            this.groupBox4.Text = "Master Object";
             // 
             // txtAdRemove
             // 
             this.txtAdRemove.AccessibleDescription = "Enter Ad removal license key into here";
             this.txtAdRemove.AccessibleName = "License key textbox";
             this.txtAdRemove.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtAdRemove.Location = new System.Drawing.Point(24, 37);
+            this.txtAdRemove.Location = new System.Drawing.Point(315, 58);
             this.txtAdRemove.Name = "txtAdRemove";
-            this.txtAdRemove.Size = new System.Drawing.Size(283, 21);
+            this.txtAdRemove.Size = new System.Drawing.Size(19, 21);
             this.txtAdRemove.TabIndex = 0;
+            this.txtAdRemove.Visible = false;
             // 
             // groupBox2
             // 
@@ -866,7 +861,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(35, 62);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(211, 17);
+            this.checkBox1.Size = new System.Drawing.Size(210, 17);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Give a present when invite is accepted";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -1083,7 +1078,7 @@ namespace METAbolt
             this.checkBox4.AutoSize = true;
             this.checkBox4.Location = new System.Drawing.Point(25, 107);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(231, 17);
+            this.checkBox4.Size = new System.Drawing.Size(229, 17);
             this.checkBox4.TabIndex = 2;
             this.checkBox4.Text = "Use \'modern\' layout in chat and IM screens";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -1113,7 +1108,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(58, 200);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(220, 17);
+            this.checkBox5.Size = new System.Drawing.Size(217, 17);
             this.checkBox5.TabIndex = 13;
             this.checkBox5.Text = "Play sound when payments are received";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1124,7 +1119,7 @@ namespace METAbolt
             this.checkBox11.AutoSize = true;
             this.checkBox11.Location = new System.Drawing.Point(58, 177);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(227, 17);
+            this.checkBox11.Size = new System.Drawing.Size(221, 17);
             this.checkBox11.TabIndex = 12;
             this.checkBox11.Text = "Play sound when Inventory Item received";
             this.checkBox11.UseVisualStyleBackColor = true;
@@ -1135,7 +1130,7 @@ namespace METAbolt
             this.checkBox10.AutoSize = true;
             this.checkBox10.Location = new System.Drawing.Point(58, 154);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(216, 17);
+            this.checkBox10.Size = new System.Drawing.Size(217, 17);
             this.checkBox10.TabIndex = 11;
             this.checkBox10.Text = "Play sound when Group Notice received";
             this.checkBox10.UseVisualStyleBackColor = true;
@@ -1157,7 +1152,7 @@ namespace METAbolt
             this.checkBox8.AutoSize = true;
             this.checkBox8.Location = new System.Drawing.Point(58, 108);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(169, 17);
+            this.checkBox8.Size = new System.Drawing.Size(171, 17);
             this.checkBox8.TabIndex = 9;
             this.checkBox8.Text = "Play sound when IM Received";
             this.checkBox8.UseVisualStyleBackColor = true;
@@ -1168,7 +1163,7 @@ namespace METAbolt
             this.checkBox7.AutoSize = true;
             this.checkBox7.Location = new System.Drawing.Point(58, 85);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(173, 17);
+            this.checkBox7.Size = new System.Drawing.Size(170, 17);
             this.checkBox7.TabIndex = 8;
             this.checkBox7.Text = "Play sound when Friend offline";
             this.checkBox7.UseVisualStyleBackColor = true;
@@ -1179,7 +1174,7 @@ namespace METAbolt
             this.checkBox6.AutoSize = true;
             this.checkBox6.Location = new System.Drawing.Point(58, 62);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(171, 17);
+            this.checkBox6.Size = new System.Drawing.Size(170, 17);
             this.checkBox6.TabIndex = 7;
             this.checkBox6.Text = "Play sound when Friend online";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -1196,6 +1191,23 @@ namespace METAbolt
             this.fontDialog1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
+            // 
+            // label17
+            // 
+            this.label17.Location = new System.Drawing.Point(23, 32);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(39, 14);
+            this.label17.TabIndex = 62;
+            this.label17.Text = "UUID:";
+            // 
+            // txtMObject
+            // 
+            this.txtMObject.AccessibleName = "UUID textbox";
+            this.txtMObject.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtMObject.Location = new System.Drawing.Point(68, 29);
+            this.txtMObject.Name = "txtMObject";
+            this.txtMObject.Size = new System.Drawing.Size(240, 21);
+            this.txtMObject.TabIndex = 61;
             // 
             // PrefGeneralConsole
             // 
@@ -1314,7 +1326,6 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox chkAutoAccept;
         private System.Windows.Forms.CheckBox chkMinimised;
         private System.Windows.Forms.TextBox txtAdRemove;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1335,6 +1346,8 @@ namespace METAbolt
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown nUD2;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtMObject;
 
     }
 }

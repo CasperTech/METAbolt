@@ -255,17 +255,7 @@ namespace METAbolt
                         //MessageBox.Show(e.Message, "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
 
-                    case TeleportStatus.Finished:
-                        lock (sfavatar)
-                        {
-                            sfavatar.Clear();
-                        }
-
-                        BeginInvoke(new MethodInvoker(delegate()
-                        {
-                            lvwRadar.Clear();
-                        }));                        
- 
+                    case TeleportStatus.Finished: 
                         if (instance.Config.CurrentConfig.AutoSit)
                         {
                             Logger.Log("AUTOSIT: Initialising...", Helpers.LogLevel.Info);
@@ -1216,6 +1206,19 @@ namespace METAbolt
                         }
                     }
                 }
+                //else
+                //{
+                //    ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
+                //    item.Font = new Font(item.Font, FontStyle.Bold);
+                //    item.Tag = key;
+                //}
+
+                if (!lvwRadar.Items.ContainsKey(client.Self.Name))
+                {
+                    ListViewItem item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
+                    item.Font = new Font(item.Font, FontStyle.Bold);
+                    item.Tag = key;
+                }
                 
                 lvwRadar.EndUpdate();
             }
@@ -1353,12 +1356,12 @@ namespace METAbolt
                             }
                         }
                     }
-                    else
-                    {
-                        ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
-                        item.Font = new Font(item.Font, FontStyle.Bold);
-                        item.Tag = av.ID;
-                    }
+                    //else
+                    //{
+                    //    ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
+                    //    item.Font = new Font(item.Font, FontStyle.Bold);
+                    //    item.Tag = av.ID;
+                    //}
 
                     if (!lvwRadar.Items.ContainsKey(client.Self.Name))
                     {
@@ -2442,6 +2445,16 @@ namespace METAbolt
         // Seperate thread
         void Network_OnCurrentSimChanged(object sender, SimChangedEventArgs e)
         {
+            lock (sfavatar)
+            {
+                sfavatar.Clear();
+            }
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                lvwRadar.Clear();
+            }));
+
             //GetMap();
             BeginInvoke((MethodInvoker)delegate { GetMap(); });
         }

@@ -127,7 +127,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(396, 95);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(396, 76);
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 217);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.Size = new System.Drawing.Size(396, 95);
@@ -142,14 +142,14 @@
             // 
             this.tsButtons.AccessibleName = "Main METAbolt menu";
             this.tsButtons.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.tsButtons.BackColor = System.Drawing.Color.White;
+            this.tsButtons.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tsButtons.Dock = System.Windows.Forms.DockStyle.None;
             this.tsButtons.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.tsButtons.Location = new System.Drawing.Point(0, 0);
             this.tsButtons.Name = "tsButtons";
             this.tsButtons.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.tsButtons.ShowItemToolTips = false;
-            this.tsButtons.Size = new System.Drawing.Size(396, 0);
+            this.tsButtons.Size = new System.Drawing.Size(396, 19);
             this.tsButtons.Stretch = true;
             this.tsButtons.TabIndex = 1;
             this.tsButtons.Text = "toolStrip2";

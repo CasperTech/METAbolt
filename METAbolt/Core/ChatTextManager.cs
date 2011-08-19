@@ -787,11 +787,19 @@ namespace METAbolt
             {
                 // Handles incoming IM commands
 
-                // process the command
-                ActionCommandsIn act = new ActionCommandsIn(this.instance);
-                string ret = act.ProcessCommand(smsg.Trim(), item.FromName, item.FromUUID);
-                act.Dispose(); 
-                return;
+                UUID mavatar = (UUID)instance.Config.CurrentConfig.MasterAvatar;
+                UUID mobject = (UUID)instance.Config.CurrentConfig.MasterObject;
+
+                if (mavatar == UUID.Zero && mobject == UUID.Zero) return;
+
+                if (item.FromUUID == mavatar || item.FromUUID == mobject)
+                {
+                    // process the command
+                    ActionCommandsIn act = new ActionCommandsIn(this.instance);
+                    string ret = act.ProcessCommand(smsg.Trim(), item.FromName, item.FromUUID);
+                    //act.Dispose(); 
+                    return;
+                }
             }
             //added by GM on 2-JUL-2009
             else if (item.FromUUID == cau && cau != UUID.Zero)

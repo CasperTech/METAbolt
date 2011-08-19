@@ -151,7 +151,8 @@ namespace METAbolt
         private bool autoacceptitems = false;
         private bool startminimised = false;
         private string adremove = string.Empty;
-        private string masteravatar = string.Empty;
+        private string masteravatar = UUID.Zero.ToString();   //    string.Empty;
+        private string masterobject = UUID.Zero.ToString();
         private bool autotransfer = false;
         private bool sortbydistance = true;
         private bool disabletrayicon = false;
@@ -239,7 +240,16 @@ namespace METAbolt
                 config.PlayPaymentReceived = conf.Configs["General"].GetBoolean("PlayPaymentReceived", false);
                 config.AutoAcceptItems = conf.Configs["General"].GetBoolean("AutoAcceptItems", false);
                 config.AdRemove = conf.Configs["General"].GetString("AdRemove", string.Empty);
-                config.MasterAvatar = conf.Configs["General"].GetString("MasterAvatar", string.Empty);
+                config.MasterAvatar = conf.Configs["General"].GetString("MasterAvatar", UUID.Zero.ToString());
+
+                // backward compatibility pre V 0.9.47.0
+
+                if (config.MasterAvatar == string.Empty)
+                {
+                    config.MasterAvatar = UUID.Zero.ToString();   
+                }
+
+                config.MasterObject = conf.Configs["General"].GetString("MasterObject", UUID.Zero.ToString());
                 config.AutoTransfer = conf.Configs["General"].GetBoolean("AutoTransfer", false);
                 config.DisableTrayIcon = conf.Configs["General"].GetBoolean("DisableTrayIcon", false);
                 config.DisableFriendsNotifications = conf.Configs["General"].GetBoolean("DisableFriendsNotifications", false);
@@ -402,6 +412,7 @@ namespace METAbolt
             config.Set("StartMinimised", startminimised.ToString(CultureInfo.CurrentCulture));
             config.Set("AdRemove", adremove);
             config.Set("MasterAvatar", masteravatar);
+            config.Set("MasterObject", masterobject);
             config.Set("AutoTransfer", autotransfer.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableTrayIcon", disabletrayicon.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString(CultureInfo.CurrentCulture));
@@ -1096,6 +1107,12 @@ namespace METAbolt
         {
             get { return masteravatar; }
             set { masteravatar = value; }
+        }
+
+        public string MasterObject
+        {
+            get { return masterobject; }
+            set { masterobject = value; }
         }
 
         public bool AutoTransfer

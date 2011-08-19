@@ -220,6 +220,7 @@ namespace METAbolt
             chkMinimised.Checked = config.CurrentConfig.StartMinimised;
             txtAdRemove.Text = config.CurrentConfig.AdRemove.Trim();
             txtMavatar.Text = config.CurrentConfig.MasterAvatar.Trim();
+            txtMObject.Text = config.CurrentConfig.MasterObject.Trim();     
             chkAutoTransfer.Checked = config.CurrentConfig.AutoTransfer;
             chkTray.Checked = config.CurrentConfig.DisableTrayIcon;
             chkTyping.Checked = config.CurrentConfig.DisableTyping;

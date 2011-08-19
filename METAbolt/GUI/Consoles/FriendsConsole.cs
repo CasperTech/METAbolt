@@ -327,6 +327,12 @@ namespace METAbolt
             lblFriendName.Text = friend.Name + (friend.IsOnline ? " (online)" : " (offline)");
 
             btnRemove.Enabled = btnIM.Enabled = btnProfile.Enabled = btnOfferTeleport.Enabled = btnPay.Enabled = true;
+
+            if (!friend.IsOnline)
+            {
+                btnOfferTeleport.Enabled = false;
+            }
+
             chkSeeMeOnline.Enabled = chkSeeMeOnMap.Enabled = chkModifyMyObjects.Enabled = true;
             chkSeeMeOnMap.Enabled = friend.CanSeeMeOnline;
 
