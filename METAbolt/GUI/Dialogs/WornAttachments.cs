@@ -59,7 +59,7 @@ namespace METAbolt
             this.av = av;
 
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
-            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+            //client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
         }
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
@@ -73,36 +73,46 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
+                pBar3.Visible = true;
                 lbxPrims.Items.Clear();
-                lbxPrimGroup.Items.Clear();  
+                lbxPrimGroup.Items.Clear();
+
+                ThreadPool.QueueUserWorkItem(delegate(object sync)
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    Thread.Sleep(5000);
+                    ReLoadItems();
+                    //GetAttachments();
+                    Cursor.Current = Cursors.Default;
+                });
             }));
         }
 
-        private void Self_TeleportProgress(object sender, TeleportEventArgs e)
-        {
-            if (!this.IsHandleCreated) return;
+        //private void Self_TeleportProgress(object sender, TeleportEventArgs e)
+        //{
+        //    if (!this.IsHandleCreated) return;
 
-            switch (e.Status)
-            {
-                case TeleportStatus.Start:
-                case TeleportStatus.Progress:
-                case TeleportStatus.Failed:
-                case TeleportStatus.Cancelled:
-                    return;
+        //    switch (e.Status)
+        //    {
+        //        case TeleportStatus.Start:
+        //        case TeleportStatus.Progress:
+        //        case TeleportStatus.Failed:
+        //        case TeleportStatus.Cancelled:
+        //            return;
 
-                case TeleportStatus.Finished:
-                    ThreadPool.QueueUserWorkItem(delegate(object sync)
-                    {
-                        Cursor.Current = Cursors.WaitCursor;
-                        Thread.Sleep(6000);
-                        ReLoadItems();
-                        //GetAttachments();
-                        Cursor.Current = Cursors.Default;
-                    });
+        //        case TeleportStatus.Finished:
+        //            ThreadPool.QueueUserWorkItem(delegate(object sync)
+        //            {
+        //                Cursor.Current = Cursors.WaitCursor;
+        //                Thread.Sleep(6000);
+        //                ReLoadItems();
+        //                //GetAttachments();
+        //                Cursor.Current = Cursors.Default;
+        //            });
 
-                    return;
-            }
-        }
+        //            return;
+        //    }
+        //}
 
         private void ReLoadItems()
         {
@@ -152,6 +162,8 @@ namespace METAbolt
 
                         lbxPrims.EndUpdate();
                         lbxPrims.Visible = true;
+
+                        pBar3.Visible = false;
                     }));
                 }
                 else
@@ -166,7 +178,7 @@ namespace METAbolt
         private void WornAssets_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
-            
+
             GetAttachments();
         }
 
@@ -244,7 +256,7 @@ namespace METAbolt
             string name = string.Empty;
             string wornat = string.Empty;
             string stas = string.Empty;
-  
+
             try
             {
                 if (itemToDraw.Prim.Properties == null)
@@ -310,7 +322,7 @@ namespace METAbolt
 
                     label1.Text = "Ttl: " + lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " attachments";
                 }
-            })); 
+            }));
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -336,11 +348,11 @@ namespace METAbolt
                         if (item == null) return;
 
                         client.Self.Touch(item.Prim.LocalID);
-                        label4.Text = "Touched " + item.Prim.Properties.Name;  
+                        label4.Text = "Touched " + item.Prim.Properties.Name;
                     }
                     else
                     {
-                        MessageBox.Show("You must select an attachment first", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);  
+                        MessageBox.Show("You must select an attachment first", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else
@@ -352,7 +364,7 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                Logger.Log("Worn Attachments: " + ex.Message, Helpers.LogLevel.Error);   
+                Logger.Log("Worn Attachments: " + ex.Message, Helpers.LogLevel.Error);
             }
         }
 
@@ -500,7 +512,7 @@ namespace METAbolt
         private void lbxPrimGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             label4.Text = string.Empty;
-   
+
             int iDx = lbxPrimGroup.SelectedIndex;
 
             if (iDx < 0)
@@ -554,20 +566,20 @@ namespace METAbolt
 
             listItems.Clear();
             lbxPrims.Items.Clear();
-            lbxPrimGroup.Items.Clear();                
+            lbxPrimGroup.Items.Clear();
         }
 
         void WornAttachments_Disposed(object sender, EventArgs e)
         {
             client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
-            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+            //client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
 
             //lock (listItems)
             //{
             //    listItems.Clear();
             //}
 
-           GC.Collect(); 
+            //GC.Collect();
         }
     }
 }

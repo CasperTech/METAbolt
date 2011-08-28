@@ -15,8 +15,7 @@
         {
             if (disposing && (components != null))
             {
-                axWindowsMediaPlayer1.close(); 
-                components.Dispose();  
+                components.Dispose();
             }
             base.Dispose(disposing);
         }

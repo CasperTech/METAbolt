@@ -102,7 +102,11 @@ namespace METAbolt
         {
             get
             {
-                return d[key];
+                try
+                {
+                    return d[key];
+                }
+                catch { return default(TValue); }
             }
             set
             {

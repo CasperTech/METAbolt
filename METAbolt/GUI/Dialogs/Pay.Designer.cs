@@ -167,7 +167,6 @@ namespace METAbolt
             this.MinimizeBox = false;
             this.Name = "frmPay";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pay";
             this.Load += new System.EventHandler(this.frmPay_Load);

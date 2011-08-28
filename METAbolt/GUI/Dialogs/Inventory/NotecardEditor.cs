@@ -32,8 +32,6 @@ using System.Windows.Forms;
 using SLNetworkComm;
 using OpenMetaverse;
 using OpenMetaverse.Assets;
-using System.Globalization;
-
 
 namespace METAbolt
 {
@@ -216,7 +214,7 @@ namespace METAbolt
             {
                 text = body.Trim();
 
-                int pos = text.IndexOf("Text length", 0, StringComparison.CurrentCulture);
+                int pos = text.IndexOf("Text length", 0);
                 pos += 11;
 
                 lheader = text.Substring(0, pos).ToString();
@@ -224,7 +222,7 @@ namespace METAbolt
                 text = text.Substring(pos).Trim();
 
                 // get the first lf
-                pos = text.IndexOf("\n", 0, StringComparison.CurrentCulture);
+                pos = text.IndexOf("\n", 0);
 
                 if (pos > -1)
                 {
@@ -453,7 +451,7 @@ namespace METAbolt
                 }
             }
 
-            saveFile1.Dispose();  
+            saveFile1.Dispose(); 
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -673,13 +671,13 @@ namespace METAbolt
         private void GetCurrentLine()
         {
             int linenumber = rtbNotecard.GetLineFromCharIndex(rtbNotecard.SelectionStart) + 1;
-            tsLn.Text = "Ln " + linenumber.ToString(CultureInfo.CurrentCulture);
+            tsLn.Text = "Ln " + linenumber.ToString();
         }
 
         private void GetCurrentCol()
         {
             int colnumber = rtbNotecard.SelectionStart - rtbNotecard.GetFirstCharIndexOfCurrentLine() + 1;
-            tsCol.Text = "Ln " + colnumber.ToString(CultureInfo.CurrentCulture);
+            tsCol.Text = "Ln " + colnumber.ToString();
         }
 
         private void rtbNotecard_TextChanged(object sender, EventArgs e)

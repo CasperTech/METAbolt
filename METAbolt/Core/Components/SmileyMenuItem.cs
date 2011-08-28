@@ -75,31 +75,19 @@ namespace METAbolt
 
             DrawBackground(_graphics, _bounds, ((_args.State & DrawItemState.Selected) != 0));
             _graphics.DrawImage(image, _bounds.X + ((_bounds.Width - ICON_WIDTH) / 2), _bounds.Y + ((_bounds.Height - ICON_HEIGHT) / 2));
-
-            _graphics.Dispose(); 
         }
 
         private void DrawBackground(Graphics _graphics, Rectangle _bounds, bool _selected)
         {
             if (_selected)
             {
-                SolidBrush sb = new SolidBrush(selectionColor);
-                Pen pen = new Pen(selectionBorderColor);
-
-                _graphics.FillRectangle(sb, _bounds);
-                _graphics.DrawRectangle(pen, _bounds.X, _bounds.Y,
+                _graphics.FillRectangle(new SolidBrush(selectionColor), _bounds);
+                _graphics.DrawRectangle(new Pen(selectionBorderColor), _bounds.X, _bounds.Y,
                     _bounds.Width - 1, _bounds.Height - 1);
-
-                pen.Dispose(); 
-                sb.Dispose(); 
             }
             else
             {
-                SolidBrush sb = new SolidBrush(backgroundColor);
-
-                _graphics.FillRectangle(sb, _bounds);
-
-                sb.Dispose(); 
+                _graphics.FillRectangle(new SolidBrush(backgroundColor), _bounds);
             }
         }
     }

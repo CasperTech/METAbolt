@@ -11,9 +11,6 @@ using SLNetworkComm;
 using ExceptionReporting;
 using System.Threading;
 using PopupControl;
-using System.Globalization;
-using System.Text.RegularExpressions;
-
 
 namespace METAbolt
 {
@@ -132,9 +129,9 @@ namespace METAbolt
             if (instance.IsAvatarMuted(e.IM.FromAgentID))
                 return;
 
-            if (tabsconsole.tabs.ContainsKey(e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)))
+            if (tabsconsole.tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
             {
-                if (tabsconsole.tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)].Selected)
+                if (tabsconsole.tabs[e.IM.FromAgentName.ToLower()].Selected)
                 {
                     return;
                 }
@@ -143,7 +140,7 @@ namespace METAbolt
             switch (e.IM.Dialog)
             {
                 case InstantMessageDialog.MessageFromAgent:
-                    if (e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture) == "second life")
+                    if (e.IM.FromAgentName.ToLower() == "second life")
                     {
                         return;
                     }
@@ -151,14 +148,11 @@ namespace METAbolt
                     HandleIM(e);
                     break;
                 case InstantMessageDialog.SessionSend:
-                    //HandleIM(e);
-                    return;
-                    //break;
+                    HandleIM(e);
+                    break;
                 case InstantMessageDialog.StartTyping:
                     return;
                 case InstantMessageDialog.StopTyping:
-                    return;
-                default:
                     return;
             }
         }
@@ -194,76 +188,31 @@ namespace METAbolt
             }
             else
             {
-                string fullName = Convert.ToString(lbxIMs.Items[s], CultureInfo.CurrentCulture);
+                string fullName = Convert.ToString(lbxIMs.Items[s]);
                 string imcount = string.Empty;
                 int cnt = 0;
 
                 if (fullName.Contains("("))
                 {
-                    try
-                    {
-                        string[] splits = fullName.Split('(');
+                    string[] splits = fullName.Split('(');
 
-                        fullName = splits[0].ToString(CultureInfo.CurrentCulture).Trim();
-                        imcount = splits[1].ToString(CultureInfo.CurrentCulture).Trim();
-                        string[] splits1 = imcount.Split(')');
+                    fullName = splits[0].ToString().Trim();
+                    imcount = splits[1].ToString();
+                    string[] splits1 = imcount.Split(')');
 
-                        imcount = splits1[0].ToString(CultureInfo.CurrentCulture).Trim();
+                    imcount = splits1[0].ToString();
+                    cnt = Convert.ToInt32(imcount) + 1;
 
-                        if (!string.IsNullOrEmpty(imcount))
-                        {
-                            if (IsNumeric(imcount))
-                            {
-                                cnt = Convert.ToInt32(imcount, CultureInfo.CurrentCulture) + 1;
-                            }
-                        }
+                    fullName = TabAgentName + " (" + cnt.ToString() + ")";
 
-                        fullName = TabAgentName + " (" + cnt.ToString(CultureInfo.CurrentCulture) + ")";
-
-                        lbxIMs.BeginUpdate();
-                        lbxIMs.Items[s] = fullName;
-                        lbxIMs.EndUpdate();
-                    }
-                    catch { ; }
+                    lbxIMs.BeginUpdate();
+                    lbxIMs.Items[s] = fullName;
+                    lbxIMs.EndUpdate();
                 }
 
             }
 
             SetSets();
-        }
-
-        //private bool IsTextValidated(string strTextEntry)
-        public static Boolean IsNumeric(System.Object Expression)
-        {
-            //Regex objNotWholePattern = new Regex("[^0-9]");
-            //return !objNotWholePattern.IsMatch(strTextEntry)
-            //     && (strTextEntry != "");
-
-            if (Expression == null || Expression is DateTime)
-                return false;
-
-            if (Expression is Int16 || Expression is Int32 || Expression is Int64 || Expression is Decimal || Expression is Single || Expression is Double || Expression is Boolean)
-                return true;
-
-            double Num = 0;
-
-            try
-            {
-                bool isNum = double.TryParse(Expression.ToString(), out Num);
-
-                if (isNum)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch
-            {
-                return false;
-            }
         }
 
         private void IMbox_Load(object sender, EventArgs e)
@@ -283,7 +232,7 @@ namespace METAbolt
                 tabsconsole.tabs["imbox"].Unhighlight();
             }
 
-            label3.Text = lbxIMs.Items.Count.ToString(CultureInfo.CurrentCulture);
+            label3.Text = lbxIMs.Items.Count.ToString();
 
             lbxIMs.SelectedIndex = -1;
         }

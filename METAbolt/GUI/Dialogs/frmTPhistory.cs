@@ -36,8 +36,6 @@ using System.Xml;
 using SLNetworkComm;
 using OpenMetaverse;
 using PopupControl;
-using System.Globalization;
-
 
 namespace METAbolt
 {
@@ -114,9 +112,9 @@ namespace METAbolt
                 // Open up the TP form here
                 string[] split = textBox2.Text.Split(new Char[] { '/' });
                 string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double x = Convert.ToDouble(split[5].ToString());
+                double y = Convert.ToDouble(split[6].ToString());
+                double z = Convert.ToDouble(split[7].ToString());
 
                 //(new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
 
@@ -133,7 +131,7 @@ namespace METAbolt
                 file = file.Substring(0, 32);
             }
 
-            string pos = instance.SIMsittingPos().X.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Y.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Z.ToString(CultureInfo.CurrentCulture);
+            string pos = instance.SIMsittingPos().X.ToString() + ", " + instance.SIMsittingPos().Y.ToString() + ", " + instance.SIMsittingPos().Z.ToString();
 
             string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
 

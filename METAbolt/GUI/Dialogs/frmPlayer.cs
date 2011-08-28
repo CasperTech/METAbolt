@@ -58,10 +58,11 @@ namespace METAbolt
         public frmPlayer(METAboltInstance instance)
         {
             InitializeComponent();
-            Disposed += new EventHandler(Player_Disposed);
 
             this.instance = instance;
-            client = this.instance.Client;            
+            client = this.instance.Client;
+
+            Disposed += new EventHandler(Player_Disposed);
 
             client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(TP_Callback);
         }
@@ -70,8 +71,6 @@ namespace METAbolt
         {
             if (e.Status == TeleportStatus.Finished)
             {
-                if (!this.IsHandleCreated) return;
-
                 BeginInvoke((MethodInvoker)delegate 
                 {
                     axWindowsMediaPlayer1.Ctlcontrols.stop();
@@ -103,8 +102,6 @@ namespace METAbolt
             axWindowsMediaPlayer1.CurrentItemChange -= new AxWMPLib._WMPOCXEvents_CurrentItemChangeEventHandler(player_CurrentItemChange);
             axWindowsMediaPlayer1.CurrentPlaylistChange -= new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(player_CurrentPlaylistChange);
             axWindowsMediaPlayer1.MediaChange -= new AxWMPLib._WMPOCXEvents_MediaChangeEventHandler(player_MediaChange);
-
-            GC.Collect(); 
         }
 
         private void player_MediaChange(object sender, AxWMPLib._WMPOCXEvents_MediaChangeEvent e)
@@ -135,7 +132,7 @@ namespace METAbolt
                 if (currenttrack.Contains("("))
                 {
                     // get them out
-                    int pos = currenttrack.IndexOf("(", StringComparison.CurrentCulture);
+                    int pos = currenttrack.IndexOf("(");
                     currenttrack = currenttrack.Substring(0, pos).Trim();
                 }
 
@@ -569,7 +566,7 @@ namespace METAbolt
         {
             string mlink = e.LinkText.Replace("http//", string.Empty);
 
-            if (!e.LinkText.StartsWith("http://", StringComparison.CurrentCulture))
+            if (!e.LinkText.StartsWith("http://"))
             {
                 System.Diagnostics.Process.Start("http://" + mlink);
             }

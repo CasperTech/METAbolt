@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindPlaces));
             this.lvwFindPlaces = new System.Windows.Forms.ListView();
             this.chdName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chdTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,7 +48,7 @@
             // 
             this.lvwFindPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.lvwFindPlaces.BackColor = System.Drawing.Color.White;
+            this.lvwFindPlaces.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwFindPlaces.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdTime});
@@ -79,10 +78,10 @@
             // pPlaces
             // 
             this.pPlaces.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pPlaces.Image = ((System.Drawing.Image)(resources.GetObject("pPlaces.Image")));
-            this.pPlaces.Location = new System.Drawing.Point(128, 156);
+            this.pPlaces.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pPlaces.Location = new System.Drawing.Point(166, 180);
             this.pPlaces.Name = "pPlaces";
-            this.pPlaces.Size = new System.Drawing.Size(76, 78);
+            this.pPlaces.Size = new System.Drawing.Size(30, 30);
             this.pPlaces.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pPlaces.TabIndex = 43;
             this.pPlaces.TabStop = false;

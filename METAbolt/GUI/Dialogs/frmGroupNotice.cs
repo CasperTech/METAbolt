@@ -37,9 +37,7 @@ using OpenMetaverse;
 using OpenMetaverse.Imaging;
 using OpenMetaverse.Assets;
 using OpenMetaverse.StructuredData;
-using System.Media;
-using System.Globalization;
-
+using System.Media; 
 
 namespace METAbolt
 {
@@ -101,7 +99,7 @@ namespace METAbolt
 
             if (instance.State.Groups.ContainsKey(fromAgentID))
             {
-                string grp = instance.State.Groups[fromAgentID].Name.ToUpper(CultureInfo.CurrentCulture);
+                string grp = instance.State.Groups[fromAgentID].Name.ToUpper();
                 label2.Text = "Sent by: " + imsg.FromAgentName + ", " + grp;
             }
             else
@@ -216,8 +214,7 @@ namespace METAbolt
             Font nFont = new Font("Microsoft Sans Serif", 10, bold);
             rtbTitle.Select(start, otext.Length);
             rtbTitle.SelectionFont = nFont;
-
-            nFont.Dispose();  
+            nFont.Dispose(); 
         }
 
         private void GroupProfileHandler(object sender, GroupProfileEventArgs e)
@@ -274,7 +271,7 @@ namespace METAbolt
                 {
                     foreach (InventoryItem item in contents)
                     {
-                        if (item.Name.ToLower(CultureInfo.CurrentCulture) == filename.ToLower(CultureInfo.CurrentCulture))
+                        if (item.Name.ToLower() == filename.ToLower())
                         {
                             //UUID itemid = item.AssetUUID;
 

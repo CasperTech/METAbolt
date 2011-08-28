@@ -50,7 +50,7 @@ namespace METAbolt
         private float headerfontsize = 8.5f;
         private FontStyle fontsy;
         private FontStyle fontst;
-        private Color bkcolour = Color.Lavender ;
+        private Color bkcolour = Color.Lavender;
         private string textfont = "Tahoma";
         private string textfontstyle = "Normal";
         private float textfontsize = 8.5f;
@@ -62,7 +62,7 @@ namespace METAbolt
             rtb = textBox;
 
             this.instance = instance;
-            config = this.instance.Config;   
+            config = this.instance.Config;
 
             hideSmileys = config.CurrentConfig.ChatSmileys;
             config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
@@ -74,7 +74,7 @@ namespace METAbolt
                 headerfont = config.CurrentConfig.HeaderFont;
                 headerfontstyle = config.CurrentConfig.HeaderFontStyle;
                 headerfontsize = config.CurrentConfig.HeaderFontSize;
-                bkcolour = config.CurrentConfig.HeaderBackColour;   
+                bkcolour = config.CurrentConfig.HeaderBackColour;
             }
 
             switch (headerfontstyle.ToLower(CultureInfo.CurrentCulture))
@@ -127,15 +127,13 @@ namespace METAbolt
 
         #region ITextPrinter Members
 
-        
+
 
         public void PrintHeader(string text)
         {
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintHeader(text); });
             else
             {
-                // bkcolour = config.CurrentConfig.HeaderBackColour;
-
                 if (text == null) return;
 
                 rtb.SelectionFont = new Font(headerfont, headerfontsize, fontsy);
@@ -144,15 +142,14 @@ namespace METAbolt
                 rtb.SelectionColor = Color.Black;
                 rtb.AppendText(Environment.NewLine + " " + text);   // + Environment.NewLine);
 
-                int cwidth = rtb.Width - (text.Length + 1);
+                int cwidth = rtb.Width - (text.Length);
                 string buff = string.Empty;
 
-                for (int a = 0; a < cwidth - 1; a++)
+                for (int a = 0; a < cwidth; a++)
                 {
                     buff += " ";
                 }
 
-                //rtb.SelectionBackColor = bkcolour;
                 rtb.AppendText(buff + Environment.NewLine);
             }
         }
@@ -162,27 +159,28 @@ namespace METAbolt
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintLinkHeader(text, link); });
             else
             {
-                // bkcolour = config.CurrentConfig.HeaderBackColour;
-
                 if (text == null) return;
 
                 rtb.SelectionFont = new Font(headerfont, headerfontsize, fontsy);
 
+                rtb.SelectionBackColor = Color.White;
                 rtb.AppendText(Environment.NewLine);
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
-                rtb.InsertLink(" " + text, link);
+                //rtb.InsertLink(" " + text, link);
 
-                int cwidth = rtb.Width - (text.Length + 1);
+                int cwidth = rtb.Width - (text.Length);
                 string buff = string.Empty;
 
-                for (int a = 0; a < cwidth - 1; a++)
+                for (int a = 0; a < cwidth; a++)
                 {
                     buff += " ";
                 }
 
                 //rtb.SelectionBackColor = bkcolour;
-                rtb.AppendText(buff);   
+                //rtb.AppendText(buff);
+                //rtb.AppendText(Environment.NewLine + " " + text + buff);
+                rtb.InsertLink(" " + text + buff, link);
             }
         }
 
@@ -230,7 +228,7 @@ namespace METAbolt
 
                 rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
                 //rtb.SelectionBackColor = rtb.BackColor = bgcolour;
-  
+
                 rtb.AppendText(text);
                 int _findex = rtb.Text.Length - text.Length; // To be SAFE this has to be done after 'append' like this due to the buffer or we will get index out of range error when trying to replace
 

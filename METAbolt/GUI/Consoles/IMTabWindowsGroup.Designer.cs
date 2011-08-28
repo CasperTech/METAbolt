@@ -15,8 +15,8 @@
         {
             if (disposing && (components != null))
             {
-                components.Dispose();
                 WaitForSessionStart.Close();  
+                components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -86,14 +86,16 @@
             this.rtbIMText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbIMText.AutoWordSelection = true;
             this.rtbIMText.BackColor = System.Drawing.Color.White;
             this.rtbIMText.DetectUrls = true;
             this.rtbIMText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbIMText.HideSelection = false;
-            this.rtbIMText.HiglightColor = Khendys.Controls.RtfColor.White;
+            this.rtbIMText.HiglightColor = Khendys.Controls.RtfColor.Gray;
             this.rtbIMText.Location = new System.Drawing.Point(0, 4);
             this.rtbIMText.Name = "rtbIMText";
             this.rtbIMText.ReadOnly = true;
+            this.rtbIMText.ShowSelectionMargin = true;
             this.rtbIMText.Size = new System.Drawing.Size(380, 264);
             this.rtbIMText.TabIndex = 4;
             this.rtbIMText.Text = "";
@@ -141,7 +143,6 @@
             // toolStrip1
             // 
             this.toolStrip1.AccessibleName = "IM toolbar menu";
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbtnProfile,

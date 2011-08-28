@@ -38,8 +38,7 @@ using System.Diagnostics;
 using System.Linq;
 using ExceptionReporting;
 using System.Threading;
-using System.Globalization;
-
+using System.Globalization; 
 
 namespace METAbolt
 {
@@ -70,7 +69,6 @@ namespace METAbolt
         public MainConsole(METAboltInstance instance)
         {
             InitializeComponent();
-            Disposed += new EventHandler(MainConsole_Disposed);
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -86,6 +84,8 @@ namespace METAbolt
 
             webBrowser.Visible = true;
             btnInfo.Text = "Hide Grid Status";
+
+            Disposed += new EventHandler(MainConsole_Disposed);
 
             LoadGrids();
             InitGridCombo();
@@ -160,7 +160,8 @@ namespace METAbolt
             SW.WriteLine("The New World Grid,http://grid.newworldgrid.com:8002");
             SW.WriteLine("WorldSimTerra,http://wsterra.com:8002");
             SW.WriteLine("Your Alternative Life,http://grid.youralternativelife.com");
-            SW.Close();
+
+            SW.Dispose();
         }
 
         private void InitGridCombo()
@@ -196,7 +197,7 @@ namespace METAbolt
                 ulist += s + "|";
             }
 
-            if (ulist.EndsWith("|", StringComparison.CurrentCulture))
+            if (ulist.EndsWith("|"))
             {
                 ulist = ulist.Substring(0, ulist.Length - 1);   
             }
@@ -357,6 +358,7 @@ namespace METAbolt
                         break;
 
                     case LoginStatus.Success:
+                        //SetLang();
                         lblLoginStatus.Text = "Logged in as " + netcom.LoginOptions.FullName;
                         lblLoginStatus.ForeColor = Color.Blue;
      
@@ -455,6 +457,27 @@ namespace METAbolt
                 Logger.Log("Login (status): " + ex.Message, Helpers.LogLevel.Error);
             }
         }
+
+        // TODO: This is buggy in libopenmv and causes all sorts of problems
+        // DO NOT enable it until it is fixed
+
+        //private void SetLang()
+        //{
+        //    CultureInfo cult = CultureInfo.CurrentCulture;
+        //    string land = cult.TwoLetterISOLanguageName;
+
+        //    AgentManager avm = new AgentManager(client);
+
+        //    try
+        //    {
+        //        avm.UpdateAgentLanguage(land, true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
+        //        //reporter.Show(ex);
+        //    }
+        //}
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
         {
@@ -564,27 +587,27 @@ namespace METAbolt
 
             e.Cancel = true;
 
-            if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCulture))
+            if (clickedurl.StartsWith("http://slurl."))
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString(CultureInfo.CurrentCulture);
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                string sim = split[4].ToString();
+                double x = Convert.ToDouble(split[5].ToString());
+                double y = Convert.ToDouble(split[6].ToString());
+                double z = Convert.ToDouble(split[7].ToString());
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 clickedurl = string.Empty;
                 return;
             }
-            if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
+            if (clickedurl.StartsWith("http://maps.secondlife"))
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString(CultureInfo.CurrentCulture);
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                string sim = split[4].ToString();
+                double x = Convert.ToDouble(split[5].ToString());
+                double y = Convert.ToDouble(split[6].ToString());
+                double z = Convert.ToDouble(split[7].ToString());
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
                 clickedurl = string.Empty;
@@ -694,9 +717,9 @@ namespace METAbolt
                             // Check for http beginning
                             string hhder = string.Empty;
 
-                            if (!txtCustomLoginUri.Text.StartsWith("http://", StringComparison.CurrentCulture))
+                            if (!txtCustomLoginUri.Text.StartsWith("http://"))
                             {
-                                if (!txtCustomLoginUri.Text.StartsWith("https://", StringComparison.CurrentCulture))
+                                if (!txtCustomLoginUri.Text.StartsWith("https://"))
                                 {
                                     hhder = "http://";
                                 }
@@ -792,7 +815,7 @@ namespace METAbolt
                     line = "START \"\" /D \"" + Application.StartupPath + "\\\" \"" + Application.StartupPath + "\\metabolt.exe" + "\"" + " " + cuser.Replace("_", " ") + " " + txtPassword.Text;
                     sr.WriteLine(line);
 
-                    //sr.Close();
+                    sr.Close();
                     sr.Dispose();
                 }
             }

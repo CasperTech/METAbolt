@@ -211,8 +211,9 @@ namespace METAbolt
             // 
             this.richTextBox1.AccessibleDescription = "Information on METAbolt and copyrights";
             this.richTextBox1.AccessibleName = "Information";
-            this.richTextBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.richTextBox1.BackColor = System.Drawing.Color.DimGray;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.ForeColor = System.Drawing.Color.White;
             this.richTextBox1.Location = new System.Drawing.Point(6, 20);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;

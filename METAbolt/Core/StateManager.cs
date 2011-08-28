@@ -34,7 +34,7 @@ using SLNetworkComm;
 
 namespace METAbolt
 {
-    public class StateManager : IDisposable
+    public class StateManager
     {
         private METAboltInstance instance;
         private GridClient client;
@@ -44,13 +44,13 @@ namespace METAbolt
         private bool away = false;
         private bool busy = false;
         private bool flying = false;
-        private bool alwaysrun = false;
+        //private bool alwaysrun = false;
         private bool sitting = false;
         private bool belly = false;
-        private bool club = false;
-        private bool salsa = false;
-        private bool fall = false;
-        private bool crouch = false;
+        //private bool club = false;
+        //private bool salsa = false;
+        //private bool fall = false;
+        //private bool crouch = false;
         
         private bool pointing = false;
         private UUID pointID = UUID.Zero;
@@ -58,7 +58,7 @@ namespace METAbolt
         private UUID beamID1 = UUID.Zero;
         private UUID beamID2 = UUID.Zero;
         private UUID effectID = UUID.Zero;
-        private bool looking = false;
+        //private bool looking = false;
         private UUID lookID = UUID.Zero;
 
         private bool following = false;
@@ -94,42 +94,7 @@ namespace METAbolt
         private Color4 tdcolour = new Color4(0, 255, 12, 0);
         private Color4 bkcolour = new Color4(255, 255, 255, 255);
         private Color4 ccolur = new Color4(0, 0, 255, 255);
-        private UUID lookattarget = UUID.Zero;
-        private bool disposed = false;
-
-        ~StateManager()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
-
-            if (disposing)
-            {
-                pointtimer.Dispose(); 
-            }
-
-            // TODO: Call the appropriate methods to clean up unmanaged resources here
-
-            // we're done
-            disposed = true;
-        }
-
-        #region IDisposable
-        public void Close()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        #endregion
-
-        public void Dispose()
-        {
-            //Dispose(true);
-            this.Close();  
-        } 
+        //private UUID lookattarget = UUID.Zero; 
 
         public StateManager(METAboltInstance instance)
         {
@@ -332,7 +297,7 @@ namespace METAbolt
             cdanceAnim.Add(clubdanceAnimationID, cclub);
 
             client.Self.Animate(cdanceAnim, true);
-            this.club = cclub;
+            //this.club = cclub;
         }
 
         public void SalsaDance(bool ssalsa)
@@ -341,7 +306,7 @@ namespace METAbolt
             sdanceAnim.Add(salsaAnimationID, ssalsa);
 
             client.Self.Animate(sdanceAnim, true);
-            this.salsa = ssalsa;
+            //this.salsa = ssalsa;
         }
 
         public void FallOnFace(bool ffall)
@@ -350,7 +315,7 @@ namespace METAbolt
             ffallAnim.Add(fallAnimationID, ffall);
 
             client.Self.Animate(ffallAnim, true);
-            this.fall = ffall;
+            //this.fall = ffall;
         }
 
         public void Crouch(bool ccrouch)
@@ -359,7 +324,7 @@ namespace METAbolt
             crouchAnim.Add(crouchAnimationID, ccrouch);
 
             client.Self.Animate(crouchAnim, true);
-            this.crouch = ccrouch;
+            //this.crouch = ccrouch;
         }
 
         public void SetFlying(bool fflying)
@@ -375,7 +340,7 @@ namespace METAbolt
         {
             client.Self.AutoPilotCancel();
 
-            this.alwaysrun = aalwaysrun;
+            //this.alwaysrun = aalwaysrun;
             client.Self.Movement.AlwaysRun = aalwaysrun;            
         }
 
@@ -567,7 +532,7 @@ namespace METAbolt
             if (instance.Config.CurrentConfig.DisableLookAt)
                 return;
 
-            this.looking = llooking;
+            //this.looking = llooking;
 
             if (llooking)
             {
@@ -594,7 +559,7 @@ namespace METAbolt
             if (instance.Config.CurrentConfig.DisableLookAt)
                 return;
 
-            this.looking = llooking;
+            //this.looking = llooking;
 
             if (llooking)
             {
@@ -604,7 +569,7 @@ namespace METAbolt
                 }
 
                 client.Self.LookAtEffect(client.Self.AgentID, target, Vector3d.Zero, LookAtType.Select, lookID);
-                lookattarget = target;
+                //lookattarget = target;
             }
             else
             {

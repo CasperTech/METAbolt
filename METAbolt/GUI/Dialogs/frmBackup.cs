@@ -164,7 +164,7 @@ namespace METAbolt
                 //    }
                 //}
 
-                //sr.Close();
+                sr.Close();
                 sr.Dispose();
             }
 
@@ -267,7 +267,7 @@ namespace METAbolt
                 {
                     System.IO.File.Copy(filename, destFile, true);
 
-                    if (destFile.EndsWith(".cmd", StringComparison.CurrentCulture) || destFile.EndsWith(".bat", StringComparison.CurrentCulture))
+                    if (destFile.EndsWith(".cmd") || destFile.EndsWith(".bat"))
                     {
                         cmdfiles[a] = "CALL " + destFile;
 

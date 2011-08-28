@@ -188,7 +188,7 @@ namespace METAbolt
             this.gbDisplayName.Controls.Add(this.label16);
             this.gbDisplayName.Controls.Add(this.textBox3);
             this.gbDisplayName.Controls.Add(this.textBox2);
-            this.gbDisplayName.Location = new System.Drawing.Point(6, 33);
+            this.gbDisplayName.Location = new System.Drawing.Point(5, 33);
             this.gbDisplayName.Name = "gbDisplayName";
             this.gbDisplayName.Size = new System.Drawing.Size(447, 432);
             this.gbDisplayName.TabIndex = 56;
@@ -209,10 +209,10 @@ namespace METAbolt
             this.pBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBar3.Image = ((System.Drawing.Image)(resources.GetObject("pBar3.Image")));
+            this.pBar3.Image = global::METAbolt.Properties.Resources.wait30trans;
             this.pBar3.Location = new System.Drawing.Point(191, 295);
             this.pBar3.Name = "pBar3";
-            this.pBar3.Size = new System.Drawing.Size(45, 45);
+            this.pBar3.Size = new System.Drawing.Size(30, 30);
             this.pBar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBar3.TabIndex = 60;
             this.pBar3.TabStop = false;
@@ -425,11 +425,11 @@ namespace METAbolt
             // 
             // proSLImage
             // 
-            this.proSLImage.BackColor = System.Drawing.Color.Transparent;
-            this.proSLImage.Image = ((System.Drawing.Image)(resources.GetObject("proSLImage.Image")));
-            this.proSLImage.Location = new System.Drawing.Point(108, 127);
+            this.proSLImage.BackColor = System.Drawing.Color.White;
+            this.proSLImage.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.proSLImage.Location = new System.Drawing.Point(121, 138);
             this.proSLImage.Name = "proSLImage";
-            this.proSLImage.Size = new System.Drawing.Size(50, 50);
+            this.proSLImage.Size = new System.Drawing.Size(30, 30);
             this.proSLImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.proSLImage.TabIndex = 44;
             this.proSLImage.TabStop = false;
@@ -729,23 +729,24 @@ namespace METAbolt
             // 
             // loadwait2
             // 
-            this.loadwait2.BackColor = System.Drawing.Color.Transparent;
-            this.loadwait2.Image = ((System.Drawing.Image)(resources.GetObject("loadwait2.Image")));
-            this.loadwait2.Location = new System.Drawing.Point(281, 88);
+            this.loadwait2.BackColor = System.Drawing.Color.White;
+            this.loadwait2.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.loadwait2.Location = new System.Drawing.Point(293, 101);
             this.loadwait2.Name = "loadwait2";
-            this.loadwait2.Size = new System.Drawing.Size(50, 50);
+            this.loadwait2.Size = new System.Drawing.Size(30, 30);
             this.loadwait2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.loadwait2.TabIndex = 46;
             this.loadwait2.TabStop = false;
             this.loadwait2.Visible = false;
+            this.loadwait2.Click += new System.EventHandler(this.loadwait2_Click);
             // 
             // loadwait1
             // 
-            this.loadwait1.BackColor = System.Drawing.Color.Transparent;
-            this.loadwait1.Image = ((System.Drawing.Image)(resources.GetObject("loadwait1.Image")));
-            this.loadwait1.Location = new System.Drawing.Point(58, 184);
+            this.loadwait1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.loadwait1.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.loadwait1.Location = new System.Drawing.Point(67, 186);
             this.loadwait1.Name = "loadwait1";
-            this.loadwait1.Size = new System.Drawing.Size(50, 50);
+            this.loadwait1.Size = new System.Drawing.Size(30, 30);
             this.loadwait1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.loadwait1.TabIndex = 45;
             this.loadwait1.TabStop = false;
@@ -860,11 +861,11 @@ namespace METAbolt
             // 
             // proFLImage
             // 
-            this.proFLImage.BackColor = System.Drawing.Color.Transparent;
-            this.proFLImage.Image = ((System.Drawing.Image)(resources.GetObject("proFLImage.Image")));
-            this.proFLImage.Location = new System.Drawing.Point(75, 78);
+            this.proFLImage.BackColor = System.Drawing.Color.White;
+            this.proFLImage.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.proFLImage.Location = new System.Drawing.Point(92, 90);
             this.proFLImage.Name = "proFLImage";
-            this.proFLImage.Size = new System.Drawing.Size(50, 50);
+            this.proFLImage.Size = new System.Drawing.Size(30, 30);
             this.proFLImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.proFLImage.TabIndex = 45;
             this.proFLImage.TabStop = false;

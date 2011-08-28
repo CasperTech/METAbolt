@@ -18,7 +18,7 @@ namespace METAbolt
                 listItems.Clear();
                 ItemsProps.Clear();
                 childItems.Clear();
-                avatars.Clear();
+                //avatars.Clear();
                 objs.Clear();
                 components.Dispose();
             }
@@ -480,7 +480,7 @@ namespace METAbolt
             this.checkBox5.Enabled = false;
             this.checkBox5.Location = new System.Drawing.Point(143, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(51, 17);
+            this.checkBox5.Size = new System.Drawing.Size(50, 17);
             this.checkBox5.TabIndex = 9;
             this.checkBox5.Text = "Copy";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -493,7 +493,7 @@ namespace METAbolt
             this.checkBox6.Enabled = false;
             this.checkBox6.Location = new System.Drawing.Point(102, 278);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(46, 17);
+            this.checkBox6.Size = new System.Drawing.Size(47, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mod";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -606,7 +606,7 @@ namespace METAbolt
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(143, 302);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(51, 17);
+            this.checkBox2.Size = new System.Drawing.Size(50, 17);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Copy";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -618,7 +618,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(102, 302);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(46, 17);
+            this.checkBox1.Size = new System.Drawing.Size(47, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Mod";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -947,10 +947,11 @@ namespace METAbolt
             // pBar1
             // 
             this.pBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pBar1.Image = ((System.Drawing.Image)(resources.GetObject("pBar1.Image")));
-            this.pBar1.Location = new System.Drawing.Point(137, 353);
+            this.pBar1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pBar1.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pBar1.Location = new System.Drawing.Point(140, 362);
             this.pBar1.Name = "pBar1";
-            this.pBar1.Size = new System.Drawing.Size(45, 45);
+            this.pBar1.Size = new System.Drawing.Size(30, 30);
             this.pBar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBar1.TabIndex = 52;
             this.pBar1.TabStop = false;
@@ -959,10 +960,11 @@ namespace METAbolt
             // pBar2
             // 
             this.pBar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pBar2.Image = ((System.Drawing.Image)(resources.GetObject("pBar2.Image")));
-            this.pBar2.Location = new System.Drawing.Point(137, 442);
+            this.pBar2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pBar2.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pBar2.Location = new System.Drawing.Point(140, 453);
             this.pBar2.Name = "pBar2";
-            this.pBar2.Size = new System.Drawing.Size(45, 45);
+            this.pBar2.Size = new System.Drawing.Size(30, 30);
             this.pBar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBar2.TabIndex = 53;
             this.pBar2.TabStop = false;
@@ -1004,10 +1006,11 @@ namespace METAbolt
             this.pBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBar3.Image = ((System.Drawing.Image)(resources.GetObject("pBar3.Image")));
-            this.pBar3.Location = new System.Drawing.Point(137, 181);
+            this.pBar3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pBar3.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pBar3.Location = new System.Drawing.Point(140, 181);
             this.pBar3.Name = "pBar3";
-            this.pBar3.Size = new System.Drawing.Size(45, 45);
+            this.pBar3.Size = new System.Drawing.Size(30, 30);
             this.pBar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBar3.TabIndex = 58;
             this.pBar3.TabStop = false;

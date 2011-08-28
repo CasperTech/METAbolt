@@ -69,7 +69,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.DarkGray;
+            this.label7.ForeColor = System.Drawing.Color.Gray;
             this.label7.Location = new System.Drawing.Point(76, 102);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 13);
@@ -78,7 +78,7 @@
             // 
             // label6
             // 
-            this.label6.ForeColor = System.Drawing.Color.DarkGray;
+            this.label6.ForeColor = System.Drawing.Color.Gray;
             this.label6.Location = new System.Drawing.Point(97, 174);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(235, 28);
@@ -106,7 +106,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.DarkGray;
+            this.label4.ForeColor = System.Drawing.Color.Gray;
             this.label4.Location = new System.Drawing.Point(76, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(153, 13);
@@ -184,7 +184,6 @@
             this.AccessibleName = "Proxy tab";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "PrefProxy";

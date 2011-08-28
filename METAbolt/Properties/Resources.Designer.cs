@@ -158,13 +158,6 @@ namespace METAbolt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Arrow_North {
-            get {
-                object obj = ResourceManager.GetObject("Arrow_North", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap arrow_right {
             get {
                 object obj = ResourceManager.GetObject("arrow_right", resourceCulture);
@@ -685,13 +678,6 @@ namespace METAbolt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap needle1 {
-            get {
-                object obj = ResourceManager.GetObject("needle1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap new_page_i {
             get {
                 object obj = ResourceManager.GetObject("new_page_i", resourceCulture);
@@ -1065,6 +1051,20 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap Url_History_161 {
             get {
                 object obj = ResourceManager.GetObject("Url_History_161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap wait18trans {
+            get {
+                object obj = ResourceManager.GetObject("wait18trans", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap wait30trans {
+            get {
+                object obj = ResourceManager.GetObject("wait30trans", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -62,7 +62,7 @@ namespace METAbolt
         private SafeDictionary<uint, ObjectsListItem> ItemsProps = new SafeDictionary<uint, ObjectsListItem>();
         private SafeDictionary<uint, ObjectsListItem> childItems = new SafeDictionary<uint, ObjectsListItem>();
         private List<uint> objs = new List<uint>();
-        private SafeDictionary<UUID, string> avatars = new SafeDictionary<UUID, string>();
+        //private SafeDictionary<UUID, string> avatars = new SafeDictionary<UUID, string>();
 
         private Popup toolTip;
         private Popup toolTip1;
@@ -99,7 +99,7 @@ namespace METAbolt
             netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
             netcom.ClientDisconnected += new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
             client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
-            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            //client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
 
             range = instance.Config.CurrentConfig.ObjectRange;
             newrange = range;
@@ -186,7 +186,7 @@ namespace METAbolt
             client.Network.Disconnected -= new EventHandler<DisconnectedEventArgs>(Network_OnDisconnected);
             netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
-            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            //client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
         }
 
         private void RemoveObjectEvents()
@@ -222,26 +222,33 @@ namespace METAbolt
             }
         }
 
-        private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    SIM_OnSimChanged(sender, e);
-                }));
-            }
+        //private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
+        //{
+        //    if (InvokeRequired)
+        //    {
+        //        BeginInvoke(new MethodInvoker(delegate()
+        //        {
+        //            SIM_OnSimChanged(sender, e);
+        //        }));
+        //    }
 
-            if (!this.IsHandleCreated) return;
+        //    if (!this.IsHandleCreated) return;
 
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                //ClearLists();
-                lbxPrims.Items.Clear();  
+        //    BeginInvoke(new MethodInvoker(delegate()
+        //    {
+        //        //ClearLists();
+        //        //lbxPrims.Items.Clear();  
 
-                //AddAllObjects();
-            }));
-        }
+        //        //AddAllObjects();
+
+        //        ////ResetObjects();
+        //        //lbxPrims.Items.Clear();
+        //        //lbxChildren.Items.Clear();
+        //        //lbxTask.Items.Clear();
+        //        //DisplayObjects();
+        //        //button3.Visible = button7.Visible = false;
+        //    }));
+        //}
 
         private void ClearLists()
         {
@@ -249,7 +256,7 @@ namespace METAbolt
             ItemsProps.Clear();
             childItems.Clear();
             objs.Clear();
-            avatars.Clear();
+            //avatars.Clear();
         }
 
         private void Network_OnDisconnected(object sender, DisconnectedEventArgs e)
@@ -443,6 +450,9 @@ namespace METAbolt
             {
                 Vector3 location = instance.SIMsittingPos();
                 pBar3.Visible = true;
+                pB1.Visible = true;
+                pB1.Value = 0;
+                pB1.Maximum = ItemsProps.Count;
 
                 lock (ItemsProps)
                 {
@@ -571,6 +581,8 @@ namespace METAbolt
             {
                 Vector3 location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
+                pB1.Value = 0;
+                pB1.Visible = true; 
 
                 pBar3.Visible = true;
 
@@ -1244,24 +1256,27 @@ namespace METAbolt
                             {
                                 item = listItems[objectID];
 
-                                if (lbxPrims.Items.Contains(item))
+                                if (item != null)
                                 {
-                                    lbxPrims.Items.Remove(item);
-                                }
+                                    if (lbxPrims.Items.Contains(item))
+                                    {
+                                        lbxPrims.Items.Remove(item);
+                                    }
 
-                                pB1.Maximum -= 1;
+                                    pB1.Maximum -= 1;
 
-                                try
-                                {
-                                    listItems.Remove(objectID);
-                                }
-                                catch
-                                {
-                                    ;
-                                }
+                                    try
+                                    {
+                                        listItems.Remove(objectID);
+                                    }
+                                    catch
+                                    {
+                                        ;
+                                    }
 
-                                //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
+                                    //tlbStatus.Text = listItems.Count.ToString() + " objects";
+                                    tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
+                                }
                             }));
                         }
                         catch
@@ -2763,7 +2778,7 @@ namespace METAbolt
 
         void Objects_Disposed(object sender, EventArgs e)
         {
-            GC.Collect();
+            //GC.Collect();
         }
     }
 }

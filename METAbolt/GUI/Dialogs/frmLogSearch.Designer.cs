@@ -277,6 +277,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogSearch";
+            this.ShowInTaskbar = false;
             this.Text = "Chat/IM Log Manager";
             this.Load += new System.EventHandler(this.frmLogSearch_Load);
             this.groupBox1.ResumeLayout(false);

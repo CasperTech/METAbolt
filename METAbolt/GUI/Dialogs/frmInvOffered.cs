@@ -44,6 +44,8 @@ namespace METAbolt
         private InstantMessage msg;
         private UUID objectID;
         private bool diainv = true;
+        private AssetType invtype = AssetType.Unknown;
+        private bool printed = false;
 
         public frmInvOffered(METAboltInstance instance, InstantMessage e, UUID objectID, AssetType type)
         {
@@ -55,13 +57,23 @@ namespace METAbolt
             this.objectID = objectID;
             this.Text += " [" + client.Self.Name + "]";
 
+            invtype = type;
+
             if (e.Dialog == InstantMessageDialog.TaskInventoryOffered)
             {
                 diainv = false;
                 //this.Text = "Taskinventory item received";
             }
 
-            lblSubheading.Text = "You have received a " + type.ToString() + " named '" + e.Message + "' from " + e.FromAgentName;
+            string a = "a";
+
+            if (type.ToString().ToLower().StartsWith("a") || type.ToString().ToLower().StartsWith("o") || type.ToString().ToLower().StartsWith("u"))
+            {
+                a = "an";
+            }
+
+
+            lblSubheading.Text = "You have received " + a + " " + type.ToString() + " named '" + e.Message + "' from " + e.FromAgentName;
 
             if (instance.Config.CurrentConfig.PlayInventoryItemReceived)
             {
@@ -73,6 +85,10 @@ namespace METAbolt
             timer1.Interval = instance.DialogTimeOut;
             timer1.Enabled = true;
             timer1.Start();
+
+            DateTime dte = DateTime.Now.AddMinutes(15.0d);
+
+            label1.Text = "This item will be auto accepted @ " + dte.ToShortTimeString();   
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,15 +113,17 @@ namespace METAbolt
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            UUID invfolder = client.Inventory.FindFolderForType(invtype);
+
             if (diainv)
             {
-                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Accept Inventory Offer
-
+                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes());   //  new byte[0]); // Accept Inventory Offer
                 client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
             }
             else
             {
-                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Accept Inventory Offer
+                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes()); // Accept TaskInventory Offer
+                client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
             }
             
             this.Close(); 
@@ -113,19 +131,23 @@ namespace METAbolt
 
         private void btnDecline_Click(object sender, EventArgs e)
         {
+            UUID invfolder = client.Inventory.FindFolderForType(invtype);
+
             if (diainv)
             {
                 client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
 
-                try
-                {
-                    //client.Inventory.RemoveItem(objectID);
-                    InventoryBase item = client.Inventory.Store.Items[objectID].Data;
-                    InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[client.Inventory.FindFolderForType(AssetType.TrashFolder)].Data;
+                //try
+                //{
+                //    //client.Inventory.RemoveItem(objectID);
+                //    client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
 
-                    client.Inventory.Move(item, folder, item.Name); 
-                }
-                catch { ; }
+                //    InventoryBase item = client.Inventory.Store.Items[objectID].Data;
+                //    InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[client.Inventory.FindFolderForType(AssetType.TrashFolder)].Data;
+
+                //    client.Inventory.Move(item, folder, item.Name);
+                //}
+                //catch { ; }
             }
             else
             {
@@ -142,7 +164,25 @@ namespace METAbolt
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            btnDecline.PerformClick();
+            //btnDecline.PerformClick();
+
+            timer1.Enabled = false;
+            timer1.Stop();
+
+            //instance.TabConsole.DisplayChatScreen("'Inventory offer' from " + msg.FromAgentName + " has timed out and the item has been moved to your trash: " + msg.Message + " (" + invtype.ToString() + ")");
+
+            if (!printed)
+            {
+                instance.TabConsole.DisplayChatScreen(" 'Inventory offer' from " + msg.FromAgentName + " has timed out and the item named '" + msg.Message + "' has been saved to your " + invtype.ToString() + " folder. ");
+            }
+
+            printed = true;
+
+            btnAccept.PerformClick();
+
+            //timer1.Dispose();
+
+            this.Close();
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindGroups));
             this.lvwFindGroups = new System.Windows.Forms.ListView();
             this.chdGroupName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chdDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,7 +37,7 @@
             // 
             // lvwFindGroups
             // 
-            this.lvwFindGroups.BackColor = System.Drawing.Color.White;
+            this.lvwFindGroups.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwFindGroups.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdGroupName,
             this.chdDescription});
@@ -67,10 +66,10 @@
             // pGroups
             // 
             this.pGroups.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pGroups.Image = ((System.Drawing.Image)(resources.GetObject("pGroups.Image")));
-            this.pGroups.Location = new System.Drawing.Point(223, 141);
+            this.pGroups.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pGroups.Location = new System.Drawing.Point(247, 168);
             this.pGroups.Name = "pGroups";
-            this.pGroups.Size = new System.Drawing.Size(76, 78);
+            this.pGroups.Size = new System.Drawing.Size(30, 30);
             this.pGroups.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pGroups.TabIndex = 46;
             this.pGroups.TabStop = false;
@@ -81,7 +80,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pGroups);
             this.Controls.Add(this.lvwFindGroups);
             this.Name = "FindGroups";

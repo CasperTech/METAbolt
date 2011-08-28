@@ -34,8 +34,6 @@ using OpenMetaverse;
 using System.Media;
 using ExceptionReporting;
 using System.Threading;
-using System.Globalization;
-
 
 namespace METAbolt
 {
@@ -209,13 +207,12 @@ namespace METAbolt
 
             //tabs["chat"].Highlight();
 
-            //int bal = e.Balance - tmoneybalance;
-            int bal = client.Self.Balance - tmoneybalance;
+            int bal = e.Balance - tmoneybalance;
 
             if (bal > 0)
             {
                 string ttl = "METAbolt Alert";
-                string body = "You have received a payment of L$" + bal.ToString(CultureInfo.CurrentCulture);
+                string body = "You have received a payment of L$" + bal.ToString();
                 TrayNotifiy(ttl, body, false);
             }
 
@@ -260,6 +257,7 @@ namespace METAbolt
 
             if (!string.IsNullOrEmpty(e.Friend.Name) && !string.IsNullOrEmpty(avname))
             {
+
                 if (instance.Config.CurrentConfig.PlayFriendOnline)
                 {
                     SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_On);
@@ -367,7 +365,7 @@ namespace METAbolt
             // Avoid form flash if RLV command
             if (e.SourceType == ChatSourceType.Object)
             {
-                if (e.Message.StartsWith("@", StringComparison.CurrentCulture)) return;
+                if (e.Message.StartsWith("@")) return;
             }
 
             tabs["chat"].Highlight();
@@ -421,30 +419,6 @@ namespace METAbolt
             }));
         }
 
-        public void DisplayChatScreen(string msg, ChatBufferTextStyle type)
-        {
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    DisplayChatScreen(msg, type);
-                }));
-
-                return;
-            }
-
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
-                           msg,
-                           type,
-                           null,
-                           UUID.Random()); //added by GM on 3-JUL-2009 - the FromAgentID
-
-                chatConsole.ChatManager.ProcessBufferItem(ready, false);
-            }));
-        }
-
         private void netcom_InstantMessageReceived(object sender, InstantMessageEventArgs e)
         {
             if (instance.IsAvatarMuted(e.IM.FromAgentID))
@@ -455,7 +429,7 @@ namespace METAbolt
                 case InstantMessageDialog.MessageFromAgent:
                     //if (e.IM.FromAgentID != client.Self.AgentID)
                     //{
-                    if (e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture) == "second life")
+                        if (e.IM.FromAgentName.ToLower() == "second life")
                         {
                             DisplayOnChat(e);
                             return;
@@ -564,15 +538,11 @@ namespace METAbolt
                 notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
                 notifyIcon1.ShowBalloonTip(2000);
 
-                try
+                BeginInvoke(new MethodInvoker(delegate()
                 {
-                    BeginInvoke(new MethodInvoker(delegate()
-                    {
-                        //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                        chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
-                    }));
-                }
-                catch { ; }
+                    //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                    chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
+                }));
 
                 if (this.instance.Config.CurrentConfig.PlaySound)
                 {
@@ -722,7 +692,7 @@ namespace METAbolt
 
                     if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
                     {
-                        METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower(CultureInfo.CurrentCulture)];
+                        METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower()];
                         if (!tab.Selected) tab.Highlight();
                         return;
                     }
@@ -730,7 +700,7 @@ namespace METAbolt
                     {
                         IMTabWindowGroup imTab = AddIMTabGroup(e);
                         //tabs[imTab.TargetName.ToLower()].Highlight();
-                        if (tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Selected) tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
+                        if (tabs[imTab.TargetName.ToLower()].Selected) tabs[imTab.TargetName.ToLower()].Highlight();
 
                         return;
                     }
@@ -739,9 +709,9 @@ namespace METAbolt
                 return;
             }
 
-            if (tabs.ContainsKey(e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)))
+            if (tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
             {
-                if (!tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)].Selected)
+                if (!tabs[e.IM.FromAgentName.ToLower()].Selected)
                 {
                     tabs["imbox"].PartialHighlight();
                 }
@@ -803,7 +773,7 @@ namespace METAbolt
 
                 if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
                 {
-                    METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower(CultureInfo.CurrentCulture)];
+                    METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower()];
                     if (!tab.Selected) tab.Highlight();
                     //Logger.Log("Stored|ExistingGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                     return;
@@ -812,7 +782,7 @@ namespace METAbolt
                 {
                     //create a new tab
                     IMTabWindowGroup imTab = AddIMTabGroup(e);
-                    tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
+                    tabs[imTab.TargetName.ToLower()].Highlight();
 
                     if (instance.Config.CurrentConfig.PlayGroupIMreceived)
                     {
@@ -836,7 +806,7 @@ namespace METAbolt
 
                 if (TabExists(e.IM.FromAgentName))
                 {
-                    METAboltTab tab = tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)];
+                    METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
                     if (!tab.Selected) tab.Highlight();
                     //Logger.Log("NonStored|ExistingAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                     return;
@@ -844,7 +814,7 @@ namespace METAbolt
                 else
                 {
                     IMTabWindow imTab = AddIMTab(e);
-                    tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
+                    tabs[imTab.TargetName.ToLower()].Highlight();
 
                     if (instance.Config.CurrentConfig.InitialIMReply.Length > 0)
                     {
@@ -1264,10 +1234,10 @@ namespace METAbolt
             button.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             button.Image = null;
             button.AutoToolTip = false;
-            button.Tag = name.ToLower(CultureInfo.CurrentCulture);
+            button.Tag = name.ToLower();
             button.Click += new EventHandler(TabButtonClick);
 
-            METAboltTab tab = new METAboltTab(button, control, name.ToLower(CultureInfo.CurrentCulture), label);
+            METAboltTab tab = new METAboltTab(button, control, name.ToLower(), label);
             tab.TabAttached += new EventHandler(tab_TabAttached);
             tab.TabDetached += new EventHandler(tab_TabDetached);
             tab.TabSelected += new EventHandler(tab_TabSelected);
@@ -1275,7 +1245,7 @@ namespace METAbolt
 
             if (!tabs.ContainsKey(tab.Name))
             {
-                tabs.Add(name.ToLower(CultureInfo.CurrentCulture), tab);
+                tabs.Add(name.ToLower(), tab);
             }
 
             return tab;
@@ -1369,17 +1339,17 @@ namespace METAbolt
         //Used for outside classes that have a reference to TabsConsole
         public void SelectTab(string name)
         {
-            tabs[name.ToLower(CultureInfo.CurrentCulture)].Select();
+            tabs[name.ToLower()].Select();
         }
 
         public bool TabExists(string name)
         {
-            return tabs.ContainsKey(name.ToLower(CultureInfo.CurrentCulture));
+            return tabs.ContainsKey(name.ToLower());
         }
 
         public METAboltTab GetTab(string name)
         {
-            return tabs[name.ToLower(CultureInfo.CurrentCulture)];
+            return tabs[name.ToLower()];
         }
 
         public void DisplayOnIM(IMTabWindow imTab, InstantMessageEventArgs e)
@@ -1454,6 +1424,7 @@ namespace METAbolt
                 tname = tname.Substring(0, 7) + "..."; 
             }
 
+            //METAboltTab tab = 
             AddTab(targetName, "IM: " + tname, imTab);
             imTab.SelectIMInput();
 
@@ -1486,6 +1457,7 @@ namespace METAbolt
                 tname = tname.Substring(0, 7) + "...";
             }
 
+            //METAboltTab tab = 
             AddTab(targetName, "GIM: " + targetName, imTab);
             imTab.SelectIMInput();
 
@@ -1498,6 +1470,7 @@ namespace METAbolt
             tpTab.Dock = DockStyle.Fill;
 
             toolStripContainer1.ContentPanel.Controls.Add(tpTab);
+            //METAboltTab tab = 
             AddTab(tpTab.TargetUUID.ToString(), "TP: " + tpTab.TargetName, tpTab);
 
             return tpTab;
@@ -1509,6 +1482,7 @@ namespace METAbolt
             frTab.Dock = DockStyle.Fill;
 
             toolStripContainer1.ContentPanel.Controls.Add(frTab);
+            //METAboltTab tab = AddTab(frTab.TargetUUID.ToString(), "FR: " + frTab.TargetName, frTab);
             AddTab(frTab.TargetUUID.ToString(), "FR: " + frTab.TargetName, frTab);
 
             return frTab;
@@ -1531,6 +1505,7 @@ namespace METAbolt
             grTab.Dock = DockStyle.Fill;
 
             toolStripContainer1.ContentPanel.Controls.Add(grTab);
+            //METAboltTab tab = 
             AddTab(grTab.TargetUUID.ToString(), "GR: " + grTab.TargetName, grTab);
 
             return grTab;

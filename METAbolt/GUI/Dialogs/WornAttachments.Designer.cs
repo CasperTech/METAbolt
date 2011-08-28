@@ -15,7 +15,6 @@
         {
             if (disposing && (components != null))
             {
-                listItems.Clear();
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -39,6 +38,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.pBar3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pBar3)).BeginInit();
             this.SuspendLayout();
             // 
             // btnTouch
@@ -147,6 +148,7 @@
             // 
             // label5
             // 
+            this.label5.BackColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(1, 441);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(416, 59);
@@ -167,6 +169,17 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // pBar3
+            // 
+            this.pBar3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pBar3.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pBar3.Location = new System.Drawing.Point(192, 92);
+            this.pBar3.Name = "pBar3";
+            this.pBar3.Size = new System.Drawing.Size(30, 30);
+            this.pBar3.TabIndex = 60;
+            this.pBar3.TabStop = false;
+            this.pBar3.Visible = false;
+            // 
             // WornAttachments
             // 
             this.AccessibleName = "Worn attachments window";
@@ -175,6 +188,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(420, 499);
+            this.Controls.Add(this.pBar3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -194,8 +208,8 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Worn Attachments";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WornAttachments_FormClosing);
             this.Load += new System.EventHandler(this.WornAssets_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pBar3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +227,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pBar3;
     }
 }

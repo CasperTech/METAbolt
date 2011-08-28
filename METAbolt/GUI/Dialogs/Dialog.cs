@@ -75,8 +75,6 @@ namespace METAbolt
 
             List<string> btns = ed.ButtonLabels;
 
-            
-
             int count = btns.Count;
 
             for (int i = 0; i < count; i++)

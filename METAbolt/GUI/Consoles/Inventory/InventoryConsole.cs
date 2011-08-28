@@ -38,8 +38,6 @@ using OpenMetaverse;
 using System.Threading;
 using ExceptionReporting;
 using TreeViewUtilities;
-using System.Globalization;
-
 
 // Some parts of this code has been adopted from OpenMetaverse.GUI
 //
@@ -170,15 +168,15 @@ namespace METAbolt
         //Seperate thread
         private void Inventory_OnItemReceived(object sender, ItemReceivedEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Inventory_OnItemReceived(sender, e);
-                }));
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        Inventory_OnItemReceived(sender, e);
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
             BeginInvoke(new MethodInvoker(delegate()
             {
@@ -208,41 +206,41 @@ namespace METAbolt
             }
             catch { ; }
 
-            
+
 
             //RefreshInventory();
         }
 
         private void Store_OnInventoryObjectRemoved(object sender, InventoryObjectRemovedEventArgs e)
         {
-            try
-            {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
-            }
-            catch { ; }
+            //try
+            //{
+            //    ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
+            //}
+            //catch { ; }
 
-            //RefreshInventory();
+            RefreshInventory();
         }
 
         private void Store_OnInventoryObjectAdded(object sender, InventoryObjectAddedEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Store_OnInventoryObjectAdded(sender, e);
-                }));
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        Store_OnInventoryObjectAdded(sender, e);
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
-            try
-            {
-                //addeditem = e.Obj.UUID;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
+            //try
+            //{
+            //    addeditem = e.Obj.UUID; 
+            //    ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
 
-            }
-            catch { ; }
+            //}
+            //catch { ; }
 
             //RefreshInventory();
 
@@ -255,33 +253,33 @@ namespace METAbolt
             //    client.Inventory.RequestFolderContents(e.Obj.ParentUUID, client.Self.AgentID, true, true, InventorySortOrder.ByName | InventorySortOrder.FoldersByName);
             //}
 
-            //RefreshInventory();
+            RefreshInventory();
         }
 
         private void Inventory_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
         {
-            //if (InvokeRequired)
-            //{
+            if (InvokeRequired)
+            {
 
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        Inventory_OnAppearanceSet(sender, e);
-            //    }));
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Inventory_OnAppearanceSet(sender, e);
+                }));
 
-            //    return;
-            //}
+                return;
+            }
 
-            //try
-            //{
-            //    RefreshInventory();
-            //}
-            //catch { ; }
+            try
+            {
+                RefreshInventory();
+            }
+            catch { ; }
 
-            //if (managerbusy)
-            //{
-            //    managerbusy = false;
-            //    client.Appearance.RequestSetAppearance(true);
-            //}
+            if (managerbusy)
+            {
+                managerbusy = false;
+                client.Appearance.RequestSetAppearance(true);
+            }
         }
 
         //Seperate thread
@@ -311,10 +309,10 @@ namespace METAbolt
             }
             catch { ; }
 
-            ////BeginInvoke(new MethodInvoker(delegate()
-            ////{
-            ////    RefreshInventory();
-            ////}));
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    RefreshInventory();
+            //}));
         }
 
 
@@ -341,22 +339,15 @@ namespace METAbolt
                 //BackgroundWorker bw = new BackgroundWorker();
                 //bw.RunWorkerAsync(new object[] { treeView1 });
 
-                try
+                ThreadPool.QueueUserWorkItem(delegate
                 {
-                    ThreadPool.QueueUserWorkItem(delegate
+                    treeView1.BeginInvoke((ThreadStart)delegate
                     {
-                        if (treeView1.IsHandleCreated)
-                        {
-                            treeView1.BeginInvoke((ThreadStart)delegate
-                            {
-                                //treeViewElement.LoadChildren();
-                                TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
-                                treeViewWalker.LoadInventory(instance, folderID);
-                            });
-                        }
+                        //treeViewElement.LoadChildren();
+                        TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
+                        treeViewWalker.LoadInventory(instance, folderID);
                     });
-                }
-                catch { ; }
+                });
 
                 ////TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
                 ////treeViewWalker.LoadInventory(instance, folderID);
@@ -419,8 +410,8 @@ namespace METAbolt
             {
                 client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                 client.Inventory.ItemReceived += new EventHandler<ItemReceivedEventArgs>(Inventory_OnItemReceived);
-                //client.Inventory.InventoryObjectOffered += new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_OnInventoryObjectReceived);
-                //client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
+                //client.Inventory.InventoryObjectOffered += new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_InventoryObjectOffered);
+                client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
                 client.Inventory.Store.InventoryObjectRemoved += new EventHandler<InventoryObjectRemovedEventArgs>(Store_OnInventoryObjectRemoved);
                 client.Inventory.Store.InventoryObjectAdded += new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
 
@@ -453,12 +444,17 @@ namespace METAbolt
             }
         }
 
+        //private void Inventory_InventoryObjectOffered(object sender, InventoryObjectOfferedEventArgs e)
+        //{
+        //    RefreshInventory();
+        //}
+
         private void InventoryConsole_Disposed(object sender, EventArgs e)
         {
             client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
             client.Inventory.ItemReceived -= new EventHandler<ItemReceivedEventArgs>(Inventory_OnItemReceived);
-            //client.Inventory.InventoryObjectOffered -= new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_OnInventoryObjectReceived);
-            //client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
+            //client.Inventory.InventoryObjectOffered -= new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_InventoryObjectOffered);
+            client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
             client.Inventory.Store.InventoryObjectRemoved -= new EventHandler<InventoryObjectRemovedEventArgs>(Store_OnInventoryObjectRemoved);
             client.Inventory.Store.InventoryObjectAdded -= new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
             //netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
@@ -603,8 +599,11 @@ namespace METAbolt
             {
                 InventoryItem item = (InventoryItem)io;
                 //client.Inventory.RemoveItem(item.UUID);
-                client.Inventory.MoveItem(item.UUID, client.Inventory.FindFolderForType(AssetType.TrashFolder), item.Name);
+                //item = null;
 
+                InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[client.Inventory.FindFolderForType(AssetType.TrashFolder)].Data;
+
+                client.Inventory.MoveItem(item.UUID, folder.UUID, item.Name);
                 item = null;
             }
 
@@ -746,6 +745,7 @@ namespace METAbolt
                 //tmnuRename.Enabled = false;
                 replaceOutfitToolStripMenuItem.Visible = true;
                 wearToolStripMenuItem.Visible = false;
+                toolStripButton2.Enabled = true;
 
                 InventoryFolder aitem = (InventoryFolder)treeView1.SelectedNode.Tag;   // (InventoryItem)node.Tag;
 
@@ -834,7 +834,7 @@ namespace METAbolt
         private void tmnuNewNotecard_Click(object sender, EventArgs e)
         {
             string newNotecardName = "New Notecard";
-            string newNotecardDescription = String.Format(CultureInfo.CurrentCulture,"{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
+            string newNotecardDescription = String.Format("{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
             string newNotecardContent = string.Empty;
 
 
@@ -988,6 +988,7 @@ namespace METAbolt
             //TreeNodeCollection nodes = treeView1.Nodes;
 
             sellectednode.Expand();
+            //found = FindRecursive(sellectednode);
             FindRecursive(sellectednode);
 
             //foreach (TreeNode n in nodes)
@@ -1043,13 +1044,13 @@ namespace METAbolt
             }
 
             string searchstring = textBox1.Text.Trim();
-            searchstring = searchstring.ToLower(CultureInfo.CurrentCulture);
+            searchstring = searchstring.ToLower();
             Boolean found = false;
 
             foreach (TreeNode tn in treeNode.Nodes)
             {
                 // if the text properties match, color the item
-                if (tn.Text.ToLower(CultureInfo.CurrentCulture).Contains(searchstring))
+                if (tn.Text.ToLower().Contains(searchstring))
                 {
                     tn.BackColor = Color.Yellow;
                     tn.ForeColor = Color.Red;
@@ -1314,7 +1315,11 @@ namespace METAbolt
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            if (treeView1.SelectedNode == null) return;
+            if (treeView1.SelectedNode == null)
+            {
+                MessageBox.Show("Select a clothes folder first", "METAbolt");
+                return;
+            }
 
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
 
@@ -1354,7 +1359,7 @@ namespace METAbolt
                     sr.WriteLine(o.ToString());
                 }
 
-                //sr.Close();
+                sr.Close();
                 sr.Dispose();
             }
         }
@@ -1379,7 +1384,7 @@ namespace METAbolt
                         listBox1.Items.Add(s);
                     }
 
-                    //sr.Close();
+                    sr.Close();
                     sr.Dispose();
                 }
             }
@@ -1425,7 +1430,7 @@ namespace METAbolt
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            label4.Text = "Every " + trackBar1.Value.ToString(CultureInfo.CurrentCulture) + " minutes";
+            label4.Text = "Every " + trackBar1.Value.ToString() + " minutes";
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -1541,7 +1546,7 @@ namespace METAbolt
         private void tmnuNewScript_Click(object sender, EventArgs e)
         {
             string newScriptName = "New Script";
-            string newScriptDescription = String.Format(CultureInfo.CurrentCulture,"{0} created with METAbolt {1}", newScriptName, DateTime.Now); ;
+            string newScriptDescription = String.Format("{0} created with METAbolt {1}", newScriptName, DateTime.Now); ;
             string newScriptContent = string.Empty;
 
 
@@ -1724,7 +1729,7 @@ namespace METAbolt
             //string sitem = treeView1.SelectedNode.Tag.ToString();
             string sitem = treeView1.SelectedNode.Text;
 
-            if (sitem.ToLower(CultureInfo.CurrentCulture).Contains("worn"))
+            if (sitem.ToLower().Contains("worn"))
             {
                 takeOffToolStripMenuItem.Visible = true;
                 wearToolStripMenuItem.Visible = false;
@@ -1874,7 +1879,7 @@ namespace METAbolt
 
         private void treeViewWalker_ProcessNode_HighlightMatchingNodes(object sender, ProcessNodeEventArgs e)
         {
-            if (e.Node.Text.ToLower(CultureInfo.CurrentCulture).IndexOf(textBox1.Text.ToLower(CultureInfo.CurrentCulture), StringComparison.CurrentCulture) > -1)
+            if (e.Node.Text.ToLower().IndexOf(textBox1.Text.ToLower()) > -1)
             {
                 e.Node.BackColor = Color.Yellow;
                 e.Node.ForeColor = Color.Red;

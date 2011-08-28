@@ -55,6 +55,7 @@ namespace METAbolt
         private Popup toolTip6;
         private Popup toolTip7;
         private Popup toolTip8;
+        private Popup toolTip9;
         private CustomToolTip customToolTip;
         private GridClient client;
         private bool loadingtimer = true;
@@ -111,6 +112,12 @@ namespace METAbolt
             toolTip8.AutoClose = false;
             toolTip8.FocusOnOpen = false;
             toolTip8.ShowingAnimation = toolTip8.HidingAnimation = PopupAnimations.Blend;
+
+            string msg10 = "If unchecked and a master avatar and/or object UUID is not specified, LSL commands from all avatars and objects (with MD5'ed METAbolt passwords in the command) will be accepted and processed.";
+            toolTip9 = new Popup(customToolTip = new CustomToolTip(instance, msg10));
+            toolTip9.AutoClose = false;
+            toolTip9.FocusOnOpen = false;
+            toolTip9.ShowingAnimation = toolTip9.HidingAnimation = PopupAnimations.Blend;
   
             this.instance = instance;
             client = this.instance.Client;
@@ -225,6 +232,7 @@ namespace METAbolt
             chkTray.Checked = config.CurrentConfig.DisableTrayIcon;
             chkTyping.Checked = config.CurrentConfig.DisableTyping;
             chkAutoFriend.Checked = config.CurrentConfig.AutoAcceptFriends;
+            checkBox12.Checked = config.CurrentConfig.EnforceLSLsecurity;
         }
 
         #region IPreferencePane Members
@@ -298,7 +306,8 @@ namespace METAbolt
             config.CurrentConfig.AutoTransfer = chkAutoTransfer.Checked;
             config.CurrentConfig.DisableTrayIcon = chkTray.Checked;
             config.CurrentConfig.DisableTyping = chkTyping.Checked;
-            config.CurrentConfig.AutoAcceptFriends = chkAutoFriend.Checked;    
+            config.CurrentConfig.AutoAcceptFriends = chkAutoFriend.Checked;
+            config.CurrentConfig.EnforceLSLsecurity = checkBox12.Checked;  
         }
 
         #endregion
@@ -782,6 +791,21 @@ namespace METAbolt
                 loadingtimer1 = false;
                 return;
             }
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_MouseHover_1(object sender, EventArgs e)
+        {
+            toolTip9.Show(pictureBox2);
+        }
+
+        private void pictureBox2_MouseLeave_1(object sender, EventArgs e)
+        {
+            toolTip9.Close();
         }
     }
 }

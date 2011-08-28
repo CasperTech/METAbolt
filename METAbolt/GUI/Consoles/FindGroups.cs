@@ -33,7 +33,6 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 //using SLNetworkComm;
-using System.Globalization;
 
 
 namespace METAbolt
@@ -100,7 +99,7 @@ namespace METAbolt
 
                 ListViewItem item = lvwFindGroups.Items.Add(group.GroupName);
                 item.Tag = group.GroupID;
-                item.SubItems.Add("UUID: " + group.GroupID.ToString() + ", Total " + group.Members.ToString(CultureInfo.CurrentCulture) + " members");
+                item.SubItems.Add("UUID: " + group.GroupID.ToString() + ", Total " + group.Members.ToString() + " members");
             }
 
             lvwFindGroups.Sort();

@@ -78,7 +78,6 @@ namespace METAbolt
             this.refreshFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbtnSort = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -96,6 +95,7 @@ namespace METAbolt
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -108,6 +108,7 @@ namespace METAbolt
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.White;
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
@@ -124,15 +125,15 @@ namespace METAbolt
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(635, 432);
-            this.splitContainer1.SplitterDistance = 319;
+            this.splitContainer1.Size = new System.Drawing.Size(632, 432);
+            this.splitContainer1.SplitterDistance = 301;
             this.splitContainer1.TabIndex = 0;
             // 
             // treeView1
             // 
             this.treeView1.AccessibleName = "Inventory list";
             this.treeView1.AllowDrop = true;
-            this.treeView1.BackColor = System.Drawing.Color.White;
+            this.treeView1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.treeView1.ContextMenuStrip = this.smM1;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.ImageIndex = 0;
@@ -141,7 +142,7 @@ namespace METAbolt
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(315, 369);
+            this.treeView1.Size = new System.Drawing.Size(297, 369);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView1_AfterLabelEdit);
             this.treeView1.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCollapse);
@@ -325,7 +326,7 @@ namespace METAbolt
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 394);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(315, 34);
+            this.panel1.Size = new System.Drawing.Size(297, 34);
             this.panel1.TabIndex = 1;
             // 
             // button1
@@ -382,7 +383,7 @@ namespace METAbolt
             this.tstInventory.Location = new System.Drawing.Point(0, 0);
             this.tstInventory.Name = "tstInventory";
             this.tstInventory.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.tstInventory.Size = new System.Drawing.Size(315, 25);
+            this.tstInventory.Size = new System.Drawing.Size(297, 25);
             this.tstInventory.TabIndex = 2;
             this.tstInventory.Text = "toolStrip1";
             this.tstInventory.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tstInventory_ItemClicked);
@@ -573,6 +574,7 @@ namespace METAbolt
             // 
             // toolStripButton2
             // 
+            this.toolStripButton2.Enabled = false;
             this.toolStripButton2.Image = global::METAbolt.Properties.Resources.Url_History_16;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -580,16 +582,6 @@ namespace METAbolt
             this.toolStripButton2.Text = "C&hanger";
             this.toolStripButton2.ToolTipText = "Auto clothes changer";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = global::METAbolt.Properties.Resources.rebake;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(66, 20);
-            this.toolStripButton1.Text = "Refresh";
-            this.toolStripButton1.ToolTipText = "Refresh Inventory";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // panel2
             // 
@@ -613,7 +605,7 @@ namespace METAbolt
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(308, 428);
+            this.panel2.Size = new System.Drawing.Size(323, 428);
             this.panel2.TabIndex = 5;
             this.panel2.Visible = false;
             // 
@@ -783,15 +775,25 @@ namespace METAbolt
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::METAbolt.Properties.Resources.rebake;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.ToolTipText = "Refresh inventory";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // InventoryConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "InventoryConsole";
-            this.Size = new System.Drawing.Size(635, 432);
+            this.Size = new System.Drawing.Size(632, 432);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -860,7 +862,6 @@ namespace METAbolt
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem wearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem takeOffToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
@@ -877,5 +878,6 @@ namespace METAbolt
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

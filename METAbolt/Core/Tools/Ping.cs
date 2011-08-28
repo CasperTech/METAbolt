@@ -102,8 +102,6 @@ namespace METAbolt
                 }
             }
 
-            ping.Dispose();  
-
             //statistics calculations
             long averageTime = -1;
             long minimumTime = 0;

@@ -44,13 +44,14 @@
             // txtFrom
             // 
             this.txtFrom.AccessibleName = "Text to be translated textbox";
-            this.txtFrom.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtFrom.BackColor = System.Drawing.Color.White;
             this.txtFrom.Location = new System.Drawing.Point(12, 27);
             this.txtFrom.Multiline = true;
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtFrom.Size = new System.Drawing.Size(435, 127);
             this.txtFrom.TabIndex = 0;
+            this.txtFrom.TextChanged += new System.EventHandler(this.txtFrom_TextChanged);
             // 
             // button1
             // 
@@ -99,7 +100,7 @@
             // txtTo
             // 
             this.txtTo.AccessibleName = "Translation result textbox";
-            this.txtTo.BackColor = System.Drawing.Color.White;
+            this.txtTo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTo.Location = new System.Drawing.Point(12, 186);
             this.txtTo.Name = "txtTo";
             this.txtTo.ReadOnly = true;

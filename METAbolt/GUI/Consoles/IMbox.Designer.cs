@@ -97,7 +97,7 @@
             // picAutoSit
             // 
             this.picAutoSit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
+            this.picAutoSit.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
             this.picAutoSit.Location = new System.Drawing.Point(239, 3);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);

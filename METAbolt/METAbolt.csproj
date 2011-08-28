@@ -21,7 +21,7 @@
     <ManifestCertificateThumbprint>ABFC93D872784BACE4312D9CDA515213E437B6BC</ManifestCertificateThumbprint>
     <ManifestKeyFile>LegolasLuke.p12</ManifestKeyFile>
     <GenerateManifests>false</GenerateManifests>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
@@ -29,6 +29,7 @@
     <StartupObject>
     </StartupObject>
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <PublishUrl>C:\Dev\metabolt-publish\1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -67,8 +68,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
-    <CodeAnalysisRuleSet>MB_RuleSet.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>1591</NoWarn>
+    <CodeAnalysisRuleSet>MB_RuleSets.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -89,7 +89,8 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MB_RuleSets.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -101,39 +102,6 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <NoWarn>1591</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <CodeAnalysisLogFile>bin\Debug\METAbolt.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MB_RuleSet.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRuleSetDirectories>;F:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
-    <CodeAnalysisRuleDirectories>;F:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <CodeAnalysisLogFile>bin\Release\METAbolt.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRuleSetDirectories>;F:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisRuleDirectories>;F:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AIMLbot, Version=2.4.1.50, Culture=neutral, processorArchitecture=MSIL">
@@ -203,7 +171,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse, Version=0.0.0.22926, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="OpenMetaverse, Version=0.0.0.25709, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.dll</HintPath>
     </Reference>
@@ -668,12 +636,6 @@
     <Compile Include="GUI\Dialogs\frmMutes.Designer.cs">
       <DependentUpon>frmMutes.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Dialogs\frmNotecard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Dialogs\frmNotecard.Designer.cs">
-      <DependentUpon>frmNotecard.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Dialogs\frmStats.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -698,7 +660,6 @@
     <Compile Include="GUI\Dialogs\UploadImage.Designer.cs">
       <DependentUpon>UploadImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Dialogs\Inventory\IDE\ArrayX.cs" />
     <Compile Include="GUI\Dialogs\Inventory\IDE\AutoCompleteListSorter.cs" />
     <Compile Include="GUI\Dialogs\Inventory\IDE\IniLexer.cs" />
     <Compile Include="GUI\Dialogs\Inventory\NotecardEditor.cs">
@@ -718,6 +679,12 @@
     </Compile>
     <Compile Include="GUI\Dialogs\Inventory\IDE\ScriptStudio.Designer.cs">
       <DependentUpon>ScriptStudio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Dialogs\frmNotecard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialogs\frmNotecard.Designer.cs">
+      <DependentUpon>frmNotecard.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Dialogs\META3D.cs">
       <SubType>Form</SubType>
@@ -1011,10 +978,6 @@
       <DependentUpon>frmMutes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Dialogs\frmNotecard.resx">
-      <DependentUpon>frmNotecard.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmStats.resx">
       <DependentUpon>frmStats.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1048,6 +1011,10 @@
     <EmbeddedResource Include="GUI\Consoles\TabsConsole.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TabsConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialogs\frmNotecard.resx">
+      <DependentUpon>frmNotecard.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\META3D.resx">
       <DependentUpon>META3D.cs</DependentUpon>
@@ -1101,12 +1068,8 @@
     <None Include="License_METAbolt.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="OpenTK.Compatibility.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="OpenTK.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="OpenTK.Compatibility.dll.config" />
+    <None Include="OpenTK.dll.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1121,9 +1084,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Smileys.resx</DependentUpon>
     </Compile>
-    <None Include="ScintillaNet.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arrow-forward_16.png" />
@@ -1426,6 +1386,7 @@
     <None Include="openmetaverse_data\upperbody_shading_alpha.tga">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Properties\app.manifest" />
     <Content Include="config\DefaultPredicates.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1484,15 +1445,9 @@
     <Content Include="openmetaverse_data\avatar_lad.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="OpenTK.Compatibility.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="OpenTK.GLControl.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OpenTK.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="OpenTK.Compatibility.xml" />
+    <Content Include="OpenTK.GLControl.xml" />
+    <Content Include="OpenTK.xml" />
     <Content Include="PrimMesher.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1504,10 +1459,7 @@
     <None Include="Resources\3d.png" />
     <Content Include="Resources\add_B16.png" />
     <None Include="Resources\arrow_back.png" />
-    <None Include="Resources\arrow_right.png" />
     <None Include="Resources\arrow_forward.png" />
-    <None Include="Resources\arrow_left.png" />
-    <None Include="Resources\Arrow_North.png" />
     <None Include="Resources\AI.png" />
     <None Include="Resources\amazon-icon.png" />
     <None Include="Resources\app.png" />
@@ -1518,6 +1470,10 @@
     <None Include="Resources\bg.png" />
     <None Include="Resources\bg.gif" />
     <None Include="Resources\avs.png" />
+    <None Include="Resources\arrow_left.png" />
+    <None Include="Resources\arrow_right.png" />
+    <None Include="Resources\ajax-loader.gif" />
+    <None Include="Resources\ajax-loader_small.gif" />
     <Content Include="Resources\build.png" />
     <None Include="Resources\Closed_Folder.png" />
     <None Include="Resources\ChairAnn.png" />
@@ -1571,13 +1527,13 @@
     <None Include="Resources\history.png" />
     <None Include="Resources\green_orb.png" />
     <None Include="Resources\green_orb_off.png" />
+    <None Include="Resources\indicator_large.gif" />
+    <None Include="Resources\indicator_small.gif" />
     <Content Include="Resources\logo_watermark.png" />
     <None Include="Resources\METAbolt_icon.png" />
     <None Include="Resources\My_Documents.png" />
     <None Include="Resources\Open_Folder.png" />
     <None Include="Resources\My_Documents_16.png" />
-    <None Include="Resources\needle.png" />
-    <None Include="Resources\needle1.png" />
     <None Include="Resources\not_found.png" />
     <None Include="Resources\pref2.png" />
     <None Include="Resources\pref23png.png" />
@@ -1636,14 +1592,15 @@
     <None Include="Resources\top-hat.png" />
     <None Include="Resources\turnleft.png" />
     <None Include="Resources\turnright.png" />
-    <None Include="Resources\smoke_bg.png" />
-    <Content Include="Resources\U-turn_icon.png" />
     <None Include="Resources\uncomment_i.png" />
     <None Include="Resources\undo_i.png" />
+    <None Include="Resources\smoke_bg.png" />
     <Content Include="Resources\up.png" />
     <None Include="Resources\Url_History_16.png" />
     <None Include="Resources\window_edit.png" />
     <None Include="Resources\wear.png" />
+    <None Include="Resources\wait18trans.gif" />
+    <None Include="Resources\wait30trans.gif" />
     <Content Include="Resources\wmp.png" />
     <None Include="Resources\world.png" />
     <None Include="SciLexer.dll">
@@ -1654,16 +1611,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="METAbolt">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
+    <Folder Include="logs\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -1671,9 +1619,7 @@
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="logs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

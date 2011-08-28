@@ -33,9 +33,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 //using SLNetworkComm;
-using System.Linq;
-using System.Globalization;
-
+using System.Linq;  
 
 namespace METAbolt
 {
@@ -128,7 +126,7 @@ namespace METAbolt
                     }
                     else
                     {
-                        fullName += " (" + icnt.ToString(CultureInfo.CurrentCulture) + ")";
+                        fullName += " (" + icnt.ToString() + ")";
                         findLandResults.Add(fullName, places);
                     }
 
@@ -148,17 +146,17 @@ namespace METAbolt
             }
 
             var items = from k in findLandResults.Keys
-                        orderby (Convert.ToDouble(findLandResults[k].SalePrice, CultureInfo.CurrentCulture) / Convert.ToDouble(findLandResults[k].ActualArea, CultureInfo.CurrentCulture)) ascending
+                        orderby (Convert.ToDouble(findLandResults[k].SalePrice) / Convert.ToDouble(findLandResults[k].ActualArea)) ascending
                         select k;
 
             foreach (string k in items)
             {
                 ListViewItem item = lvwFindLand.Items.Add(k);
-                item.SubItems.Add(findLandResults[k].ActualArea.ToString(CultureInfo.CurrentCulture));
-                item.SubItems.Add(findLandResults[k].SalePrice.ToString(CultureInfo.CurrentCulture));
+                item.SubItems.Add(findLandResults[k].ActualArea.ToString());
+                item.SubItems.Add(findLandResults[k].SalePrice.ToString());
 
-                double pricesqm = (Convert.ToDouble(findLandResults[k].SalePrice, CultureInfo.CurrentCulture) / Convert.ToDouble(findLandResults[k].ActualArea, CultureInfo.CurrentCulture));
-                item.SubItems.Add(pricesqm.ToString("N3", CultureInfo.CurrentCulture));
+                double pricesqm = (Convert.ToDouble(findLandResults[k].SalePrice) / Convert.ToDouble(findLandResults[k].ActualArea));
+                item.SubItems.Add(pricesqm.ToString("N3"));
             }
 
             //lvwFindLand.Sort();
@@ -182,13 +180,13 @@ namespace METAbolt
 
             if (place.SalePrice > 0)
             {
-                sForSale = "For Sale for L$" + place.SalePrice.ToString(CultureInfo.CurrentCulture);   
+                sForSale = "For Sale for L$" + place.SalePrice.ToString();   
             }
 
             txtName.Text = place.Name;
 
             txtDescription.Text = place.Description;
-            txtInformation.Text = "Traffic: " + place.Dwell + " Area: " + place.ActualArea.ToString(CultureInfo.CurrentCulture) + " sq. m. " + sForSale;
+            txtInformation.Text = "Traffic: " + place.Dwell + " Area: " + place.ActualArea.ToString() + " sq. m. " + sForSale;
             chkMature.Checked = place.Mature;   
 
             // Convert Global pos to local
@@ -201,9 +199,9 @@ namespace METAbolt
             fX = locX1;
             fY = locY1;
             fZ = (float)place.GlobalZ;
-            //sSIM = place.SimName;
+            //sSIM = place.SimName;  
 
-            txtLocation.Text = place.SimName.ToString(CultureInfo.CurrentCulture) + " " + fX.ToString(CultureInfo.CurrentCulture) + ", " + fY.ToString(CultureInfo.CurrentCulture) + ", " + fZ.ToString(CultureInfo.CurrentCulture);
+            txtLocation.Text = place.SimName.ToString() + " " + fX.ToString() + ", " + fY.ToString() + ", " + fZ.ToString();
         }
 
         public void ClearResults()

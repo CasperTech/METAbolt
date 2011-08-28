@@ -119,9 +119,7 @@ namespace METAbolt
                 {
                     m_clock.Stop();
                     m_bForceClose = true;
-
                     this.Close();
-
                     if (m_bDisposeAtEnd)
                         this.Dispose();
                 }

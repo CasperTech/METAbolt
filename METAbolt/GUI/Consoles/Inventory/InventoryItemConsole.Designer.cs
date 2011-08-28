@@ -198,7 +198,7 @@ namespace METAbolt
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlItemTypeProp.Controls.Add(this.progressBar1);
             this.pnlItemTypeProp.Controls.Add(this.label7);
-            this.pnlItemTypeProp.Location = new System.Drawing.Point(14, 214);
+            this.pnlItemTypeProp.Location = new System.Drawing.Point(14, 207);
             this.pnlItemTypeProp.Name = "pnlItemTypeProp";
             this.pnlItemTypeProp.Size = new System.Drawing.Size(278, 214);
             this.pnlItemTypeProp.TabIndex = 8;

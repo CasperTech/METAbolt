@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTPhistory));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -155,7 +154,7 @@
             // 
             // picHelp
             // 
-            this.picHelp.Image = ((System.Drawing.Image)(resources.GetObject("picHelp.Image")));
+            this.picHelp.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
             this.picHelp.Location = new System.Drawing.Point(2, 318);
             this.picHelp.Name = "picHelp";
             this.picHelp.Size = new System.Drawing.Size(15, 15);

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindEvents));
             this.lvwFindEvents = new System.Windows.Forms.ListView();
             this.chdName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chdTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -275,10 +274,10 @@
             // pEvents
             // 
             this.pEvents.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pEvents.Image = ((System.Drawing.Image)(resources.GetObject("pEvents.Image")));
-            this.pEvents.Location = new System.Drawing.Point(124, 144);
+            this.pEvents.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pEvents.Location = new System.Drawing.Point(136, 174);
             this.pEvents.Name = "pEvents";
-            this.pEvents.Size = new System.Drawing.Size(76, 78);
+            this.pEvents.Size = new System.Drawing.Size(30, 30);
             this.pEvents.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pEvents.TabIndex = 44;
             this.pEvents.TabStop = false;

@@ -240,8 +240,8 @@ namespace METAbolt
                 Textures.Clear();
             }
 
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
         }
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)

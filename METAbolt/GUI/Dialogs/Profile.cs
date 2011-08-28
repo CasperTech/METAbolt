@@ -137,7 +137,7 @@ namespace METAbolt
         ~frmProfile()
         {
             this.Dispose();
-            GC.Collect(); 
+            //GC.Collect(); 
         }
 
         private void SetExceptionReporter()
@@ -1313,6 +1313,11 @@ namespace METAbolt
         }
 
         private void tpgFirstLife_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadwait2_Click(object sender, EventArgs e)
         {
 
         }

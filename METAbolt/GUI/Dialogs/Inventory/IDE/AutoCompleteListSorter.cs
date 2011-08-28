@@ -30,8 +30,7 @@ using System.Linq;
 using System.Text;
 using ScintillaNet;
 using System.Windows.Forms;
-using System.Collections;
-using System.Globalization; 
+using System.Collections; 
 
 namespace METAbolt
 {
@@ -44,7 +43,7 @@ namespace METAbolt
         public AutoCompleteStringListSorter()
         {
             OrderOfSort = SortOrder.None;
-            ItemComparer = new CaseInsensitiveComparer(CultureInfo.CurrentCulture);
+            ItemComparer = new CaseInsensitiveComparer();
         }
 
         #region IComparer Member
@@ -60,11 +59,11 @@ namespace METAbolt
 
             try
             {
-                if (ItemX.StartsWith("_", StringComparison.CurrentCulture) && !ItemY.StartsWith("_", StringComparison.CurrentCulture))
+                if (ItemX.StartsWith("_") && !ItemY.StartsWith("_"))
                 {
                     compareResult = 1;
                 }
-                else if (!ItemX.StartsWith("_", StringComparison.CurrentCulture) && ItemY.StartsWith("_", StringComparison.CurrentCulture))
+                else if (!ItemX.StartsWith("_") && ItemY.StartsWith("_"))
                 {
                     compareResult = -1;
                 }

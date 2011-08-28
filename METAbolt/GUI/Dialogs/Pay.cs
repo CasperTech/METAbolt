@@ -49,7 +49,7 @@ namespace METAbolt
             client = this.instance.Client;
 
             this.target = target;
-            txtPerson.Text = name;
+            //this.name = txtPerson.Text = name;
         }
 
         public frmPay(METAboltInstance instance, UUID target, string name, int sprice)
@@ -60,7 +60,7 @@ namespace METAbolt
             client = this.instance.Client;
 
             this.target = target;
-            txtPerson.Text = name;
+            //this.name = txtPerson.Text = name;
             this.nudAmount.Value = (decimal)sprice;
         }
 
@@ -72,7 +72,7 @@ namespace METAbolt
             client = this.instance.Client;
 
             this.target = target;
-            txtPerson.Text = name;
+            //this.name = txtPerson.Text = name;
             this.nudAmount.Value = (decimal)sprice;
             this.Prim = prim;
         }

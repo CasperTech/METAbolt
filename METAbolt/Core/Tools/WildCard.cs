@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 
 namespace METAbolt
 {
-    [Serializable] 
     public class Wildcard : Regex
     {
         /// <summary>

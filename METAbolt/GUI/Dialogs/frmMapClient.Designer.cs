@@ -16,7 +16,6 @@ namespace METAbolt
             if (disposing && (components != null))
             {
                 components.Dispose();
-                TPEvent.Close();  
             }
             base.Dispose(disposing);
         }
@@ -562,7 +561,7 @@ namespace METAbolt
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
             this.pictureBox1.Location = new System.Drawing.Point(6, 445);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);

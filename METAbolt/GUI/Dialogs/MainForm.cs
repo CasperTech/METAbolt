@@ -43,8 +43,6 @@ using System.IO;
 using METAx;
 using METAxCommon;
 using ExceptionReporting;
-using System.Globalization;
-
 
 namespace METAbolt
 {
@@ -205,7 +203,7 @@ namespace METAbolt
 
             try
             {
-                if (parceln == null) return;
+                if (parceln == null) return; 
 
                 if (currentparcelid != 0)
                 {
@@ -347,7 +345,7 @@ namespace METAbolt
                 //    timestamp = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                 //}
 
-                string strInfo = string.Format(CultureInfo.CurrentCulture,"{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
+                string strInfo = string.Format("{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
                                                                             Math.Round(instance.SIMsittingPos().X, 0),
                                                                             Math.Round(instance.SIMsittingPos().Y, 0),
                                                                             Math.Round(instance.SIMsittingPos().Z, 0));
@@ -355,12 +353,12 @@ namespace METAbolt
 
                 if (strInfolast == strInfo) return;
 
-                strInfolast = strInfo;
+                strInfolast = strInfo; 
 
                 try
                 {
                     DataRow dr = instance.TP.NewRow();
-                    dr["time"] = timestamp.ToString(CultureInfo.CurrentCulture);
+                    dr["time"] = timestamp.ToString();
                     dr["name"] = this.parcel.Name;
                     dr["slurl"] = strInfo;
                     instance.TP.Rows.Add(dr);
@@ -373,7 +371,7 @@ namespace METAbolt
             catch (Exception ex)
             {
                 string serr = ex.Message;
-                Logger.Log(String.Format(CultureInfo.CurrentCulture,"Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
+                Logger.Log(String.Format("Land properties (main form) {0}", serr), Helpers.LogLevel.Error);
                 //reporter.Show(ex);
             }
         }
@@ -398,7 +396,7 @@ namespace METAbolt
                 }
             }
 
-            tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString(CultureInfo.CurrentCulture);
+            tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
         }
 
 
@@ -473,7 +471,7 @@ namespace METAbolt
                 tsTimeOut.Visible = true;
 
                 TimeSpan ts = offtime - DateTime.Now;
-                tsTimeOut.Text = ts.Hours.ToString("00", CultureInfo.CurrentCulture) + ":" + ts.Minutes.ToString("00", CultureInfo.CurrentCulture);
+                tsTimeOut.Text = ts.Hours.ToString("00")  + ":" + ts.Minutes.ToString("00");
             }
             else
             {
@@ -507,7 +505,7 @@ namespace METAbolt
 
             BeginInvoke((MethodInvoker)delegate
                 {
-                    tsTimeOut.Text = ts.Hours.ToString("00", CultureInfo.CurrentCulture) + ":" + ts.Minutes.ToString("00", CultureInfo.CurrentCulture);
+                    tsTimeOut.Text = ts.Hours.ToString("00")  + ":" + ts.Minutes.ToString("00");
                 });
         }
 
@@ -605,7 +603,7 @@ namespace METAbolt
         {
             if (e.Status != LoginStatus.Success) return;
 
-            tlTools.Enabled = btnAvatar.Enabled = mnuDonate.Enabled = tsPlugins.Enabled = true;
+            tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
             statusTimer.Enabled = true;
             statusTimer.Start();
             RefreshWindowTitle();
@@ -654,52 +652,52 @@ namespace METAbolt
             this.Disconnect(true);
         }
 
-        private string HttpPost(string uri, string parameters)
-        {
-            //// parameters: name1=value1&name2=value2	
-            //WebRequest webRequest = WebRequest.Create(uri);
-            ////string ProxyString = 
-            ////   System.Configuration.ConfigurationManager.AppSettings
-            ////   [GetConfigKey("proxy")];
-            ////webRequest.Proxy = new WebProxy (ProxyString, true);
-            ////Commenting out above required change to App.Config
-            //webRequest.ContentType = "application/x-www-form-urlencoded";
-            //webRequest.Method = "POST";
-            //byte[] bytes = Encoding.ASCII.GetBytes(parameters);
-            //Stream os = null;
-            //try
-            //{ // send the Post
-            //    webRequest.ContentLength = bytes.Length;   //Count bytes to send
-            //    os = webRequest.GetRequestStream();
-            //    os.Write(bytes, 0, bytes.Length);         //Send it
-            //}
-            //catch (WebException ex)
-            //{
-            //    // do nothing
-            //}
-            //finally
-            //{
-            //    if (os != null)
-            //    {
-            //        os.Close();
-            //    }
-            //}
+        //private string HttpPost(string uri, string parameters)
+        //{
+        //    //// parameters: name1=value1&name2=value2	
+        //    //WebRequest webRequest = WebRequest.Create(uri);
+        //    ////string ProxyString = 
+        //    ////   System.Configuration.ConfigurationManager.AppSettings
+        //    ////   [GetConfigKey("proxy")];
+        //    ////webRequest.Proxy = new WebProxy (ProxyString, true);
+        //    ////Commenting out above required change to App.Config
+        //    //webRequest.ContentType = "application/x-www-form-urlencoded";
+        //    //webRequest.Method = "POST";
+        //    //byte[] bytes = Encoding.ASCII.GetBytes(parameters);
+        //    //Stream os = null;
+        //    //try
+        //    //{ // send the Post
+        //    //    webRequest.ContentLength = bytes.Length;   //Count bytes to send
+        //    //    os = webRequest.GetRequestStream();
+        //    //    os.Write(bytes, 0, bytes.Length);         //Send it
+        //    //}
+        //    //catch (WebException ex)
+        //    //{
+        //    //    // do nothing
+        //    //}
+        //    //finally
+        //    //{
+        //    //    if (os != null)
+        //    //    {
+        //    //        os.Close();
+        //    //    }
+        //    //}
 
-            //try
-            //{ // get the response
-            //    WebResponse webResponse = webRequest.GetResponse();
-            //    if (webResponse == null)
-            //    { return null; }
-            //    StreamReader sr = new StreamReader(webResponse.GetResponseStream());
-            //    return sr.ReadToEnd().Trim();
-            //}
-            //catch (WebException ex)
-            //{
-            //    // do nothing
-            //}
+        //    //try
+        //    //{ // get the response
+        //    //    WebResponse webResponse = webRequest.GetResponse();
+        //    //    if (webResponse == null)
+        //    //    { return null; }
+        //    //    StreamReader sr = new StreamReader(webResponse.GetResponseStream());
+        //    //    return sr.ReadToEnd().Trim();
+        //    //}
+        //    //catch (WebException ex)
+        //    //{
+        //    //    // do nothing
+        //    //}
 
-            return null;
-        }
+        //    return null;
+        //}
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -759,13 +757,13 @@ namespace METAbolt
             if (netcom.IsLoggedIn)
             {
                 tlblLoginName.Text = netcom.LoginOptions.FullName;
-                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString(CultureInfo.CurrentCulture);
+                tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
 
                 tlblRegionInfo.Text =
                         client.Network.CurrentSim.Name +
-                        " (" + Math.Floor(instance.SIMsittingPos().X).ToString(CultureInfo.CurrentCulture) + ", " +
-                        Math.Floor(instance.SIMsittingPos().Y).ToString(CultureInfo.CurrentCulture) + ", " +
-                        Math.Floor(instance.SIMsittingPos().Z).ToString(CultureInfo.CurrentCulture) + ")";
+                        " (" + Math.Floor(instance.SIMsittingPos().X).ToString() + ", " +
+                        Math.Floor(instance.SIMsittingPos().Y).ToString() + ", " +
+                        Math.Floor(instance.SIMsittingPos().Z).ToString() + ")";
             }
             else
             {
@@ -888,6 +886,12 @@ namespace METAbolt
             (new frmAbout()).ShowDialog(this);
         }
 
+        private void tmnuExit_Click(object sender, EventArgs e)
+        {
+            instance.LogOffClicked = true;
+            this.Close();
+        }
+
         private void tbtnTeleport_Click(object sender, EventArgs e)
         {
             (new frmTeleport(instance,"",0,0,0)).ShowDialog();
@@ -937,21 +941,15 @@ namespace METAbolt
                 //ToolStrip ts = new ToolStrip();
                 //ts = toolStrip1;
 
-                //ToolStripDropDownItem mitem;   // = tsPlugins.OwnerItem as ToolStripDropDownItem;
-                //mitem = tsPlugins;
-
-                ToolStrip mitem = new ToolStrip();
-                mitem = tssPlugins;
+                ToolStripDropDownItem mitem;   // = tsPlugins.OwnerItem as ToolStripDropDownItem;
+                mitem = tsPlugins;
 
                 ToolStripButton item = new ToolStripButton();
-                //ToolStripItem item = new 
-
                 item.Tag = extOn.Instance;
                 item.Text = extOn.Instance.Title;
                 item.Width = extOn.Instance.Title.Length * 6;   // 200;
                 item.Click += new System.EventHandler(AnyMenuItem_Click);
-                //mitem.DropDownItems.Add(item);
-                mitem.Items.Add(item);
+                mitem.DropDownItems.Add(item);
 
                 elist.Add(extOn.Instance);
             }
@@ -1012,8 +1010,9 @@ namespace METAbolt
 
         void manager_AssemblyLoaded(object sender, AssemblyLoadedEventArgs e)
         {
-            //string ev = "Loaded: " + e.Filename;
-            Logger.Log("Loaded plugin: " + e.Filename, Helpers.LogLevel.Info); 
+            string ev = "Loaded: " + e.Filename;
+
+            Logger.Log(ev, Helpers.LogLevel.Info);  
         }
 
         void manager_AssemblyFailedLoading(object sender, AssemblyFailedLoadingEventArgs e)
@@ -1027,7 +1026,7 @@ namespace METAbolt
             msg.AppendLine("Compiler Errors: ");
 
             foreach (System.CodeDom.Compiler.CompilerError errorOn in e.SourceFileCompilerErrors)
-                msg.AppendLine("  #" + errorOn.ErrorNumber.ToString(CultureInfo.CurrentCulture) + " on Line: " + errorOn.Line.ToString(CultureInfo.CurrentCulture) + " at Column: " + errorOn.Column.ToString(CultureInfo.CurrentCulture) + " - " + errorOn.ErrorText);
+                msg.AppendLine("  #" + errorOn.ErrorNumber.ToString() + " on Line: " + errorOn.Line.ToString() + " at Column: " + errorOn.Column.ToString() + " - " + errorOn.ErrorText);
 
             //Show the user
             //MessageBox.Show(this, msg.ToString(), "Extension Compilation Error", MessageBoxButtons.OK);
@@ -1049,6 +1048,11 @@ namespace METAbolt
             //(new METAboltInstance(false)).MainForm.Show();
         }
 
+        private void tmnuPrefs_Click(object sender, EventArgs e)
+        {
+            (new frmPreferences(instance)).ShowDialog(this);
+        }
+
         private void tbtnObjects_Click(object sender, EventArgs e)
         {
             (new frmObjects(instance)).Show();
@@ -1064,14 +1068,49 @@ namespace METAbolt
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/METAforums/yaf_topics22_Help.aspx");
         }
 
+        //private void visitLTekToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    System.Diagnostics.Process.Start(@"http://l-tek.vistalogic.co.uk");
+        //}
+
+        private void avatarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //client.Appearance.RequestCachedBakes();
+                client.Appearance.RequestSetAppearance(false);  
+                //client.Appearance.SetPreviousAppearance(false);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log("Rebake (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
+            }
+        }
+
         private void setHomeToolStripMenuItem_Click(object sender, EventArgs e)
         {
                
         }
 
+        private void setHomeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            client.Self.SetHome();
+        }
+
+        private void tPHomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            client.Self.GoHome();
+        }
+
         private void standToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void standToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            instance.State.SetStanding();  
+            RefreshWindowTitle();
         }
 
         private void btnMap_Click(object sender, EventArgs e)
@@ -1165,6 +1204,31 @@ namespace METAbolt
             toolTip1.SetToolTip(statusStrip1, "Avatar Name");
         }
 
+        private void landMonitorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //(new frmLand(instance)).Show();
+        }
+
+        private void awayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.SetAway(awayToolStripMenuItem.Checked);
+        }
+
+        private void busyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.SetBusy(busyToolStripMenuItem.Checked);
+        }
+
+        private void flyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.SetFlying(flyToolStripMenuItem.Checked);
+        }
+
+        private void alwaysRunToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.SetAlwaysRun(alwaysRunToolStripMenuItem.Checked);
+        }
+
         private void toolStripDropDownButton1_Click(object sender, EventArgs e)
         {
             //System.Diagnostics.Process.Start(@"https://www.euroslex.com?r=48c");
@@ -1185,9 +1249,19 @@ namespace METAbolt
             }
         }
 
+        private void accountHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://secure-web4.secondlife.com/account/transactions.php?lang=en");
+        }
+
         private void sLHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://secondlife.com/support/");
+        }
+
+        private void sLKnowledgebaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://support.secondlife.com/ics/support/default.asp?deptID=4417");
         }
 
         private void mEToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1203,6 +1277,52 @@ namespace METAbolt
         private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/METAforums/yaf_topics26_Bugs-and-Fixes.aspx");
+        }
+
+        private void aboutLandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmAboutLand(instance)).ShowDialog(this);
+        }
+
+        private void bellyDanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.BellyDance(bellyDanceToolStripMenuItem.Checked);
+        }
+
+        private void clubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.ClubDance(clubToolStripMenuItem.Checked);
+        }
+
+        private void salsaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.SalsaDance(salsaToolStripMenuItem.Checked);
+        }
+
+        private void fallOnFaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.FallOnFace(fallOnFaceToolStripMenuItem.Checked);
+        }
+
+        private void crouchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.State.Crouch(crouchToolStripMenuItem.Checked);
+        }
+
+        private void launchSLViewerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // The following line was borrowed from Kitten Lulu's SLRun1CPU
+            // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
+            String SecondLifeExe = GetSecondLifeExe();
+
+            if (string.IsNullOrEmpty(SecondLifeExe))
+                return;
+
+            Process thisProcess = new Process();
+            thisProcess.StartInfo.FileName = SecondLifeExe;
+            thisProcess.StartInfo.UseShellExecute = false;
+            thisProcess.StartInfo.RedirectStandardInput = true;
+            thisProcess.Start();  
         }
 
         private String GetSecondLifeExe()
@@ -1257,6 +1377,21 @@ namespace METAbolt
 
         }
 
+        private void teleportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmTeleport(instance, "", 0, 0, 0)).ShowDialog();
+        }
+
+        private void mapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmMapClient(instance)).Show();
+        }
+
+        private void objectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmObjects(instance)).Show();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
@@ -1275,6 +1410,36 @@ namespace METAbolt
                 // do nothing
                 tsTime.Text = "?00:00:00";
             }
+        }
+
+        private void tmnuBackup_Click(object sender, EventArgs e)
+        {
+            (new frmBackup()).Show(); 
+        }
+
+        private void createLandmarkHereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string file = parcel.Name;
+
+            if (file.Length > 32)
+            {
+                file = file.Substring(0, 32); 
+            }
+
+            string pos = instance.SIMsittingPos().X.ToString() + ", " + instance.SIMsittingPos().Y.ToString() + ", " + instance.SIMsittingPos().Z.ToString();
+               
+            string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
+
+            client.Inventory.RequestCreateItem(client.Inventory.FindFolderForType(AssetType.Landmark),
+                    file, desc, AssetType.Landmark, UUID.Random(), InventoryType.Landmark, PermissionMask.All,
+                    delegate(bool success, InventoryItem item)
+                    {
+                        if (!success)
+                        {
+                            MessageBox.Show("Landmark could not be created", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                );  
         }
 
         private void addToPicksToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1309,33 +1474,28 @@ namespace METAbolt
 
         private void tsUtilities_Click(object sender, EventArgs e)
         {
-            tlUtilities.BackColor = Color.White;
-            tlUtilities.ForeColor = Color.Black;
 
-            tbtnMETAbolt.BackColor = Color.Transparent;
-            btnAvatar.BackColor = Color.Transparent;
-            tlLogs.BackColor = Color.Transparent;
-            tlTools.BackColor = Color.Transparent;
-            tsPlugins.BackColor = Color.Transparent;   
-
-            tbtnMETAbolt.ForeColor = Color.White;
-            tlLogs.ForeColor = Color.White;
-            btnAvatar.ForeColor = Color.White;
-            tlTools.ForeColor = Color.White;
-            tsPlugins.ForeColor = Color.White;   
-
-            tsApplication.Visible = false;
-            tsWorld.Visible = false;
-            tsLogs.Visible = false;
-            tsUtilities.Visible = true;
-            tsTools.Visible = false;
-            tssPlugins.Visible = false;
         }
 
         public void SetFlag(Image img, string lang)
         {
             tsFlag.Image = img;
             tsFlag.ToolTipText = "Detectected language: " + lang; 
+        }
+
+        private void detectSpokenLanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            instance.DetectLang = tsMenuDetect.Checked;
+        }
+
+        private void mETAplayerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmPlayer(instance)).Show();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            (new frmStats(instance)).Show();
         }
 
         private void aLphToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1363,29 +1523,36 @@ namespace METAbolt
 
         }
 
+        private void teleportHistoryToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            (new frmTPhistory(instance)).Show(this);
+        }
+
+        private void muteListToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            (new frmMutes(instance)).Show(this);
+        }
+
+        private void debugLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                debugLogForm.Show(this);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log(String.Format("Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
+            }
+        }
+
+        private void chatLogsToolStripMenuItem_Click(object sender, EventArgs e)                                       
+        {
+            Process.Start("explorer.exe", instance.Config.CurrentConfig.LogDir);
+        }
+
         private void tsPlugins_Click(object sender, EventArgs e)
         {
-            tsPlugins.BackColor = Color.White;
-            tsPlugins.ForeColor = Color.Black;
 
-            btnAvatar.BackColor = Color.Transparent;
-            tlLogs.BackColor = Color.Transparent;
-            tlTools.BackColor = Color.Transparent;
-            tlUtilities.BackColor = Color.Transparent;
-            tbtnMETAbolt.BackColor = Color.Transparent;
-
-            btnAvatar.ForeColor = Color.White;
-            tlLogs.ForeColor = Color.White;
-            tlTools.ForeColor = Color.White;
-            tlUtilities.ForeColor = Color.White;
-            tbtnMETAbolt.ForeColor = Color.White;
-
-            tsApplication.Visible = false;
-            tsWorld.Visible = false;
-            tsTools.Visible = false;
-            tsLogs.Visible = false;
-            tsUtilities.Visible = false;
-            tssPlugins.Visible = true;
         }
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1417,6 +1584,23 @@ namespace METAbolt
             }
         }
 
+        private void scriptEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmScriptEditor(instance)).Show();
+        }
+
+        private void setPreviousAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //client.Appearance.SetPreviousAppearance(true);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
+            }
+        }
+
         private void tbtnHelp_Click(object sender, EventArgs e)
         {
 
@@ -1426,6 +1610,11 @@ namespace METAbolt
         {
             client.Self.SitOnGround();
             instance.State.SetGroundSit(true);  
+        }
+
+        private void searchLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmLogSearch(instance)).Show();
         }
 
         private void frmMain_LocationChanged(object sender, EventArgs e)
@@ -1438,21 +1627,26 @@ namespace METAbolt
 
         }
 
+        private void reloadAIMLLibrariesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.instance.InitAI(); 
+        }
+
         //protected override bool ProcessKeyPreview(ref System.Windows.Forms.Message m)
         //{
         //    int key = m.WParam.ToInt32();
 
         //    if (m.Msg == WM_KEYUP)
         //    {
-        //        if (key == (int)Keys.ControlKey)
+        //        if (key == (int)Keys.ControlKey)                                              
         //        {
         //            if (Control.ModifierKeys == Keys.L)
         //            {
-        //                toolStripButton14.PerformClick();
+        //                aboutLandToolStripMenuItem.PerformClick(); 
         //            }
         //            else if (Control.ModifierKeys == Keys.P)
         //            {
-        //                toolStripButton1.PerformClick();
+        //                tmnuPrefs.PerformClick(); 
         //            }
         //            else if (Control.ModifierKeys == Keys.E)
         //            {
@@ -1460,19 +1654,35 @@ namespace METAbolt
         //            }
         //            else if (Control.ModifierKeys == Keys.R)
         //            {
-        //                toolStripButton12.PerformClick();
+        //                avatarToolStripMenuItem.PerformClick(); 
+        //            }
+        //            else if (Control.ModifierKeys == Keys.W)
+        //            {
+        //                awayToolStripMenuItem.PerformClick(); 
+        //            }
+        //            else if (Control.ModifierKeys == Keys.B)
+        //            {
+        //                busyToolStripMenuItem.PerformClick(); 
+        //            }
+        //            else if (Control.ModifierKeys == Keys.F)
+        //            {
+        //                fallOnFaceToolStripMenuItem.PerformClick(); 
+        //            }
+        //            else if (Control.ModifierKeys == Keys.H)
+        //            {
+        //                tPHomeToolStripMenuItem.PerformClick(); 
         //            }
         //            else if (Control.ModifierKeys == Keys.T)
         //            {
-        //                toolStripButton4.PerformClick();
+        //                tbtnTeleport.PerformClick(); 
         //            }
         //            else if (Control.ModifierKeys == Keys.M)
         //            {
-        //                tlbtnMap.PerformClick();
+        //                btnMap.PerformClick(); 
         //            }
         //            else if (Control.ModifierKeys == Keys.O)
         //            {
-        //                toolStripButton6.PerformClick();
+        //                tbtnObjects.PerformClick(); 
         //            }
         //            //else if (Control.ModifierKeys == Keys.D)
         //            //{
@@ -1480,16 +1690,16 @@ namespace METAbolt
         //            //}
         //            else if (Control.ModifierKeys == Keys.Y)
         //            {
-        //                helpToolStripMenuItem.PerformClick();
+        //                helpToolStripMenuItem.PerformClick(); 
         //            }
         //        }
-        //        //else if (key == (int)Keys.Alt)
-        //        //{
-        //        //    if (Control.ModifierKeys == Keys.D)
-        //        //    {
-        //        //        tbtnDebug.Visible = !tbtnDebug.Visible;
-        //        //    }
-        //        //}
+        //        else if (key == (int)Keys.Alt)
+        //        {
+        //            if (Control.ModifierKeys == Keys.D)
+        //            {
+        //                tbtnDebug.Visible = !tbtnDebug.Visible;
+        //            }
+        //        }
         //    }
 
         //    return false;
@@ -1531,12 +1741,11 @@ namespace METAbolt
                     try
                     {
                         int restartinterval = instance.Config.CurrentConfig.ReStartTime * 60; // convert to seconds
-                        //long.MaxValue 
 
                         Process p = new Process();
                         p.StartInfo.FileName = "METArestart.exe";
                         p.StartInfo.WorkingDirectory = Application.StartupPath;
-                        p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString(CultureInfo.CurrentCulture);
+                        p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
                         p.Start();
                     }
                     catch (Exception ex)
@@ -1554,8 +1763,7 @@ namespace METAbolt
             try
             {
                 // UI shutdown
-                tlTools.Enabled = btnAvatar.Enabled = mnuDonate.Enabled = tsPlugins.Enabled = false;
-
+                tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
                 RefreshStatusBar();
                 RefreshWindowTitle();
                 if (debugLogForm != null && !debugLogForm.Disposing)
@@ -1614,7 +1822,7 @@ namespace METAbolt
                     Process p = new Process();
                     p.StartInfo.FileName = "METArestart.exe";
                     p.StartInfo.WorkingDirectory = Application.StartupPath;
-                    p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString(CultureInfo.CurrentCulture);
+                    p.StartInfo.Arguments = netcom.LoginOptions.FirstName + " " + netcom.LoginOptions.LastName + " " + netcom.LoginOptions.Password + " " + disconnectreason.Replace(" ", "|") + " " + restartinterval.ToString();
                     p.Start();
                 }
                 catch (Exception ex)
@@ -1623,18 +1831,15 @@ namespace METAbolt
                     return false;
                 }
             }
-            else
-            {
-                (new frmDisconnected(instance, disconnectreason)).ShowDialog();
-            }
 
             try
             {
                 // UI shutdown
-                tlTools.Enabled = btnAvatar.Enabled = mnuDonate.Enabled = tsPlugins.Enabled = false;
+                tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
 
                 RefreshStatusBar();
                 RefreshWindowTitle();
+
                 if (debugLogForm != null && !debugLogForm.Disposing)
                 {
                     debugLogForm.Dispose();
@@ -1655,241 +1860,12 @@ namespace METAbolt
             return true;
         }
 
-        private void btnAvatar_Click(object sender, EventArgs e)
+        private void stopAnimationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            btnAvatar.BackColor = Color.White;
-            btnAvatar.ForeColor = Color.Black;
-
-            tbtnMETAbolt.BackColor = Color.Transparent;
-            tlTools.BackColor = Color.Transparent;
-            tlLogs.BackColor = Color.Transparent;
-            tlUtilities.BackColor = Color.Transparent;
-            tsPlugins.BackColor = Color.Transparent;  
-
-            tbtnMETAbolt.ForeColor = Color.White;
-            tlLogs.ForeColor = Color.White;
-            tlTools.ForeColor = Color.White;
-            tlUtilities.ForeColor = Color.White;
-            tsPlugins.ForeColor = Color.White;   
-            
-            tsApplication.Visible = false;
-            tsWorld.Visible = true;
-            tsTools.Visible = false;
-            tsLogs.Visible = false;
-            tsUtilities.Visible = false;
-            tssPlugins.Visible = false;
+            instance.State.StopAnimations(); 
         }
 
-        private void tbtnMETAbolt_Click(object sender, EventArgs e)
-        {
-            tbtnMETAbolt.BackColor = Color.White;
-            tbtnMETAbolt.ForeColor = Color.Black;
-
-            btnAvatar.BackColor = Color.Transparent;
-            tlLogs.BackColor = Color.Transparent;
-            tlTools.BackColor = Color.Transparent;
-            tlUtilities.BackColor = Color.Transparent;
-            tsPlugins.BackColor = Color.Transparent;
-
-            btnAvatar.ForeColor = Color.White;
-            tlLogs.ForeColor = Color.White;
-            tlTools.ForeColor = Color.White;
-            tlUtilities.ForeColor = Color.White;
-            tsPlugins.ForeColor = Color.White;
-
-            tsApplication.Visible = true;
-            tsWorld.Visible = false;
-            tsTools.Visible = false;
-            tsLogs.Visible = false;
-            tsUtilities.Visible = false;
-            tssPlugins.Visible = false;
-        }
-
-        public void toolStripButton1_Click_1(object sender, EventArgs e)
-        {
-            (new frmPreferences(instance)).ShowDialog(this);
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            (new frmBackup()).Show(); 
-        }
-
-        public void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            instance.LogOffClicked = true;
-            this.Close();
-        }
-
-        private void awayToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.SetAway(awayToolStripMenuItem1.Checked);
-        }
-
-        private void busyToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.SetBusy(busyToolStripMenuItem1.Checked);
-        }
-
-        private void fallOnFaceToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.FallOnFace(fallOnFaceToolStripMenuItem1.Checked);
-        }
-
-        private void bellyDanceToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.BellyDance(bellyDanceToolStripMenuItem1.Checked);
-        }
-
-        private void salsaToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.SalsaDance(salsaToolStripMenuItem1.Checked);
-        }
-
-        private void clubDanceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.State.ClubDance(clubDanceToolStripMenuItem.Checked);
-        }
-
-        private void flyToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.SetFlying(flyToolStripMenuItem1.Checked);
-        }
-
-        private void alwaysRunToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            instance.State.SetAlwaysRun(alwaysRunToolStripMenuItem1.Checked);
-        }
-
-        private void teleportHomeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            client.Self.GoHome();
-        }
-
-        private void setHomeHereToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            client.Self.SetHome();
-        }
-
-        private void toolStripButton7_Click(object sender, EventArgs e)
-        {
-            string file = parcel.Name;
-
-            if (file.Length > 32)
-            {
-                file = file.Substring(0, 32);
-            }
-
-            string pos = instance.SIMsittingPos().X.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Y.ToString(CultureInfo.CurrentCulture) + ", " + instance.SIMsittingPos().Z.ToString(CultureInfo.CurrentCulture);
-
-            string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
-
-            client.Inventory.RequestCreateItem(client.Inventory.FindFolderForType(AssetType.Landmark),
-                    file, desc, AssetType.Landmark, UUID.Random(), InventoryType.Landmark, PermissionMask.All,
-                    delegate(bool success, InventoryItem item)
-                    {
-                        if (!success)
-                        {
-                            MessageBox.Show("Landmark could not be created", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                );  
-        }
-
-        private void toolStripButton8_Click(object sender, EventArgs e)
-        {
-            client.Self.SitOnGround();
-            instance.State.SetGroundSit(true);
-        }
-
-        private void toolStripButton9_Click(object sender, EventArgs e)
-        {
-            instance.State.SetStanding();
-            RefreshWindowTitle();
-        }
-
-        private void toolStripButton10_Click(object sender, EventArgs e)
-        {
-            instance.State.Crouch(toolStripButton10.Checked);
-        }
-
-        private void toolStripButton11_Click(object sender, EventArgs e)
-        {
-            instance.State.StopAnimations();
-        }
-
-        private void toolStripButton12_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //client.Appearance.RequestCachedBakes();
-                client.Appearance.RequestSetAppearance(false);
-                //client.Appearance.SetPreviousAppearance(false);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log("Rebake (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
-            }
-        }
-
-        private void toolStripButton15_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //client.Appearance.SetPreviousAppearance(true);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log("Previous Appearance (menu): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
-            }
-        }
-
-        private void toolStripButton13_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"https://secure-web4.secondlife.com/account/transactions.php?lang=en");
-        }
-
-        private void toolStripButton14_Click(object sender, EventArgs e)
-        {
-            (new frmAboutLand(instance)).ShowDialog(this);
-        }
-
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-            (new frmTeleport(instance, "", 0, 0, 0)).Show();
-        }
-
-        private void toolStripButton5_Click(object sender, EventArgs e)
-        {
-            (new frmMapClient(instance)).Show();
-        }
-
-        private void toolStripButton6_Click(object sender, EventArgs e)
-        {
-            (new frmObjects(instance)).Show();
-        }
-
-        private void toolStripButton16_Click(object sender, EventArgs e)
-        {
-            (new frmScriptEditor(instance)).Show();
-        }
-
-        private void toolStripButton17_Click(object sender, EventArgs e)
-        {
-            (new frmPlayer(instance)).Show();
-        }
-
-        private void toolStripButton18_Click(object sender, EventArgs e)
-        {
-            (new frmStats(instance)).Show();
-        }
-
-        private void toolStripButton19_Click(object sender, EventArgs e)
-        {
-            instance.DetectLang = toolStripButton19.Checked;
-        }
-
-        private void toolStripButton20_Click(object sender, EventArgs e)
+        private void uploadImageL10PerUploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1901,189 +1877,16 @@ namespace METAbolt
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     Bitmap bitmap = new Bitmap(open.FileName);
-                    ext = Path.GetExtension(open.FileName).ToLower(CultureInfo.CurrentCulture);
+                    ext = Path.GetExtension(open.FileName).ToLower();
 
                     (new UploadImage(instance, bitmap, open.FileName, ext)).ShowDialog();
-
-                    bitmap.Dispose();
                 }
-
-                open.Dispose();
             }
             catch (Exception)
             {
                 throw new ApplicationException("Failed loading image");
             }
-        }
-
-        private void tlTools_Click(object sender, EventArgs e)
-        {
-            tlTools.BackColor = Color.White;
-            tlTools.ForeColor = Color.Black; 
-
-            tbtnMETAbolt.BackColor = Color.Transparent;
-            btnAvatar.BackColor = Color.Transparent;
-            tlLogs.BackColor = Color.Transparent;
-            tlUtilities.BackColor = Color.Transparent;
-            tsPlugins.BackColor = Color.Transparent;   
-
-            tbtnMETAbolt.ForeColor = Color.White;
-            tlLogs.ForeColor = Color.White;
-            btnAvatar.ForeColor = Color.White;
-            tlUtilities.ForeColor = Color.White;
-            tsPlugins.ForeColor = Color.White;   
-
-            tsApplication.Visible = false;
-            tsWorld.Visible = false;
-            tsLogs.Visible = false;
-            tsUtilities.Visible = false;
-            tsTools.Visible = true;
-            tssPlugins.Visible = false; 
-        }
-
-        private void toolStripButton21_Click(object sender, EventArgs e)
-        {
-            (new frmTPhistory(instance)).ShowDialog(this);
-        }
-
-        private void toolStripButton22_Click(object sender, EventArgs e)
-        {
-            (new frmMutes(instance)).ShowDialog(this);
-        }
-
-        private void toolStripButton23_Click(object sender, EventArgs e)
-        {
-            Process.Start("explorer.exe", instance.Config.CurrentConfig.LogDir);
-        }
-
-        private void toolStripButton24_Click(object sender, EventArgs e)
-        {
-            (new frmLogSearch(instance)).Show();
-        }
-
-        private void toolStripButton25_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                debugLogForm.Show(this);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log(String.Format(CultureInfo.CurrentCulture, "Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
-            }
-        }
-
-        private void tlLogs_Click(object sender, EventArgs e)
-        {
-            tlLogs.BackColor = Color.White;
-            tlLogs.ForeColor = Color.Black; 
-
-            tbtnMETAbolt.BackColor = Color.Transparent;
-            tlTools.BackColor = Color.Transparent;
-            btnAvatar.BackColor = Color.Transparent;
-            tlUtilities.BackColor = Color.Transparent;
-            tsPlugins.BackColor = Color.Transparent;   
-
-            tbtnMETAbolt.ForeColor = Color.White;
-            tlTools.ForeColor = Color.White;
-            btnAvatar.ForeColor = Color.White;
-            tlUtilities.ForeColor = Color.White;
-            tsPlugins.ForeColor = Color.White;   
-
-            tsApplication.Visible = false;
-            tsWorld.Visible = false;
-            tsTools.Visible = false;
-            tsLogs.Visible = true;
-            tsUtilities.Visible = false;
-            tssPlugins.Visible = false;
-        }
-
-        private void toolStripButton5_Click_1(object sender, EventArgs e)
-        {
-            this.instance.InitAI();
-        }
-
-        private void toolStripButton26_Click(object sender, EventArgs e)
-        {
-            // The following line was borrowed from Kitten Lulu's SLRun1CPU
-            // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
-            String SecondLifeExe = GetSecondLifeExe();
-
-            if (string.IsNullOrEmpty(SecondLifeExe))
-                return;
-
-            Process thisProcess = new Process();
-            thisProcess.StartInfo.FileName = SecondLifeExe;
-            thisProcess.StartInfo.UseShellExecute = false;
-            thisProcess.StartInfo.RedirectStandardInput = true;
-            thisProcess.Start();
-
-            thisProcess.Dispose();  
-        }
-
-        private void tsApplication_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        //private void frmMain_KeyDown(object sender, KeyEventArgs e)
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == (Keys.Control | Keys.Shift | Keys.C)) 
-            {
-                toolStripButton3.PerformClick();
-                return true; 
-            }
-            if (keyData == (Keys.Control | Keys.P))
-            {
-                toolStripButton1.PerformClick();
-                return true;
-            }
-
-            if (keyData == (Keys.Control | Keys.R))
-            {
-                toolStripButton12.PerformClick();
-                return true;
-            }
-            if (keyData == (Keys.Control | Keys.L))
-            {
-                toolStripButton14.PerformClick();
-                return true;
-            }
-
-            if (keyData == (Keys.Control | Keys.T))
-            {
-                toolStripButton4.PerformClick();
-                return true;
-            }
-            if (keyData == (Keys.Control | Keys.M))
-            {
-                tlbtnMap.PerformClick();
-                return true;
-            }
-            if (keyData == (Keys.Control | Keys.O))
-            {
-                toolStripButton6.PerformClick();
-                return true;
-            }
-            if (keyData == (Keys.Control | Keys.E))
-            {
-                toolStripButton16.PerformClick();
-                return true;
-            }
-            if (keyData == (Keys.Control | Keys.Y))
-            {
-                toolStripButton17.PerformClick();
-                return true;
-            }
-
-            if (keyData == (Keys.Control | Keys.D))
-            {
-                toolStripButton25.PerformClick();
-                return true;
-            }
-
-            return base.ProcessCmdKey(ref msg, keyData);
+ 
         }
     }
 }

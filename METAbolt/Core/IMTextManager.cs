@@ -39,7 +39,6 @@ using METAbrain;
 using System.Timers;
 using System.IO;
 using ExceptionReporting;
-using System.Globalization;
  
 
 namespace METAbolt
@@ -76,6 +75,31 @@ namespace METAbolt
                 reporter.Show(e.Exception);
             }
         }
+
+        //public IMTextManager(METAboltInstance instance, ITextPrinter textPrinter, UUID sessionID)
+        //{
+        //    this.sessionID = sessionID;
+
+        //    this.textPrinter = textPrinter;
+        //    this.textBuffer = new ArrayList();
+
+        //    this.instance = instance;
+        //    client = this.instance.Client;
+        //    netcom = this.instance.Netcom;
+        //    AddNetcomEvents();
+
+        //    showTimestamps = this.instance.Config.CurrentConfig.IMTimestamps;
+        //    tName = this.instance.Config.CurrentConfig.TweeterName;
+        //    tPwd = this.instance.Config.CurrentConfig.TweeterPwd;
+        //    TEnabled = this.instance.Config.CurrentConfig.EnableTweeter;
+        //    tweet = this.instance.Config.CurrentConfig.Tweet;
+        //    tweetname = this.instance.Config.CurrentConfig.TweeterUser;
+        //    classiclayout = this.instance.Config.CurrentConfig.ClassicChatLayout;
+
+        //    this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
+
+        //    myBot = this.instance.ABot;
+        //}
 
         public IMTextManager(METAboltInstance instance, ITextPrinter textPrinter, UUID sessionID, string groupname, Group grp)
         {
@@ -242,7 +266,7 @@ namespace METAbolt
             }
             //GM new bit to show our Chair Announcing
             //not pretty but how else can we catch just the calling stuff?
-            else if (e.IM.FromAgentID == client.Self.AgentID && e.IM.Message.StartsWith(cp, StringComparison.CurrentCulture))
+            else if (e.IM.FromAgentID == client.Self.AgentID && e.IM.Message.StartsWith(cp))
             {
                 textBuffer.Add(e);
 
@@ -354,7 +378,7 @@ namespace METAbolt
 
             string folder = instance.Config.CurrentConfig.LogDir;
 
-            if (!folder.EndsWith("\\", StringComparison.CurrentCulture))
+            if (!folder.EndsWith("\\"))
             {
                 folder += "\\";
             }
@@ -397,7 +421,7 @@ namespace METAbolt
                 {
                     SW = File.AppendText(path);
                     SW.WriteLine(line);
-                    SW.Close(); 
+                    SW.Dispose(); 
                 }
                 catch
                 {
@@ -410,11 +434,11 @@ namespace METAbolt
                 {
                     SW = File.CreateText(path);
                     SW.WriteLine(line);
-                    SW.Close();
+                    SW.Dispose();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    ;
+                    string exp = ex.Message;
                 }
             }
         }
@@ -439,14 +463,14 @@ namespace METAbolt
 
                     try
                     {
-                        textPrinter.SetSelectionForeColor(Color.DarkGray);
+                        textPrinter.SetSelectionForeColor(Color.Gray);
                     }
                     catch
                     {
                         ;
                     }
 
-                    textPrinter.PrintText(timestamp.ToString("[HH:mm] ", CultureInfo.CurrentCulture));
+                    textPrinter.PrintText(timestamp.ToString("[HH:mm] "));
                 }
 
                 try
@@ -458,7 +482,7 @@ namespace METAbolt
                     ;
                 }
 
-                if (message.StartsWith("/me ", StringComparison.CurrentCulture))
+                if (message.StartsWith("/me "))
                 {
                     sb.Append(fromName);
                     sb.Append(message.Substring(3));
@@ -470,7 +494,7 @@ namespace METAbolt
 
                     string avid = "http://mbprofile:" + uuid.ToString();
 
-                    if (fromName.ToLower(CultureInfo.CurrentCulture) != client.Self.Name.ToLower(CultureInfo.CurrentCulture))
+                    if (fromName.ToLower() != client.Self.Name.ToLower())
                     {
                         if (!string.IsNullOrEmpty(fromName))
                         {
@@ -487,7 +511,7 @@ namespace METAbolt
             }
             else
             {
-                if (message.StartsWith("/me ", StringComparison.CurrentCulture))
+                if (message.StartsWith("/me "))
                 {
                     sb.Append(message.Substring(3));
                 }
@@ -504,7 +528,7 @@ namespace METAbolt
 
                     if (lastspeaker != fromName)
                     {
-                        if (fromName.ToLower(CultureInfo.CurrentCulture) != client.Self.Name.ToLower(CultureInfo.CurrentCulture))
+                        if (fromName.ToLower() != client.Self.Name.ToLower())
                         {
                             textPrinter.PrintLinkHeader(fromName, avid + "&" + fromName);
                         }
@@ -537,10 +561,10 @@ namespace METAbolt
                     //    timestamp = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    textPrinter.SetSelectionForeColor(Color.DarkGray);
+                    textPrinter.SetSelectionForeColor(Color.Gray);
                     textPrinter.SetOffset(6);
                     textPrinter.SetFontSize(6.5f);
-                    textPrinter.PrintDate(timestamp.ToString("[HH:mm] ", CultureInfo.CurrentCulture));
+                    textPrinter.PrintDate(timestamp.ToString("[HH:mm] "));
                     textPrinter.SetFontSize(8.5f);
                     textPrinter.SetOffset(0);
                 }

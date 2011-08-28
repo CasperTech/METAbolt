@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindLand));
             this.lvwFindLand = new System.Windows.Forms.ListView();
             this.chdName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chdTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,7 +54,7 @@
             this.lvwFindLand.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwFindLand.BackColor = System.Drawing.Color.White;
+            this.lvwFindLand.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwFindLand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdTime,
@@ -96,10 +95,10 @@
             // pLand
             // 
             this.pLand.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pLand.Image = ((System.Drawing.Image)(resources.GetObject("pLand.Image")));
-            this.pLand.Location = new System.Drawing.Point(145, 149);
+            this.pLand.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pLand.Location = new System.Drawing.Point(177, 178);
             this.pLand.Name = "pLand";
-            this.pLand.Size = new System.Drawing.Size(76, 78);
+            this.pLand.Size = new System.Drawing.Size(30, 30);
             this.pLand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pLand.TabIndex = 43;
             this.pLand.TabStop = false;

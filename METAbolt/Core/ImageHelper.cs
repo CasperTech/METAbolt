@@ -42,7 +42,8 @@ namespace METAbolt
 
             try
             {
-                OpenJPEG.DecodeToImage(j2cdata, out mImg,out image);
+                //bRet = OpenJPEG.DecodeToImage(j2cdata, out mImg,out image);
+                OpenJPEG.DecodeToImage(j2cdata, out mImg, out image);
             }
             catch
             {

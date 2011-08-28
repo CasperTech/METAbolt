@@ -34,6 +34,7 @@
             this.lblSubheading = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDecline
@@ -42,7 +43,7 @@
             this.btnDecline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDecline.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnDecline.ForeColor = System.Drawing.Color.White;
-            this.btnDecline.Location = new System.Drawing.Point(253, 158);
+            this.btnDecline.Location = new System.Drawing.Point(253, 141);
             this.btnDecline.Name = "btnDecline";
             this.btnDecline.Size = new System.Drawing.Size(54, 23);
             this.btnDecline.TabIndex = 2;
@@ -56,7 +57,7 @@
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAccept.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnAccept.ForeColor = System.Drawing.Color.White;
-            this.btnAccept.Location = new System.Drawing.Point(196, 158);
+            this.btnAccept.Location = new System.Drawing.Point(196, 141);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(54, 23);
             this.btnAccept.TabIndex = 1;
@@ -68,9 +69,10 @@
             // 
             this.lblSubheading.AccessibleName = "Information label";
             this.lblSubheading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubheading.Location = new System.Drawing.Point(7, 34);
+            this.lblSubheading.ForeColor = System.Drawing.Color.White;
+            this.lblSubheading.Location = new System.Drawing.Point(7, 20);
             this.lblSubheading.Name = "lblSubheading";
-            this.lblSubheading.Size = new System.Drawing.Size(364, 110);
+            this.lblSubheading.Size = new System.Drawing.Size(364, 100);
             this.lblSubheading.TabIndex = 0;
             this.lblSubheading.Text = "content";
             this.lblSubheading.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -81,7 +83,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.RoyalBlue;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(310, 158);
+            this.button1.Location = new System.Drawing.Point(310, 141);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(54, 23);
             this.button1.TabIndex = 3;
@@ -91,7 +93,18 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 900000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.Location = new System.Drawing.Point(7, 177);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
             // 
             // frmInvOffered
             // 
@@ -100,8 +113,9 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(380, 199);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDecline);
             this.Controls.Add(this.btnAccept);
@@ -115,6 +129,7 @@
             this.Text = "Inventory item received";
             this.Load += new System.EventHandler(this.frmInvOffered_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -125,6 +140,7 @@
         private System.Windows.Forms.Label lblSubheading;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
 
     }
 }

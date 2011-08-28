@@ -175,5 +175,10 @@ namespace METAbolt
 
         }
 
+        private void txtFrom_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

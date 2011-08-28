@@ -153,6 +153,7 @@ namespace METAbolt
         private string adremove = string.Empty;
         private string masteravatar = UUID.Zero.ToString();   //    string.Empty;
         private string masterobject = UUID.Zero.ToString();
+        private bool enforcelslsecurity = true;
         private bool autotransfer = false;
         private bool sortbydistance = true;
         private bool disabletrayicon = false;
@@ -241,10 +242,11 @@ namespace METAbolt
                 config.AutoAcceptItems = conf.Configs["General"].GetBoolean("AutoAcceptItems", false);
                 config.AdRemove = conf.Configs["General"].GetString("AdRemove", string.Empty);
                 config.MasterAvatar = conf.Configs["General"].GetString("MasterAvatar", UUID.Zero.ToString());
+                config.EnforceLSLsecurity = conf.Configs["General"].GetBoolean("EnforceLSLsecurity", true);
 
                 // backward compatibility pre V 0.9.47.0
 
-                if (config.MasterAvatar == string.Empty)
+                if (string.IsNullOrEmpty(config.MasterAvatar))
                 {
                     config.MasterAvatar = UUID.Zero.ToString();   
                 }
@@ -413,6 +415,7 @@ namespace METAbolt
             config.Set("AdRemove", adremove);
             config.Set("MasterAvatar", masteravatar);
             config.Set("MasterObject", masterobject);
+            config.Set("EnforceLSLsecurity", enforcelslsecurity);   
             config.Set("AutoTransfer", autotransfer.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableTrayIcon", disabletrayicon.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString(CultureInfo.CurrentCulture));
@@ -1173,6 +1176,12 @@ namespace METAbolt
         {
             get { return disablemipmaps; }
             set { disablemipmaps = value; }
+        }
+
+        public bool EnforceLSLsecurity
+        {
+            get { return enforcelslsecurity; }
+            set { enforcelslsecurity = value; }
         }
     }
 }

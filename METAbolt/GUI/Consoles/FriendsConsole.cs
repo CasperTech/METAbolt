@@ -59,7 +59,6 @@ namespace METAbolt
         public FriendsConsole(METAboltInstance instance)
         {
             InitializeComponent();
-            Disposed += new EventHandler(FriendsConsole_Disposed);
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -75,6 +74,10 @@ namespace METAbolt
             client.Friends.FriendOnline += new EventHandler<FriendInfoEventArgs>(Friends_OnFriendOnline);
             client.Friends.FriendRightsUpdate += new EventHandler<FriendInfoEventArgs>(Friends_OnFriendRights);
             //client.Avatars.DisplayNameUpdate += new EventHandler<DisplayNameUpdateEventArgs>(Avatar_DisplayNameUpdated);    
+
+            Disposed += new EventHandler(FriendsConsole_Disposed);
+
+            InitializeFriendsList();
         }
 
         private void SetExceptionReporter()
@@ -327,12 +330,6 @@ namespace METAbolt
             lblFriendName.Text = friend.Name + (friend.IsOnline ? " (online)" : " (offline)");
 
             btnRemove.Enabled = btnIM.Enabled = btnProfile.Enabled = btnOfferTeleport.Enabled = btnPay.Enabled = true;
-
-            if (!friend.IsOnline)
-            {
-                btnOfferTeleport.Enabled = false;
-            }
-
             chkSeeMeOnline.Enabled = chkSeeMeOnMap.Enabled = chkModifyMyObjects.Enabled = true;
             chkSeeMeOnMap.Enabled = friend.CanSeeMeOnline;
 
@@ -365,27 +362,14 @@ namespace METAbolt
             }
 
             SizeF stringSize = e.Graphics.MeasureString(itemToDraw.Friend.Name, textFont);
-            float stringX = e.Bounds.Left + 4 + Properties.Resources.GreenOrb_16.Width;
-            float stringY = e.Bounds.Top + 2 + ((Properties.Resources.GreenOrb_16.Height / 2) - (stringSize.Height / 2));
-
-            //if (itemToDraw.Friend.IsOnline)
-            //{
-            //    e.Graphics.DrawImage(Properties.Resources.GreenOrb_16, e.Bounds.Left + 2, e.Bounds.Top + 2);
-            //}
-            //else
-            //{
-            //    e.Graphics.DrawImage(Properties.Resources.GreenOrbFaded_16, e.Bounds.Left + 2, e.Bounds.Top + 2);
-            //}
+            float stringX = e.Bounds.Left + 4 + Properties.Resources.green_orb.Width;
+            float stringY = e.Bounds.Top + 2 + ((Properties.Resources.green_orb.Height / 2) - (stringSize.Height / 2));
 
             if (itemToDraw.Friend.IsOnline)
-            {
                 e.Graphics.DrawImage(Properties.Resources.green_orb, e.Bounds.Left + 2, e.Bounds.Top + 2);
-            }
             else
-            {
                 e.Graphics.DrawImage(Properties.Resources.green_orb_off, e.Bounds.Left + 2, e.Bounds.Top + 2);
-            }
-                        
+            
             e.Graphics.DrawString(itemToDraw.Friend.Name, textFont, textBrush, stringX, stringY);
 
             e.DrawFocusRectangle();

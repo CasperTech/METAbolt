@@ -34,8 +34,6 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using OpenMetaverse.Imaging;
-using System.Globalization;
-
 
 namespace METAbolt
 {
@@ -79,12 +77,12 @@ namespace METAbolt
 
         private byte[] LoadImage(string fileName)
         {
-            string lowfilename = fileName.ToLower(CultureInfo.CurrentCulture);
+            string lowfilename = fileName.ToLower();
             Bitmap bitmap = null;
 
             try
             {
-                if (lowfilename.EndsWith(".jp2", StringComparison.CurrentCulture) || lowfilename.EndsWith(".j2c", StringComparison.CurrentCulture))
+                if (lowfilename.EndsWith(".jp2") || lowfilename.EndsWith(".j2c"))
                 {
                     Image image;
                     ManagedImage managedImage;
@@ -97,7 +95,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    if (lowfilename.EndsWith(".tga", StringComparison.CurrentCulture))
+                    if (lowfilename.EndsWith(".tga"))
                         bitmap = LoadTGAClass.LoadTGA(fileName);
                     else
                         bitmap = (Bitmap)System.Drawing.Image.FromFile(fileName);
@@ -115,10 +113,8 @@ namespace METAbolt
                            System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                         graphics.DrawImage(bitmap, 0, 0, 256, 256);
 
+                        bitmap.Dispose();
                         bitmap = resized;
-
-                        //resized.Dispose();
-                        graphics.Dispose();
 
                         oldwidth = 256;
                         oldheight = 256;
@@ -137,15 +133,11 @@ namespace METAbolt
                         graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                         graphics.DrawImage(bitmap, 0, 0, newwidth, newheight);
 
+                        bitmap.Dispose();
                         bitmap = resized;
-
-                        //resized.Dispose();
-                        graphics.Dispose(); 
                     }
 
                     ImgUp = OpenJPEG.EncodeFromImage(bitmap, false);
-
-                    //bitmap.Dispose();
                 }
             }
             catch (Exception ex)

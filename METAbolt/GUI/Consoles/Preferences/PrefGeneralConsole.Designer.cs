@@ -74,12 +74,15 @@ namespace METAbolt
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtAdRemove = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.chkAutoTransfer = new System.Windows.Forms.CheckBox();
+            this.txtMObject = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMavatar = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtAdRemove = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -116,8 +119,6 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtMObject = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -134,7 +135,7 @@ namespace METAbolt
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -708,8 +709,8 @@ namespace METAbolt
             // 
             this.tabPage3.AccessibleName = "Security tab";
             this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.txtAdRemove);
             this.tabPage3.Controls.Add(this.groupBox5);
-            this.tabPage3.Controls.Add(this.groupBox4);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
@@ -718,71 +719,102 @@ namespace METAbolt
             this.tabPage3.Text = "Security/L$";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
+            // txtAdRemove
+            // 
+            this.txtAdRemove.AccessibleDescription = "Enter Ad removal license key into here";
+            this.txtAdRemove.AccessibleName = "License key textbox";
+            this.txtAdRemove.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtAdRemove.Location = new System.Drawing.Point(321, 254);
+            this.txtAdRemove.Name = "txtAdRemove";
+            this.txtAdRemove.Size = new System.Drawing.Size(19, 21);
+            this.txtAdRemove.TabIndex = 0;
+            this.txtAdRemove.Visible = false;
+            // 
             // groupBox5
             // 
             this.groupBox5.AccessibleName = "Master avatar panel";
+            this.groupBox5.Controls.Add(this.pictureBox2);
+            this.groupBox5.Controls.Add(this.checkBox12);
+            this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.chkAutoTransfer);
+            this.groupBox5.Controls.Add(this.txtMObject);
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.txtMavatar);
             this.groupBox5.Location = new System.Drawing.Point(3, 98);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(330, 85);
+            this.groupBox5.Size = new System.Drawing.Size(330, 170);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Master Avatar";
+            this.groupBox5.Text = "Master Avatar and Object";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(306, 147);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox2.TabIndex = 64;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave_1);
+            this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover_1);
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AccessibleDescription = "Transfers received funds to master avatar as and when they are received";
+            this.checkBox12.AccessibleName = "Transfer funds option";
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(79, 147);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(173, 17);
+            this.checkBox12.TabIndex = 63;
+            this.checkBox12.Text = "Enforce LSL command security";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.Location = new System.Drawing.Point(6, 97);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(73, 14);
+            this.label17.TabIndex = 62;
+            this.label17.Text = "Object UUID:";
             // 
             // chkAutoTransfer
             // 
             this.chkAutoTransfer.AccessibleDescription = "Transfers received funds to master avatar as and when they are received";
             this.chkAutoTransfer.AccessibleName = "Transfer funds option";
             this.chkAutoTransfer.AutoSize = true;
-            this.chkAutoTransfer.Location = new System.Drawing.Point(67, 59);
+            this.chkAutoTransfer.Location = new System.Drawing.Point(79, 58);
             this.chkAutoTransfer.Name = "chkAutoTransfer";
-            this.chkAutoTransfer.Size = new System.Drawing.Size(222, 17);
+            this.chkAutoTransfer.Size = new System.Drawing.Size(217, 17);
             this.chkAutoTransfer.TabIndex = 1;
             this.chkAutoTransfer.Text = "Transfer all received L$ to Master avatar";
             this.chkAutoTransfer.UseVisualStyleBackColor = true;
             // 
+            // txtMObject
+            // 
+            this.txtMObject.AccessibleName = "UUID textbox";
+            this.txtMObject.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtMObject.Location = new System.Drawing.Point(79, 94);
+            this.txtMObject.Name = "txtMObject";
+            this.txtMObject.Size = new System.Drawing.Size(227, 21);
+            this.txtMObject.TabIndex = 61;
+            // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(22, 34);
+            this.label7.Location = new System.Drawing.Point(6, 34);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 14);
+            this.label7.Size = new System.Drawing.Size(73, 14);
             this.label7.TabIndex = 60;
-            this.label7.Text = "UUID:";
+            this.label7.Text = "Avatar UUID:";
             // 
             // txtMavatar
             // 
             this.txtMavatar.AccessibleName = "UUID textbox";
             this.txtMavatar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMavatar.Location = new System.Drawing.Point(67, 31);
+            this.txtMavatar.Location = new System.Drawing.Point(79, 31);
             this.txtMavatar.Name = "txtMavatar";
-            this.txtMavatar.Size = new System.Drawing.Size(240, 21);
+            this.txtMavatar.Size = new System.Drawing.Size(227, 21);
             this.txtMavatar.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.AccessibleName = "METAbolt licensing panel";
-            this.groupBox4.Controls.Add(this.label17);
-            this.groupBox4.Controls.Add(this.txtMObject);
-            this.groupBox4.Controls.Add(this.txtAdRemove);
-            this.groupBox4.Location = new System.Drawing.Point(3, 189);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(330, 70);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Master Object";
-            // 
-            // txtAdRemove
-            // 
-            this.txtAdRemove.AccessibleDescription = "Enter Ad removal license key into here";
-            this.txtAdRemove.AccessibleName = "License key textbox";
-            this.txtAdRemove.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtAdRemove.Location = new System.Drawing.Point(315, 58);
-            this.txtAdRemove.Name = "txtAdRemove";
-            this.txtAdRemove.Size = new System.Drawing.Size(19, 21);
-            this.txtAdRemove.TabIndex = 0;
-            this.txtAdRemove.Visible = false;
             // 
             // groupBox2
             // 
@@ -817,6 +849,7 @@ namespace METAbolt
             this.pictureBox7.Size = new System.Drawing.Size(15, 15);
             this.pictureBox7.TabIndex = 60;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             this.pictureBox7.MouseLeave += new System.EventHandler(this.pictureBox7_MouseLeave);
             this.pictureBox7.MouseHover += new System.EventHandler(this.pictureBox7_MouseHover);
             // 
@@ -1192,23 +1225,6 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
-            // label17
-            // 
-            this.label17.Location = new System.Drawing.Point(23, 32);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(39, 14);
-            this.label17.TabIndex = 62;
-            this.label17.Text = "UUID:";
-            // 
-            // txtMObject
-            // 
-            this.txtMObject.AccessibleName = "UUID textbox";
-            this.txtMObject.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMObject.Location = new System.Drawing.Point(68, 29);
-            this.txtMObject.Name = "txtMObject";
-            this.txtMObject.Size = new System.Drawing.Size(240, 21);
-            this.txtMObject.TabIndex = 61;
-            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1239,10 +1255,10 @@ namespace METAbolt
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -1327,7 +1343,6 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox chkMinimised;
         private System.Windows.Forms.TextBox txtAdRemove;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label7;
@@ -1348,6 +1363,8 @@ namespace METAbolt
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtMObject;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.PictureBox pictureBox2;
 
     }
 }

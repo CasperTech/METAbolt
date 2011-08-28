@@ -32,7 +32,7 @@ using System.Media;
 
 namespace METAbolt
 {
-    public partial class METAboltTab : IDisposable
+    public partial class METAboltTab
     {
         private ToolStripButton button;
         private Control control;
@@ -52,37 +52,7 @@ namespace METAbolt
         private bool selected = false;
         private bool detached = false;
         private bool merged = false;
-        private string selectedtab = string.Empty;
-        private bool disposed = false;
-
-        ~METAboltTab()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
-
-            if (disposing)
-            {
-                mergedTab.Dispose();
-                owner.Dispose(); 
-            }
-
-            // TODO: Call the appropriate methods to clean up unmanaged resources here
-
-            // we're done
-            disposed = true;
-        }
-
-        #region IDisposable
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        #endregion
+        private string selectedtab = string.Empty;  
 
         public METAboltTab(ToolStripButton button, Control control, string name, string label)
         {
@@ -234,8 +204,6 @@ namespace METAbolt
 
             control = container;
             tab.Control = container;
-
-            container.Dispose();  
             
             mergedTab = tab;
             tab.mergedTab = this;

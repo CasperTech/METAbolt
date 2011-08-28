@@ -36,9 +36,7 @@ using OpenMetaverse;
 using OpenMetaverse.Assets;
 using ScintillaNet;
 using System.IO;
-using System.Diagnostics;
-using System.Globalization;
-
+using System.Diagnostics; 
 
 namespace METAbolt
 {
@@ -550,9 +548,11 @@ namespace METAbolt
                 using (BinaryWriter bw = new BinaryWriter(fs))
                     bw.Write(rtbScript.RawText, 0, rtbScript.RawText.Length - 1); // Omit trailing NULL
 
-                rtbScript.Modified = false;
+            rtbScript.Modified = false;
 
-                tsSaveDisk.Enabled = false;
+            tsSaveDisk.Enabled = false;
+
+            saveFile1.Dispose(); 
 
                 //if (saveFile1.FileName.Substring(saveFile1.FileName.Length - 3) == "rtf")
                 //{
@@ -569,8 +569,6 @@ namespace METAbolt
                 //    rtbScript.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
                 //}
             }
-
-            saveFile1.Dispose();  
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -589,7 +587,7 @@ namespace METAbolt
             //tsLn.Text = "Ln " + linenumber.ToString();
             Line ln = rtbScript.Lines.Current;
             int lnm = ln.Number + 1;
-            tsLn.Text = "Ln " + lnm.ToString(CultureInfo.CurrentCulture);
+            tsLn.Text = "Ln " + lnm.ToString();
         }
 
         private void GetCurrentCol()
@@ -598,7 +596,7 @@ namespace METAbolt
             //tsCol.Text = "Ln " + colnumber.ToString();
 
             //int colnumber = rtbScript.CurrentPos;
-            tsCol.Text = "Col " + rtbScript.GetColumn(rtbScript.CurrentPos).ToString(CultureInfo.CurrentCulture);
+            tsCol.Text = "Col " + rtbScript.GetColumn(rtbScript.CurrentPos).ToString();
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -757,7 +755,7 @@ namespace METAbolt
 
         private void contectHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tscboLanguage.SelectedItem.ToString().ToLower(CultureInfo.CurrentCulture) == "lsl")
+            if (tscboLanguage.SelectedItem.ToString().ToLower() == "lsl")
             {
                 string hword = rtbScript.GetWordFromPosition(rtbScript.CurrentPos);
                 string surl = "http://wiki.secondlife.com/wiki/" + hword;
@@ -770,8 +768,8 @@ namespace METAbolt
             string lang = string.Empty;
 
             rtbScript.AutoComplete.List = null;
-
-            switch (tscboLanguage.SelectedItem.ToString().ToLower(CultureInfo.CurrentCulture))
+  
+            switch (tscboLanguage.SelectedItem.ToString().ToLower())
             {
                 case "c#":
                     lang = "cs";
@@ -1122,7 +1120,7 @@ namespace METAbolt
             rtbScript.Modified = false;
             this.Text = filePath;   //Path.GetFileName(filePath);
 
-            string ext = Path.GetExtension(filePath).ToLower(CultureInfo.CurrentCulture);
+            string ext = Path.GetExtension(filePath).ToLower();
 
             switch (ext)
             {

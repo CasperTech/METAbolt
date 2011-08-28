@@ -38,13 +38,12 @@ using METAxCommon;
 using System.Drawing;
 using ExceptionReporting;
 using System.Threading;
-using System.Runtime.InteropServices;
 using System.Globalization;
 
 
 namespace METAbolt
 {
-    public class METAboltInstance : IDisposable
+    public class METAboltInstance
     {
         public event Action<METAboltForm> METAboltFormCreated;
         public virtual void OnMETAboltFormCreated(METAboltForm form)
@@ -93,7 +92,7 @@ namespace METAbolt
         private bool logoffclicked = false;
         private bool rebooted = false;
 
-        private int dialogtimeout = 300000;
+        private int dialogtimeout = 900000;
         private int dialogcount = 0;
         private int noticecount = 0;
         public AIMLbot.Bot myBot;
@@ -110,48 +109,6 @@ namespace METAbolt
         public string appdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";
         public bool startfrombat = false;
         private DataTable giveritems = null;
-        //private SafeHandle handle;
-        private bool disposed = false;
-
-        ~METAboltInstance()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
-
-            if (disposing)
-            {
-                //if (handle != null)
-                //{
-                //    handle.Dispose();
-                //}
-
-                state.Dispose();  
-                mainForm.Dispose(); 
-            }
-
-            // TODO: Call the appropriate methods to clean up unmanaged resources here
-
-            // we're done
-            disposed = true;
-        }
-
-        #region IDisposable
-        public void Close()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        #endregion
-
-        public void Dispose()
-        {
-            //Dispose(true);
-            this.Close();  
-        }
 
         internal class ThreadExceptionHandler
         {
@@ -583,7 +540,6 @@ namespace METAbolt
             }
  
             DataSet dset = new DataSet();
-            dset.Locale = CultureInfo.CurrentCulture;  
             FileStream fstr = null;
 
             try
@@ -642,7 +598,6 @@ namespace METAbolt
         {
             DataColumn myColumn = new DataColumn();
             DataTable dtbl = new DataTable("list");
-            dtbl.Locale = CultureInfo.CurrentCulture;   
 
             myColumn.DataType = System.Type.GetType("System.String");
             myColumn.ColumnName = "mute_name";
@@ -656,8 +611,8 @@ namespace METAbolt
 
             //dtbl.PrimaryKey = new DataColumn[] { dtbl.Columns["uuid"] };
 
-            myColumn.Dispose(); 
-
+            myColumn.Dispose();
+ 
             return dtbl;
         }
 
@@ -665,7 +620,6 @@ namespace METAbolt
         {
             DataColumn myColumn = new DataColumn();
             DataTable dtbl = new DataTable("history");
-            dtbl.Locale = CultureInfo.CurrentCulture;   
 
             myColumn.DataType = System.Type.GetType("System.String");
             myColumn.ColumnName = "time";
@@ -686,7 +640,7 @@ namespace METAbolt
             tp = dtbl;
 
             myColumn.Dispose();
-            dtbl.Dispose();  
+            dtbl.Dispose(); 
         }
 
         private void SetSettings()
@@ -724,9 +678,8 @@ namespace METAbolt
             // Configuration options (mostly booleans)
 
             // Enable stats
-            //client.Settings.TRACK_UTILIZATION = true;
+            client.Settings.TRACK_UTILIZATION = true;
             //client.Settings.USE_LLSD_LOGIN = true;
-            client.Settings.USE_INTERPOLATION_TIMER = false;  
 
             /// <summary>Enable to process packets synchronously, where all of the
             /// callbacks for each packet must return before the next packet is
@@ -753,8 +706,8 @@ namespace METAbolt
             client.Settings.SEND_AGENT_THROTTLE = true;
             /// <summary>Enable/disable the sending of pings to monitor lag and 
             /// packet loss</summary>
-            //client.Settings.SEND_PINGS = false;
-            //client.Settings.LOG_RESENDS = false;
+            client.Settings.SEND_PINGS = false;
+            client.Settings.LOG_RESENDS = false;
             /// <summary>Should we connect to multiple sims? This will allow
             /// viewing in to neighboring simulators and sim crossings
             /// (Experimental)</summary>
@@ -770,13 +723,13 @@ namespace METAbolt
             client.Settings.ALWAYS_REQUEST_OBJECTS = true;
             /// <summary>Whether to establish connections to HTTP capabilities
             /// servers for simulators</summary>
-            //client.Settings.ENABLE_CAPS = true;
+            client.Settings.ENABLE_CAPS = true;
             /// <summary>Whether to decode sim stats</summary>
             client.Settings.ENABLE_SIMSTATS = true;
             /// <summary>The capabilities servers are currently designed to
             /// periodically return a 502 error which signals for the client to
             /// re-establish a connection. Set this to true to log those 502 errors</summary>
-            //client.Settings.LOG_ALL_CAPS_ERRORS = false;
+            client.Settings.LOG_ALL_CAPS_ERRORS = false;
             /// <summary>If true, any reference received for a folder or item
             /// libsecondlife is not aware of will automatically be fetched.</summary>
             client.Settings.FETCH_MISSING_INVENTORY = true;
@@ -792,7 +745,7 @@ namespace METAbolt
             /// <summary>If true, parcel details will be stored in the 
             /// <code>Simulator.Parcels</code> dictionary as they are received</summary>
             client.Settings.PARCEL_TRACKING = true;
-            //client.Settings.STORE_LAND_PATCHES = true;
+            client.Settings.STORE_LAND_PATCHES = true;
 
             client.Settings.USE_ASSET_CACHE = true;
             //client.Settings.ASSET_CACHE_DIR = Application.StartupPath + System.IO.Path.DirectorySeparatorChar + "cache";

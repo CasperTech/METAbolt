@@ -39,20 +39,19 @@ using MD5library;
 using System.Diagnostics;
 using System.Timers;
 using ExceptionReporting;
-using System.Runtime.InteropServices;
-using System.Globalization;
-
 
 namespace METAbolt
 {
-    public class ChatTextManager : IDisposable
+    public class ChatTextManager
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
         private GridClient client;
         private ITextPrinter textPrinter;
         //private frmMain mainForm;
+
         private List<ChatBufferItem> textBuffer;
+
         private bool showTimestamps;
 
         //added by GM on 3-JUL-2009 for chair group IM calling
@@ -96,58 +95,6 @@ namespace METAbolt
         private int invitecounter = 0;
         private bool classiclayout = false;
         private ExceptionReporter reporter = new ExceptionReporter();
-        //private SafeHandle handle;
-        private bool disposed = false;
-
-        ~ChatTextManager()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
-
-            if (disposing)
-            {
-                //if (handle != null)
-                //{
-                //    handle.Dispose();
-                //}
-
-
-                try
-                {
-                    waitGroupIMSession.Close();
-                    waitGroupIMLeaveSession.Close();
-
-                    if (aTimer != null)
-                    {
-                        aTimer.Dispose();
-                    }
-                }
-                catch { ; }
-            }
-
-            // TODO: Call the appropriate methods to clean up unmanaged resources here 
-
-            // we're done
-            disposed = true;
-        }
-
-        #region IDisposable
-        public void Close()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        #endregion
-
-        public void Dispose()
-        {
-            //Dispose(true);
-            this.Close();  
-        }
 
         internal class ThreadExceptionHandler
         {
@@ -353,7 +300,7 @@ namespace METAbolt
 
         private void netcom_AlertMessageReceived(object sender, AlertMessageEventArgs e)
         {
-            if (e.Message.ToLower(CultureInfo.CurrentCulture).Contains("autopilot canceled")) return; //workaround the stupid autopilot alerts
+            if (e.Message.ToLower().Contains("autopilot canceled")) return; //workaround the stupid autopilot alerts
 
             string emsg = e.Message.Trim();
 
@@ -583,8 +530,7 @@ namespace METAbolt
             {
                 if (showTimestamps)
                 {
-                    dte = this.instance.State.GetTimeStamp(dte);
-
+                    dte = this.instance.State.GetTimeStamp(dte);   
                     //if (instance.Config.CurrentConfig.UseSLT)
                     //{
                     //    string _timeZoneId = "Pacific Standard Time";
@@ -598,12 +544,12 @@ namespace METAbolt
                     if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
                     {
                         //textPrinter.PrintText("\n" + dte.ToString("[HH:mm] "));
-                        prefix = "\n" + dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
+                        prefix = "\n" + dte.ToString("[HH:mm] ");
                     }
                     else
                     {
                         //textPrinter.PrintText(dte.ToString("[HH:mm] "));
-                        prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
+                        prefix = dte.ToString("[HH:mm] ");
                     }
                 }
                 else
@@ -630,7 +576,7 @@ namespace METAbolt
                 }
 
                 textPrinter.SetFontStyle(FontStyle.Regular);
-                //textPrinter.SetSelectionBackColor(Color.White);
+                textPrinter.SetSelectionBackColor(Color.White);
                 //textPrinter.SetSelectionBackColor(instance.Config.CurrentConfig.BgColour);
 
                 if (showTimestamps)
@@ -649,18 +595,18 @@ namespace METAbolt
 
                     if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
                     {
-                        prefix = "\n" + dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
+                        prefix = "\n" + dte.ToString("[HH:mm] ");
                         //prefix = dte.ToString("[HH:mm] ");
                     }
                     else
                     {
                         if (item.FromName == client.Self.FirstName + " " + client.Self.LastName)
                         {
-                            prefix = dte.ToString("   [HH:mm] ", CultureInfo.CurrentCulture);
+                            prefix = dte.ToString("   [HH:mm] ");
                         }
                         else
                         {
-                            prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
+                            prefix = dte.ToString("[HH:mm] ");
                         }
                     }
                 }
@@ -778,28 +724,38 @@ namespace METAbolt
                 }
                 catch (Exception excp)
                 {
-                    textPrinter.PrintTextLine(String.Format(CultureInfo.CurrentCulture,"\n(GroupMan Pro @ " + gmanlocation + ")\nGroupMan Pro has encountered an error and a group invite could not be sent to: " + gavname));
-                    OpenMetaverse.Logger.Log(String.Format(CultureInfo.CurrentCulture,"GroupMan Pro Error: {0}", excp), Helpers.LogLevel.Error);
+                    textPrinter.PrintTextLine(String.Format("\n(GroupMan Pro @ " + gmanlocation + ")\nGroupMan Pro has encountered an error and a group invite could not be sent to: " + gavname));
+                    OpenMetaverse.Logger.Log(String.Format("GroupMan Pro Error: {0}", excp), Helpers.LogLevel.Error);
                     return;
                 }
             }
             else if (smsg.Contains(commandin))
             {
                 // Handles incoming IM commands
-
-                UUID mavatar = (UUID)instance.Config.CurrentConfig.MasterAvatar;
-                UUID mobject = (UUID)instance.Config.CurrentConfig.MasterObject;
-
-                if (mavatar == UUID.Zero && mobject == UUID.Zero) return;
-
-                if (item.FromUUID == mavatar || item.FromUUID == mobject)
+                if (instance.Config.CurrentConfig.EnforceLSLsecurity)
                 {
-                    // process the command
-                    ActionCommandsIn act = new ActionCommandsIn(this.instance);
-                    string ret = act.ProcessCommand(smsg.Trim(), item.FromName, item.FromUUID);
-                    //act.Dispose(); 
-                    return;
+                    UUID mavatar = (UUID)instance.Config.CurrentConfig.MasterAvatar;
+                    UUID mobject = (UUID)instance.Config.CurrentConfig.MasterObject;
+
+                    if (mavatar == UUID.Zero && mobject == UUID.Zero) return;
+
+                    if (item.FromUUID != mavatar && item.FromUUID != mobject)
+                    {
+                        PrintAlertMessage("An unauthorised LSL command was received from " + item.FromName + "(" + item.FromUUID + ") and IGNORED. Command: " + smsg.Trim());
+                        return;
+                    }
                 }
+
+                // process the command
+                ActionCommandsIn act = new ActionCommandsIn(this.instance);
+                string ret = act.ProcessCommand(smsg.Trim(), item.FromName, item.FromUUID);
+
+                if (!string.IsNullOrEmpty(ret))
+                {
+                    PrintAlertMessage(ret);
+                }
+
+                return;
             }
             //added by GM on 2-JUL-2009
             else if (item.FromUUID == cau && cau != UUID.Zero)
@@ -847,7 +803,7 @@ namespace METAbolt
                     //fixup the text
                     //chop off before the ChairPrefix
                     string cp = METAbolt.Properties.Resources.ChairPrefix;
-                    int pos = smsg.IndexOf(cp, 2, StringComparison.CurrentCulture);
+                    int pos = smsg.IndexOf(cp, 2);
                     pos = pos < 0 ? 0 : pos;
                     StringBuilder sb = new StringBuilder(smsg.Substring(pos));
 
@@ -889,7 +845,7 @@ namespace METAbolt
                         }
                         else
                         {
-                            Logger.Log("Chair Announcer: timeout after 30 seconds on group " + indexGroup.ToString(CultureInfo.CurrentCulture), Helpers.LogLevel.Warning);
+                            Logger.Log("Chair Announcer: timeout after 30 seconds on group " + indexGroup.ToString(), Helpers.LogLevel.Warning);
                         }
                     }
 
@@ -900,7 +856,7 @@ namespace METAbolt
                     Logger.Log("Chair Announcer: skipped", Helpers.LogLevel.Info);
                 }
 
-                OpenMetaverse.Logger.Log(String.Format(CultureInfo.CurrentCulture,"AddIn: {0} called {1}", cau.ToString(), smsg), Helpers.LogLevel.Debug);
+                OpenMetaverse.Logger.Log(String.Format("AddIn: {0} called {1}", cau.ToString(), smsg), Helpers.LogLevel.Debug);
                 return;
             }
 
@@ -1003,7 +959,7 @@ namespace METAbolt
 
         void Self_OnGroupChatLeft(UUID groupchatSessionID)
         {
-            Logger.Log(String.Format(CultureInfo.CurrentCulture,"Chair Announcer: Left GroupChat {0}", groupchatSessionID.ToString()), Helpers.LogLevel.Debug);
+            Logger.Log(String.Format("Chair Announcer: Left GroupChat {0}", groupchatSessionID.ToString()), Helpers.LogLevel.Debug);
             waitGroupIMLeaveSession.Set();
         }
 
@@ -1011,13 +967,13 @@ namespace METAbolt
         {
             if (e.Success)
             {
-                Logger.Log(String.Format(CultureInfo.CurrentCulture,"Chair Announcer: Joined GroupChat {0} with UUID {1} named {2}", targetIndex, e.SessionID.ToString(), e.SessionName), Helpers.LogLevel.Debug);
+                Logger.Log(String.Format("Chair Announcer: Joined GroupChat {0} with UUID {1} named {2}", targetIndex, e.SessionID.ToString(), e.SessionName), Helpers.LogLevel.Debug);
                 chairAnnouncerGroupNames[targetIndex] = e.SessionName;
                 waitGroupIMSession.Set();
             }
             else
             {
-                Logger.Log(String.Format(CultureInfo.CurrentCulture,"Chair Announcer: Failed GroupChat {0} with UUID {1} named {2}", targetIndex, e.SessionID.ToString(), e.SessionName), Helpers.LogLevel.Debug);
+                Logger.Log(String.Format("Chair Announcer: Failed GroupChat {0} with UUID {1} named {2}", targetIndex, e.SessionID.ToString(), e.SessionName), Helpers.LogLevel.Debug);
                 chairAnnouncerGroupNames[targetIndex] = "N/A";
                 TextPrinter.PrintTextLine("Chair Announcer: Failed to join GroupChat");
             }
@@ -1090,7 +1046,7 @@ namespace METAbolt
             }
 
             //textPrinter.ForeColor = Color.Gray;
-            string prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
+            string prefix = dte.ToString("[HH:mm] ");
 
             try
             {
@@ -1106,9 +1062,10 @@ namespace METAbolt
             }
             catch (Exception excp)
             {
+                //string eex = excp.ToString();
                 //PrintIM(DateTime.Now, e.IM.FromAgentName, "GroupMan Pro has encountered an error and a group invite could not be sent to: " + sGrp[2].ToString());
-                textPrinter.PrintTextLine(String.Format(CultureInfo.CurrentCulture,prefix + "(\nGroupMan Pro @ " + gmanlocation + ")\nGroupMan Pro has encountered an error and a group invite could not be sent to: " + gavname));
-                OpenMetaverse.Logger.Log(String.Format(CultureInfo.CurrentCulture,prefix + "GroupMan Pro Error: {0}", excp), Helpers.LogLevel.Error);
+                textPrinter.PrintTextLine(String.Format(prefix + "(\nGroupMan Pro @ " + gmanlocation + ")\nGroupMan Pro has encountered an error and a group invite could not be sent to: " + gavname));
+                OpenMetaverse.Logger.Log(String.Format(prefix + "GroupMan Pro Error: {0}", excp), Helpers.LogLevel.Error);
                 return;
             }
 
@@ -1143,7 +1100,7 @@ namespace METAbolt
             foreach (InventoryBase o in foundfolders)
             {
                 // for this to work the user needs to have a folder called "GroupMan Items"
-                if (o.Name.ToLower(CultureInfo.CurrentCulture) == "groupman items")
+                if (o.Name.ToLower() == "groupman items")
                 {
                     if (o is InventoryFolder)
                     {
@@ -1168,7 +1125,7 @@ namespace METAbolt
                                 dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                             }
 
-                            string prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
+                            string prefix = dte.ToString("[HH:mm] ");
 
                             //Give the item
                             client.Self.InstantMessage(iperson, "I am giving you a present for joining our group. Thank you.");   
@@ -1213,7 +1170,7 @@ namespace METAbolt
                     //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    textPrinter.PrintText(dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture));
+                    textPrinter.PrintText(dte.ToString("[HH:mm] "));
                 }
 
                 try
@@ -1264,7 +1221,7 @@ namespace METAbolt
                 }
 
                 textPrinter.SetFontStyle(FontStyle.Regular);
-                //textPrinter.SetSelectionBackColor(Color.White);
+                textPrinter.SetSelectionBackColor(Color.White);
                 //textPrinter.SetSelectionBackColor(instance.Config.CurrentConfig.BgColour);
 
                 if (showTimestamps)
@@ -1285,7 +1242,7 @@ namespace METAbolt
                     //textPrinter.SetSelectionForeColor(Color.Gray);
                     //textPrinter.SetOffset(6);
                     //textPrinter.SetFontSize(6.5f);
-                    textPrinter.PrintDate(dte.ToString(header, CultureInfo.CurrentCulture));
+                    textPrinter.PrintDate(dte.ToString(header));
                     //textPrinter.SetFontSize(8.5f);
                     //textPrinter.SetOffset(0);
                 }
@@ -1396,14 +1353,14 @@ namespace METAbolt
 
             if (string.IsNullOrEmpty(e.Message)) return;
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();  
 
-            if (e.Message.StartsWith("/me ", StringComparison.CurrentCulture))
+            if (e.Message.StartsWith("/me "))
             {
                 sb.Append(e.FromName);
                 sb.Append(e.Message.Substring(3));
             }
-            else if (e.FromName.ToLower(CultureInfo.CurrentCulture) == client.Self.Name.ToLower(CultureInfo.CurrentCulture) && e.SourceType == ChatSourceType.Agent)
+            else if (e.FromName.ToLower() == client.Self.Name.ToLower() && e.SourceType == ChatSourceType.Agent)
             {
                 if (classiclayout)
                 {
@@ -1477,7 +1434,7 @@ namespace METAbolt
             {
                 case ChatSourceType.Agent:
                     item.Style =
-                        (e.FromName.EndsWith("Linden", StringComparison.CurrentCulture) ?
+                        (e.FromName.EndsWith("Linden") ?
                         ChatBufferTextStyle.LindenChat : ChatBufferTextStyle.Normal);
                     break;
 
@@ -1486,13 +1443,13 @@ namespace METAbolt
                            return;
 
                     // Ignore RLV commands from objects
-                    if (item.Text.StartsWith("@", StringComparison.CurrentCulture)) return;
+                    if (item.Text.StartsWith("@")) return;
 
                     item.Style = ChatBufferTextStyle.ObjectChat;
                     break;
             }
 
-            if (e.FromName.ToLower(CultureInfo.CurrentCulture) == client.Self.Name.ToLower(CultureInfo.CurrentCulture))
+            if (e.FromName.ToLower() == client.Self.Name.ToLower())
             {
                 ProcessBufferItem(item, true);
             }
@@ -1532,7 +1489,7 @@ namespace METAbolt
 
             string folder = instance.Config.CurrentConfig.LogDir;
 
-            if (!folder.EndsWith("\\", StringComparison.CurrentCulture))
+            if (!folder.EndsWith("\\"))
             {
                 folder += "\\";
             }
@@ -1566,7 +1523,7 @@ namespace METAbolt
                 {
                     SW = File.AppendText(path);
                     SW.WriteLine(line);
-                    SW.Close();
+                    SW.Dispose();
                 }
                 catch
                 {
@@ -1579,11 +1536,11 @@ namespace METAbolt
                 {
                     SW = File.CreateText(path);
                     SW.WriteLine(line);
-                    SW.Close();
+                    SW.Dispose();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    ;
+                    string exp = ex.Message;
                 }
             }
         }

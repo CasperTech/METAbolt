@@ -33,76 +33,37 @@ using OpenMetaverse;
 using System.Security.Cryptography;
 using MD5library;
 using System.Threading;
-using System.Runtime.InteropServices;
-using System.Globalization;
 
 
 namespace METAbolt
 {
-    public class ActionCommandsIn : IDisposable
+    public class ActionCommandsIn
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
         private GridClient client;
         private TabsConsole tconsole;
-        //private ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
-        //private SafeHandle handle;
-        private bool disposed = false;
-
-        ~ActionCommandsIn()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
-
-            if (disposing)
-            {
-                tconsole.Dispose();   
-            }
-
-            // TODO: Call the appropriate methods to clean up unmanaged resources here
-
-            // we're done
-            disposed = true;
-        }
-
-        #region IDisposable
-        public void Close()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        #endregion
-
-        public void Dispose()
-        {
-            //Dispose(true);
-            this.Close();
-        }
+        //ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
 
         public ActionCommandsIn(METAboltInstance instance)
         {
             this.instance = instance;
             client = this.instance.Client;
             netcom = this.instance.Netcom;
-            tconsole = new TabsConsole(instance); 
+            tconsole = instance.TabConsole;
         }
 
         public string ProcessCommand(string command, string name, UUID fromid)
         {
             tconsole.DisplayChatScreen("Recevided LSL (action) command: " + command + " >>> from " + name + " (" + fromid + ")");
-    
+
             char[] deli = "|".ToCharArray();
             string[] sGrp = command.Split(deli);
 
             // Check password first and exit if not valid
             string pwd = sGrp[1].Trim();
 
-            if (pwd != GetMD5())
-                return string.Empty;
+            if (pwd != GetMD5()) return "LSL Command: Command ignored due to incorrect METAbolt password";
 
             string cmdtype = sGrp[2].Trim();
             string msg = string.Empty;
@@ -113,8 +74,7 @@ namespace METAbolt
                     // Format: cmd identifier|password|command type|folder UUID
                     UUID folder = (UUID)sGrp[3].Trim();
 
-                    if (folder == UUID.Zero)
-                        return string.Empty;
+                    if (folder == UUID.Zero) return "IM WEAR COMMAND: Folder UUID can't be empty or null. Failed.";
 
                     try
                     {
@@ -123,8 +83,8 @@ namespace METAbolt
 
                         if (contents == null)
                         {
-                            Logger.Log("IM Command: Failed to get contents of '" + folder.ToString() + "'", Helpers.LogLevel.Warning);
-                            return "Could not get folder contents";
+                            Logger.Log("IM WEAR COMMAND: Failed to get contents of '" + folder.ToString() + "'", Helpers.LogLevel.Warning);
+                            return "M WEAR COMMAND: Could not get folder contents. Failed";
                         }
 
                         foreach (InventoryBase iitem in contents)
@@ -138,7 +98,7 @@ namespace METAbolt
                     catch (Exception ex)
                     {
                         Logger.Log("IM WEAR COMMAND: " + ex.Message, Helpers.LogLevel.Error);
-                        return string.Empty;
+                        return "IM WEAR COMMAND: " + ex.Message + ". Failed";
                     }
 
                     //msg = "Wearing folder: " + folder.ToString();
@@ -165,9 +125,9 @@ namespace METAbolt
                 case "TP":
                     // Format: cmd identifier|password|command type|SIM|coord x|coord y|coord z
                     string sim = sGrp[3].Trim();
-                    float x = float.Parse(sGrp[4].Trim(), CultureInfo.CurrentCulture);
-                    float y = float.Parse(sGrp[5].Trim(), CultureInfo.CurrentCulture);
-                    float z = float.Parse(sGrp[6].Trim(), CultureInfo.CurrentCulture);
+                    float x = float.Parse(sGrp[4].Trim());
+                    float y = float.Parse(sGrp[5].Trim());
+                    float z = float.Parse(sGrp[6].Trim());
 
                     if (!string.IsNullOrEmpty(sim))
                     {
@@ -176,14 +136,15 @@ namespace METAbolt
                     else
                     {
                         Logger.Log("TP COMMAND: SIM name can't be empty. Command has been ignored", Helpers.LogLevel.Info);
+                        return "IM TP COMMAND: SIM name can't be empty. Command has been ignored";
                     }
                     break;
 
                 case "SAY":
                     // Format: cmd identifier|password|command type|channel|message|message type
-                    int channel = Convert.ToInt32(sGrp[3].Trim(), CultureInfo.CurrentCulture);
+                    int channel = Convert.ToInt32(sGrp[3].Trim());
                     string msgtosay = sGrp[4].Trim();
-                    string ctypein = sGrp[5].Trim().ToLower(CultureInfo.CurrentCulture);
+                    string ctypein = sGrp[5].Trim().ToLower();
                     ChatType ctype = ChatType.Normal;
 
                     switch (ctypein)
@@ -230,7 +191,7 @@ namespace METAbolt
                     if (item == null)
                     {
                         Logger.Log("IM GIVE COMMAND: Item " + imitem.ToString() + " not found in inventory", Helpers.LogLevel.Error);
-                        return string.Empty;
+                        return "IM GIVE COMMAND: Item " + imitem.ToString() + " not found in inventory";
                     }
 
                     try
@@ -252,7 +213,7 @@ namespace METAbolt
                     catch (Exception ex)
                     {
                         Logger.Log("IM GIVE COMMAND: " + ex.Message, Helpers.LogLevel.Error);
-                        return string.Empty;
+                        return "IM GIVE COMMAND: " + ex.Message;
                     }
 
                     break;
@@ -263,8 +224,7 @@ namespace METAbolt
                     string fname = sGrp[4].Trim();
                     UUID imavatar = (UUID)sGrp[5].Trim();
 
-                    if (imfolder == UUID.Zero || imavatar == UUID.Zero)
-                        return string.Empty;
+                    if (imfolder == UUID.Zero || imavatar == UUID.Zero) return string.Empty;
 
                     try
                     {
@@ -274,6 +234,7 @@ namespace METAbolt
                     catch (Exception ex)
                     {
                         Logger.Log("ERROR IM GIVEFOLDER COMMAND: " + ex.Message, Helpers.LogLevel.Error);
+                        return "ERROR IM GIVEFOLDER COMMAND: " + ex.Message;
                     }
 
                     break;
@@ -282,8 +243,7 @@ namespace METAbolt
                     UUID groupid = (UUID)sGrp[3].Trim();
                     UUID avatarid = (UUID)sGrp[4].Trim();
 
-                    if (groupid == UUID.Zero || avatarid == UUID.Zero)
-                        return string.Empty;
+                    if (groupid == UUID.Zero || avatarid == UUID.Zero) return string.Empty;
 
                     client.Groups.EjectUser(groupid, avatarid);
                     break;
@@ -342,19 +302,19 @@ namespace METAbolt
                     if (typ == "fly")
                     {
                         client.Self.Movement.Fly = true;
-                        client.Self.Fly(true);   
+                        client.Self.Fly(true);
                         client.Self.Movement.AlwaysRun = false;
                     }
 
                     ulong regionHandle = client.Network.CurrentSim.Handle;
 
-                    int followRegionX = (int)(regionHandle >> 32);
-                    int followRegionY = (int)(regionHandle & 0xFFFFFFFF);
+                    ulong followRegionX = regionHandle >> 32;
+                    ulong followRegionY = regionHandle & (ulong)0xFFFFFFFF;
                     ulong ux = (ulong)(xx + followRegionX);
                     ulong uy = (ulong)(yy + followRegionY);
+                    float uz = zz - 2f;
 
-                    client.Self.AutoPilotCancel();
-                    client.Self.AutoPilot(xx, yy, zz);
+                    client.Self.AutoPilot(ux, uy, uz);
                     break;
 
                 case "FOLLOW":
@@ -368,6 +328,37 @@ namespace METAbolt
                     {
                         instance.State.Follow(flname);
                     }
+                    break;
+
+                case "SENDNOTICE":
+                    string subject = sGrp[3].Trim();
+                    string mssg = sGrp[4].Trim();
+                    UUID athmnt = (UUID)sGrp[5].Trim();
+                    UUID ngrp = (UUID)sGrp[6].Trim();
+
+                    GroupNotice sgnotice = new GroupNotice();
+
+                    if (ngrp == UUID.Zero) return "Send Notice LSL Command: Group UUID cannot be emptry or zero. Notice has been ignored.";
+
+                    try
+                    {
+                        sgnotice.Subject = subject;
+                        sgnotice.Message = mssg;
+
+                        if (athmnt != UUID.Zero)
+                        {
+                            sgnotice.AttachmentID = athmnt;
+                            sgnotice.OwnerID = client.Self.AgentID;
+                            sgnotice.SerializeAttachment();
+                        }
+
+                        client.Groups.SendGroupNotice(ngrp, sgnotice);
+                    }
+                    catch (Exception ex)
+                    {
+                        return "Send Notice LSL Command Error: " + ex.Message;
+                    }
+                    
                     break;
             }
 

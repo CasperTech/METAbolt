@@ -48,9 +48,6 @@ using System.Threading;
 using System.Linq;
 using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
-using System.Globalization;
-using PopupControl;
-
 
 namespace METAbolt
 {
@@ -76,7 +73,7 @@ namespace METAbolt
         private bool move = false;
         private string selectedname = string.Empty;
         private Vector3 vDir;
-        private string clickedurl = string.Empty;
+        //private string clickedurl = string.Empty;
         private bool avrezzed = false;
         private bool pasted = false;
         private uint[] localids;
@@ -106,9 +103,9 @@ namespace METAbolt
         private VoiceGateway vgate = null;
         //List<string> mics;
         //List<string> speakers;
-        private Popup toolTip;
-        private CustomToolTip customToolTip;
-        private bool formloading = false;
+
+        private const int WM_KEYUP = 0x101;
+        private const int WM_KEYDOWN = 0x100;
 
 
         internal class ThreadExceptionHandler
@@ -123,7 +120,6 @@ namespace METAbolt
         public ChatConsole(METAboltInstance instance)
         {
             InitializeComponent();
-            Disposed += new EventHandler(ChatConsole_Disposed);
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -131,7 +127,6 @@ namespace METAbolt
             this.instance = instance;
             netcom = this.instance.Netcom;
             client = this.instance.Client;
-
             AddNetcomEvents();
             AddClientEvents();
 
@@ -139,10 +134,9 @@ namespace METAbolt
             chatManager.PrintStartupMessage();
 
             this.instance.MainForm.Load += new EventHandler(MainForm_Load);
-            
-            this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
-            ApplyConfig(this.instance.Config.CurrentConfig);
 
+            ApplyConfig(this.instance.Config.CurrentConfig);
+            this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
             client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
             client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
 
@@ -155,6 +149,8 @@ namespace METAbolt
             netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
             client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
 
+            Disposed += new EventHandler(ChatConsole_Disposed);
+
             lvwRadar.ListViewItemSorter = new RadarSorter();
 
             sim = client.Network.CurrentSim;
@@ -162,13 +158,7 @@ namespace METAbolt
             world.Cursor = Cursors.NoMove2D;
 
             timer2.Enabled = true;
-            timer2.Start();
-
-            string msg1 = "Yellow dot with red border = your avatar \nGreen dots = avs at your altitude\nRed squares = avs 20m+ below you\nBlue squares = avs 20m+ above you\n[Hover mouse on avatar icons for info. Click for profile]";
-            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
-            toolTip.AutoClose = false;
-            toolTip.FocusOnOpen = false;
-            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+            timer2.Start();  
         }
 
         private void SetExceptionReporter()
@@ -255,7 +245,7 @@ namespace METAbolt
                         //MessageBox.Show(e.Message, "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
 
-                    case TeleportStatus.Finished: 
+                    case TeleportStatus.Finished:
                         if (instance.Config.CurrentConfig.AutoSit)
                         {
                             Logger.Log("AUTOSIT: Initialising...", Helpers.LogLevel.Info);
@@ -284,7 +274,7 @@ namespace METAbolt
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
 
             RemoveEvents();
-            chatManager.Dispose();
+            chatManager = null;
         }
 
         private void Appearance_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
@@ -560,7 +550,7 @@ namespace METAbolt
 
                     if (!string.IsNullOrEmpty(missing))
                     {
-                        if (missing.EndsWith(", ", StringComparison.CurrentCulture))
+                        if (missing.EndsWith(", "))
                         {
                             missing = missing.Remove(missing.Length - 2);   
                         }
@@ -752,19 +742,16 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[0].Tag = (object)"angelsmile;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.AngrySmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[1].Tag = "angry;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.Beer);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[2].Tag = "beer;";
-            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -772,19 +759,16 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[3].Tag = "brokenheart;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.bye);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[4].Tag = "bye";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.clap);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[5].Tag = "clap;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.ConfusedSmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -792,19 +776,16 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[6].Tag = ":S";
 
             _menuItem.BarBreak = true;
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.cool);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[7].Tag = "cool;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.CrySmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[8].Tag = "cry;";
-            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -812,19 +793,16 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[9].Tag = "devil;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.duh);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[10].Tag = "duh;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.EmbarassedSmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[11].Tag = "embarassed;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.happy0037);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -832,19 +810,16 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[12].Tag = ":)";
 
             _menuItem.BarBreak = true;
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.heart);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[13].Tag = "heart;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.kiss);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[14].Tag = "muah;";
-            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -852,19 +827,16 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[15].Tag = "help ";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.liar);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[16].Tag = "liar;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.lol);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[17].Tag = "lol";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.oops);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -872,19 +844,16 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[18].Tag = "oops";
 
             _menuItem.BarBreak = true;
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.sad);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[19].Tag = ":(";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.shhh);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[20].Tag = "shhh";
-            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -892,19 +861,16 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[21].Tag = "sigh ";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.silenced);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[22].Tag = ":X";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.think);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[23].Tag = "thinking;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.ThumbsUp);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -912,19 +878,16 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[24].Tag = "thumbsup;";
 
             _menuItem.BarBreak = true;
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.whistle);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[25].Tag = "whistle;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.wink);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[26].Tag = ";)";
-            _menuItem = null;
 
             //_menuItem.BarBreak = true;
 
@@ -932,13 +895,11 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[27].Tag = "wow ";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.yawn);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[28].Tag = "yawn;";
-            _menuItem = null;
 
             _menuItem = new EmoticonMenuItem(Smileys.zzzzz);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -957,8 +918,6 @@ namespace METAbolt
             cbxInput.Text += _item.Tag.ToString();
             cbxInput.Select(cbxInput.Text.Length, 0);
             //cbxInput.Focus();
-
-            _item.Dispose(); 
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -1022,15 +981,15 @@ namespace METAbolt
                 {
                     if (e.Type == MeanCollisionType.Bump)
                     {
-                        cty = "Bumped in by: (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
+                        cty = "Bumped in by: (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
                     }
                     else if (e.Type == MeanCollisionType.LLPushObject)
                     {
-                        cty = "Pushed by: (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
+                        cty = "Pushed by: (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
                     }
                     else if (e.Type == MeanCollisionType.PhysicalObjectCollide)
                     {
-                        cty = "Physical object collided (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
+                        cty = "Physical object collided (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
                     }
 
                     chatManager.PrintAlertMessage(cty + e.Aggressor.ToString());
@@ -1180,11 +1139,11 @@ namespace METAbolt
                 {
                     avpos.Z = 1024f;
                     dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
-                    sDist = " >[" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
+                    sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
                 }
                 else
                 {
-                    sDist = " [" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
+                    sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
                 }
 
                 string rentry = name + sDist;
@@ -1206,18 +1165,14 @@ namespace METAbolt
                         }
                     }
                 }
-                //else
-                //{
-                //    ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
-                //    item.Font = new Font(item.Font, FontStyle.Bold);
-                //    item.Tag = key;
-                //}
 
-                if (!lvwRadar.Items.ContainsKey(client.Self.Name))
+                string avsnem = client.Self.Name;
+
+                if (!lvwRadar.Items.ContainsKey(avsnem))
                 {
-                    ListViewItem item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
+                    ListViewItem item = lvwRadar.Items.Add(avsnem, avsnem, string.Empty);
                     item.Font = new Font(item.Font, FontStyle.Bold);
-                    item.Tag = key;
+                    item.Tag = client.Self.AgentID;
                 }
                 
                 lvwRadar.EndUpdate();
@@ -1329,11 +1284,11 @@ namespace METAbolt
                 {
                     avpos.Z = 1024f;
                     dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
-                    sDist = " >[" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
+                    sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
                 }
                 else
                 {
-                    sDist = " [" + Convert.ToInt32(dist, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture) + "m]";
+                    sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
                 }
 
                 string rentry = name + sDist + astate;
@@ -1363,9 +1318,11 @@ namespace METAbolt
                     //    item.Tag = av.ID;
                     //}
 
-                    if (!lvwRadar.Items.ContainsKey(client.Self.Name))
+                    string avsnem = client.Self.Name;
+
+                    if (!lvwRadar.Items.ContainsKey(avsnem))
                     {
-                        ListViewItem item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
+                        ListViewItem item = lvwRadar.Items.Add(avsnem, avsnem, string.Empty);
                         item.Font = new Font(item.Font, FontStyle.Bold);
                         item.Tag = av.ID;
                     }
@@ -1394,7 +1351,7 @@ namespace METAbolt
             //string heading = "~";
 
             Quaternion avRot = client.Self.RelativeRotation;
-            
+
             Vector3 vdir = new Vector3(Vector3.Zero);
             vdir.X = 0.0f;
             vdir.Y = 1.0f;
@@ -1450,9 +1407,6 @@ namespace METAbolt
                 //heading = "NE";
                 picCompass.Image = Properties.Resources.c_ne;
             }
-
-            //textBox1.Text = heading;
-            //textBox1.Refresh();
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
@@ -1472,7 +1426,7 @@ namespace METAbolt
 
         public void PrintAvUUID()
         {
-            //chatManager = new ChatTextManager(instance, new RichTextBoxPrinter(instance, rtbChat));
+            chatManager = new ChatTextManager(instance, new RichTextBoxPrinter(instance, rtbChat));
             chatManager.PrintUUID();
         }
 
@@ -1493,7 +1447,7 @@ namespace METAbolt
                 return;
             }
 
-            if (e.FromName.ToLower(CultureInfo.CurrentCulture) == netcom.LoginOptions.FullName.ToLower(CultureInfo.CurrentCulture))
+            if (e.FromName.ToLower() == netcom.LoginOptions.FullName.ToLower())
             {
                 return;
             }
@@ -1574,12 +1528,12 @@ namespace METAbolt
 
             string[] inputArgs = input.Split(' ');
 
-            if (inputArgs[0].StartsWith("//", StringComparison.CurrentCulture)) //Chat on previously used channel
+            if (inputArgs[0].StartsWith("//")) //Chat on previously used channel
             {
                 string message = string.Join(" ", inputArgs).Substring(2);
                 netcom.ChatOut(message, type, previousChannel);
             }
-            else if (inputArgs[0].StartsWith("/", StringComparison.CurrentCulture)) //Chat on specific channel
+            else if (inputArgs[0].StartsWith("/")) //Chat on specific channel
             {
                 string message = string.Empty;
                 string number = inputArgs[0].Substring(1);
@@ -1591,7 +1545,7 @@ namespace METAbolt
                 // VidaOrenstein on METAforum fix
                 //string message = string.Join(" ", inputArgs, 1, inputArgs.GetUpperBound(0) - 1);
 
-                if (input.StartsWith("/me ", StringComparison.CurrentCulture))
+                if (input.StartsWith("/me "))
                 {
                     message = input;
                 }
@@ -1640,7 +1594,7 @@ namespace METAbolt
             {
                 tbSay.Enabled = true;
 
-                if (!cbxInput.Text.StartsWith("/", StringComparison.CurrentCulture))
+                if (!cbxInput.Text.StartsWith("/"))
                 {
                     if (!instance.State.IsTyping)
                         instance.State.SetTyping(true);
@@ -1999,32 +1953,32 @@ namespace METAbolt
 
         private void rtbChat_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText.StartsWith("http://slurl.", StringComparison.CurrentCulture))
+            if (e.LinkText.StartsWith("http://slurl."))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double x = Convert.ToDouble(split[5].ToString());
+                    double y = Convert.ToDouble(split[6].ToString());
+                    double z = Convert.ToDouble(split[7].ToString());
 
                     (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).ShowDialog();
                 }
                 catch { ; }
 
             }
-            if (e.LinkText.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
+            if (e.LinkText.StartsWith("http://maps.secondlife"))
             {
                 try
                 {
                     // Open up the TP form here
                     string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double x = Convert.ToDouble(split[5].ToString());
+                    double y = Convert.ToDouble(split[6].ToString());
+                    double z = Convert.ToDouble(split[7].ToString());
 
                     (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).ShowDialog();
                 }
@@ -2056,7 +2010,7 @@ namespace METAbolt
             //    //frmGroupInfo frm = new frmGroupInfo(uuid, instance);
             //    //frm.Show();
             //}
-            else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCulture) || e.LinkText.StartsWith("https://", StringComparison.CurrentCulture))
+            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
             }
@@ -2074,16 +2028,6 @@ namespace METAbolt
         private void button3_Click(object sender, EventArgs e)
         {
             rgt();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            fwd();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            bck();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -2104,132 +2048,160 @@ namespace METAbolt
         protected override bool ProcessKeyPreview(ref System.Windows.Forms.Message m)
         {
             int key = m.WParam.ToInt32();
+            const int WM_SYSKEYDOWN = 0x104;
 
             // Fix submitted by METAforums user Spirit 25/09/2009
             // TO DO: This should be a setting in preferences so that
             // it works both ways...
             if (cbxInput.Focused) return false;
 
-           
-            if (instance.State.IsFlying)
+            switch (key)
             {
-                switch (key)
-                {
-                    case 33: // <--- page up.
-                        up();
-                        break;
-                    case 34: // <--- page down.
-                        dwn();
-                        break;
-                    case 37: // <--- left arrow.
-                        lft();
-                        break;
-                    case 38: // <--- up arrow.
-                        fwd();
-                        break;
-                    case 39: // <--- right arrow.
-                        rgt();
-                        break;
-                    case 40: // <--- down arrow.
-                        bck();
-                        break;
-                }
-            }
-            else
-            {
-                switch (key)
-                {
-                    case 33: // <--- page up.
-                        up();
-                        break;
-                    case 34: // <--- page down.
-                        dwn();
-                        break;
-                    case 37: // <--- left arrow.
-                        lft();
-                        break;
-                    case 38: // <--- up arrow.
-                        fwd();
-                        break;
-                    case 39: // <--- right arrow.
-                        rgt();
-                        break;
-                    case 40: // <--- down arrow.
-                        bck();
-                        break;
-                }
+                case 33: // <--- page up.
+                    if ((m.Msg == WM_KEYDOWN) || (m.Msg == WM_SYSKEYDOWN))
+                    {
+                        up(true);
+                    }
+                    else
+                    {
+                        up(false);
+                    }
+                    break;
+                case 34: // <--- page down.
+                    if ((m.Msg == WM_KEYDOWN) || (m.Msg == WM_SYSKEYDOWN))
+                    {
+                        dwn(true);
+                    }
+                    else
+                    {
+                        dwn(false);
+                    }
+                    break;
+                case 37: // <--- left arrow.
+                    lft();
+                    break;
+                case 38: // <--- up arrow.
+                    if ((m.Msg == WM_KEYDOWN) || (m.Msg == WM_SYSKEYDOWN))
+                    {
+                        fwd(true);
+                    }
+                    else
+                    {
+                        fwd(false);
+                    }
+                    break;
+                case 39: // <--- right arrow.
+                    rgt();
+                    break;
+                case 40: // <--- down arrow.
+                    if ((m.Msg == WM_KEYDOWN) || (m.Msg == WM_SYSKEYDOWN))
+                    {
+                        bck(true);
+                    }
+                    else
+                    {
+                        bck(false);
+                    }
+                    break;
             }
 
             return false;
         }
 
-        private void up()
+        private void up(bool goup)
         {
-            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_UP_POS, client.Self.Movement.Camera.Position,
-                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
-                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
-                    AgentState.None, true);
+            //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_UP_POS, client.Self.Movement.Camera.Position,
+            //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+            //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+            //        AgentState.None, true);
+
+            if (goup)
+            {
+                client.Self.Movement.AutoResetControls = false;
+                client.Self.Movement.UpPos = true;
+                client.Self.Movement.SendUpdate();
+            }
+            else
+            {
+                client.Self.Movement.UpPos = false;
+                client.Self.Movement.SendUpdate();
+                client.Self.Movement.AutoResetControls = true;
+            }
         }
 
-        private void dwn()
+        private void dwn(bool godown)
         {
-            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_UP_NEG, client.Self.Movement.Camera.Position,
-                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
-                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
-                    AgentState.None, true);
+            //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_UP_NEG, client.Self.Movement.Camera.Position,
+            //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+            //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+            //        AgentState.None, true);
+
+            if (godown)
+            {
+                client.Self.Movement.AutoResetControls = false;
+                client.Self.Movement.UpNeg = true;
+                client.Self.Movement.SendUpdate();
+            }
+            else
+            {
+                client.Self.Movement.UpNeg = false;
+                client.Self.Movement.SendUpdate();
+                client.Self.Movement.AutoResetControls = true;
+            }
         }
 
-        private void ffwd()
-        {
-            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_PITCH_POS, client.Self.Movement.Camera.Position,
-                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
-                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
-                    AgentState.None, true);
-        }
-
-        private void fwd()
+        private void fwd(bool goforward)
         {
             //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_AT_POS, client.Self.Movement.Camera.Position,
             //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
             //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
             //        AgentState.None, true);
 
-            client.Self.Movement.AutoResetControls = false;
-            client.Self.Movement.AtPos = true;
-            client.Self.Movement.SendUpdate();
+            if (goforward)
+            {
+                client.Self.Movement.AutoResetControls = false;
+                client.Self.Movement.AtPos = true;
+                client.Self.Movement.SendUpdate();
+            }
+            else
+            {
+                client.Self.Movement.AtPos = false;
+                client.Self.Movement.SendUpdate();
+                client.Self.Movement.AutoResetControls = true;
+            }
         }
 
-        private void bck()
+        private void bck(bool goback)
         {
             //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_AT_NEG, client.Self.Movement.Camera.Position,
             //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
             //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
             //        AgentState.None, true);
 
-            client.Self.Movement.AutoResetControls = false;
-            client.Self.Movement.AtNeg = true;
-            client.Self.Movement.SendUpdate();
+            if (goback)
+            {
+                client.Self.Movement.AutoResetControls = false;
+                client.Self.Movement.AtNeg = true;
+                client.Self.Movement.SendUpdate();
+            }
+            else
+            {
+                client.Self.Movement.AtNeg = false;
+                client.Self.Movement.SendUpdate();
+                client.Self.Movement.AutoResetControls = true;
+            }
         }
 
         private void lft()
-        {   
-            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_LEFT_POS, client.Self.Movement.Camera.Position,
-                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
-                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
-                    AgentState.None, true);
-        }
-
-        private void rgt()
         {
-            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_LEFT_NEG, client.Self.Movement.Camera.Position,
-                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
-                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
-                    AgentState.None, true);
-        }
+            //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_LEFT_POS, client.Self.Movement.Camera.Position,
+            //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+            //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+            //        AgentState.None, true);
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            client.Self.AnimationStart(Animations.TURNLEFT, false); 
+            // turn left
+
+            client.Self.AnimationStart(Animations.TURNLEFT, false);
 
             ahead += 45.0;
             if (ahead > 360) ahead = 135.0;
@@ -2237,8 +2209,30 @@ namespace METAbolt
             client.Self.Movement.UpdateFromHeading(ahead, true);
 
             client.Self.Movement.FinishAnim = true;
-            System.Threading.Thread.Sleep(200);    
+            System.Threading.Thread.Sleep(200);
             client.Self.AnimationStop(Animations.TURNLEFT, false);
+        }
+
+        private void rgt()
+        {
+            //client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_LEFT_NEG, client.Self.Movement.Camera.Position,
+            //        client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+            //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+            //        AgentState.None, true);
+
+            // turn right
+
+            client.Self.AnimationStart(Animations.TURNRIGHT, false);
+
+            ahead += -45.0;
+            if (ahead > 360) ahead = 135.0;
+
+
+            client.Self.Movement.UpdateFromHeading(ahead, true);
+
+            client.Self.Movement.FinishAnim = true;
+            System.Threading.Thread.Sleep(200);
+            client.Self.AnimationStop(Animations.TURNRIGHT, false);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -2253,26 +2247,6 @@ namespace METAbolt
             }
 
             instance.State.SetFlying(flying);
-        }
-
-        //private void timer2_Tick(object sender, EventArgs e)
-        //{
-        //    CheckAutoSit();
-        //}
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            client.Self.AnimationStart(Animations.TURNRIGHT, false);
-
-            ahead += -45.0;
-            if (ahead > 360) ahead = 135.0;
-
-
-            client.Self.Movement.UpdateFromHeading(ahead, true);
-
-            client.Self.Movement.FinishAnim = true;
-            System.Threading.Thread.Sleep(200);
-            client.Self.AnimationStop(Animations.TURNRIGHT, false);
         }
 
         private void shoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2336,7 +2310,7 @@ namespace METAbolt
                 }
             }
 
-            saveFile1.Dispose();  
+            saveFile1.Dispose(); 
         }
 
         private void saveChatToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2508,21 +2482,19 @@ namespace METAbolt
         private delegate void OnUpdateMiniMap(Simulator ssim);
         private void UpdateMiniMap(Simulator ssim)
         {
-            if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { UpdateMiniMap(sim); });
+            if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { UpdateMiniMap(ssim); });
             else
             {
                 try
                 {
                     if (ssim != client.Network.CurrentSim) return;
 
-                    // SIM stats
-                    Simulator sims = sim = ssim;   // client.Network.Simulators[0];
+                    Bitmap nbmp = new Bitmap(256, 256);
 
-                    Bitmap newbmp = new Bitmap(256, 256);
-                    Bitmap bmp = _MapLayer == null ? newbmp : (Bitmap)_MapLayer.Clone();
+                    Bitmap bmp = _MapLayer == null ? nbmp : (Bitmap)_MapLayer.Clone();
                     Graphics g = Graphics.FromImage(bmp);
 
-                    newbmp.Dispose(); 
+                    nbmp.Dispose(); 
 
                     if (_MapLayer == null)
                     {
@@ -2533,19 +2505,22 @@ namespace METAbolt
                     else
                     {
                         label11.Visible = false;
-                    }                    
+                    }
+
+                    // SIM stats
+                    Simulator sims = sim = ssim;   // client.Network.Simulators[0];
 
                     try
                     {
                         //sims = client.Network.Simulators[0];
 
-                        label4.Text = "Ttl objects: " + sims.Stats.Objects.ToString(CultureInfo.CurrentCulture);
-                        label5.Text = "Scripted objects: " + sims.Stats.ScriptedObjects.ToString(CultureInfo.CurrentCulture);
+                        label4.Text = "Ttl objects: " + sims.Stats.Objects.ToString();
+                        label5.Text = "Scripted objects: " + sims.Stats.ScriptedObjects.ToString();
                         label8.Text = client.Network.CurrentSim.Name;
 
                         Simulator csim = client.Network.CurrentSim;
 
-                        label9.Text = "FPS: " + csim.Stats.FPS.ToString(CultureInfo.CurrentCulture);
+                        label9.Text = "FPS: " + csim.Stats.FPS.ToString();
 
                         // Maximum value changes for OSDGrid compatibility V 0.9.32.0
 
@@ -2556,7 +2531,7 @@ namespace METAbolt
 
                         progressBar7.Value = csim.Stats.FPS;
 
-                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString(CultureInfo.CurrentCulture);
+                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString();
 
                         if ((int)(csim.Stats.Dilation * 10) > progressBar1.Maximum)
                         {
@@ -2574,18 +2549,17 @@ namespace METAbolt
                     Vector3 myPos = new Vector3(0,0,0);
                     string strInfo = string.Empty;
 
-                    myPos = instance.SIMsittingPos();
-
                     if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
                     {
+                        myPos = instance.SIMsittingPos();
                         label12.Text = sims.SimVersion;
-                        strInfo = string.Format(CultureInfo.CurrentCulture,"Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count + 1);
+                        strInfo = string.Format("Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count + 1);
                     }
                     else
                     {
                         try
                         {
-                            //myPos = sim.AvatarPositions[client.Self.AgentID];
+                            myPos = sim.AvatarPositions[client.Self.AgentID];
 
                             try
                             {
@@ -2603,7 +2577,7 @@ namespace METAbolt
                                 label12.Text = "na";
                             }
 
-                            strInfo = string.Format(CultureInfo.CurrentCulture,"Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
+                            strInfo = string.Format("Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
                         }
                         catch { ; }
                     }
@@ -2629,28 +2603,20 @@ namespace METAbolt
 
                         if (pos.Key != client.Self.AgentID)
                         {
-                            if (pos.Value.Z < 0.1f)
+                            if (myPos.Z - pos.Value.Z > 20)
                             {
-                                g.FillRectangle(Brushes.MediumBlue, rect);
+                                g.FillRectangle(Brushes.DarkRed, rect);
                                 g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
+                            }
+                            else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
+                            {
+                                g.FillEllipse(Brushes.LightGreen, rect);
+                                g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
                             }
                             else
                             {
-                                if (myPos.Z - pos.Value.Z > 20)
-                                {
-                                    g.FillRectangle(Brushes.DarkRed, rect);
-                                    g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
-                                }
-                                else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
-                                {
-                                    g.FillEllipse(Brushes.LightGreen, rect);
-                                    g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
-                                }
-                                else
-                                {
-                                    g.FillRectangle(Brushes.MediumBlue, rect);
-                                    g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
-                                }
+                                g.FillRectangle(Brushes.MediumBlue, rect);
+                                g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
                             }
 
                             Point mouse = new Point(x, y);
@@ -2716,6 +2682,8 @@ namespace METAbolt
                                 {
                                     BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { sav });
                                 }
+
+                                
                             }
                         }
                     }
@@ -2723,16 +2691,10 @@ namespace METAbolt
 
                     // Draw self position
                     Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
-
-                    SolidBrush sb = new SolidBrush(Color.Yellow);
-                    Pen pen = new Pen(Brushes.Red, 3);
-
-                    g.FillEllipse(sb, myrect);
-                    g.DrawEllipse(pen, myrect);
+                    g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
+                    g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
 
                     g.DrawImage(bmp, 0, 0);
-                    sb.Dispose();
-                    pen.Dispose();  
 
                     // Draw compass points
                     StringFormat strFormat = new StringFormat();
@@ -2742,35 +2704,31 @@ namespace METAbolt
                     //g.FillEllipse(new SolidBrush(Color.Black), myrect);
                     //g.DrawEllipse(new Pen(Brushes.Red, 2), myrect);
 
-                    Font font1 = new Font("Arial", 13);
-                    Font font2 = new Font("Arial", 10, FontStyle.Bold);
-
-                    g.DrawString("N", font1, Brushes.Black, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("N", font2, Brushes.White, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("N", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("N", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
 
                     strFormat.LineAlignment = StringAlignment.Center;
                     strFormat.Alignment = StringAlignment.Near;
 
-                    g.DrawString("W", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("W", font2, Brushes.White, new RectangleF(2, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("W", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("W", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(2, 0, bmp.Width, bmp.Height), strFormat);
 
                     strFormat.LineAlignment = StringAlignment.Center;
                     strFormat.Alignment = StringAlignment.Far;
 
-                    g.DrawString("E", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("E", font2, Brushes.White, new RectangleF(-2, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("E", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("E", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(-2, 0, bmp.Width, bmp.Height), strFormat);
 
                     strFormat.LineAlignment = StringAlignment.Far;
                     strFormat.Alignment = StringAlignment.Center;
 
-                    g.DrawString("S", font1, Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
-                    g.DrawString("S", font2, Brushes.White, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("S", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
+                    g.DrawString("S", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
 
                     world.Image = bmp;
                     //world.Cursor = Cursors.NoMove2D;
 
-                    font1.Dispose();
-                    font2.Dispose();  
+                    strFormat.Dispose(); 
                     g.Dispose();
 
                     GetCompass();
@@ -2893,7 +2851,7 @@ namespace METAbolt
                 {
                     UUID akey = (UUID)CurrentLoc.LocationName;
 
-                    string apstn = "\nCoords.: " + CurrentLoc.Position.X.ToString(CultureInfo.CurrentCulture) + "/" + CurrentLoc.Position.Y.ToString(CultureInfo.CurrentCulture) + "/" + CurrentLoc.Position.Z.ToString(CultureInfo.CurrentCulture);
+                    string apstn = "\nCoords.: " + CurrentLoc.Position.X.ToString() + "/" + CurrentLoc.Position.Y.ToString() + "/" + CurrentLoc.Position.Z.ToString();
 
                     world.Cursor = Cursors.Hand;
 
@@ -3034,68 +2992,6 @@ namespace METAbolt
             //}
         }
 
-        private void world_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //private void LinkClicked(object sender, EventArgs e)
-        //{
-        //    HtmlElement link = webBrowser1.Document.ActiveElement;
-        //    clickedurl = link.GetAttribute("href");
-        //}
-
-        //private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(clickedurl))
-        //    {
-        //        HtmlElement link = webBrowser1.Document.ActiveElement;
-        //        clickedurl = link.GetAttribute("href");
-        //    }
-
-        //    e.Cancel = true;
-
-        //    if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCulture))
-        //    {
-        //        // Open up the TP form here
-        //        string[] split = clickedurl.Split(new Char[] { '/' });
-        //        string ssim = split[4].ToString();
-        //        double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-        //        double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-        //        double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-
-        //        (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
-        //        clickedurl = string.Empty;
-        //        return;
-        //    }
-        //    if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCulture))
-        //    {
-        //        // Open up the TP form here
-        //        string[] split = clickedurl.Split(new Char[] { '/' });
-        //        string ssim = split[4].ToString();
-        //        double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-        //        double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-        //        double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
-
-        //        (new frmTeleport(instance, ssim, (float)x, (float)y, (float)z)).ShowDialog();
-        //        clickedurl = string.Empty;
-        //        return;
-        //    }
-
-        //    System.Diagnostics.Process.Start(clickedurl);
-        //    clickedurl = string.Empty;  
-        //}
-
-        private void cbxInput_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void rtbChat_KeyDown(object sender, KeyEventArgs e)
         {
             //if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
@@ -3111,12 +3007,6 @@ namespace METAbolt
 
         private void ChatConsole_SizeChanged(object sender, EventArgs e)
         {
-            if (!formloading)
-            {
-                formloading = true;
-                return;
-            }            
-
             newsize = tabPage2.Width - 30;
 
             px = world.Top;
@@ -3552,13 +3442,13 @@ namespace METAbolt
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             vgate.MicLevel = trackBar1.Value;
-            toolTip1.SetToolTip(trackBar1, "Volume: " + trackBar1.Value.ToString(CultureInfo.CurrentCulture)); 
+            toolTip1.SetToolTip(trackBar1, "Volume: " + trackBar1.Value.ToString()); 
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             vgate.SpkrLevel = trackBar2.Value;
-            toolTip1.SetToolTip(trackBar2, "Volume: " + trackBar2.Value.ToString(CultureInfo.CurrentCulture));
+            toolTip1.SetToolTip(trackBar2, "Volume: " + trackBar2.Value.ToString());
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -3571,7 +3461,17 @@ namespace METAbolt
             }  
         }
 
-        private void toolStripButton1_Click_3(object sender, EventArgs e)
+        private void toolBar1_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        {
+
+        }
+
+        private void world_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbtnHelp_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/Quick.aspx");
         }
@@ -3581,19 +3481,44 @@ namespace METAbolt
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/How-to-enable-VOICE.ashx");
         }
 
-        private void pictureBox4_MouseHover(object sender, EventArgs e)
+        private void button5_KeyDown(object sender, KeyEventArgs e)
         {
-            toolTip.Show(pictureBox1);
+            fwd(true);
         }
 
-        private void pictureBox4_MouseLeave(object sender, EventArgs e)
+        private void button5_KeyUp(object sender, KeyEventArgs e)
         {
-            toolTip.Close();
+            fwd(false);
         }
 
-        private void ChatConsole_Load(object sender, EventArgs e)
+        private void button4_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            bck(true);
+        }
+
+        private void button4_KeyUp(object sender, KeyEventArgs e)
+        {
+            bck(false);
+        }
+
+        private void button5_MouseDown(object sender, MouseEventArgs e)
+        {
+            fwd(true);
+        }
+
+        private void button5_MouseUp(object sender, MouseEventArgs e)
+        {
+            fwd(false);
+        }
+
+        private void button4_MouseDown(object sender, MouseEventArgs e)
+        {
+            bck(true);
+        }
+
+        private void button4_MouseUp(object sender, MouseEventArgs e)
+        {
+            bck(false);
         }
     }
 }

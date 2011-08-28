@@ -28,7 +28,6 @@ namespace METAbolt
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindPeopleConsole));
             this.lvwFindPeople = new System.Windows.Forms.ListView();
             this.chdName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chdOnline = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,7 +37,7 @@ namespace METAbolt
             // 
             // lvwFindPeople
             // 
-            this.lvwFindPeople.BackColor = System.Drawing.Color.White;
+            this.lvwFindPeople.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwFindPeople.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdOnline});
@@ -65,10 +64,10 @@ namespace METAbolt
             // pPeople
             // 
             this.pPeople.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pPeople.Image = ((System.Drawing.Image)(resources.GetObject("pPeople.Image")));
-            this.pPeople.Location = new System.Drawing.Point(195, 132);
+            this.pPeople.Image = global::METAbolt.Properties.Resources.wait30trans;
+            this.pPeople.Location = new System.Drawing.Point(226, 153);
             this.pPeople.Name = "pPeople";
-            this.pPeople.Size = new System.Drawing.Size(76, 78);
+            this.pPeople.Size = new System.Drawing.Size(30, 30);
             this.pPeople.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pPeople.TabIndex = 45;
             this.pPeople.TabStop = false;
@@ -79,7 +78,6 @@ namespace METAbolt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pPeople);
             this.Controls.Add(this.lvwFindPeople);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

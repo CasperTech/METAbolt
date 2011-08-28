@@ -27,8 +27,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Globalization;
-
 
 namespace METAbolt
 {
@@ -54,8 +52,7 @@ namespace METAbolt
                 {
                     METAboltInstance instance = new METAboltInstance(true, args);
                     Application.Run(instance.MainForm);
-                    //instance = null;
-                    instance.Dispose();  
+                    instance = null;
                 }
             }
             else
@@ -64,13 +61,12 @@ namespace METAbolt
                 {
                     METAboltInstance instance = new METAboltInstance(true);
                     Application.Run(instance.MainForm);
-                    //instance = null;
-                    instance.Dispose();
+                    instance = null;
                 }
                 catch (Exception ex)
                 {
                     //messagebox of last resort
-                    DialogResult res = MessageBox.Show(String.Format(CultureInfo.CurrentCulture,"Message: {0}, From: {1}, Stack: {2}", ex.Message, ex.Source, ex.StackTrace), "METABolt has encountered an unrecovarable error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+                    DialogResult res = MessageBox.Show(String.Format("Message: {0}, From: {1}, Stack: {2}", ex.Message, ex.Source, ex.StackTrace), "METABolt has encountered an unrecovarable error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
                     if (res != DialogResult.Retry) { throw ex; }
                 }
             } 

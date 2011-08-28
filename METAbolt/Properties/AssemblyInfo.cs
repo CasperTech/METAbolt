@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("METAbolt")]
-[assembly: AssemblyDescription("SL text client/reader")]
+[assembly: AssemblyDescription("Metaverse text client")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.metabolt.net")]
 [assembly: AssemblyProduct("METAbolt")]

@@ -99,7 +99,7 @@ namespace METAbolt
 
             if (pluginschanged)
             {
-                if (plugins.EndsWith("|", StringComparison.CurrentCulture))
+                if (plugins.EndsWith("|"))
                 {
                     plugins = plugins.Substring(0, plugins.Length - 1);    
                 }

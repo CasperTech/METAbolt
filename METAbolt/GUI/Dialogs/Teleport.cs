@@ -36,8 +36,6 @@ using SLNetworkComm;
 using System.Net;
 using System.Diagnostics;
 using ExceptionReporting;
-using System.Globalization;
-
 
 namespace METAbolt
 {
@@ -148,9 +146,7 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(() => Grid_OnGridRegion(sender, e)));
                 return;
             }
-
-            if (!this.IsHandleCreated) return;
-
+            
             BeginInvoke(new MethodInvoker(delegate()
             {
                 RegionSearchResult(e.Region);
@@ -198,8 +194,6 @@ namespace METAbolt
                 return;
             }
 
-            if (!this.IsHandleCreated) return;
-
             try
             {
                 switch (e.Status)
@@ -242,8 +236,6 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(() => netcom_Teleporting(sender, e)));
                 return;
             }
-
-            if (!this.IsHandleCreated) return;
 
             try
             {
@@ -411,8 +403,8 @@ namespace METAbolt
                 {
                     peeps = " people";
                 }
-
-                string s = System.Convert.ToString(itemToDraw.Region.Agents, CultureInfo.CurrentCulture);
+                
+                string s = System.Convert.ToString(itemToDraw.Region.Agents);
 
                 e.Graphics.DrawString(s + peeps, e.Font, textBrush, new PointF(leftTextMargin + stringSize.Width + 6.0f, topTextMargin));
             }
