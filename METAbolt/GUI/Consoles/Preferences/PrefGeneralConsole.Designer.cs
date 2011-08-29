@@ -760,8 +760,9 @@ namespace METAbolt
             // 
             // checkBox12
             // 
-            this.checkBox12.AccessibleDescription = "Transfers received funds to master avatar as and when they are received";
-            this.checkBox12.AccessibleName = "Transfer funds option";
+            this.checkBox12.AccessibleDescription = "Enforce security so that LSL commands are only accepted from the specified avatar" +
+                " and object";
+            this.checkBox12.AccessibleName = "Enforce LSL security";
             this.checkBox12.AutoSize = true;
             this.checkBox12.Location = new System.Drawing.Point(79, 147);
             this.checkBox12.Name = "checkBox12";

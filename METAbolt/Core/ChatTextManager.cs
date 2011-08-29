@@ -741,7 +741,8 @@ namespace METAbolt
 
                     if (item.FromUUID != mavatar && item.FromUUID != mobject)
                     {
-                        PrintAlertMessage("An unauthorised LSL command was received from " + item.FromName + "(" + item.FromUUID + ") and IGNORED. Command: " + smsg.Trim());
+                        string icmd = smsg.Replace(this.instance.Config.CurrentConfig.CommandInID, string.Empty);
+                        PrintAlertMessage("An unauthorised LSL command was received from " + item.FromName + "(" + item.FromUUID + ") and IGNORED. Command: " + icmd.Trim());
                         return;
                     }
                 }

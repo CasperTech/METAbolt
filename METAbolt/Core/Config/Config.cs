@@ -415,7 +415,7 @@ namespace METAbolt
             config.Set("AdRemove", adremove);
             config.Set("MasterAvatar", masteravatar);
             config.Set("MasterObject", masterobject);
-            config.Set("EnforceLSLsecurity", enforcelslsecurity);   
+            config.Set("EnforceLSLsecurity", enforcelslsecurity.ToString(CultureInfo.CurrentCulture));   
             config.Set("AutoTransfer", autotransfer.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableTrayIcon", disabletrayicon.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString(CultureInfo.CurrentCulture));

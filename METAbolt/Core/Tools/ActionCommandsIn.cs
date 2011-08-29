@@ -55,15 +55,18 @@ namespace METAbolt
 
         public string ProcessCommand(string command, string name, UUID fromid)
         {
-            tconsole.DisplayChatScreen("Recevided LSL (action) command: " + command + " >>> from " + name + " (" + fromid + ")");
+            string icmd = command.Replace(this.instance.Config.CurrentConfig.CommandInID, string.Empty);
+
+            tconsole.DisplayChatScreen("Recevided LSL (action) command: " + icmd + " >>> from " + name + " (" + fromid + ")");
 
             char[] deli = "|".ToCharArray();
             string[] sGrp = command.Split(deli);
 
             // Check password first and exit if not valid
             string pwd = sGrp[1].Trim();
+            string md5pwd = GetMD5();
 
-            if (pwd != GetMD5()) return "LSL Command: Command ignored due to incorrect METAbolt password";
+            if (pwd != md5pwd) return "LSL Command: Command ignored due to incorrect METAbolt password";
 
             string cmdtype = sGrp[2].Trim();
             string msg = string.Empty;

@@ -59,6 +59,7 @@ namespace METAbolt
         public FriendsConsole(METAboltInstance instance)
         {
             InitializeComponent();
+            Disposed += new EventHandler(FriendsConsole_Disposed);
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -75,9 +76,7 @@ namespace METAbolt
             client.Friends.FriendRightsUpdate += new EventHandler<FriendInfoEventArgs>(Friends_OnFriendRights);
             //client.Avatars.DisplayNameUpdate += new EventHandler<DisplayNameUpdateEventArgs>(Avatar_DisplayNameUpdated);    
 
-            Disposed += new EventHandler(FriendsConsole_Disposed);
-
-            InitializeFriendsList();
+            //InitializeFriendsList();
         }
 
         private void SetExceptionReporter()
@@ -124,11 +123,11 @@ namespace METAbolt
 
         public void InitializeFriendsList()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => InitializeFriendsList()));
-                return;
-            }
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => InitializeFriendsList()));
+            //    return;
+            //}
 
             List<FriendInfo> friendslist = client.Friends.FriendList.FindAll(delegate(FriendInfo friend) { return true; });
 
@@ -141,14 +140,14 @@ namespace METAbolt
 
                 foreach (FriendInfo friend in friendslist)
                 {
-                    bool dnavailable = client.Avatars.DisplayNamesAvailable();
+                    //bool dnavailable = client.Avatars.DisplayNamesAvailable();
 
-                    if (dnavailable)
-                    {
-                        List<UUID> avIDs = new List<UUID>();
-                        avIDs.Add(friend.UUID);
-                        //client.Avatars.GetDisplayNames(avIDs, DisplayNameReceived);
-                    }
+                    //if (dnavailable)
+                    //{
+                    //    List<UUID> avIDs = new List<UUID>();
+                    //    avIDs.Add(friend.UUID);
+                    //    //client.Avatars.GetDisplayNames(avIDs, DisplayNameReceived);
+                    //}
 
                     lbxFriends.Items.Add(new FriendsListItem(friend));
                 }
@@ -206,11 +205,11 @@ namespace METAbolt
 
         private void RefreshFriendsList()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => RefreshFriendsList()));
-                return;
-            }
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => RefreshFriendsList()));
+            //    return;
+            //}
 
             InitializeFriendsList();
             SetFriend(selectedFriend);
@@ -318,11 +317,11 @@ namespace METAbolt
 
         private void SetFriend(FriendInfo friend)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(() => SetFriend(friend)));
-                return;
-            }
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => SetFriend(friend)));
+            //    return;
+            //}
 
             if (friend == null) return;
             selectedFriend = friend;
@@ -366,11 +365,15 @@ namespace METAbolt
             float stringY = e.Bounds.Top + 2 + ((Properties.Resources.green_orb.Height / 2) - (stringSize.Height / 2));
 
             if (itemToDraw.Friend.IsOnline)
+            {
                 e.Graphics.DrawImage(Properties.Resources.green_orb, e.Bounds.Left + 2, e.Bounds.Top + 2);
+            }
             else
+            {
                 e.Graphics.DrawImage(Properties.Resources.green_orb_off, e.Bounds.Left + 2, e.Bounds.Top + 2);
+            }
             
-            e.Graphics.DrawString(itemToDraw.Friend.Name, textFont, textBrush, stringX, stringY);
+            e.Graphics.DrawString(" " + itemToDraw.Friend.Name, textFont, textBrush, stringX, stringY);
 
             e.DrawFocusRectangle();
 
