@@ -303,6 +303,7 @@ namespace METAbolt
             config.CurrentConfig.StartMinimised = chkMinimised.Checked;
             config.CurrentConfig.AdRemove = txtAdRemove.Text.Trim();
             config.CurrentConfig.MasterAvatar = txtMavatar.Text.Trim();
+            config.CurrentConfig.MasterObject = txtMObject.Text.Trim(); 
             config.CurrentConfig.AutoTransfer = chkAutoTransfer.Checked;
             config.CurrentConfig.DisableTrayIcon = chkTray.Checked;
             config.CurrentConfig.DisableTyping = chkTyping.Checked;

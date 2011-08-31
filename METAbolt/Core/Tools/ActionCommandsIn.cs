@@ -323,13 +323,29 @@ namespace METAbolt
                 case "FOLLOW":
                     string flname = sGrp[3].Trim();
 
+                    //if (instance.State.FollowName != flname)
+                    //{
+                    //    instance.State.Follow(name);
+                    //}
+                    //else
+                    //{
+                    //    instance.State.Follow(string.Empty);
+                    //}
+
                     if (string.IsNullOrEmpty(flname))
                     {
                         instance.State.Follow(string.Empty);
                     }
                     else
                     {
-                        instance.State.Follow(flname);
+                        if (instance.State.FollowName != flname)
+                        {
+                            instance.State.Follow(flname);
+                        }
+                        else
+                        {
+                            instance.State.Follow(string.Empty);
+                        }
                     }
                     break;
 

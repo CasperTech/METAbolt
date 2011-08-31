@@ -71,6 +71,8 @@ namespace METAbolt
             this.chkTranslate = new System.Windows.Forms.CheckBox();
             this.rtbChat = new Khendys.Controls.ExRichTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.picCompass = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -654,6 +656,8 @@ namespace METAbolt
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel5.Controls.Add(this.button8);
+            this.panel5.Controls.Add(this.button6);
             this.panel5.Controls.Add(this.picCompass);
             this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.label19);
@@ -673,6 +677,40 @@ namespace METAbolt
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(182, 105);
             this.panel5.TabIndex = 10;
+            // 
+            // button8
+            // 
+            this.button8.AccessibleDescription = "Walk forward";
+            this.button8.AccessibleName = "Motion forward";
+            this.button8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button8.BackgroundImage = global::METAbolt.Properties.Resources.arrow_left;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.button8.Location = new System.Drawing.Point(1, 25);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(29, 29);
+            this.button8.TabIndex = 43;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button8_MouseDown);
+            // 
+            // button6
+            // 
+            this.button6.AccessibleDescription = "Walk forward";
+            this.button6.AccessibleName = "Motion forward";
+            this.button6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button6.BackgroundImage = global::METAbolt.Properties.Resources.arrow_right;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.button6.Location = new System.Drawing.Point(57, 25);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(29, 29);
+            this.button6.TabIndex = 42;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button6_MouseDown);
             // 
             // picCompass
             // 
@@ -826,7 +864,7 @@ namespace METAbolt
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(1, 26);
+            this.button2.Location = new System.Drawing.Point(1, 66);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(29, 29);
             this.button2.TabIndex = 14;
@@ -861,7 +899,7 @@ namespace METAbolt
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button3.Location = new System.Drawing.Point(58, 26);
+            this.button3.Location = new System.Drawing.Point(57, 66);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(29, 29);
             this.button3.TabIndex = 12;
@@ -1735,5 +1773,7 @@ namespace METAbolt
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ToolStripButton tbtnHelp;
         private System.Windows.Forms.PictureBox picAutoSit;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button6;
     }
 }

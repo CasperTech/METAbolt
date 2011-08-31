@@ -3520,5 +3520,41 @@ namespace METAbolt
         {
             bck(false);
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //WalkRight();
+        }
+
+        private void WalkRight()
+        {
+            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_LEFT_NEG, client.Self.Movement.Camera.Position,
+                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+                    AgentState.None, true);
+        }
+
+        private void button6_MouseDown(object sender, MouseEventArgs e)
+        {
+            WalkRight();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            //WalkLeft();
+        }
+
+        private void WalkLeft()
+        {
+            client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_LEFT_POS, client.Self.Movement.Camera.Position,
+                    client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+                    client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+                    AgentState.None, true);
+        }
+
+        private void button8_MouseDown(object sender, MouseEventArgs e)
+        {
+            WalkLeft();
+        }
     }
 }
