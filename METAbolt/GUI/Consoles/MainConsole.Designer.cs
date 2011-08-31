@@ -54,6 +54,8 @@ namespace METAbolt
             this.cbxLocation = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnlLoggingIn.SuspendLayout();
             this.pnlLoginPage.SuspendLayout();
             this.pnlLoginPrompt.SuspendLayout();
@@ -152,6 +154,8 @@ namespace METAbolt
             this.pnlLoginPrompt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLoginPrompt.BackColor = System.Drawing.Color.White;
+            this.pnlLoginPrompt.Controls.Add(this.button2);
+            this.pnlLoginPrompt.Controls.Add(this.button1);
             this.pnlLoginPrompt.Controls.Add(this.txtFirstName);
             this.pnlLoginPrompt.Controls.Add(this.cboUserList);
             this.pnlLoginPrompt.Controls.Add(this.chkCmd);
@@ -350,6 +354,30 @@ namespace METAbolt
             this.timer2.Interval = 305000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::METAbolt.Properties.Resources.window_edit;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(219, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 23);
+            this.button1.TabIndex = 16;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::METAbolt.Properties.Resources.rebake;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Location = new System.Drawing.Point(243, 68);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(23, 23);
+            this.button2.TabIndex = 17;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainConsole
             // 
             this.AccessibleDescription = "Console to login to SL or other OpenSim based grid";
@@ -403,5 +431,7 @@ namespace METAbolt
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.ComboBox cboUserList;
         private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

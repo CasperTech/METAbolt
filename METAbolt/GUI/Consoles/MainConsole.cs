@@ -119,6 +119,8 @@ namespace METAbolt
         {
             try
             {
+                MGrids.Clear();
+ 
                 bool fext = System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Grids.txt");
 
                 if (fext)
@@ -913,11 +915,19 @@ namespace METAbolt
                 txtCustomLoginUri.Enabled = true;
                 txtCustomLoginUri.Text = "http://";
                 txtCustomLoginUri.Select();
+
+                cbxGrid.Width = 157;
+                button1.Visible = true;
+                button2.Visible = true; 
             }
             else
             {
                 txtCustomLoginUri.Enabled = false;
-                txtCustomLoginUri.Text = string.Empty;  
+                txtCustomLoginUri.Text = string.Empty;
+
+                cbxGrid.Width = 210;
+                button1.Visible = false;
+                button2.Visible = false; 
             }
         }
 
@@ -987,6 +997,27 @@ namespace METAbolt
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fullfile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Grids.txt"; ;
+
+            try
+            {
+                System.Diagnostics.Process.Start(fullfile);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "METAbolt");  
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadGrids();
+            InitGridCombo();
+            cbxGrid.SelectedIndex = 0; 
         }
     }
 }
