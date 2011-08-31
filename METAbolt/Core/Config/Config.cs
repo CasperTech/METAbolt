@@ -182,7 +182,6 @@ namespace METAbolt
                 config.MainWindowState = conf.Configs["Interface"].GetInt("MainWindowState", 0);
                 config.InterfaceStyle = conf.Configs["Interface"].GetInt("Style", 1);
 
-
                 // Login
                 config.FirstName = conf.Configs["Login"].GetString("FirstName", string.Empty);
                 config.LastName = conf.Configs["Login"].GetString("LastName", string.Empty);

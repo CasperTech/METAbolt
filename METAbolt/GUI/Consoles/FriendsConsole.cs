@@ -154,6 +154,8 @@ namespace METAbolt
 
                 //lbxFriends.Sort();
                 lbxFriends.EndUpdate();
+
+                lblFriendName.Text = string.Empty;  
             }
         }
 
@@ -465,6 +467,10 @@ namespace METAbolt
         private void FriendsConsole_Load(object sender, EventArgs e)
         {
             InitializeFriendsList();
+            lbGroups.Items.Add("All");
+            //lbGroups.SelectedIndex = 0;
+            comboBox1.Items.Add("All friends");
+            comboBox1.SelectedIndex = 0; 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -475,6 +481,20 @@ namespace METAbolt
         private void lbxFriends_DoubleClick(object sender, EventArgs e)
         {
             btnIM.PerformClick();
+        }
+
+        private void lbGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblGroupName.Text = lbGroups.SelectedItem.ToString();
+
+            if (lbGroups.SelectedIndex != -1)
+            {
+                textBox2.Visible = true;
+            }
+            else
+            {
+                textBox2.Visible = false;
+            }
         }
     }
 }

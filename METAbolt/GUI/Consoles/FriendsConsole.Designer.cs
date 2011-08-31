@@ -41,7 +41,17 @@ namespace METAbolt
             this.chkSeeMeOnline = new System.Windows.Forms.CheckBox();
             this.chkSeeMeOnMap = new System.Windows.Forms.CheckBox();
             this.chkModifyMyObjects = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbGroups = new System.Windows.Forms.ListBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblGroupName = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbxFriends
@@ -54,7 +64,7 @@ namespace METAbolt
             this.lbxFriends.ItemHeight = 20;
             this.lbxFriends.Location = new System.Drawing.Point(3, 3);
             this.lbxFriends.Name = "lbxFriends";
-            this.lbxFriends.Size = new System.Drawing.Size(200, 460);
+            this.lbxFriends.Size = new System.Drawing.Size(200, 429);
             this.lbxFriends.Sorted = true;
             this.lbxFriends.TabIndex = 0;
             this.lbxFriends.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxFriends_DrawItem);
@@ -181,7 +191,7 @@ namespace METAbolt
             this.chkSeeMeOnMap.AutoSize = true;
             this.chkSeeMeOnMap.BackColor = System.Drawing.Color.Transparent;
             this.chkSeeMeOnMap.Enabled = false;
-            this.chkSeeMeOnMap.Location = new System.Drawing.Point(218, 140);
+            this.chkSeeMeOnMap.Location = new System.Drawing.Point(349, 117);
             this.chkSeeMeOnMap.Name = "chkSeeMeOnMap";
             this.chkSeeMeOnMap.Size = new System.Drawing.Size(118, 17);
             this.chkSeeMeOnMap.TabIndex = 7;
@@ -194,7 +204,7 @@ namespace METAbolt
             this.chkModifyMyObjects.AutoSize = true;
             this.chkModifyMyObjects.BackColor = System.Drawing.Color.Transparent;
             this.chkModifyMyObjects.Enabled = false;
-            this.chkModifyMyObjects.Location = new System.Drawing.Point(218, 163);
+            this.chkModifyMyObjects.Location = new System.Drawing.Point(484, 117);
             this.chkModifyMyObjects.Name = "chkModifyMyObjects";
             this.chkModifyMyObjects.Size = new System.Drawing.Size(113, 17);
             this.chkModifyMyObjects.TabIndex = 8;
@@ -202,11 +212,104 @@ namespace METAbolt
             this.chkModifyMyObjects.UseVisualStyleBackColor = false;
             this.chkModifyMyObjects.CheckedChanged += new System.EventHandler(this.chkModifyMyObjects_CheckedChanged);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(212, 200);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(483, 263);
+            this.tabControl1.TabIndex = 9;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.lblGroupName);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.lbGroups);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(475, 234);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Friend Groups";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(475, 234);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Create a group";
+            // 
+            // lbGroups
+            // 
+            this.lbGroups.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbGroups.FormattingEnabled = true;
+            this.lbGroups.Location = new System.Drawing.Point(7, 6);
+            this.lbGroups.Name = "lbGroups";
+            this.lbGroups.Size = new System.Drawing.Size(272, 221);
+            this.lbGroups.TabIndex = 0;
+            this.lbGroups.SelectedIndexChanged += new System.EventHandler(this.lbGroups_SelectedIndexChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.AccessibleName = "Drop inventory item box";
+            this.textBox2.AllowDrop = true;
+            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox2.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox2.ForeColor = System.Drawing.Color.DarkGray;
+            this.textBox2.Location = new System.Drawing.Point(285, 105);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(184, 21);
+            this.textBox2.TabIndex = 15;
+            this.textBox2.Text = "Drag-Drop friend to add to this group";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(282, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Selected group:";
+            // 
+            // lblGroupName
+            // 
+            this.lblGroupName.AutoSize = true;
+            this.lblGroupName.Location = new System.Drawing.Point(285, 56);
+            this.lblGroupName.Name = "lblGroupName";
+            this.lblGroupName.Size = new System.Drawing.Size(32, 13);
+            this.lblGroupName.TabIndex = 17;
+            this.lblGroupName.Text = "None";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(4, 438);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(199, 21);
+            this.comboBox1.TabIndex = 10;
+            // 
             // FriendsConsole
             // 
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.chkModifyMyObjects);
             this.Controls.Add(this.chkSeeMeOnMap);
             this.Controls.Add(this.chkSeeMeOnline);
@@ -220,6 +323,9 @@ namespace METAbolt
             this.Load += new System.EventHandler(this.FriendsConsole_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +345,13 @@ namespace METAbolt
         private System.Windows.Forms.Button btnOfferTeleport;
         private System.Windows.Forms.Button btnPay;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListBox lbGroups;
+        private System.Windows.Forms.Label lblGroupName;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
