@@ -43,6 +43,8 @@ namespace METAbolt
         private GridClient client;
         private FriendInfo selectedFriend;
         //private SLNetCom netcom;
+        private FileConfig fconfig;
+        Dictionary<string, Dictionary<string, string>> fgrps;
 
         private bool settingFriend = false;
         private ExceptionReporter reporter = new ExceptionReporter();
@@ -202,7 +204,13 @@ namespace METAbolt
             client.Friends.FriendOffline -= new EventHandler<FriendInfoEventArgs>(Friends_OnFriendOffline);
             client.Friends.FriendOnline -= new EventHandler<FriendInfoEventArgs>(Friends_OnFriendOnline);
             client.Friends.FriendRightsUpdate -= new EventHandler<FriendInfoEventArgs>(Friends_OnFriendRights);
-            //client.Avatars.DisplayNameUpdate -= new EventHandler<DisplayNameUpdateEventArgs>(Avatar_DisplayNameUpdated);    
+            //client.Avatars.DisplayNameUpdate -= new EventHandler<DisplayNameUpdateEventArgs>(Avatar_DisplayNameUpdated);
+
+            try
+            {
+                fconfig.Save();
+            }
+            catch { ; }
         }
 
         private void RefreshFriendsList()
@@ -213,7 +221,15 @@ namespace METAbolt
             //    return;
             //}
 
-            InitializeFriendsList();
+            if (cbofgroups.SelectedIndex == 0 || cbofgroups.SelectedIndex == -1)
+            {
+                InitializeFriendsList();
+            }
+            else
+            {
+                GetGroupFriends(cbofgroups.SelectedItem.ToString());
+            }
+
             SetFriend(selectedFriend);
         }
 
@@ -244,8 +260,34 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
+                RemoveFriendFromAllGroups(e.AgentID.ToString()); 
                 RefreshFriendsList();
             }));
+        }
+
+        private void RemoveFriendFromAllGroups(string uuid)
+        {
+            fgrps = fconfig.FriendGroups;
+
+            foreach (KeyValuePair<string, Dictionary<string, string>> fr in fgrps)
+            {
+                string header = fr.Key.ToString();
+                Dictionary<string, string> rec = fr.Value;
+
+                Dictionary<string, string> grps;
+
+                fgrps.TryGetValue(header, out grps);
+
+                foreach (KeyValuePair<string, string> s in grps)
+                {
+                    if (s.Key == uuid)
+                    {
+                        fconfig.removeFriendFromGroup(header,uuid);
+                    }
+                }
+            }
+
+            fgrps = fconfig.FriendGroups;
         }
 
         //Separate thread
@@ -325,20 +367,26 @@ namespace METAbolt
             //    return;
             //}
 
-            if (friend == null) return;
-            selectedFriend = friend;
+            try
+            {
+                if (friend == null) return;
 
-            lblFriendName.Text = friend.Name + (friend.IsOnline ? " (online)" : " (offline)");
+                selectedFriend = friend;
 
-            btnRemove.Enabled = btnIM.Enabled = btnProfile.Enabled = btnOfferTeleport.Enabled = btnPay.Enabled = true;
-            chkSeeMeOnline.Enabled = chkSeeMeOnMap.Enabled = chkModifyMyObjects.Enabled = true;
-            chkSeeMeOnMap.Enabled = friend.CanSeeMeOnline;
+                lblFriendName.Text = friend.Name + (friend.IsOnline ? " (online)" : " (offline)");
 
-            settingFriend = true;
-            chkSeeMeOnline.Checked = friend.CanSeeMeOnline;
-            chkSeeMeOnMap.Checked = friend.CanSeeMeOnMap;
-            chkModifyMyObjects.Checked = friend.CanModifyMyObjects;
-            settingFriend = false;
+                btnRemove.Enabled = btnIM.Enabled = btnProfile.Enabled = btnOfferTeleport.Enabled = btnPay.Enabled = true;
+                chkSeeMeOnline.Enabled = chkSeeMeOnMap.Enabled = chkModifyMyObjects.Enabled = true;
+                chkSeeMeOnMap.Enabled = friend.CanSeeMeOnline;
+
+                settingFriend = true;
+                chkSeeMeOnline.Checked = friend.CanSeeMeOnline;
+                chkSeeMeOnMap.Checked = friend.CanSeeMeOnMap;
+                chkModifyMyObjects.Checked = friend.CanModifyMyObjects;
+                settingFriend = false;
+            }
+            catch { ; }
+
         }
 
         private void lbxFriends_DrawItem(object sender, DrawItemEventArgs e)
@@ -348,6 +396,7 @@ namespace METAbolt
             if (e.Index < 0) return;
 
             FriendsListItem itemToDraw = (FriendsListItem)lbxFriends.Items[e.Index];
+
             Brush textBrush = null;
             Font textFont = null;
             
@@ -467,10 +516,29 @@ namespace METAbolt
         private void FriendsConsole_Load(object sender, EventArgs e)
         {
             InitializeFriendsList();
-            lbGroups.Items.Add("All");
+
+            //lbGroups.Items.Add("All");
             //lbGroups.SelectedIndex = 0;
-            comboBox1.Items.Add("All friends");
-            comboBox1.SelectedIndex = 0; 
+            cbofgroups.Items.Add("...All friends");
+            cbofgroups.SelectedIndex = 0;
+
+            string fconffile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\" + client.Self.AgentID.ToString() + "_fr_groups.ini";
+
+            if (!System.IO.File.Exists(fconffile))
+            {
+                System.IO.StreamWriter SW;
+
+                SW = System.IO.File.CreateText(fconffile);
+                SW.Dispose();
+            }
+
+            //lbxFriends.PreSelect  += new EventHandler(lbxFriends_PreSelect); 
+
+
+            fconfig = new FileConfig(fconffile);
+            fconfig.Load();
+
+            LoadFriendGroups();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -496,5 +564,139 @@ namespace METAbolt
                 textBox2.Visible = false;
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                fconfig.CreateGroup(txtGroup.Text.Trim());
+
+                txtGroup.Text = string.Empty;
+                //fgrps = fconfig.FriendGroups;
+
+                LoadFriendGroups();
+            }
+            catch (Exception ex)
+            {
+                string exp = ex.Message; 
+            }
+        }
+
+        private void LoadFriendGroups()
+        {
+            fgrps = fconfig.FriendGroups;
+
+            cbofgroups.Items.Clear();
+            lbGroups.Items.Clear();
+
+            cbofgroups.Items.Add("...All friends"); 
+
+            foreach (KeyValuePair<string, Dictionary<string, string>> fr in fgrps)
+            {
+                string header = fr.Key.ToString();
+                Dictionary<string, string> rec = fr.Value;
+
+                cbofgroups.Items.Add(header);
+                lbGroups.Items.Add(header);   
+            }
+
+            cbofgroups.Sorted = true;
+            lbGroups.Sorted = true;
+        }
+
+        private void cbofgroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fconfig == null) return;
+
+            if (cbofgroups.SelectedItem.ToString() == "...All friends")
+            {
+                RefreshFriendsList();
+            }
+            else
+            {
+                GetGroupFriends(cbofgroups.SelectedItem.ToString());
+            }
+        }
+
+        private void GetGroupFriends(string group)
+        {
+            lblFriendName.Text = string.Empty;
+
+            btnRemove.Enabled = btnIM.Enabled = btnProfile.Enabled = btnOfferTeleport.Enabled = btnPay.Enabled = false;
+            chkSeeMeOnline.Enabled = chkSeeMeOnMap.Enabled = chkModifyMyObjects.Enabled = false;
+
+            fgrps = fconfig.FriendGroups;
+
+            Dictionary<string, string> grps;
+
+            fgrps.TryGetValue(group, out grps);
+
+            lbxFriends.BeginUpdate();
+            lbxFriends.Items.Clear();
+
+            foreach (KeyValuePair<string, string> s in grps)
+            {
+                List<FriendInfo> flist = this.instance.State.AvatarFriends;
+
+                if (flist.Count > 0)
+                {
+                    foreach (FriendInfo friend in flist)
+                    {
+                        if (friend.Name.ToLower() == s.Value.ToLower())
+                        {
+                            lbxFriends.Items.Add(new FriendsListItem(friend));
+                        }
+                    }
+                }
+            }
+
+            lbxFriends.EndUpdate();
+        }
+
+        private void lbxFriends_MouseDown(object sender, MouseEventArgs e)
+        {
+            lbxFriends_SelectedIndexChanged(null, null);
+
+            Point pt = new Point(e.X, e.Y);
+            int index = lbxFriends.IndexFromPoint(pt);
+
+            // Starts a drag-and-drop operation.
+            if (index >= 0 && index < lbxFriends.Items.Count)
+            {
+                FriendsListItem dltm = (FriendsListItem)lbxFriends.Items[index];
+
+                lbxFriends.DoDragDrop(dltm, DragDropEffects.Copy);
+            }
+        }
+
+        private void textBox2_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(FriendsListItem)))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void textBox2_DragDrop(object sender, DragEventArgs e)
+        {
+            if (lbGroups.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must select a group from the list first.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            FriendsListItem node = e.Data.GetData(typeof(FriendsListItem)) as FriendsListItem;
+
+            if (node == null) return;
+
+            if (e.Data.GetDataPresent(typeof(FriendsListItem)))
+            {
+                fconfig.AddFriendToGroup(lbGroups.SelectedItem.ToString(), node.Friend.Name, node.Friend.UUID.ToString());
+                MessageBox.Show(node.Friend.Name + " has been added to your '" + lbGroups.SelectedItem.ToString() + "' group.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cbofgroups_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+        }        
     }
 }

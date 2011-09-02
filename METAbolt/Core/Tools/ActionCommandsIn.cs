@@ -132,6 +132,8 @@ namespace METAbolt
                     float y = float.Parse(sGrp[5].Trim());
                     float z = float.Parse(sGrp[6].Trim());
 
+                    client.Self.AutoPilotCancel();
+
                     if (!string.IsNullOrEmpty(sim))
                     {
                         netcom.Teleport(sim, new Vector3(x, y, z));
@@ -275,6 +277,8 @@ namespace METAbolt
                 case "STAND":
                     UUID sid = (UUID)sGrp[3].Trim();
 
+                    client.Self.AutoPilotCancel();
+
                     if (sid == UUID.Zero) return string.Empty;
 
                     instance.State.SetSitting(false, sid);
@@ -320,6 +324,10 @@ namespace METAbolt
                     client.Self.AutoPilot(ux, uy, uz);
                     break;
 
+                case "STOP":
+                    client.Self.AutoPilotCancel();
+                    client.Self.Movement.Stop = true;
+                    break;
                 case "FOLLOW":
                     string flname = sGrp[3].Trim();
 
