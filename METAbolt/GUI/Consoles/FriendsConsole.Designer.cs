@@ -53,6 +53,7 @@ namespace METAbolt
             this.label3 = new System.Windows.Forms.Label();
             this.cbofgroups = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -355,12 +356,27 @@ namespace METAbolt
             this.label4.TabIndex = 11;
             this.label4.Text = "Currently displaying:";
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.Enabled = false;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(218, 153);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(125, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Remove from group";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FriendsConsole
             // 
             this.AllowDrop = true;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbofgroups);
             this.Controls.Add(this.tabControl1);
@@ -413,5 +429,6 @@ namespace METAbolt
         private System.Windows.Forms.TextBox txtGroup;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button2;
     }
 }

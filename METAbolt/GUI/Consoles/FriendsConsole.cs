@@ -371,6 +371,17 @@ namespace METAbolt
             {
                 if (friend == null) return;
 
+                if (cbofgroups.SelectedIndex > 0)
+                {
+                    button2.Visible = true;
+                    button2.Enabled = true;
+                }
+                else
+                {
+                    button2.Visible = false;
+                    button2.Enabled = false; 
+                }
+
                 selectedFriend = friend;
 
                 lblFriendName.Text = friend.Name + (friend.IsOnline ? " (online)" : " (offline)");
@@ -608,6 +619,8 @@ namespace METAbolt
         {
             if (fconfig == null) return;
 
+            button2.Enabled = false;
+
             if (cbofgroups.SelectedItem.ToString() == "...All friends")
             {
                 RefreshFriendsList();
@@ -697,6 +710,11 @@ namespace METAbolt
         private void cbofgroups_KeyDown(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            fconfig.removeFriendFromGroup(lbGroups.SelectedItem.ToString(), selectedFriend.UUID.ToString());
         }        
     }
 }
