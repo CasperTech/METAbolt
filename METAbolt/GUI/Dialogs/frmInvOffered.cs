@@ -106,7 +106,10 @@ namespace METAbolt
             dr["mute_name"] = msg.FromAgentName;
             instance.MuteList.Rows.Add(dr);
 
-            MessageBox.Show(msg.FromAgentName + " is now muted.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);      
+            MessageBox.Show(msg.FromAgentName + " is now muted.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            timer1.Stop();
+            timer1.Enabled = false;
 
             this.Close();
         }
@@ -125,6 +128,9 @@ namespace METAbolt
                 client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes()); // Accept TaskInventory Offer
                 client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
             }
+
+            timer1.Stop();
+            timer1.Enabled = false;
             
             this.Close(); 
         }
@@ -153,6 +159,9 @@ namespace METAbolt
             {
                 client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
             }
+
+            timer1.Stop();
+            timer1.Enabled = false;
 
             this.Close();
         }

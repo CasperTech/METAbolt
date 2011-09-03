@@ -850,6 +850,7 @@ namespace METAbolt
             this.button5.Size = new System.Drawing.Size(29, 29);
             this.button5.TabIndex = 11;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             this.button5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button5_KeyDown);
             this.button5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.button5_KeyUp);
             this.button5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button5_MouseDown);

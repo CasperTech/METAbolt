@@ -233,6 +233,7 @@ namespace METAbolt
             chkTyping.Checked = config.CurrentConfig.DisableTyping;
             chkAutoFriend.Checked = config.CurrentConfig.AutoAcceptFriends;
             checkBox12.Checked = config.CurrentConfig.EnforceLSLsecurity;
+            chkLSL.Checked = config.CurrentConfig.DisplayLSLcommands;
         }
 
         #region IPreferencePane Members
@@ -308,7 +309,8 @@ namespace METAbolt
             config.CurrentConfig.DisableTrayIcon = chkTray.Checked;
             config.CurrentConfig.DisableTyping = chkTyping.Checked;
             config.CurrentConfig.AutoAcceptFriends = chkAutoFriend.Checked;
-            config.CurrentConfig.EnforceLSLsecurity = checkBox12.Checked;  
+            config.CurrentConfig.EnforceLSLsecurity = checkBox12.Checked;
+            config.CurrentConfig.DisplayLSLcommands = chkLSL.Checked;  
         }
 
         #endregion

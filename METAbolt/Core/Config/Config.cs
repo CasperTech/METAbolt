@@ -162,6 +162,7 @@ namespace METAbolt
         private bool autoacceptfriends = false;
         private int restarttime = 10;
         private bool disablemipmaps = false;
+        private bool displaylslcommands = true;
 
 
         public Config()
@@ -242,6 +243,7 @@ namespace METAbolt
                 config.AdRemove = conf.Configs["General"].GetString("AdRemove", string.Empty);
                 config.MasterAvatar = conf.Configs["General"].GetString("MasterAvatar", UUID.Zero.ToString());
                 config.EnforceLSLsecurity = conf.Configs["General"].GetBoolean("EnforceLSLsecurity", true);
+                config.DisplayLSLcommands = conf.Configs["General"].GetBoolean("DisplayLSLcommands", true);
 
                 // backward compatibility pre V 0.9.47.0
 
@@ -414,7 +416,8 @@ namespace METAbolt
             config.Set("AdRemove", adremove);
             config.Set("MasterAvatar", masteravatar);
             config.Set("MasterObject", masterobject);
-            config.Set("EnforceLSLsecurity", enforcelslsecurity.ToString(CultureInfo.CurrentCulture));   
+            config.Set("EnforceLSLsecurity", enforcelslsecurity.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisplayLSLcommands", displaylslcommands.ToString(CultureInfo.CurrentCulture));  
             config.Set("AutoTransfer", autotransfer.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableTrayIcon", disabletrayicon.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString(CultureInfo.CurrentCulture));
@@ -1181,6 +1184,12 @@ namespace METAbolt
         {
             get { return enforcelslsecurity; }
             set { enforcelslsecurity = value; }
+        }
+
+        public bool DisplayLSLcommands
+        {
+            get { return displaylslcommands; }
+            set { displaylslcommands = value; }
         }
     }
 }

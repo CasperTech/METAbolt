@@ -636,7 +636,7 @@ namespace METAbolt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.9.48.0 (BETA).
+        ///   Looks up a localized string similar to 0.9.49.0 (BETA).
         /// </summary>
         internal static string METAboltVersion {
             get {

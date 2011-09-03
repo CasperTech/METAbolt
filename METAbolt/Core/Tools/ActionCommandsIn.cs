@@ -57,7 +57,10 @@ namespace METAbolt
         {
             string icmd = command.Replace(this.instance.Config.CurrentConfig.CommandInID, string.Empty);
 
-            tconsole.DisplayChatScreen("Recevided LSL (action) command: " + icmd + " >>> from " + name + " (" + fromid + ")");
+            if (instance.Config.CurrentConfig.DisplayLSLcommands)
+            {
+                tconsole.DisplayChatScreen("Recevided LSL (action) command: " + icmd + " >>> from " + name + " (" + fromid + ")");
+            }
 
             char[] deli = "|".ToCharArray();
             string[] sGrp = command.Split(deli);
@@ -87,7 +90,7 @@ namespace METAbolt
                         if (contents == null)
                         {
                             Logger.Log("IM WEAR COMMAND: Failed to get contents of '" + folder.ToString() + "'", Helpers.LogLevel.Warning);
-                            return "M WEAR COMMAND: Could not get folder contents. Failed";
+                            return "IM WEAR COMMAND: Could not get folder contents. Failed";
                         }
 
                         foreach (InventoryBase iitem in contents)
@@ -291,6 +294,11 @@ namespace METAbolt
                     float zz = Convert.ToSingle(sGrp[6].Trim());
 
                     client.Self.AutoPilotCancel();
+
+                    client.Self.Movement.SendManualUpdate(AgentManager.ControlFlags.AGENT_CONTROL_AT_POS, client.Self.Movement.Camera.Position,
+                            client.Self.Movement.Camera.AtAxis, client.Self.Movement.Camera.LeftAxis, client.Self.Movement.Camera.UpAxis,
+                            client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
+                            AgentState.None, true);
 
                     if (typ == "walk")
                     {
