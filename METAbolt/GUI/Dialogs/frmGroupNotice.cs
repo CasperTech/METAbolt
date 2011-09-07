@@ -269,23 +269,28 @@ namespace METAbolt
 
                 if (contents != null)
                 {
-                    foreach (InventoryItem item in contents)
+                    foreach (InventoryBase ibase in contents)
                     {
-                        if (item.Name.ToLower() == filename.ToLower())
+                        InventoryItem item = (InventoryItem)ibase;
+
+                        if (item.AssetType != AssetType.Folder)
                         {
-                            //UUID itemid = item.AssetUUID;
-
-                            switch (assettype)
+                            if (item.Name.ToLower() == filename.ToLower())
                             {
-                                case AssetType.Notecard:
-                                    (new frmNotecardEditor(instance, item)).Show();
-                                    break;
-                                case AssetType.LSLText:
-                                    (new frmScriptEditor(instance, item)).Show();
-                                    break;
-                            }
+                                //UUID itemid = item.AssetUUID;
 
-                            return;
+                                switch (assettype)
+                                {
+                                    case AssetType.Notecard:
+                                        (new frmNotecardEditor(instance, item)).Show();
+                                        break;
+                                    case AssetType.LSLText:
+                                        (new frmScriptEditor(instance, item)).Show();
+                                        break;
+                                }
+
+                                return;
+                            }
                         }
                     }
                 }
