@@ -274,7 +274,7 @@ namespace METAbolt
             char[] deli = " ".ToCharArray();
             string[] iDets = sLoc.Split(deli);
 
-            (new frmTeleport(instance, iDets[0].ToString(), fX, fY, fZ)).ShowDialog();
+            (new frmTeleport(instance, iDets[0].ToString(), fX, fY, fZ)).Show();
 
             //client.Self.Teleport(sSIM, posn);    
         }

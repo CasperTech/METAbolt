@@ -894,7 +894,7 @@ namespace METAbolt
 
         private void tbtnTeleport_Click(object sender, EventArgs e)
         {
-            (new frmTeleport(instance,"",0,0,0)).ShowDialog();
+            (new frmTeleport(instance,"",0,0,0)).Show();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -1115,7 +1115,7 @@ namespace METAbolt
 
         private void btnMap_Click(object sender, EventArgs e)
         {
-            (new frmMapClient(instance)).ShowDialog();
+            (new frmMapClient(instance)).Show();
         }
 
         private void lindeXToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1379,7 +1379,7 @@ namespace METAbolt
 
         private void teleportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmTeleport(instance, "", 0, 0, 0)).ShowDialog();
+            (new frmTeleport(instance, "", 0, 0, 0)).Show();
         }
 
         private void mapToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1756,7 +1756,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    (new frmDisconnected(instance, disconnectreason)).ShowDialog();
+                    (new frmDisconnected(instance, disconnectreason)).Show();
                 }
             }
 

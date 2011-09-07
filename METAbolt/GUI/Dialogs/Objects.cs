@@ -1770,7 +1770,7 @@ namespace METAbolt
 
             if (item == null) return;
 
-            (new frmTeleport(instance, client.Network.CurrentSim.Name, item.Prim.Position.X, item.Prim.Position.Y, item.Prim.Position.Z)).ShowDialog();
+            (new frmTeleport(instance, client.Network.CurrentSim.Name, item.Prim.Position.X, item.Prim.Position.Y, item.Prim.Position.Z)).Show();
         }
 
         private void button2_Click(object sender, EventArgs e)

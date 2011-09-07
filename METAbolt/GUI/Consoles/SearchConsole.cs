@@ -783,7 +783,7 @@ namespace METAbolt
                 client.Groups.GroupProfile -= new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
 
                 frmGroupInfo frm = new frmGroupInfo(e.Group, instance);
-                frm.ShowDialog();
+                frm.Show();
             }));
         }
 

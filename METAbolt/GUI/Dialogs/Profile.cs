@@ -1113,7 +1113,7 @@ namespace METAbolt
                 AvatarGroup group = (AvatarGroup)lvGroups.SelectedItems[0].Tag;
 
                 frmGroupInfo frm = new frmGroupInfo(group, instance);
-                frm.ShowDialog();
+                frm.Show();
             }
             catch
             {

@@ -1848,7 +1848,7 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            (new frmTranslate(instance)).ShowDialog();
+            (new frmTranslate(instance)).Show();
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -1964,7 +1964,7 @@ namespace METAbolt
                     double y = Convert.ToDouble(split[6].ToString());
                     double z = Convert.ToDouble(split[7].ToString());
 
-                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).ShowDialog();
+                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).Show();
                 }
                 catch { ; }
 
@@ -1980,7 +1980,7 @@ namespace METAbolt
                     double y = Convert.ToDouble(split[6].ToString());
                     double z = Convert.ToDouble(split[7].ToString());
 
-                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).ShowDialog();
+                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).Show();
                 }
                 catch { ; }
 

@@ -674,7 +674,7 @@ namespace METAbolt
             try
             {
                 frmGroupInfo frm = new frmGroupInfo(imgroup, instance);
-                frm.ShowDialog();
+                frm.Show();
             }
             catch
             {
@@ -739,7 +739,7 @@ namespace METAbolt
                     double y = Convert.ToDouble(split[6].ToString());
                     double z = Convert.ToDouble(split[7].ToString());
 
-                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
+                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).Show();
                 }
                 catch { ; }
 
@@ -755,7 +755,7 @@ namespace METAbolt
                     double y = Convert.ToDouble(split[6].ToString());
                     double z = Convert.ToDouble(split[7].ToString());
 
-                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).ShowDialog();
+                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).Show();
                 }
                 catch { ; }
 
