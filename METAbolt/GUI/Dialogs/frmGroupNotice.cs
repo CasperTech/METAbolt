@@ -265,7 +265,7 @@ namespace METAbolt
             }
             else
             {
-                List<InventoryBase> contents = client.Inventory.FolderContents(assetfolder, client.Self.AgentID, false, true, InventorySortOrder.ByName | InventorySortOrder.ByDate, 3000);
+                List<InventoryBase> contents = client.Inventory.FolderContents(assetfolder, client.Self.AgentID, false, true, InventorySortOrder.ByName | InventorySortOrder.ByDate, 5000);
 
                 if (contents != null)
                 {
