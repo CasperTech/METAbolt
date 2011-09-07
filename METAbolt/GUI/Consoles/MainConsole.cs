@@ -398,7 +398,7 @@ namespace METAbolt
 
                         usernlist.Add(uname);
 
-                        btnLogin.Text = "Logout";
+                        btnLogin.Text = "Exit";
                         btnLogin.Enabled = true;
 
                         instance.ReBooted = false;
@@ -770,7 +770,7 @@ namespace METAbolt
                     break;
 
                 //case "Logout": this.instance.MainForm.Close(); break;
-                case "Logout":
+                case "Exit":
                     instance.LogOffClicked = true;  
                     instance.LoggedIn = false; 
                     pnlLoggingIn.Visible = false;
