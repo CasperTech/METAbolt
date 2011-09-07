@@ -47,7 +47,7 @@ namespace METAbolt
         private GridClient client;
         private InventoryItem item;
         //private UUID transferID;
-        //private AssetScriptText receivedAsset;
+        private AssetScriptText receivedAsset;
 
         //private UUID uploadID;
         private bool closePending = false;
@@ -60,29 +60,34 @@ namespace METAbolt
 
         //int start = 0;
         //int indexOfSearchText = 0;
-        //string prevsearchtxt = string.Empty;
+        string prevsearchtxt = string.Empty;
         private const int LINE_NUMBERS_MARGIN_WIDTH = 35;
         private UUID assetUUID = UUID.Zero;
-        private UUID itemUUID = UUID.Zero;  
+        private UUID itemUUID = UUID.Zero;
+        private List<string> calltip = new List<string>();
+        private List<string> calltipheader = new List<string>();
+        private bool showingcalltip = false;
+
 
         public frmScriptEditor(METAboltInstance instance, InventoryItem item)
         {
             InitializeComponent();
+            Disposed += new EventHandler(Script_Disposed);
 
             this.instance = instance;
             netcom = this.instance.Netcom;
             client = this.instance.Client;
             this.item = item;
             istaskobj = false;
-            panel1.Visible = false;  
-
-            Disposed += new EventHandler(Script_Disposed);
+            panel1.Visible = false;
+            //checkBox2.Visible = false;
 
             AddNetcomEvents();
             
             this.Text = item.Name + " (script) - METAbolt";
 
             SetScintilla();
+            GetCallTips();
 
             assetUUID = item.AssetUUID;
             client.Assets.RequestInventoryAsset(assetUUID, item.UUID, UUID.Zero, item.OwnerID, item.AssetType, true, Assets_OnAssetReceived);
@@ -91,6 +96,7 @@ namespace METAbolt
         public frmScriptEditor(METAboltInstance instance, InventoryLSL item, Primitive obj)
         {
             InitializeComponent();
+            Disposed += new EventHandler(Script_Disposed);
 
             this.instance = instance;
             netcom = this.instance.Netcom;
@@ -98,6 +104,7 @@ namespace METAbolt
             this.item = item;
             istaskobj = true;
             panel1.Visible = true;
+            //checkBox2.Visible = false;
 
             AddNetcomEvents();
 
@@ -115,11 +122,13 @@ namespace METAbolt
         public frmScriptEditor(METAboltInstance instance)
         {
             InitializeComponent();
+            Disposed += new EventHandler(Script_Disposed);
 
             this.instance = instance;
             netcom = this.instance.Netcom;
             client = this.instance.Client;
             panel1.Visible = false;
+            //checkBox2.Visible = false;
 
             AddNetcomEvents();
 
@@ -134,7 +143,7 @@ namespace METAbolt
             try
             {
                 rtbScript.Margins.Margin0.Width = LINE_NUMBERS_MARGIN_WIDTH;
-                rtbScript.AutoComplete.FillUpCharacters = ".([";
+                rtbScript.AutoComplete.FillUpCharacters = "([";
                 rtbScript.AutoComplete.AutomaticLengthEntered = true;
                 rtbScript.AutoComplete.AutoHide = true;
                 rtbScript.AutoComplete.IsCaseSensitive = false;
@@ -146,6 +155,9 @@ namespace METAbolt
                 rtbScript.AutoComplete.SingleLineAccept = false;
                 rtbScript.AutoComplete.DropRestOfWord = true;
                 rtbScript.AutoComplete.StopCharacters = ") ] // ; ' , - _ */ /*";
+                rtbScript.Caret.HighlightCurrentLine = true;
+                rtbScript.Caret.CurrentLineBackgroundColor = Color.Linen; 
+
                 SetLanguage("lsl");
                 tscboLanguage.SelectedIndex = 0;
             }
@@ -159,6 +171,22 @@ namespace METAbolt
             }
         }
 
+        private void GetCallTips()
+        {
+            string fileContent = Properties.Resources.LSL_Functions;
+            using (var reader = new StringReader(fileContent))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    calltip.Add(line);
+
+                    string[] split = line.Split('|');
+                    calltipheader.Add(split[0]);
+                }
+            }
+        }
+
         private void SetupSort()
         {
             AutoCompleteStringListSorter Sorter = new AutoCompleteStringListSorter();
@@ -169,26 +197,75 @@ namespace METAbolt
 
         private void Document_CharAdded(object sender, CharAddedEventArgs e)
         {
-            if (e.Ch == '(')
+            if (showingcalltip)
             {
-                //rtbScript.CallTip.Show("this is a calltip");
-            }
-            else if (e.Ch == '\r' || e.Ch == '\n')
-            {
-                // do nothing
-            }
-            else
-            {
-                rtbScript.CallTip.Hide();
-
-                if (e.Ch != ' ' && e.Ch != '/') // autocomplete on dot
+                if (e.Ch == ')')
                 {
-                    if (rtbScript.AutoComplete.List.Count > 0)
-                    {
-                        rtbScript.AutoComplete.Show();
-                    }
+                    showingcalltip = false;
+                }
+                else
+                {
+                    ShowCallTip();
                 }
             }
+
+            if (e.Ch == '(')
+            {
+                ShowCallTip();
+
+                showingcalltip = true;
+
+                return;
+            }
+            else if (e.Ch == ')')
+            {
+                rtbScript.CallTip.Hide();
+            }
+
+            Line ln = rtbScript.Lines.Current;
+
+            if (ln.Text.Contains("//"))
+            {
+                int lng = ln.Length;
+                int idx = ln.Text.IndexOf("//");
+
+                int cpos = rtbScript.GetColumn(rtbScript.CurrentPos);
+
+                if (cpos > idx)
+                {
+                    return;
+                }
+            }
+
+            if (e.Ch == ' ')
+                return;
+
+            int pos = rtbScript.NativeInterface.GetCurrentPos();
+            string word = rtbScript.GetWordFromPosition(pos);
+
+            if (word == string.Empty)
+                return;
+
+            if (rtbScript.AutoComplete.List.Count > 0)
+                rtbScript.AutoComplete.Show();
+            else
+                rtbScript.AutoComplete.Cancel();
+        }
+
+        private void ShowCallTip()
+        {
+            string func = rtbScript.AutoComplete.SelectedText;
+            string hword = rtbScript.GetWordFromPosition(rtbScript.CurrentPos - 1);
+            //rtbScript.CallTip.Show(hword);
+
+            int idx = calltipheader.IndexOf(hword);
+            string tip = calltip[idx];
+
+            string[] split = tip.Split('|');
+            string function = split[1];
+            string cti = split[2];
+
+            rtbScript.CallTip.Show(function + "\n" + cti);
         }
 
         public static void Append<T>(ref T[] array, params T[] items)
@@ -248,10 +325,10 @@ namespace METAbolt
                     return;
                 }
 
-                //receivedAsset = (AssetScriptText)asset;
+                receivedAsset = (AssetScriptText)asset;
                 scriptContent = Utils.BytesToString(transfer.AssetData);
                 SetScriptText(scriptContent, false);
-                //string adta = string.Empty; 
+                string adta = string.Empty; 
 
                 if (istaskobj)
                 {
@@ -380,8 +457,8 @@ namespace METAbolt
                 tsbSave.Enabled = false;
                 tsSaveDisk.Enabled = false;
 
-                //string file = this.item.Name;
-                //string desc = this.item.Description;
+                string file = this.item.Name;
+                string desc = this.item.Description;
 
                 if (istaskobj)
                 {
@@ -551,8 +628,6 @@ namespace METAbolt
             rtbScript.Modified = false;
 
             tsSaveDisk.Enabled = false;
-
-            saveFile1.Dispose(); 
 
                 //if (saveFile1.FileName.Substring(saveFile1.FileName.Length - 3) == "rtf")
                 //{
@@ -1214,6 +1289,11 @@ namespace METAbolt
         private void tsbSave_Click(object sender, EventArgs e)
         {
             SaveScript();
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

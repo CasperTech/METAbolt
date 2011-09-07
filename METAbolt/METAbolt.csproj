@@ -1554,6 +1554,7 @@
     <None Include="Resources\MoneyBeep.wav" />
     <None Include="Resources\Mic.png" />
     <None Include="Resources\menu_bg.png" />
+    <None Include="Resources\LSL_Functions.txt" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />

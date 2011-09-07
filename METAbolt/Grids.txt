@@ -2,6 +2,7 @@
 Avatar Hangout,http://login.avatarhangout.com:8002
 Cyberlandia,http://hypergrid.cyberlandia.net:8002
 Francogrid,http://grid.francogrid.net:8002
+InWorldz,http://inworldz.com:8002
 Legend City Online,http://login.legendcityonline.com
 Meta7,https://login.meta7.com
 OSGrid,http://osgrid.org:8002

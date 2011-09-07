@@ -596,6 +596,19 @@ namespace METAbolt.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to llAbs|integer llAbs( integer val );|Returns an integer that is the positive version of val.
+        ///llAcos|float llAcos( float val );|Returns a float that is the arccosine in radians of val
+        ///llAddToLandBanList|&quot;llAddToLandBanList( key avatar, float hours );&quot;|&quot;Add avatar to the land ban list for hours, or indefinitely if hours is zero.&quot;
+        ///llAddToLandPassList|&quot;llAddToLandPassList( key avatar, float hours );&quot;|&quot;Add avatar to the land pass list for hours, or indefinitely if hours is zero.&quot;
+        ///llAdjustSoundVolume|llAdjustS [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string LSL_Functions {
+            get {
+                return ResourceManager.GetString("LSL_Functions", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap lsl_scripts_16 {
             get {
                 object obj = ResourceManager.GetObject("lsl_scripts_16", resourceCulture);

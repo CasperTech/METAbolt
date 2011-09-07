@@ -642,8 +642,12 @@ namespace METAbolt
                         button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
                         button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
 
-                        chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
-                        chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
+                        try
+                        {
+                            chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
+                            chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
+                        }
+                        catch { ; }
 
                         if (instance.State.Groups.ContainsKey(Profile.ID))
                         {

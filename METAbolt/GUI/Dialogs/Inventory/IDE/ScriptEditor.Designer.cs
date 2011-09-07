@@ -419,12 +419,15 @@ namespace METAbolt
             // 
             // PB1
             // 
+            this.PB1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.PB1.BackColor = System.Drawing.Color.Transparent;
-            this.PB1.Image = ((System.Drawing.Image)(resources.GetObject("PB1.Image")));
+            this.PB1.Image = global::METAbolt.Properties.Resources.wait30trans;
             this.PB1.Location = new System.Drawing.Point(339, 281);
             this.PB1.Name = "PB1";
             this.PB1.Size = new System.Drawing.Size(66, 70);
-            this.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.PB1.TabIndex = 44;
             this.PB1.TabStop = false;
             this.PB1.Click += new System.EventHandler(this.PB1_Click);
@@ -756,7 +759,7 @@ namespace METAbolt
             // 
             this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripStatusLabel2.Enabled = false;
-            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.DarkGray;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel2.Text = "|";
@@ -773,7 +776,7 @@ namespace METAbolt
             // 
             this.toolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripStatusLabel1.Enabled = false;
-            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.DarkGray;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel1.Text = "|";
@@ -1081,6 +1084,7 @@ namespace METAbolt
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Running";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 

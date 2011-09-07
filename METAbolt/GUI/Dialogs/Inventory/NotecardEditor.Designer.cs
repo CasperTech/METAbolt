@@ -450,12 +450,15 @@ namespace METAbolt
             // 
             // PB1
             // 
+            this.PB1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.PB1.BackColor = System.Drawing.Color.Transparent;
-            this.PB1.Image = ((System.Drawing.Image)(resources.GetObject("PB1.Image")));
+            this.PB1.Image = global::METAbolt.Properties.Resources.wait30trans;
             this.PB1.Location = new System.Drawing.Point(304, 209);
             this.PB1.Name = "PB1";
             this.PB1.Size = new System.Drawing.Size(66, 70);
-            this.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.PB1.TabIndex = 52;
             this.PB1.TabStop = false;
             // 
