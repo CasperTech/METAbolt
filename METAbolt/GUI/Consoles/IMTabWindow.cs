@@ -414,7 +414,7 @@ namespace METAbolt
             {
                 this.cbxInput.Enabled = false;
                 btnSend.Enabled = false;
-                this.cbxInput.Text = string.Empty;
+                //this.cbxInput.Text = string.Empty;
                 target = UUID.Zero;  
                 return;
             }

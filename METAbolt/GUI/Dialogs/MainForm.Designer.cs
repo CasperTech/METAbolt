@@ -237,8 +237,8 @@ namespace METAbolt
             this.tmnuExit.AccessibleName = "Exit application menu option";
             this.tmnuExit.Image = global::METAbolt.Properties.Resources.delete_16;
             this.tmnuExit.Name = "tmnuExit";
-            this.tmnuExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.C)));
+            this.tmnuExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.C)));
             this.tmnuExit.Size = new System.Drawing.Size(185, 22);
             this.tmnuExit.Text = "Exit";
             this.tmnuExit.Click += new System.EventHandler(this.tmnuExit_Click);
@@ -810,8 +810,8 @@ namespace METAbolt
             this.mETAplayerToolStripMenuItem.AccessibleName = "METAplayer menu option";
             this.mETAplayerToolStripMenuItem.Image = global::METAbolt.Properties.Resources.metaplayer;
             this.mETAplayerToolStripMenuItem.Name = "mETAplayerToolStripMenuItem";
-            this.mETAplayerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt)
-                        | System.Windows.Forms.Keys.Y)));
+            this.mETAplayerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Y)));
             this.mETAplayerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.mETAplayerToolStripMenuItem.Text = "METAplayer";
             this.mETAplayerToolStripMenuItem.Click += new System.EventHandler(this.mETAplayerToolStripMenuItem_Click);
@@ -1074,7 +1074,7 @@ namespace METAbolt
             // tlblRegionInfo
             // 
             this.tlblRegionInfo.AccessibleDescription = "Displays the name of the SIM you are in and the coordinates of your avatar\'s loca" +
-                "tion";
+    "tion";
             this.tlblRegionInfo.AccessibleName = "SIM name and coordinates";
             this.tlblRegionInfo.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.tlblRegionInfo.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;

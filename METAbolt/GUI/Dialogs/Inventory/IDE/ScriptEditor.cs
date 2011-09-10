@@ -202,6 +202,7 @@ namespace METAbolt
                 if (e.Ch == ')')
                 {
                     showingcalltip = false;
+                    rtbScript.CallTip.Hide();
                 }
                 else
                 {

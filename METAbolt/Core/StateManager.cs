@@ -95,6 +95,7 @@ namespace METAbolt
         private Color4 bkcolour = new Color4(255, 255, 255, 255);
         private Color4 ccolur = new Color4(0, 0, 255, 255);
         //private UUID lookattarget = UUID.Zero; 
+        private int unreadims = 0;
 
         public StateManager(METAboltInstance instance)
         {
@@ -746,6 +747,12 @@ namespace METAbolt
         {
             get { return sitprim; }
             set { sitprim = value; } 
+        }
+
+        public int UnReadIMs
+        {
+            get { return unreadims; }
+            set { unreadims = value; }
         }
     }
 }

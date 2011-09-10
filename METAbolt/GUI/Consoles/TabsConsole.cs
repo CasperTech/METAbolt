@@ -1313,8 +1313,11 @@ namespace METAbolt
                 //    tabname = button.Tag.ToString().Substring(4).Trim();
                 //}
 
-                IMbox imtab = this.instance.imBox;  
-                imtab.IMRead(tabname);
+                if (!instance.ReadIMs)
+                {
+                    IMbox imtab = this.instance.imBox;
+                    imtab.IMRead(tabname);
+                }
             }
         }
 

@@ -64,7 +64,7 @@ namespace METAbolt
             // btnLogin
             // 
             this.btnLogin.AccessibleDescription = "Click this button to login to your chosen Grid after you have entered your userna" +
-                "me and password details";
+    "me and password details";
             this.btnLogin.AccessibleName = "Login button";
             this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLogin.BackColor = System.Drawing.Color.CornflowerBlue;
@@ -79,8 +79,8 @@ namespace METAbolt
             // 
             // pnlLoggingIn
             // 
-            this.pnlLoggingIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlLoggingIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLoggingIn.Controls.Add(this.lblLoginStatus);
             this.pnlLoggingIn.Location = new System.Drawing.Point(125, 368);
             this.pnlLoggingIn.Name = "pnlLoggingIn";
@@ -90,8 +90,8 @@ namespace METAbolt
             // 
             // lblLoginStatus
             // 
-            this.lblLoginStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLoginStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLoginStatus.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoginStatus.Location = new System.Drawing.Point(3, 3);
             this.lblLoginStatus.Name = "lblLoginStatus";
@@ -115,11 +115,11 @@ namespace METAbolt
             // pnlLoginPage
             // 
             this.pnlLoginPage.AccessibleDescription = "Displays the METAbolt start web page which contains useful links and summary of c" +
-                "urrent forum topics etc";
+    "urrent forum topics etc";
             this.pnlLoginPage.AccessibleName = "METAbolt start page";
-            this.pnlLoginPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlLoginPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLoginPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLoginPage.BackgroundImage")));
             this.pnlLoginPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlLoginPage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -151,8 +151,8 @@ namespace METAbolt
             // 
             this.pnlLoginPrompt.AccessibleDescription = "Enter your required login details in this area";
             this.pnlLoginPrompt.AccessibleName = "Login detail entry";
-            this.pnlLoginPrompt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlLoginPrompt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLoginPrompt.BackColor = System.Drawing.Color.White;
             this.pnlLoginPrompt.Controls.Add(this.button2);
             this.pnlLoginPrompt.Controls.Add(this.button1);
@@ -226,7 +226,7 @@ namespace METAbolt
             // chkCmd
             // 
             this.chkCmd.AccessibleDescription = "Option to create a BAT file for the avatar you are logging in with next time you " +
-                "start METAbolt";
+    "start METAbolt";
             this.chkCmd.AccessibleName = "Create BAT file";
             this.chkCmd.AutoSize = true;
             this.chkCmd.Location = new System.Drawing.Point(424, 44);

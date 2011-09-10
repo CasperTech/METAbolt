@@ -37,6 +37,7 @@ namespace METAbolt
     public partial class frmDisconnected : Form
     {
         private METAboltInstance instance;
+        private string rea = string.Empty;  
 
         public frmDisconnected(METAboltInstance instance, string reason)
         {
@@ -44,7 +45,7 @@ namespace METAbolt
 
             this.instance = instance;
 
-            lblMessage.Text = reason; 
+            rea = reason;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -55,6 +56,29 @@ namespace METAbolt
         private void frmDisconnected_FormClosing(object sender, FormClosingEventArgs e)
         {
             
+        }
+
+        private void frmDisconnected_Load(object sender, EventArgs e)
+        {
+            lblMessage.Text = rea;
+
+            if (instance.State.UnReadIMs > 0)
+            {
+                label2.Visible = true;
+                label2.Text = "You have " + instance.State.UnReadIMs.ToString() + " unread IMs";
+                button1.Visible = true;
+            }
+            else
+            {
+                label2.Visible = false;
+                button1.Visible = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            instance.ReadIMs = true; 
+            this.Close(); 
         }
     }
 }

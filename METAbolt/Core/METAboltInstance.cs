@@ -109,6 +109,7 @@ namespace METAbolt
         public string appdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";
         public bool startfrombat = false;
         private DataTable giveritems = null;
+        private bool readims = false;
 
         internal class ThreadExceptionHandler
         {
@@ -1034,6 +1035,12 @@ namespace METAbolt
         {
             get { return giveritems; }
             set { giveritems = value; }
+        }
+
+        public bool ReadIMs
+        {
+            get { return readims; }
+            set { readims = value; }
         }
     }
 }

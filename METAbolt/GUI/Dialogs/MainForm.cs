@@ -931,34 +931,39 @@ namespace METAbolt
                MessageBox.Show("Invalid files in 'Extensions' folder caused Windows errors: " + ex.Message);   
             }
 
-            //Loop through all the extensions
-            foreach (Extension<IExtension> extOn in manager.Extensions)
-            {
-                //It needs to know we're the host!
-                extOn.Instance.Host = this;
-
-                // Populate the plugins menu
-                //ToolStrip ts = new ToolStrip();
-                //ts = toolStrip1;
-
-                ToolStripDropDownItem mitem;   // = tsPlugins.OwnerItem as ToolStripDropDownItem;
-                mitem = tsPlugins;
-
-                ToolStripButton item = new ToolStripButton();
-                item.Tag = extOn.Instance;
-                item.Text = extOn.Instance.Title;
-                item.Width = extOn.Instance.Title.Length * 6;   // 200;
-                item.Click += new System.EventHandler(AnyMenuItem_Click);
-                mitem.DropDownItems.Add(item);
-
-                elist.Add(extOn.Instance);
-            }
-
-            this.instance.EList = elist;  
-
             if (manager.Extensions.Count > 0)
             {
-                tsPlugins.Visible = true; 
+                //Loop through all the extensions
+                foreach (Extension<IExtension> extOn in manager.Extensions)
+                {
+                    //It needs to know we're the host!
+                    extOn.Instance.Host = this;
+
+                    // Populate the plugins menu
+                    //ToolStrip ts = new ToolStrip();
+                    //ts = toolStrip1;
+
+                    ToolStripDropDownItem mitem;   // = tsPlugins.OwnerItem as ToolStripDropDownItem;
+                    mitem = tsPlugins;
+
+                    ToolStripButton item = new ToolStripButton();
+                    item.Tag = extOn.Instance;
+                    item.Text = extOn.Instance.Title;
+                    item.Width = extOn.Instance.Title.Length * 6;   // 200;
+                    item.Click += new System.EventHandler(AnyMenuItem_Click);
+                    mitem.DropDownItems.Add(item);
+
+                    elist.Add(extOn.Instance);
+                }
+
+                this.instance.EList = elist;
+
+                //if (manager.Extensions.Count > 0)
+                //{
+                //    tsPlugins.Visible = true;
+                //}
+
+                tsPlugins.Visible = true;
             }
         }
 
@@ -1010,9 +1015,10 @@ namespace METAbolt
 
         void manager_AssemblyLoaded(object sender, AssemblyLoadedEventArgs e)
         {
-            string ev = "Loaded: " + e.Filename;
+            string file = (new System.IO.FileInfo(e.Filename)).Name.Trim();
+            string ev = "Loaded plugin: " + file;
 
-            Logger.Log(ev, Helpers.LogLevel.Info);  
+            Logger.Log(ev, Helpers.LogLevel.Info);
         }
 
         void manager_AssemblyFailedLoading(object sender, AssemblyFailedLoadingEventArgs e)
@@ -1756,7 +1762,14 @@ namespace METAbolt
                 }
                 else
                 {
-                    (new frmDisconnected(instance, disconnectreason)).Show();
+                    RefreshStatusBar();
+                    RefreshWindowTitle();
+
+                    //instance.ReadIMs = false;
+
+                    (new frmDisconnected(instance, disconnectreason)).ShowDialog(this);
+
+                    if (instance.ReadIMs) return;
                 }
             }
 
@@ -1766,6 +1779,7 @@ namespace METAbolt
                 tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
                 RefreshStatusBar();
                 RefreshWindowTitle();
+
                 if (debugLogForm != null && !debugLogForm.Disposing)
                 {
                     debugLogForm.Dispose();

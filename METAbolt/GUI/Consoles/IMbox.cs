@@ -233,6 +233,7 @@ namespace METAbolt
             }
 
             label3.Text = lbxIMs.Items.Count.ToString();
+            instance.State.UnReadIMs = lbxIMs.Items.Count;
 
             lbxIMs.SelectedIndex = -1;
         }
