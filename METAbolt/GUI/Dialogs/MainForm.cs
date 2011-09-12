@@ -1251,7 +1251,7 @@ namespace METAbolt
             //if (netcom.IsLoggedIn && tbtnDebug.Visible == true) // only allow to open About land when logged in and for now only as a Debug Future
             if (netcom.IsLoggedIn)
             {
-                (new frmAboutLand(instance)).ShowDialog();
+                (new frmAboutLand(instance)).ShowDialog(this);
             }
         }
 
@@ -1590,11 +1590,6 @@ namespace METAbolt
             }
         }
 
-        private void scriptEditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmScriptEditor(instance)).Show();
-        }
-
         private void setPreviousAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1901,6 +1896,11 @@ namespace METAbolt
                 throw new ApplicationException("Failed loading image");
             }
  
+        }
+
+        private void scriptManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmScriptEditor(instance)).Show();
         }
     }
 }

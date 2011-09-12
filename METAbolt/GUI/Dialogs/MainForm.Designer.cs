@@ -100,8 +100,6 @@ namespace METAbolt
             this.btnMap = new System.Windows.Forms.ToolStripMenuItem();
             this.tbtnObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
-            this.scriptEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.mETAplayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,6 +118,8 @@ namespace METAbolt
             this.debugLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
             this.tsUtilities = new System.Windows.Forms.ToolStripDropDownButton();
+            this.scriptManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.landMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadAIMLLibrariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -735,8 +735,6 @@ namespace METAbolt
             this.btnMap,
             this.tbtnObjects,
             this.toolStripSeparator21,
-            this.scriptEditorToolStripMenuItem,
-            this.toolStripSeparator27,
             this.mETAplayerToolStripMenuItem,
             this.toolStripSeparator19,
             this.toolStripMenuItem4,
@@ -789,21 +787,6 @@ namespace METAbolt
             // 
             this.toolStripSeparator21.Name = "toolStripSeparator21";
             this.toolStripSeparator21.Size = new System.Drawing.Size(236, 6);
-            // 
-            // scriptEditorToolStripMenuItem
-            // 
-            this.scriptEditorToolStripMenuItem.AccessibleName = "Script manager menu option";
-            this.scriptEditorToolStripMenuItem.Image = global::METAbolt.Properties.Resources.source_i;
-            this.scriptEditorToolStripMenuItem.Name = "scriptEditorToolStripMenuItem";
-            this.scriptEditorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.scriptEditorToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
-            this.scriptEditorToolStripMenuItem.Text = "Script Manager";
-            this.scriptEditorToolStripMenuItem.Click += new System.EventHandler(this.scriptEditorToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator27
-            // 
-            this.toolStripSeparator27.Name = "toolStripSeparator27";
-            this.toolStripSeparator27.Size = new System.Drawing.Size(236, 6);
             // 
             // mETAplayerToolStripMenuItem
             // 
@@ -940,6 +923,8 @@ namespace METAbolt
             // 
             this.tsUtilities.AccessibleName = "Utilities menu";
             this.tsUtilities.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scriptManagerToolStripMenuItem,
+            this.toolStripSeparator26,
             this.landMonitorToolStripMenuItem,
             this.reloadAIMLLibrariesToolStripMenuItem,
             this.toolStripSeparator7,
@@ -950,6 +935,20 @@ namespace METAbolt
             this.tsUtilities.Size = new System.Drawing.Size(75, 22);
             this.tsUtilities.Text = "&Utilities";
             this.tsUtilities.Click += new System.EventHandler(this.tsUtilities_Click);
+            // 
+            // scriptManagerToolStripMenuItem
+            // 
+            this.scriptManagerToolStripMenuItem.Image = global::METAbolt.Properties.Resources.source_i;
+            this.scriptManagerToolStripMenuItem.Name = "scriptManagerToolStripMenuItem";
+            this.scriptManagerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.scriptManagerToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.scriptManagerToolStripMenuItem.Text = "Script Manager";
+            this.scriptManagerToolStripMenuItem.Click += new System.EventHandler(this.scriptManagerToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator26
+            // 
+            this.toolStripSeparator26.Name = "toolStripSeparator26";
+            this.toolStripSeparator26.Size = new System.Drawing.Size(201, 6);
             // 
             // landMonitorToolStripMenuItem
             // 
@@ -1335,8 +1334,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripDropDownButton tsPlugins;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateConfigurationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scriptEditorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator27;
         private System.Windows.Forms.ToolStripMenuItem setPreviousAppearanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
         private System.Windows.Forms.ToolStripMenuItem groundSitToolStripMenuItem;
@@ -1348,6 +1345,8 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripLabel tsTimeOut;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
     }
 }
 

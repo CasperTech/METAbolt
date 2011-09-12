@@ -101,9 +101,8 @@ namespace METAbolt
             else
             {
                 button3.Visible = false;
-                this.BackColor = Color.White;
+                this.BackColor = ColorTranslator.FromHtml(ColorTranslator.ToHtml(Color.FromArgb(64,64,64)));   //  Color.White;
             }
-
         }
 
         private void AnyMenuItem_Click(object sender, System.EventArgs e)
@@ -145,6 +144,11 @@ namespace METAbolt
         private void timer1_Tick(object sender, EventArgs e)
         {
             button2.PerformClick();  
+        }
+
+        private void txtMessage_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

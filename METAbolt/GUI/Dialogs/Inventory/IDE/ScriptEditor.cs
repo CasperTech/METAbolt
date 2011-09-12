@@ -207,11 +207,13 @@ namespace METAbolt
                 else
                 {
                     ShowCallTip();
+                    return;
                 }
             }
 
             if (e.Ch == '(')
             {
+                //rtbScript.CallTip.Hide();
                 ShowCallTip();
 
                 showingcalltip = true;
@@ -220,6 +222,7 @@ namespace METAbolt
             }
             else if (e.Ch == ')')
             {
+                showingcalltip = false;
                 rtbScript.CallTip.Hide();
             }
 
@@ -260,13 +263,85 @@ namespace METAbolt
             //rtbScript.CallTip.Show(hword);
 
             int idx = calltipheader.IndexOf(hword);
+
+            if (idx == -1) return;
+
             string tip = calltip[idx];
 
             string[] split = tip.Split('|');
-            string function = split[1];
-            string cti = split[2];
+            string function = @split[1];
+            string cti = @split[2];
 
-            rtbScript.CallTip.Show(function + "\n" + cti);
+            if (function.Length > 50)
+            {
+                string lo = function.Substring(0, 50);
+                int ind = lo.LastIndexOf(" ");
+                function = function.Insert(ind + 1, "\n");
+            }
+
+            if (function.Length > 100)
+            {
+                string lo = function.Substring(0, 100);
+                int ind = lo.LastIndexOf(" ");
+                function = function.Insert(ind + 1, "\n");
+            }
+
+            if (function.Length > 150)
+            {
+                string lo = function.Substring(0, 150);
+                int ind = lo.LastIndexOf(" ");
+                function = function.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 50)
+            {
+                string lo = cti.Substring(0, 50);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 100)
+            {
+                string lo = cti.Substring(0, 100);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 150)
+            {
+                string lo = cti.Substring(0, 150);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 200)
+            {
+                string lo = cti.Substring(0, 200);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 250)
+            {
+                string lo = cti.Substring(0, 250);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 300)
+            {
+                string lo = cti.Substring(0, 300);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(function);
+            sb.AppendLine(string.Empty);
+            sb.AppendLine(cti);
+
+            rtbScript.CallTip.Show(sb.ToString());
+            //rtbScript.CallTip.Show(function);
         }
 
         public static void Append<T>(ref T[] array, params T[] items)
@@ -513,6 +588,37 @@ namespace METAbolt
         {
             if (success)
             {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    label1.Text = string.Empty;
+                });
+
+                if (!compile)
+                {
+                    BeginInvoke((MethodInvoker)delegate
+                    {
+                        string line = messages[0];
+                        string[] errs = line.Split(':');
+                        //Point pos = (Point)errs[0].Trim();
+                        string pos = errs[0].Trim().Replace("(", "");
+                        pos = pos.Trim().Replace(")", "");
+                        string[] posxy = pos.Split(',');
+
+                        int posx = Convert.ToInt32(posxy[0].Trim());
+                        //int posy = Convert.ToInt32(posxy[1].Trim());
+
+                        //int aposx = rtbScript.PointXFromPosition(posx);
+                        //int aposy = rtbScript.PointXFromPosition(posy);
+
+                        //int apos = rtbScript.PositionFromPoint(aposx, aposy);
+
+                        //rtbScript.NativeInterface.GotoPos(apos);
+                        rtbScript.NativeInterface.GotoLine(posx - 1);
+
+                        label1.Text = "Compile " + errs[1].Trim() + ": " + errs[2].Trim().Replace("\n", "") + " @ line: " + posxy[0].Trim();
+                    });
+                }
+
                 saving = false;
                 BeginInvoke(new MethodInvoker(SaveComplete));
 
@@ -1295,6 +1401,108 @@ namespace METAbolt
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void rtbScript_MouseMove(object sender, MouseEventArgs e)
+        {
+            ////string link = GetWord(rtbScript.Text, rtbScript.GetWordFromPosition(e.Location));
+            //int pos = rtbScript.NativeInterface.GetCurrentPos();
+            //string word = rtbScript.GetWordFromPosition(pos);
+
+            int pos = rtbScript.PositionFromPoint(e.X, e.Y);
+            string word = rtbScript.GetWordFromPosition(pos);
+
+            if (word == null || word == string.Empty)
+            {
+                rtbScript.CallTip.Hide();
+                return;
+            }
+
+            int idx = calltipheader.IndexOf(word);
+
+            if (idx == -1)
+            {
+                rtbScript.CallTip.Hide();
+                return;
+            }
+
+            string tip = calltip[idx];
+
+            string[] split = tip.Split('|');
+            string function = @split[1];
+            string cti = @split[2];
+
+            if (function.Length > 50)
+            {
+                string lo = function.Substring(0, 50);
+                int ind = lo.LastIndexOf(" ");
+                function = function.Insert(ind + 1, "\n");
+            }
+
+            if (function.Length > 100)
+            {
+                string lo = function.Substring(0, 100);
+                int ind = lo.LastIndexOf(" ");
+                function = function.Insert(ind + 1, "\n");
+            }
+
+            if (function.Length > 150)
+            {
+                string lo = function.Substring(0, 150);
+                int ind = lo.LastIndexOf(" ");
+                function = function.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 50)
+            {
+                string lo = cti.Substring(0, 50);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 100)
+            {
+                string lo = cti.Substring(0, 100);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 150)
+            {
+                string lo = cti.Substring(0, 150);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 200)
+            {
+                string lo = cti.Substring(0, 200);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 250)
+            {
+                string lo = cti.Substring(0, 250);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            if (cti.Length > 300)
+            {
+                string lo = cti.Substring(0, 300);
+                int ind = lo.LastIndexOf(" ");
+                cti = cti.Insert(ind + 1, "\n");
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(function);
+            sb.AppendLine(string.Empty);
+            sb.AppendLine(cti);
+            sb.AppendLine(string.Empty);
+            sb.AppendLine("[Click on function/event & press F1 for info/sample code]");
+
+            rtbScript.CallTip.Show(sb.ToString(), pos);
         }
     }
 }

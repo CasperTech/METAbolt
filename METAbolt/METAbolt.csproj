@@ -677,12 +677,6 @@
     <Compile Include="GUI\Dialogs\Inventory\IDE\ScriptEditor.Designer.cs">
       <DependentUpon>ScriptEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Dialogs\Inventory\IDE\ScriptStudio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Dialogs\Inventory\IDE\ScriptStudio.Designer.cs">
-      <DependentUpon>ScriptStudio.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Dialogs\frmNotecard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1003,9 +997,6 @@
     <EmbeddedResource Include="GUI\Dialogs\Inventory\IDE\ScriptEditor.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ScriptEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Dialogs\Inventory\IDE\ScriptStudio.resx">
-      <DependentUpon>ScriptStudio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\MainForm.resx">
       <SubType>Designer</SubType>
@@ -1556,6 +1547,7 @@
     <None Include="Resources\Mic.png" />
     <None Include="Resources\menu_bg.png" />
     <None Include="Resources\LSL_Functions.txt" />
+    <None Include="Resources\LSL_Functions_WOE.txt" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />

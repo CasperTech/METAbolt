@@ -643,7 +643,7 @@ namespace METAbolt
 
             if (this.instance.NoticeCount < 9)
             {
-                (new frmGroupNotice(instance, e)).ShowDialog();
+                (new frmGroupNotice(instance, e)).Show(this);
             }
         }
 
@@ -946,7 +946,7 @@ namespace METAbolt
                             return;
                         }
 
-                        (new frmInvOffered(instance, e.IM, oID, type)).ShowDialog();
+                        (new frmInvOffered(instance, e.IM, oID, type)).ShowDialog(this);
                     }
                 }
                 catch (Exception ex)

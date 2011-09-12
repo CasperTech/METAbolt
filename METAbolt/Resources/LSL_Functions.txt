@@ -1,81 +1,81 @@
 llAbs|integer llAbs( integer val );|Returns an integer that is the positive version of val.
 llAcos|float llAcos( float val );|Returns a float that is the arccosine in radians of val
-llAddToLandBanList|"llAddToLandBanList( key avatar, float hours );"|"Add avatar to the land ban list for hours, or indefinitely if hours is zero."
-llAddToLandPassList|"llAddToLandPassList( key avatar, float hours );"|"Add avatar to the land pass list for hours, or indefinitely if hours is zero."
+llAddToLandBanList|llAddToLandBanList( key avatar, float hours );|Add avatar to the land ban list for hours, or indefinitely if hours is zero.
+llAddToLandPassList|llAddToLandPassList( key avatar, float hours );|Add avatar to the land pass list for hours, or indefinitely if hours is zero.
 llAdjustSoundVolume|llAdjustSoundVolume( float volume );|Adjusts volume of attached sound.
 llAllowInventoryDrop|llAllowInventoryDrop( integer add );|Allows for all users without modify permissions to add inventory items to a prim.
-llAngleBetween|"float llAngleBetween( rotation a, rotation b );"|Returns a float that is the angle between rotation a and b.
-llApplyImpulse|"llApplyImpulse( vector force, integer local );"|Applies impulse to object
-llApplyRotationalImpulse|"llApplyRotationalImpulse( vector force, integer local );"|Applies rotational impulse to object.
+llAngleBetween|float llAngleBetween( rotation a, rotation b );|Returns a float that is the angle between rotation a and b.
+llApplyImpulse|llApplyImpulse( vector force, integer local );|Applies impulse to object
+llApplyRotationalImpulse|llApplyRotationalImpulse( vector force, integer local );|Applies rotational impulse to object.
 llAsin|float llAsin( float val );|Returns a float that is the arcsine in radians of val
-llAtan2|"float llAtan2( float y, float x );"|"Returns a float that is the arctangent2 of y, x."
+llAtan2|float llAtan2( float y, float x );|Returns a float that is the arctangent2 of y, x.
 llAttachToAvatar|llAttachToAvatar( integer attach_point );|Attaches the object to the avatar who has granted permission to the script. The object is taken into the users inventory and attached to attach_point.
 llAvatarOnSitTarget|key llAvatarOnSitTarget( );|Returns a key that is the UUID of the user seated on the prim.
-llAxes2Rot|"rotation llAxes2Rot( vector fwd, vector left, vector up );"|Returns a rotation that is defined by the 3 coordinate axes
-llAxisAngle2Rot|"rotation llAxisAngle2Rot( vector axis, float angle );"|Returns a rotation that is a generated angle about axis
+llAxes2Rot|rotation llAxes2Rot( vector fwd, vector left, vector up );|Returns a rotation that is defined by the 3 coordinate axes
+llAxisAngle2Rot|rotation llAxisAngle2Rot( vector axis, float angle );|Returns a rotation that is a generated angle about axis
 llBase64ToInteger|integer llBase64ToInteger( string str );|Returns an integer that is str Base64 decoded as a big endian integer.
 llBase64ToString|string llBase64ToString( string str );|Returns a string that is the Base64 str decoded into a conventional string.
 llBreakAllLinks|llBreakAllLinks( );|Delinks all prims in the link set.
 llBreakLink|llBreakLink( integer linknum );|Delinks the prim with the given link number in a linked object set
-llCastRay|"list llCastRay( vector start, vector end, list options );"|Cast a ray from start to end and report collision data for intersections with objects
+llCastRay|list llCastRay( vector start, vector end, list options );|Cast a ray from start to end and report collision data for intersections with objects
 llCeil|integer llCeil( float val );|Returns an integer that is the integer value of val rounded towards positive infinity (return >= val).
 llClearCameraParams|llClearCameraParams( );|Resets all camera parameters to default values and turns off scripted camera control.
 llClearPrimMedia|integer llClearPrimMedia( integer face );|Clears (deletes) the media and all params from the given face.
 llCloseRemoteDataChannel|llCloseRemoteDataChannel( key channel );|Closes XML-RPC channel.
 llCloud|float llCloud( vector offset );|Returns a float that is the cloud density at the prim position + offset
-llCollisionFilter|"llCollisionFilter( string name, key id, integer accept );"|"Sets the collision filter, exclusively or inclusively."
-llCollisionSound|"llCollisionSound( string impact_sound, float impact_volume );"|"Suppress default collision sounds, replace default impact sounds with impact_sound at the volume impact_volume"
-llCollisionSprite|llCollisionSprite( string impact_sprite );|"Suppress default collision sprites, replace default impact sprite with impact_sprite (empty string to just suppress)"
+llCollisionFilter|llCollisionFilter( string name, key id, integer accept );|Sets the collision filter, exclusively or inclusively.
+llCollisionSound|llCollisionSound( string impact_sound, float impact_volume );|Suppress default collision sounds, replace default impact sounds with impact_sound at the volume impact_volume
+llCollisionSprite|llCollisionSprite( string impact_sprite );|Suppress default collision sprites, replace default impact sprite with impact_sprite (empty string to just suppress)
 llCos|float llCos( float theta );|Returns a float that is the cosine of theta.
-llCreateLink|"llCreateLink( key target, integer parent );"|Attempt to link the script's object with target.
-llCSV2List|list llCSV2List( string src );|"This function takes a string of values separated by commas, and turns it into a list."
-llDeleteSubList|"list llDeleteSubList( list src, integer start, integer end );"|Returns a list that is a copy of src but with the slice from start to end removed.
-llDeleteSubString|"string llDeleteSubString( string src, integer start, integer end );"|Returns a string that is the result of removing characters from src from start to end.
+llCreateLink|llCreateLink( key target, integer parent );|Attempt to link the script's object with target.
+llCSV2List|list llCSV2List( string src );|This function takes a string of values separated by commas, and turns it into a list.
+llDeleteSubList|list llDeleteSubList( list src, integer start, integer end );|Returns a list that is a copy of src but with the slice from start to end removed.
+llDeleteSubString|string llDeleteSubString( string src, integer start, integer end );|Returns a string that is the result of removing characters from src from start to end.
 llDetachFromAvatar|llDetachFromAvatar( );|Detach object from avatar.
 llDetectedGrab|vector llDetectedGrab( integer number );|Returns a vector that is the grab offset of the user touching the object; only works in the touch event.
 llDetectedGroup|integer llDetectedGroup( integer number );|Returns an integer that is a boolean representing if the detected object or avatar is in the same group that the prim containing the script is set to.
 llDetectedKey|key llDetectedKey( integer number );|Returns a key that is the UUID of the detected object or avatar number.
-llDetectedLinkNumber|integer llDetectedLinkNumber( integer number );|"Returns an integer that is the link number of the triggered event. If not supported by the event, returns zero."
+llDetectedLinkNumber|integer llDetectedLinkNumber( integer number );|Returns an integer that is the link number of the triggered event. If not supported by the event, returns zero.
 llDetectedName|string llDetectedName( integer item );|Returns a string that is the name of the detected item.
 llDetectedOwner|key llDetectedOwner( integer number );|Returns a key that is the UUID of the owner of the object.
 llDetectedPos|vector llDetectedPos( integer number );|Returns a vector that is the position (in region coordinates) of detected object number.
 llDetectedRot|rotation llDetectedRot( integer number );|Returns a rotation that is the rotation of detected object number.
-llDetectedTouchBinormal|vector llDetectedTouchBinormal( integer index );|"Returns a vector that is the surface binormal (tangent to the surface pointing along the U direction of tangent space) where the touch event was triggered. Along with llDetectedTouchNormal, this information can be used to find the tangent space at the touch location."
+llDetectedTouchBinormal|vector llDetectedTouchBinormal( integer index );|Returns a vector that is the surface binormal (tangent to the surface pointing along the U direction of tangent space) where the touch event was triggered. Along with llDetectedTouchNormal, this information can be used to find the tangent space at the touch location.
 llDetectedTouchFace|integer llDetectedTouchFace( integer index );|Returns an integer that is the index of the face the avatar clicked on.
-llDetectedTouchNormal|vector llDetectedTouchNormal( integer index );|"Returns a vector that is the surface normal (perpendicular to the surface) where the touch event was triggered. Along with llDetectedTouchBinormal, this information can be used to find the tangent space at the touch location."
-llDetectedTouchPos|vector llDetectedTouchPos( integer index );|"Returns a vector that is the position where the object was touched in region coordinates, unless it is attached to the HUD, in which case it returns the position in screen space coordinates."
-llDetectedTouchST|vector llDetectedTouchST( integer index );|"Returns a vector that is the surface coordinates for where the prim was touched. The x & y vector positions contain the horizontal (s) & vertical (t) face coordinates respectively (<s, t, 0.0>). Each component is in the interval [0.0, 1.0]."
-llDetectedTouchUV|vector llDetectedTouchUV( integer index );|"Returns a vector that is the texture coordinates for where the prim was touched. The x & y vector positions contain the u & v face coordinates respectively (<u, v, 0.0>)."
+llDetectedTouchNormal|vector llDetectedTouchNormal( integer index );|Returns a vector that is the surface normal (perpendicular to the surface) where the touch event was triggered. Along with llDetectedTouchBinormal, this information can be used to find the tangent space at the touch location.
+llDetectedTouchPos|vector llDetectedTouchPos( integer index );|Returns a vector that is the position where the object was touched in region coordinates, unless it is attached to the HUD, in which case it returns the position in screen space coordinates.
+llDetectedTouchST|vector llDetectedTouchST( integer index );|Returns a vector that is the surface coordinates for where the prim was touched. The x & y vector positions contain the horizontal (s) & vertical (t) face coordinates respectively (<s, t, 0.0>). Each component is in the interval [0.0, 1.0].
+llDetectedTouchUV|vector llDetectedTouchUV( integer index );|Returns a vector that is the texture coordinates for where the prim was touched. The x & y vector positions contain the u & v face coordinates respectively (<u, v, 0.0>).
 llDetectedType|integer llDetectedType( integer number );|Returns an integer mask that is the types of detected object or avatar.
 llDetectedVel|vector llDetectedVel( integer number );|Returns a vector that is the velocity of detected object or avatar number.
-llDialog|"llDialog( key avatar, string message, list buttons, integer chat_channel );"|"Shows a dialog box in the lower right corner of the avatar's screen (upper right in Viewer 1.x) with a message and choice buttons, as well as an ignore button. This has many uses ranging from simple message delivery to complex menu systems."
+llDialog|llDialog( key avatar, string message, list buttons, integer chat_channel );|Shows a dialog box in the lower right corner of the avatar's screen (upper right in Viewer 1.x) with a message and choice buttons, as well as an ignore button. This has many uses ranging from simple message delivery to complex menu systems.
 llDie|llDie( );|Deletes the object. The object does not go to the owners Inventory:Trash.
-llDumpList2String|"string llDumpList2String( list src, string separator );"|Returns a string that is the list src converted to a string with separator between the entries.
-llEdgeOfWorld|"integer llEdgeOfWorld( vector pos, vector dir );"|Checks to see whether the border hit by dir from pos is the edge of the world (has no neighboring simulator).
+llDumpList2String|string llDumpList2String( list src, string separator );|Returns a string that is the list src converted to a string with separator between the entries.
+llEdgeOfWorld|integer llEdgeOfWorld( vector pos, vector dir );|Checks to see whether the border hit by dir from pos is the edge of the world (has no neighboring simulator).
 llEjectFromLand|llEjectFromLand( key avatar );|Ejects avatar from the parcel.
-llEmail|"llEmail( string address, string subject, string message );"|Sends an email to address with subject and message.
-llEscapeURL|string llEscapeURL( string url );|"Returns a string that is the escaped/encoded version of url, replacing spaces withÿ%20 etc. The function will escape any character not in [a-zA-Z0-9] toÿ%xx where xx is the hexadecimal value of the character in UTF-8 byte form."
+llEmail|llEmail( string address, string subject, string message );|Sends an email to address with subject and message.
+llEscapeURL|string llEscapeURL( string url );|Returns a string that is the escaped/encoded version of url, replacing spaces with %20 etc. The function will escape any character not in [a-zA-Z0-9] to %xx where xx is the hexadecimal value of the character in UTF-8 byte form.
 llEuler2Rot|rotation llEuler2Rot( vector v );|Returns a rotation representation of Euler Angles v.
 llFabs|float llFabs( float val );|Returns a float that is the positive version of val.
 llFloor|integer llFloor( float val );|Returns an integer that is the integer value of val rounded towards negative infinity (return <= val).
 llForceMouselook|llForceMouselook( integer mouselook );|Sets if a sitting avatar should be forced into mouselook when they sit on this prim.
-llFrand|float llFrand( float mag );|"Returns a float that is pseudo random number in the range [0.0, mag) or (mag, 0.0]"
+llFrand|float llFrand( float mag );|Returns a float that is pseudo random number in the range [0.0, mag) or (mag, 0.0]
 llGetAccel|vector llGetAccel( );|Returns a vector that is the acceleration of the object in the region frame of reference.
 llGetAgentInfo|integer llGetAgentInfo( key id );|Returns an integer bitfield containing the agent information about id.
 llGetAgentLanguage|string llGetAgentLanguage( key avatar );|Returns a string that is the language code of the preferred interface language of the user avatar.
 llGetAgentSize|vector llGetAgentSize( key id );|Returns a vector that is an estimated size of the requested avatar by id.
 llGetAlpha|float llGetAlpha( integer face );|Returns a float that is the alpha of face.
 llGetAndResetTime|float llGetAndResetTime( );|Returns a float that is script time in seconds and then resets the script time to zero.
-llGetAnimation|string llGetAnimation( key id );|Returns a string that is the name of the currently playing locomotion animation for avatar id. See the table below.
+llGetAnimation|string llGetAnimation( key id );|Returns a string that is the name of the currently playing locomotion animation for avatar id.
 llGetAnimationList|list llGetAnimationList( key id );|Returns a list of keys of playing animations for avatar described by the key id.
 llGetAttached|integer llGetAttached( );|Returns an integer that is the attachment point the object is attached to or zero if not attached.
-llGetBoundingBox|list llGetBoundingBox( key object );|"Returns a list that is the bounding box of object relative to its root prim, in local coordinates."
+llGetBoundingBox|list llGetBoundingBox( key object );|Returns a list that is the bounding box of object relative to its root prim, in local coordinates.
 llGetCameraPos|vector llGetCameraPos( );|Returns a vector that is the current camera position for the agent the task has permissions for.
 llGetCameraRot|rotation llGetCameraRot( );|Returns a rotation that is the current camera orientation for the agent the task has permissions for.
 llGetCenterOfMass|vector llGetCenterOfMass( );|Returns the vector position of the object's center of mass in region coordinates.
 llGetColor|vector llGetColor( integer face );|Returns a vector that is the color on face.
 llGetCreator|key llGetCreator( );|Returns a key for the creator of the prim.
-llGetDate|string llGetDate( );|"Returns a string that is the current date in the UTC time zone in the format ""YYYY-MM-DD""."
+llGetDate|string llGetDate( );|Returns a string that is the current date in the UTC time zone in the format YYYY-MM-DD.
 llGetDisplayName|string llGetDisplayName( key id );|Returns a string that is the non-unique display name of the avatar specified by id.
 llGetEnergy|float llGetEnergy( );|Returns a float that is how much energy is in the object as a percentage of maximum
 llGetEnv|string llGetEnv( string name );|Returns a string with the requested data about the region.
@@ -84,12 +84,12 @@ llGetFreeMemory|integer llGetFreeMemory( );|Returns the integer of the number of
 llGetFreeURLs|integer llGetFreeURLs( );|Returns an integer that is the number of available URLs.
 llGetGeometricCenter|vector llGetGeometricCenter( );|Returns the vector that is the geometric center of the object relative to the root prim.
 llGetGMTclock|float llGetGMTclock( );|Returns a float that is the time in seconds since midnight GMT. Value appears to be truncated to the second.
-llGetHTTPHeader|"string llGetHTTPHeader( key request_id, string header );"|Returns a string that is the value for header for request_id.
+llGetHTTPHeader|string llGetHTTPHeader( key request_id, string header );|Returns a string that is the value for header for request_id.
 llGetInventoryCreator|key llGetInventoryCreator( string item );|Returns a key of the creator of the inventory item.
 llGetInventoryKey|key llGetInventoryKey( string name );|Returns a key that is the UUID of the inventory name
-llGetInventoryName|"string llGetInventoryName( integer type, integer number );"|Returns a string that is the name of the inventory item number of type. Returns an empty string if no item of the specified type is found in the prim's inventory (or there are less than or equal to number items of the type).
+llGetInventoryName|string llGetInventoryName( integer type, integer number );|Returns a string that is the name of the inventory item number of type. Returns an empty string if no item of the specified type is found in the prim's inventory (or there are less than or equal to number items of the type).
 llGetInventoryNumber|integer llGetInventoryNumber( integer type );|Returns an integer that is the number of items of a given type in the prims inventory.
-llGetInventoryPermMask|"integer llGetInventoryPermMask( string item, integer mask );"|Returns an integer bitfield that is the requested permission mask for the inventory item
+llGetInventoryPermMask|integer llGetInventoryPermMask( string item, integer mask );|Returns an integer bitfield that is the requested permission mask for the inventory item
 llGetInventoryType|integer llGetInventoryType( string name );|Returns an integer that is the type of the inventory item name
 llGetKey|key llGetKey( );|Returns the key of the prim the script is attached to.
 llGetLandOwnerAt|key llGetLandOwnerAt( vector pos );|Returns a key that is the land owner at pos.
@@ -97,19 +97,19 @@ llGetLinkKey|key llGetLinkKey( integer link_number );|Returns the key of the lin
 llGetLinkName|string llGetLinkName( integer linknum );|Returns a string that is the name of linknum in link set
 llGetLinkNumber|integer llGetLinkNumber( );|Returns an integer that is the link number of the prim containing the script.
 llGetLinkNumberOfSides|integer llGetLinkNumberOfSides( integer link );|Returns an integer that is the number of faces (or sides) of the prim link.
-llGetLinkPrimitiveParams|"list llGetLinkPrimitiveParams( integer link, list params );"|Identical to llGetPrimitiveParams except that it acts on the prim specified by the link number given.
-llGetListEntryType|"integer llGetListEntryType( list src, integer index );"|Returns an integer that is the type of the entry index in src.
+llGetLinkPrimitiveParams|list llGetLinkPrimitiveParams( integer link, list params );|Identical to llGetPrimitiveParams except that it acts on the prim specified by the link number given.
+llGetListEntryType|integer llGetListEntryType( list src, integer index );|Returns an integer that is the type of the entry index in src.
 llGetListLength|integer llGetListLength( list src );|Returns an integer that is the number of elements in the list src.
 llGetLocalPos|vector llGetLocalPos( );|Returns a vector that is the position relative (local) to the root.
 llGetLocalRot|rotation llGetLocalRot( );|Returns the rotation of the prim relative to the root.
 llGetMass|float llGetMass( );|Returns a float that is the mass of object that script is attached to.
-llGetNextEmail|"llGetNextEmail( string address, string subject );"|"Get the next queued email that comes from address, with specified subject."
-llGetNotecardLine|"key llGetNotecardLine( string name, integer line );"|Requests the line line of the notecard name from the dataserver.
+llGetNextEmail|llGetNextEmail( string address, string subject );|Get the next queued email that comes from address, with specified subject.
+llGetNotecardLine|key llGetNotecardLine( string name, integer line );|Requests the line line of the notecard name from the dataserver.
 llGetNumberOfNotecardLines|key llGetNumberOfNotecardLines( string name );|Requests number of lines in notecard name via the dataserver event (cast dataserver value to integer)
 llGetNumberOfPrims|integer llGetNumberOfPrims( );|Returns an integer that is the number of prims in a link set the script is attached to.
 llGetNumberOfSides|integer llGetNumberOfSides( );|Returns an integer that is the number of faces (or sides) of the prim.
 llGetObjectDesc|string llGetObjectDesc( );|Returns a string that is the description of the prim the script is attached to.
-llGetObjectDetails|"list llGetObjectDetails( key id, list params );"|"Returns a list of the details for id, specifically those requested in params."
+llGetObjectDetails|list llGetObjectDetails( key id, list params );|Returns a list of the details for id, specifically those requested in params.
 llGetObjectMass|float llGetObjectMass( key id );|Returns a float that is the mass of id
 llGetObjectName|string llGetObjectName( );|Returns a string that is the name of the prim the script is attached to.
 llGetObjectPermMask|integer llGetObjectPermMask( integer mask );|Returns an integer that is the requested permission mask for the root object the task is attached to.
@@ -117,22 +117,22 @@ llGetObjectPrimCount|integer llGetObjectPrimCount( key prim );|Returns an intege
 llGetOmega|vector llGetOmega( );|Returns a vector that is the rotation velocity of the object in radians per second.
 llGetOwner|key llGetOwner( );|Returns a key that is the object owner's UUID.
 llGetOwnerKey|key llGetOwnerKey( key id );|Returns a key that is the owner of prim id
-llGetParcelDetails|"list llGetParcelDetails( vector pos, list params );"|Returns a list that is the parcel details specified in params (in the same order) for the parcel at pos.
+llGetParcelDetails|list llGetParcelDetails( vector pos, list params );|Returns a list that is the parcel details specified in params (in the same order) for the parcel at pos.
 llGetParcelFlags|integer llGetParcelFlags( vector pos );|Returns an integer that is a mask of parcel flags (PARCEL_FLAG_*) for the parcel that includes the point pos.
-llGetParcelMaxPrims|"integer llGetParcelMaxPrims( vector pos, integer sim_wide );"|Returns an integer that is the maximum number of prims allowed on the parcel at pos.
-llGetParcelPrimCount|"integer llGetParcelPrimCount( vector pos, integer category, integer sim_wide );"|Returns an integer that is the number of prims on the parcel at pos of the given category
+llGetParcelMaxPrims|integer llGetParcelMaxPrims( vector pos, integer sim_wide );|Returns an integer that is the maximum number of prims allowed on the parcel at pos.
+llGetParcelPrimCount|integer llGetParcelPrimCount( vector pos, integer category, integer sim_wide );|Returns an integer that is the number of prims on the parcel at pos of the given category
 llGetParcelPrimOwners|list llGetParcelPrimOwners( vector pos );|Returns a list of all residents who own objects on the parcel at pos and with individual prim counts.
 llGetPermissions|integer llGetPermissions( );|Returns an integer bitfield with the script permissions granted
 llGetPermissionsKey|key llGetPermissionsKey( );|Returns the key of the avatar that last granted or declined permissions to the script.
 llGetPos|vector llGetPos( );|Returns the vector position of the task in region coordinates
 llGetPrimitiveParams|list llGetPrimitiveParams( list params );|Returns a list that is the primitive parameters specified in the params list.
-llGetPrimMediaParams|"list llGetPrimMediaParams( integer face, list params );"|"Get the media params for a particular face on an object, given the desired list of names."
+llGetPrimMediaParams|list llGetPrimMediaParams( integer face, list params );|Get the media params for a particular face on an object, given the desired list of names.
 llGetRegionAgentCount|integer llGetRegionAgentCount( );|Returns an integer that is the number of avatars in the region.
 llGetRegionCorner|vector llGetRegionCorner( );|Returns a vector in meters that is the global location of the south-west corner of the region the object is in. The z component is 0.0
 llGetRegionFlags|integer llGetRegionFlags( );|Returns an integer that is the region flags (REGION_FLAG_*) for the region the object is in.
 llGetRegionFPS|float llGetRegionFPS( );|Returns a float that is the mean region frames per second.
 llGetRegionName|string llGetRegionName( );|Returns a string that is the current region name
-llGetRegionTimeDilation|float llGetRegionTimeDilation( );|"Returns a float that is the current time dilation, the value range is [0.0, 1.0], 0.0 (full dilation) and 1.0 (no dilation)"
+llGetRegionTimeDilation|float llGetRegionTimeDilation( );|Returns a float that is the current time dilation, the value range is [0.0, 1.0], 0.0 (full dilation) and 1.0 (no dilation)
 llGetRootPosition|vector llGetRootPosition( );|Returns a vector that is the region position of the root object of the object script is attached to
 llGetRootRotation|rotation llGetRootRotation( );|Returns a rotation that is the region rotation of the root prim of the object.
 llGetRot|rotation llGetRot( );|Returns a rotation that is the prim's rotation relative to the region's axes.
@@ -143,100 +143,100 @@ llGetSimulatorHostname|string llGetSimulatorHostname( );|Returns a string that i
 llGetSPMaxMemory|integer llGetSPMaxMemory( );|Returns the integer of the most bytes used while LlScriptProfiler was last active.
 llGetStartParameter|integer llGetStartParameter( );|Returns an integer that is the script start/rez parameter.
 llGetStatus|integer llGetStatus( integer status );|Returns an integer boolean equal to the status of the object.
-llGetSubString|"string llGetSubString( string src, integer start, integer end );"|"Returns a string that is the substring of src from start to end, leaving the original string intact."
+llGetSubString|string llGetSubString( string src, integer start, integer end );|Returns a string that is the substring of src from start to end, leaving the original string intact.
 llGetSunDirection|vector llGetSunDirection( );|Returns a vector that is a normalized vector of the direction of the sun in the region.
 llGetTexture|string llGetTexture( integer face );|Returns a string that is the texture on face
-llGetTextureOffset|vector llGetTextureOffset( integer face );|"Returns a vector that is the texture offset of face in the x (""U"", horizontal) and y (""V"", vertical) components. The z component is unused."
+llGetTextureOffset|vector llGetTextureOffset( integer face );|Returns a vector that is the texture offset of face in the x (U, horizontal) and y (V, vertical) components. The z component is unused.
 llGetTextureRot|float llGetTextureRot( integer side );|Returns a float that is the texture rotation of side
 llGetTextureScale|vector llGetTextureScale( integer side );|Returns a vector that is the texture scale of side in the x and y components.
-llGetTime|float llGetTime( );|"Returns a float that is script time in seconds with subsecond precision since the script started, was last reset, or call to either llResetTime or llGetAndResetTime."
-llGetTimeOfDay|float llGetTimeOfDay( );|"Returns a float that is the time in seconds with subsecond precision since Second Life midnight or region up-time (time since when the region was brought online/rebooted); whichever is smaller. If the region is configured so the sun stays in a constant position, then the returned value is the region up-time."
-llGetTimestamp|string llGetTimestamp( );|"Returns a string that is the current date and time in the UTC time zone in the format ""YYYY-MM-DDThh:mm:ss.ff..fZ"""
+llGetTime|float llGetTime( );|Returns a float that is script time in seconds with subsecond precision since the script started, was last reset, or call to either llResetTime or llGetAndResetTime.
+llGetTimeOfDay|float llGetTimeOfDay( );|Returns a float that is the time in seconds with subsecond precision since Second Life midnight or region up-time (time since when the region was brought online/rebooted); whichever is smaller. If the region is configured so the sun stays in a constant position, then the returned value is the region up-time.
+llGetTimestamp|string llGetTimestamp( );|Returns a string that is the current date and time in the UTC time zone in the format YYYY-MM-DDThh:mm:ss.ff..fZ
 llGetTorque|vector llGetTorque( );|Returns a vector that is the torque (if the script is physical)
-llGetUnixTime|integer llGetUnixTime( );|"Returns an integer that is the number of seconds elapsed since 00:00 hours, Jan 1, 1970 UTC from the system clock."
+llGetUnixTime|integer llGetUnixTime( );|Returns an integer that is the number of seconds elapsed since 00:00 hours, Jan 1, 1970 UTC from the system clock.
 llGetUsedMemory|integer llGetUsedMemory( );|Returns the integer of the number of bytes of memory currently in use by the script.
 llGetUsername|string llGetUsername( key id );|Returns a string that is the unique username of the avatar specified by id.
 llGetVel|vector llGetVel( );|Returns a vector that is the velocity of the object.
-llGetWallclock|float llGetWallclock( );|"Returns a float that is the time in seconds since midnight Pacific time (PST/PDT), truncated to whole seconds."
-llGiveInventory|"llGiveInventory( key destination, string inventory );"|Give inventory to destination.
-llGiveInventoryList|"llGiveInventoryList( key target, string folder, list inventory );"|"Gives inventory items to target, creating a new folder to put them in."
-llGiveMoney|"integer llGiveMoney( key destination, integer amount );"|Transfer amount of L$ money from script owner to destination avatar.
+llGetWallclock|float llGetWallclock( );|Returns a float that is the time in seconds since midnight Pacific time (PST/PDT), truncated to whole seconds.
+llGiveInventory|llGiveInventory( key destination, string inventory );|Give inventory to destination.
+llGiveInventoryList|llGiveInventoryList( key target, string folder, list inventory );|Gives inventory items to target, creating a new folder to put them in.
+llGiveMoney|integer llGiveMoney( key destination, integer amount );|Transfer amount of L$ money from script owner to destination avatar.
 llGround|float llGround( vector offset );|Returns a float that is the ground height directly below the prim plus an offset
-llGroundContour|vector llGroundContour( vector offset );|"Returns a vector that is the ground contour direction below the object position + offset. The contour is the direction of a contour line at that point, that is the direction in which there is no change in elevation."
+llGroundContour|vector llGroundContour( vector offset );|Returns a vector that is the ground contour direction below the object position + offset. The contour is the direction of a contour line at that point, that is the direction in which there is no change in elevation.
 llGroundNormal|vector llGroundNormal( vector offset );|Returns a vector that is the ground normal from the current position + offset.
-llGroundRepel|"llGroundRepel( float height, integer water, float tau );"|Critically damps to height if within height*0.5 of ground or water level (which ever is higher)
+llGroundRepel|llGroundRepel( float height, integer water, float tau );|Critically damps to height if within height*0.5 of ground or water level (which ever is higher)
 llGroundSlope|vector llGroundSlope( vector offset );|Returns a vector that is the ground slope below the object position + offset
-llHTTPRequest|"key llHTTPRequest( string url, list parameters, string body );"|Sends an HTTP request to the specified URL with the body of the request and parameters.
-llHTTPResponse|"llHTTPResponse( key request_id, integer status, string body );"|Responds to request_id with status and body.
-llInsertString|"string llInsertString( string dst, integer pos, string src );"|Returns a string dst with src inserted starting at pos.
-llInstantMessage|"llInstantMessage( key user, string message );"|Sends an Instant Message specified in the string message to the user specified by key.
+llHTTPRequest|key llHTTPRequest( string url, list parameters, string body );|Sends an HTTP request to the specified URL with the body of the request and parameters.
+llHTTPResponse|llHTTPResponse( key request_id, integer status, string body );|Responds to request_id with status and body.
+llInsertString|string llInsertString( string dst, integer pos, string src );|Returns a string dst with src inserted starting at pos.
+llInstantMessage|llInstantMessage( key user, string message );|Sends an Instant Message specified in the string message to the user specified by key.
 llIntegerToBase64|string llIntegerToBase64( integer number );|Returns a string that is a Base64 big endian encode of number
 llKey2Name|string llKey2Name( key id );|Returns a string that is the legacy name of the prim or avatar specified by id.
-llLinkParticleSystem|"llLinkParticleSystem( integer link, list rules );"|A particle system defined by a list of rules is set for the prim(s) link. This is identical to llParticleSystem except that it applies to a specified linked prim and not just the prim the script is in.
+llLinkParticleSystem|llLinkParticleSystem( integer link, list rules );|A particle system defined by a list of rules is set for the prim(s) link. This is identical to llParticleSystem except that it applies to a specified linked prim and not just the prim the script is in.
 llList2CSV|string llList2CSV( list src );|Returns a string of comma separated values taken in order from src.
-llList2Float|"float llList2Float( list src, integer index );"|Returns a float that is at index in src.
-llList2Integer|"integer llList2Integer( list src, integer index );"|Returns an integer that is at index in src.
-llList2Key|"key llList2Key( list src, integer index );"|Returns a key that is at index in src.
-llList2List|"list llList2List( list src, integer start, integer end );"|Returns a list that is a slice of src from start to end.
-llList2ListStrided|"list llList2ListStrided( list src, integer start, integer end, integer stride );"|Returns a list of all the entries in the strided list whose index is a multiple of stride in the range start to end.
-llList2Rot|"rotation llList2Rot( list src, integer index );"|Returns a rotation that is at index in src.
-llList2String|"string llList2String( list src, integer index );"|Returns a string that is at index in src.
-llList2Vector|"vector llList2Vector( list src, integer index );"|Returns a vector that is at index in src.
-llListen|"integer llListen( integer channel, string name, key id, string msg );"|Sets a callback for msg on channel from name and id.
-llListenControl|"llListenControl( integer number, integer active );"|Makes listen event callback number active or inactive
+llList2Float|float llList2Float( list src, integer index );|Returns a float that is at index in src.
+llList2Integer|integer llList2Integer( list src, integer index );|Returns an integer that is at index in src.
+llList2Key|key llList2Key( list src, integer index );|Returns a key that is at index in src.
+llList2List|list llList2List( list src, integer start, integer end );|Returns a list that is a slice of src from start to end.
+llList2ListStrided|list llList2ListStrided( list src, integer start, integer end, integer stride );|Returns a list of all the entries in the strided list whose index is a multiple of stride in the range start to end.
+llList2Rot|rotation llList2Rot( list src, integer index );|Returns a rotation that is at index in src.
+llList2String|string llList2String( list src, integer index );|Returns a string that is at index in src.
+llList2Vector|vector llList2Vector( list src, integer index );|Returns a vector that is at index in src.
+llListen|integer llListen( integer channel, string name, key id, string msg );|Sets a callback for msg on channel from name and id.
+llListenControl|llListenControl( integer number, integer active );|Makes listen event callback number active or inactive
 llListenRemove|llListenRemove( integer number );|Removes listen event callback number
-llListFindList|"integer llListFindList( list src, list test );"|Returns an integer that is the index of the first instance of test in src.
-llListInsertList|"list llListInsertList( list dest, list src, integer start );"|Returns a list that contains all the elements from dest but with the elements from src inserted at position start.
-llListRandomize|"list llListRandomize( list src, integer stride );"|Returns a list which is a randomized permutation of src.
-llListReplaceList|"list llListReplaceList( list dest, list src, integer start, integer end );"|Returns a list that is dest with start through end removed and src inserted at start.
-llListSort|"list llListSort( list src, integer stride, integer ascending );"|Returns a list that is src sorted by stride.
-llListStatistics|"float llListStatistics( integer operation, list src );"|Returns a float that is the result of performing statistical aggregate function operation on src.
-llLoadURL|"llLoadURL( key avatar, string message, string url );"|Shows dialog to avatar offering to load web page at url with message.
+llListFindList|integer llListFindList( list src, list test );|Returns an integer that is the index of the first instance of test in src.
+llListInsertList|list llListInsertList( list dest, list src, integer start );|Returns a list that contains all the elements from dest but with the elements from src inserted at position start.
+llListRandomize|list llListRandomize( list src, integer stride );|Returns a list which is a randomized permutation of src.
+llListReplaceList|list llListReplaceList( list dest, list src, integer start, integer end );|Returns a list that is dest with start through end removed and src inserted at start.
+llListSort|list llListSort( list src, integer stride, integer ascending );|Returns a list that is src sorted by stride.
+llListStatistics|float llListStatistics( integer operation, list src );|Returns a float that is the result of performing statistical aggregate function operation on src.
+llLoadURL|llLoadURL( key avatar, string message, string url );|Shows dialog to avatar offering to load web page at url with message.
 llLog|float llLog( float val );|Returns a float that is the natural logarithm of val.
 llLog10|float llLog10( float val );|Returns a float that is the base 10 logarithm of val.
-llLookAt|"llLookAt( vector target, float strength, float damping );"|"Cause object to point its up axis (positive z) towards target, while keeping its forward axis (positive x) below the horizon."
-llLoopSound|"llLoopSound( string sound, float volume );"|Plays attached sound looping indefinitely at volume
-llLoopSoundMaster|"llLoopSoundMaster( string sound, float volume );"|"Plays attached sound looping at volume, declares it a sync master."
-llLoopSoundSlave|"llLoopSoundSlave( string sound, float volume );"|"Plays attached sound looping at volume, synced to most audible sync master declared by llLoopSoundMaster."
-llMapDestination|"llMapDestination( string simname, vector pos, vector look_at );"|Opens world map centered on simname with pos highlighted.
-llMD5String|"string llMD5String( string src, integer nonce );"|"Returns a string of 32 hex characters that is the MD5 checksum of src with a salt of "":""+nonce."
-llMessageLinked|"llMessageLinked( integer linknum, integer num, string str, key id );"|"The purpose of this function is to allow scripts in the same object to communicate. It triggers a link_message event with the same parameters num, str, and id in all scripts in the prim(s) described by linknum."
+llLookAt|llLookAt( vector target, float strength, float damping );|Cause object to point its up axis (positive z) towards target, while keeping its forward axis (positive x) below the horizon.
+llLoopSound|llLoopSound( string sound, float volume );|Plays attached sound looping indefinitely at volume
+llLoopSoundMaster|llLoopSoundMaster( string sound, float volume );|Plays attached sound looping at volume, declares it a sync master.
+llLoopSoundSlave|llLoopSoundSlave( string sound, float volume );|Plays attached sound looping at volume, synced to most audible sync master declared by llLoopSoundMaster.
+llMapDestination|llMapDestination( string simname, vector pos, vector look_at );|Opens world map centered on simname with pos highlighted.
+llMD5String|string llMD5String( string src, integer nonce );|Returns a string of 32 hex characters that is the MD5 checksum of src with a salt of :+nonce.
+llMessageLinked|llMessageLinked( integer linknum, integer num, string str, key id );|The purpose of this function is to allow scripts in the same object to communicate. It triggers a link_message event with the same parameters num, str, and id in all scripts in the prim(s) described by linknum.
 llMinEventDelay|llMinEventDelay( float delay );|Set the minimum time between events being handled.
-llModifyLand|"llModifyLand( integer action, integer brush );"|Modify land with action on brush
-llModPow|"integer llModPow( integer a, integer b, integer c );"|"Returns an integer that is a raised to the b power, mod c. ( (a**b)%c )"
-llMoveToTarget|"llMoveToTarget( vector target, float tau );"|Critically damp to target in tau seconds (if the script is physical)
-llOffsetTexture|"llOffsetTexture( float u, float v, integer face );"|Sets the texture u & v offsets for the chosen face.
+llModifyLand|llModifyLand( integer action, integer brush );|Modify land with action on brush
+llModPow|integer llModPow( integer a, integer b, integer c );|Returns an integer that is a raised to the b power, mod c. ( (a**b)%c )
+llMoveToTarget|llMoveToTarget( vector target, float tau );|Critically damp to target in tau seconds (if the script is physical)
+llOffsetTexture|llOffsetTexture( float u, float v, integer face );|Sets the texture u & v offsets for the chosen face.
 llOpenRemoteDataChannel|llOpenRemoteDataChannel( );|Creates a channel to listen for XML-RPC calls. Will trigger a remote_data event with channel id once it is available.
-llOverMyLand|integer llOverMyLand( key id );|"Returns an integer boolean, TRUE if id is over land owned by the script owner, FALSE otherwise."
+llOverMyLand|integer llOverMyLand( key id );|Returns an integer boolean, TRUE if id is over land owned by the script owner, FALSE otherwise.
 llOwnerSay|llOwnerSay( string msg );|Says msg to the owner only.
 llParcelMediaCommandList|llParcelMediaCommandList( list commandList );|Controls the playback of movies and other multimedia resources on a parcel or for an agent.
 llParcelMediaQuery|list llParcelMediaQuery( list query );|Returns a list containing results of query. The results are in the same order as the request.
-llParseString2List|"list llParseString2List( string src, list separators, list spacers );"|"Returns a list that is src broken into a list of strings, discarding separators, keeping spacers, discards any null values generated."
-llParseStringKeepNulls|"list llParseStringKeepNulls( string src, list separators, list spacers );"|"Returns a list that is src broken into a list, discarding separators, keeping spacers, keeping any null values generated."
+llParseString2List|list llParseString2List( string src, list separators, list spacers );|Returns a list that is src broken into a list of strings, discarding separators, keeping spacers, discards any null values generated.
+llParseStringKeepNulls|list llParseStringKeepNulls( string src, list separators, list spacers );|Returns a list that is src broken into a list, discarding separators, keeping spacers, keeping any null values generated.
 llParticleSystem|llParticleSystem( list rules );|Defines a particle system for the containing prim based on a list of rules.
 llPassCollisions|llPassCollisions( integer pass );|Sets pass-collisions prim attribute.
 llPassTouches|llPassTouches( integer pass );|Sets pass-touches prim attribute.
-llPlaySound|"llPlaySound( string sound, float volume );"|Plays attached sound once at volume
-llPlaySoundSlave|"llPlaySoundSlave( string sound, float volume );"|"Plays attached sound once at volume, synced to next loop of most audible sync master declared by llLoopSoundMaster."
-llPow|"float llPow( float base, float exponent );"|Returns a float that is base raised to the power exponent
+llPlaySound|llPlaySound( string sound, float volume );|Plays attached sound once at volume
+llPlaySoundSlave|llPlaySoundSlave( string sound, float volume );|Plays attached sound once at volume, synced to next loop of most audible sync master declared by llLoopSoundMaster.
+llPow|float llPow( float base, float exponent );|Returns a float that is base raised to the power exponent
 llPreloadSound|llPreloadSound( string sound );|Preloads sound on viewers within range
-llPushObject|"llPushObject( key target, vector impulse, vector ang_impulse, integer local );"|Applies impulse and ang_impulse to object target
-llRegionSay|"llRegionSay( integer channel, string msg );"|Says the string msg on channel number channel that can be heard anywhere in the region by a script listening on channel.
-llRegionSayTo|"llRegionSayTo( key target, integer channel, string msg );"|Says the text supplied in string msg on channel supplied in integer channel to the object or avatar specified by target
-llReleaseControls|llReleaseControls( );|"Stop taking inputs (that were taken with llTakeControls), dequeues any remaining control events."
-llReleaseURL|llReleaseURL( string url );|"Releases the specified URL, it will no longer be usable."
-llRemoteDataReply|"llRemoteDataReply( key channel, key message_id, string sdata, integer idata );"|Send an XML-RPC reply on channel to message_id with payload of string sdata and integer idata
-llRemoteLoadScriptPin|"llRemoteLoadScriptPin( key target, string name, integer pin, integer running, integer start_param );"|Copy script name into target and set to running with a start_param only if target's pin matches pin
+llPushObject|llPushObject( key target, vector impulse, vector ang_impulse, integer local );|Applies impulse and ang_impulse to object target
+llRegionSay|llRegionSay( integer channel, string msg );|Says the string msg on channel number channel that can be heard anywhere in the region by a script listening on channel.
+llRegionSayTo|llRegionSayTo( key target, integer channel, string msg );|Says the text supplied in string msg on channel supplied in integer channel to the object or avatar specified by target
+llReleaseControls|llReleaseControls( );|Stop taking inputs (that were taken with llTakeControls), dequeues any remaining control events.
+llReleaseURL|llReleaseURL( string url );|Releases the specified URL, it will no longer be usable.
+llRemoteDataReply|llRemoteDataReply( key channel, key message_id, string sdata, integer idata );|Send an XML-RPC reply on channel to message_id with payload of string sdata and integer idata
+llRemoteLoadScriptPin|llRemoteLoadScriptPin( key target, string name, integer pin, integer running, integer start_param );|Copy script name into target and set to running with a start_param only if target's pin matches pin
 llRemoveFromLandBanList|llRemoveFromLandBanList( key avatar );|Remove avatar from the land ban list
 llRemoveFromLandPassList|llRemoveFromLandPassList( key avatar );|Remove avatar from the land pass list.
 llRemoveInventory|llRemoveInventory( string item );|Remove the named inventory item
 llRemoveVehicleFlags|llRemoveVehicleFlags( integer flags );|Removes the enabled bits in flags
-llRequestAgentData|"key llRequestAgentData( key id, integer data );"|Requests data about agent id. When data is available the dataserver event will be raised
+llRequestAgentData|key llRequestAgentData( key id, integer data );|Requests data about agent id. When data is available the dataserver event will be raised
 llRequestDisplayName|key llRequestDisplayName( key id );|Requests the Display Name of the agent identified by id. When the Display Name is available the dataserver event will be raised. The agent identified by id does not need to be in the same region or online at the time of the request.
 llRequestInventoryData|key llRequestInventoryData( string name );|Requests data from objects inventory object. When data is available the dataserver event will be raised.
-llRequestPermissions|"llRequestPermissions( key agent, integer perm );"|Ask agent for permission to run certain classes of functions.
+llRequestPermissions|llRequestPermissions( key agent, integer perm );|Ask agent for permission to run certain classes of functions.
 llRequestSecureURL|key llRequestSecureURL( );|Requests one HTTPS:// (SSL) url for use by this object. The http_request event is tiggered with results.
-llRequestSimulatorData|"key llRequestSimulatorData( string region, integer data );"|Requests data about region. When data is available the dataserver event will be raised.
+llRequestSimulatorData|key llRequestSimulatorData( string region, integer data );|Requests data about region. When data is available the dataserver event will be raised.
 llRequestURL|key llRequestURL( );|Requests one HTTP:// url for use by this script. The http_request event is triggered with the result of the request.
 llRequestUsername|key llRequestUsername( key id );|Requests the Username of the agent identified by id. When Username is available the dataserver event will be raised. The agent identified by id does not need to be in the same region or online at the time of the request.
 llResetLandBanList|llResetLandBanList( );|Removes all residents from the land ban list.
@@ -244,79 +244,79 @@ llResetLandPassList|llResetLandPassList( );|Removes all residents from the land 
 llResetOtherScript|llResetOtherScript( string name );|Resets script name
 llResetScript|llResetScript( );|Resets the script.
 llResetTime|llResetTime( );|Resets the script-time timer to zero.
-llRezAtRoot|"llRezAtRoot( string inventory, vector position, vector velocity, rotation rot, integer param );"|"Instantiate inventory object rotated to rot with its root at position, moving at velocity, using param as the start parameter"
-llRezObject|"llRezObject( string inventory, vector pos, vector vel, rotation rot, integer param );"|Instantiate inventory object at pos with velocity vel and rotation rot with start parameter param
+llRezAtRoot|llRezAtRoot( string inventory, vector position, vector velocity, rotation rot, integer param );|Instantiate inventory object rotated to rot with its root at position, moving at velocity, using param as the start parameter
+llRezObject|llRezObject( string inventory, vector pos, vector vel, rotation rot, integer param );|Instantiate inventory object at pos with velocity vel and rotation rot with start parameter param
 llRot2Angle|float llRot2Angle( rotation rot );|Returns a float that is the rotation angle represented by rot
 llRot2Axis|vector llRot2Axis( rotation rot );|Returns a vector the rotation axis represented by rot
-llRot2Euler|vector llRot2Euler( rotation quat );|"Returns a vector that is the Euler representation (roll, pitch, yaw) of quat."
+llRot2Euler|vector llRot2Euler( rotation quat );|Returns a vector that is the Euler representation (roll, pitch, yaw) of quat.
 llRot2Fwd|vector llRot2Fwd( rotation q );|Computes the orientation of the local x-axis relative to the earth.
 llRot2Left|vector llRot2Left( rotation q );|Computes the orientation of the local y-axis relative to the earth.
 llRot2Up|vector llRot2Up( rotation q );|Computes the orientation of the local z-axis relative to the earth.
-llRotateTexture|"llRotateTexture( float angle, integer face );"|Sets the texture rotation of the chosen face to angle
-llRotBetween|"rotation llRotBetween( vector start, vector end );"|Returns a rotation that is the shortest rotation between the direction start and the direction end
-llRotLookAt|"llRotLookAt( rotation target, float strength, float damping );"|Cause object to point its forward axis towards target
-llRotTarget|"integer llRotTarget( rotation rot, float error );"|This function is to have the script know when it has reached a rotation.
+llRotateTexture|llRotateTexture( float angle, integer face );|Sets the texture rotation of the chosen face to angle
+llRotBetween|rotation llRotBetween( vector start, vector end );|Returns a rotation that is the shortest rotation between the direction start and the direction end
+llRotLookAt|llRotLookAt( rotation target, float strength, float damping );|Cause object to point its forward axis towards target
+llRotTarget|integer llRotTarget( rotation rot, float error );|This function is to have the script know when it has reached a rotation.
 llRotTargetRemove|llRotTargetRemove( integer number );|Removes rotational target number registered with llRotTarget
 llRound|integer llRound( float val );|Returns the integer that val is closest to.
-llSameGroup|integer llSameGroup( key agent );|"Returns an integer boolean, that is TRUE if agent has the same active group, otherwise FALSE"
-llSay|"llSay( integer channel, string msg );"|Says the text supplied in string msg on channel supplied in integer channel.
-llScaleTexture|"llScaleTexture( float u, float v, integer face );"|Sets the texture u & v scales for the chosen face.
-llScriptDanger|integer llScriptDanger( vector pos );|"Returns an integer boolean, that is TRUE if pos is over public land, sandbox land, land that doesn't allow everyone to edit and build, or land that doesn't allow outside scripts."
+llSameGroup|integer llSameGroup( key agent );|Returns an integer boolean, that is TRUE if agent has the same active group, otherwise FALSE
+llSay|llSay( integer channel, string msg );|Says the text supplied in string msg on channel supplied in integer channel.
+llScaleTexture|llScaleTexture( float u, float v, integer face );|Sets the texture u & v scales for the chosen face.
+llScriptDanger|integer llScriptDanger( vector pos );|Returns an integer boolean, that is TRUE if pos is over public land, sandbox land, land that doesn't allow everyone to edit and build, or land that doesn't allow outside scripts.
 llScriptProfiler|llScriptProfiler( integer flags );|Enables or disables the scripts profiling state.
-llSendRemoteData|"key llSendRemoteData( key channel, string dest, integer idata, string sdata );"|"Send an XML-RPC request to dest through channel with payload of channel (in a string), integer idata and string sdata."
-llSensor|"llSensor( string name, key id, integer type, float range, float arc );"|
+llSendRemoteData|key llSendRemoteData( key channel, string dest, integer idata, string sdata );|Send an XML-RPC request to dest through channel with payload of channel (in a string), integer idata and string sdata.
+llSensor|llSensor( string name, key id, integer type, float range, float arc );|
 llSensorRemove|llSensorRemove( );|Removes the sensor setup by llSensorRepeat.
-llSensorRepeat|"llSensorRepeat( string name, key id, integer type, float range, float arc, float rate );"|Performs a single scan for name and id with type within range meters and arc radians of forward vector and repeats every rate seconds. It does not perform the first scan until rate seconds have passed.
-llSetAlpha|"llSetAlpha( float alpha, integer face );"|Sets the alpha on face
+llSensorRepeat|llSensorRepeat( string name, key id, integer type, float range, float arc, float rate );|Performs a single scan for name and id with type within range meters and arc radians of forward vector and repeats every rate seconds. It does not perform the first scan until rate seconds have passed.
+llSetAlpha|llSetAlpha( float alpha, integer face );|Sets the alpha on face
 llSetBuoyancy|llSetBuoyancy( float buoyancy );|Sets the buoyancy of the task or object. Requires physics to be enabled.
 llSetCameraAtOffset|llSetCameraAtOffset( vector offset );|Sets the point the camera is looking at to offset for avatars that sit on the object.
 llSetCameraEyeOffset|llSetCameraEyeOffset( vector offset );|Sets the camera eye offset for avatars that sit on the object.
 llSetCameraParams|llSetCameraParams( list rules );|Sets multiple camera parameters at once.
 llSetClickAction|llSetClickAction( integer action );|Sets the action performed when a prim is clicked upon
-llSetColor|"llSetColor( vector color, integer face );"|Sets the color on face of the prim.
+llSetColor|llSetColor( vector color, integer face );|Sets the color on face of the prim.
 llSetDamage|llSetDamage( float damage );|Sets the amount of damage that will be done when this object hits an avatar.
-llSetForce|"llSetForce( vector force, integer local );"|Applies force to the object (if the script is physical)
-llSetForceAndTorque|"llSetForceAndTorque( vector force, vector torque, integer local );"|Sets the force and torque of object (if the script is physical)
-llSetHoverHeight|"llSetHoverHeight( float height, integer water, float tau );"|Critically damps to a height above the ground (or water) in tau seconds.
-llSetInventoryPermMask|"llSetInventoryPermMask( string item, integer mask, integer value );"|Sets the given permission mask to the new value on the inventory item.
-llSetLinkAlpha|"llSetLinkAlpha( integer linknumber, float alpha, integer face );"|"If a prim exists in the link set at linknumber, set alpha on face of that prim."
-llSetLinkColor|"llSetLinkColor( integer linknumber, vector color, integer face );"|"If a prim exists in the link set at linknumber, set color on face of that prim."
-llSetLinkPrimitiveParams|"llSetLinkPrimitiveParams( integer linknumber, list rules );"|Set primitive parameters for linknumber based on rules. You may prefer to use llSetLinkPrimitiveParamsFast which behaves identically except does not sleep the script.
-llSetLinkPrimitiveParamsFast|"llSetLinkPrimitiveParamsFast( integer linknumber, list rules );"|Set primitive parameters for linknumber based on rules with no built-in script sleep. This function is identical to llSetLinkPrimitiveParams except without the delay.
-llSetLinkTexture|"llSetLinkTexture( integer linknumber, string texture, integer face );"|"If a prim exists in the link set at linknumber, set texture on face of that prim."
-llSetLinkTextureAnim|"llSetLinkTextureAnim( integer link, integer mode, integer face, integer sizex, integer sizey, float start, float length, float rate );"|Animate the texture on the specified face/faces of the specified prim/prims by setting the texture scale and offset. Identical to llSetTextureAnim except able to modify any prim in the link set.
+llSetForce|llSetForce( vector force, integer local );|Applies force to the object (if the script is physical)
+llSetForceAndTorque|llSetForceAndTorque( vector force, vector torque, integer local );|Sets the force and torque of object (if the script is physical)
+llSetHoverHeight|llSetHoverHeight( float height, integer water, float tau );|Critically damps to a height above the ground (or water) in tau seconds.
+llSetInventoryPermMask|llSetInventoryPermMask( string item, integer mask, integer value );|Sets the given permission mask to the new value on the inventory item.
+llSetLinkAlpha|llSetLinkAlpha( integer linknumber, float alpha, integer face );|If a prim exists in the link set at linknumber, set alpha on face of that prim.
+llSetLinkColor|llSetLinkColor( integer linknumber, vector color, integer face );|If a prim exists in the link set at linknumber, set color on face of that prim.
+llSetLinkPrimitiveParams|llSetLinkPrimitiveParams( integer linknumber, list rules );|Set primitive parameters for linknumber based on rules. You may prefer to use llSetLinkPrimitiveParamsFast which behaves identically except does not sleep the script.
+llSetLinkPrimitiveParamsFast|llSetLinkPrimitiveParamsFast( integer linknumber, list rules );|Set primitive parameters for linknumber based on rules with no built-in script sleep. This function is identical to llSetLinkPrimitiveParams except without the delay.
+llSetLinkTexture|llSetLinkTexture( integer linknumber, string texture, integer face );|If a prim exists in the link set at linknumber, set texture on face of that prim.
+llSetLinkTextureAnim|llSetLinkTextureAnim( integer link, integer mode, integer face, integer sizex, integer sizey, float start, float length, float rate );|Animate the texture on the specified face/faces of the specified prim/prims by setting the texture scale and offset. Identical to llSetTextureAnim except able to modify any prim in the link set.
 llSetLocalRot|llSetLocalRot( rotation rot );|Sets the rotation of a child prim relative to the root prim
 llSetObjectDesc|llSetObjectDesc( string description );|Sets the prims description
 llSetObjectName|llSetObjectName( string name );|Sets the prim's name according to the name parameter.
-llSetObjectPermMask ÿGÿ|"llSetObjectPermMask( integer mask, integer value );"|Sets the given permission mask to the new value on the root object the task is attached to.
+llSetObjectPermMask ÿGÿ|llSetObjectPermMask( integer mask, integer value );|Sets the given permission mask to the new value on the root object the task is attached to.
 llSetParcelMusicURL|llSetParcelMusicURL( string url );|Sets the streaming audio URL for the parcel object is on
-llSetPayPrice|"llSetPayPrice( integer price, list quick_pay_buttons );"|Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
+llSetPayPrice|llSetPayPrice( integer price, list quick_pay_buttons );|Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
 llSetPos|llSetPos( vector pos );|Moves the object or primitive towards pos without using physics.
 llSetPrimitiveParams|llSetPrimitiveParams( list rules );|Sets the prims parameters according to rules.
-llSetPrimMediaParams|"integer llSetPrimMediaParams( integer face, list params );"|Set the media params for a particular face.
+llSetPrimMediaParams|integer llSetPrimMediaParams( integer face, list params );|Set the media params for a particular face.
 llSetRemoteScriptAccessPin|llSetRemoteScriptAccessPin( integer pin );|Allows a prim to have scripts remotely loaded via llRemoteLoadScriptPin when it is passes the correct pin and the prim is set mod.
 llSetRot|llSetRot( rotation rot );|Sets the rotation of the prim to rot.
 llSetScale|llSetScale( vector size );|Sets the size of the prim according to size
-llSetScriptState|"llSetScriptState( string name, integer run );"|Set the running state of the script name.
-llSetSitText|llSetSitText( string text );|"Displays text rather than the default ""Sit Here"" in the right-click menu."
-llSetSoundQueueing|llSetSoundQueueing( integer queue );|"Set whether attached sounds wait for the current sound to finish. If queue is TRUE, queuing is enabled, if FALSE queuing is disabled. Sound queuing is disabled by default."
+llSetScriptState|llSetScriptState( string name, integer run );|Set the running state of the script name.
+llSetSitText|llSetSitText( string text );|Displays text rather than the default Sit Here in the right-click menu.
+llSetSoundQueueing|llSetSoundQueueing( integer queue );|Set whether attached sounds wait for the current sound to finish. If queue is TRUE, queuing is enabled, if FALSE queuing is disabled. Sound queuing is disabled by default.
 llSetSoundRadius|llSetSoundRadius( float radius );|Establishes a hard cut-off radius for audibility of scripted sounds (both attached and triggered).
-llSetStatus|"llSetStatus( integer status, integer value );"|Sets the object status attributes indicated in the status mask to value
-llSetText|"llSetText( string text, vector color, float alpha );"|Displays text that hovers over the prim with specific color and translucency (specified with alpha).
-llSetTexture|"llSetTexture( string texture, integer face );"|Sets the texture of this prim's face.
-llSetTextureAnim|"llSetTextureAnim( integer mode, integer face, integer sizex, integer sizey, float start, float length, float rate );"|Animate the texture on the specified face/faces by setting the texture scale and offset.
+llSetStatus|llSetStatus( integer status, integer value );|Sets the object status attributes indicated in the status mask to value
+llSetText|llSetText( string text, vector color, float alpha );|Displays text that hovers over the prim with specific color and translucency (specified with alpha).
+llSetTexture|llSetTexture( string texture, integer face );|Sets the texture of this prim's face.
+llSetTextureAnim|llSetTextureAnim( integer mode, integer face, integer sizex, integer sizey, float start, float length, float rate );|Animate the texture on the specified face/faces by setting the texture scale and offset.
 llSetTimerEvent|llSetTimerEvent( float sec );|Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
-llSetTorque|"llSetTorque( vector torque, integer local );"|Sets the torque of object (if the script is physical)
-llSetTouchText|llSetTouchText( string text );|"Displays text rather than the default ""Touch"" in the right-click menu"
+llSetTorque|llSetTorque( vector torque, integer local );|Sets the torque of object (if the script is physical)
+llSetTouchText|llSetTouchText( string text );|Displays text rather than the default Touch in the right-click menu
 llSetVehicleFlags|llSetVehicleFlags( integer flags );|Sets the enabled bits in flags
-llSetVehicleFloatParam|"llSetVehicleFloatParam( integer param, float value );"|Sets the vehicle float parameter param to value.
-llSetVehicleRotationParam|"llSetVehicleRotationParam( integer param, rotation rot );"|Sets the vehicle rotation parameter param to rot.
+llSetVehicleFloatParam|llSetVehicleFloatParam( integer param, float value );|Sets the vehicle float parameter param to value.
+llSetVehicleRotationParam|llSetVehicleRotationParam( integer param, rotation rot );|Sets the vehicle rotation parameter param to rot.
 llSetVehicleType|llSetVehicleType( integer type );|Sets the vehicle type to one of the default types.
-llSetVehicleVectorParam|"llSetVehicleVectorParam( integer param, vector vec );"|Sets the vehicle vector parameter param to vec.
+llSetVehicleVectorParam|llSetVehicleVectorParam( integer param, vector vec );|Sets the vehicle vector parameter param to vec.
 llSHA1String|string llSHA1String( string src );|Returns a string of 40 hex characters that is the SHA1 security hash of src.
-llShout|"llShout( integer channel, string msg );"|Shouts the text supplied in string msg on channel supplied in integer channel.
+llShout|llShout( integer channel, string msg );|Shouts the text supplied in string msg on channel supplied in integer channel.
 llSin|float llSin( float theta );|Returns a float that is the sine of theta.
-llSitTarget|"llSitTarget( vector offset, rotation rot );"|Set the sit location for the prim. The sit location is relative to the prim's position and rotation.
+llSitTarget|llSitTarget( vector offset, rotation rot );|Set the sit location for the prim. The sit location is relative to the prim's position and rotation.
 llSleep|llSleep( float sec );|Puts the script to sleep for sec seconds. The script will not do anything during this time.
 llSqrt|float llSqrt( float val );|Returns a float that is the square root of val.
 llStartAnimation|llStartAnimation( string anim );|Start animation anim for agent that granted PERMISSION_TRIGGER_ANIMATION if the permission has not been revoked.
@@ -327,26 +327,26 @@ llStopMoveToTarget|llStopMoveToTarget( );|Stops critically damped motion
 llStopSound|llStopSound( );|Stops the attached sound(s) currently playing
 llStringLength|integer llStringLength( string str );|Returns an integer that is the number of characters in str (not counting the null).
 llStringToBase64|string llStringToBase64( string str );|Returns a string that is the Base64 representation of the str
-llStringTrim|"string llStringTrim( string src, integer type );"|"Returns a string that is src with leading and/or trailing white space (spaces, tabs, and line feeds) trimmed from it."
-llSubStringIndex|"integer llSubStringIndex( string source, string pattern );"|Returns an integer that is the index of the first pattern in source.
-llTakeControls|"llTakeControls( integer controls, integer accept, integer pass_on );"|"Allows for intercepting of keyboard and mouse clicks, specifically those specified by controls, from the agent the script has permissions for."
+llStringTrim|string llStringTrim( string src, integer type );|Returns a string that is src with leading and/or trailing white space (spaces, tabs, and line feeds) trimmed from it.
+llSubStringIndex|integer llSubStringIndex( string source, string pattern );|Returns an integer that is the index of the first pattern in source.
+llTakeControls|llTakeControls( integer controls, integer accept, integer pass_on );|Allows for intercepting of keyboard and mouse clicks, specifically those specified by controls, from the agent the script has permissions for.
 llTan|float llTan( float theta );|Returns a float that is the tangent of theta.
-llTarget|"integer llTarget( vector position, float range );"|This function is to have the script know when it has reached a position.
-llTargetOmega|"llTargetOmega( vector axis, float spinrate, float gain );"|Rotates the object/prim around axis at spinrate * llVecMag(axis) in radians per second with strength gain.
+llTarget|integer llTarget( vector position, float range );|This function is to have the script know when it has reached a position.
+llTargetOmega|llTargetOmega( vector axis, float spinrate, float gain );|Rotates the object/prim around axis at spinrate * llVecMag(axis) in radians per second with strength gain.
 llTargetRemove|llTargetRemove( integer number );|Removes positional target number registered with llTarget
-llTeleportAgentHome|llTeleportAgentHome( key avatar );|"Teleports avatar on owner's land to their home location without any warning, similar to a God Summons or dying."
-llTextBox ÿNEWÿ|"llTextBox( key avatar, string message, integer chat_channel );"|"Shows a dialog box on avatar's screen with the text message. It contains a text box for input, any text that is entered is said by avatar on chat_channel when the ""OK"" button is clicked."
+llTeleportAgentHome|llTeleportAgentHome( key avatar );|Teleports avatar on owner's land to their home location without any warning, similar to a God Summons or dying.
+llTextBox ÿNEWÿ|llTextBox( key avatar, string message, integer chat_channel );|Shows a dialog box on avatar's screen with the text message. It contains a text box for input, any text that is entered is said by avatar on chat_channel when the OK button is clicked.
 llToLower|string llToLower( string src );|Returns a string that is src with all lower-case letters
 llToUpper|string llToUpper( string src );|Returns a string that is src with all upper-case characters.
-llTriggerSound|"llTriggerSound( string sound, float volume );"|"Plays sound at volume, centered at but not attached to object."
-llTriggerSoundLimited|"llTriggerSoundLimited( string sound, float volume, vector top_north_east, vector bottom_south_west );"|"Plays sound at volume, centered at but not attached to object, limited to the box defined by vectors top_north_east and bottom_south_west"
-llUnescapeURL|string llUnescapeURL( string url );|"Returns a string that is an unescaped/unencoded version of url, replacingÿ%20 with spaces etc."
-llUnSit|llUnSit( key id );|"If the agent identified by id is sitting on the object the script is attached to or is over land owned by the object's owner, the agent is forced to stand up."
-llVecDist|"float llVecDist( vector vec_a, vector vec_b );"|Returns a float that is the undirected nonnegative distance between vec_a and vec_b ( llVecMag(vec_a - vec_b) ).
-llVecMag|float llVecMag( vector vec );|"Returns a float that is the magnitude of the vector (the undirected nonnegative distance from vec to <0.0, 0.0, 0.0>)."
+llTriggerSound|llTriggerSound( string sound, float volume );|Plays sound at volume, centered at but not attached to object.
+llTriggerSoundLimited|llTriggerSoundLimited( string sound, float volume, vector top_north_east, vector bottom_south_west );|Plays sound at volume, centered at but not attached to object, limited to the box defined by vectors top_north_east and bottom_south_west
+llUnescapeURL|string llUnescapeURL( string url );|Returns a string that is an unescaped/unencoded version of url, replacing %20 with spaces etc.
+llUnSit|llUnSit( key id );|If the agent identified by id is sitting on the object the script is attached to or is over land owned by the object's owner, the agent is forced to stand up.
+llVecDist|float llVecDist( vector vec_a, vector vec_b );|Returns a float that is the undirected nonnegative distance between vec_a and vec_b ( llVecMag(vec_a - vec_b) ).
+llVecMag|float llVecMag( vector vec );|Returns a float that is the magnitude of the vector (the undirected nonnegative distance from vec to <0.0, 0.0, 0.0>).
 llVecNorm|vector llVecNorm( vector vec );|Returns the vector that is vec normalized (a unit vector sharing the same direction as vec).
-llVolumeDetect|llVolumeDetect( integer detect );|"If detect is TRUE, VolumeDetect is enabled, physical object and avatars can pass through the object."
+llVolumeDetect|llVolumeDetect( integer detect );|If detect is TRUE, VolumeDetect is enabled, physical object and avatars can pass through the object.
 llWater|float llWater( vector offset );|Returns a float that is the water height below the object position + offset
-llWhisper|"llWhisper( integer channel, string msg );"|Whispers the text supplied in string msg on channel supplied in integer channel.
+llWhisper|llWhisper( integer channel, string msg );|Whispers the text supplied in string msg on channel supplied in integer channel.
 llWind|vector llWind( vector offset );|Returns a vector that is the wind velocity at the prim position + offset
-llXorBase64StringsCorrect|"string llXorBase64StringsCorrect( string str1, string str2 );"|Correctly performs an exclusive or on two Base 64 strings.
+llXorBase64StringsCorrect|string llXorBase64StringsCorrect( string str1, string str2 );|Correctly performs an exclusive or on two Base 64 strings.

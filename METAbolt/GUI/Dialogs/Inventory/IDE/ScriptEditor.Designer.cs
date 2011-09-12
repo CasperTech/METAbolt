@@ -132,6 +132,7 @@ namespace METAbolt
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Menu1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB1)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -736,6 +737,7 @@ namespace METAbolt
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsLn,
             this.toolStripStatusLabel2,
@@ -879,6 +881,7 @@ namespace METAbolt
             this.rtbScript.TabIndex = 49;
             this.rtbScript.TextChanged += new System.EventHandler<System.EventArgs>(this.rtbScript_TextChanged);
             this.rtbScript.SelectionChanged += new System.EventHandler(this.rtbScript_SelectionChanged);
+            this.rtbScript.MouseMove += new System.Windows.Forms.MouseEventHandler(this.rtbScript_MouseMove);
             // 
             // toolStrip3
             // 
@@ -1065,20 +1068,19 @@ namespace METAbolt
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Location = new System.Drawing.Point(0, 591);
+            this.panel1.Location = new System.Drawing.Point(610, 591);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(731, 31);
+            this.panel1.Size = new System.Drawing.Size(129, 31);
             this.panel1.TabIndex = 51;
             // 
             // checkBox2
             // 
             this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(588, 7);
+            this.checkBox2.Location = new System.Drawing.Point(6, 7);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(65, 17);
             this.checkBox2.TabIndex = 1;
@@ -1090,12 +1092,24 @@ namespace METAbolt
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(666, 7);
+            this.checkBox1.Location = new System.Drawing.Point(75, 7);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(52, 17);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Mono";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(8, 591);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(596, 31);
+            this.label1.TabIndex = 52;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmScriptEditor
             // 
@@ -1103,9 +1117,10 @@ namespace METAbolt
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(735, 647);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip3);
             this.Controls.Add(this.toolStrip2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.PB1);
@@ -1238,5 +1253,6 @@ namespace METAbolt
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

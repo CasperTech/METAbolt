@@ -45,9 +45,11 @@
             // lblTitle
             // 
             this.lblTitle.AccessibleName = "Dialog name";
-            this.lblTitle.Location = new System.Drawing.Point(22, 9);
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(12, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(365, 32);
+            this.lblTitle.Size = new System.Drawing.Size(375, 32);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "label1";
             // 
@@ -81,7 +83,8 @@
             this.txtMessage.AcceptsReturn = true;
             this.txtMessage.AcceptsTab = true;
             this.txtMessage.AccessibleName = "Dialog information";
-            this.txtMessage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtMessage.ForeColor = System.Drawing.Color.White;
             this.txtMessage.Location = new System.Drawing.Point(12, 44);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
@@ -89,6 +92,7 @@
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMessage.Size = new System.Drawing.Size(375, 138);
             this.txtMessage.TabIndex = 5;
+            this.txtMessage.TextChanged += new System.EventHandler(this.txtMessage_TextChanged);
             // 
             // button3
             // 
@@ -96,7 +100,7 @@
             this.button3.AccessibleName = "Reset flood buffer";
             this.button3.BackColor = System.Drawing.Color.RoyalBlue;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(60, 188);
+            this.button3.Location = new System.Drawing.Point(62, 188);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(118, 23);
             this.button3.TabIndex = 6;
@@ -110,7 +114,7 @@
             this.button4.AccessibleName = "Mute the sending object";
             this.button4.BackColor = System.Drawing.Color.RoyalBlue;
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(12, 188);
+            this.button4.Location = new System.Drawing.Point(14, 188);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(42, 23);
             this.button4.TabIndex = 4;
@@ -127,7 +131,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(396, 76);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(396, 95);
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 217);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.Size = new System.Drawing.Size(396, 95);
@@ -149,7 +153,7 @@
             this.tsButtons.Name = "tsButtons";
             this.tsButtons.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.tsButtons.ShowItemToolTips = false;
-            this.tsButtons.Size = new System.Drawing.Size(396, 19);
+            this.tsButtons.Size = new System.Drawing.Size(396, 0);
             this.tsButtons.Stretch = true;
             this.tsButtons.TabIndex = 1;
             this.tsButtons.Text = "toolStrip2";
@@ -161,7 +165,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(397, 313);
             this.ControlBox = false;
             this.Controls.Add(this.button3);

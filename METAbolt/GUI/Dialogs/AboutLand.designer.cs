@@ -1153,6 +1153,7 @@
             this.MaximizeBox = false;
             this.Name = "frmAboutLand";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About Land";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAboutLand_FormClosing);
             this.Load += new System.EventHandler(this.frmAboutLand_Load);
