@@ -67,6 +67,7 @@ namespace METAbolt
         private List<string> calltip = new List<string>();
         private List<string> calltipheader = new List<string>();
         private bool showingcalltip = false;
+        private Line cline;
 
 
         public frmScriptEditor(METAboltInstance instance, InventoryItem item)
@@ -206,14 +207,33 @@ namespace METAbolt
                 }
                 else
                 {
-                    ShowCallTip();
-                    return;
+                    if (cline.Number == rtbScript.Lines.Current.Number)
+                    {
+                        Line lnt = rtbScript.Lines.Current;
+
+                        if (lnt.Text.Contains("("))
+                        {
+                            ShowCallTip();
+                            cline = rtbScript.Lines.Current;
+                            return;
+                        }
+                        else
+                        {
+                            showingcalltip = false;
+                            rtbScript.CallTip.Hide();
+                        }
+                    }
+                    else
+                    {
+                        showingcalltip = false;
+                        rtbScript.CallTip.Hide();
+                    }
                 }
             }
 
             if (e.Ch == '(')
             {
-                //rtbScript.CallTip.Hide();
+                cline = rtbScript.Lines.Current;
                 ShowCallTip();
 
                 showingcalltip = true;
@@ -258,8 +278,12 @@ namespace METAbolt
 
         private void ShowCallTip()
         {
-            string func = rtbScript.AutoComplete.SelectedText;
-            string hword = rtbScript.GetWordFromPosition(rtbScript.CurrentPos - 1);
+            //string func = rtbScript.AutoComplete.SelectedText;
+
+            Line lnt = rtbScript.Lines.Current;
+            int aind = lnt.Text.IndexOf("(", 0);
+
+            string hword = rtbScript.GetWordFromPosition(lnt.StartPosition + aind - 1);
             //rtbScript.CallTip.Show(hword);
 
             int idx = calltipheader.IndexOf(hword);
