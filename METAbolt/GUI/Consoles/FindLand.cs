@@ -48,6 +48,8 @@ namespace METAbolt
         //private string sSIM;
 
         //private ListViewItemComparer lvcompare;
+        //private ListViewColumnSorter lvwColumnSorter;
+        private NumericStringComparer lvwColumnSorter;
 
         private UUID queryID;
         private SafeDictionary<string, DirectoryManager.DirectoryParcel> findLandResults;
@@ -67,6 +69,9 @@ namespace METAbolt
             client = this.instance.Client;
 
             AddClientEvents();
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvwFindLand.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void AddClientEvents()
@@ -260,7 +265,27 @@ namespace METAbolt
 
         private void lvwFindLand_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            this.lvwFindLand.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
             lvwFindLand.Sort();
         }
 

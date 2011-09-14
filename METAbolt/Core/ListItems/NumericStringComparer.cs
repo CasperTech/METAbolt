@@ -26,184 +26,129 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Security; 
 
 namespace METAbolt
 {
-    public sealed class NumericStringComparer : IComparer
+    [SuppressUnmanagedCodeSecurity]
+    internal static class SafeNativeMethods
     {
-        private static readonly IComparer _default = new NumericStringComparer();
-        private static readonly IComparer _defaultZeroesFirst = new NumericStringComparer(true);
-        private bool zeroesFirst = false;
+        [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
+        public static extern int StrCmpLogicalW(string psz1, string psz2);
+    } 
 
-        private NumericStringComparer()
-        { }
+    /// <summary>
+    /// This class is an implementation of the 'IComparer' interface.
+    /// This will only work on Windows platforms.
+    /// </summary>
+    public class NumericStringComparer : IComparer
+    {
+        /// <summary>
+        /// Specifies the column to be sorted
+        /// </summary>
+        private int ColumnToSort;
+        /// <summary>
+        /// Specifies the order in which to sort (i.e. 'Ascending').
+        /// </summary>
+        private SortOrder OrderOfSort;
+        /// <summary>
+        /// Case insensitive comparer object
+        /// </summary>
+        private CaseInsensitiveComparer ObjectCompare;
 
-        private NumericStringComparer(bool zeroesFirst)
+        /// <summary>
+        /// Class constructor.  Initializes various elements
+        /// </summary>
+        public NumericStringComparer()
         {
-            this.zeroesFirst = zeroesFirst;
+            // Initialize the column to '0'
+            ColumnToSort = 0;
+
+            // Initialize the sort order to 'none'
+            OrderOfSort = SortOrder.None;
+
+            // Initialize the CaseInsensitiveComparer object
+            ObjectCompare = new CaseInsensitiveComparer();
         }
 
-        public static IComparer Default
-        {
-            get { return _default; }
-        }
-
-        public static IComparer DefaultZeroesFirst
-        {
-            get { return _defaultZeroesFirst; }
-        }
-
+        /// <summary>
+        /// This method is inherited from the IComparer interface.  It compares the two objects passed using a case insensitive comparison.
+        /// </summary>
+        /// <param name="x">First object to be compared</param>
+        /// <param name="y">Second object to be compared</param>
+        /// <returns>The result of the comparison. "0" if equal, negative if 'x' is less than 'y' and positive if 'x' is greater than 'y'</returns>
         public int Compare(object x, object y)
         {
-            if (null == x && null == y) return 0;
-            if (null == x) return -1;
-            if (null == y) return 1;
-            if (x is string && y is string)
-                return Compare((string)x, (string)y, zeroesFirst);
-            return Comparer.Default.Compare(x, y);
-        }
+            int compareResult;
+            ListViewItem listviewX, listviewY;
 
-        public static int Compare(string s1, string s2)
-        {
-            return Compare(s1, s2, false);
-        }
+            // Cast the objects to be compared to ListViewItem objects
+            listviewX = (ListViewItem)x;
+            listviewY = (ListViewItem)y;
 
-        public static int Compare(string s1, string s2, bool zeroesFirst)
-        {
-            //get rid of special cases
-            if ((s1 == null) && (s2 == null)) return 0;
-            else if (s1 == null) return -1;
-            else if (s2 == null) return 1;
+            // Get the text to be compared
+            string a = listviewX.SubItems[ColumnToSort].Text;
+            string b = listviewY.SubItems[ColumnToSort].Text;
 
-            if ((s1.Length <= 0) && (s2.Length <= 0)) return 0;
-            else if (s1.Length <= 0) return -1;
-            else if (s2.Length <= 0) return 1;
+            // Sanity check
+            if (a == null && b == null) return 0;
+            if (a == null) return -1;
+            if (b == null) return 1; 
 
-            //special case
-            bool sp1 = Char.IsLetterOrDigit(s1[0]);
-            bool sp2 = Char.IsLetterOrDigit(s2[0]);
-            if (sp1 && !sp2) return 1;
-            if (!sp1 && sp2) return -1;
-
-            int i1 = 0, i2 = 0; //current index
-            int r = 0; // temp result
-            char c1, c2;
-            bool letter1, letter2;
-
-            while (true)
+            try
             {
-                c1 = s1[i1];
-                c2 = s2[i2];
-                sp1 = Char.IsDigit(c1);
-                sp2 = Char.IsDigit(c2);
-                if (!sp1 && !sp2)
-                {
-                    letter1 = Char.IsLetter(c1);
-                    letter2 = Char.IsLetter(c2);
+                // Compare the two items
+                compareResult = SafeNativeMethods.StrCmpLogicalW(a, b);
 
-                    if (letter1 && letter2)
-                    {
-                        r = Char.ToUpper(c1).ToString().CompareTo(Char.ToUpper(c2).ToString());
-                        if (r != 0) return r;
-                    }
-                    else if (!letter1 && !letter2)
-                    {
-                        r = c1.CompareTo(c2);
-                        if (r != 0) return r;
-                    }
-                    else if (!letter1 && letter2)
-                    {
-                        return -1;
-                    }
-                    else if (letter1 && !letter2)
-                    {
-                        return 1;
-                    }
-                }
-                else if (sp1 && sp2)
+                // Calculate correct return value based on object comparison
+                if (OrderOfSort == SortOrder.Ascending)
                 {
-                    r = CompareNum(s1, ref i1, s2, ref i2, zeroesFirst);
-                    if (r != 0) return r;
+                    // Ascending sort is selected, return normal result of compare operation
+                    return compareResult;
                 }
-                else if (sp1)
+                else if (OrderOfSort == SortOrder.Descending)
                 {
-                    return -1;
+                    // Descending sort is selected, return negative result of compare operation
+                    return (-compareResult);
                 }
-                else if (sp2)
+                else
                 {
-                    return 1;
-                }
-                i1++;
-                i2++;
-                if ((i1 >= s1.Length) && (i2 >= s2.Length))
-                {
+                    // Return '0' to indicate they are equal
                     return 0;
                 }
-                else if (i1 >= s1.Length)
-                {
-                    return -1;
-                }
-                else if (i2 >= s2.Length)
-                {
-                    return 1;
-                }
             }
+            catch { return 0; }
         }
 
-        private static int CompareNum(string s1, ref int i1, string s2, ref int i2, bool zeroesFirst)
+        /// <summary>
+        /// Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
+        /// </summary>
+        public int SortColumn
         {
-            int nzStart1 = i1, nzStart2 = i2; // nz = non zero
-            int end1 = i1, end2 = i2;
-
-            ScanNumEnd(s1, i1, ref end1, ref nzStart1);
-            ScanNumEnd(s2, i2, ref end2, ref nzStart2);
-            int start1 = i1; i1 = end1 - 1;
-            int start2 = i2; i2 = end2 - 1;
-
-            if (zeroesFirst)
+            set
             {
-                int zl1 = nzStart1 - start1;
-                int zl2 = nzStart2 - start2;
-                if (zl1 > zl2) return -1;
-                if (zl1 < zl2) return 1;
+                ColumnToSort = value;
             }
-
-            int nzLength1 = end1 - nzStart1;
-            int nzLength2 = end2 - nzStart2;
-
-            if (nzLength1 < nzLength2) return -1;
-            else if (nzLength1 > nzLength2) return 1;
-
-            for (int j1 = nzStart1, j2 = nzStart2; j1 <= i1; j1++, j2++)
+            get
             {
-                int r = s1[j1].CompareTo(s2[j2]);
-                if (r != 0) return r;
+                return ColumnToSort;
             }
-            // the nz parts are equal
-            int length1 = end1 - start1;
-            int length2 = end2 - start2;
-            if (length1 == length2) return 0;
-            if (length1 > length2) return -1;
-            return 1;
         }
 
-        //lookahead
-        private static void ScanNumEnd(string s, int start, ref int end, ref int nzStart)
+        /// <summary>
+        /// Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
+        /// </summary>
+        public SortOrder Order
         {
-            nzStart = start;
-            end = start;
-            bool countZeros = true;
-            while (Char.IsDigit(s, end))
+            set
             {
-                if (countZeros && s[end].Equals('0'))
-                {
-                    nzStart++;
-                }
-                else countZeros = false;
-                end++;
-                if (end >= s.Length) break;
+                OrderOfSort = value;
+            }
+            get
+            {
+                return OrderOfSort;
             }
         }
-
     }
 }
