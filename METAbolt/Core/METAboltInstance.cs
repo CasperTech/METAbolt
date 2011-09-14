@@ -143,7 +143,6 @@ namespace METAbolt
             InitializeConfig();
 
             imageCache = new ImageCache();
-            SetInvCache();
 
             state = new StateManager(this);
 
@@ -210,7 +209,6 @@ namespace METAbolt
             InitializeConfig();
 
             imageCache = new ImageCache();
-            SetInvCache();
             state = new StateManager(this);
 
             mainForm = new frmMain(this);
@@ -314,15 +312,6 @@ namespace METAbolt
             {
                 Logger.Log("AI is enabled but AI libraries are not installed.", Helpers.LogLevel.Warning);    
             }
-        }
-        
-        private void SetInvCache()
-        {
-            string cacheDirectory = appdir;   // Application.StartupPath.ToString();
-
-            string avcname = config.CurrentConfig.FirstName + "_" + config.CurrentConfig.LastName;
-
-            InventoryCache = cacheDirectory + "\\" + avcname + "_InventoryCache.cache";   
         }
 
         private void CreateNotesDir()
@@ -750,7 +739,7 @@ namespace METAbolt
 
             client.Settings.USE_ASSET_CACHE = true;
             //client.Settings.ASSET_CACHE_DIR = Application.StartupPath + System.IO.Path.DirectorySeparatorChar + "cache";
-            client.Settings.ASSET_CACHE_DIR = appdir + System.IO.Path.DirectorySeparatorChar + "cache";
+            client.Settings.ASSET_CACHE_DIR = appdir + System.IO.Path.DirectorySeparatorChar + "cache" + System.IO.Path.DirectorySeparatorChar + client.Self.Name  ;
             client.Settings.ASSET_CACHE_MAX_SIZE = (1024 * 1024 * 1024) / 4;  //250MB
             client.Assets.Cache.AutoPruneEnabled = false; 
 

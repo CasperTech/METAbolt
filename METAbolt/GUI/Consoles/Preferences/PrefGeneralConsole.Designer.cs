@@ -34,6 +34,7 @@ namespace METAbolt
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkLSL = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.nUD2 = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
@@ -119,7 +120,6 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.chkLSL = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -171,8 +171,8 @@ namespace METAbolt
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.rdoSystemStyle);
             this.groupBox1.Controls.Add(this.rdoOfficeStyle);
             this.groupBox1.Location = new System.Drawing.Point(3, -3);
@@ -237,6 +237,17 @@ namespace METAbolt
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Options";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // chkLSL
+            // 
+            this.chkLSL.AccessibleName = "Disable icon option";
+            this.chkLSL.AutoSize = true;
+            this.chkLSL.Location = new System.Drawing.Point(203, 201);
+            this.chkLSL.Name = "chkLSL";
+            this.chkLSL.Size = new System.Drawing.Size(132, 17);
+            this.chkLSL.TabIndex = 63;
+            this.chkLSL.Text = "Display LSL commands";
+            this.chkLSL.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -763,7 +774,7 @@ namespace METAbolt
             // checkBox12
             // 
             this.checkBox12.AccessibleDescription = "Enforce security so that LSL commands are only accepted from the specified avatar" +
-                " and object";
+    " and object";
             this.checkBox12.AccessibleName = "Enforce LSL security";
             this.checkBox12.AutoSize = true;
             this.checkBox12.Location = new System.Drawing.Point(79, 147);
@@ -1227,17 +1238,6 @@ namespace METAbolt
             this.fontDialog1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
-            // 
-            // chkLSL
-            // 
-            this.chkLSL.AccessibleName = "Disable icon option";
-            this.chkLSL.AutoSize = true;
-            this.chkLSL.Location = new System.Drawing.Point(203, 201);
-            this.chkLSL.Name = "chkLSL";
-            this.chkLSL.Size = new System.Drawing.Size(132, 17);
-            this.chkLSL.TabIndex = 63;
-            this.chkLSL.Text = "Display LSL commands";
-            this.chkLSL.UseVisualStyleBackColor = true;
             // 
             // PrefGeneralConsole
             // 

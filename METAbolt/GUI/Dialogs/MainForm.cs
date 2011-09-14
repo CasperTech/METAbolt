@@ -603,6 +603,8 @@ namespace METAbolt
         {
             if (e.Status != LoginStatus.Success) return;
 
+            client.Settings.ASSET_CACHE_DIR = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" +System.IO.Path.DirectorySeparatorChar + "cache" + System.IO.Path.DirectorySeparatorChar + client.Self.Name;
+
             tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
             statusTimer.Enabled = true;
             statusTimer.Start();

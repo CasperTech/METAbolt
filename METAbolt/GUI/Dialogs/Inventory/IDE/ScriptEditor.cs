@@ -198,6 +198,39 @@ namespace METAbolt
 
         private void Document_CharAdded(object sender, CharAddedEventArgs e)
         {
+            //if (showingcalltip)
+            //{
+            //    if (e.Ch == ')')
+            //    {
+            //        showingcalltip = false;
+            //        rtbScript.CallTip.Hide();
+            //    }
+            //    else
+            //    {
+            //        if (cline.Number == rtbScript.Lines.Current.Number)
+            //        {
+            //            Line lnt = rtbScript.Lines.Current;
+
+            //            if (lnt.Text.Contains("("))
+            //            {
+            //                ShowCallTip();
+            //                cline = rtbScript.Lines.Current;
+            //                return;
+            //            }
+            //            else
+            //            {
+            //                showingcalltip = false;
+            //                rtbScript.CallTip.Hide();
+            //            }
+            //        }
+            //        else
+            //        {
+            //            showingcalltip = false;
+            //            rtbScript.CallTip.Hide();
+            //        }
+            //    }
+            //}
+
             if (showingcalltip)
             {
                 if (e.Ch == ')')
@@ -207,33 +240,16 @@ namespace METAbolt
                 }
                 else
                 {
-                    if (cline.Number == rtbScript.Lines.Current.Number)
-                    {
-                        Line lnt = rtbScript.Lines.Current;
-
-                        if (lnt.Text.Contains("("))
-                        {
-                            ShowCallTip();
-                            cline = rtbScript.Lines.Current;
-                            return;
-                        }
-                        else
-                        {
-                            showingcalltip = false;
-                            rtbScript.CallTip.Hide();
-                        }
-                    }
-                    else
-                    {
-                        showingcalltip = false;
-                        rtbScript.CallTip.Hide();
-                    }
+                    ShowCallTip();
+                    cline = rtbScript.Lines.Current;
+                    return;
                 }
             }
 
+            cline = rtbScript.Lines.Current;
+
             if (e.Ch == '(')
             {
-                cline = rtbScript.Lines.Current;
                 ShowCallTip();
 
                 showingcalltip = true;
