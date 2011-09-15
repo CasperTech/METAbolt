@@ -53,6 +53,7 @@ namespace METAbolt
         //private DirectoryManager.DirectoryParcel EmptyPlace;
 
         public event EventHandler SelectedIndexChanged;
+        private NumericStringComparer lvwColumnSorter;
 
         public FindPlaces(METAboltInstance instance, UUID queryID)
         {
@@ -65,6 +66,9 @@ namespace METAbolt
             //netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddClientEvents();
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvwFindPlaces.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void AddClientEvents()
@@ -245,7 +249,26 @@ namespace METAbolt
 
         private void lvwFindPlaces_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            this.lvwFindPlaces.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
             lvwFindPlaces.Sort();
         }
 

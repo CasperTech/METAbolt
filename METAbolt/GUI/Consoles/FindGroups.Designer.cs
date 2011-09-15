@@ -43,7 +43,6 @@
             this.chdDescription});
             this.lvwFindGroups.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwFindGroups.FullRowSelect = true;
-            this.lvwFindGroups.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwFindGroups.Location = new System.Drawing.Point(0, 0);
             this.lvwFindGroups.MultiSelect = false;
             this.lvwFindGroups.Name = "lvwFindGroups";
@@ -51,6 +50,7 @@
             this.lvwFindGroups.TabIndex = 1;
             this.lvwFindGroups.UseCompatibleStateImageBehavior = false;
             this.lvwFindGroups.View = System.Windows.Forms.View.Details;
+            this.lvwFindGroups.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwFindGroups_ColumnClick);
             this.lvwFindGroups.SelectedIndexChanged += new System.EventHandler(this.lvwFindGroups_SelectedIndexChanged);
             // 
             // chdGroupName

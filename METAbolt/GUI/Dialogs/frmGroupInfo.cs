@@ -63,7 +63,6 @@ namespace METAbolt
         private UUID grouptitles = UUID.Zero;
         private UUID groupmembers = UUID.Zero;
         private bool ejectpower = false;
-        private ListViewColumnSorter lvwColumnSorter;
         private ExceptionReporter reporter = new ExceptionReporter();
         private UUID grpid = UUID.Zero;
         private Dictionary<UUID, GroupRole> grouproles;
@@ -73,6 +72,7 @@ namespace METAbolt
         private UUID founderid = UUID.Zero;
         //private GroupMemberData currentmember = new GroupMemberData();
         private bool checkignore = false;
+        private NumericStringComparer lvwColumnSorter;
 
         internal class ThreadExceptionHandler
         {
@@ -104,7 +104,7 @@ namespace METAbolt
 
             AddGEvents();
 
-            lvwColumnSorter = new ListViewColumnSorter();
+            lvwColumnSorter = new NumericStringComparer();
             lstMembers.ListViewItemSorter = lvwColumnSorter;
             lstMembers2.ListViewItemSorter = lvwColumnSorter;
             lstNotices.ListViewItemSorter = lvwColumnSorter;

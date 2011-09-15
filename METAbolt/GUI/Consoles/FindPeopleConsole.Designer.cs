@@ -42,14 +42,16 @@ namespace METAbolt
             this.chdName,
             this.chdOnline});
             this.lvwFindPeople.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvwFindPeople.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwFindPeople.FullRowSelect = true;
             this.lvwFindPeople.Location = new System.Drawing.Point(0, 0);
             this.lvwFindPeople.MultiSelect = false;
             this.lvwFindPeople.Name = "lvwFindPeople";
             this.lvwFindPeople.Size = new System.Drawing.Size(474, 319);
+            this.lvwFindPeople.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwFindPeople.TabIndex = 0;
             this.lvwFindPeople.UseCompatibleStateImageBehavior = false;
             this.lvwFindPeople.View = System.Windows.Forms.View.Details;
+            this.lvwFindPeople.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwFindPeople_ColumnClick);
             this.lvwFindPeople.SelectedIndexChanged += new System.EventHandler(this.lvwFindPeople_SelectedIndexChanged);
             // 
             // chdName

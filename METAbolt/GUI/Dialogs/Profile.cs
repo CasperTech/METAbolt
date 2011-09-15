@@ -73,6 +73,7 @@ namespace METAbolt
         const int WM_NCHITTEST = 0x0084;
         const int HTTRANSPARENT = -1;
         const int HTCLIENT = 1;
+        private NumericStringComparer lvwColumnSorter;
 
         internal class ThreadExceptionHandler
         {
@@ -132,6 +133,10 @@ namespace METAbolt
                 //txtDisplayName.ReadOnly = false;
                 button7.Enabled = true;
             }
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvGroups.ListViewItemSorter = lvwColumnSorter;
+            lvwPicks.ListViewItemSorter = lvwColumnSorter;
         }
 
         ~frmProfile()

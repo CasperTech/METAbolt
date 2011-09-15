@@ -19,6 +19,7 @@ namespace METAbolt
         private SafeDictionary<string, string> ffiles = new SafeDictionary<string, string>();
         private bool isgroup = false;
         private GridClient client;
+        private NumericStringComparer lvwColumnSorter;
 
         public frmHistory(METAboltInstance instance, string filename, bool isgroup)
         {
@@ -33,6 +34,9 @@ namespace METAbolt
             this.lvwList.ListViewItemSorter = new ListViewColumnSorter();
 
             GetHistory();
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvwList.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void GetHistory()

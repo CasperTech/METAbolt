@@ -44,6 +44,7 @@ namespace METAbolt
         private SafeDictionary<string, UUID> findPeopleResults;
 
         public event EventHandler SelectedIndexChanged;
+        private NumericStringComparer lvwColumnSorter;
 
         public FindPeopleConsole(METAboltInstance instance, UUID queryID)
         {
@@ -56,6 +57,9 @@ namespace METAbolt
             //netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddClientEvents();
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvwFindPeople.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void AddClientEvents()
@@ -188,6 +192,31 @@ namespace METAbolt
         private void pPeople_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lvwFindPeople_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            lvwFindPeople.Sort();
         }
     }
 }

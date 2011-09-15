@@ -439,9 +439,11 @@ namespace METAbolt
             this.lvAssignedRoles.AccessibleName = "Allowed abilities listbox";
             this.lvAssignedRoles.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvAssignedRoles.CheckBoxes = true;
+            this.lvAssignedRoles.FullRowSelect = true;
             this.lvAssignedRoles.Location = new System.Drawing.Point(6, 241);
             this.lvAssignedRoles.Name = "lvAssignedRoles";
             this.lvAssignedRoles.Size = new System.Drawing.Size(147, 199);
+            this.lvAssignedRoles.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvAssignedRoles.TabIndex = 7;
             this.lvAssignedRoles.UseCompatibleStateImageBehavior = false;
             this.lvAssignedRoles.View = System.Windows.Forms.View.List;
@@ -452,9 +454,11 @@ namespace METAbolt
             // 
             this.lvwAble.AccessibleName = "Allowed abilities listbox";
             this.lvwAble.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwAble.FullRowSelect = true;
             this.lvwAble.Location = new System.Drawing.Point(159, 241);
             this.lvwAble.Name = "lvwAble";
             this.lvwAble.Size = new System.Drawing.Size(227, 199);
+            this.lvwAble.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwAble.TabIndex = 4;
             this.lvwAble.UseCompatibleStateImageBehavior = false;
             this.lvwAble.View = System.Windows.Forms.View.List;
@@ -750,6 +754,7 @@ namespace METAbolt
             this.columnHeader10,
             this.columnHeader11});
             this.lstRoles.FullRowSelect = true;
+            this.lstRoles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstRoles.Location = new System.Drawing.Point(6, 30);
             this.lstRoles.MultiSelect = false;
             this.lstRoles.Name = "lstRoles";

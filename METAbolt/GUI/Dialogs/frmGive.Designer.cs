@@ -83,6 +83,7 @@
             this.lvwFindFriends.TabIndex = 2;
             this.lvwFindFriends.UseCompatibleStateImageBehavior = false;
             this.lvwFindFriends.View = System.Windows.Forms.View.Details;
+            this.lvwFindFriends.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwFindFriends_ColumnClick);
             this.lvwFindFriends.SelectedIndexChanged += new System.EventHandler(this.lvwFindPeople_SelectedIndexChanged);
             // 
             // chdName
@@ -103,6 +104,7 @@
             this.lvwSelected.TabIndex = 7;
             this.lvwSelected.UseCompatibleStateImageBehavior = false;
             this.lvwSelected.View = System.Windows.Forms.View.Details;
+            this.lvwSelected.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwSelected_ColumnClick);
             // 
             // columnHeader1
             // 

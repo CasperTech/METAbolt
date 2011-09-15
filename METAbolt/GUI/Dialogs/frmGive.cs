@@ -52,10 +52,7 @@ namespace METAbolt
         private UUID rle = UUID.Zero;
         private bool inventorymode = true;
         private bool groupmode = false;
-        //private string name = string.Empty;
-
-        //GroupManager.GroupMembersCallback GroupMembersCallback;
-        //AvatarManager.AvatarNamesCallback AvatarNamesCallback;
+        private NumericStringComparer lvwColumnSorter;
 
         public frmGive(METAboltInstance instance, InventoryItem item)
         {
@@ -77,6 +74,10 @@ namespace METAbolt
             groupmode = false;
 
             client.Groups.RequestCurrentGroups();
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvwFindFriends.ListViewItemSorter = lvwColumnSorter;
+            lvwSelected.ListViewItemSorter = lvwColumnSorter;
         }
 
         public frmGive(METAboltInstance instance, UUID group, UUID role)
@@ -590,6 +591,56 @@ namespace METAbolt
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lvwFindFriends_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            lvwFindFriends.Sort();
+        }
+
+        private void lvwSelected_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            lvwSelected.Sort();
         }
     }
 }

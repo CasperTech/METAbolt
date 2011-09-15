@@ -51,6 +51,7 @@ namespace METAbolt
         private SafeDictionary<string, uint> findEventsResults;
 
         public event EventHandler SelectedIndexChanged;
+        private NumericStringComparer lvwColumnSorter;
 
         public FindEvents(METAboltInstance instance, UUID queryID)
         {
@@ -63,6 +64,9 @@ namespace METAbolt
             //netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddClientEvents();
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvwFindEvents.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void AddClientEvents()
@@ -307,8 +311,25 @@ namespace METAbolt
 
         private void lvwFindEvents_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            this.lvwFindEvents.ListViewItemSorter = new ListViewItemComparer(e.Column);
-            // Call the sort method to manually sort.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
             lvwFindEvents.Sort();
         }    
     }

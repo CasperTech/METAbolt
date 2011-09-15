@@ -47,6 +47,7 @@ namespace METAbolt
         private SafeDictionary<string, UUID> findGroupsResults;
 
         public event EventHandler SelectedIndexChanged;
+        private NumericStringComparer lvwColumnSorter;
 
         public FindGroups(METAboltInstance instance, UUID queryID)
         {
@@ -59,6 +60,9 @@ namespace METAbolt
             //netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddClientEvents();
+
+            lvwColumnSorter = new NumericStringComparer();
+            lvwFindGroups.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void AddClientEvents()
@@ -170,6 +174,30 @@ namespace METAbolt
         private void pGroups_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lvwFindGroups_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            lvwFindGroups.Sort(); 
         }
     }
 }

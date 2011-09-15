@@ -47,15 +47,12 @@ namespace METAbolt
         private float fZ;
         //private string sSIM;
 
-        //private ListViewItemComparer lvcompare;
-        //private ListViewColumnSorter lvwColumnSorter;
-        private NumericStringComparer lvwColumnSorter;
-
         private UUID queryID;
         private SafeDictionary<string, DirectoryManager.DirectoryParcel> findLandResults;
         //private DirectoryManager.DirectoryParcel EmptyPlace;
 
         public event EventHandler SelectedIndexChanged;
+        private NumericStringComparer lvwColumnSorter;
 
         public FindLand(METAboltInstance instance, UUID queryID)
         {

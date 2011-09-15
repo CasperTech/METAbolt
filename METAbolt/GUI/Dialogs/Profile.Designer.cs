@@ -119,9 +119,9 @@ namespace METAbolt
             this.tabProfile.AccessibleDescription = "Profile, web, picks, first life and notes tabs";
             this.tabProfile.AccessibleName = "Tabs";
             this.tabProfile.AllowDrop = true;
-            this.tabProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabProfile.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabProfile.Controls.Add(this.tpgProfile);
             this.tabProfile.Controls.Add(this.tpgWeb);
@@ -188,7 +188,7 @@ namespace METAbolt
             this.gbDisplayName.Controls.Add(this.label16);
             this.gbDisplayName.Controls.Add(this.textBox3);
             this.gbDisplayName.Controls.Add(this.textBox2);
-            this.gbDisplayName.Location = new System.Drawing.Point(5, 33);
+            this.gbDisplayName.Location = new System.Drawing.Point(7, 33);
             this.gbDisplayName.Name = "gbDisplayName";
             this.gbDisplayName.Size = new System.Drawing.Size(447, 432);
             this.gbDisplayName.TabIndex = 56;
@@ -202,13 +202,13 @@ namespace METAbolt
             this.label18.Size = new System.Drawing.Size(299, 40);
             this.label18.TabIndex = 61;
             this.label18.Text = "The name you give your avatar is called your Display Name. You can change it once" +
-                " a week.";
+    " a week.";
             // 
             // pBar3
             // 
-            this.pBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pBar3.Image = global::METAbolt.Properties.Resources.wait30trans;
             this.pBar3.Location = new System.Drawing.Point(191, 295);
             this.pBar3.Name = "pBar3";
@@ -259,8 +259,8 @@ namespace METAbolt
             // textBox3
             // 
             this.textBox3.AccessibleName = "Avatar name textbox";
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBox3.Location = new System.Drawing.Point(84, 191);
             this.textBox3.Name = "textBox3";
@@ -270,8 +270,8 @@ namespace METAbolt
             // textBox2
             // 
             this.textBox2.AccessibleName = "Avatar name textbox";
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBox2.Location = new System.Drawing.Point(84, 124);
             this.textBox2.Name = "textBox2";
@@ -293,8 +293,8 @@ namespace METAbolt
             // txtDisplayName
             // 
             this.txtDisplayName.AccessibleName = "Avatar name textbox";
-            this.txtDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDisplayName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDisplayName.Location = new System.Drawing.Point(90, 6);
             this.txtDisplayName.Name = "txtDisplayName";
@@ -352,7 +352,7 @@ namespace METAbolt
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 250);
+            this.label13.Location = new System.Drawing.Point(4, 250);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 13);
             this.label13.TabIndex = 50;
@@ -414,8 +414,8 @@ namespace METAbolt
             // txtUUID
             // 
             this.txtUUID.AccessibleName = "Avatar UUID textbox";
-            this.txtUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUUID.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtUUID.Location = new System.Drawing.Point(50, 58);
             this.txtUUID.Name = "txtUUID";
@@ -509,8 +509,8 @@ namespace METAbolt
             // rtbAbout
             // 
             this.rtbAbout.AccessibleName = "About textbox";
-            this.rtbAbout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbAbout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbAbout.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rtbAbout.Location = new System.Drawing.Point(50, 339);
             this.rtbAbout.Name = "rtbAbout";
@@ -582,8 +582,8 @@ namespace METAbolt
             // txtFullName
             // 
             this.txtFullName.AccessibleName = "Avatar name textbox";
-            this.txtFullName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFullName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFullName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtFullName.Location = new System.Drawing.Point(50, 33);
             this.txtFullName.Name = "txtFullName";
@@ -605,9 +605,9 @@ namespace METAbolt
             // picSLImage
             // 
             this.picSLImage.AccessibleName = "Avatar photo display";
-            this.picSLImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.picSLImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.picSLImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picSLImage.Location = new System.Drawing.Point(50, 84);
             this.picSLImage.Name = "picSLImage";
@@ -647,9 +647,9 @@ namespace METAbolt
             // 
             // pnlWeb
             // 
-            this.pnlWeb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlWeb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlWeb.Location = new System.Drawing.Point(6, 33);
             this.pnlWeb.Name = "pnlWeb";
             this.pnlWeb.Size = new System.Drawing.Size(448, 424);
@@ -688,8 +688,8 @@ namespace METAbolt
             // txtWebURL
             // 
             this.txtWebURL.AccessibleName = "URL textbox";
-            this.txtWebURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWebURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtWebURL.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtWebURL.Location = new System.Drawing.Point(42, 6);
             this.txtWebURL.Name = "txtWebURL";
@@ -823,9 +823,9 @@ namespace METAbolt
             // lvwPicks
             // 
             this.lvwPicks.AccessibleName = "List of picks listbox";
-            this.lvwPicks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwPicks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwPicks.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwPicks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwPicks.FullRowSelect = true;
@@ -836,6 +836,7 @@ namespace METAbolt
             this.lvwPicks.MultiSelect = false;
             this.lvwPicks.Name = "lvwPicks";
             this.lvwPicks.Size = new System.Drawing.Size(152, 393);
+            this.lvwPicks.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwPicks.TabIndex = 0;
             this.lvwPicks.UseCompatibleStateImageBehavior = false;
             this.lvwPicks.View = System.Windows.Forms.View.List;
@@ -873,8 +874,8 @@ namespace METAbolt
             // rtbAboutFL
             // 
             this.rtbAboutFL.AccessibleName = "About first life textbox";
-            this.rtbAboutFL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbAboutFL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbAboutFL.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rtbAboutFL.Location = new System.Drawing.Point(6, 207);
             this.rtbAboutFL.Name = "rtbAboutFL";
@@ -908,9 +909,9 @@ namespace METAbolt
             // picFLImage
             // 
             this.picFLImage.AccessibleName = "First life picture display";
-            this.picFLImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.picFLImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.picFLImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picFLImage.Location = new System.Drawing.Point(6, 22);
             this.picFLImage.Name = "picFLImage";
@@ -937,9 +938,9 @@ namespace METAbolt
             // 
             this.rtbNotes.AccessibleDescription = "Display incoming and outgoing chat";
             this.rtbNotes.AccessibleName = "Chat output window";
-            this.rtbNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbNotes.AutoWordSelection = true;
             this.rtbNotes.BackColor = System.Drawing.Color.White;
             this.rtbNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
