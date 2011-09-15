@@ -132,7 +132,7 @@ namespace METAbolt
 
             AddGEvents();
 
-            lvwColumnSorter = new ListViewColumnSorter();
+            lvwColumnSorter = new NumericStringComparer();
             lstMembers.ListViewItemSorter = lvwColumnSorter;
             lstMembers2.ListViewItemSorter = lvwColumnSorter;
             lstNotices.ListViewItemSorter = lvwColumnSorter;
@@ -165,7 +165,7 @@ namespace METAbolt
 
             AddGEvents();
 
-            lvwColumnSorter = new ListViewColumnSorter();
+            lvwColumnSorter = new NumericStringComparer();
             lstMembers.ListViewItemSorter = lvwColumnSorter;
             lstMembers2.ListViewItemSorter = lvwColumnSorter;
             lstNotices.ListViewItemSorter = lvwColumnSorter;

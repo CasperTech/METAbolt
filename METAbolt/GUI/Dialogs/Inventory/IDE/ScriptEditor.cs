@@ -67,7 +67,7 @@ namespace METAbolt
         private List<string> calltip = new List<string>();
         private List<string> calltipheader = new List<string>();
         private bool showingcalltip = false;
-        private Line cline;
+        //private Line cline;
 
 
         public frmScriptEditor(METAboltInstance instance, InventoryItem item)
@@ -112,6 +112,7 @@ namespace METAbolt
             this.Text = item.Name + " (script) - METAbolt";
 
             SetScintilla();
+            GetCallTips();
 
             assetUUID = item.AssetUUID;
             objectid = obj.ID;
@@ -137,6 +138,7 @@ namespace METAbolt
             tsStatus.Text = "Ready.";
 
             SetScintilla();
+            GetCallTips();
         }
 
         private void SetScintilla()
@@ -198,6 +200,8 @@ namespace METAbolt
 
         private void Document_CharAdded(object sender, CharAddedEventArgs e)
         {
+            //cline = rtbScript.Lines.Current;
+
             //if (showingcalltip)
             //{
             //    if (e.Ch == ')')
@@ -207,59 +211,33 @@ namespace METAbolt
             //    }
             //    else
             //    {
-            //        if (cline.Number == rtbScript.Lines.Current.Number)
-            //        {
-            //            Line lnt = rtbScript.Lines.Current;
-
-            //            if (lnt.Text.Contains("("))
-            //            {
-            //                ShowCallTip();
-            //                cline = rtbScript.Lines.Current;
-            //                return;
-            //            }
-            //            else
-            //            {
-            //                showingcalltip = false;
-            //                rtbScript.CallTip.Hide();
-            //            }
-            //        }
-            //        else
-            //        {
-            //            showingcalltip = false;
-            //            rtbScript.CallTip.Hide();
-            //        }
+            //        showingcalltip = true;
+            //        ShowCallTip();
+            //        //cline = rtbScript.Lines.Current;
+            //        return;
             //    }
             //}
 
-            if (showingcalltip)
-            {
-                if (e.Ch == ')')
-                {
-                    showingcalltip = false;
-                    rtbScript.CallTip.Hide();
-                }
-                else
-                {
-                    ShowCallTip();
-                    cline = rtbScript.Lines.Current;
-                    return;
-                }
-            }
-
-            cline = rtbScript.Lines.Current;
-
             if (e.Ch == '(')
             {
-                ShowCallTip();
-
                 showingcalltip = true;
+                //ShowCallTip();
 
                 return;
             }
             else if (e.Ch == ')')
             {
                 showingcalltip = false;
-                rtbScript.CallTip.Hide();
+                //rtbScript.CallTip.Hide();
+            }
+
+            //ShowCallTip();
+
+            if (showingcalltip)
+            {
+                //ShowCallTip();
+
+                return;
             }
 
             Line ln = rtbScript.Lines.Current;
@@ -296,8 +274,17 @@ namespace METAbolt
         {
             //string func = rtbScript.AutoComplete.SelectedText;
 
+            showingcalltip = true; 
+
             Line lnt = rtbScript.Lines.Current;
             int aind = lnt.Text.IndexOf("(", 0);
+
+            if (aind == -1)
+            {
+                showingcalltip = false;
+                rtbScript.CallTip.Hide();
+                return;
+            }
 
             string hword = rtbScript.GetWordFromPosition(lnt.StartPosition + aind - 1);
             //rtbScript.CallTip.Show(hword);
@@ -559,6 +546,12 @@ namespace METAbolt
 
         private void SaveScript()
         {
+            if (!netcom.IsLoggedIn)
+            {
+                tsSave.Enabled = false;
+                tsbSave.Enabled = false;
+                return;
+            }
             try
             {
                 PB1.Visible = true;
@@ -1414,8 +1407,16 @@ namespace METAbolt
             {
                 if (!ointernal)
                 {
-                    tsSave.Enabled = true;
-                    tsbSave.Enabled = true;
+                    if (netcom.IsLoggedIn)
+                    {
+                        tsSave.Enabled = true;
+                        tsbSave.Enabled = true;
+                    }
+                    else
+                    {
+                        tsSave.Enabled = false;
+                        tsbSave.Enabled = false;
+                    }
                 }
 
                 tsSaveDisk.Enabled = true;
@@ -1543,6 +1544,22 @@ namespace METAbolt
             sb.AppendLine("[Click on function/event & press F1 for info/sample code]");
 
             rtbScript.CallTip.Show(sb.ToString(), pos);
+        }
+
+        private void rtbScript_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
+            {
+                Line lnt = rtbScript.Lines.Current;
+                int aind = lnt.Text.IndexOf("(", 0);
+
+                if (aind == -1)
+                {
+                    showingcalltip = false;
+                    rtbScript.CallTip.Hide();
+                    return;
+                }
+            }
         }
     }
 }

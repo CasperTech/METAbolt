@@ -881,6 +881,7 @@ namespace METAbolt
             this.rtbScript.TabIndex = 49;
             this.rtbScript.TextChanged += new System.EventHandler<System.EventArgs>(this.rtbScript_TextChanged);
             this.rtbScript.SelectionChanged += new System.EventHandler(this.rtbScript_SelectionChanged);
+            this.rtbScript.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rtbScript_KeyUp);
             this.rtbScript.MouseMove += new System.Windows.Forms.MouseEventHandler(this.rtbScript_MouseMove);
             // 
             // toolStrip3
@@ -1127,6 +1128,7 @@ namespace METAbolt
             this.Controls.Add(this.rtbScript);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "frmScriptEditor";
             this.Text = "Script Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmScriptEditor_FormClosing);
