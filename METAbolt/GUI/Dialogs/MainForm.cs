@@ -1759,6 +1759,10 @@ namespace METAbolt
                 }
                 else
                 {
+                    tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
+                    statusTimer.Enabled = false;
+                    statusTimer.Stop();
+
                     RefreshStatusBar();
                     RefreshWindowTitle();
 
