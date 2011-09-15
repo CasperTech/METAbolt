@@ -128,6 +128,8 @@ namespace METAbolt
             this.firstInstance = firstInstance;
 
             LoadXMLFile(appdir + "\\MuteList.xml");
+            LoadGiverItems(appdir + "\\METAgiverItems.xml");
+
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
@@ -175,6 +177,8 @@ namespace METAbolt
             this.firstInstance = firstInstance;
 
             LoadXMLFile(appdir + "\\MuteList.xml");
+            LoadGiverItems(appdir + "\\METAgiverItems.xml");
+
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
@@ -584,6 +588,72 @@ namespace METAbolt
             }
         }
 
+        private void SaveGiverItems(string XmlFile)
+        {
+            try
+            {
+                //int recs = mutelist.Rows.Count;  
+                giveritems.WriteXml(XmlFile);
+            }
+            catch
+            {
+                ;
+            }
+        }
+
+        private void LoadGiverItems(string XmlFile)
+        {
+            if (!System.IO.File.Exists(XmlFile))
+            {
+                DataTable tbl = MakeGiverDataTable();
+
+                giveritems = tbl;
+                giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
+                return;
+            }
+
+            DataSet dset = new DataSet();
+            FileStream fstr = null;
+
+            try
+            {
+                fstr = new FileStream(XmlFile, FileMode.Open, FileAccess.Read);
+                dset.ReadXml(fstr);
+            }
+            catch (Exception exp)
+            {
+                Logger.Log("Load METAcourier items: " + exp.Message, Helpers.LogLevel.Warning);
+            }
+
+            try
+            {
+                if (dset.Tables.Count > 0)
+                {
+                    DataTable dtbl = dset.Tables[0];
+
+                    fstr.Close();
+                    dset.Dispose();
+
+                    giveritems = dtbl;
+                    giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
+                }
+                else
+                {
+                    fstr.Close();
+                    dset.Dispose();
+
+                    DataTable tbl = MakeGiverDataTable();
+
+                    giveritems = tbl;
+                    giveritems.PrimaryKey = new DataColumn[] { giveritems.Columns["Command"] };
+                }
+            }
+            catch
+            {
+                ;
+            }
+        }
+
         private DataTable MakeDataTable()
         {
             DataColumn myColumn = new DataColumn();
@@ -603,6 +673,41 @@ namespace METAbolt
 
             myColumn.Dispose();
  
+            return dtbl;
+        }
+
+        private DataTable MakeGiverDataTable()
+        {
+            DataTable dtbl = new DataTable("list");
+            DataColumn myColumn = new DataColumn();
+
+            myColumn.DataType = System.Type.GetType("System.String");
+            myColumn.ColumnName = "Command";
+            dtbl.Columns.Add(myColumn);
+
+            //client.Inventory.GiveItem(iitem.UUID, iitem.Name, iitem.AssetType, avid, false);
+
+            DataColumn myColumn1 = new DataColumn();
+            myColumn1.DataType = System.Type.GetType("System.String");
+            myColumn1.ColumnName = "UUID";
+            dtbl.Columns.Add(myColumn1);
+
+            DataColumn myColumn2 = new DataColumn();
+            myColumn2 = new DataColumn();
+            myColumn2.DataType = System.Type.GetType("System.String");
+            myColumn2.ColumnName = "Name";
+            dtbl.Columns.Add(myColumn2);
+
+            DataColumn myColumn3 = new DataColumn();
+            myColumn3.DataType = System.Type.GetType("System.String");
+            myColumn3.ColumnName = "AssetType";
+            dtbl.Columns.Add(myColumn3);
+
+            DataColumn[] keys = new DataColumn[1];
+            keys[0] = myColumn;
+
+            dtbl.PrimaryKey = keys;
+
             return dtbl;
         }
 
@@ -787,6 +892,7 @@ namespace METAbolt
             //}
 
             SaveXMLFile(appdir + "\\MuteList.xml");
+            SaveGiverItems(appdir + "\\METAgiverItems.xml");
 
             client = null;
             Environment.Exit(0); 

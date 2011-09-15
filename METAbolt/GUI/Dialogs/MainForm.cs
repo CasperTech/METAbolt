@@ -1058,7 +1058,7 @@ namespace METAbolt
 
         private void tmnuPrefs_Click(object sender, EventArgs e)
         {
-            (new frmPreferences(instance)).ShowDialog(this);
+            (new frmPreferences(instance)).Show(this);
         }
 
         private void tbtnObjects_Click(object sender, EventArgs e)
