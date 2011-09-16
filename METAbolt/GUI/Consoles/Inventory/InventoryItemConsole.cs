@@ -284,7 +284,7 @@ namespace METAbolt
                 return;
             }
 
-            (new frmGive(instance, item)).ShowDialog();
+            (new frmGive(instance, item)).Show(this);
         }
 
         private void btnTP_Click(object sender, EventArgs e)

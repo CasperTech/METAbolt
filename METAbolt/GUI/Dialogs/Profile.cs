@@ -645,7 +645,7 @@ namespace METAbolt
 
         private void btnPay_Click(object sender, EventArgs e)
         {
-            (new frmPay(instance, agentID, fullName)).ShowDialog();
+            (new frmPay(instance, agentID, fullName)).Show(this);
         }
 
         private void frmProfile_Load(object sender, EventArgs e)

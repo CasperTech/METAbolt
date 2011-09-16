@@ -2489,12 +2489,12 @@ namespace METAbolt
                 {
                     if (ssim != client.Network.CurrentSim) return;
 
-                    Bitmap nbmp = new Bitmap(256, 256);
+                    //Bitmap nbmp = new Bitmap(256, 256);
 
-                    Bitmap bmp = _MapLayer == null ? nbmp : (Bitmap)_MapLayer.Clone();
+                    Bitmap bmp = _MapLayer == null ? new Bitmap(256, 256) : (Bitmap)_MapLayer.Clone();
                     Graphics g = Graphics.FromImage(bmp);
 
-                    nbmp.Dispose(); 
+                    //nbmp.Dispose(); 
 
                     if (_MapLayer == null)
                     {
@@ -2736,7 +2736,7 @@ namespace METAbolt
                 catch (Exception ex)
                 {
                     Logger.Log("Chatconsole MiniMap: " + ex.Message, Helpers.LogLevel.Error);
-                    return;
+                    //return;
                 }
             }
         }

@@ -1829,11 +1829,11 @@ namespace METAbolt
             //if (sprice != 0)
             if (styp != SaleType.Not)
             {
-                (new frmPay(instance, item.Prim.ID, sPr.Properties.Name, sprice, sPr)).ShowDialog();
+                (new frmPay(instance, item.Prim.ID, sPr.Properties.Name, sprice, sPr)).Show(this);
             }
             else
             {
-                (new frmPay(instance, item.Prim.ID, sPr.Properties.Name)).ShowDialog();
+                (new frmPay(instance, item.Prim.ID, sPr.Properties.Name)).Show(this);
             }
         }
 

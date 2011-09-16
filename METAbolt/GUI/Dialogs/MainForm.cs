@@ -603,7 +603,7 @@ namespace METAbolt
         {
             if (e.Status != LoginStatus.Success) return;
 
-            client.Settings.ASSET_CACHE_DIR = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" +System.IO.Path.DirectorySeparatorChar + "cache" + System.IO.Path.DirectorySeparatorChar + client.Self.Name;
+            client.Settings.ASSET_CACHE_DIR = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + System.IO.Path.DirectorySeparatorChar + client.Self.Name + System.IO.Path.DirectorySeparatorChar + "cache";
 
             tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
             statusTimer.Enabled = true;
@@ -885,7 +885,7 @@ namespace METAbolt
 
         private void tmnuAbout_Click(object sender, EventArgs e)
         {
-            (new frmAbout()).ShowDialog(this);
+            (new frmAbout()).Show(this);
         }
 
         private void tmnuExit_Click(object sender, EventArgs e)
@@ -1139,7 +1139,7 @@ namespace METAbolt
         private void mnuDonate_Click(object sender, EventArgs e)
         {
             UUID sLuke = (UUID)"2e288cf4-9535-4407-a0b7-9b4a8aa31f6d";
-            (new frmPay(instance, sLuke, "Legolas Luke")).ShowDialog();
+            (new frmPay(instance, sLuke, "Legolas Luke")).Show(this);
         }
 
         private void mnuDollar_Click(object sender, EventArgs e)
@@ -1253,7 +1253,7 @@ namespace METAbolt
             //if (netcom.IsLoggedIn && tbtnDebug.Visible == true) // only allow to open About land when logged in and for now only as a Debug Future
             if (netcom.IsLoggedIn)
             {
-                (new frmAboutLand(instance)).ShowDialog(this);
+                (new frmAboutLand(instance)).Show(this);
             }
         }
 
@@ -1289,7 +1289,7 @@ namespace METAbolt
 
         private void aboutLandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmAboutLand(instance)).ShowDialog(this);
+            (new frmAboutLand(instance)).Show(this);
         }
 
         private void bellyDanceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1877,7 +1877,7 @@ namespace METAbolt
 
         private void stopAnimationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            instance.State.StopAnimations(); 
+            instance.State.StopAnimations();
         }
 
         private void uploadImageL10PerUploadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1894,7 +1894,7 @@ namespace METAbolt
                     Bitmap bitmap = new Bitmap(open.FileName);
                     ext = Path.GetExtension(open.FileName).ToLower();
 
-                    (new UploadImage(instance, bitmap, open.FileName, ext)).ShowDialog();
+                    (new UploadImage(instance, bitmap, open.FileName, ext)).Show(this);
                 }
             }
             catch (Exception)

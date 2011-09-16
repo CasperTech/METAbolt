@@ -222,13 +222,13 @@ namespace METAbolt
 
                 if (sim != client.Network.CurrentSim) return;
 
-                Bitmap nbmp = new Bitmap(256, 256);
+                //Bitmap nbmp = new Bitmap(256, 256);
 
-                Bitmap bmp = _MapLayer == null ? nbmp : (Bitmap)_MapLayer.Clone();
+                Bitmap bmp = _MapLayer == null ? new Bitmap(256, 256) : (Bitmap)_MapLayer.Clone();
 
                 Graphics g = Graphics.FromImage(bmp);
 
-                nbmp.Dispose(); 
+                //nbmp.Dispose(); 
 
                 if (_MapLayer == null)
                 {
@@ -243,14 +243,14 @@ namespace METAbolt
 
                 if (_LandLayer != null)
                 {
-                    nbmp = new Bitmap(256, 256);
+                    //nbmp = new Bitmap(256, 256);
 
                     bmp = _LandLayer == null ? new Bitmap(256, 256) : (Bitmap)_LandLayer.Clone();
                     //g = Graphics.FromImage((Bitmap)_LandLayer.Clone());
 
                     g = Graphics.FromImage(bmp);
 
-                    nbmp.Dispose(); 
+                    //nbmp.Dispose(); 
 
                     //ColorMatrix cm = new ColorMatrix();
                     //cm.Matrix00 = cm.Matrix11 = cm.Matrix22 = cm.Matrix44 = 1f;

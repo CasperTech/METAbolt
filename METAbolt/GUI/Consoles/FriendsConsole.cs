@@ -521,7 +521,7 @@ namespace METAbolt
 
         private void btnPay_Click(object sender, EventArgs e)
         {
-            (new frmPay(instance, selectedFriend.UUID, selectedFriend.Name)).ShowDialog();
+            (new frmPay(instance, selectedFriend.UUID, selectedFriend.Name)).Show(this);
         }
 
         private void FriendsConsole_Load(object sender, EventArgs e)

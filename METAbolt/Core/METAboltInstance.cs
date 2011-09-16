@@ -105,7 +105,6 @@ namespace METAbolt
         public SafeDictionary<UUID, string> avtags = new SafeDictionary<UUID, string>();
         public List<AvLocation> avlocations = new List<AvLocation>();
         private ExceptionReporter reporter = new ExceptionReporter();
-        public string InventoryCache = string.Empty;
         public string appdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";
         public bool startfrombat = false;
         private DataTable giveritems = null;
@@ -844,7 +843,7 @@ namespace METAbolt
 
             client.Settings.USE_ASSET_CACHE = true;
             //client.Settings.ASSET_CACHE_DIR = Application.StartupPath + System.IO.Path.DirectorySeparatorChar + "cache";
-            client.Settings.ASSET_CACHE_DIR = appdir + System.IO.Path.DirectorySeparatorChar + "cache" + System.IO.Path.DirectorySeparatorChar + client.Self.Name  ;
+            client.Settings.ASSET_CACHE_DIR = appdir + System.IO.Path.DirectorySeparatorChar + client.Self.Name + System.IO.Path.DirectorySeparatorChar + "cache";
             client.Settings.ASSET_CACHE_MAX_SIZE = (1024 * 1024 * 1024) / 4;  //250MB
             client.Assets.Cache.AutoPruneEnabled = false; 
 

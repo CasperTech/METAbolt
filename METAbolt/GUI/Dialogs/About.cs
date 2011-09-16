@@ -33,18 +33,25 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Timers;
+
 
 namespace METAbolt
 {
     public partial class frmAbout : Form
     {
+        private System.Timers.Timer scrollTimer;
+        private int charCount = 0;
+        private int row = 1;
+
         public frmAbout()
         {
             InitializeComponent();
 
             lblVersion.Text = Properties.Resources.METAboltTitle + " V " + Properties.Resources.METAboltVersion;   
             txtDir.Text =  Application.StartupPath.ToString();
-            textBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\"; 
+            textBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -55,6 +62,9 @@ namespace METAbolt
         private void frmAbout_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
+
+            Thread thread = new Thread(new ThreadStart(ScrollRTB));
+            thread.Start();
         }
 
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
@@ -95,6 +105,44 @@ namespace METAbolt
         private void button2_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", textBox1.Text);
+        }
+
+        private void ScrollRTB()
+        {
+            scrollTimer = new System.Timers.Timer(1000);
+            scrollTimer.Enabled = true;
+            //scrollTimer.SynchronizingObject = this;
+            scrollTimer.Elapsed += new ElapsedEventHandler(ScrollLine);
+            scrollTimer.Start(); 
+        }
+
+        private void ScrollLine(object sender, ElapsedEventArgs e)
+        {
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                string line = richTextBox1.Lines[row - 1];
+
+                charCount += line.Length + 1;
+
+                row++;
+
+                this.richTextBox1.SelectionStart = charCount;
+
+                if (row == richTextBox1.Lines.Length + 1)
+                {
+                    //set the caret here
+                    charCount = 0;
+                    row = 1;
+                    this.richTextBox1.SelectionStart = 0;
+                }
+            }));
+        }
+
+        private void frmAbout_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            scrollTimer.Stop();
+            scrollTimer.Enabled = false;
+            scrollTimer.Dispose(); 
         }
     }
 }

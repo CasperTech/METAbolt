@@ -1956,11 +1956,11 @@ namespace METAbolt
             //{
                 if (styp != SaleType.Not)
                 {
-                    (new frmPay(instance, sPr.ID, sPr.Properties.Name, sprice, sPr)).ShowDialog();
+                    (new frmPay(instance, sPr.ID, sPr.Properties.Name, sprice, sPr)).Show(this);
                 }
                 else
                 {
-                    (new frmPay(instance, sPr.ID, sPr.Properties.Name)).ShowDialog();
+                    (new frmPay(instance, sPr.ID, sPr.Properties.Name)).Show(this);
                 }
             //}
         }

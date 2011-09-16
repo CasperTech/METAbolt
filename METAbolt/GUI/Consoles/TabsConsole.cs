@@ -946,7 +946,7 @@ namespace METAbolt
                             return;
                         }
 
-                        (new frmInvOffered(instance, e.IM, oID, type)).ShowDialog(this);
+                        (new frmInvOffered(instance, e.IM, oID, type)).Show(this);
                     }
                 }
                 catch (Exception ex)

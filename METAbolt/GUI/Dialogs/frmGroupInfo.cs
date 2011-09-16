@@ -1000,7 +1000,7 @@ namespace METAbolt
             if (lstRoles.SelectedItems.Count > 0)
             {
                 UUID li = (UUID)textBox3.Text;
-                (new frmGive(instance, grpid, li)).ShowDialog();
+                (new frmGive(instance, grpid, li)).Show(this);
             }
             else
             {

@@ -292,6 +292,7 @@ namespace METAbolt
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About METAbolt";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAbout_FormClosing);
             this.Load += new System.EventHandler(this.frmAbout_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

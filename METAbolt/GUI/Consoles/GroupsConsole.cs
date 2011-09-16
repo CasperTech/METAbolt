@@ -326,7 +326,7 @@ namespace METAbolt
         {
             Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
 
-            (new frmGive(instance, group.ID, UUID.Zero)).ShowDialog();
+            (new frmGive(instance, group.ID, UUID.Zero)).Show(this);
         }
     }
 }

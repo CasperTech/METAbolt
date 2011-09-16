@@ -904,6 +904,7 @@ namespace METAbolt
         private void previousBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Line l = rtbScript.Lines.Current.FindPreviousMarker(1);
+
             if (l != null)
                 l.Goto();
         }
@@ -911,6 +912,7 @@ namespace METAbolt
         private void toggleBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Line currentLine = rtbScript.Lines.Current;
+
             if (rtbScript.Markers.GetMarkerMask(currentLine) == 0)
 			{
 				currentLine.AddMarker(0);
@@ -924,6 +926,7 @@ namespace METAbolt
         private void nextBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Line l = rtbScript.Lines.Current.FindNextMarker(1);
+
             if (l != null)
                 l.Goto();
         }
