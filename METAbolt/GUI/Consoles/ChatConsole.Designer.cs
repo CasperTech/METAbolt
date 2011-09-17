@@ -56,7 +56,8 @@ namespace METAbolt
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.picAutoSit = new System.Windows.Forms.PictureBox();
+            this.picVoice = new System.Windows.Forms.PictureBox();
+            this.picMap = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel7 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -147,7 +148,8 @@ namespace METAbolt
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -173,8 +175,8 @@ namespace METAbolt
             // 
             this.cbxInput.AccessibleDescription = "Type to talk into public chat";
             this.cbxInput.AccessibleName = "Chat input box";
-            this.cbxInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxInput.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cbxInput.Enabled = false;
             this.cbxInput.FormattingEnabled = true;
@@ -445,17 +447,32 @@ namespace METAbolt
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
             // 
-            // picAutoSit
+            // picVoice
             // 
-            this.picAutoSit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
-            this.picAutoSit.Location = new System.Drawing.Point(3, 289);
-            this.picAutoSit.Name = "picAutoSit";
-            this.picAutoSit.Size = new System.Drawing.Size(15, 15);
-            this.picAutoSit.TabIndex = 42;
-            this.picAutoSit.TabStop = false;
-            this.toolTip1.SetToolTip(this.picAutoSit, "Click for help to enable voice");
-            this.picAutoSit.Click += new System.EventHandler(this.picAutoSit_Click);
+            this.picVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.picVoice.Image = ((System.Drawing.Image)(resources.GetObject("picVoice.Image")));
+            this.picVoice.Location = new System.Drawing.Point(3, 289);
+            this.picVoice.Name = "picVoice";
+            this.picVoice.Size = new System.Drawing.Size(15, 15);
+            this.picVoice.TabIndex = 42;
+            this.picVoice.TabStop = false;
+            this.toolTip1.SetToolTip(this.picVoice, "Click for help to enable voice");
+            this.picVoice.Click += new System.EventHandler(this.picAutoSit_Click);
+            this.picVoice.MouseLeave += new System.EventHandler(this.picVoice_MouseLeave);
+            this.picVoice.MouseHover += new System.EventHandler(this.picVoice_MouseHover);
+            // 
+            // picMap
+            // 
+            this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
+            this.picMap.Location = new System.Drawing.Point(143, 44);
+            this.picMap.Name = "picMap";
+            this.picMap.Size = new System.Drawing.Size(15, 15);
+            this.picMap.TabIndex = 43;
+            this.picMap.TabStop = false;
+            this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
+            this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
+            this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
             // 
             // splitContainer1
             // 
@@ -590,7 +607,7 @@ namespace METAbolt
             // button1
             // 
             this.button1.AccessibleDescription = "Displays the translation tool where you can paste incoming text and translate int" +
-                "o your or any other language";
+    "o your or any other language";
             this.button1.AccessibleName = "Show translation tool ";
             this.button1.BackColor = System.Drawing.Color.RoyalBlue;
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
@@ -607,7 +624,7 @@ namespace METAbolt
             // chkTranslate
             // 
             this.chkTranslate.AccessibleDescription = "Check this box if you want everythign you type to be auto-translated into the lan" +
-                "guage of your selection";
+    "guage of your selection";
             this.chkTranslate.AccessibleName = "Translate checkbox";
             this.chkTranslate.AutoSize = true;
             this.chkTranslate.BackColor = System.Drawing.Color.Transparent;
@@ -625,9 +642,9 @@ namespace METAbolt
             // 
             this.rtbChat.AccessibleDescription = "Display incoming and outgoing chat";
             this.rtbChat.AccessibleName = "Chat output window";
-            this.rtbChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbChat.AutoWordSelection = true;
             this.rtbChat.BackColor = System.Drawing.Color.White;
             this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -651,8 +668,8 @@ namespace METAbolt
             // panel5
             // 
             this.panel5.AccessibleName = "Movement panel";
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -910,7 +927,7 @@ namespace METAbolt
             // toolStrip1
             // 
             this.toolStrip1.AccessibleDescription = "Contains icons to performs tasks on the selected avatar in the radar list such as" +
-                " IM, display profile, follow etc";
+    " IM, display profile, follow etc";
             this.toolStrip1.AccessibleName = "Radar Function toolbox";
             this.toolStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
             this.toolStrip1.BackColor = System.Drawing.Color.White;
@@ -1159,11 +1176,11 @@ namespace METAbolt
             // tabControl1
             // 
             this.tabControl1.AccessibleDescription = "Radar, mini map and avatar associated fucntions such as IM, profile, follow, turn" +
-                " to etc.";
+    " to etc.";
             this.tabControl1.AccessibleName = "Chat utility and functions panel";
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -1189,11 +1206,11 @@ namespace METAbolt
             // lvwRadar
             // 
             this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-                "ion preferences settings";
+    "ion preferences settings";
             this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwRadar.BackColor = System.Drawing.Color.White;
             this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvwRadar.FullRowSelect = true;
@@ -1216,6 +1233,7 @@ namespace METAbolt
             // 
             this.tabPage2.AccessibleName = "Mini map and SIM statistics";
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.picMap);
             this.tabPage2.Controls.Add(this.progressBar7);
             this.tabPage2.Controls.Add(this.progressBar1);
             this.tabPage2.Controls.Add(this.panel6);
@@ -1268,9 +1286,9 @@ namespace METAbolt
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.ForeColor = System.Drawing.Color.Red;
             this.label11.Location = new System.Drawing.Point(0, 0);
@@ -1284,9 +1302,9 @@ namespace METAbolt
             // 
             this.world.AccessibleDescription = "The map of the current SIM which displays avatar positions in real time";
             this.world.AccessibleName = "SIM map";
-            this.world.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.world.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.world.Cursor = System.Windows.Forms.Cursors.NoMove2D;
             this.world.Location = new System.Drawing.Point(0, 1);
             this.world.Name = "world";
@@ -1407,7 +1425,7 @@ namespace METAbolt
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.picAutoSit);
+            this.tabPage3.Controls.Add(this.picVoice);
             this.tabPage3.Controls.Add(this.pictureBox3);
             this.tabPage3.Controls.Add(this.pictureBox2);
             this.tabPage3.Controls.Add(this.checkBox5);
@@ -1454,8 +1472,8 @@ namespace METAbolt
             // 
             // checkBox5
             // 
-            this.checkBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(51, 278);
             this.checkBox5.Name = "checkBox5";
@@ -1467,8 +1485,8 @@ namespace METAbolt
             // 
             // label18
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.ForeColor = System.Drawing.Color.Red;
             this.label18.Location = new System.Drawing.Point(13, 207);
             this.label18.Name = "label18";
@@ -1516,8 +1534,8 @@ namespace METAbolt
             // 
             // trackBar2
             // 
-            this.trackBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBar2.Enabled = false;
             this.trackBar2.Location = new System.Drawing.Point(16, 175);
             this.trackBar2.Maximum = 100;
@@ -1539,8 +1557,8 @@ namespace METAbolt
             // 
             // trackBar1
             // 
-            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBar1.Enabled = false;
             this.trackBar1.Location = new System.Drawing.Point(16, 122);
             this.trackBar1.Maximum = 100;
@@ -1571,8 +1589,8 @@ namespace METAbolt
             // 
             // cboRender
             // 
-            this.cboRender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboRender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboRender.Enabled = false;
             this.cboRender.FormattingEnabled = true;
             this.cboRender.Location = new System.Drawing.Point(8, 77);
@@ -1583,8 +1601,8 @@ namespace METAbolt
             // 
             // cboCapture
             // 
-            this.cboCapture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboCapture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCapture.Enabled = false;
             this.cboCapture.FormattingEnabled = true;
             this.cboCapture.Location = new System.Drawing.Point(8, 35);
@@ -1628,7 +1646,8 @@ namespace METAbolt
             this.toolStrip2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -1773,8 +1792,9 @@ namespace METAbolt
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ToolStripButton tbtnHelp;
-        private System.Windows.Forms.PictureBox picAutoSit;
+        private System.Windows.Forms.PictureBox picVoice;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.PictureBox picMap;
     }
 }

@@ -48,6 +48,7 @@ using System.Threading;
 using System.Linq;
 using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
+using PopupControl;
 
 namespace METAbolt
 {
@@ -90,22 +91,14 @@ namespace METAbolt
         private int start = 0;
         private int indexOfSearchText = 0;
         private string prevsearchtxt = string.Empty;
-        //private bool voiceon = false;
-
-        //static AutoResetEvent ParcelVoiceInfoEvent = new AutoResetEvent(false);
-        //static AutoResetEvent ProvisionEvent = new AutoResetEvent(false);
-        //static string VoiceAccount = String.Empty;
-        //static string VoicePassword = String.Empty;
-        //static string VoiceRegionName = String.Empty;
-        //static int VoiceLocalID = 0;
-        //static string VoiceChannelURI = String.Empty;
-        //private VoiceManager voice = null;
         private VoiceGateway vgate = null;
-        //List<string> mics;
-        //List<string> speakers;
 
         private const int WM_KEYUP = 0x101;
         private const int WM_KEYDOWN = 0x100;
+
+        private Popup toolTip;
+        private Popup toolTip2;
+        private CustomToolTip customToolTip;
 
 
         internal class ThreadExceptionHandler
@@ -158,7 +151,19 @@ namespace METAbolt
             world.Cursor = Cursors.NoMove2D;
 
             timer2.Enabled = true;
-            timer2.Start();  
+            timer2.Start();
+
+            string msg1 = "Click for help on how to use/setup the Voice feature.";
+            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            toolTip.AutoClose = false;
+            toolTip.FocusOnOpen = false;
+            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+
+            string msg2 = "Hover mouse on avatar icon for info.\n\nClick on avatar icon for Profile.\n\nLeft click on map and drag to zoom.";
+            toolTip2 = new Popup(customToolTip = new CustomToolTip(instance, msg2));
+            toolTip2.AutoClose = false;
+            toolTip2.FocusOnOpen = false;
+            toolTip2.ShowingAnimation = toolTip2.HidingAnimation = PopupAnimations.Blend;
         }
 
         private void SetExceptionReporter()
@@ -3560,6 +3565,26 @@ namespace METAbolt
         private void button5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void picVoice_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.Show(picVoice);
+        }
+
+        private void picVoice_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip.Close(); 
+        }
+
+        private void picMap_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.Show(picMap);
+        }
+
+        private void picMap_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip2.Close(); 
         }
     }
 }

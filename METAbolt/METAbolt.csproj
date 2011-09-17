@@ -21,7 +21,7 @@
     <ManifestCertificateThumbprint>ABFC93D872784BACE4312D9CDA515213E437B6BC</ManifestCertificateThumbprint>
     <ManifestKeyFile>LegolasLuke.p12</ManifestKeyFile>
     <GenerateManifests>false</GenerateManifests>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
