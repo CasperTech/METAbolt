@@ -50,9 +50,12 @@ namespace METAbolt
             this.instance = instance;
             config = this.instance.Config;
 
-            foreach (IExtension extOn in this.instance.EList)
+            if (this.instance.EList != null)
             {
-                listBox1.Items.Add(extOn.Title);   
+                foreach (IExtension extOn in this.instance.EList)
+                {
+                    listBox1.Items.Add(extOn.Title);
+                }
             }
 
             plugins = config.CurrentConfig.PluginsToLoad;

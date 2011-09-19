@@ -978,15 +978,21 @@ namespace METAbolt
 
         private void cboUserList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Item itm = (Item)cboUserList.SelectedItem;
+            try
+            {
+                if (cboUserList.SelectedIndex == -1) return;
 
-            string[] name = itm.Name.ToString().Split(' ');  // cboUserList.SelectedItem.ToString().Split(' ');
+                Item itm = (Item)cboUserList.SelectedItem;
 
-            txtFirstName.Text = name[0];
-            txtLastName.Text = name[1];
-            txtPassword.Text = itm.Value;   // cboUserList.SelectedValue.ToString(); 
+                string[] name = itm.Name.ToString().Split(' ');  // cboUserList.SelectedItem.ToString().Split(' ');
 
-            txtPassword.Focus(); 
+                txtFirstName.Text = name[0];
+                txtLastName.Text = name[1];
+                txtPassword.Text = itm.Value;   // cboUserList.SelectedValue.ToString(); 
+
+                txtPassword.Focus();
+            }
+            catch { ; }
         }
 
         private void txtLastName_TextChanged(object sender, EventArgs e)

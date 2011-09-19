@@ -96,8 +96,8 @@ namespace METAbolt
         private const int WM_KEYUP = 0x101;
         private const int WM_KEYDOWN = 0x100;
 
-        private Popup toolTip;
-        private Popup toolTip2;
+        private Popup tTip;
+        private Popup tTip1;
         private CustomToolTip customToolTip;
 
 
@@ -154,16 +154,16 @@ namespace METAbolt
             timer2.Start();
 
             string msg1 = "Click for help on how to use/setup the Voice feature.";
-            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
-            toolTip.AutoClose = false;
-            toolTip.FocusOnOpen = false;
-            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+            tTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            tTip.AutoClose = false;
+            tTip.FocusOnOpen = false;
+            tTip.ShowingAnimation = tTip.HidingAnimation = PopupAnimations.Blend;
 
             string msg2 = "Hover mouse on avatar icon for info.\n\nClick on avatar icon for Profile.\n\nLeft click on map and drag to zoom.";
-            toolTip2 = new Popup(customToolTip = new CustomToolTip(instance, msg2));
-            toolTip2.AutoClose = false;
-            toolTip2.FocusOnOpen = false;
-            toolTip2.ShowingAnimation = toolTip2.HidingAnimation = PopupAnimations.Blend;
+            tTip1 = new Popup(customToolTip = new CustomToolTip(instance, msg2));
+            tTip1.AutoClose = false;
+            tTip1.FocusOnOpen = false;
+            tTip1.ShowingAnimation = tTip1.HidingAnimation = PopupAnimations.Blend;
         }
 
         private void SetExceptionReporter()
@@ -3569,22 +3569,22 @@ namespace METAbolt
 
         private void picVoice_MouseHover(object sender, EventArgs e)
         {
-            toolTip.Show(picVoice);
+            tTip.Show(picVoice);
         }
 
         private void picVoice_MouseLeave(object sender, EventArgs e)
         {
-            toolTip.Close(); 
+            tTip.Close(); 
         }
 
         private void picMap_MouseHover(object sender, EventArgs e)
         {
-            toolTip2.Show(picMap);
+            tTip1.Show(picMap);
         }
 
         private void picMap_MouseLeave(object sender, EventArgs e)
         {
-            toolTip2.Close(); 
+            tTip1.Close(); 
         }
     }
 }

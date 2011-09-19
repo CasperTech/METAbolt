@@ -709,6 +709,11 @@ namespace METAbolt
                 return;
             }
 
+            if (instance.IsGiveItem(e.IM.Message.ToLower(), e.IM.FromAgentID))
+            {
+                return;
+            }
+
             if (tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
             {
                 if (!tabs[e.IM.FromAgentName.ToLower()].Selected)
