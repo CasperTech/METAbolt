@@ -155,7 +155,7 @@ namespace METAbolt
             SW.WriteLine("Cyberlandia,http://hypergrid.cyberlandia.net:8002");
             SW.WriteLine("Francogrid,http://grid.francogrid.net:8002");
             SW.WriteLine("Legend City Online,http://login.legendcityonline.com");
-            SW.WriteLine("Meta7,https://login.meta7.com");
+            SW.WriteLine("InWorldz,http://inworldz.com:8002/");
             SW.WriteLine("OSGrid,http://login.osgrid.org");
             SW.WriteLine("ReactionGrid,http://reactiongrid.com:8008");
             SW.WriteLine("The Gor Grid,http://thegorgrid.com:8002");

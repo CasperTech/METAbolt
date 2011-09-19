@@ -271,13 +271,12 @@ namespace METAbolt
                 {
                     foreach (InventoryBase ibase in contents)
                     {
-                        InventoryItem item = (InventoryItem)ibase;
-
-                        if (item.AssetType != AssetType.Folder)
+                        if (ibase is InventoryItem)
                         {
-                            if (item.Name.ToLower() == filename.ToLower())
+                            if (ibase.Name.ToLower() == filename.ToLower())
                             {
                                 //UUID itemid = item.AssetUUID;
+                                InventoryItem item = (InventoryItem)ibase;
 
                                 switch (assettype)
                                 {

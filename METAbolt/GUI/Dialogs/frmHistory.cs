@@ -31,8 +31,6 @@ namespace METAbolt
             this.filename = filename;
             this.isgroup = isgroup; 
 
-            this.lvwList.ListViewItemSorter = new ListViewColumnSorter();
-
             GetHistory();
 
             lvwColumnSorter = new NumericStringComparer();

@@ -45,8 +45,6 @@ namespace METAbolt
         private float fY;
         private float fZ;
 
-        //private ListViewItemComparer lvcompare;
-
         private UUID queryID;
         private SafeDictionary<string, uint> findEventsResults;
 

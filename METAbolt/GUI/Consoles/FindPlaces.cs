@@ -46,8 +46,6 @@ namespace METAbolt
         private float fZ;
         //private string sSIM;
 
-        //private ListViewItemComparer lvcompare;
-
         private UUID queryID;
         private SafeDictionary<string, DirectoryManager.DirectoryParcel> findPlacesResults;
         //private DirectoryManager.DirectoryParcel EmptyPlace;

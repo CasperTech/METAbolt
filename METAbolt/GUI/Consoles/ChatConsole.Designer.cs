@@ -56,8 +56,8 @@ namespace METAbolt
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.picVoice = new System.Windows.Forms.PictureBox();
             this.picMap = new System.Windows.Forms.PictureBox();
+            this.picVoice = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel7 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -148,8 +148,8 @@ namespace METAbolt
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picVoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVoice)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -447,20 +447,6 @@ namespace METAbolt
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
             // 
-            // picVoice
-            // 
-            this.picVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.picVoice.Image = ((System.Drawing.Image)(resources.GetObject("picVoice.Image")));
-            this.picVoice.Location = new System.Drawing.Point(3, 289);
-            this.picVoice.Name = "picVoice";
-            this.picVoice.Size = new System.Drawing.Size(15, 15);
-            this.picVoice.TabIndex = 42;
-            this.picVoice.TabStop = false;
-            this.toolTip1.SetToolTip(this.picVoice, "Click for help to enable voice");
-            this.picVoice.Click += new System.EventHandler(this.picAutoSit_Click);
-            this.picVoice.MouseLeave += new System.EventHandler(this.picVoice_MouseLeave);
-            this.picVoice.MouseHover += new System.EventHandler(this.picVoice_MouseHover);
-            // 
             // picMap
             // 
             this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -473,6 +459,19 @@ namespace METAbolt
             this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
             this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
             this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
+            // 
+            // picVoice
+            // 
+            this.picVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.picVoice.Image = ((System.Drawing.Image)(resources.GetObject("picVoice.Image")));
+            this.picVoice.Location = new System.Drawing.Point(3, 289);
+            this.picVoice.Name = "picVoice";
+            this.picVoice.Size = new System.Drawing.Size(15, 15);
+            this.picVoice.TabIndex = 42;
+            this.picVoice.TabStop = false;
+            this.picVoice.Click += new System.EventHandler(this.picAutoSit_Click);
+            this.picVoice.MouseLeave += new System.EventHandler(this.picVoice_MouseLeave);
+            this.picVoice.MouseHover += new System.EventHandler(this.picVoice_MouseHover);
             // 
             // splitContainer1
             // 
@@ -1646,8 +1645,8 @@ namespace METAbolt
             this.toolStrip2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picVoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVoice)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

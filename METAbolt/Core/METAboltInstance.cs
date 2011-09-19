@@ -451,7 +451,7 @@ namespace METAbolt
                     AssetType type;
 
                     // You can't cast a string or an object to an AssetType!
-                    // TODO: Change this section when libopenmv gets any intelligence in this area
+                    // TODO: Change this section when possible
 
                     switch (astype.ToLower(CultureInfo.CurrentCulture))
                     {
