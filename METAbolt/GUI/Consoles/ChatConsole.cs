@@ -1803,6 +1803,19 @@ namespace METAbolt
             //{
             //    return;
             //}
+
+            //int lncnt = Convert.ToInt32(rtbChat.Lines.LongLength);
+
+            //if (lncnt > this.instance.Config.CurrentConfig.lineMax)
+            //{
+            //    int numOfLines = 1;
+            //    var lines = rtbChat.Lines;
+            //    var newLines = lines.Skip(numOfLines);
+
+            //    rtbChat.Lines = newLines.ToArray();
+
+            //    chatManager.ReprintAllText();  
+            //}
         }
 
         private void toolStripDropDownButton1_Click(object sender, EventArgs e)

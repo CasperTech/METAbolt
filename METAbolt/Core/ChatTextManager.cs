@@ -105,7 +105,6 @@ namespace METAbolt
             }
         }
 
-
         public ChatTextManager(METAboltInstance instance, ITextPrinter textPrinter)
         {
             SetExceptionReporter();
@@ -477,17 +476,18 @@ namespace METAbolt
             int lines = textBuffer.Count;
             int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-            if (maxlines == 0)
-                return;
+            if (maxlines == 0) return;
 
             if (lines > maxlines)
             {
-                int lineno = maxlines / 2;
+                //int lineno = maxlines / 2;
 
-                for (int a = 0; a < lineno; a++)
-                {
-                    textBuffer.RemoveAt(a);
-                }
+                //for (int a = 0; a < lineno; a++)
+                //{
+                //    textBuffer.RemoveAt(a);
+                //}
+
+                textBuffer.RemoveAt(0);
 
                 ReprintAllText();
             }
@@ -712,14 +712,6 @@ namespace METAbolt
                         GroupRequestID = client.Groups.RequestGroupMembers(igroup);
                     }
 
-                    //GroupsEvent.WaitOne(15000, false);
-                    //GroupsEvent.Reset();
-                    //client.Groups.OnGroupMembers -= callback;
-
-                    //client.Groups.Invite(igroup, roles, iperson);
-
-                    ////PrintIM(DateTime.Now, e.IM.FromAgentName, "GroupMan Pro invite has been sent to:" + sGrp[1].ToString());
-                    //textPrinter.PrintTextLine("(Inviter object: " + item.FromName + ") GroupMan Pro invite has been sent to: " + sGrp[1].ToString());
                     return;
                 }
                 catch (Exception excp)
@@ -731,31 +723,7 @@ namespace METAbolt
             }
             else if (smsg.Contains(commandin))
             {
-                // Handles incoming IM commands
-                if (instance.Config.CurrentConfig.EnforceLSLsecurity)
-                {
-                    UUID mavatar = (UUID)instance.Config.CurrentConfig.MasterAvatar;
-                    UUID mobject = (UUID)instance.Config.CurrentConfig.MasterObject;
-
-                    if (mavatar == UUID.Zero && mobject == UUID.Zero) return;
-
-                    if (item.FromUUID != mavatar && item.FromUUID != mobject)
-                    {
-                        string icmd = smsg.Replace(this.instance.Config.CurrentConfig.CommandInID, string.Empty);
-                        PrintAlertMessage("An unauthorised LSL command was received from " + item.FromName + "(" + item.FromUUID + ") and IGNORED. Command: " + icmd.Trim());
-                        return;
-                    }
-                }
-
-                // process the command
-                ActionCommandsIn act = new ActionCommandsIn(this.instance);
-                string ret = act.ProcessCommand(smsg.Trim(), item.FromName, item.FromUUID);
-
-                if (!string.IsNullOrEmpty(ret))
-                {
-                    PrintAlertMessage(ret);
-                }
-
+                // this is now handled by the MB_LSLAPI
                 return;
             }
             //added by GM on 2-JUL-2009
