@@ -78,6 +78,7 @@ namespace METAbolt
             this.refreshFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbtnSort = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -95,7 +96,6 @@ namespace METAbolt
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -398,7 +398,6 @@ namespace METAbolt
             this.tmnuNewNotecard,
             this.tmnuNewScript,
             this.snapshotToolStripMenuItem});
-            this.tbtnNew.Enabled = false;
             this.tbtnNew.Image = global::METAbolt.Properties.Resources.add_16;
             this.tbtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnNew.Name = "tbtnNew";
@@ -410,21 +409,21 @@ namespace METAbolt
             // 
             this.tmnuNewFolder.Image = global::METAbolt.Properties.Resources.folder_closed_16;
             this.tmnuNewFolder.Name = "tmnuNewFolder";
-            this.tmnuNewFolder.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewFolder.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewFolder.Text = "Folder";
             this.tmnuNewFolder.Click += new System.EventHandler(this.tmnuNewFolder_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             this.toolStripMenuItem1.Visible = false;
             // 
             // tmnuNewLandmark
             // 
             this.tmnuNewLandmark.Enabled = false;
             this.tmnuNewLandmark.Name = "tmnuNewLandmark";
-            this.tmnuNewLandmark.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewLandmark.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewLandmark.Text = "Landmark";
             this.tmnuNewLandmark.Visible = false;
             // 
@@ -432,7 +431,7 @@ namespace METAbolt
             // 
             this.tmnuNewNotecard.Image = global::METAbolt.Properties.Resources.documents_16;
             this.tmnuNewNotecard.Name = "tmnuNewNotecard";
-            this.tmnuNewNotecard.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewNotecard.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewNotecard.Text = "Notecard";
             this.tmnuNewNotecard.Click += new System.EventHandler(this.tmnuNewNotecard_Click);
             // 
@@ -440,14 +439,14 @@ namespace METAbolt
             // 
             this.tmnuNewScript.Image = global::METAbolt.Properties.Resources.lsl_scripts_16;
             this.tmnuNewScript.Name = "tmnuNewScript";
-            this.tmnuNewScript.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewScript.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewScript.Text = "Script";
             this.tmnuNewScript.Click += new System.EventHandler(this.tmnuNewScript_Click);
             // 
             // snapshotToolStripMenuItem
             // 
             this.snapshotToolStripMenuItem.Name = "snapshotToolStripMenuItem";
-            this.snapshotToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.snapshotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.snapshotToolStripMenuItem.Text = "Snapshot";
             this.snapshotToolStripMenuItem.Visible = false;
             this.snapshotToolStripMenuItem.Click += new System.EventHandler(this.snapshotToolStripMenuItem_Click);
@@ -582,6 +581,17 @@ namespace METAbolt
             this.toolStripButton2.Text = "C&hanger";
             this.toolStripButton2.ToolTipText = "Auto clothes changer";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::METAbolt.Properties.Resources.rebake;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.ToolTipText = "Refresh inventory";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // panel2
             // 
@@ -774,17 +784,6 @@ namespace METAbolt
             // 
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::METAbolt.Properties.Resources.rebake;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.ToolTipText = "Refresh inventory";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // InventoryConsole
             // 

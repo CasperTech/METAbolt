@@ -671,22 +671,24 @@ namespace METAbolt
 
         private void AddNewFolder()
         {
-            if (treeView1.SelectedNode == null) return;
+            string newFolderName = "New Folder";
+
+            if (treeView1.SelectedNode == null)
+            {
+                InventoryFolder rootFolder = client.Inventory.Store.RootFolder;
+                client.Inventory.CreateFolder(rootFolder.UUID, newFolderName);
+
+                return;
+            }
 
             if (treeView1.SelectedNode.Tag is InventoryFolder)
             {
                 InventoryFolder selfolder = (InventoryFolder)treeView1.SelectedNode.Tag;
-
-                string newFolderName = "New Folder";
-
                 client.Inventory.CreateFolder(selfolder.UUID, newFolderName);
             }
             else if (treeView1.SelectedNode.Tag is InventoryItem)
             {
                 InventoryItem selfolder = (InventoryItem)treeView1.SelectedNode.Tag;
-
-                string newFolderName = "New Folder";
-
                 client.Inventory.CreateFolder(selfolder.ParentUUID, newFolderName);
             }
         }
@@ -839,17 +841,21 @@ namespace METAbolt
 
 
             if (treeView1.SelectedNode == null)
+            {
                 AddNewNotecard(
                     newNotecardName,
                     newNotecardDescription,
                     newNotecardContent,
                     treeView1.Nodes[0]);
+            }
             else
+            {
                 AddNewNotecard(
                     newNotecardName,
                     newNotecardDescription,
                     newNotecardContent,
                     treeView1.SelectedNode);
+            }
         }
 
         private void AddNewNotecard(string notecardName, string notecardDescription, string notecardContent, TreeNode node)
@@ -857,27 +863,23 @@ namespace METAbolt
             if (node == null) return;
 
             InventoryFolder folder = null;
-            //TreeNode folderNode = null;
-
-            if (node.Tag is InventoryFolder)
-            {
-                folder = (InventoryFolder)node.Tag;
-                //folderNode = node;
-            }
-            else if (node.Tag is InventoryItem)
-            {
-
-                folder = (InventoryFolder)node.Parent.Tag;
-                //folderNode = node.Parent;
-            }
 
             if (node.Text == "(empty)")
             {
                 folder = (InventoryFolder)node.Parent.Tag;
-                //folderNode = node.Parent;
             }
+            else
+            {
+                if (node.Tag is InventoryFolder)
+                {
+                    folder = (InventoryFolder)node.Tag;
+                }
+                else if (node.Tag is InventoryItem)
+                {
 
-            //ifolder = folder;
+                    folder = (InventoryFolder)node.Parent.Tag;
+                }
+            }
 
             client.Inventory.RequestCreateItem(folder.UUID,
                     notecardName, notecardDescription, AssetType.Notecard, UUID.Random(), InventoryType.Notecard, PermissionMask.All,
@@ -886,15 +888,6 @@ namespace METAbolt
                         if (success) // upload the asset
                         {
                             client.Inventory.RequestUploadNotecardAsset(CreateNotecardAsset(""), nitem.UUID, new InventoryManager.InventoryUploadedAssetCallback(OnNoteUpdate));
-                            //try
-                            //{
-                            //    BeginInvoke(new MethodInvoker(delegate()
-                            //    {
-                            //        treeView1.SelectedNode = node;
-                            //        treeView1.Select(); 
-                            //    }));
-                            //}
-                            //catch { ; } 
                         }
                     }
                 );
@@ -1551,17 +1544,21 @@ namespace METAbolt
 
 
             if (treeView1.SelectedNode == null)
+            {
                 AddNewScript(
                     newScriptName,
                     newScriptDescription,
                     newScriptContent,
                     treeView1.Nodes[0]);
+            }
             else
+            {
                 AddNewScript(
                     newScriptName,
                     newScriptDescription,
                     newScriptContent,
                     treeView1.SelectedNode);
+            }
         }
 
         private void AddNewScript(string scriptName, string scriptDescription, string scriptContent, TreeNode node)
@@ -1569,27 +1566,23 @@ namespace METAbolt
             if (node == null) return;
 
             InventoryFolder folder = null;
-            //TreeNode folderNode = null;
-
-            if (node.Tag is InventoryFolder)
-            {
-                folder = (InventoryFolder)node.Tag;
-                //folderNode = node;
-            }
-            else if (node.Tag is InventoryItem)
-            {
-
-                folder = (InventoryFolder)node.Parent.Tag;
-                //folderNode = node.Parent;
-            }
 
             if (node.Text == "(empty)")
             {
                 folder = (InventoryFolder)node.Parent.Tag;
-                //folderNode = node.Parent;
             }
+            else
+            {
+                if (node.Tag is InventoryFolder)
+                {
+                    folder = (InventoryFolder)node.Tag;
+                }
+                else if (node.Tag is InventoryItem)
+                {
 
-            //ifolder = folder;
+                    folder = (InventoryFolder)node.Parent.Tag;
+                }
+            }
 
             client.Inventory.RequestCreateItem(folder.UUID,
                     scriptName, scriptDescription, AssetType.LSLText, UUID.Random(), InventoryType.LSL, PermissionMask.All,
