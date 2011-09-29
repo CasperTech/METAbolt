@@ -324,10 +324,10 @@ namespace METAbolt
             // rtbNotecard
             // 
             this.rtbNotecard.AccessibleName = "Notecard content/body";
-            this.rtbNotecard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbNotecard.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.rtbNotecard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbNotecard.BackColor = System.Drawing.Color.White;
             this.rtbNotecard.Location = new System.Drawing.Point(0, 28);
             this.rtbNotecard.Name = "rtbNotecard";
             this.rtbNotecard.Size = new System.Drawing.Size(658, 445);
