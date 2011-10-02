@@ -44,6 +44,7 @@ namespace METAbolt
         private System.Timers.Timer scrollTimer;
         private int charCount = 0;
         private int row = 1;
+        private bool stopscroll = false;
 
         public frmAbout()
         {
@@ -120,6 +121,8 @@ namespace METAbolt
         {
             BeginInvoke(new MethodInvoker(delegate()
             {
+                if (stopscroll) return;
+
                 string line = richTextBox1.Lines[row - 1];
 
                 charCount += line.Length + 1;
@@ -143,6 +146,16 @@ namespace METAbolt
             scrollTimer.Stop();
             scrollTimer.Enabled = false;
             scrollTimer.Dispose(); 
+        }
+
+        private void richTextBox1_MouseEnter(object sender, EventArgs e)
+        {
+            stopscroll = true;
+        }
+
+        private void richTextBox1_MouseLeave(object sender, EventArgs e)
+        {
+            stopscroll = false;
         }
     }
 }

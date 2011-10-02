@@ -123,6 +123,12 @@ namespace METAbolt
             else
             {
                 txtUUID.Text = item.UUID.ToString();
+                txtItemUUID.Text = item.UUID.ToString();
+            }
+
+            if (item.UUID != UUID.Zero)
+            {
+                txtItemUUID.Text = item.UUID.ToString();
             }
 
             txtItemCreator.Text = txtItemOwner.Text = "Retreiving name...";
@@ -427,6 +433,46 @@ namespace METAbolt
                 item.Description = txtItemDescription.Text;
                 client.Inventory.RequestUpdateItem(item);
             }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtItemDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtItemCreator_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtItemOwner_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -53,9 +53,22 @@ namespace METAbolt
 
         private void btnGesture_Click(object sender, EventArgs e)
         {
-            UUID GestureID = new UUID(item.AssetUUID.ToString());
+            client.Self.PlayGesture(item.UUID);
+        }
 
-            client.Self.PlayGesture(GestureID);
+        private void InventoryGestureConsol_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            client.Self.ActivateGesture(item.UUID, item.AssetUUID);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            client.Self.DeactivateGesture(item.UUID);
         }
     }
 }

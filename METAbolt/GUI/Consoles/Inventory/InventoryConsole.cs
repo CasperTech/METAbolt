@@ -1409,7 +1409,14 @@ namespace METAbolt
                 nexttime = nexttime.AddMinutes(ntime);
                 label6.Text = "Next clothes change @ " + nexttime.ToShortTimeString();
 
-                AddToFile();
+                try
+                {
+                    AddToFile();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Auto clothes changer is running and functional\nbut the details have failed to save into\na text file for the foloowing reason: " + ex.Message, "METAbolt");  
+                }
             }
             else
             {
