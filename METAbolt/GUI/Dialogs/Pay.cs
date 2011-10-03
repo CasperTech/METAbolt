@@ -38,7 +38,7 @@ namespace METAbolt
         private METAboltInstance instance;
         private GridClient client;
         private UUID target = UUID.Zero;
-        //private string name;
+        private string name;
         private Primitive Prim = null;
 
         public frmPay(METAboltInstance instance, UUID target, string name)
@@ -47,9 +47,25 @@ namespace METAbolt
 
             this.instance = instance;
             client = this.instance.Client;
+            this.name = txtPerson.Text = name;
 
             this.target = target;
-            //this.name = txtPerson.Text = name;
+
+            LoadCallBacks();
+        }
+
+        public frmPay(METAboltInstance instance, UUID target, string name, string itemname)
+        {
+            InitializeComponent();
+
+            this.instance = instance;
+            client = this.instance.Client;
+            this.name = txtPerson.Text = name;
+            textBox1.Text = itemname;
+
+            this.target = target;
+
+            LoadCallBacks();
         }
 
         public frmPay(METAboltInstance instance, UUID target, string name, int sprice)
@@ -60,8 +76,10 @@ namespace METAbolt
             client = this.instance.Client;
 
             this.target = target;
-            //this.name = txtPerson.Text = name;
+            this.name = txtPerson.Text = name;
             this.nudAmount.Value = (decimal)sprice;
+
+            LoadCallBacks();
         }
 
         public frmPay(METAboltInstance instance, UUID target, string name, int sprice, Primitive prim)
@@ -72,9 +90,21 @@ namespace METAbolt
             client = this.instance.Client;
 
             this.target = target;
-            //this.name = txtPerson.Text = name;
+            this.name = txtPerson.Text = name;
+            textBox1.Text = prim.Properties.Name;  
+
             this.nudAmount.Value = (decimal)sprice;
+
             this.Prim = prim;
+
+            LoadCallBacks();
+        }
+
+        private void LoadCallBacks()
+        {
+            client.Objects.PayPriceReply += new EventHandler<PayPriceReplyEventArgs>(PayPrice);
+
+            client.Objects.RequestPayPrice(client.Network.CurrentSim, target);    
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -88,19 +118,17 @@ namespace METAbolt
 
             if (Prim != null)
             {
-                SaleType styp = Prim.Properties.SaleType;
-                UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
+                //SaleType styp = Prim.Properties.SaleType;
+                //UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
 
-                client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, UUID.Zero, folderid);            
+                //client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, UUID.Zero, folderid);
+                client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
             }
             else
             {
-                // TODO: UUID.Zero could be Governor Linden...I haven't checked.
-                // This needs to be checked and removed when we introduce
-                // purchase of Land and other payments to Linden etc.
                 if (target != UUID.Zero)
                 {
-                    if (!string.IsNullOrEmpty(textBox1.Text) && textBox1.Text.Trim().Length > 1)
+                    if (!string.IsNullOrEmpty(textBox1.Text) && textBox1.Text.Trim().Length < 2)
                     {
                         client.Self.GiveAvatarMoney(target, iprice);
                     }
@@ -117,6 +145,42 @@ namespace METAbolt
         private void frmPay_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
+        }
+
+        private void frmPay_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            client.Objects.PayPriceReply -= new EventHandler<PayPriceReplyEventArgs>(PayPrice);
+        }
+
+        private void PayPrice(object sender, PayPriceReplyEventArgs e)
+        {
+            if (e.ObjectID != target) return;
+
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    PayPrice(sender, e);
+                }));
+
+                return;
+            }
+
+            if (e.DefaultPrice > 0)
+            {
+                this.nudAmount.Value = (decimal)e.DefaultPrice;
+                SetNud(e.DefaultPrice);
+            }
+            else if (e.DefaultPrice == -1)
+            {
+                this.nudAmount.Value = (decimal)e.ButtonPrices[0];
+                SetNud(e.ButtonPrices[0]);
+            }
+        }
+
+        private void SetNud(int nprc)
+        {
+            this.nudAmount.Minimum = (decimal)nprc;
         }
     }
 }

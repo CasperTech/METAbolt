@@ -481,16 +481,9 @@ namespace METAbolt
 
             if (lines > maxlines)
             {
-                //int lineno = maxlines / 2;
-
-                //for (int a = 0; a < lineno; a++)
-                //{
-                //    textBuffer.RemoveAt(a);
-                //}
-
                 textBuffer.RemoveAt(0);
 
-                //ReprintAllText();
+                ReprintAllText();
             }
         }
 
@@ -1362,10 +1355,7 @@ namespace METAbolt
                 sb.Append(e.Message);
             }
             else
-            {
-                //sb.Append(e.FromName);
-                //sb.Append("http://" + e.FromName + "/#http://www.metabolt.net/");
-                
+            {               
                 switch (e.Type)
                 {
                     case ChatType.Normal:
@@ -1514,54 +1504,6 @@ namespace METAbolt
                 }
             }
         }
-
-        //private string DetectLanguage(string sTxt)
-        //{
-        //    HttpWebRequest request = null;
-        //    HttpWebResponse response = null;
-        //    String trURL = "http://www.let.rug.nl/~vannoord/bin/tc?a1=" + sTxt;
-
-        //    try
-        //    {
-        //        //Make the http request
-        //        request = (HttpWebRequest)HttpWebRequest.Create(trURL);
-        //        request.Timeout = 5000;
-        //        request.ReadWriteTimeout = 5000;
-        //        response = (HttpWebResponse)request.GetResponse();
-        //        Stream responseStream = response.GetResponseStream();
-
-        //        StreamReader readStream = new StreamReader(responseStream, Encoding.UTF8);
-        //        string page = readStream.ReadToEnd();
-
-        //        // This is for babel fish
-        //        //Regex reg = new Regex(@"<div style=padding:10px;>((?:.|\n)*?)</div>", RegexOptions.IgnoreCase);
-        //        // Google
-        //        Regex reg = new Regex(@"<div class=""box"">((?:.|\n)*?)</div>", RegexOptions.IgnoreCase);
-        //        MatchCollection matches = reg.Matches(page);
-
-        //        if (matches.Count != 1 || matches[0].Groups.Count != 2)
-        //        {
-        //            MessageBox.Show("Google have changed their translation code and your text could not be translated. Please inform the METAbolt team. http://www.metabol.net/metaforum/", "Translation Error");
-        //        }
-
-        //        return matches[0].Groups[1].Value;
-        //    }
-        //    catch (WebException)
-        //    {
-        //        MessageBox.Show("There was a problem connecting to the Babelfish server", "Translation Error");
-        //        return null;
-        //    }
-        //    catch (System.Security.SecurityException)
-        //    {
-        //        MessageBox.Show("You do not have permission to make HTTP connections. Please check your PC/Firewall/Proxy permission settings", "Translation Error");
-        //        return null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString(), "Translation Error");
-        //        return null;
-        //    }
-        //}
 
         public void ReprintAllText()
         {

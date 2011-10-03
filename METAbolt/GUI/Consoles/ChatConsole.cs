@@ -1789,45 +1789,45 @@ namespace METAbolt
 
         private void rtbChat_TextChanged_1(object sender, EventArgs e)
         {
-            //int i = rtbChat.Lines.Length;
+            ////int i = rtbChat.Lines.Length;
 
-            //if (i > 10)
-            //{
-            //    int lineno = i-10;
-            //    int chars = rtbChat.GetFirstCharIndexFromLine(lineno);
-            //    rtbChat.SelectionStart = 0;
-            //    rtbChat.SelectionLength = chars; // rtbChat.Text.IndexOf("\n", 0) + 1;
-            //    rtbChat.SelectedText = "*** " + lineno.ToString() + "lines purged\n";
-            //}
-            //else
-            //{
-            //    return;
-            //}
+            ////if (i > 10)
+            ////{
+            ////    int lineno = i-10;
+            ////    int chars = rtbChat.GetFirstCharIndexFromLine(lineno);
+            ////    rtbChat.SelectionStart = 0;
+            ////    rtbChat.SelectionLength = chars; // rtbChat.Text.IndexOf("\n", 0) + 1;
+            ////    rtbChat.SelectedText = "*** " + lineno.ToString() + "lines purged\n";
+            ////}
+            ////else
+            ////{
+            ////    return;
+            ////}
+
+            ////int lncnt = Convert.ToInt32(rtbChat.Lines.LongLength);
+
+            ////if (lncnt > this.instance.Config.CurrentConfig.lineMax)
+            ////{
+            ////    int numOfLines = 1;
+            ////    var lines = rtbChat.Lines;
+            ////    var newLines = lines.Skip(numOfLines);
+
+            ////    rtbChat.Lines = newLines.ToArray();
+
+            ////    chatManager.ReprintAllText();  
+            ////}
 
             //int lncnt = Convert.ToInt32(rtbChat.Lines.LongLength);
+            //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-            //if (lncnt > this.instance.Config.CurrentConfig.lineMax)
+            //if (lncnt > maxlines)
             //{
             //    int numOfLines = 1;
             //    var lines = rtbChat.Lines;
             //    var newLines = lines.Skip(numOfLines);
 
             //    rtbChat.Lines = newLines.ToArray();
-
-            //    chatManager.ReprintAllText();  
             //}
-
-            int lncnt = Convert.ToInt32(rtbChat.Lines.LongLength);
-            int maxlines = this.instance.Config.CurrentConfig.lineMax;
-
-            if (lncnt > maxlines)
-            {
-                int numOfLines = 1;
-                var lines = rtbChat.Lines;
-                var newLines = lines.Skip(numOfLines);
-
-                rtbChat.Lines = newLines.ToArray();
-            }
         }
 
         private void toolStripDropDownButton1_Click(object sender, EventArgs e)

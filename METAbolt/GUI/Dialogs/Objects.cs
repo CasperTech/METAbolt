@@ -1825,15 +1825,16 @@ namespace METAbolt
             SaleType styp = sPr.Properties.SaleType;
 
             int sprice = sPr.Properties.SalePrice;
+            
 
             //if (sprice != 0)
             if (styp != SaleType.Not)
             {
-                (new frmPay(instance, item.Prim.ID, sPr.Properties.Name, sprice, sPr)).Show(this);
+                (new frmPay(instance, item.Prim.ID, label9.Text, sprice, sPr)).Show(this);
             }
             else
             {
-                (new frmPay(instance, item.Prim.ID, sPr.Properties.Name)).Show(this);
+                (new frmPay(instance, item.Prim.ID, label9.Text, item.Prim.Properties.Name)).Show(this);
             }
         }
 

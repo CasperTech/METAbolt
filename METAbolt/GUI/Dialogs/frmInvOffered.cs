@@ -43,7 +43,7 @@ namespace METAbolt
         private GridClient client;
         private InstantMessage msg;
         private UUID objectID;
-        private bool diainv = true;
+        private bool diainv = false;
         private AssetType invtype = AssetType.Unknown;
         private bool printed = false;
 
@@ -61,7 +61,7 @@ namespace METAbolt
 
             if (e.Dialog == InstantMessageDialog.TaskInventoryOffered)
             {
-                diainv = false;
+                diainv = true;
                 //this.Text = "Taskinventory item received";
             }
 
@@ -71,7 +71,6 @@ namespace METAbolt
             {
                 a = "an";
             }
-
 
             lblSubheading.Text = "You have received " + a + " " + type.ToString() + " named '" + e.Message + "' from " + e.FromAgentName;
 
@@ -118,28 +117,28 @@ namespace METAbolt
         {
             UUID invfolder = client.Inventory.FindFolderForType(invtype);
 
-            if (diainv)
+            if (!diainv)
             {
                 client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes());   //  new byte[0]); // Accept Inventory Offer
-                client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
             }
             else
             {
                 client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes()); // Accept TaskInventory Offer
-                client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
             }
+
+            client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
 
             timer1.Stop();
             timer1.Enabled = false;
             
-            this.Close(); 
+            this.Close();
         }
 
         private void btnDecline_Click(object sender, EventArgs e)
         {
             UUID invfolder = client.Inventory.FindFolderForType(invtype);
 
-            if (diainv)
+            if (!diainv)
             {
                 client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
 

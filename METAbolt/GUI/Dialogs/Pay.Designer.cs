@@ -32,12 +32,12 @@ namespace METAbolt
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.nudAmount = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPerson = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPay = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtPerson = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,26 +75,6 @@ namespace METAbolt
             this.nudAmount.Size = new System.Drawing.Size(87, 21);
             this.nudAmount.TabIndex = 0;
             this.nudAmount.ThousandsSeparator = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(12, 64);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Pay resident:";
-            // 
-            // txtPerson
-            // 
-            this.txtPerson.AccessibleName = "resident to be paid textbox";
-            this.txtPerson.BackColor = System.Drawing.Color.White;
-            this.txtPerson.Location = new System.Drawing.Point(12, 80);
-            this.txtPerson.Name = "txtPerson";
-            this.txtPerson.ReadOnly = true;
-            this.txtPerson.Size = new System.Drawing.Size(220, 21);
-            this.txtPerson.TabIndex = 1;
             // 
             // btnCancel
             // 
@@ -141,6 +121,26 @@ namespace METAbolt
             this.label4.TabIndex = 9;
             this.label4.Text = "Subject:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(12, 64);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Pay resident:";
+            // 
+            // txtPerson
+            // 
+            this.txtPerson.AccessibleName = "resident to be paid textbox";
+            this.txtPerson.BackColor = System.Drawing.Color.White;
+            this.txtPerson.Location = new System.Drawing.Point(12, 80);
+            this.txtPerson.Name = "txtPerson";
+            this.txtPerson.ReadOnly = true;
+            this.txtPerson.Size = new System.Drawing.Size(220, 21);
+            this.txtPerson.TabIndex = 1;
+            // 
             // frmPay
             // 
             this.AccessibleName = "Pay window";
@@ -169,6 +169,7 @@ namespace METAbolt
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pay";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPay_FormClosing);
             this.Load += new System.EventHandler(this.frmPay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.ResumeLayout(false);
@@ -181,11 +182,11 @@ namespace METAbolt
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nudAmount;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtPerson;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPay;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtPerson;
     }
 }
