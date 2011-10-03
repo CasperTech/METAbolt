@@ -212,7 +212,8 @@ namespace METAbolt
 
             if (instance.Config.CurrentConfig.BufferApplied)
             {
-                ReprintAllText();
+                //ReprintAllText();
+                CheckBufferSize();
                 instance.Config.CurrentConfig.BufferApplied = false; 
             }
         }
@@ -489,7 +490,7 @@ namespace METAbolt
 
                 textBuffer.RemoveAt(0);
 
-                ReprintAllText();
+                //ReprintAllText();
             }
         }
 

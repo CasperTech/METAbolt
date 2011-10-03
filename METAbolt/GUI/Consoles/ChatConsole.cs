@@ -1816,6 +1816,18 @@ namespace METAbolt
 
             //    chatManager.ReprintAllText();  
             //}
+
+            int lncnt = Convert.ToInt32(rtbChat.Lines.LongLength);
+            int maxlines = this.instance.Config.CurrentConfig.lineMax;
+
+            if (lncnt > maxlines)
+            {
+                int numOfLines = 1;
+                var lines = rtbChat.Lines;
+                var newLines = lines.Skip(numOfLines);
+
+                rtbChat.Lines = newLines.ToArray();
+            }
         }
 
         private void toolStripDropDownButton1_Click(object sender, EventArgs e)

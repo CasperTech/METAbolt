@@ -143,17 +143,19 @@ namespace METAbolt
             {
                 client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
 
-                //try
-                //{
-                //    //client.Inventory.RemoveItem(objectID);
-                //    client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
+                try
+                {
+                    //client.Inventory.RemoveItem(objectID);
+                    client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
 
-                //    InventoryBase item = client.Inventory.Store.Items[objectID].Data;
-                //    InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[client.Inventory.FindFolderForType(AssetType.TrashFolder)].Data;
+                    InventoryBase item = client.Inventory.Store.Items[objectID].Data;
+                    UUID content = client.Inventory.FindFolderForType(AssetType.TrashFolder);
 
-                //    client.Inventory.Move(item, folder, item.Name);
-                //}
-                //catch { ; }
+                    InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[content].Data;
+
+                    client.Inventory.Move(item, folder, item.Name);
+                }
+                catch { ; }
             }
             else
             {

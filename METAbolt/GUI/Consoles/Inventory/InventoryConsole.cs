@@ -51,33 +51,25 @@ namespace METAbolt
 {
     public partial class InventoryConsole : UserControl
     {
-        //InventoryFolder ifolder;
-
         private GridClient client;
-        //private SLNetCom netcom;
         private METAboltInstance instance;
         private InventoryItemConsole currentProperties;
-        //private OpenMetaverse.Inventory cacheinv; 
-        //private AutoChanger autoc;
         private InventoryClipboard clip;
         private InventoryTreeSorter treeSorter = new InventoryTreeSorter();
         private bool ShowAuto = false;
         private string SortBy = "By Name";
-        //ManualResetEvent CurrentlyWornEvent = new ManualResetEvent(false);
-        //private SafeDictionary<UUID, TreeNode> treeLookup = new SafeDictionary<UUID, TreeNode>();
-        //private Thread searchterm;
 
         // auto changer vars
         private string textfile; // = "Outfit.txt";
         private string path; // = Path.Combine(Environment.CurrentDirectory, "Outfit.txt");
         private int x = 0;
         public bool managerbusy = false;
-        //private bool iscut = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private bool searching = false;
-        //private UUID addeditem = UUID.Zero;
         private UUID folderproc = UUID.Zero;
         private TreeNode sellectednode = new TreeNode();
+        private InventoryFolder rootFolder;
+        private TreeNode rootNode;
 
         internal class ThreadExceptionHandler
         {
@@ -102,7 +94,7 @@ namespace METAbolt
             Disposed += new EventHandler(InventoryConsole_Disposed);
 
             textfile = "\\" + client.Self.FirstName + "_" + client.Self.LastName + "_" + "Outfit.mtb";
-            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", textfile);
+            this.path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", textfile);
 
             ReadTextFile();
 
@@ -153,8 +145,8 @@ namespace METAbolt
 
         private void GetRoot()
         {
-            InventoryFolder rootFolder = client.Inventory.Store.RootFolder;
-            TreeNode rootNode = treeView1.Nodes.Add(rootFolder.UUID.ToString(), "My Inventory");
+            rootFolder = client.Inventory.Store.RootFolder;
+            rootNode = treeView1.Nodes.Add(rootFolder.UUID.ToString(), "My Inventory");
             rootNode.Tag = rootFolder;
             rootNode.ImageKey = "ClosedFolder";
 
@@ -168,26 +160,18 @@ namespace METAbolt
         //Seperate thread
         private void Inventory_OnItemReceived(object sender, ItemReceivedEventArgs e)
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        Inventory_OnItemReceived(sender, e);
-            //    }));
-
-            //    return;
-            //}
-
-            BeginInvoke(new MethodInvoker(delegate()
+            if (InvokeRequired)
             {
-                ReceivedInventoryItem(e.Item);
-            }));
 
-            //try
-            //{
-            //ReceivedInventoryItem(e.Item);
-            //}
-            //catch { ; }
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Inventory_OnItemReceived(sender, e);
+                }));
+
+                return;
+            }
+
+            ReceivedInventoryItem(e.Item);
         }
 
         //UI thread
@@ -199,61 +183,65 @@ namespace METAbolt
         //UI thread
         private void ReceivedInventoryItem(InventoryItem item)
         {
+            if (InvokeRequired)
+            {
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ReceivedInventoryItem(item);
+                }));
+
+                return;
+            }
+
             try
             {
                 //addeditem = item.UUID;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), item.ParentUUID);
+                UUID fldr = client.Inventory.Store.RootFolder.UUID;
+
+                if (item.ParentUUID != UUID.Zero)
+                {
+                    fldr = item.ParentUUID;
+                }
+
+                ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
             }
             catch { ; }
-
-
-
-            //RefreshInventory();
         }
 
         private void Store_OnInventoryObjectRemoved(object sender, InventoryObjectRemovedEventArgs e)
         {
-            //try
-            //{
-            //    ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
-            //}
-            //catch { ; }
-
             RefreshInventory();
         }
 
         private void Store_OnInventoryObjectAdded(object sender, InventoryObjectAddedEventArgs e)
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(delegate()
-            //    {
-            //        Store_OnInventoryObjectAdded(sender, e);
-            //    }));
+            if (InvokeRequired)
+            {
 
-            //    return;
-            //}
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Store_OnInventoryObjectAdded(sender, e);
+                }));
 
-            //try
-            //{
-            //    addeditem = e.Obj.UUID; 
-            //    ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.Obj.ParentUUID);
+                return;
+            }
 
-            //}
-            //catch { ; }
+            ////addeditem = item.UUID;
+            //UUID fldr = client.Inventory.Store.RootFolder.UUID;
+
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
 
             //RefreshInventory();
 
-            //if (SortBy == "By Date")
-            //{
-            //    client.Inventory.RequestFolderContents(e.Obj.ParentUUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate | InventorySortOrder.FoldersByName);
-            //}
-            //else
-            //{
-            //    client.Inventory.RequestFolderContents(e.Obj.ParentUUID, client.Self.AgentID, true, true, InventorySortOrder.ByName | InventorySortOrder.FoldersByName);
-            //}
+            treeView1.Nodes.Clear();
 
-            RefreshInventory();
+            treeSorter.CurrentSortName = SortBy;
+            treeView1.TreeViewNodeSorter = treeSorter;
+
+            ((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
+
+            GetRoot();
         }
 
         private void Inventory_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
@@ -308,11 +296,6 @@ namespace METAbolt
                 }
             }
             catch { ; }
-
-            //BeginInvoke(new MethodInvoker(delegate()
-            //{
-            //    RefreshInventory();
-            //}));
         }
 
 
@@ -325,8 +308,6 @@ namespace METAbolt
         public void UpdateFolder(object folderID)
         {
             UpdateFolder((UUID)folderID);
-
-            //SortInventory();
         }
 
         public void UpdateFolder(UUID folderID)
@@ -335,9 +316,6 @@ namespace METAbolt
             else
             {
                 if (searching) return;
-
-                //BackgroundWorker bw = new BackgroundWorker();
-                //bw.RunWorkerAsync(new object[] { treeView1 });
 
                 ThreadPool.QueueUserWorkItem(delegate
                 {
@@ -348,61 +326,8 @@ namespace METAbolt
                         treeViewWalker.LoadInventory(instance, folderID);
                     });
                 });
-
-                ////TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
-                ////treeViewWalker.LoadInventory(instance, folderID);
-
-                //SortInventory();
-
-                //instance.Config.CurrentConfig.ObjectsFolder = client.Inventory.FindFolderForType(AssetType.Object);
-
-                //BeginInvoke(new MethodInvoker(delegate()
-                //{
-                //    //((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
-                //    SortInventory();
-                //}));
             }
         }
-
-        //private void bw_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    //    t.Invoke(new MethodInvoker( () => AddSubNodes(e.Argument) )); 
-        //    object[] args = e.Argument as object[];
-        //    TreeView tview = args[0] as TreeView; ;
-
-        //    var newNodes = new List<TreeNode>();
-
-        //    int nodeCount = 10;
-
-        //    for (int i = 0; i < nodeCount; i++)
-        //    {
-        //        // t.AppendNode(new object[] { "node cell text" }, parentNode); 
-        //        newNodes.Add(new object[] { "node cell text" }); // ??? 
-        //        bw.ReportProgress(i, new object[] { parentNode, "node: " + i.ToString() + "/" + nodeCount.ToString() });
-        //    }
-
-        //    // e.Result = e.Argument; 
-        //    e.Result = newNodes;
-        //}
-
-        //private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    object[] args = e.UserState as object[];
-        //    TreeListNode parentNode = args[0] as TreeListNode;
-        //    string percentMsg = args[1].ToString(); //node: n/n message 
-
-        //    parentNode.Nodes[0].SetValue(0, percentMsg); //change "Loading.." to "node: n/n" 
-        //    parentNode.TreeView.Update(); // or Form.Update 
-        //}
-
-        //private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    object[] result = e.Result as object[];
-        //    TreeListNode node = result[0] as TreeListNode;
-
-        //    node.Nodes.RemoveAt(0); //remove loading text 
-        //} 
-
 
         private void InitializeTree()
         {
@@ -1339,12 +1264,12 @@ namespace METAbolt
         private void AddToFile()
         {
             // Delete the file if it exists.
-            if (File.Exists(path))
+            if (File.Exists(this.path))
             {
-                File.Delete(path);
+                File.Delete(this.path);
             }
 
-            using (StreamWriter sr = File.CreateText(path))
+            using (StreamWriter sr = File.CreateText(this.path))
             {
                 foreach (object o in listBox1.Items)
                 {
@@ -1361,14 +1286,14 @@ namespace METAbolt
         {
             try
             {
-                if (!File.Exists(path))
+                if (!File.Exists(this.path))
                 {
                     return;
                 }
 
                 listBox1.Items.Clear();
 
-                using (StreamReader sr = File.OpenText(path))
+                using (StreamReader sr = File.OpenText(this.path))
                 {
                     string s = "";
 
@@ -1524,23 +1449,7 @@ namespace METAbolt
 
         private void snapshotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //string newNotecardName = "Snap1";
-            //string newNotecardDescription = String.Format("{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
-            //string newNotecardContent = string.Empty;
 
-
-            //if (treeView1.SelectedNode == null)
-            //    TakeSnapshot(
-            //        newNotecardName,
-            //        newNotecardDescription,
-            //        newNotecardContent,
-            //        treeView1.Nodes[0]);
-            //else
-            //    TakeSnapshot(
-            //        newNotecardName,
-            //        newNotecardDescription,
-            //        newNotecardContent,
-            //        treeView1.SelectedNode);
         }
 
         private void tmnuNewScript_Click(object sender, EventArgs e)
