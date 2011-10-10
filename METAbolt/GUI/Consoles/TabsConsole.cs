@@ -530,6 +530,8 @@ namespace METAbolt
         {
             if (instance.State.IsBusy) return;
 
+            if (System.Text.RegularExpressions.Regex.IsMatch(msg.ToLower().Trim(), "autopilot", System.Text.RegularExpressions.RegexOptions.IgnoreCase)) return;
+
             notifyIcon1.Text = UpdateIconTitle();
 
             if (!stopnotify)
@@ -557,6 +559,8 @@ namespace METAbolt
         private void TrayNotifiy(string title, string msg, bool makesound)
         {
             if (instance.State.IsBusy) return;
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(msg.ToLower().Trim(), "autopilot", System.Text.RegularExpressions.RegexOptions.IgnoreCase)) return;
 
             notifyIcon1.Text = UpdateIconTitle();
 

@@ -1907,5 +1907,10 @@ namespace METAbolt
         {
             (new frmScriptEditor(instance)).Show();
         }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new Form1(instance)).Show();
+        }
     }
 }

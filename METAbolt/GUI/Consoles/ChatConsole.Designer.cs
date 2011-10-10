@@ -143,7 +143,6 @@ namespace METAbolt
             this.cboRender = new System.Windows.Forms.ComboBox();
             this.cboCapture = new System.Windows.Forms.ComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -1616,12 +1615,6 @@ namespace METAbolt
             this.toolStripLabel2.Size = new System.Drawing.Size(21, 15);
             this.toolStripLabel2.Text = " ";
             // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            // 
             // timer2
             // 
             this.timer2.Interval = 62000;
@@ -1761,7 +1754,6 @@ namespace METAbolt
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.PictureBox pictureBox2;

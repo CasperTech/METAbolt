@@ -3377,11 +3377,6 @@ namespace METAbolt
             vgate.SpkrMute = checkBox4.Checked;
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void button10_Click(object sender, EventArgs e)
         {
             
