@@ -124,7 +124,6 @@ namespace METAbolt
             this.reloadAIMLLibrariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.launchSLViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPlugins = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
@@ -929,8 +928,7 @@ namespace METAbolt
             this.landMonitorToolStripMenuItem,
             this.reloadAIMLLibrariesToolStripMenuItem,
             this.toolStripSeparator7,
-            this.launchSLViewerToolStripMenuItem,
-            this.testToolStripMenuItem});
+            this.launchSLViewerToolStripMenuItem});
             this.tsUtilities.Image = global::METAbolt.Properties.Resources.applications_32;
             this.tsUtilities.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsUtilities.Name = "tsUtilities";
@@ -980,13 +978,6 @@ namespace METAbolt
             this.launchSLViewerToolStripMenuItem.Text = "Launch official SL viewer";
             this.launchSLViewerToolStripMenuItem.ToolTipText = "Runs the official SL viewer using 1 CPU on dual core machines";
             this.launchSLViewerToolStripMenuItem.Click += new System.EventHandler(this.launchSLViewerToolStripMenuItem_Click);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.testToolStripMenuItem.Text = "Test";
-            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // toolStripSeparator15
             // 
@@ -1356,7 +1347,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 
