@@ -2133,6 +2133,21 @@ namespace METAbolt
                         bck(false);
                     }
                     break;
+                case 114: // <--- F3 Key
+                    if (!checkBox5.Checked) return false; 
+  
+                    if (m.Msg == WM_KEYDOWN)
+                    {
+                        if (!checkBox3.Checked) break;
+
+                        vgate.MicMute = checkBox3.Checked = false;
+                    }
+                    else
+                    {
+                        vgate.MicMute = checkBox3.Checked = true;
+                    }
+
+                    break;
             }
 
             return false;
@@ -3548,7 +3563,7 @@ namespace METAbolt
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //WalkRight();
+            WalkRight();
         }
 
         private void WalkRight()
@@ -3566,7 +3581,7 @@ namespace METAbolt
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //WalkLeft();
+            WalkLeft();
         }
 
         private void WalkLeft()
