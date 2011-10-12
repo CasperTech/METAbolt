@@ -249,14 +249,6 @@ namespace METAbolt
             this.toolStrip2.AutoSize = false;
             this.toolStrip2.BackColor = System.Drawing.Color.Gainsboro;
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbSay,
-            this.toolStripSeparator13,
-            this.tbChat,
-            this.toolStripSeparator14,
-            this.toolStripSeparator15,
-            this.tsMovie,
-            this.tsMusic});
             this.toolStrip2.Location = new System.Drawing.Point(543, 3);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(179, 25);
@@ -901,6 +893,7 @@ namespace METAbolt
             this.button4.Size = new System.Drawing.Size(29, 29);
             this.button4.TabIndex = 13;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             this.button4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button4_KeyDown);
             this.button4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.button4_KeyUp);
             this.button4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button4_MouseDown);
@@ -931,27 +924,6 @@ namespace METAbolt
             this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Right;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator7,
-            this.toolStripSeparator8,
-            this.toolStripLabel1,
-            this.tbtnStartIM,
-            this.tbtnProfile,
-            this.tbtnAttachments,
-            this.toolStripSeparator1,
-            this.tbtnAddFriend,
-            this.toolStripSeparator3,
-            this.tbtnTurn,
-            this.tbtnFollow,
-            this.tbtnGoto,
-            this.toolStripSeparator2,
-            this.tbtnFreeze,
-            this.tbtnEject,
-            this.tbtnBan,
-            this.toolStripSeparator9,
-            this.toolStripSeparator10,
-            this.tsbSearch,
-            this.tbtnHelp});
             this.toolStrip1.Location = new System.Drawing.Point(162, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -1475,7 +1447,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(51, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(69, 17);
+            this.checkBox5.Size = new System.Drawing.Size(72, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;

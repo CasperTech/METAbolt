@@ -1296,6 +1296,39 @@ namespace METAbolt
                     sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
                 }
 
+                if (av.Name != client.Self.Name)
+                {
+                    Vector3 dirv = Vector3.Normalize(avpos - selfpos);
+                    dirv.Normalize();
+
+                    Quaternion avRot = client.Self.RelativeRotation;
+
+                    Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
+
+                    Vector3 myrot = new Vector3(Vector3.Zero);
+                    myrot.X = m.M11;
+                    myrot.Y = m.M21;
+                    myrot.Z = m.M31;
+
+                    float vs = Vector3.Dot(myrot, dirv);
+
+                    bool isonfront = Vector3.Dot(myrot, dirv) > 0f; // less than 90 degrees
+
+                    Vector3 v1 = new Vector3(0, 0, 0);
+                    Vector3 v2 = new Vector3(0, 0, 0);
+
+                    v1 = selfpos;
+                    v2 = avpos;
+
+                    v1.Normalize();
+                    v2.Normalize();
+
+                    double angle = (float)Math.Acos(Vector3.Dot(v1, v2));
+                    //double angle = (float)Math.Acos(Vector3.Dot(myrot, dirv));
+
+                    double degrees = angle * 180 / Math.PI;
+                }
+
                 string rentry = name + sDist + astate;
 
                 BeginInvoke(new MethodInvoker(delegate()
@@ -1357,14 +1390,14 @@ namespace METAbolt
 
             Quaternion avRot = client.Self.RelativeRotation;
 
-            Vector3 vdir = new Vector3(Vector3.Zero);
-            vdir.X = 0.0f;
-            vdir.Y = 1.0f;
-            vdir.Z = 0.0f;
+            //Vector3 vdir = new Vector3(Vector3.Zero);
+            //vdir.X = 0.0f;
+            //vdir.Y = 1.0f;
+            //vdir.Z = 0.0f;
 
             Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
 
-            vDir = new Vector3(Vector3.Zero);
+            Vector3 vDir = new Vector3(Vector3.Zero);
             vDir.X = m.M11;
             vDir.Y = m.M21;
             vDir.Z = m.M31;
@@ -1412,6 +1445,42 @@ namespace METAbolt
                 //heading = "NE";
                 picCompass.Image = Properties.Resources.c_ne;
             }
+        }
+
+        public Vector3 QuaternionToEuler(Quaternion q)
+        {
+            Vector3 v = Vector3.Zero;
+
+            v.X = (float)Math.Atan2
+            (
+                2 * q.Y * q.W - 2 * q.X * q.Z,
+                   1 - 2 * Math.Pow(q.Y, 2) - 2 * Math.Pow(q.Z, 2)
+            );
+
+            v.Z = (float)Math.Asin
+            (
+                2 * q.X * q.Y + 2 * q.Z * q.W
+            );
+
+            v.Y = (float)Math.Atan2
+            (
+                2 * q.X * q.W - 2 * q.Y * q.Z,
+                1 - 2 * Math.Pow(q.X, 2) - 2 * Math.Pow(q.Z, 2)
+            );
+
+            if (q.X * q.Y + q.Z * q.W == 0.5)
+            {
+                v.X = (float)(2 * Math.Atan2(q.X, q.W));
+                v.Y = 0;
+            }
+
+            else if (q.X * q.Y + q.Z * q.W == -0.5)
+            {
+                v.X = (float)(-2 * Math.Atan2(q.X, q.W));
+                v.Y = 0;
+            }
+
+            return v;
         }
 
         private void netcom_ClientLoginStatus(object sender, LoginProgressEventArgs e)
@@ -3563,7 +3632,7 @@ namespace METAbolt
 
         private void button6_Click(object sender, EventArgs e)
         {
-            WalkRight();
+            //WalkRight();
         }
 
         private void WalkRight()
@@ -3581,7 +3650,7 @@ namespace METAbolt
 
         private void button8_Click(object sender, EventArgs e)
         {
-            WalkLeft();
+            //WalkLeft();
         }
 
         private void WalkLeft()
@@ -3620,6 +3689,11 @@ namespace METAbolt
         private void picMap_MouseLeave(object sender, EventArgs e)
         {
             tTip1.Close(); 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

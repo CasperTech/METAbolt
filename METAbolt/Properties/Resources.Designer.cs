@@ -322,20 +322,6 @@ namespace METAbolt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap chat_s {
-            get {
-                object obj = ResourceManager.GetObject("chat_s", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap clock_s {
-            get {
-                object obj = ResourceManager.GetObject("clock_s", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap comment {
             get {
                 object obj = ResourceManager.GetObject("comment", resourceCulture);
@@ -606,13 +592,6 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap lm {
             get {
                 object obj = ResourceManager.GetObject("lm", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Loop_s {
-            get {
-                object obj = ResourceManager.GetObject("Loop_s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -935,13 +914,6 @@ namespace METAbolt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap sit_s {
-            get {
-                object obj = ResourceManager.GetObject("sit_s", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap smoke_bg {
             get {
                 object obj = ResourceManager.GetObject("smoke_bg", resourceCulture);
@@ -970,13 +942,6 @@ namespace METAbolt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Stand_s {
-            get {
-                object obj = ResourceManager.GetObject("Stand_s", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap stats1 {
             get {
                 object obj = ResourceManager.GetObject("stats1", resourceCulture);
@@ -987,13 +952,6 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap System_16 {
             get {
                 object obj = ResourceManager.GetObject("System_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap teleport_s {
-            get {
-                object obj = ResourceManager.GetObject("teleport_s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1026,13 +984,6 @@ namespace METAbolt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap touch_s {
-            get {
-                object obj = ResourceManager.GetObject("touch_s", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap tp {
             get {
                 object obj = ResourceManager.GetObject("tp", resourceCulture);
@@ -1057,13 +1008,6 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap turn_right {
             get {
                 object obj = ResourceManager.GetObject("turn_right", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap turn_s {
-            get {
-                object obj = ResourceManager.GetObject("turn_s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1138,23 +1082,9 @@ namespace METAbolt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap walk_s {
-            get {
-                object obj = ResourceManager.GetObject("walk_s", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap wear {
             get {
                 object obj = ResourceManager.GetObject("wear", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap wear_s {
-            get {
-                object obj = ResourceManager.GetObject("wear_s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
