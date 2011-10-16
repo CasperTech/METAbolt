@@ -34,6 +34,10 @@ namespace METAbolt
             this.imgFlags = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.toolBar1 = new System.Windows.Forms.ToolBar();
+            this.tbBtn_Emoticons = new System.Windows.Forms.ToolBarButton();
+            this.cmenu_Emoticons = new System.Windows.Forms.ContextMenu();
             this.tbSay = new System.Windows.Forms.ToolStripDropDownButton();
             this.sayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
@@ -47,10 +51,6 @@ namespace METAbolt
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.tsMovie = new System.Windows.Forms.ToolStripButton();
             this.tsMusic = new System.Windows.Forms.ToolStripButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.toolBar1 = new System.Windows.Forms.ToolBar();
-            this.tbBtn_Emoticons = new System.Windows.Forms.ToolBarButton();
-            this.cmenu_Emoticons = new System.Windows.Forms.ContextMenu();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
@@ -89,26 +89,6 @@ namespace METAbolt
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tbtnStartIM = new System.Windows.Forms.ToolStripButton();
-            this.tbtnProfile = new System.Windows.Forms.ToolStripButton();
-            this.tbtnAttachments = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbtnAddFriend = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbtnTurn = new System.Windows.Forms.ToolStripButton();
-            this.tbtnFollow = new System.Windows.Forms.ToolStripButton();
-            this.tbtnGoto = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbtnFreeze = new System.Windows.Forms.ToolStripButton();
-            this.tbtnEject = new System.Windows.Forms.ToolStripButton();
-            this.tbtnBan = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbSearch = new System.Windows.Forms.ToolStripButton();
-            this.tbtnHelp = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lvwRadar = new METAbolt.FlickerFreeListView();
@@ -142,10 +122,29 @@ namespace METAbolt
             this.label10 = new System.Windows.Forms.Label();
             this.cboRender = new System.Windows.Forms.ComboBox();
             this.cboCapture = new System.Windows.Forms.ComboBox();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tbtnStartIM = new System.Windows.Forms.ToolStripButton();
+            this.tbtnProfile = new System.Windows.Forms.ToolStripButton();
+            this.tbtnAttachments = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbtnAddFriend = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbtnTurn = new System.Windows.Forms.ToolStripButton();
+            this.tbtnFollow = new System.Windows.Forms.ToolStripButton();
+            this.tbtnGoto = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbtnFreeze = new System.Windows.Forms.ToolStripButton();
+            this.tbtnEject = new System.Windows.Forms.ToolStripButton();
+            this.tbtnBan = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbSearch = new System.Windows.Forms.ToolStripButton();
+            this.tbtnHelp = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVoice)).BeginInit();
@@ -157,7 +156,6 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompass)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -254,6 +252,41 @@ namespace METAbolt
             this.toolStrip2.Size = new System.Drawing.Size(179, 25);
             this.toolStrip2.TabIndex = 9;
             this.toolStrip2.Text = "toolStrip2";
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.toolBar1);
+            this.panel2.Location = new System.Drawing.Point(479, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(61, 22);
+            this.panel2.TabIndex = 8;
+            // 
+            // toolBar1
+            // 
+            this.toolBar1.AccessibleDescription = "Select an emotiocon to display in public chat";
+            this.toolBar1.AccessibleName = "Emotiocon list";
+            this.toolBar1.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
+            this.toolBar1.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
+            this.tbBtn_Emoticons});
+            this.toolBar1.ButtonSize = new System.Drawing.Size(13, 13);
+            this.toolBar1.Divider = false;
+            this.toolBar1.DropDownArrows = true;
+            this.toolBar1.Location = new System.Drawing.Point(0, 0);
+            this.toolBar1.Margin = new System.Windows.Forms.Padding(0);
+            this.toolBar1.Name = "toolBar1";
+            this.toolBar1.ShowToolTips = true;
+            this.toolBar1.Size = new System.Drawing.Size(61, 64);
+            this.toolBar1.TabIndex = 10;
+            this.toolBar1.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
+            // 
+            // tbBtn_Emoticons
+            // 
+            this.tbBtn_Emoticons.DropDownMenu = this.cmenu_Emoticons;
+            this.tbBtn_Emoticons.Name = "tbBtn_Emoticons";
+            this.tbBtn_Emoticons.Style = System.Windows.Forms.ToolBarButtonStyle.DropDownButton;
+            this.tbBtn_Emoticons.Text = "{E}";
+            this.tbBtn_Emoticons.ToolTipText = "Insert an emoticon";
             // 
             // tbSay
             // 
@@ -377,41 +410,6 @@ namespace METAbolt
             this.tsMusic.Size = new System.Drawing.Size(23, 22);
             this.tsMusic.Text = "Play land music";
             this.tsMusic.Click += new System.EventHandler(this.toolStripButton1_Click_1);
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.toolBar1);
-            this.panel2.Location = new System.Drawing.Point(479, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(61, 22);
-            this.panel2.TabIndex = 8;
-            // 
-            // toolBar1
-            // 
-            this.toolBar1.AccessibleDescription = "Select an emotiocon to display in public chat";
-            this.toolBar1.AccessibleName = "Emotiocon list";
-            this.toolBar1.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
-            this.toolBar1.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-            this.tbBtn_Emoticons});
-            this.toolBar1.ButtonSize = new System.Drawing.Size(13, 13);
-            this.toolBar1.Divider = false;
-            this.toolBar1.DropDownArrows = true;
-            this.toolBar1.Location = new System.Drawing.Point(0, 0);
-            this.toolBar1.Margin = new System.Windows.Forms.Padding(0);
-            this.toolBar1.Name = "toolBar1";
-            this.toolBar1.ShowToolTips = true;
-            this.toolBar1.Size = new System.Drawing.Size(61, 64);
-            this.toolBar1.TabIndex = 10;
-            this.toolBar1.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
-            // 
-            // tbBtn_Emoticons
-            // 
-            this.tbBtn_Emoticons.DropDownMenu = this.cmenu_Emoticons;
-            this.tbBtn_Emoticons.Name = "tbBtn_Emoticons";
-            this.tbBtn_Emoticons.Style = System.Windows.Forms.ToolBarButtonStyle.DropDownButton;
-            this.tbBtn_Emoticons.Text = "{E}";
-            this.tbBtn_Emoticons.ToolTipText = "Insert an emoticon";
             // 
             // toolStripSeparator5
             // 
@@ -924,224 +922,13 @@ namespace METAbolt
             this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Right;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Location = new System.Drawing.Point(162, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(160, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(24, 443);
+            this.toolStrip1.Size = new System.Drawing.Size(26, 443);
             this.toolStrip1.TabIndex = 20;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(21, 6);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(21, 6);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(21, 15);
-            this.toolStripLabel1.Text = " ";
-            // 
-            // tbtnStartIM
-            // 
-            this.tbtnStartIM.AccessibleDescription = "Start an IM sessions with the selected avatar";
-            this.tbtnStartIM.AccessibleName = "IM";
-            this.tbtnStartIM.AutoToolTip = false;
-            this.tbtnStartIM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnStartIM.Enabled = false;
-            this.tbtnStartIM.Image = global::METAbolt.Properties.Resources.im;
-            this.tbtnStartIM.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnStartIM.Name = "tbtnStartIM";
-            this.tbtnStartIM.Size = new System.Drawing.Size(21, 20);
-            this.tbtnStartIM.ToolTipText = "Start IM";
-            this.tbtnStartIM.Click += new System.EventHandler(this.tbtnStartIM_Click);
-            // 
-            // tbtnProfile
-            // 
-            this.tbtnProfile.AccessibleDescription = "Display the profile of the selected avatar";
-            this.tbtnProfile.AccessibleName = "Profile";
-            this.tbtnProfile.AutoToolTip = false;
-            this.tbtnProfile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnProfile.Enabled = false;
-            this.tbtnProfile.Image = global::METAbolt.Properties.Resources.profile;
-            this.tbtnProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnProfile.Name = "tbtnProfile";
-            this.tbtnProfile.Size = new System.Drawing.Size(21, 20);
-            this.tbtnProfile.ToolTipText = "View Profile";
-            this.tbtnProfile.Click += new System.EventHandler(this.tbtnProfile_Click);
-            // 
-            // tbtnAttachments
-            // 
-            this.tbtnAttachments.AccessibleDescription = "Display the attachments of the selected avatar";
-            this.tbtnAttachments.AccessibleName = "Attachements";
-            this.tbtnAttachments.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnAttachments.Enabled = false;
-            this.tbtnAttachments.Image = global::METAbolt.Properties.Resources.attachment;
-            this.tbtnAttachments.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnAttachments.Name = "tbtnAttachments";
-            this.tbtnAttachments.Size = new System.Drawing.Size(21, 20);
-            this.tbtnAttachments.Text = "View worn attachments";
-            this.tbtnAttachments.Click += new System.EventHandler(this.tbtnAttachments_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(21, 6);
-            // 
-            // tbtnAddFriend
-            // 
-            this.tbtnAddFriend.AccessibleDescription = "Request to become friends with the selected avatar";
-            this.tbtnAddFriend.AccessibleName = "Add as friend";
-            this.tbtnAddFriend.AutoToolTip = false;
-            this.tbtnAddFriend.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnAddFriend.Enabled = false;
-            this.tbtnAddFriend.Image = global::METAbolt.Properties.Resources.friend;
-            this.tbtnAddFriend.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnAddFriend.Name = "tbtnAddFriend";
-            this.tbtnAddFriend.Size = new System.Drawing.Size(21, 20);
-            this.tbtnAddFriend.Text = "toolStripButton1";
-            this.tbtnAddFriend.ToolTipText = "Add to Friends";
-            this.tbtnAddFriend.Click += new System.EventHandler(this.tbtnAddFriend_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(21, 6);
-            // 
-            // tbtnTurn
-            // 
-            this.tbtnTurn.AccessibleDescription = "Turn to the selected avatar";
-            this.tbtnTurn.AccessibleName = "Turn to";
-            this.tbtnTurn.AutoToolTip = false;
-            this.tbtnTurn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnTurn.Enabled = false;
-            this.tbtnTurn.Image = ((System.Drawing.Image)(resources.GetObject("tbtnTurn.Image")));
-            this.tbtnTurn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnTurn.Name = "tbtnTurn";
-            this.tbtnTurn.Size = new System.Drawing.Size(21, 20);
-            this.tbtnTurn.ToolTipText = "Turn to";
-            this.tbtnTurn.Click += new System.EventHandler(this.tbtnTurn_Click);
-            // 
-            // tbtnFollow
-            // 
-            this.tbtnFollow.AccessibleDescription = "Follow the selected avatar";
-            this.tbtnFollow.AccessibleName = "Follow";
-            this.tbtnFollow.AutoToolTip = false;
-            this.tbtnFollow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnFollow.Enabled = false;
-            this.tbtnFollow.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFollow.Image")));
-            this.tbtnFollow.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnFollow.Name = "tbtnFollow";
-            this.tbtnFollow.Size = new System.Drawing.Size(21, 20);
-            this.tbtnFollow.ToolTipText = "Follow";
-            this.tbtnFollow.Click += new System.EventHandler(this.tbtnFollow_Click);
-            // 
-            // tbtnGoto
-            // 
-            this.tbtnGoto.AccessibleDescription = "Go to the selected avatar";
-            this.tbtnGoto.AccessibleName = "Go to";
-            this.tbtnGoto.AutoToolTip = false;
-            this.tbtnGoto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnGoto.Enabled = false;
-            this.tbtnGoto.Image = ((System.Drawing.Image)(resources.GetObject("tbtnGoto.Image")));
-            this.tbtnGoto.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnGoto.Name = "tbtnGoto";
-            this.tbtnGoto.Size = new System.Drawing.Size(21, 20);
-            this.tbtnGoto.Text = "toolStripButton1";
-            this.tbtnGoto.ToolTipText = "Go to";
-            this.tbtnGoto.Click += new System.EventHandler(this.tbtnGoto_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(21, 6);
-            // 
-            // tbtnFreeze
-            // 
-            this.tbtnFreeze.AccessibleDescription = "Freeze the selected avatar";
-            this.tbtnFreeze.AccessibleName = "Freeze";
-            this.tbtnFreeze.AutoToolTip = false;
-            this.tbtnFreeze.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnFreeze.Enabled = false;
-            this.tbtnFreeze.Image = global::METAbolt.Properties.Resources.freeze;
-            this.tbtnFreeze.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnFreeze.Name = "tbtnFreeze";
-            this.tbtnFreeze.Size = new System.Drawing.Size(21, 20);
-            this.tbtnFreeze.Text = "toolStripButton1";
-            this.tbtnFreeze.ToolTipText = "Freeze";
-            this.tbtnFreeze.Click += new System.EventHandler(this.tbtnFreeze_Click);
-            // 
-            // tbtnEject
-            // 
-            this.tbtnEject.AccessibleDescription = "Eject the selected avatar";
-            this.tbtnEject.AccessibleName = "Eject";
-            this.tbtnEject.AutoToolTip = false;
-            this.tbtnEject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnEject.Enabled = false;
-            this.tbtnEject.Image = global::METAbolt.Properties.Resources.arrow_up_16;
-            this.tbtnEject.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnEject.Name = "tbtnEject";
-            this.tbtnEject.Size = new System.Drawing.Size(21, 20);
-            this.tbtnEject.Text = "toolStripButton1";
-            this.tbtnEject.ToolTipText = "Eject";
-            this.tbtnEject.Click += new System.EventHandler(this.tbtnEject_Click_1);
-            // 
-            // tbtnBan
-            // 
-            this.tbtnBan.AccessibleDescription = "Ban the selected avatar";
-            this.tbtnBan.AccessibleName = "Ban";
-            this.tbtnBan.AutoToolTip = false;
-            this.tbtnBan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnBan.Enabled = false;
-            this.tbtnBan.Image = global::METAbolt.Properties.Resources.ban;
-            this.tbtnBan.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnBan.Name = "tbtnBan";
-            this.tbtnBan.Size = new System.Drawing.Size(21, 20);
-            this.tbtnBan.Text = "toolStripButton1";
-            this.tbtnBan.ToolTipText = "Ban";
-            this.tbtnBan.Click += new System.EventHandler(this.tbtnBan_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(21, 6);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(21, 6);
-            // 
-            // tsbSearch
-            // 
-            this.tsbSearch.AccessibleDescription = "Search chat for words and phrases";
-            this.tsbSearch.AccessibleName = "Chat search";
-            this.tsbSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSearch.Image = global::METAbolt.Properties.Resources.Search_32;
-            this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSearch.Name = "tsbSearch";
-            this.tsbSearch.Size = new System.Drawing.Size(21, 20);
-            this.tsbSearch.Text = "toolStripButton1";
-            this.tsbSearch.ToolTipText = "Show chat search";
-            this.tsbSearch.Click += new System.EventHandler(this.toolStripButton1_Click_2);
-            // 
-            // tbtnHelp
-            // 
-            this.tbtnHelp.AccessibleDescription = "Get help on METAwiki";
-            this.tbtnHelp.AccessibleName = "Help";
-            this.tbtnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbtnHelp.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
-            this.tbtnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbtnHelp.Name = "tbtnHelp";
-            this.tbtnHelp.Size = new System.Drawing.Size(21, 20);
-            this.tbtnHelp.Text = "toolStripButton1";
-            this.tbtnHelp.ToolTipText = "Click for web help";
-            this.tbtnHelp.Click += new System.EventHandler(this.tbtnHelp_Click);
             // 
             // tabControl1
             // 
@@ -1447,7 +1234,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(51, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(72, 17);
+            this.checkBox5.Size = new System.Drawing.Size(69, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1581,6 +1368,217 @@ namespace METAbolt
             this.cboCapture.TabIndex = 0;
             this.cboCapture.SelectedIndexChanged += new System.EventHandler(this.cboCapture_SelectedIndexChanged);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(21, 6);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(21, 6);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(21, 15);
+            this.toolStripLabel1.Text = " ";
+            // 
+            // tbtnStartIM
+            // 
+            this.tbtnStartIM.AccessibleDescription = "Start an IM sessions with the selected avatar";
+            this.tbtnStartIM.AccessibleName = "IM";
+            this.tbtnStartIM.AutoToolTip = false;
+            this.tbtnStartIM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnStartIM.Enabled = false;
+            this.tbtnStartIM.Image = global::METAbolt.Properties.Resources.im;
+            this.tbtnStartIM.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnStartIM.Name = "tbtnStartIM";
+            this.tbtnStartIM.Size = new System.Drawing.Size(21, 20);
+            this.tbtnStartIM.ToolTipText = "Start IM";
+            this.tbtnStartIM.Click += new System.EventHandler(this.tbtnStartIM_Click);
+            // 
+            // tbtnProfile
+            // 
+            this.tbtnProfile.AccessibleDescription = "Display the profile of the selected avatar";
+            this.tbtnProfile.AccessibleName = "Profile";
+            this.tbtnProfile.AutoToolTip = false;
+            this.tbtnProfile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnProfile.Enabled = false;
+            this.tbtnProfile.Image = global::METAbolt.Properties.Resources.profile;
+            this.tbtnProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnProfile.Name = "tbtnProfile";
+            this.tbtnProfile.Size = new System.Drawing.Size(21, 20);
+            this.tbtnProfile.ToolTipText = "View Profile";
+            this.tbtnProfile.Click += new System.EventHandler(this.tbtnProfile_Click);
+            // 
+            // tbtnAttachments
+            // 
+            this.tbtnAttachments.AccessibleDescription = "Display the attachments of the selected avatar";
+            this.tbtnAttachments.AccessibleName = "Attachements";
+            this.tbtnAttachments.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnAttachments.Enabled = false;
+            this.tbtnAttachments.Image = global::METAbolt.Properties.Resources.attachment;
+            this.tbtnAttachments.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnAttachments.Name = "tbtnAttachments";
+            this.tbtnAttachments.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAttachments.Text = "View worn attachments";
+            this.tbtnAttachments.Click += new System.EventHandler(this.tbtnAttachments_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(21, 6);
+            // 
+            // tbtnAddFriend
+            // 
+            this.tbtnAddFriend.AccessibleDescription = "Request to become friends with the selected avatar";
+            this.tbtnAddFriend.AccessibleName = "Add as friend";
+            this.tbtnAddFriend.AutoToolTip = false;
+            this.tbtnAddFriend.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnAddFriend.Enabled = false;
+            this.tbtnAddFriend.Image = global::METAbolt.Properties.Resources.friend;
+            this.tbtnAddFriend.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnAddFriend.Name = "tbtnAddFriend";
+            this.tbtnAddFriend.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAddFriend.Text = "toolStripButton1";
+            this.tbtnAddFriend.ToolTipText = "Add to Friends";
+            this.tbtnAddFriend.Click += new System.EventHandler(this.tbtnAddFriend_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(21, 6);
+            // 
+            // tbtnTurn
+            // 
+            this.tbtnTurn.AccessibleDescription = "Turn to the selected avatar";
+            this.tbtnTurn.AccessibleName = "Turn to";
+            this.tbtnTurn.AutoToolTip = false;
+            this.tbtnTurn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnTurn.Enabled = false;
+            this.tbtnTurn.Image = ((System.Drawing.Image)(resources.GetObject("tbtnTurn.Image")));
+            this.tbtnTurn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnTurn.Name = "tbtnTurn";
+            this.tbtnTurn.Size = new System.Drawing.Size(21, 20);
+            this.tbtnTurn.ToolTipText = "Turn to";
+            this.tbtnTurn.Click += new System.EventHandler(this.tbtnTurn_Click);
+            // 
+            // tbtnFollow
+            // 
+            this.tbtnFollow.AccessibleDescription = "Follow the selected avatar";
+            this.tbtnFollow.AccessibleName = "Follow";
+            this.tbtnFollow.AutoToolTip = false;
+            this.tbtnFollow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnFollow.Enabled = false;
+            this.tbtnFollow.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFollow.Image")));
+            this.tbtnFollow.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnFollow.Name = "tbtnFollow";
+            this.tbtnFollow.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFollow.ToolTipText = "Follow";
+            this.tbtnFollow.Click += new System.EventHandler(this.tbtnFollow_Click);
+            // 
+            // tbtnGoto
+            // 
+            this.tbtnGoto.AccessibleDescription = "Go to the selected avatar";
+            this.tbtnGoto.AccessibleName = "Go to";
+            this.tbtnGoto.AutoToolTip = false;
+            this.tbtnGoto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnGoto.Enabled = false;
+            this.tbtnGoto.Image = ((System.Drawing.Image)(resources.GetObject("tbtnGoto.Image")));
+            this.tbtnGoto.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnGoto.Name = "tbtnGoto";
+            this.tbtnGoto.Size = new System.Drawing.Size(21, 20);
+            this.tbtnGoto.Text = "toolStripButton1";
+            this.tbtnGoto.ToolTipText = "Go to";
+            this.tbtnGoto.Click += new System.EventHandler(this.tbtnGoto_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(21, 6);
+            // 
+            // tbtnFreeze
+            // 
+            this.tbtnFreeze.AccessibleDescription = "Freeze the selected avatar";
+            this.tbtnFreeze.AccessibleName = "Freeze";
+            this.tbtnFreeze.AutoToolTip = false;
+            this.tbtnFreeze.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnFreeze.Enabled = false;
+            this.tbtnFreeze.Image = global::METAbolt.Properties.Resources.freeze;
+            this.tbtnFreeze.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnFreeze.Name = "tbtnFreeze";
+            this.tbtnFreeze.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFreeze.Text = "toolStripButton1";
+            this.tbtnFreeze.ToolTipText = "Freeze";
+            this.tbtnFreeze.Click += new System.EventHandler(this.tbtnFreeze_Click);
+            // 
+            // tbtnEject
+            // 
+            this.tbtnEject.AccessibleDescription = "Eject the selected avatar";
+            this.tbtnEject.AccessibleName = "Eject";
+            this.tbtnEject.AutoToolTip = false;
+            this.tbtnEject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnEject.Enabled = false;
+            this.tbtnEject.Image = global::METAbolt.Properties.Resources.arrow_up_16;
+            this.tbtnEject.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnEject.Name = "tbtnEject";
+            this.tbtnEject.Size = new System.Drawing.Size(21, 20);
+            this.tbtnEject.Text = "toolStripButton1";
+            this.tbtnEject.ToolTipText = "Eject";
+            this.tbtnEject.Click += new System.EventHandler(this.tbtnEject_Click_1);
+            // 
+            // tbtnBan
+            // 
+            this.tbtnBan.AccessibleDescription = "Ban the selected avatar";
+            this.tbtnBan.AccessibleName = "Ban";
+            this.tbtnBan.AutoToolTip = false;
+            this.tbtnBan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnBan.Enabled = false;
+            this.tbtnBan.Image = global::METAbolt.Properties.Resources.ban;
+            this.tbtnBan.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnBan.Name = "tbtnBan";
+            this.tbtnBan.Size = new System.Drawing.Size(21, 20);
+            this.tbtnBan.Text = "toolStripButton1";
+            this.tbtnBan.ToolTipText = "Ban";
+            this.tbtnBan.Click += new System.EventHandler(this.tbtnBan_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(21, 6);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(21, 6);
+            // 
+            // tsbSearch
+            // 
+            this.tsbSearch.AccessibleDescription = "Search chat for words and phrases";
+            this.tsbSearch.AccessibleName = "Chat search";
+            this.tsbSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSearch.Image = global::METAbolt.Properties.Resources.Search_32;
+            this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSearch.Name = "tsbSearch";
+            this.tsbSearch.Size = new System.Drawing.Size(21, 20);
+            this.tsbSearch.Text = "toolStripButton1";
+            this.tsbSearch.ToolTipText = "Show chat search";
+            this.tsbSearch.Click += new System.EventHandler(this.toolStripButton1_Click_2);
+            // 
+            // tbtnHelp
+            // 
+            this.tbtnHelp.AccessibleDescription = "Get help on METAwiki";
+            this.tbtnHelp.AccessibleName = "Help";
+            this.tbtnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtnHelp.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.tbtnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtnHelp.Name = "tbtnHelp";
+            this.tbtnHelp.Size = new System.Drawing.Size(21, 20);
+            this.tbtnHelp.Text = "toolStripButton1";
+            this.tbtnHelp.ToolTipText = "Click for web help";
+            this.tbtnHelp.Click += new System.EventHandler(this.tbtnHelp_Click);
+            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
@@ -1606,8 +1604,6 @@ namespace METAbolt
             this.Size = new System.Drawing.Size(729, 478);
             this.SizeChanged += new System.EventHandler(this.ChatConsole_SizeChanged);
             this.panel1.ResumeLayout(false);
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
@@ -1624,8 +1620,6 @@ namespace METAbolt
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompass)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

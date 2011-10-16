@@ -145,24 +145,25 @@ namespace METAbolt
         {
             try
             {
-                rtbScript.Margins.Margin0.Width = LINE_NUMBERS_MARGIN_WIDTH;
-                rtbScript.AutoComplete.FillUpCharacters = "([";
-                rtbScript.AutoComplete.AutomaticLengthEntered = true;
-                rtbScript.AutoComplete.AutoHide = true;
-                rtbScript.AutoComplete.IsCaseSensitive = false;
-                rtbScript.AutoComplete.RegisterImages(imageList1);
-                //rtbScript.Styles[rtbScript.Lexing.StyleNameMap["Keyword"]].ForeColor = Color.Fuchsia;
-
-                rtbScript.Caret.Color = Color.Red;
-
-                rtbScript.AutoComplete.SingleLineAccept = false;
-                rtbScript.AutoComplete.DropRestOfWord = true;
-                rtbScript.AutoComplete.StopCharacters = ") ] // ; ' , - _ */ /*";
-                rtbScript.Caret.HighlightCurrentLine = true;
-                rtbScript.Caret.CurrentLineBackgroundColor = Color.Linen; 
-
                 SetLanguage("lsl");
                 tscboLanguage.SelectedIndex = 0;
+
+                rtbScript.Margins.Margin0.Width = LINE_NUMBERS_MARGIN_WIDTH;
+                //rtbScript.AutoComplete.FillUpCharacters = "([";
+                //rtbScript.AutoComplete.AutomaticLengthEntered = true;
+                //rtbScript.AutoComplete.AutoHide = true;
+                //rtbScript.AutoComplete.IsCaseSensitive = false;
+                ////rtbScript.AutoComplete.RegisterImages(imageList1);
+                ////rtbScript.Styles[rtbScript.Lexing.StyleNameMap["functions"]].ForeColor = Color.Fuchsia;
+
+                //rtbScript.AutoComplete.CancelAtShowPoint = false;
+                rtbScript.Caret.Color = Color.Red;
+
+                //rtbScript.AutoComplete.SingleLineAccept = false;
+                //rtbScript.AutoComplete.DropRestOfWord = true;
+                rtbScript.AutoComplete.StopCharacters = ") ] // ; ' - _ */ /*";
+                rtbScript.Caret.HighlightCurrentLine = true;
+                rtbScript.Caret.CurrentLineBackgroundColor = Color.Linen; 
             }
             catch (Exception ex)
             {
@@ -194,7 +195,7 @@ namespace METAbolt
         {
             AutoCompleteStringListSorter Sorter = new AutoCompleteStringListSorter();
             Sorter.SortingOrder = SortOrder.Ascending;
-            rtbScript.AutoComplete.List.Sort(Sorter);
+            rtbScript.AutoComplete.List.Items.Sort(Sorter);
             rtbScript.CharAdded += new EventHandler<CharAddedEventArgs>(Document_CharAdded);
         }
 
@@ -264,7 +265,7 @@ namespace METAbolt
             if (word == string.Empty)
                 return;
 
-            if (rtbScript.AutoComplete.List.Count > 0)
+            if (rtbScript.AutoComplete.List.Items.Count > 0)
                 rtbScript.AutoComplete.Show();
             else
                 rtbScript.AutoComplete.Cancel();
@@ -845,14 +846,14 @@ namespace METAbolt
             if ("ini".Equals(language, StringComparison.OrdinalIgnoreCase))
             {
                 // Reset/set all styles and prepare scintilla for custom lexing
-                //IniLexer = true;
+                //this.IniLexer = true;
                 IniLexer.Init(rtbScript);
             }
             else
             {
                 // Use a built-in lexer and configuration
                 //ActiveDocument.IniLexer = false;
-                rtbScript.ConfigurationManager.Language = language;
+                
 
                 // Smart indenting...
                 if ("cs".Equals(language, StringComparison.OrdinalIgnoreCase))
@@ -861,6 +862,7 @@ namespace METAbolt
                 }
                 else if ("lsl".Equals(language, StringComparison.OrdinalIgnoreCase))
                 {
+                    rtbScript.ConfigurationManager.CustomLocation = Application.StartupPath.ToString() + "\\MBLSL.xml";
                     rtbScript.Indentation.SmartIndentType = SmartIndent.CPP;
                 }
                 else if ("js".Equals(language, StringComparison.OrdinalIgnoreCase))
@@ -871,6 +873,8 @@ namespace METAbolt
                 {
                     rtbScript.Indentation.SmartIndentType = SmartIndent.Simple;
                 }
+
+                rtbScript.ConfigurationManager.Language = language;
             }
 
             SetupSort();
