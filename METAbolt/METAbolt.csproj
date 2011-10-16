@@ -50,7 +50,7 @@
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.9.51.%2a</ApplicationVersion>
+    <ApplicationVersion>0.9.52.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -1109,9 +1109,6 @@
     <None Include="Resources\lsl_scripts_16.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow-up_16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\documents_32.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1452,22 +1449,23 @@
     <None Include="Resources\acchist.png" />
     <None Include="Resources\3d.png" />
     <Content Include="Resources\add_B16.png" />
-    <None Include="Resources\arrow_back.png" />
-    <None Include="Resources\arrow_forward.png" />
     <None Include="Resources\AI.png" />
     <None Include="Resources\amazon-icon.png" />
     <None Include="Resources\app.png" />
     <None Include="Resources\backup.png" />
-    <None Include="Resources\ban.png" />
-    <None Include="Resources\attachment.png" />
     <None Include="Resources\Alpha Dista Icon 82.png" />
     <None Include="Resources\bg.png" />
     <None Include="Resources\bg.gif" />
     <None Include="Resources\avs.png" />
-    <None Include="Resources\arrow_left.png" />
-    <None Include="Resources\arrow_right.png" />
     <None Include="Resources\ajax-loader.gif" />
     <None Include="Resources\ajax-loader_small.gif" />
+    <None Include="Resources\arrow_back.png" />
+    <None Include="Resources\arrow_forward.png" />
+    <None Include="Resources\arrow_left.png" />
+    <None Include="Resources\arrow_right.png" />
+    <None Include="Resources\arrow-up_16.png" />
+    <None Include="Resources\attachment.png" />
+    <None Include="Resources\ban.png" />
     <Content Include="Resources\build.png" />
     <None Include="Resources\Closed_Folder.png" />
     <None Include="Resources\ChairAnn.png" />
@@ -1500,20 +1498,19 @@
     <None Include="Resources\fly1.png" />
     <Content Include="Resources\follow_new.gif" />
     <Content Include="Resources\forsale.png" />
-    <Content Include="Resources\freeze.png" />
     <None Include="Resources\Google.bmp" />
     <None Include="Resources\Google_small.png" />
-    <None Include="Resources\friend.png" />
-    <None Include="Resources\Google_Translate.png" />
     <None Include="Resources\Friend Off.wav" />
     <None Include="Resources\Friend On.wav" />
+    <None Include="Resources\freeze.png" />
+    <None Include="Resources\friend.png" />
+    <None Include="Resources\Google_Translate.png" />
     <Content Include="Resources\goto.gif" />
     <None Include="Resources\Help_and_Support.png" />
     <None Include="Resources\Internet.png" />
     <None Include="Resources\Help_and_Support_16.png" />
     <None Include="Resources\home.png" />
     <None Include="Resources\lm.png" />
-    <None Include="Resources\im.png" />
     <None Include="Resources\help_i.png" />
     <None Include="Resources\increase_indent_i.png" />
     <None Include="Resources\Item received.WAV" />
@@ -1525,6 +1522,7 @@
     <None Include="Resources\green_orb_off.png" />
     <None Include="Resources\indicator_large.gif" />
     <None Include="Resources\indicator_small.gif" />
+    <None Include="Resources\im.png" />
     <Content Include="Resources\logo_watermark.png" />
     <None Include="Resources\METAbolt_icon.png" />
     <None Include="Resources\My_Documents.png" />
@@ -1535,8 +1533,6 @@
     <None Include="Resources\pref23png.png" />
     <None Include="Resources\play.png" />
     <None Include="Resources\objects.png" />
-    <None Include="Resources\metaplayer.png" />
-    <None Include="Resources\profile.png" />
     <None Include="Resources\plugin_icon.png" />
     <None Include="Resources\movie_track.png" />
     <None Include="Resources\new_page_i.png" />
@@ -1551,6 +1547,8 @@
     <None Include="Resources\LSL_Functions.txt" />
     <None Include="Resources\LSL_Functions_WOE.txt" />
     <None Include="Resources\Loop_s.png" />
+    <None Include="Resources\metaplayer.png" />
+    <None Include="Resources\profile.png" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />
@@ -1567,7 +1565,6 @@
     <None Include="Resources\Set_Program_Access_and_Defaults.png" />
     <None Include="Resources\Settings.png" />
     <None Include="Resources\System.png" />
-    <None Include="Resources\Search_32.png" />
     <None Include="Resources\Settings_32.png" />
     <None Include="Resources\Settings_16.png" />
     <None Include="Resources\System_16.png" />
@@ -1599,6 +1596,7 @@
     <None Include="Resources\teleport_s.png" />
     <None Include="Resources\touch_s.png" />
     <None Include="Resources\turn_s.png" />
+    <None Include="Resources\Search_32.png" />
     <Content Include="Resources\up.png" />
     <None Include="Resources\Url_History_16.png" />
     <None Include="Resources\window_edit.png" />

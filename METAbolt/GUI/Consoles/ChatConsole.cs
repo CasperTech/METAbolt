@@ -1851,11 +1851,6 @@ namespace METAbolt
 
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void rtbChat_TextChanged_1(object sender, EventArgs e)
         {
             ////int i = rtbChat.Lines.Length;
@@ -3692,6 +3687,11 @@ namespace METAbolt
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripDropDownButton1_Click_1(object sender, EventArgs e)
         {
 
         }
