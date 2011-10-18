@@ -53,12 +53,12 @@ namespace METAbolt
 
         private void btnGesture_Click(object sender, EventArgs e)
         {
-            client.Self.PlayGesture(item.UUID);
+            client.Self.PlayGesture(item.AssetUUID);
         }
 
         private void InventoryGestureConsol_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
