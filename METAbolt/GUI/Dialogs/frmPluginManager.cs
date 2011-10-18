@@ -52,7 +52,9 @@ namespace METAbolt
         {
             txtMavatar.Text = config.CurrentConfig.MasterAvatar.Trim();
             txtMObject.Text = config.CurrentConfig.MasterObject.Trim();
+
             checkBox12.Checked = config.CurrentConfig.EnforceLSLsecurity;
+            chkLSL.Checked = config.CurrentConfig.DisplayLSLcommands;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,7 +102,9 @@ namespace METAbolt
 
             config.CurrentConfig.MasterAvatar = txtMavatar.Text;
             config.CurrentConfig.MasterObject = txtMObject.Text;
+
             config.CurrentConfig.EnforceLSLsecurity = checkBox12.Checked;
+            config.CurrentConfig.DisplayLSLcommands = chkLSL.Checked;
         }
 
         private void button4_Click(object sender, EventArgs e)

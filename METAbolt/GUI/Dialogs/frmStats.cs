@@ -66,10 +66,11 @@ namespace METAbolt
             {
             lock (client.Network.Simulators)
             {
-                //for (int i = 0; i < client.Network.Simulators.Count; i++)
-                //{
                 Simulator sim = client.Network.Simulators[0];
-                label1.Text = sim.ToString();
+                label1.Text = "Name: " + sim.ToString();
+
+                label22.Text = "Version: " + sim.SimVersion;
+                label23.Text = "Location: " + sim.ColoLocation; 
                 
                 label2.Text = "Dilation: " + sim.Stats.Dilation;
                 progressBar1.Value = (int)(sim.Stats.Dilation * 10);
@@ -93,7 +94,6 @@ namespace METAbolt
                 if ((int)sim.Stats.ReceivedResends > progressBar5.Maximum)
                     progressBar5.Maximum = (int)sim.Stats.ReceivedResends;
                 progressBar5.Value = (int)sim.Stats.ReceivedResends;
-                //}
             }
 
             Simulator csim = client.Network.CurrentSim;

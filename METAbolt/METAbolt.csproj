@@ -1502,6 +1502,7 @@
     <Content Include="Resources\fly.png" />
     <None Include="Resources\fly1.png" />
     <Content Include="Resources\follow_new.gif" />
+    <None Include="Resources\follow_new.png" />
     <Content Include="Resources\forsale.png" />
     <None Include="Resources\Google.bmp" />
     <None Include="Resources\Google_small.png" />
@@ -1526,6 +1527,7 @@
     <None Include="Resources\green_orb.png" />
     <None Include="Resources\green_orb_off.png" />
     <None Include="Resources\im.png" />
+    <None Include="Resources\goto.png" />
     <Content Include="Resources\logo_watermark.png" />
     <None Include="Resources\METAbolt_icon.png" />
     <None Include="Resources\My_Documents.png" />

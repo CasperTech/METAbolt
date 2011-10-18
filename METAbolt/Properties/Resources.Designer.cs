@@ -67,6 +67,13 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _goto {
+            get {
+                object obj = ResourceManager.GetObject("_goto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap acchist {
             get {
                 object obj = ResourceManager.GetObject("acchist", resourceCulture);
@@ -451,6 +458,13 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap folder_open_16 {
             get {
                 object obj = ResourceManager.GetObject("folder_open_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap follow_new {
+            get {
+                object obj = ResourceManager.GetObject("follow_new", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
