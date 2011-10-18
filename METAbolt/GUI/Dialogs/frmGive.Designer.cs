@@ -75,7 +75,6 @@
             this.lvwFindFriends.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwFindFriends.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName});
-            this.lvwFindFriends.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwFindFriends.Location = new System.Drawing.Point(17, 87);
             this.lvwFindFriends.Name = "lvwFindFriends";
             this.lvwFindFriends.Size = new System.Drawing.Size(205, 185);
@@ -96,7 +95,6 @@
             this.lvwSelected.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwSelected.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.lvwSelected.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwSelected.Location = new System.Drawing.Point(255, 87);
             this.lvwSelected.Name = "lvwSelected";
             this.lvwSelected.Size = new System.Drawing.Size(205, 185);

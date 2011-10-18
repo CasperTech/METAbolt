@@ -302,6 +302,8 @@ namespace METAbolt
                 lblTraffic.Text = parcel.Dwell.ToString(CultureInfo.CurrentCulture);
                 txtMusic.Text = parcel.MusicURL;
 
+                lblLocalID.Text = parcel.LocalID.ToString();  
+
                 //pictureBox1.Image = OpenJPEGNet.OpenJPEG.DecodeToImage(parcel.Bitmap);  
 
                 if (parcel.ParcelPrimBonus != 1) txtPrimBonus.Text = "Region Object Bonus Factor: " + parcel.ParcelPrimBonus.ToString(CultureInfo.CurrentCulture);

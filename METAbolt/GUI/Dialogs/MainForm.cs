@@ -958,6 +958,20 @@ namespace METAbolt
                     elist.Add(extOn.Instance);
                 }
 
+                ToolStripDropDownItem mmgr;
+                mmgr = tsPlugins;
+
+                ToolStripSeparator sep = new ToolStripSeparator();
+                mmgr.DropDownItems.Add(sep);
+ 
+
+                ToolStripButton itm = new ToolStripButton();
+                //itm.Tag = extOn.Instance;
+                itm.Text = "Plugin Manager";
+                itm.Width = 14 * 6;
+                itm.Click += new System.EventHandler(AnyMenuItem_Click);
+                mmgr.DropDownItems.Add(itm);
+
                 this.instance.EList = elist;
 
                 //if (manager.Extensions.Count > 0)
@@ -990,6 +1004,12 @@ namespace METAbolt
         private void AnyMenuItem_Click(object sender, System.EventArgs e)
         {
             ToolStripItem mitem = (ToolStripItem)sender;
+
+            if (mitem.Text.ToLower() == "plugin manager")
+            {
+                (new frmPluginManager(instance)).Show();
+                return;
+            }
 
             IExtension extInstance = (IExtension)mitem.Tag;
 

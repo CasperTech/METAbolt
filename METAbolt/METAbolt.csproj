@@ -50,7 +50,7 @@
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.9.52.%2a</ApplicationVersion>
+    <ApplicationVersion>0.9.53.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -64,7 +64,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
@@ -636,6 +636,12 @@
     <Compile Include="GUI\Dialogs\frmMutes.Designer.cs">
       <DependentUpon>frmMutes.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Dialogs\frmPluginManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialogs\frmPluginManager.Designer.cs">
+      <DependentUpon>frmPluginManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dialogs\frmStats.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -971,6 +977,9 @@
     <EmbeddedResource Include="GUI\Dialogs\frmMutes.resx">
       <DependentUpon>frmMutes.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialogs\frmPluginManager.resx">
+      <DependentUpon>frmPluginManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmStats.resx">
       <DependentUpon>frmStats.cs</DependentUpon>
@@ -1457,8 +1466,6 @@
     <None Include="Resources\bg.png" />
     <None Include="Resources\bg.gif" />
     <None Include="Resources\avs.png" />
-    <None Include="Resources\ajax-loader.gif" />
-    <None Include="Resources\ajax-loader_small.gif" />
     <None Include="Resources\arrow_back.png" />
     <None Include="Resources\arrow_forward.png" />
     <None Include="Resources\arrow_left.png" />
@@ -1483,8 +1490,6 @@
     <None Include="Resources\c_se.png" />
     <None Include="Resources\c_sw.png" />
     <None Include="Resources\c_w.png" />
-    <None Include="Resources\chat_s.png" />
-    <None Include="Resources\clock_s.png" />
     <Content Include="Resources\damage.png" />
     <None Include="Resources\debug.png" />
     <None Include="Resources\donate2.png" />
@@ -1520,8 +1525,6 @@
     <None Include="Resources\history.png" />
     <None Include="Resources\green_orb.png" />
     <None Include="Resources\green_orb_off.png" />
-    <None Include="Resources\indicator_large.gif" />
-    <None Include="Resources\indicator_small.gif" />
     <None Include="Resources\im.png" />
     <Content Include="Resources\logo_watermark.png" />
     <None Include="Resources\METAbolt_icon.png" />
@@ -1545,8 +1548,6 @@
     <None Include="Resources\Mic.png" />
     <None Include="Resources\menu_bg.png" />
     <None Include="Resources\LSL_Functions.txt" />
-    <None Include="Resources\LSL_Functions_WOE.txt" />
-    <None Include="Resources\Loop_s.png" />
     <None Include="Resources\metaplayer.png" />
     <None Include="Resources\profile.png" />
     <Content Include="Resources\push.png" />
@@ -1591,20 +1592,14 @@
     <None Include="Resources\uncomment_i.png" />
     <None Include="Resources\undo_i.png" />
     <None Include="Resources\smoke_bg.png" />
-    <None Include="Resources\sit_s.png" />
-    <None Include="Resources\Stand_s.png" />
-    <None Include="Resources\teleport_s.png" />
-    <None Include="Resources\touch_s.png" />
-    <None Include="Resources\turn_s.png" />
     <None Include="Resources\Search_32.png" />
+    <None Include="Resources\turnto_i.png" />
     <Content Include="Resources\up.png" />
     <None Include="Resources\Url_History_16.png" />
     <None Include="Resources\window_edit.png" />
     <None Include="Resources\wear.png" />
     <None Include="Resources\wait18trans.gif" />
     <None Include="Resources\wait30trans.gif" />
-    <None Include="Resources\walk_s.png" />
-    <None Include="Resources\wear_s.png" />
     <Content Include="Resources\wmp.png" />
     <None Include="Resources\world.png" />
     <None Include="SciLexer.dll">

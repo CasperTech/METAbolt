@@ -112,6 +112,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label29 = new System.Windows.Forms.Label();
+            this.lblLocalID = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabOptions.SuspendLayout();
@@ -898,6 +900,8 @@
             // 
             this.tabGenral.AccessibleName = "General tab";
             this.tabGenral.BackColor = System.Drawing.Color.White;
+            this.tabGenral.Controls.Add(this.lblLocalID);
+            this.tabGenral.Controls.Add(this.label29);
             this.tabGenral.Controls.Add(this.btnBuy);
             this.tabGenral.Controls.Add(this.btnClose);
             this.tabGenral.Controls.Add(this.lblTraffic);
@@ -955,7 +959,7 @@
             this.lblTraffic.AccessibleDescription = "Totall traffic for the land";
             this.lblTraffic.AccessibleName = "Traffic";
             this.lblTraffic.AutoSize = true;
-            this.lblTraffic.Location = new System.Drawing.Point(70, 280);
+            this.lblTraffic.Location = new System.Drawing.Point(70, 263);
             this.lblTraffic.Name = "lblTraffic";
             this.lblTraffic.Size = new System.Drawing.Size(65, 13);
             this.lblTraffic.TabIndex = 7;
@@ -965,7 +969,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(9, 280);
+            this.label26.Location = new System.Drawing.Point(9, 263);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(40, 13);
             this.label26.TabIndex = 14;
@@ -976,7 +980,7 @@
             this.txtArea.AccessibleDescription = "The size of the land in meters";
             this.txtArea.AccessibleName = "Area";
             this.txtArea.AutoSize = true;
-            this.txtArea.Location = new System.Drawing.Point(70, 260);
+            this.txtArea.Location = new System.Drawing.Point(70, 243);
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(65, 13);
             this.txtArea.TabIndex = 6;
@@ -986,7 +990,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 260);
+            this.label4.Location = new System.Drawing.Point(9, 243);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 12;
@@ -997,7 +1001,7 @@
             this.txtClaimDate.AccessibleDescription = "Date this land was claimed by the owner";
             this.txtClaimDate.AccessibleName = "Claim date";
             this.txtClaimDate.AutoSize = true;
-            this.txtClaimDate.Location = new System.Drawing.Point(69, 242);
+            this.txtClaimDate.Location = new System.Drawing.Point(69, 225);
             this.txtClaimDate.Name = "txtClaimDate";
             this.txtClaimDate.Size = new System.Drawing.Size(65, 13);
             this.txtClaimDate.TabIndex = 5;
@@ -1007,7 +1011,7 @@
             // text4
             // 
             this.text4.AutoSize = true;
-            this.text4.Location = new System.Drawing.Point(8, 242);
+            this.text4.Location = new System.Drawing.Point(8, 225);
             this.text4.Name = "text4";
             this.text4.Size = new System.Drawing.Size(47, 13);
             this.text4.TabIndex = 10;
@@ -1138,6 +1142,27 @@
             this.tabControl1.Size = new System.Drawing.Size(445, 355);
             this.tabControl1.TabIndex = 0;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(9, 283);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(50, 13);
+            this.label29.TabIndex = 15;
+            this.label29.Text = "Local ID:";
+            // 
+            // lblLocalID
+            // 
+            this.lblLocalID.AccessibleDescription = "Totall traffic for the land";
+            this.lblLocalID.AccessibleName = "Traffic";
+            this.lblLocalID.AutoSize = true;
+            this.lblLocalID.Location = new System.Drawing.Point(69, 283);
+            this.lblLocalID.Name = "lblLocalID";
+            this.lblLocalID.Size = new System.Drawing.Size(65, 13);
+            this.lblLocalID.TabIndex = 16;
+            this.lblLocalID.Text = "spaceholder";
+            this.lblLocalID.UseMnemonic = false;
+            // 
             // frmAboutLand
             // 
             this.AccessibleDescription = "ABout Land window displays information about the land your avatar is on";
@@ -1258,5 +1283,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnBuy;
+        private System.Windows.Forms.Label lblLocalID;
+        private System.Windows.Forms.Label label29;
     }
 }
