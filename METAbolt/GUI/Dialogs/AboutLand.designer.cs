@@ -93,6 +93,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPrimBonus = new System.Windows.Forms.Label();
             this.tabGenral = new System.Windows.Forms.TabPage();
+            this.lblLocalID = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.btnBuy = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTraffic = new System.Windows.Forms.Label();
@@ -112,8 +114,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label29 = new System.Windows.Forms.Label();
-            this.lblLocalID = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabOptions.SuspendLayout();
@@ -928,6 +928,27 @@
             this.tabGenral.Text = "General";
             this.tabGenral.Click += new System.EventHandler(this.tabGenral_Click);
             // 
+            // lblLocalID
+            // 
+            this.lblLocalID.AccessibleDescription = "Totall traffic for the land";
+            this.lblLocalID.AccessibleName = "Traffic";
+            this.lblLocalID.AutoSize = true;
+            this.lblLocalID.Location = new System.Drawing.Point(70, 225);
+            this.lblLocalID.Name = "lblLocalID";
+            this.lblLocalID.Size = new System.Drawing.Size(65, 13);
+            this.lblLocalID.TabIndex = 16;
+            this.lblLocalID.Text = "spaceholder";
+            this.lblLocalID.UseMnemonic = false;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(10, 225);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(50, 13);
+            this.label29.TabIndex = 15;
+            this.label29.Text = "Local ID:";
+            // 
             // btnBuy
             // 
             this.btnBuy.AccessibleName = "Buy Parcel";
@@ -959,7 +980,7 @@
             this.lblTraffic.AccessibleDescription = "Totall traffic for the land";
             this.lblTraffic.AccessibleName = "Traffic";
             this.lblTraffic.AutoSize = true;
-            this.lblTraffic.Location = new System.Drawing.Point(70, 263);
+            this.lblTraffic.Location = new System.Drawing.Point(69, 283);
             this.lblTraffic.Name = "lblTraffic";
             this.lblTraffic.Size = new System.Drawing.Size(65, 13);
             this.lblTraffic.TabIndex = 7;
@@ -969,7 +990,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(9, 263);
+            this.label26.Location = new System.Drawing.Point(10, 283);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(40, 13);
             this.label26.TabIndex = 14;
@@ -980,7 +1001,7 @@
             this.txtArea.AccessibleDescription = "The size of the land in meters";
             this.txtArea.AccessibleName = "Area";
             this.txtArea.AutoSize = true;
-            this.txtArea.Location = new System.Drawing.Point(70, 243);
+            this.txtArea.Location = new System.Drawing.Point(69, 263);
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(65, 13);
             this.txtArea.TabIndex = 6;
@@ -990,7 +1011,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 243);
+            this.label4.Location = new System.Drawing.Point(10, 263);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 12;
@@ -1001,7 +1022,7 @@
             this.txtClaimDate.AccessibleDescription = "Date this land was claimed by the owner";
             this.txtClaimDate.AccessibleName = "Claim date";
             this.txtClaimDate.AutoSize = true;
-            this.txtClaimDate.Location = new System.Drawing.Point(69, 225);
+            this.txtClaimDate.Location = new System.Drawing.Point(68, 245);
             this.txtClaimDate.Name = "txtClaimDate";
             this.txtClaimDate.Size = new System.Drawing.Size(65, 13);
             this.txtClaimDate.TabIndex = 5;
@@ -1011,7 +1032,7 @@
             // text4
             // 
             this.text4.AutoSize = true;
-            this.text4.Location = new System.Drawing.Point(8, 225);
+            this.text4.Location = new System.Drawing.Point(9, 245);
             this.text4.Name = "text4";
             this.text4.Size = new System.Drawing.Size(47, 13);
             this.text4.TabIndex = 10;
@@ -1141,27 +1162,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(445, 355);
             this.tabControl1.TabIndex = 0;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(9, 283);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(50, 13);
-            this.label29.TabIndex = 15;
-            this.label29.Text = "Local ID:";
-            // 
-            // lblLocalID
-            // 
-            this.lblLocalID.AccessibleDescription = "Totall traffic for the land";
-            this.lblLocalID.AccessibleName = "Traffic";
-            this.lblLocalID.AutoSize = true;
-            this.lblLocalID.Location = new System.Drawing.Point(69, 283);
-            this.lblLocalID.Name = "lblLocalID";
-            this.lblLocalID.Size = new System.Drawing.Size(65, 13);
-            this.lblLocalID.TabIndex = 16;
-            this.lblLocalID.Text = "spaceholder";
-            this.lblLocalID.UseMnemonic = false;
             // 
             // frmAboutLand
             // 

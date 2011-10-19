@@ -808,7 +808,13 @@ namespace METAbolt
                             OpenTK.Graphics.OpenGL.PixelType.UnsignedByte,
                             bitmapData.Scan0);
 
-                        if (!instance.Config.CurrentConfig.DisableMipmaps)
+                            OpenTK.Graphics.IGraphicsContextInternal intcontext = glControl.Context as OpenTK.Graphics.IGraphicsContextInternal;
+
+                            // Autio detect if mipmaps supported
+                            bool ismipmapenabled = intcontext.GetAddress("glGenerateMipmap") != IntPtr.Zero;
+
+                        //if (!instance.Config.CurrentConfig.DisableMipmaps)
+                        if (ismipmapenabled)
                         {
                             // Mipmaps are not supported on older graphics cards
                             OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.LinearMipmapLinear);
