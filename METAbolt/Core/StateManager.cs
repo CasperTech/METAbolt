@@ -96,6 +96,7 @@ namespace METAbolt
         private Color4 ccolur = new Color4(0, 0, 255, 255);
         //private UUID lookattarget = UUID.Zero; 
         private int unreadims = 0;
+        private bool foldercvd = false;
 
         public StateManager(METAboltInstance instance)
         {
@@ -753,6 +754,12 @@ namespace METAbolt
         {
             get { return unreadims; }
             set { unreadims = value; }
+        }
+
+        public bool FolderRcvd
+        {
+            get { return foldercvd; }
+            set { foldercvd = value; }
         }
     }
 }

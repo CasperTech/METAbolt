@@ -33,7 +33,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using System.Media; 
+using System.Media;
+using System.Threading;
+using ExceptionReporting;
 
 namespace METAbolt
 {
@@ -46,10 +48,23 @@ namespace METAbolt
         private bool diainv = false;
         private AssetType invtype = AssetType.Unknown;
         private bool printed = false;
+        private ExceptionReporter reporter = new ExceptionReporter();
+
+        internal class ThreadExceptionHandler
+        {
+            public void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
+            {
+                ExceptionReporter reporter = new ExceptionReporter();
+                reporter.Show(e.Exception);
+            }
+        }
 
         public frmInvOffered(METAboltInstance instance, InstantMessage e, UUID objectID, AssetType type)
         {
             InitializeComponent();
+
+            SetExceptionReporter();
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             this.instance = instance;
             client = this.instance.Client;
@@ -90,6 +105,28 @@ namespace METAbolt
             label1.Text = "This item will be auto accepted @ " + dte.ToShortTimeString();   
         }
 
+        private void SetExceptionReporter()
+        {
+            reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
+            reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
+            reporter.Config.CompanyName = "METAbolt";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
+            reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
+            reporter.Config.AppName = "METAbolt";
+            reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
+            reporter.Config.BackgroundColor = Color.White;
+            reporter.Config.ShowButtonIcons = false;
+            reporter.Config.ShowLessMoreDetailButton = true;
+            reporter.Config.TakeScreenshot = true;
+            reporter.Config.ShowContactTab = true;
+            reporter.Config.ShowExceptionsTab = true;
+            reporter.Config.ShowFullDetail = true;
+            reporter.Config.ShowGeneralTab = true;
+            reporter.Config.ShowSysInfoTab = true;
+            reporter.Config.TitleText = "METAbolt Exception Reporter";
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             client.Inventory.RemoveItem(objectID);
@@ -115,54 +152,77 @@ namespace METAbolt
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            UUID invfolder = client.Inventory.FindFolderForType(invtype);
-
-            if (!diainv)
+            try
             {
-                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes());   //  new byte[0]); // Accept Inventory Offer
+                UUID invfolder = client.Inventory.FindFolderForType(invtype);
+
+                if (!diainv)
+                {
+                    client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes());   //  new byte[0]); // Accept Inventory Offer
+                }
+                else
+                {
+                    client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes()); // Accept TaskInventory Offer
+                } 
+
+                client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
+
+                if (invtype == AssetType.Folder)
+                {
+                    instance.State.FolderRcvd = true;
+                }
+                else
+                {
+                    instance.State.FolderRcvd = false;
+                }
+
+                timer1.Stop();
+                timer1.Enabled = false;
             }
-            else
+            catch (Exception ex)
             {
-                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes()); // Accept TaskInventory Offer
+                MessageBox.Show("An error has been encountered but the item\nshould have been saved into your inventory:\n" + ex.Message, "METAbolt");  
             }
-
-            client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
-
-            timer1.Stop();
-            timer1.Enabled = false;
             
             this.Close();
         }
 
         private void btnDecline_Click(object sender, EventArgs e)
         {
-            UUID invfolder = client.Inventory.FindFolderForType(invtype);
-
-            if (!diainv)
+            try
             {
-                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
+                UUID invfolder = client.Inventory.FindFolderForType(invtype);
 
-                try
+                if (!diainv)
                 {
-                    //client.Inventory.RemoveItem(objectID);
-                    client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
+                    client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
 
-                    InventoryBase item = client.Inventory.Store.Items[objectID].Data;
-                    UUID content = client.Inventory.FindFolderForType(AssetType.TrashFolder);
+                    try
+                    {
+                        //client.Inventory.RemoveItem(objectID);
+                        client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
 
-                    InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[content].Data;
+                        InventoryBase item = client.Inventory.Store.Items[objectID].Data;
+                        UUID content = client.Inventory.FindFolderForType(AssetType.TrashFolder);
 
-                    client.Inventory.Move(item, folder, item.Name);
+                        InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[content].Data;
+
+                        client.Inventory.Move(item, folder, item.Name);
+                    }
+                    catch { ; }
                 }
-                catch { ; }
-            }
-            else
-            {
-                client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
-            }
+                else
+                {
+                    client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
+                }
 
-            timer1.Stop();
-            timer1.Enabled = false;
+                timer1.Stop();
+                timer1.Enabled = false;
+            }
+            catch
+            {
+                ;                
+            }
 
             this.Close();
         }

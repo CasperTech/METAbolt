@@ -227,10 +227,22 @@ namespace METAbolt
                 return;
             }
 
-            ////addeditem = item.UUID;
+            //////addeditem = item.UUID;
             //UUID fldr = client.Inventory.Store.RootFolder.UUID;
 
+            //if (e.Obj.ParentUUID != UUID.Zero)
+            //{
+            //    fldr = e.Obj.ParentUUID;
+            //}
+
             //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
+
+            if (!instance.State.FolderRcvd)
+            {
+                return;
+            }
+
+            instance.State.FolderRcvd = false;
 
             //RefreshInventory();
 
