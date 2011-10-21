@@ -16,6 +16,7 @@ namespace METAbolt
         private ConfigManager config;
         private bool pluginschanged = false;
         private string plugins = string.Empty;
+        private bool ismbapiloaded = false;
 
         public frmPluginManager(METAboltInstance instance)
         {
@@ -46,6 +47,22 @@ namespace METAbolt
                     }
                 }
             }
+
+            IExtension result = this.instance.EList.Find(
+            delegate(IExtension fn)
+            {
+                return fn.Title == "MB_LSLAPI";
+            }
+            );
+
+            if (result != null)
+            {
+                ismbapiloaded = true;
+            }
+            else
+            {
+                ismbapiloaded = false;
+            }
         }
 
         private void frmPluginManager_Load(object sender, EventArgs e)
@@ -55,6 +72,8 @@ namespace METAbolt
 
             checkBox12.Checked = config.CurrentConfig.EnforceLSLsecurity;
             chkLSL.Checked = config.CurrentConfig.DisplayLSLcommands;
+
+            groupBox5.Enabled = ismbapiloaded;
         }
 
         private void button1_Click(object sender, EventArgs e)
