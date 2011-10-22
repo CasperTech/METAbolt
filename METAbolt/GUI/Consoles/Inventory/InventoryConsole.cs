@@ -237,23 +237,23 @@ namespace METAbolt
 
             //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
 
-            if (!instance.State.FolderRcvd)
-            {
-                return;
-            }
+            //if (!instance.State.FolderRcvd)
+            //{
+            //    return;
+            //}
 
-            instance.State.FolderRcvd = false;
+            //instance.State.FolderRcvd = false;
 
-            //RefreshInventory();
+            ////RefreshInventory();
 
-            treeView1.Nodes.Clear();
+            //treeView1.Nodes.Clear();
 
-            treeSorter.CurrentSortName = SortBy;
-            treeView1.TreeViewNodeSorter = treeSorter;
+            //treeSorter.CurrentSortName = SortBy;
+            //treeView1.TreeViewNodeSorter = treeSorter;
 
-            ((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
+            //((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
 
-            GetRoot();
+            //GetRoot();
         }
 
         private void Inventory_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
@@ -347,7 +347,7 @@ namespace METAbolt
             {
                 client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                 client.Inventory.ItemReceived += new EventHandler<ItemReceivedEventArgs>(Inventory_OnItemReceived);
-                //client.Inventory.InventoryObjectOffered += new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_InventoryObjectOffered);
+                client.Inventory.InventoryObjectOffered += new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_InventoryObjectOffered);
                 client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
                 client.Inventory.Store.InventoryObjectRemoved += new EventHandler<InventoryObjectRemovedEventArgs>(Store_OnInventoryObjectRemoved);
                 client.Inventory.Store.InventoryObjectAdded += new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
@@ -381,10 +381,28 @@ namespace METAbolt
             }
         }
 
-        //private void Inventory_InventoryObjectOffered(object sender, InventoryObjectOfferedEventArgs e)
-        //{
-        //    RefreshInventory();
-        //}
+        private void Inventory_InventoryObjectOffered(object sender, InventoryObjectOfferedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    Inventory_InventoryObjectOffered(sender, e);
+                }));
+
+                return;
+            }
+
+            if (!instance.State.FolderRcvd)
+            {
+                RefreshInventory();
+                return;
+            }
+
+            instance.State.FolderRcvd = false;
+
+            ReloadInventory();
+        }
 
         private void InventoryConsole_Disposed(object sender, EventArgs e)
         {
@@ -1158,6 +1176,18 @@ namespace METAbolt
             }
         }
 
+        private void ReloadInventory()
+        {
+            treeView1.Nodes.Clear();
+
+            treeSorter.CurrentSortName = SortBy;
+            treeView1.TreeViewNodeSorter = treeSorter;
+
+            ((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
+
+            GetRoot();
+        }
+
         public void SortInventory()
         {
             if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { SortInventory(); });
@@ -1890,6 +1920,11 @@ namespace METAbolt
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             RefreshInventory();
+        }
+
+        private void reloadInventoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReloadInventory();
         }
     }
 }

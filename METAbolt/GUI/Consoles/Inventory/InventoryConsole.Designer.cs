@@ -96,6 +96,7 @@ namespace METAbolt
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.reloadInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -409,21 +410,21 @@ namespace METAbolt
             // 
             this.tmnuNewFolder.Image = global::METAbolt.Properties.Resources.folder_closed_16;
             this.tmnuNewFolder.Name = "tmnuNewFolder";
-            this.tmnuNewFolder.Size = new System.Drawing.Size(152, 22);
+            this.tmnuNewFolder.Size = new System.Drawing.Size(127, 22);
             this.tmnuNewFolder.Text = "Folder";
             this.tmnuNewFolder.Click += new System.EventHandler(this.tmnuNewFolder_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 6);
             this.toolStripMenuItem1.Visible = false;
             // 
             // tmnuNewLandmark
             // 
             this.tmnuNewLandmark.Enabled = false;
             this.tmnuNewLandmark.Name = "tmnuNewLandmark";
-            this.tmnuNewLandmark.Size = new System.Drawing.Size(152, 22);
+            this.tmnuNewLandmark.Size = new System.Drawing.Size(127, 22);
             this.tmnuNewLandmark.Text = "Landmark";
             this.tmnuNewLandmark.Visible = false;
             // 
@@ -431,7 +432,7 @@ namespace METAbolt
             // 
             this.tmnuNewNotecard.Image = global::METAbolt.Properties.Resources.documents_16;
             this.tmnuNewNotecard.Name = "tmnuNewNotecard";
-            this.tmnuNewNotecard.Size = new System.Drawing.Size(152, 22);
+            this.tmnuNewNotecard.Size = new System.Drawing.Size(127, 22);
             this.tmnuNewNotecard.Text = "Notecard";
             this.tmnuNewNotecard.Click += new System.EventHandler(this.tmnuNewNotecard_Click);
             // 
@@ -439,14 +440,14 @@ namespace METAbolt
             // 
             this.tmnuNewScript.Image = global::METAbolt.Properties.Resources.lsl_scripts_16;
             this.tmnuNewScript.Name = "tmnuNewScript";
-            this.tmnuNewScript.Size = new System.Drawing.Size(152, 22);
+            this.tmnuNewScript.Size = new System.Drawing.Size(127, 22);
             this.tmnuNewScript.Text = "Script";
             this.tmnuNewScript.Click += new System.EventHandler(this.tmnuNewScript_Click);
             // 
             // snapshotToolStripMenuItem
             // 
             this.snapshotToolStripMenuItem.Name = "snapshotToolStripMenuItem";
-            this.snapshotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.snapshotToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.snapshotToolStripMenuItem.Text = "Snapshot";
             this.snapshotToolStripMenuItem.Visible = false;
             this.snapshotToolStripMenuItem.Click += new System.EventHandler(this.snapshotToolStripMenuItem_Click);
@@ -470,7 +471,8 @@ namespace METAbolt
             this.toolStripSeparator2,
             this.expandInventoryToolStripMenuItem,
             this.unExpandInventoryToolStripMenuItem,
-            this.refreshFolderToolStripMenuItem});
+            this.refreshFolderToolStripMenuItem,
+            this.reloadInventoryToolStripMenuItem});
             this.tbtnOrganize.Enabled = false;
             this.tbtnOrganize.Image = global::METAbolt.Properties.Resources.System_16;
             this.tbtnOrganize.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -785,6 +787,14 @@ namespace METAbolt
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // reloadInventoryToolStripMenuItem
+            // 
+            this.reloadInventoryToolStripMenuItem.Name = "reloadInventoryToolStripMenuItem";
+            this.reloadInventoryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.reloadInventoryToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.reloadInventoryToolStripMenuItem.Text = "Reload inventory";
+            this.reloadInventoryToolStripMenuItem.Click += new System.EventHandler(this.reloadInventoryToolStripMenuItem_Click);
+            // 
             // InventoryConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -878,5 +888,6 @@ namespace METAbolt
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem reloadInventoryToolStripMenuItem;
     }
 }

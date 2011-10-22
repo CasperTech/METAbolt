@@ -74,6 +74,15 @@ namespace METAbolt
 
             invtype = type;
 
+            if (invtype == AssetType.Folder)
+            {
+                instance.State.FolderRcvd = true;
+            }
+            else
+            {
+                instance.State.FolderRcvd = false;
+            }
+
             if (e.Dialog == InstantMessageDialog.TaskInventoryOffered)
             {
                 diainv = true;
@@ -154,7 +163,21 @@ namespace METAbolt
         {
             try
             {
-                UUID invfolder = client.Inventory.FindFolderForType(invtype);
+                UUID invfolder = UUID.Zero;
+  
+                if (invtype != AssetType.Unknown)
+                {
+                    if (invtype == AssetType.Folder)
+                    {
+                        instance.State.FolderRcvd = true;
+                        invfolder = client.Inventory.Store.RootFolder.UUID;
+                    }
+                    else
+                    {
+                        instance.State.FolderRcvd = false;
+                        invfolder = client.Inventory.FindFolderForType(invtype);
+                    }
+                }
 
                 if (!diainv)
                 {
@@ -163,18 +186,9 @@ namespace METAbolt
                 else
                 {
                     client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes()); // Accept TaskInventory Offer
-                } 
+                }
 
                 client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
-
-                if (invtype == AssetType.Folder)
-                {
-                    instance.State.FolderRcvd = true;
-                }
-                else
-                {
-                    instance.State.FolderRcvd = false;
-                }
 
                 timer1.Stop();
                 timer1.Enabled = false;
@@ -207,7 +221,14 @@ namespace METAbolt
 
                         InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[content].Data;
 
-                        client.Inventory.Move(item, folder, item.Name);
+                        if (invtype != AssetType.Folder)
+                        {
+                            client.Inventory.Move(item, folder, item.Name);
+                        }
+                        else
+                        {
+                            client.Inventory.MoveFolder(objectID, content, item.Name);
+                        }
                     }
                     catch { ; }
                 }
