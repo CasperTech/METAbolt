@@ -163,8 +163,10 @@ namespace METAbolt
                 }
             }
 
-            lvwFindFriends.Sort();
+            //lvwFindFriends.Sort();
             lvwFindFriends.EndUpdate();
+
+            pic1.Visible = false;
 
             btnGive.Enabled = true;
             btnFind.Enabled = true;
@@ -195,15 +197,19 @@ namespace METAbolt
             if (friendslist.Count > 0)
             {
                 lvwFindFriends.BeginUpdate();
-                lvwFindFriends.Items.Clear();
+                //lvwFindFriends.Items.Clear();
 
                 foreach (FriendInfo friend in friendslist)
                 {
+                    //ListViewItem lvi = new ListViewItem();
                     ListViewItem Item = lvwFindFriends.Items.Add(friend.Name);
+                    //Item.Text = friend.Name; 
                     Item.Tag = (UUID)friend.UUID;
+
+                    //lvwFindFriends.Items.Add(Item);
                 }
 
-                lvwFindFriends.Sort();
+                //lvwFindFriends.Sort();
                 lvwFindFriends.EndUpdate();
             }
         }
@@ -332,6 +338,8 @@ namespace METAbolt
         {
             try
             {
+                lvwFindFriends.Items.Clear();
+                pic1.Visible = true;
                 queryID = client.Directory.StartPeopleSearch(textBox1.Text, 0);
             }
             catch
@@ -441,7 +449,7 @@ namespace METAbolt
             // Select all text only if the mouse isn't down.    
             if (MouseButtons == MouseButtons.None)    
             {        
-                this.textBox1.SelectAll();    
+                this.textBox1.SelectAll();
             }
         }
 
@@ -477,6 +485,8 @@ namespace METAbolt
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
+            lvwFindFriends.Items.Clear();
+
             if (!groupmode)
             {
                 if (e.TabPageIndex == 2)
@@ -487,10 +497,6 @@ namespace METAbolt
                 {
                     UpdateGroups();
                 }
-                else
-                {
-                    lvwFindFriends.Items.Clear();
-                }
             }
             else
             {
@@ -498,20 +504,17 @@ namespace METAbolt
                 {
                     UpdateFriendslist();
                 }
-                else
-                {
-                    lvwFindFriends.Items.Clear();
-                }
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lvwFindFriends.Items.Clear();
+
             Group group = (Group)comboBox1.Items[comboBox1.SelectedIndex];
             client.Groups.RequestGroupMembers(group.ID);
 
-            lvwFindFriends.Items.Clear();
-            pic1.Visible = true;     
+            pic1.Visible = true;
         }
 
         private void AvatarNamesHandler(object sender, UUIDNameReplyEventArgs e)
@@ -576,7 +579,7 @@ namespace METAbolt
                     lvwFindFriends.Items.Add(lvi);
                 }
 
-                lvwFindFriends.Sort();
+                //lvwFindFriends.Sort();
                 lvwFindFriends.EndUpdate();
 
                 pic1.Visible = false; 
