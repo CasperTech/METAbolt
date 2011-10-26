@@ -70,6 +70,7 @@ namespace METAbolt
         private TreeNode sellectednode = new TreeNode();
         private InventoryFolder rootFolder;
         private TreeNode rootNode;
+        private TreeNode selectednode = null;
 
         internal class ThreadExceptionHandler
         {
@@ -244,7 +245,7 @@ namespace METAbolt
 
             //instance.State.FolderRcvd = false;
 
-            ////RefreshInventory();
+            //RefreshInventory();
 
             //treeView1.Nodes.Clear();
 
@@ -336,6 +337,13 @@ namespace METAbolt
                         //treeViewElement.LoadChildren();
                         TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
                         treeViewWalker.LoadInventory(instance, folderID);
+
+                        if (selectednode != null)
+                        {
+                            treeView1.HideSelection = false;
+                            treeView1.SelectedNode = selectednode;
+                            treeView1.TopNode.EnsureVisible();
+                        }
                     });
                 });
             }
@@ -1776,6 +1784,8 @@ namespace METAbolt
             if (e.Node.Nodes[0].Tag == null)
             {
                 InventoryFolder folder = (InventoryFolder)client.Inventory.Store[new UUID(e.Node.Name)];    //(InventoryFolder)e.Node.Tag;
+
+                selectednode = e.Node;
 
                 folderproc = folder.UUID;
 
