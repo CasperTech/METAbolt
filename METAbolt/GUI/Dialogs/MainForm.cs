@@ -921,6 +921,9 @@ namespace METAbolt
 
             //We need to add our library with the interfaces to the list
             manager.SourceFileReferencedAssemblies.Add("METAxCommon.dll");
+            manager.SourceFileReferencedAssemblies.Add("METAbolt.exe");
+            manager.SourceFileReferencedAssemblies.Add("OpenMetaverse.dll");
+            manager.SourceFileReferencedAssemblies.Add("SLNetworkComm.dll");
 
             try
             {
