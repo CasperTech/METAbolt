@@ -76,6 +76,7 @@ namespace METAbolt
             this.expandInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unExpandInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbtnSort = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -96,7 +97,7 @@ namespace METAbolt
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.reloadInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createFolderOnRootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -151,6 +152,7 @@ namespace METAbolt
             this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
             this.treeView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView1_ItemDrag);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             this.treeView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView1_DragEnter);
             this.treeView1.DragOver += new System.Windows.Forms.DragEventHandler(this.treeView1_DragOver);
@@ -394,6 +396,7 @@ namespace METAbolt
             this.tbtnNew.AutoToolTip = false;
             this.tbtnNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmnuNewFolder,
+            this.createFolderOnRootToolStripMenuItem,
             this.toolStripMenuItem1,
             this.tmnuNewLandmark,
             this.tmnuNewNotecard,
@@ -410,21 +413,20 @@ namespace METAbolt
             // 
             this.tmnuNewFolder.Image = global::METAbolt.Properties.Resources.folder_closed_16;
             this.tmnuNewFolder.Name = "tmnuNewFolder";
-            this.tmnuNewFolder.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewFolder.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewFolder.Text = "Folder";
             this.tmnuNewFolder.Click += new System.EventHandler(this.tmnuNewFolder_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 6);
-            this.toolStripMenuItem1.Visible = false;
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(183, 6);
             // 
             // tmnuNewLandmark
             // 
             this.tmnuNewLandmark.Enabled = false;
             this.tmnuNewLandmark.Name = "tmnuNewLandmark";
-            this.tmnuNewLandmark.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewLandmark.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewLandmark.Text = "Landmark";
             this.tmnuNewLandmark.Visible = false;
             // 
@@ -432,7 +434,7 @@ namespace METAbolt
             // 
             this.tmnuNewNotecard.Image = global::METAbolt.Properties.Resources.documents_16;
             this.tmnuNewNotecard.Name = "tmnuNewNotecard";
-            this.tmnuNewNotecard.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewNotecard.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewNotecard.Text = "Notecard";
             this.tmnuNewNotecard.Click += new System.EventHandler(this.tmnuNewNotecard_Click);
             // 
@@ -440,14 +442,14 @@ namespace METAbolt
             // 
             this.tmnuNewScript.Image = global::METAbolt.Properties.Resources.lsl_scripts_16;
             this.tmnuNewScript.Name = "tmnuNewScript";
-            this.tmnuNewScript.Size = new System.Drawing.Size(127, 22);
+            this.tmnuNewScript.Size = new System.Drawing.Size(152, 22);
             this.tmnuNewScript.Text = "Script";
             this.tmnuNewScript.Click += new System.EventHandler(this.tmnuNewScript_Click);
             // 
             // snapshotToolStripMenuItem
             // 
             this.snapshotToolStripMenuItem.Name = "snapshotToolStripMenuItem";
-            this.snapshotToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.snapshotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.snapshotToolStripMenuItem.Text = "Snapshot";
             this.snapshotToolStripMenuItem.Visible = false;
             this.snapshotToolStripMenuItem.Click += new System.EventHandler(this.snapshotToolStripMenuItem_Click);
@@ -561,6 +563,14 @@ namespace METAbolt
             this.refreshFolderToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.refreshFolderToolStripMenuItem.Text = "Refresh Inventory";
             this.refreshFolderToolStripMenuItem.Click += new System.EventHandler(this.refreshFolderToolStripMenuItem_Click);
+            // 
+            // reloadInventoryToolStripMenuItem
+            // 
+            this.reloadInventoryToolStripMenuItem.Name = "reloadInventoryToolStripMenuItem";
+            this.reloadInventoryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.reloadInventoryToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.reloadInventoryToolStripMenuItem.Text = "Reload inventory";
+            this.reloadInventoryToolStripMenuItem.Click += new System.EventHandler(this.reloadInventoryToolStripMenuItem_Click);
             // 
             // tbtnSort
             // 
@@ -787,13 +797,12 @@ namespace METAbolt
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // reloadInventoryToolStripMenuItem
+            // createFolderOnRootToolStripMenuItem
             // 
-            this.reloadInventoryToolStripMenuItem.Name = "reloadInventoryToolStripMenuItem";
-            this.reloadInventoryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.reloadInventoryToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.reloadInventoryToolStripMenuItem.Text = "Reload inventory";
-            this.reloadInventoryToolStripMenuItem.Click += new System.EventHandler(this.reloadInventoryToolStripMenuItem_Click);
+            this.createFolderOnRootToolStripMenuItem.Name = "createFolderOnRootToolStripMenuItem";
+            this.createFolderOnRootToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.createFolderOnRootToolStripMenuItem.Text = "Folder Under Root";
+            this.createFolderOnRootToolStripMenuItem.Click += new System.EventHandler(this.createFolderOnRootToolStripMenuItem_Click);
             // 
             // InventoryConsole
             // 
@@ -889,5 +898,6 @@ namespace METAbolt
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem reloadInventoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createFolderOnRootToolStripMenuItem;
     }
 }

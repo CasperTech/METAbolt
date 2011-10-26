@@ -71,6 +71,7 @@ namespace METAbolt
         private InventoryFolder rootFolder;
         private TreeNode rootNode;
         private TreeNode selectednode = null;
+        //private bool nodecol = false;
 
         internal class ThreadExceptionHandler
         {
@@ -197,6 +198,8 @@ namespace METAbolt
 
             try
             {
+                //nodecol = false;
+
                 //addeditem = item.UUID;
                 UUID fldr = client.Inventory.Store.RootFolder.UUID;
 
@@ -212,6 +215,7 @@ namespace METAbolt
 
         private void Store_OnInventoryObjectRemoved(object sender, InventoryObjectRemovedEventArgs e)
         {
+            //nodecol = false;
             RefreshInventory();
         }
 
@@ -244,6 +248,8 @@ namespace METAbolt
             //}
 
             //instance.State.FolderRcvd = false;
+
+            //if (nodecol) return;
 
             //RefreshInventory();
 
@@ -330,20 +336,29 @@ namespace METAbolt
             {
                 if (searching) return;
 
+                if (folderID == UUID.Zero || folderID == null)
+                {
+                    folderID = client.Inventory.Store.RootFolder.UUID;
+                }
+
                 ThreadPool.QueueUserWorkItem(delegate
                 {
                     treeView1.BeginInvoke((ThreadStart)delegate
                     {
-                        //treeViewElement.LoadChildren();
-                        TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
-                        treeViewWalker.LoadInventory(instance, folderID);
-
-                        if (selectednode != null)
+                        try
                         {
-                            treeView1.HideSelection = false;
-                            treeView1.SelectedNode = selectednode;
-                            treeView1.TopNode.EnsureVisible();
+                            //treeViewElement.LoadChildren();
+                            TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
+                            treeViewWalker.LoadInventory(instance, folderID);
+
+                            if (selectednode != null)
+                            {
+                                treeView1.HideSelection = false;
+                                treeView1.SelectedNode = selectednode;
+                                treeView1.TopNode.EnsureVisible();
+                            }
                         }
+                        catch { ; }
                     });
                 });
             }
@@ -522,6 +537,8 @@ namespace METAbolt
 
             if (treeView1.SelectedNode == null) return;
 
+            //nodecol = false;
+
             DeleteItem(treeView1.SelectedNode);
         }
 
@@ -584,6 +601,10 @@ namespace METAbolt
 
             if (treeView1.SelectedNode == null) return;
 
+            //nodecol = true;
+
+            selectednode = treeView1.SelectedNode;
+
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
 
             if (io is InventoryFolder)
@@ -612,14 +633,18 @@ namespace METAbolt
 
                 if (treeView1.SelectedNode == null) return;
 
+                //nodecol = true;
+
+                selectednode = treeView1.SelectedNode;
+
                 clip.PasteTo(treeView1.SelectedNode);
                 tmnuPaste.Enabled = false;
-
-                RefreshInventory();
 
                 //iscut = false;
                 tmnuPaste.Enabled = false;
                 pasteMenu.Enabled = false;
+
+                RefreshInventory();
             }
             catch (Exception ex)
             {
@@ -643,6 +668,8 @@ namespace METAbolt
 
                 return;
             }
+
+            //nodecol = false;
 
             if (treeView1.SelectedNode.Tag is InventoryFolder)
             {
@@ -802,6 +829,7 @@ namespace METAbolt
             string newNotecardDescription = String.Format("{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
             string newNotecardContent = string.Empty;
 
+            //nodecol = false;
 
             if (treeView1.SelectedNode == null)
             {
@@ -826,6 +854,8 @@ namespace METAbolt
             if (node == null) return;
 
             InventoryFolder folder = null;
+
+            //nodecol = false;
 
             if (node.Text == "(empty)")
             {
@@ -911,6 +941,8 @@ namespace METAbolt
             if (this.instance.State.CurrentTab != "&Inventory") return;
 
             if (treeView1.SelectedNode == null) return;
+
+            //nodecol = false;
 
             clip.SetClipboardNode(treeView1.SelectedNode, false);
             tmnuPaste.Enabled = true;
@@ -1151,29 +1183,32 @@ namespace METAbolt
             else
             {
                 TreeNode node = treeView1.SelectedNode;
-
-                if (node == null) return;
-
-                if (node.Text == "(empty)") return;
-
                 InventoryFolder folder = null;
-                //TreeNode folderNode = null;
 
-                if (node.Tag is InventoryFolder)
+                if (node == null)
                 {
-                    folder = (InventoryFolder)node.Tag;
-                    //folderNode = node;
+                    folder = client.Inventory.Store.RootFolder;     
                 }
-                else if (node.Tag is InventoryItem)
+                else
                 {
-                    folder = (InventoryFolder)node.Parent.Tag;
-                    //folderNode = node.Parent;
-                }
+                    if (node.Text == "(empty)") return;
 
-                if (node.Text == "(empty)")
-                {
-                    folder = (InventoryFolder)node.Parent.Tag;
-                    //folderNode = node.Parent;
+                    if (node.Tag is InventoryFolder)
+                    {
+                        folder = (InventoryFolder)node.Tag;
+                        //folderNode = node;
+                    }
+                    else if (node.Tag is InventoryItem)
+                    {
+                        folder = (InventoryFolder)node.Parent.Tag;
+                        //folderNode = node.Parent;
+                    }
+
+                    if (node.Text == "(empty)")
+                    {
+                        folder = (InventoryFolder)node.Parent.Tag;
+                        //folderNode = node.Parent;
+                    }
                 }
 
                 //InventoryBase invObj = client.Inventory.Store[folder.UUID];
@@ -1186,6 +1221,8 @@ namespace METAbolt
 
         private void ReloadInventory()
         {
+            //nodecol = true;
+
             treeView1.Nodes.Clear();
 
             treeSorter.CurrentSortName = SortBy;
@@ -1781,11 +1818,13 @@ namespace METAbolt
             //    client.Inventory.RequestFolderContents(folder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByName);
             //}
 
+            //nodecol = true;
+
             if (e.Node.Nodes[0].Tag == null)
             {
                 InventoryFolder folder = (InventoryFolder)client.Inventory.Store[new UUID(e.Node.Name)];    //(InventoryFolder)e.Node.Tag;
 
-                selectednode = e.Node;
+                //selectednode = e.Node;
 
                 folderproc = folder.UUID;
 
@@ -1934,6 +1973,18 @@ namespace METAbolt
 
         private void reloadInventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ReloadInventory();
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            selectednode = e.Node;
+        }
+
+        private void createFolderOnRootToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            treeView1.SelectedNode = null;
+            AddNewFolder();
             ReloadInventory();
         }
     }
