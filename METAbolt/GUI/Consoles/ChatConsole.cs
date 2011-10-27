@@ -3330,30 +3330,37 @@ namespace METAbolt
         {
             BeginInvoke(new MethodInvoker(delegate()
             {
-                string s = string.Empty;
-  
-                if (state == VoiceGateway.ConnectionState.AccountLogin)
+                try
                 {
-                    s = "Logging In";
-                }
-                else if (state == VoiceGateway.ConnectionState.ConnectorConnected)
-                {
-                    s = "Connected";
-                }
-                else if (state == VoiceGateway.ConnectionState.DaemonConnected)
-                {
-                    s = "Daemon Connected";
-                }
-                else if (state == VoiceGateway.ConnectionState.DaemonStarted)
-                {
-                    s = "Daemon Started";
-                }
-                else if (state == VoiceGateway.ConnectionState.SessionRunning)
-                {
-                    s = "Session Started";
-                }
+                    string s = string.Empty;
 
-                label18.Text = s; 
+                    if (state == VoiceGateway.ConnectionState.AccountLogin)
+                    {
+                        s = "Logging In";
+                    }
+                    else if (state == VoiceGateway.ConnectionState.ConnectorConnected)
+                    {
+                        s = "Connected";
+                    }
+                    else if (state == VoiceGateway.ConnectionState.DaemonConnected)
+                    {
+                        s = "Daemon Connected";
+                    }
+                    else if (state == VoiceGateway.ConnectionState.DaemonStarted)
+                    {
+                        s = "Daemon Started. Please wait...";
+                    }
+                    else if (state == VoiceGateway.ConnectionState.SessionRunning)
+                    {
+                        s = "Session Started & Ready";
+                    }
+
+                    label18.Text = s;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "METAbolt");   
+                }
             }));
         }
 
@@ -3369,24 +3376,31 @@ namespace METAbolt
 
         private void vgate_OnSessionCreate(object sender, EventArgs e)
         {
-            vgate.AuxGetCaptureDevices();
-            vgate.AuxGetRenderDevices();
-
-            BeginInvoke(new MethodInvoker(delegate()
+            try
             {
-                vgate.MicMute = true;
-                vgate.SpkrMute = false;
-                vgate.SpkrLevel = 70;
-                vgate.MicLevel = 70;
-                checkBox5.ForeColor = Color.Red;
-                label18.Text = "Session started";
-                EnableVoice(true);
+                vgate.AuxGetCaptureDevices();
+                vgate.AuxGetRenderDevices();
 
-                if (!checkBox3.Checked)
+                BeginInvoke(new MethodInvoker(delegate()
                 {
-                    checkBox3.Checked = true;
-                }
-            }));
+                    vgate.MicMute = true;
+                    vgate.SpkrMute = false;
+                    vgate.SpkrLevel = 70;
+                    vgate.MicLevel = 70;
+                    checkBox5.ForeColor = Color.Red;
+                    label18.Text = "Session started";
+                    EnableVoice(true);
+
+                    if (!checkBox3.Checked)
+                    {
+                        checkBox3.Checked = true;
+                    }
+                }));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "METAbolt");
+            }
         }
 
         private void LoadMics(List<string> list)
@@ -3465,7 +3479,7 @@ namespace METAbolt
         {
             if (!System.IO.File.Exists(Application.StartupPath.ToString() + "\\" + filename))
             {
-                MessageBox.Show("The required '" + filename + "' file was not found.\nPlease read the wiki page below\nfor instructions:\n\nhttp://www.metabolt.net/METAwiki/How-to-enable-VOICE.ashx?NoRedirect=1");
+                MessageBox.Show("The required '" + filename + "' file was not found.\nPlease read the wiki page below for instructions:\n\nhttp://www.metabolt.net/METAwiki/How-to-enable-VOICE.ashx?NoRedirect=1");
                 return(false);
             }
             return (true);
@@ -3475,20 +3489,26 @@ namespace METAbolt
         {
             if (checkBox5.Checked)
             {
-                if (!this.CheckVoiceSetupFile("SLVoice.exe")) return;
-                if (!this.CheckVoiceSetupFile("alut.dll")) return;
-                if (!this.CheckVoiceSetupFile("ortp.dll")) return;
-                if (!this.CheckVoiceSetupFile("vivoxsdk.dll")) return;
-                if (!this.CheckVoiceSetupFile("wrap_oal.dll")) return;
+                try
+                {
+                    if (!this.CheckVoiceSetupFile("SLVoice.exe")) return;
+                    if (!this.CheckVoiceSetupFile("alut.dll")) return;
+                    if (!this.CheckVoiceSetupFile("ortp.dll")) return;
+                    if (!this.CheckVoiceSetupFile("vivoxsdk.dll")) return;
+                    if (!this.CheckVoiceSetupFile("wrap_oal.dll")) return;
 
-                vgate = new VoiceGateway(client);
-                vgate.OnVoiceConnectionChange += new VoiceGateway.VoiceConnectionChangeCallback(vgate_OnVoiceConnectionChange);
-                vgate.OnAuxGetCaptureDevicesResponse += new EventHandler<VoiceGateway.VoiceDevicesEventArgs>(vgate_OnAuxGetCaptureDevicesResponse);
-                vgate.OnAuxGetRenderDevicesResponse += new EventHandler<VoiceGateway.VoiceDevicesEventArgs>(vgate_OnAuxGetRenderDevicesResponse);
-                vgate.OnSessionCreate += new EventHandler(vgate_OnSessionCreate);
+                    vgate = new VoiceGateway(client);
+                    vgate.OnVoiceConnectionChange += new VoiceGateway.VoiceConnectionChangeCallback(vgate_OnVoiceConnectionChange);
+                    vgate.OnAuxGetCaptureDevicesResponse += new EventHandler<VoiceGateway.VoiceDevicesEventArgs>(vgate_OnAuxGetCaptureDevicesResponse);
+                    vgate.OnAuxGetRenderDevicesResponse += new EventHandler<VoiceGateway.VoiceDevicesEventArgs>(vgate_OnAuxGetRenderDevicesResponse);
+                    vgate.OnSessionCreate += new EventHandler(vgate_OnSessionCreate);
 
-                vgate.Start();
-                //voiceon = true;
+                    vgate.Start();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "METAbolt");
+                }
             }
             else
             {
@@ -3505,9 +3525,6 @@ namespace METAbolt
                     vgate.OnAuxGetRenderDevicesResponse -= new EventHandler<VoiceGateway.VoiceDevicesEventArgs>(vgate_OnAuxGetRenderDevicesResponse);
                     vgate.OnSessionCreate -= new EventHandler(vgate_OnSessionCreate);
 
-                    
-                    //voiceon = false;
-
                     if (!checkBox3.Checked)
                     {
                         checkBox3.Checked = true;
@@ -3516,9 +3533,9 @@ namespace METAbolt
                     checkBox5.ForeColor = Color.Black;
                     label18.Text = string.Empty;
                 }
-                catch
+                catch (Exception ex)
                 {
-                    ;
+                    MessageBox.Show(ex.Message, "METAbolt");
                 }
             }
         }
