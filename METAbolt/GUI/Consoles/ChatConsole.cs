@@ -3487,16 +3487,16 @@ namespace METAbolt
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
+            if (!this.CheckVoiceSetupFile("SLVoice.exe")) return;
+            if (!this.CheckVoiceSetupFile("alut.dll")) return;
+            if (!this.CheckVoiceSetupFile("ortp.dll")) return;
+            if (!this.CheckVoiceSetupFile("vivoxsdk.dll")) return;
+            if (!this.CheckVoiceSetupFile("wrap_oal.dll")) return;
+
             if (checkBox5.Checked)
             {
                 try
                 {
-                    if (!this.CheckVoiceSetupFile("SLVoice.exe")) return;
-                    if (!this.CheckVoiceSetupFile("alut.dll")) return;
-                    if (!this.CheckVoiceSetupFile("ortp.dll")) return;
-                    if (!this.CheckVoiceSetupFile("vivoxsdk.dll")) return;
-                    if (!this.CheckVoiceSetupFile("wrap_oal.dll")) return;
-
                     vgate = new VoiceGateway(client);
                     vgate.OnVoiceConnectionChange += new VoiceGateway.VoiceConnectionChangeCallback(vgate_OnVoiceConnectionChange);
                     vgate.OnAuxGetCaptureDevicesResponse += new EventHandler<VoiceGateway.VoiceDevicesEventArgs>(vgate_OnAuxGetCaptureDevicesResponse);

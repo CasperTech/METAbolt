@@ -192,6 +192,12 @@ namespace METAbolt
 
         private void UpdateFriendslist()
         {
+            if (this.instance.State.AvatarFriends == null)
+            {
+                MessageBox.Show("You must first initialise your friends-list by selecting the 'Friends' tab once.\n\nClose this window and select the Friends tab, then re-try", "METAbolt");
+                return;
+            }
+
             List<FriendInfo> friendslist = this.instance.State.AvatarFriends;
 
             if (friendslist.Count > 0)
