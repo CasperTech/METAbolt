@@ -354,9 +354,9 @@ namespace METAbolt
             this.chkAutoAccept.AutoSize = true;
             this.chkAutoAccept.Location = new System.Drawing.Point(8, 69);
             this.chkAutoAccept.Name = "chkAutoAccept";
-            this.chkAutoAccept.Size = new System.Drawing.Size(174, 17);
+            this.chkAutoAccept.Size = new System.Drawing.Size(218, 17);
             this.chkAutoAccept.TabIndex = 7;
-            this.chkAutoAccept.Text = "Auto accept all inventory items";
+            this.chkAutoAccept.Text = "Auto accept all received inventory items";
             this.chkAutoAccept.UseVisualStyleBackColor = true;
             this.chkAutoAccept.CheckedChanged += new System.EventHandler(this.chkAutoAccept_CheckedChanged);
             // 
@@ -445,9 +445,9 @@ namespace METAbolt
             this.chkDeclineInv.AutoSize = true;
             this.chkDeclineInv.Location = new System.Drawing.Point(8, 51);
             this.chkDeclineInv.Name = "chkDeclineInv";
-            this.chkDeclineInv.Size = new System.Drawing.Size(269, 17);
+            this.chkDeclineInv.Size = new System.Drawing.Size(219, 17);
             this.chkDeclineInv.TabIndex = 6;
-            this.chkDeclineInv.Text = "Auto decline inventory items (excluding notecards)";
+            this.chkDeclineInv.Text = "Auto decline all received inventory items";
             this.chkDeclineInv.UseVisualStyleBackColor = true;
             this.chkDeclineInv.CheckedChanged += new System.EventHandler(this.chkDeclineInv_CheckedChanged);
             // 

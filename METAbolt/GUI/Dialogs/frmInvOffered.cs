@@ -181,6 +181,7 @@ namespace METAbolt
                 if (diag == InstantMessageDialog.InventoryOffered)
                 {
                     client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, invfolder.GetBytes());   //  new byte[0]); // Accept Inventory Offer
+                    client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
                 }
                 else if (diag == InstantMessageDialog.TaskInventoryOffered)
                 {
@@ -190,8 +191,6 @@ namespace METAbolt
                 {
                     this.Close();
                 }
-
-                client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
 
                 timer1.Stop();
                 timer1.Enabled = false;
@@ -213,32 +212,32 @@ namespace METAbolt
                 if (diag == InstantMessageDialog.InventoryOffered)
                 {
                     client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.InventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
+
+                    try
+                    {
+                        //client.Inventory.RemoveItem(objectID);
+                        client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
+
+                        InventoryBase item = client.Inventory.Store.Items[objectID].Data;
+                        UUID content = client.Inventory.FindFolderForType(AssetType.TrashFolder);
+
+                        InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[content].Data;
+
+                        if (invtype != AssetType.Folder)
+                        {
+                            client.Inventory.Move(item, folder, item.Name);
+                        }
+                        else
+                        {
+                            client.Inventory.MoveFolder(objectID, content, item.Name);
+                        }
+                    }
+                    catch { ; }
                 }
                 else if (diag == InstantMessageDialog.TaskInventoryOffered)
                 {
                     client.Self.InstantMessage(client.Self.Name, msg.FromAgentID, string.Empty, msg.IMSessionID, InstantMessageDialog.TaskInventoryDeclined, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, new byte[0]); // Decline Inventory Offer
                 }
-
-                try
-                {
-                    //client.Inventory.RemoveItem(objectID);
-                    client.Inventory.RequestFetchInventory(objectID, client.Self.AgentID);
-
-                    InventoryBase item = client.Inventory.Store.Items[objectID].Data;
-                    UUID content = client.Inventory.FindFolderForType(AssetType.TrashFolder);
-
-                    InventoryFolder folder = (InventoryFolder)client.Inventory.Store.Items[content].Data;
-
-                    if (invtype != AssetType.Folder)
-                    {
-                        client.Inventory.Move(item, folder, item.Name);
-                    }
-                    else
-                    {
-                        client.Inventory.MoveFolder(objectID, content, item.Name);
-                    }
-                }
-                catch { ; }
 
                 timer1.Stop();
                 timer1.Enabled = false;
