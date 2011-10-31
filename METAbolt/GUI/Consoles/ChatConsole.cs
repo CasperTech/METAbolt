@@ -3328,40 +3328,47 @@ namespace METAbolt
 
         private void vgate_OnVoiceConnectionChange(VoiceGateway.ConnectionState state)
         {
-            BeginInvoke(new MethodInvoker(delegate()
+            if (InvokeRequired)
             {
-                try
+                BeginInvoke(new MethodInvoker(delegate()
                 {
-                    string s = string.Empty;
+                    vgate_OnVoiceConnectionChange(state);
+                }));
 
-                    if (state == VoiceGateway.ConnectionState.AccountLogin)
-                    {
-                        s = "Logging In";
-                    }
-                    else if (state == VoiceGateway.ConnectionState.ConnectorConnected)
-                    {
-                        s = "Connected";
-                    }
-                    else if (state == VoiceGateway.ConnectionState.DaemonConnected)
-                    {
-                        s = "Daemon Connected";
-                    }
-                    else if (state == VoiceGateway.ConnectionState.DaemonStarted)
-                    {
-                        s = "Daemon Started. Please wait...";
-                    }
-                    else if (state == VoiceGateway.ConnectionState.SessionRunning)
-                    {
-                        s = "Session Started & Ready";
-                    }
+                return;
+            }
 
-                    label18.Text = s;
-                }
-                catch (Exception ex)
+            try
+            {
+                string s = string.Empty;
+
+                if (state == VoiceGateway.ConnectionState.AccountLogin)
                 {
-                    MessageBox.Show(ex.Message, "METAbolt");   
+                    s = "Logging In...";
                 }
-            }));
+                else if (state == VoiceGateway.ConnectionState.ConnectorConnected)
+                {
+                    s = "Connected...";
+                }
+                else if (state == VoiceGateway.ConnectionState.DaemonConnected)
+                {
+                    s = "Daemon Connected. Starting...";
+                }
+                else if (state == VoiceGateway.ConnectionState.DaemonStarted)
+                {
+                    s = "Daemon Started. Please wait...";
+                }
+                else if (state == VoiceGateway.ConnectionState.SessionRunning)
+                {
+                    s = "Session Started & Ready";
+                }
+
+                label18.Text = s;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "METAbolt");
+            }
         }
 
         private void vgate_OnAuxGetCaptureDevicesResponse(object sender, VoiceGateway.VoiceDevicesEventArgs e)
@@ -3376,26 +3383,33 @@ namespace METAbolt
 
         private void vgate_OnSessionCreate(object sender, EventArgs e)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    vgate_OnSessionCreate(sender, e);
+                }));
+
+                return;
+            }
+
             try
             {
                 vgate.AuxGetCaptureDevices();
                 vgate.AuxGetRenderDevices();
 
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    vgate.MicMute = true;
-                    vgate.SpkrMute = false;
-                    vgate.SpkrLevel = 70;
-                    vgate.MicLevel = 70;
-                    checkBox5.ForeColor = Color.Red;
-                    label18.Text = "Session started";
-                    EnableVoice(true);
+                vgate.MicMute = true;
+                vgate.SpkrMute = false;
+                vgate.SpkrLevel = 70;
+                vgate.MicLevel = 70;
+                checkBox5.ForeColor = Color.Red;
+                label18.Text = "Session Started & Ready";
+                EnableVoice(true);
 
-                    if (!checkBox3.Checked)
-                    {
-                        checkBox3.Checked = true;
-                    }
-                }));
+                if (!checkBox3.Checked)
+                {
+                    checkBox3.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -3489,6 +3503,7 @@ namespace METAbolt
         {
             if (!this.CheckVoiceSetupFile("SLVoice.exe")) return;
             if (!this.CheckVoiceSetupFile("alut.dll")) return;
+            if (!this.CheckVoiceSetupFile("openal32.dll")) return;
             if (!this.CheckVoiceSetupFile("ortp.dll")) return;
             if (!this.CheckVoiceSetupFile("vivoxsdk.dll")) return;
             if (!this.CheckVoiceSetupFile("wrap_oal.dll")) return;
@@ -3531,7 +3546,7 @@ namespace METAbolt
                     }
 
                     checkBox5.ForeColor = Color.Black;
-                    label18.Text = string.Empty;
+                    label18.Text = "Check 'Voice ON' box below. Then on 'Session start' unmute MIC to talk";
                 }
                 catch (Exception ex)
                 {
