@@ -3419,6 +3419,16 @@ namespace METAbolt
 
         private void LoadMics(List<string> list)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    LoadMics(list);
+                }));
+
+                return;
+            }
+
             try 
             {
                 cboCapture.Items.Clear();
@@ -3428,26 +3438,39 @@ namespace METAbolt
                     cboCapture.Items.Add(dev);  
                 }
             }
-            catch { ; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "METAbolt"); }
 
-            string cmic = vgate.CurrentCaptureDevice;
+            try
+            {
+                string cmic = vgate.CurrentCaptureDevice;
 
-            if (string.IsNullOrEmpty(cmic))
-            {
-                cboCapture.SelectedItem = cmic;    //cmic = mics[0];
+                if (string.IsNullOrEmpty(cmic))
+                {
+                    cboCapture.SelectedItem = cmic;    //cmic = mics[0];
+                }
+                else
+                {
+                    cboCapture.Text = cmic;
+                }
             }
-            else
-            {
-                cboCapture.Text = cmic;
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "METAbolt"); }
 
             vgate.MicMute = true;
             vgate.MicLevel = 70;
-            cmic = vgate.CurrentCaptureDevice;
         }
 
         private void LoadSpeakers(List<string> list)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    LoadSpeakers(list);
+                }));
+
+                return;
+            }
+
             try
             {
                 cboRender.Items.Clear();
@@ -3457,18 +3480,22 @@ namespace METAbolt
                     cboRender.Items.Add(dev);   
                 }
             }
-            catch { ; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "METAbolt"); }
 
-            string cspk = vgate.PlaybackDevice;
+            try
+            {
+                string cspk = vgate.PlaybackDevice;
 
-            if (string.IsNullOrEmpty(cspk))
-            {
-                cboRender.SelectedItem = cspk; //speakers[0];
+                if (string.IsNullOrEmpty(cspk))
+                {
+                    cboRender.SelectedItem = cspk; //speakers[0];
+                }
+                else
+                {
+                    cboRender.Text = cspk;
+                }
             }
-            else
-            {
-                cboRender.Text = cspk;
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "METAbolt"); }
 
             vgate.SpkrMute = false;
             vgate.SpkrLevel = 70;
@@ -3503,7 +3530,7 @@ namespace METAbolt
         {
             if (!this.CheckVoiceSetupFile("SLVoice.exe")) return;
             if (!this.CheckVoiceSetupFile("alut.dll")) return;
-            if (!this.CheckVoiceSetupFile("openal32.dll")) return;
+            //if (!this.CheckVoiceSetupFile("openal32.dll")) return;
             if (!this.CheckVoiceSetupFile("ortp.dll")) return;
             if (!this.CheckVoiceSetupFile("vivoxsdk.dll")) return;
             if (!this.CheckVoiceSetupFile("wrap_oal.dll")) return;
@@ -3531,6 +3558,8 @@ namespace METAbolt
                 {
                     vgate.MicMute = true;
                     vgate.Stop();
+                    vgate.Dispose();
+
                     EnableVoice(false);
                     cboRender.Items.Clear();
                     cboCapture.Items.Clear();   
