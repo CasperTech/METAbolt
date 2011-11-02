@@ -42,8 +42,8 @@
             this.pb1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pic1 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.pic1 = new System.Windows.Forms.PictureBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnFind = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -203,21 +203,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(454, 45);
+            this.tabPage2.Size = new System.Drawing.Size(454, 255);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Groups";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // pic1
-            // 
-            this.pic1.Image = ((System.Drawing.Image)(resources.GetObject("pic1.Image")));
-            this.pic1.Location = new System.Drawing.Point(228, 90);
-            this.pic1.Name = "pic1";
-            this.pic1.Size = new System.Drawing.Size(20, 20);
-            this.pic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pic1.TabIndex = 43;
-            this.pic1.TabStop = false;
-            this.pic1.Visible = false;
             // 
             // comboBox1
             // 
@@ -230,6 +219,17 @@
             this.comboBox1.Size = new System.Drawing.Size(326, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // pic1
+            // 
+            this.pic1.Image = ((System.Drawing.Image)(resources.GetObject("pic1.Image")));
+            this.pic1.Location = new System.Drawing.Point(228, 90);
+            this.pic1.Name = "pic1";
+            this.pic1.Size = new System.Drawing.Size(20, 20);
+            this.pic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pic1.TabIndex = 43;
+            this.pic1.TabStop = false;
+            this.pic1.Visible = false;
             // 
             // tabPage1
             // 
@@ -291,7 +291,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(454, 45);
+            this.tabPage4.Size = new System.Drawing.Size(454, 255);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Friends";
             this.tabPage4.UseVisualStyleBackColor = true;

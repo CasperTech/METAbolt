@@ -192,13 +192,19 @@ namespace METAbolt
 
         private void UpdateFriendslist()
         {
+            List<FriendInfo> friendslist;
+
             if (this.instance.State.AvatarFriends == null)
             {
-                MessageBox.Show("You must first initialise your friends-list by selecting the 'Friends' tab once.\n\nClose this window and select the Friends tab, then re-try", "METAbolt");
-                return;
+                friendslist = client.Friends.FriendList.FindAll(delegate(FriendInfo friend) { return true; });
+
+                this.instance.State.AvatarFriends = friendslist;
+
+                //MessageBox.Show("You must first initialise your friends-list by selecting the 'Friends' tab once.\n\nClose this window and select the Friends tab, then re-try", "METAbolt");
+                //return;
             }
 
-            List<FriendInfo> friendslist = this.instance.State.AvatarFriends;
+            friendslist = this.instance.State.AvatarFriends;
 
             if (friendslist.Count > 0)
             {
