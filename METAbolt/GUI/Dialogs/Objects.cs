@@ -1312,6 +1312,8 @@ namespace METAbolt
 
                 Primitive sPr = item.Prim;
 
+                client.Objects.SelectObject(client.Network.CurrentSim, sPr.LocalID);
+
                 lblOwner.Text = sPr.Properties.OwnerID.ToString();
                 lblUUID.Text = sPr.Properties.ObjectID.ToString();
 
@@ -1467,11 +1469,32 @@ namespace METAbolt
 
                 pBar1.Visible = true;
                 pBar1.Refresh();
+
                 // Populate child items here
                 lbxChildren.BeginUpdate();
                 lbxChildren.Items.Clear();
 
                 button3.Visible = button7.Visible = false;
+
+                List<Primitive> results = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
+                    delegate(Primitive prim)
+                    {
+                        return (prim.ParentID == sPr.LocalID);
+                    }
+                );
+
+                if (results != null && results.Count > 0)
+                {
+                    foreach (var prim in results)
+                    {
+                        ObjectsListItem citem = new ObjectsListItem(prim, client, lbxChildren);
+
+                        if (!childItems.ContainsKey(prim.LocalID))
+                        {
+                            childItems.Add(prim.LocalID, citem);
+                        }
+                    }
+                }
 
                 foreach (KeyValuePair<uint, ObjectsListItem> kvp in childItems)
                 {

@@ -1930,5 +1930,10 @@ namespace METAbolt
         {
             (new frmScriptEditor(instance)).Show();
         }
+
+        private void tlTools_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

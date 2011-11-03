@@ -748,6 +748,7 @@ namespace METAbolt
             this.tlTools.Name = "tlTools";
             this.tlTools.Size = new System.Drawing.Size(65, 22);
             this.tlTools.Text = "&Tools";
+            this.tlTools.Click += new System.EventHandler(this.tlTools_Click);
             // 
             // tbtnTeleport
             // 
