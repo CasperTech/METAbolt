@@ -11,6 +11,8 @@ using SLNetworkComm;
 using ExceptionReporting;
 using System.Threading;
 using PopupControl;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace METAbolt
 {
@@ -159,10 +161,10 @@ namespace METAbolt
 
         private void HandleIM(InstantMessageEventArgs e)
         {
-            if (e.IM.Dialog == InstantMessageDialog.SessionSend)
-            {
-                // new IM
-            }
+            //if (e.IM.Dialog == InstantMessageDialog.SessionSend)
+            //{
+            //    // new IM
+            //}
 
             string TabAgentName = string.Empty;
 
@@ -194,20 +196,28 @@ namespace METAbolt
 
                 if (fullName.Contains("("))
                 {
-                    string[] splits = fullName.Split('(');
+                    try
+                    {
+                        string[] splits = fullName.Split('(');
 
-                    fullName = splits[0].ToString().Trim();
-                    imcount = splits[1].ToString();
-                    string[] splits1 = imcount.Split(')');
+                        fullName = splits[0].ToString().Trim();
+                        imcount = splits[1].ToString().Trim();
+                        string[] splits1 = imcount.Split(')');
 
-                    imcount = splits1[0].ToString();
-                    cnt = Convert.ToInt32(imcount) + 1;
+                        try
+                        {
+                            imcount = splits1[0].ToString().Trim();
+                            cnt = Convert.ToInt32(imcount) + 1;
+                        }
+                        catch { cnt = 1; }
 
-                    fullName = TabAgentName + " (" + cnt.ToString() + ")";
+                        fullName = TabAgentName + " (" + cnt.ToString() + ")";
 
-                    lbxIMs.BeginUpdate();
-                    lbxIMs.Items[s] = fullName;
-                    lbxIMs.EndUpdate();
+                        lbxIMs.BeginUpdate();
+                        lbxIMs.Items[s] = fullName;
+                        lbxIMs.EndUpdate();
+                    }
+                    catch { ; }
                 }
 
             }
