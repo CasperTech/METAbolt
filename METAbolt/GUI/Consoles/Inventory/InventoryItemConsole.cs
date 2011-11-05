@@ -377,7 +377,7 @@ namespace METAbolt
             }
             else if (item.AssetType == AssetType.Object)
             {
-                client.Appearance.Attach(item, AttachmentPoint.Default);
+                client.Appearance.Attach(item, AttachmentPoint.Default, false);
             }    
         }
 
