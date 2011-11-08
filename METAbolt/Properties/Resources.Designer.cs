@@ -228,6 +228,13 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap bing_logo_small {
+            get {
+                object obj = ResourceManager.GetObject("bing_logo_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap c_e {
             get {
                 object obj = ResourceManager.GetObject("c_e", resourceCulture);

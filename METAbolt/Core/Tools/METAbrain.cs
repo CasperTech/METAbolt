@@ -135,7 +135,18 @@ namespace METAbolt
 
         private void ProcessAI(string msg, string user, UUID target, UUID sess)
         {
-            string reply = GetResp(msg, user);
+            MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
+            string dland = trans.DetectLanguageShortName(msg);
+
+            string tres = msg;
+
+            if (dland != "en")
+            {
+                // translate to english
+                tres = trans.Translate(msg, dland + "|en");
+            }
+
+            string reply = tres = GetResp(tres, user);
 
             if (string.IsNullOrEmpty(reply))
             {
@@ -150,7 +161,12 @@ namespace METAbolt
                 }
             }
 
-            netcom.SendInstantMessage(reply, target, sess);
+            if (dland != "en")
+            {
+                tres = trans.Translate(reply, "en|" + dland);
+            }
+
+            netcom.SendInstantMessage(tres, target, sess);
         }
 
         public string GetResp(string msg, string user)

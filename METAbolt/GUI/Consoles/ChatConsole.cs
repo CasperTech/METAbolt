@@ -37,7 +37,8 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Web;
 using System.Drawing.Drawing2D;
-using GoogleTranslationUtils;
+//using GoogleTranslationUtils;
+using MB_Translation_Utils;
 using OpenMetaverse.Imaging;
 using OpenMetaverse.Assets;
 using System.Drawing.Imaging;
@@ -1191,7 +1192,7 @@ namespace METAbolt
         private Vector3d ConverToGLobal(Vector3 pos)
         {
             uint regionX, regionY;
-            Utils.LongToUInts(client.Network.CurrentSim.Handle, out regionX, out regionY);
+            OpenMetaverse.Utils.LongToUInts(client.Network.CurrentSim.Handle, out regionX, out regionY);
             Vector3d objpos;
 
             objpos.X = (double)pos.X + (double)regionX;
@@ -1556,14 +1557,17 @@ namespace METAbolt
             {
                 if (!string.IsNullOrEmpty(e.Message))
                 {
-                    GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
+                    //GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
 
-                    int sindex = detect.LanguageIndex;
+                    MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
+                    string dland = trans.DetectLanguageFullName(e.Message);
+
+                    int sindex = trans.GetLangIndex(dland);
 
                     if (sindex == 33)
                         sindex = 0;
 
-                    this.instance.MainForm.SetFlag(imgFlags.Images[sindex], detect.SpokenLanguage);
+                    this.instance.MainForm.SetFlag(imgFlags.Images[sindex], dland);
 
                     // select the language pair fro mthe combo
                     if (sindex != 0 && sindex != 8)
@@ -1578,7 +1582,7 @@ namespace METAbolt
                     }
                 }
             }
-        }
+        }        
 
         private void ProcessChatInput(string input, ChatType type)
         {
@@ -1642,11 +1646,24 @@ namespace METAbolt
 
         private string GetTranslation(string sTrStr)
         {
+            //string sPair = GetLangPair(cboLanguage.Text);
+
+            //GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+
+            //return trans.Translation;
+
             string sPair = GetLangPair(cboLanguage.Text);
 
-            GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+            //GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+            //return trans.Translation;
 
-            return trans.Translation;
+            //string sPair
+
+            MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
+
+            string tres = trans.Translate(sTrStr, sPair);
+
+            return tres;
         }
 
         private string GetLangPair(string sPair)
@@ -3755,6 +3772,11 @@ namespace METAbolt
         private void toolStripDropDownButton1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.bing.com/");
         }
     }
 }

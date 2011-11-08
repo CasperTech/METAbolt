@@ -34,7 +34,8 @@ using System.Windows.Forms;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.IO;
-using GoogleTranslationUtils;
+//using GoogleTranslationUtils;
+using MB_Translation_Utils;
 
 namespace METAbolt
 {
@@ -57,8 +58,8 @@ namespace METAbolt
             cboLanguage.Items.Add(new ComboEx.ICItem("Select...", -1));
 
             cboLanguage.Items.Add(new ComboEx.ICItem("English/Arabic en|ar", 1));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(simp) en|zh-CN", 2));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(trad) en|zh-TW", 3));
+            cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(simp) en|zh-CHS", 2));
+            cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(trad) en|zh-CHT", 3));
             cboLanguage.Items.Add(new ComboEx.ICItem("English/Croatian en|hr", 4));
             cboLanguage.Items.Add(new ComboEx.ICItem("English/Czech en|cs", 5));
             cboLanguage.Items.Add(new ComboEx.ICItem("English/Danish en|da", 6));
@@ -89,8 +90,8 @@ namespace METAbolt
             cboLanguage.Items.Add(new ComboEx.ICItem("English/Ukrainian en|uk", 32));
 
             cboLanguage.Items.Add("Arabic/English ar|en");
-            cboLanguage.Items.Add("Chineese(simp)/English zh-CN|en");
-            cboLanguage.Items.Add("Chineese(trad)/English zh-TW|en");
+            cboLanguage.Items.Add("Chineese(simp)/English zh-CHS|en");
+            cboLanguage.Items.Add("Chineese(trad)/English zh-CHT|en");
             cboLanguage.Items.Add("Croatian/English hr|en");
             cboLanguage.Items.Add("Czech/English cs|en");
             cboLanguage.Items.Add("Danish/English da|en");
@@ -131,9 +132,16 @@ namespace METAbolt
         {
             string sPair = GetLangPair(cboLanguage.Text);
 
-            GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+            //GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+            //return trans.Translation;
 
-            return trans.Translation;
+            //string sPair
+
+            MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
+
+            string tres = trans.Translate(sTrStr, sPair);
+            
+            return tres;
         }
 
         private string GetLangPair(string sPair)
@@ -150,6 +158,8 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (cboLanguage.SelectedIndex == -1 || cboLanguage.SelectedIndex == 0) return; 
+
             txtTo.Text = GetTranslation(txtFrom.Text.ToString());
         }
 
