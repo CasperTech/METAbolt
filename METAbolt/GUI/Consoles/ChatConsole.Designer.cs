@@ -528,8 +528,9 @@ namespace METAbolt
             // 
             // checkBox2
             // 
+            this.checkBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(368, 4);
+            this.checkBox2.Location = new System.Drawing.Point(453, 4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(82, 17);
             this.checkBox2.TabIndex = 3;
@@ -538,8 +539,9 @@ namespace METAbolt
             // 
             // checkBox1
             // 
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(283, 4);
+            this.checkBox1.Location = new System.Drawing.Point(368, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(80, 17);
             this.checkBox1.TabIndex = 2;
@@ -548,10 +550,11 @@ namespace METAbolt
             // 
             // button9
             // 
+            this.button9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button9.BackColor = System.Drawing.Color.RoyalBlue;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(198, 1);
+            this.button9.Location = new System.Drawing.Point(283, 1);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 1;
@@ -561,9 +564,10 @@ namespace METAbolt
             // 
             // tsFindText
             // 
+            this.tsFindText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tsFindText.Location = new System.Drawing.Point(5, 2);
             this.tsFindText.Name = "tsFindText";
-            this.tsFindText.Size = new System.Drawing.Size(187, 21);
+            this.tsFindText.Size = new System.Drawing.Size(272, 21);
             this.tsFindText.TabIndex = 0;
             this.tsFindText.Click += new System.EventHandler(this.tsFindText_Click);
             this.tsFindText.Enter += new System.EventHandler(this.tsFindText_Click);

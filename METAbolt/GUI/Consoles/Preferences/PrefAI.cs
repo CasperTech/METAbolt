@@ -114,7 +114,7 @@ namespace METAbolt
             if (isloading)
                 return;
 
-            panel1.Enabled = groupBox1.Enabled = chkAI.Checked;   
+            panel1.Enabled = groupBox1.Enabled = checkBox2.Enabled = chkAI.Checked;   
 
             if (chkAI.Checked)
             {

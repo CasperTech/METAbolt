@@ -179,6 +179,7 @@ namespace METAbolt
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label10.Location = new System.Drawing.Point(11, 262);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(56, 13);

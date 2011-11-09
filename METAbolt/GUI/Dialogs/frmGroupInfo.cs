@@ -323,7 +323,7 @@ namespace METAbolt
                 return;
             }
 
-            lstNotices.Items.Clear();  
+            //lstNotices.Items.Clear();  
 
             foreach (GroupNoticesListEntry notice in notices)
             {

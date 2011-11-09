@@ -161,9 +161,12 @@ namespace METAbolt
                 }
             }
 
-            if (dland != "en")
+            if (instance.Config.CurrentConfig.MultiLingualAI)
             {
-                tres = trans.Translate(reply, "en|" + dland);
+                if (dland != "en")
+                {
+                    tres = trans.Translate(reply, "en|" + dland);
+                }
             }
 
             netcom.SendInstantMessage(tres, target, sess);

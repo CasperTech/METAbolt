@@ -163,7 +163,7 @@ namespace METAbolt
         private int restarttime = 10;
         private bool disablemipmaps = false;
         private bool displaylslcommands = true;
-
+        private bool multilingualai = false;
 
         public Config()
         {
@@ -263,6 +263,7 @@ namespace METAbolt
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
                 config.replyAI = conf.Configs["AI"].GetBoolean("ReplyAI", false);
                 config.replyText = conf.Configs["AI"].GetString("ReplyText", "I am sorry but I didn't understand what you said or I haven't been taught a response for it. Can you try again, making sure your sentences are short and clear.");
+                config.AIon = conf.Configs["AI"].GetBoolean("MultiLingualAI", false);
 
                 config.ChatTimestamps = conf.Configs["Text"].GetBoolean("ChatTimestamps", true);
                 config.IMTimestamps = conf.Configs["Text"].GetBoolean("IMTimestamps", true);
@@ -464,6 +465,7 @@ namespace METAbolt
             config.Set("AIon", aion.ToString(CultureInfo.CurrentCulture));
             config.Set("ReplyAI", replyAI.ToString(CultureInfo.CurrentCulture));
             config.Set("ReplyText", replyText);
+            config.Set("MultiLingualAI", multilingualai.ToString(CultureInfo.CurrentCulture));
 
             // Text
             config = source.AddConfig("Text");
@@ -1191,5 +1193,11 @@ namespace METAbolt
             get { return displaylslcommands; }
             set { displaylslcommands = value; }
         }
+        public bool MultiLingualAI
+        {
+            get { return multilingualai; }
+            set { multilingualai = value; }
+        }
+
     }
 }

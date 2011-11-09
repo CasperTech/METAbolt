@@ -38,6 +38,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.chkReply = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picAI)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -80,8 +81,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.trackBar1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.checkBox1);
@@ -129,7 +130,7 @@
             this.panel1.AccessibleName = "METAbrain panel";
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.chkReply);
-            this.panel1.Location = new System.Drawing.Point(28, 60);
+            this.panel1.Location = new System.Drawing.Point(28, 91);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(285, 139);
             this.panel1.TabIndex = 1;
@@ -144,7 +145,7 @@
             this.textBox1.Size = new System.Drawing.Size(239, 82);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "I am sorry but I didn\'t understand what you said or I haven\'t been taught a respo" +
-                "nse for it. Can you try again, making sure your sentences are short and clear.";
+    "nse for it. Can you try again, making sure your sentences are short and clear.";
             // 
             // chkReply
             // 
@@ -157,11 +158,24 @@
             this.chkReply.Text = "Reply with below when an answer is not found";
             this.chkReply.UseVisualStyleBackColor = true;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AccessibleName = "Enable METAbrain option";
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(37, 57);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(129, 17);
+            this.checkBox2.TabIndex = 20;
+            this.checkBox2.Text = "Enable multi-lingual AI";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // PrefAI
             // 
             this.AccessibleName = "AI tab";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
@@ -193,5 +207,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox chkReply;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
