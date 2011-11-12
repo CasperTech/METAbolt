@@ -36,7 +36,6 @@ namespace METAbolt
             this.btnInfo = new System.Windows.Forms.Button();
             this.pnlLoginPage = new System.Windows.Forms.Panel();
             this.lblInitWebBrowser = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlLoginPrompt = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -140,12 +139,6 @@ namespace METAbolt
             this.lblInitWebBrowser.TabIndex = 0;
             this.lblInitWebBrowser.Text = "Initializing web browser...";
             this.lblInitWebBrowser.Visible = false;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1200000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pnlLoginPrompt
             // 
@@ -413,7 +406,6 @@ namespace METAbolt
         private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.Panel pnlLoginPage;
         private System.Windows.Forms.Label lblInitWebBrowser;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel pnlLoginPrompt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCustomLoginUri;

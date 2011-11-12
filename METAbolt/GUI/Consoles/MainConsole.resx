@@ -121,8 +121,8 @@
   <data name="pnlLoginPage.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAXsAAAF7CAYAAAAzPisLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALAAAA
-        CwAB5DetvwAAXwZJREFUeF7tnXm0HcV950HbE0t5QjI+dkBiPHE8Xnh3eU9PEhJaQICEFjYJAWZfBMbY
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/wAA
+        Cv8BNGKaggAAXwZJREFUeF7tnXm0HcV950HbE0t5QjI+dkBiPHE8Xnh3eU9PEhJaQICEFjYJAWZfBMbY
         YOwkJ7GFJEArCEuAkJ7YN4EBs0iAHSdG8gLYBnl3bHAmxpkMOE4ykwzE43j+Yn6/6q6+1XV7qeru6vXH
         OXXue6jffe9WV3/629/6LQccQP/RDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM
         0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDNAM0AzQDDRlBg6ED0qD
@@ -530,9 +530,6 @@
         oBmgGaAZoBmgGaAZoBmgGaAZoBmgGaAZoBmgGaAZoBmwNAP/Hwkusl1/JpMZAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="timer2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>100, 17</value>
   </metadata>

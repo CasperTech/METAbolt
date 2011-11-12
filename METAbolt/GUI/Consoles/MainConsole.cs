@@ -404,8 +404,6 @@ namespace METAbolt
                         instance.ReBooted = false;
                         timer2.Enabled = false;
                         timer2.Stop();
-                        timer1.Enabled = true;
-                        timer1.Start();  
 
                         try
                         {
@@ -869,11 +867,6 @@ namespace METAbolt
         private void MainConsole_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            DoBrowser(); 
         }
 
         private void DoBrowser()
