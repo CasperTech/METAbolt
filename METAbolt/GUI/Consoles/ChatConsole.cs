@@ -150,6 +150,7 @@ namespace METAbolt
             sim = client.Network.CurrentSim;
 
             world.Cursor = Cursors.NoMove2D;
+            pictureBox1.Cursor = Cursors.Hand; 
 
             timer2.Enabled = true;
             timer2.Start();
