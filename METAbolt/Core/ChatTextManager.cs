@@ -95,6 +95,7 @@ namespace METAbolt
         private int invitecounter = 0;
         private bool classiclayout = false;
         private ExceptionReporter reporter = new ExceptionReporter();
+        private bool reprinting = false;
 
         internal class ThreadExceptionHandler
         {
@@ -479,9 +480,23 @@ namespace METAbolt
 
             if (maxlines == 0) return;
 
+            //if (lines > maxlines)
+            //{
+            //    textBuffer.RemoveAt(0);
+
+            //    ReprintAllText();
+            //}
+
             if (lines > maxlines)
             {
-                textBuffer.RemoveAt(0);
+                int lineno = maxlines / 2;
+
+                for (int a = 0; a < lineno; a++)
+                {
+                    textBuffer.RemoveAt(a);
+                }
+
+                reprinting = true;
 
                 ReprintAllText();
             }
@@ -909,6 +924,12 @@ namespace METAbolt
             //    }
             //}
 
+            if (reprinting)
+            {
+                reprinting = false;
+                return;
+            }
+
             if (!classiclayout)
             {
                 string txt = item.FromName + ": " + item.Text;
@@ -1252,6 +1273,12 @@ namespace METAbolt
             }
 
             textPrinter.PrintTextLine(item.Text);
+
+            if (reprinting)
+            {
+                reprinting = false;
+                return;
+            }
 
             if (!classiclayout)
             {

@@ -56,7 +56,7 @@ namespace METAbolt
         //private bool iradar = false;
         private string purl = string.Empty;
         private string murl = string.Empty;
-        private int linemax = 250;
+        private int linemax = 5000;
 
         private bool chatTimestamps = true;
         private bool imTimestamps = true;
@@ -268,7 +268,7 @@ namespace METAbolt
                 config.ChatTimestamps = conf.Configs["Text"].GetBoolean("ChatTimestamps", true);
                 config.IMTimestamps = conf.Configs["Text"].GetBoolean("IMTimestamps", true);
                 config.ChatSmileys = conf.Configs["Text"].GetBoolean("ChatSmileys", false);
-                config.lineMax = conf.Configs["Text"].GetInt("lineMax", 250);
+                config.lineMax = conf.Configs["Text"].GetInt("lineMax", 5000);
                 config.ParcelMusic = conf.Configs["Text"].GetBoolean("ParcelMusic", true);
                 config.ParcelMedia = conf.Configs["Text"].GetBoolean("ParcelMedia", true);
                 config.UseSLT = conf.Configs["Text"].GetBoolean("UseSLT", false);
