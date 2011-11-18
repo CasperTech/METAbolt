@@ -44,7 +44,8 @@ namespace METAbolt
         //private bool thisTP = false;
         //private Primitive rootPrim;
         private bool fLoading = true;
-        private InventoryConsole iconsole; 
+        private InventoryConsole iconsole;
+        private TreeNode inode;
 
         public InventoryItemConsole(METAboltInstance instance, InventoryItem item)
         {
@@ -340,45 +341,73 @@ namespace METAbolt
 
         private void btnDetach_Click(object sender, EventArgs e)
         {
-            if (item.AssetType == AssetType.Clothing)
-            {
-                iconsole.managerbusy = client.Appearance.ManagerBusy;
-                client.Appearance.RemoveFromOutfit(item);
-                //client.Appearance.RequestSetAppearance(false);
-                //MessageBox.Show("Use the 'Changer' function or the 'Replace Outfit' option \non popup menu");
-            }
-            else
-            {
-                if (item.AssetType == AssetType.Object)
-                {
-                    client.Appearance.Detach(item.UUID);
-                }
-            }
+            //if (item.AssetType == AssetType.Clothing)
+            //{
+            //    iconsole.managerbusy = client.Appearance.ManagerBusy;
+            //    client.Appearance.RemoveFromOutfit(item);
+            //    //client.Appearance.RequestSetAppearance(false);
+            //    //MessageBox.Show("Use the 'Changer' function or the 'Replace Outfit' option \non popup menu");
+            //}
+            //else
+            //{
+            //    if (item.AssetType == AssetType.Object)
+            //    {
+            //        client.Appearance.Detach(item.UUID);
+            //    }
+            //}
+
+            ////BeginInvoke(new MethodInvoker(() => iconsole.refreshFolderToolStripMenuItem_Click(this, null)));
+
+            ////iconsole.RefreshInventoryNode(inode);
+            //try
+            //{
+            //    //iconsole.treeView1.SelectedNode.Text = inode.Text.Replace(" (WORN)", "");
+            //    BeginInvoke(new MethodInvoker(() => instance.insconsole.WearTakeoff(false, inode)));
+            //    //instance.insconsole.WearTakeoff(false, inode);
+            //}
+            //catch (Exception ex)
+            //{
+            //    string exp = ex.Message; 
+            //}
         }
 
         private void btnWear_Click(object sender, EventArgs e)
         {
-            if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
-            {
-                try
-                {
-                    iconsole.managerbusy = client.Appearance.ManagerBusy;
-                    //List<InventoryBase> clothing = new List<InventoryBase>();
-                    //clothing.Add((InventoryBase)item);
+            //if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
+            //{
+            //    try
+            //    {
+            //        iconsole.managerbusy = client.Appearance.ManagerBusy;
+            //        //List<InventoryBase> clothing = new List<InventoryBase>();
+            //        //clothing.Add((InventoryBase)item);
 
-                    client.Appearance.AddToOutfit(item);
-                    //client.Appearance.RequestSetAppearance(false);
-                    //MessageBox.Show("Use the 'Changer' function or the 'Replace Outfit' option \non popup menu"); 
-                }
-                catch (Exception exp)
-                {
-                    Logger.Log("(inventory wear): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
-                }
-            }
-            else if (item.AssetType == AssetType.Object)
-            {
-                client.Appearance.Attach(item, AttachmentPoint.Default, false);
-            }    
+            //        client.Appearance.AddToOutfit(item);
+            //        //client.Appearance.RequestSetAppearance(false);
+            //        //MessageBox.Show("Use the 'Changer' function or the 'Replace Outfit' option \non popup menu"); 
+            //    }
+            //    catch (Exception exp)
+            //    {
+            //        Logger.Log("(inventory wear): " + exp.InnerException.ToString(), Helpers.LogLevel.Error);
+            //    }
+            //}
+            //else if (item.AssetType == AssetType.Object)
+            //{
+            //    client.Appearance.Attach(item, AttachmentPoint.Default, false);
+            //}
+
+            ////iconsole.RefreshInventoryNode(inode);
+            ////BeginInvoke(new MethodInvoker(() => iconsole.refreshFolderToolStripMenuItem_Click(this, null)));
+
+            //try
+            //{
+            //    //iconsole.treeView1.SelectedNode.Text = inode.Text.Replace(" (WORN)", "") + " (WORN)";
+            //    BeginInvoke(new MethodInvoker(() => instance.insconsole.WearTakeoff(true, inode)));
+            //    //instance.insconsole.WearTakeoff(true, inode);
+            //}
+            //catch (Exception ex)
+            //{
+            //    string exp = ex.Message;
+            //}
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)

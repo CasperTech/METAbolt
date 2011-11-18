@@ -109,6 +109,7 @@ namespace METAbolt
         public bool startfrombat = false;
         private DataTable giveritems = null;
         private bool readims = false;
+        public InventoryConsole insconsole;
 
         internal class ThreadExceptionHandler
         {

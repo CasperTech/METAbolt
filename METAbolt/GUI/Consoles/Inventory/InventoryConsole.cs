@@ -105,6 +105,8 @@ namespace METAbolt
             InitializeImageList();
             InitializeTree();
             GetRoot();
+
+            instance.insconsole = this; 
         }
 
         private void SetExceptionReporter()
@@ -465,6 +467,8 @@ namespace METAbolt
             {
                 panel2.Visible = false;
 
+                TreeNode node = treeView1.SelectedNode;
+
                 //InventoryImageConsole.vi 
                 InventoryItemConsole console = new InventoryItemConsole(instance, (InventoryItem)io);
                 console.Dock = DockStyle.Fill;
@@ -481,8 +485,10 @@ namespace METAbolt
                 {
                     if (item.InventoryType == InventoryType.Wearable || item.InventoryType == InventoryType.Attachment || item.InventoryType == InventoryType.Object)
                     {
-                        console.Controls["btnDetach"].Visible = true;
-                        console.Controls["btnWear"].Visible = true;
+                        //console.Controls["btnDetach"].Visible = true;
+                        //console.Controls["btnWear"].Visible = true;
+                        console.Controls["label11"].Visible = true;
+                        
                         console.Controls["btnTP"].Visible = false;
                     }
                     else if (item.InventoryType == InventoryType.Landmark)
@@ -491,8 +497,10 @@ namespace METAbolt
                     }
                     else
                     {
-                        console.Controls["btnDetach"].Visible = false;
-                        console.Controls["btnWear"].Visible = false;
+                        //console.Controls["btnDetach"].Visible = false;
+                        //console.Controls["btnWear"].Visible = false;
+                        console.Controls["label11"].Visible = false;
+
                         console.Controls["btnTP"].Visible = false;
                     }
 
@@ -795,6 +803,10 @@ namespace METAbolt
                 if (io is InventoryWearable || io is InventoryObject || io is InventoryAttachment)
                 {
                     wearToolStripMenuItem.Visible = true;
+                }
+                else
+                {
+                    wearToolStripMenuItem.Visible = false;
                 }
 
                 cutMenu.Enabled = true;
@@ -1169,7 +1181,7 @@ namespace METAbolt
             refreshFolderToolStripMenuItem.PerformClick();
         }
 
-        private void refreshFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        public void refreshFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RefreshInventory();
         }
@@ -1185,6 +1197,51 @@ namespace METAbolt
                 if (node == null)
                 {
                     folder = client.Inventory.Store.RootFolder;     
+                }
+                else
+                {
+                    //if (node.Text == "(empty)") return;
+
+                    if (node.Tag is InventoryFolder)
+                    {
+                        folder = (InventoryFolder)node.Tag;
+                        //folderNode = node;
+                    }
+                    else if (node.Tag is InventoryItem)
+                    {
+                        folder = (InventoryFolder)node.Parent.Tag;
+                        //folderNode = node.Parent;
+                    }
+
+                    //if (node.Text == "(empty)")
+                    //{
+                    //    folder = (InventoryFolder)node.Parent.Tag;
+                    //    //folderNode = node.Parent;
+                    //}
+                }
+
+                //InventoryBase invObj = client.Inventory.Store[folder.UUID];
+                //UpdateFolder(folder.UUID);
+                //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), folder.UUID);
+                UpdateFolder(folder.UUID);
+
+                //treeView1.Sort();
+            }
+        }
+
+        public void RefreshInventoryNode(TreeNode node)
+        {
+            if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { RefreshInventory(); });
+            else
+            {
+                //TreeNode node = treeView1.SelectedNode;
+                InventoryFolder folder = null;
+
+                selectednode = node;
+
+                if (node == null)
+                {
+                    folder = client.Inventory.Store.RootFolder;
                 }
                 else
                 {
@@ -1943,6 +2000,20 @@ namespace METAbolt
                     client.Appearance.Attach(item, AttachmentPoint.Default);
                 }
             }
+
+            WearTakeoff(true, selectednode);  
+        }
+
+        public void WearTakeoff(bool wear, TreeNode node)
+        {
+            if (!wear)
+            {
+                treeView1.SelectedNode.Text = node.Text.Replace(" (WORN)", "");
+            }
+            else
+            {
+                treeView1.SelectedNode.Text = node.Text.Replace(" (WORN)", "") + " (WORN)";
+            }
         }
 
         private void takeOffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1962,6 +2033,8 @@ namespace METAbolt
                     client.Appearance.Detach(item.UUID);
                 }
             }
+
+            WearTakeoff(false, selectednode); 
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

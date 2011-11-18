@@ -53,13 +53,14 @@ namespace METAbolt
             this.label9 = new System.Windows.Forms.Label();
             this.txtItemUUID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.pnlItemTypeProp.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 163);
+            this.label5.Location = new System.Drawing.Point(3, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 19;
@@ -72,7 +73,7 @@ namespace METAbolt
             this.txtItemOwner.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemOwner.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemOwner.Location = new System.Drawing.Point(73, 160);
+            this.txtItemOwner.Location = new System.Drawing.Point(73, 165);
             this.txtItemOwner.Name = "txtItemOwner";
             this.txtItemOwner.ReadOnly = true;
             this.txtItemOwner.Size = new System.Drawing.Size(230, 21);
@@ -82,7 +83,7 @@ namespace METAbolt
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 112);
+            this.label4.Location = new System.Drawing.Point(3, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 13);
             this.label4.TabIndex = 16;
@@ -95,7 +96,7 @@ namespace METAbolt
             this.txtItemDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemDescription.Location = new System.Drawing.Point(73, 109);
+            this.txtItemDescription.Location = new System.Drawing.Point(73, 114);
             this.txtItemDescription.Name = "txtItemDescription";
             this.txtItemDescription.ReadOnly = true;
             this.txtItemDescription.Size = new System.Drawing.Size(230, 21);
@@ -107,7 +108,7 @@ namespace METAbolt
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, -2);
+            this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 14;
@@ -119,7 +120,7 @@ namespace METAbolt
             this.txtItemCreator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemCreator.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemCreator.Location = new System.Drawing.Point(73, 134);
+            this.txtItemCreator.Location = new System.Drawing.Point(73, 139);
             this.txtItemCreator.Name = "txtItemCreator";
             this.txtItemCreator.ReadOnly = true;
             this.txtItemCreator.Size = new System.Drawing.Size(230, 21);
@@ -132,7 +133,7 @@ namespace METAbolt
             this.txtItemName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemName.Location = new System.Drawing.Point(73, 34);
+            this.txtItemName.Location = new System.Drawing.Point(73, 39);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.ReadOnly = true;
             this.txtItemName.Size = new System.Drawing.Size(230, 21);
@@ -141,7 +142,7 @@ namespace METAbolt
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 137);
+            this.label2.Location = new System.Drawing.Point(3, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 11;
@@ -151,7 +152,7 @@ namespace METAbolt
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 37);
+            this.label1.Location = new System.Drawing.Point(3, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 10;
@@ -163,7 +164,7 @@ namespace METAbolt
             this.txtUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtUUID.Location = new System.Drawing.Point(73, 59);
+            this.txtUUID.Location = new System.Drawing.Point(73, 64);
             this.txtUUID.Name = "txtUUID";
             this.txtUUID.ReadOnly = true;
             this.txtUUID.Size = new System.Drawing.Size(230, 21);
@@ -172,7 +173,7 @@ namespace METAbolt
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 62);
+            this.label6.Location = new System.Drawing.Point(3, 67);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 22;
@@ -206,7 +207,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlItemTypeProp.Controls.Add(this.progressBar1);
             this.pnlItemTypeProp.Controls.Add(this.label7);
-            this.pnlItemTypeProp.Location = new System.Drawing.Point(14, 212);
+            this.pnlItemTypeProp.Location = new System.Drawing.Point(6, 215);
             this.pnlItemTypeProp.Name = "pnlItemTypeProp";
             this.pnlItemTypeProp.Size = new System.Drawing.Size(278, 214);
             this.pnlItemTypeProp.TabIndex = 8;
@@ -216,7 +217,7 @@ namespace METAbolt
             // 
             this.checkBox1.AccessibleName = "Modify perms option";
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(75, 187);
+            this.checkBox1.Location = new System.Drawing.Point(75, 192);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(58, 17);
             this.checkBox1.TabIndex = 5;
@@ -228,7 +229,7 @@ namespace METAbolt
             // 
             this.checkBox2.AccessibleName = "Copy perms option";
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(136, 187);
+            this.checkBox2.Location = new System.Drawing.Point(136, 192);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 6;
@@ -240,7 +241,7 @@ namespace METAbolt
             // 
             this.checkBox3.AccessibleName = "transfer perms option";
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(190, 187);
+            this.checkBox3.Location = new System.Drawing.Point(190, 192);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(67, 17);
             this.checkBox3.TabIndex = 7;
@@ -251,7 +252,7 @@ namespace METAbolt
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 189);
+            this.label8.Location = new System.Drawing.Point(3, 194);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 30;
@@ -261,7 +262,7 @@ namespace METAbolt
             // 
             this.btnTP.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnTP.ForeColor = System.Drawing.Color.White;
-            this.btnTP.Location = new System.Drawing.Point(59, 434);
+            this.btnTP.Location = new System.Drawing.Point(59, 439);
             this.btnTP.Name = "btnTP";
             this.btnTP.Size = new System.Drawing.Size(75, 23);
             this.btnTP.TabIndex = 10;
@@ -275,7 +276,7 @@ namespace METAbolt
             this.btnGive.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnGive.Enabled = false;
             this.btnGive.ForeColor = System.Drawing.Color.White;
-            this.btnGive.Location = new System.Drawing.Point(8, 434);
+            this.btnGive.Location = new System.Drawing.Point(8, 439);
             this.btnGive.Name = "btnGive";
             this.btnGive.Size = new System.Drawing.Size(46, 23);
             this.btnGive.TabIndex = 9;
@@ -288,7 +289,7 @@ namespace METAbolt
             // 
             this.btnDetach.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnDetach.ForeColor = System.Drawing.Color.White;
-            this.btnDetach.Location = new System.Drawing.Point(136, 434);
+            this.btnDetach.Location = new System.Drawing.Point(136, 439);
             this.btnDetach.Name = "btnDetach";
             this.btnDetach.Size = new System.Drawing.Size(75, 23);
             this.btnDetach.TabIndex = 11;
@@ -301,7 +302,7 @@ namespace METAbolt
             // 
             this.btnWear.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnWear.ForeColor = System.Drawing.Color.White;
-            this.btnWear.Location = new System.Drawing.Point(217, 434);
+            this.btnWear.Location = new System.Drawing.Point(217, 439);
             this.btnWear.Name = "btnWear";
             this.btnWear.Size = new System.Drawing.Size(75, 23);
             this.btnWear.TabIndex = 12;
@@ -315,7 +316,7 @@ namespace METAbolt
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label9.Location = new System.Drawing.Point(3, 15);
+            this.label9.Location = new System.Drawing.Point(3, 20);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(12, 13);
             this.label9.TabIndex = 31;
@@ -328,7 +329,7 @@ namespace METAbolt
             this.txtItemUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemUUID.Location = new System.Drawing.Point(73, 84);
+            this.txtItemUUID.Location = new System.Drawing.Point(73, 89);
             this.txtItemUUID.Name = "txtItemUUID";
             this.txtItemUUID.ReadOnly = true;
             this.txtItemUUID.Size = new System.Drawing.Size(230, 21);
@@ -338,11 +339,20 @@ namespace METAbolt
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 87);
+            this.label10.Location = new System.Drawing.Point(3, 92);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 13);
             this.label10.TabIndex = 33;
             this.label10.Text = "UUID (item):";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(8, 325);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(258, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Right click on item to wear/attach/detach or take off";
             // 
             // InventoryItemConsole
             // 
@@ -350,6 +360,7 @@ namespace METAbolt
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtItemUUID);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -410,5 +421,6 @@ namespace METAbolt
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtItemUUID;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }
