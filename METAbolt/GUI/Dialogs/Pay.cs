@@ -118,17 +118,31 @@ namespace METAbolt
 
             if (Prim != null)
             {
-                //SaleType styp = Prim.Properties.SaleType;
-                //UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
+                SaleType styp = Prim.Properties.SaleType;
 
-                //client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, UUID.Zero, folderid);
-                client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
+                if (styp != SaleType.Not)
+                {
+                    UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
+
+                    if (styp == SaleType.Contents)
+                    {
+                        client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, client.Inventory.Store.RootFolder.UUID);
+                    }
+                    else
+                    {
+                        client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, folderid);
+                    }
+                }
+                else
+                {
+                    client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
+                }
             }
             else
             {
                 if (target != UUID.Zero)
                 {
-                    if (!string.IsNullOrEmpty(textBox1.Text) && textBox1.Text.Trim().Length < 2)
+                    if (string.IsNullOrEmpty(textBox1.Text))
                     {
                         client.Self.GiveAvatarMoney(target, iprice);
                     }
