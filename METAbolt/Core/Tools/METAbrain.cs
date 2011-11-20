@@ -117,7 +117,7 @@ namespace METAbolt
             metaTimer.Enabled = false;
             metaTimer.Dispose();
 
-            string sanswer = answer.ProcessInput(emt.IM.Message, "");
+            string sanswer = answer.ProcessInput(emt.IM.Message.ToLower(), "");
 
             if (string.IsNullOrEmpty(sanswer))
             {
