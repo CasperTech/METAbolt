@@ -114,7 +114,7 @@ namespace METAbolt
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
             netcom.MoneyBalanceUpdated +=new EventHandler<BalanceEventArgs>(netcom_MoneyBalanceUpdated);
-            client.Self.MoneyBalanceReply += new EventHandler<MoneyBalanceReplyEventArgs>(Self_MoneyBalanceReply);  
+            client.Self.MoneyBalanceReply += new EventHandler<MoneyBalanceReplyEventArgs>(Self_MoneyBalanceReply);
 
             AddNetcomEvents();
             InitializeStatusTimer();
@@ -1949,11 +1949,6 @@ namespace METAbolt
         private void tlTools_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new Form1(instance)).Show();
         }
     }
 }
