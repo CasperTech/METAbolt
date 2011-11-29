@@ -64,6 +64,9 @@ namespace METAbolt
             chkAI.Checked = config.CurrentConfig.AIon;
             chkReply.Checked = config.CurrentConfig.ReplyAI;
             textBox1.Text = config.CurrentConfig.ReplyText;
+            checkBox2.Checked = config.CurrentConfig.MultiLingualAI;
+
+            panel1.Enabled = groupBox1.Enabled = checkBox2.Enabled = chkAI.Checked;
 
             isloading = false;
         }
@@ -95,6 +98,7 @@ namespace METAbolt
             instance.Config.CurrentConfig.AIon = chkAI.Checked;
             instance.Config.CurrentConfig.ReplyAI = chkReply.Checked;
             instance.Config.CurrentConfig.ReplyText = textBox1.Text;
+            instance.Config.CurrentConfig.MultiLingualAI = checkBox2.Checked;
         }
 
         #endregion
@@ -171,6 +175,11 @@ namespace METAbolt
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
 
         }

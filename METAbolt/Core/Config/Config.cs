@@ -263,7 +263,7 @@ namespace METAbolt
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
                 config.replyAI = conf.Configs["AI"].GetBoolean("ReplyAI", false);
                 config.replyText = conf.Configs["AI"].GetString("ReplyText", "I am sorry but I didn't understand what you said or I haven't been taught a response for it. Can you try again, making sure your sentences are short and clear.");
-                config.AIon = conf.Configs["AI"].GetBoolean("MultiLingualAI", false);
+                config.MultiLingualAI = conf.Configs["AI"].GetBoolean("MultiLingualAI", false);
 
                 config.ChatTimestamps = conf.Configs["Text"].GetBoolean("ChatTimestamps", true);
                 config.IMTimestamps = conf.Configs["Text"].GetBoolean("IMTimestamps", true);

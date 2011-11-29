@@ -160,7 +160,7 @@
             // 
             // checkBox2
             // 
-            this.checkBox2.AccessibleName = "Enable METAbrain option";
+            this.checkBox2.AccessibleName = "Enable multilingual AI";
             this.checkBox2.AutoSize = true;
             this.checkBox2.Enabled = false;
             this.checkBox2.Location = new System.Drawing.Point(37, 57);
@@ -169,6 +169,7 @@
             this.checkBox2.TabIndex = 20;
             this.checkBox2.Text = "Enable multi-lingual AI";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // PrefAI
             // 

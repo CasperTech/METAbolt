@@ -113,7 +113,8 @@ namespace METAbolt
             client.Parcels.ParcelProperties += new EventHandler<ParcelPropertiesEventArgs>(Parcels_OnParcelProperties);
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
-            netcom.MoneyBalanceUpdated +=new EventHandler<BalanceEventArgs>(netcom_MoneyBalanceUpdated); 
+            netcom.MoneyBalanceUpdated +=new EventHandler<BalanceEventArgs>(netcom_MoneyBalanceUpdated);
+            client.Self.MoneyBalanceReply += new EventHandler<MoneyBalanceReplyEventArgs>(Self_MoneyBalanceReply);  
 
             AddNetcomEvents();
             InitializeStatusTimer();
@@ -133,6 +134,20 @@ namespace METAbolt
 
             //UpdateLand();
             //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Chat_KeyDown);
+        }
+
+        void Self_MoneyBalanceReply(object sender, MoneyBalanceReplyEventArgs e)
+        {
+            if (e.Success)
+            {
+                TransactionInfo ti = e.TransactionInfo;
+                string desc = ti.ItemDescription;
+
+                if (!String.IsNullOrEmpty(desc))
+                {
+                    tabsConsole.DisplayChatScreen(" => You paid L$" + ti.Amount.ToString() + " for " + desc + " ");
+                }
+            }
         }
 
         private void SetExceptionReporter()
@@ -988,7 +1003,7 @@ namespace METAbolt
 
         private void StartSilent()
         {
-            Thread.Sleep(10000);
+            Thread.Sleep(3000);
 
             try
             {
@@ -1934,6 +1949,11 @@ namespace METAbolt
         private void tlTools_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new Form1(instance)).Show();
         }
     }
 }

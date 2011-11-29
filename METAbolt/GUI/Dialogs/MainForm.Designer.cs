@@ -144,6 +144,7 @@ namespace METAbolt
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
@@ -450,7 +451,8 @@ namespace METAbolt
             this.toolStripSeparator8,
             this.accountHistoryToolStripMenuItem,
             this.toolStripSeparator12,
-            this.aboutLandToolStripMenuItem});
+            this.aboutLandToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.btnAvatar.Enabled = false;
             this.btnAvatar.Image = global::METAbolt.Properties.Resources.world;
             this.btnAvatar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1202,6 +1204,13 @@ namespace METAbolt
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AccessibleName = "Main METAbolt window";
@@ -1348,6 +1357,7 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 
