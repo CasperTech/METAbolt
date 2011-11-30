@@ -1585,7 +1585,7 @@ namespace METAbolt
             }
         }        
 
-        private void ProcessChatInput(string input, ChatType type)
+        public void ProcessChatInput(string input, ChatType type)
         {
             if (string.IsNullOrEmpty(input)) return;
 
@@ -1604,6 +1604,8 @@ namespace METAbolt
                     }
                 }
             }
+
+            (new frmSpelling(instance, cbxInput.Text)).Show();
 
             string[] inputArgs = input.Split(' ');
 

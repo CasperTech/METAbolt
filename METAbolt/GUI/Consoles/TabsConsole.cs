@@ -42,7 +42,7 @@ namespace METAbolt
         private METAboltInstance instance;
         private SLNetCom netcom;
         private GridClient client;
-        ChatConsole chatConsole;
+        public ChatConsole chatConsole;
         public SafeDictionary<string, METAboltTab> tabs = new SafeDictionary<string, METAboltTab>();
         private string TabAgentName = "";
         //private bool isgroup = false;

@@ -64,7 +64,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
@@ -141,9 +141,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MBsentiment">
-      <HintPath>..\Libs\MBsentiment.dll</HintPath>
-    </Reference>
     <Reference Include="MB_Translation_Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\MB_Translation_Utils.dll</HintPath>
@@ -170,6 +167,9 @@
     </Reference>
     <Reference Include="MsgBoxCheck">
       <HintPath>..\Libs\MsgBoxCheck.dll</HintPath>
+    </Reference>
+    <Reference Include="NHunspell">
+      <HintPath>..\Libs\NHunspell.dll</HintPath>
     </Reference>
     <Reference Include="Nini, Version=1.1.0.0, Culture=neutral, PublicKeyToken=691faec150a7fa7b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -639,6 +639,12 @@
     <Compile Include="GUI\Dialogs\frmPluginManager.Designer.cs">
       <DependentUpon>frmPluginManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Dialogs\frmSpelling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialogs\frmSpelling.Designer.cs">
+      <DependentUpon>frmSpelling.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dialogs\frmStats.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -975,6 +981,9 @@
     <EmbeddedResource Include="GUI\Dialogs\frmPluginManager.resx">
       <DependentUpon>frmPluginManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialogs\frmSpelling.resx">
+      <DependentUpon>frmSpelling.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmStats.resx">
       <DependentUpon>frmStats.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1062,6 +1071,12 @@
     <None Include="License_METAbolt.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Hunspellx64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hunspellx86.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="MB_Translation_Utils.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

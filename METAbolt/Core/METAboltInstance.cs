@@ -133,6 +133,7 @@ namespace METAbolt
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
+            CreateSpellingDir();
 
             client = new GridClient();
 
@@ -182,6 +183,7 @@ namespace METAbolt
             MakeTPTable();
             CreateLogDir();
             CreateNotesDir();
+            CreateSpellingDir();
 
             client = new GridClient();
 
@@ -322,6 +324,20 @@ namespace METAbolt
         {
             string logdir = appdir;   // Application.StartupPath.ToString();
             logdir += "\\Notes\\";
+
+            bool direxists = DirExists(logdir);
+
+            if (!direxists)
+            {
+                // Create the dir
+                Directory.CreateDirectory(logdir);
+            }
+        }
+
+        private void CreateSpellingDir()
+        {
+            string logdir = appdir;   // Application.StartupPath.ToString();
+            logdir += "\\Spelling\\";
 
             bool direxists = DirExists(logdir);
 
