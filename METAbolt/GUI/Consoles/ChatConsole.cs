@@ -50,6 +50,7 @@ using System.Linq;
 using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
 using PopupControl;
+using NHunspell;
 
 namespace METAbolt
 {
@@ -101,6 +102,12 @@ namespace METAbolt
         private Popup tTip1;
         private CustomToolTip customToolTip;
 
+        private Hunspell hunspell = new Hunspell();
+        private string afffile = string.Empty;
+        private string dicfile = string.Empty;
+        private string dic = string.Empty;
+        private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+
 
         internal class ThreadExceptionHandler
         {
@@ -126,6 +133,9 @@ namespace METAbolt
 
             chatManager = new ChatTextManager(instance, new RichTextBoxPrinter(instance, rtbChat));
             chatManager.PrintStartupMessage();
+
+            afffile = "en_GB.aff";
+            dicfile = "en_GB.dic";
 
             this.instance.MainForm.Load += new EventHandler(MainForm_Load);
 
@@ -948,6 +958,21 @@ namespace METAbolt
                 toolStrip1.RenderMode = ToolStripRenderMode.ManagerRenderMode;
             }
 
+            string[] idic = dicfile.Split('.');
+
+            dic = dir + idic[0];
+
+            if (!System.IO.File.Exists(dic + ".csv"))
+            {
+                System.IO.File.Create(dic + ".csv");
+            }
+
+            hunspell.Dispose();
+            hunspell = new Hunspell();
+
+            hunspell.Load(dir + afffile, dir + dicfile);
+            ReadWords(); 
+
             //rtbChat.BackColor = instance.Config.CurrentConfig.BgColour; 
         }
 
@@ -1604,9 +1629,35 @@ namespace METAbolt
                     }
                 }
             }
+            else
+            {
+                // put preference check here
+                string cword = Regex.Replace(cbxInput.Text, @"[^a-zA-Z0-9]", "");
+                string[] swords = cword.Split(' ');
+                bool hasmistake = false;
 
-            (new frmSpelling(instance, cbxInput.Text)).Show();
+                foreach (string word in swords)
+                {
+                    bool correct = hunspell.Spell(word);
 
+                    if (!correct)
+                    {
+                        hasmistake = true;
+                    }
+                }
+
+                if (hasmistake)
+                {
+                    (new frmSpelling(instance, cbxInput.Text, swords, type)).Show();
+                    hasmistake = false;
+                }
+            }
+
+            SendChat(input, type);
+        }
+
+        public void SendChat(string input, ChatType type)
+        {
             string[] inputArgs = input.Split(' ');
 
             if (inputArgs[0].StartsWith("//")) //Chat on previously used channel
@@ -1644,7 +1695,28 @@ namespace METAbolt
                 netcom.ChatOut(input, type, 0);
             }
 
+            // Only if it's enabled
+            ReadWords();
+
             ClearChatInput();
+        }
+
+        private void ReadWords()
+        {
+            using (CsvFileReader reader = new CsvFileReader(dic + ".csv"))
+            {
+                CsvRow row = new CsvRow();
+
+                while (reader.ReadRow(row))
+                {
+                    foreach (string s in row)
+                    {
+                        hunspell.Add(s);
+                    }
+                }
+
+                reader.Dispose(); 
+            }
         }
 
         private string GetTranslation(string sTrStr)

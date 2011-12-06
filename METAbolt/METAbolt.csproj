@@ -344,6 +344,7 @@
     <Compile Include="Core\Components\CustomToolTip.Designer.cs">
       <DependentUpon>CustomToolTip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Tools\rwCSV.cs" />
     <Compile Include="Core\Tools\SafeDictionary.cs" />
     <Compile Include="Core\Tools\WildCard.cs" />
     <Compile Include="GUI\Consoles\FindLand.cs">

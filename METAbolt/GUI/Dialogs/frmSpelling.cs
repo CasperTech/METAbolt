@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using OpenMetaverse;
 using NHunspell;
+using System.Text.RegularExpressions;  
 
 namespace METAbolt
 {
@@ -15,23 +17,42 @@ namespace METAbolt
         private METAboltInstance instance;
         private Hunspell hunspell = new Hunspell();   //("en_us.aff", "en_us.dic");
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
-        private string words = string.Empty;
+        //private string words = string.Empty;
         private int start = 0;
         private int indexOfSearchText = 0;
         private string[] swords;
         //private int swordind = -1;
         private string currentword = string.Empty;
-        private List<string> mistakes = new List<string>();  
+        private List<string> mistakes = new List<string>();
+        private ChatType ctype;
+        private string afffile = string.Empty;
+        private string dicfile = string.Empty;
+        private string dic = string.Empty;
 
-        public frmSpelling(METAboltInstance instance, string sentence)
+        public frmSpelling(METAboltInstance instance, string sentence, string[] swords, ChatType type)
         {
             InitializeComponent();
 
             this.instance = instance;
 
-            hunspell.Load(dir + "en_GB.aff", dir + "en_GB.dic");   //("en_us.aff", "en_us.dic");
+            afffile = "en_GB.aff";
+            dicfile = "en_GB.dic";
 
-            words = sentence; 
+            string[] idic = dicfile.Split('.');
+            dic = dir + idic[0];
+
+            if (!System.IO.File.Exists(dic + ".csv"))
+            {
+                System.IO.File.Create(dic + ".csv");
+            }
+
+            hunspell.Load(dir + afffile, dir + dicfile);   //("en_us.aff", "en_us.dic");
+            ReadWords();
+
+            //words = sentence;
+            richTextBox1.Text = sentence;
+            this.swords = swords;
+            this.ctype = type;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -43,19 +64,25 @@ namespace METAbolt
 
         private void frmSpelling_Load(object sender, EventArgs e)
         {
-            richTextBox1.Text = words;
+            CheckSpellings();
+        }
 
-            swords = words.Split(' ');
-
+        private void CheckSpellings()
+        {
+            mistakes.Clear();
+            listBox1.Items.Clear();  
+ 
             foreach (string word in swords)
             {
-                bool correct = hunspell.Spell(word);
+                string cword = Regex.Replace(word, @"[^a-zA-Z0-9]", "");
+
+                bool correct = hunspell.Spell(cword);
 
                 if (!correct)
                 {
-                    InHighligtWord(word);
+                    InHighligtWord(cword);
 
-                    mistakes.Add(word); 
+                    mistakes.Add(cword);
                 }
             }
 
@@ -224,6 +251,7 @@ namespace METAbolt
             if (!string.IsNullOrEmpty(currentword))
             {
                 hunspell.Add(currentword);
+                AddWord(currentword);
             }
 
             ContSearch();
@@ -243,6 +271,42 @@ namespace METAbolt
 
                 listBox1.SelectedIndex = -1;
                 button4.Enabled = false; 
+            }
+        }
+
+        private void frmSpelling_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            instance.TabConsole.chatConsole.SendChat(richTextBox1.Text, ctype);
+        }
+
+        private void AddWord(string aword)
+        {
+            string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+            string dicfile = "en_GB.csv";
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(dir + dicfile, true))
+            {
+                file.WriteLine(aword + ",");
+            }
+
+            CheckSpellings();
+        }
+
+        private void ReadWords()
+        {
+            using (CsvFileReader reader = new CsvFileReader(dic + ".csv"))
+            {
+                CsvRow row = new CsvRow();
+
+                while (reader.ReadRow(row))
+                {
+                    foreach (string s in row)
+                    {
+                        hunspell.Add(s);
+                    }
+                }
+
+                reader.Dispose();  
             }
         }
     }
