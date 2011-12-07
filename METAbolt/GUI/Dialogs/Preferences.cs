@@ -65,6 +65,7 @@ namespace METAbolt
             AddPreferencePane(new PrefProxy(instance));
             AddPreferencePane(new PrefPlugin(instance));
             AddPreferencePane(new PrefMETAgiver(instance));
+            AddPreferencePane(new PrefSpelling(instance));
             lbxPanes.SelectedIndex = 0;
         }
 

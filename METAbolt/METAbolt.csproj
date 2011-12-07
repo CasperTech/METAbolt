@@ -413,6 +413,12 @@
     <Compile Include="GUI\Consoles\Preferences\PrefChairAnn.designer.cs">
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Consoles\Preferences\PrefSpelling.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Consoles\Preferences\PrefSpelling.Designer.cs">
+      <DependentUpon>PrefSpelling.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dialogs\frmGive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -837,6 +843,9 @@
     <EmbeddedResource Include="GUI\Consoles\Preferences\PrefChairAnn.resx">
       <DependentUpon>PrefChairAnn.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Consoles\Preferences\PrefSpelling.resx">
+      <DependentUpon>PrefSpelling.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmGive.resx">
       <DependentUpon>frmGive.cs</DependentUpon>
@@ -1610,6 +1619,8 @@
     <None Include="Resources\smoke_bg.png" />
     <None Include="Resources\Search_32.png" />
     <None Include="Resources\turnto_i.png" />
+    <None Include="Resources\spelling-bee.png" />
+    <None Include="Resources\spell-checker.png" />
     <Content Include="Resources\up.png" />
     <None Include="Resources\Url_History_16.png" />
     <None Include="Resources\window_edit.png" />

@@ -963,6 +963,13 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap spell_checker {
+            get {
+                object obj = ResourceManager.GetObject("spell_checker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap stats1 {
             get {
                 object obj = ResourceManager.GetObject("stats1", resourceCulture);
