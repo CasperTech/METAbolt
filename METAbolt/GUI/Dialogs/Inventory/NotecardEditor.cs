@@ -515,11 +515,14 @@ namespace METAbolt
         private void findReplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             toolStrip1.Visible = true;
+            toolStrip2.Visible = true;
             tsReplaceText.Focus();
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(tsFindText.Text)) return;
+  
             if (tsChkCase.Checked)
             {
                 if (tsChkWord.Checked)
@@ -546,6 +549,8 @@ namespace METAbolt
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(tsFindText.Text)) return;
+
             if (tsChkCase.Checked)
             {
                 if (tsChkWord.Checked)
@@ -568,6 +573,11 @@ namespace METAbolt
                     rtbNotecard.FindAndReplace(tsFindText.Text, tsReplaceText.Text, true, false, false);
                 }
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            toolStrip2.Visible = false;
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)

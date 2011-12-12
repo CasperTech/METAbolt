@@ -164,6 +164,8 @@ namespace METAbolt
         private bool disablemipmaps = false;
         private bool displaylslcommands = true;
         private bool multilingualai = false;
+        private bool enablespellcheck = false;
+        private string spelllang = "en_GB";
 
         public Config()
         {
@@ -341,6 +343,14 @@ namespace METAbolt
                 //added by GM on 1-APR-2010
                 config.chairAnnouncerAdvert = conf.Configs["PlugIn"].GetString("ChairAnnouncerAdvert", "Brought to you by METAbolt and Machin's Machines");
                 //throw new Exception("Test");
+
+                try
+                {
+                    // Spelling
+                    config.EnableSpelling = conf.Configs["Spelling"].GetBoolean("EnableSpelling", false);
+                    config.SpellLanguage = conf.Configs["Spelling"].GetString("SpellLanguage", "en_GB");
+                }
+                catch { ; }
             }
             catch (Exception exp)
             {
@@ -530,6 +540,10 @@ namespace METAbolt
             config.Set("ChairAnnouncerChat", chairAnnouncerChat);
             //added by GM on 1-APR-2009
             config.Set("ChairAnnouncerAdvert", chairAnnouncerAdvert);
+
+            config = source.AddConfig("Spelling");
+            config.Set("EnableSpelling", enablespellcheck.ToString(CultureInfo.CurrentCulture));
+            config.Set("SpellLanguage", spelllang);
 
             FileInfo newFileInfo = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", filename));
 
@@ -1199,5 +1213,16 @@ namespace METAbolt
             set { multilingualai = value; }
         }
 
+        public bool EnableSpelling
+        {
+            get { return enablespellcheck; }
+            set { enablespellcheck = value; }
+        }
+
+        public string SpellLanguage
+        {
+            get { return spelllang; }
+            set { spelllang = value; }
+        }
     }
 }

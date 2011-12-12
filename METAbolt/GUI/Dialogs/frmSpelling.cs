@@ -35,8 +35,8 @@ namespace METAbolt
 
             this.instance = instance;
 
-            afffile = "en_GB.aff";
-            dicfile = "en_GB.dic";
+            afffile = this.instance.AffFile;   // "en_GB.aff";
+            dicfile = this.instance.DictionaryFile;   // "en_GB.dic";
 
             string[] idic = dicfile.Split('.');
             dic = dir + idic[0];
@@ -46,8 +46,15 @@ namespace METAbolt
                 System.IO.File.Create(dic + ".csv");
             }
 
-            hunspell.Load(dir + afffile, dir + dicfile);   //("en_us.aff", "en_us.dic");
-            ReadWords();
+            try
+            {
+                hunspell.Load(dir + afffile, dir + dicfile);   //("en_us.aff", "en_us.dic");
+                ReadWords();
+            }
+            catch (Exception ex)
+            {
+                string exp = ex.Message; 
+            }
 
             //words = sentence;
             richTextBox1.Text = sentence;
@@ -254,7 +261,7 @@ namespace METAbolt
                 AddWord(currentword);
             }
 
-            ContSearch();
+            //ContSearch();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -281,13 +288,16 @@ namespace METAbolt
 
         private void AddWord(string aword)
         {
-            string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
-            string dicfile = "en_GB.csv";
+            string dicfilea = dic + ".csv";
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(dir + dicfile, true))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(dicfilea, true))
             {
                 file.WriteLine(aword + ",");
             }
+
+            richTextBox1.Undo();
+            richTextBox1.ForeColor = Color.Black;
+            richTextBox1.SelectionBackColor = Color.White;
 
             CheckSpellings();
         }

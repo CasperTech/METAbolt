@@ -110,6 +110,8 @@ namespace METAbolt
         private DataTable giveritems = null;
         private bool readims = false;
         public InventoryConsole insconsole;
+        private string afffile = string.Empty;
+        private string dicfile = string.Empty;  
 
         internal class ThreadExceptionHandler
         {
@@ -773,6 +775,8 @@ namespace METAbolt
             /// the grid interface</summary>
             client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
             client.Settings.MAX_CONCURRENT_TEXTURE_DOWNLOADS = 20;
+
+            //client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("52b32df5-d38d-dd55-9712-eb7736afe415");  
              
 
             // Sizes
@@ -1152,6 +1156,18 @@ namespace METAbolt
         {
             get { return readims; }
             set { readims = value; }
+        }
+
+        public string AffFile
+        {
+            get { return afffile; }
+            set { afffile = value; }
+        }
+
+        public string DictionaryFile
+        {
+            get { return dicfile; }
+            set { dicfile = value; }
         }
     }
 }

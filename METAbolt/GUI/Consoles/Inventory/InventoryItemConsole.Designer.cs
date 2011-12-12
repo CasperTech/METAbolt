@@ -205,6 +205,7 @@ namespace METAbolt
             this.pnlItemTypeProp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlItemTypeProp.Controls.Add(this.label11);
             this.pnlItemTypeProp.Controls.Add(this.progressBar1);
             this.pnlItemTypeProp.Controls.Add(this.label7);
             this.pnlItemTypeProp.Location = new System.Drawing.Point(6, 215);
@@ -348,7 +349,7 @@ namespace METAbolt
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 325);
+            this.label11.Location = new System.Drawing.Point(8, 192);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(258, 13);
             this.label11.TabIndex = 27;
@@ -360,7 +361,6 @@ namespace METAbolt
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtItemUUID);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -389,6 +389,7 @@ namespace METAbolt
             this.Size = new System.Drawing.Size(306, 487);
             this.Load += new System.EventHandler(this.InventoryItemConsole_Load);
             this.pnlItemTypeProp.ResumeLayout(false);
+            this.pnlItemTypeProp.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

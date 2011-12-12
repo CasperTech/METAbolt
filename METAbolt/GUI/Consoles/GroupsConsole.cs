@@ -35,7 +35,8 @@ using OpenMetaverse;
 using SLNetworkComm;
 using OpenMetaverse.Packets;
 using ExceptionReporting;
-using System.Threading; 
+using System.Threading;
+using System.Linq;  
 
 
 // Group List user control
@@ -129,34 +130,6 @@ namespace METAbolt
 
                 lstGroups.Items.Add("_None");
 
-                //SortedDictionary<UUID, Group> SortedDic = new SortedDictionary<UUID, Group>();
-
-                //SortedDictionary<UUID, Group>.KeyCollection SortedkeyColl = SortedDic.Values;
-
-
-                //foreach (Group group in this.instance.State.Groups.Values)
-                //{
-                //    SortedDic.Add(group.ID, group);
-                //}
-
-                //foreach (KeyValuePair<UUID, Group> kvp in SortedDic)
-                //{
-                //    lstGroups.Items.Add(kvp.Value);
-
-                //    if (Client.Self.ActiveGroup != UUID.Zero)
-                //    {
-                //        if (Client.Self.ActiveGroup == kvp.Value.ID)
-                //        {
-                //            label1.Text = "Current group tag worn: " + kvp.Value.Name;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        label1.Text = "Current group tag worn: None";
-                //    }
-                //}
-
-
                 foreach (Group group in this.instance.State.Groups.Values)
                 {
                     lstGroups.Items.Add(group);
@@ -178,11 +151,6 @@ namespace METAbolt
 
                 if (lstGroups.Items.Count > 0)
                 {
-                    //cmdActivate.Enabled = true;
-                    //cmdInfo.Enabled = true;
-                    //cmdLeave.Enabled = true;
-                    //button4.Enabled = true; 
-
                     int cnt = lstGroups.Items.Count - 1;
                     label6.Text = "Total: " + cnt + " groups";
                 }
@@ -266,14 +234,16 @@ namespace METAbolt
                     //frm.ShowDialog();
                     (new frmGroupInfo(group, instance)).Show();
                 }
+
+                lstGroups.SetSelected(lstGroups.SelectedIndex, true);
             }
         }
 
         private void cmdActivate_Click(object sender, EventArgs e)
         {
-            if (lstGroups.SelectedIndex >= 0)   //&& lstGroups.Items[lstGroups.SelectedIndex].ToString() != "none")
+            if (lstGroups.SelectedIndex >= 0)
             {
-                if (lstGroups.SelectedIndex == 0)
+                if (lstGroups.Items[lstGroups.SelectedIndex].ToString() == "_None")
                 {
                     Client.Groups.ActivateGroup(UUID.Zero);
                 }
@@ -283,6 +253,8 @@ namespace METAbolt
                     Client.Groups.ActivateGroup(group.ID);
                 }
             }
+
+            lstGroups.SetSelected(lstGroups.SelectedIndex, true);
         }
 
         private void cmdLeave_Click(object sender, EventArgs e)
@@ -326,7 +298,7 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cmdIM.Enabled = cmdActivate.Enabled = cmdInfo.Enabled = button4.Enabled = cmdLeave.Enabled = button1.Enabled = false;
+            cmdIM.Enabled = cmdActivate.Enabled = cmdInfo.Enabled = button4.Enabled = cmdLeave.Enabled = button1.Enabled = label5.Visible = false;
             panel1.Visible = true; 
         }
 
@@ -349,14 +321,19 @@ namespace METAbolt
         private void EnableNew()
         {
             panel1.Visible = false;
-            cmdIM.Enabled = cmdActivate.Enabled = cmdInfo.Enabled = button4.Enabled = cmdLeave.Enabled = button1.Enabled = true; 
+            cmdIM.Enabled = cmdActivate.Enabled = cmdInfo.Enabled = button4.Enabled = cmdLeave.Enabled = button1.Enabled = label5.Visible = true; 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
+            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "_None")
+            {
+                Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
 
-            (new frmGive(instance, group.ID, UUID.Zero)).Show(this);
+                (new frmGive(instance, group.ID, UUID.Zero)).Show(this);
+
+                lstGroups.SetSelected(lstGroups.SelectedIndex, true);
+            }
         }
     }
 }

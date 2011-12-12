@@ -206,7 +206,7 @@ namespace METAbolt
             this.indentLeftToolStripMenuItem});
             this.Menu1.Name = "Menu1";
             this.Menu1.OwnerItem = this.toolStripDropDownButton2;
-            this.Menu1.Size = new System.Drawing.Size(208, 226);
+            this.Menu1.Size = new System.Drawing.Size(208, 248);
             // 
             // undoToolStripMenuItem
             // 
@@ -450,9 +450,9 @@ namespace METAbolt
             // 
             // PB1
             // 
-            this.PB1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PB1.BackColor = System.Drawing.Color.Transparent;
             this.PB1.Image = global::METAbolt.Properties.Resources.wait30trans;
             this.PB1.Location = new System.Drawing.Point(304, 209);
@@ -464,9 +464,9 @@ namespace METAbolt
             // 
             // rtbNotecard
             // 
-            this.rtbNotecard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbNotecard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbNotecard.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rtbNotecard.Location = new System.Drawing.Point(0, 28);
             this.rtbNotecard.Name = "rtbNotecard";

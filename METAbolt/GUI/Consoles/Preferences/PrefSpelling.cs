@@ -14,18 +14,43 @@ namespace METAbolt
 {
     public partial class PrefSpelling : System.Windows.Forms.UserControl, IPreferencePane
     {
+        private METAboltInstance instance;
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+        private string lang = string.Empty;
 
         public PrefSpelling(METAboltInstance instance)
         {
             InitializeComponent();
 
+            this.instance = instance; 
+
             GetDictionaries();
+
+            checkBox1.Checked = instance.Config.CurrentConfig.EnableSpelling;
+            lang = instance.Config.CurrentConfig.SpellLanguage;
+
+            label2.Text = "Selected language: " + lang;
+
+            listBox1.SelectedItem = lang + ".dic";
+
+            SetFlag();
+
+            //this.instance.DictionaryFile = lang + ".dic";
+            //this.instance.AffFile = lang + ".aff";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lang = listBox1.Items[listBox1.SelectedIndex].ToString();
 
+            string[] sfile = lang.Split('.');
+            string file = lang = sfile[0];
+
+            this.instance.DictionaryFile = lang + ".dic";
+            this.instance.AffFile = lang + ".aff";
+
+            label2.Text = "Selected language: " + lang;
+            SetFlag();
         }
 
         #region IPreferencePane Members
@@ -42,7 +67,8 @@ namespace METAbolt
 
         void IPreferencePane.SetPreferences()
         {
-            //instance.Config.CurrentConfig.DisableMipmaps = chkAI.Checked;
+            instance.Config.CurrentConfig.EnableSpelling = checkBox1.Checked;
+            instance.Config.CurrentConfig.SpellLanguage = lang;
         }
 
         #endregion
@@ -75,6 +101,25 @@ namespace METAbolt
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             button1.Enabled = (listBox1.SelectedIndex != -1);
+
+            SetSelFlag();
+        }
+
+        private void SetFlag()
+        {
+            string[] sfile = lang.Split('_');
+
+            picFlag.Image = ilFlags.Images[sfile[1] + ".png"];
+        }
+
+        private void SetSelFlag()
+        {
+            string sellang = listBox1.Items[listBox1.SelectedIndex].ToString();
+            string[] sfile = sellang.Split('_');
+
+            sfile = sfile[1].Split('.');
+
+            picFlag.Image = ilFlags.Images[sfile[0] + ".png"];
         }
     }
 }

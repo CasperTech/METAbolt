@@ -134,8 +134,8 @@ namespace METAbolt
             chatManager = new ChatTextManager(instance, new RichTextBoxPrinter(instance, rtbChat));
             chatManager.PrintStartupMessage();
 
-            afffile = "en_GB.aff";
-            dicfile = "en_GB.dic";
+            afffile = this.instance.AffFile = instance.Config.CurrentConfig.SpellLanguage + ".aff";   // "en_GB.aff";
+            dicfile = this.instance.DictionaryFile = instance.Config.CurrentConfig.SpellLanguage + ".dic";   // "en_GB.dic";
 
             this.instance.MainForm.Load += new EventHandler(MainForm_Load);
 
@@ -958,20 +958,33 @@ namespace METAbolt
                 toolStrip1.RenderMode = ToolStripRenderMode.ManagerRenderMode;
             }
 
-            string[] idic = dicfile.Split('.');
-
-            dic = dir + idic[0];
-
-            if (!System.IO.File.Exists(dic + ".csv"))
+            if (instance.Config.CurrentConfig.EnableSpelling)
             {
-                System.IO.File.Create(dic + ".csv");
+                dicfile = instance.Config.CurrentConfig.SpellLanguage;   // "en_GB.dic";
+
+                this.instance.AffFile = afffile = dicfile + ".aff";
+                this.instance.DictionaryFile = dicfile + ".dic";
+
+                dic = dir + dicfile;
+
+                dicfile += ".dic";
+
+                if (!System.IO.File.Exists(dic + ".csv"))
+                {
+                    //System.IO.File.Create(dic + ".csv");
+
+                    using (StreamWriter sw = File.CreateText(dic + ".csv"))
+                    {
+                        sw.Dispose();
+                    }
+                }
+
+                hunspell.Dispose();
+                hunspell = new Hunspell();
+
+                hunspell.Load(dir + afffile, dir + dicfile);
+                ReadWords();
             }
-
-            hunspell.Dispose();
-            hunspell = new Hunspell();
-
-            hunspell.Load(dir + afffile, dir + dicfile);
-            ReadWords(); 
 
             //rtbChat.BackColor = instance.Config.CurrentConfig.BgColour; 
         }
@@ -1631,25 +1644,31 @@ namespace METAbolt
             }
             else
             {
-                // put preference check here
-                string cword = Regex.Replace(cbxInput.Text, @"[^a-zA-Z0-9]", "");
-                string[] swords = cword.Split(' ');
-                bool hasmistake = false;
-
-                foreach (string word in swords)
+                if (instance.Config.CurrentConfig.EnableSpelling)
                 {
-                    bool correct = hunspell.Spell(word);
+                    // put preference check here
+                    //string cword = Regex.Replace(cbxInput.Text, @"[^a-zA-Z0-9]", "");
+                    //string[] swords = cword.Split(' ');
+                    string[] swords = cbxInput.Text.Split(' ');
+                    bool hasmistake = false;
 
-                    if (!correct)
+                    foreach (string word in swords)
                     {
-                        hasmistake = true;
-                    }
-                }
+                        string cword = Regex.Replace(word, @"[^a-zA-Z0-9]", "");
 
-                if (hasmistake)
-                {
-                    (new frmSpelling(instance, cbxInput.Text, swords, type)).Show();
-                    hasmistake = false;
+                        bool correct = hunspell.Spell(cword);
+
+                        if (!correct)
+                        {
+                            hasmistake = true;
+                        }
+                    }
+
+                    if (hasmistake)
+                    {
+                        (new frmSpelling(instance, cbxInput.Text, swords, type)).Show();
+                        hasmistake = false;
+                    }
                 }
             }
 
