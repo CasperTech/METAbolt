@@ -776,7 +776,7 @@ namespace METAbolt
             client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
             client.Settings.MAX_CONCURRENT_TEXTURE_DOWNLOADS = 20;
 
-            //client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("52b32df5-d38d-dd55-9712-eb7736afe415");  
+            client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("8201f643-6006-c2ea-fbf3-0a5e8c0874ed");  
              
 
             // Sizes
@@ -869,6 +869,8 @@ namespace METAbolt
             client.Assets.Cache.AutoPruneEnabled = false; 
 
             client.Self.Movement.Camera.Far = config.CurrentConfig.RadarRange;
+            client.Self.Movement.AutoResetControls = false;
+            client.Self.Movement.UpdateInterval = 250;
 
             //client.Throttle.Cloud = 0.0f;
             //client.Throttle.Land = 0.0f;

@@ -92,6 +92,7 @@ namespace METAbolt
 
                 case true:
                     int i = 0;
+
                     for (i = 0; i <= this.TextLength; i++)
                     {
                         if (MatchCase == true)
@@ -124,6 +125,7 @@ namespace METAbolt
                         else
                         {
                             MessageBox.Show(i + " occurrence(s) replaced");
+                            break;
                         }
                     }
 

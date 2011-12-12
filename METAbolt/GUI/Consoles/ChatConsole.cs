@@ -1668,6 +1668,7 @@ namespace METAbolt
                     {
                         (new frmSpelling(instance, cbxInput.Text, swords, type)).Show();
                         hasmistake = false;
+                        return;
                     }
                 }
             }

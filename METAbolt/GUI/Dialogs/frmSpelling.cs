@@ -8,13 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using NHunspell;
-using System.Text.RegularExpressions;  
+using System.Text.RegularExpressions;
+using SLNetworkComm;
 
 namespace METAbolt
 {
     public partial class frmSpelling : Form
     {
         private METAboltInstance instance;
+        private SLNetCom netcom;
         private Hunspell hunspell = new Hunspell();   //("en_us.aff", "en_us.dic");
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
         //private string words = string.Empty;
@@ -28,6 +30,11 @@ namespace METAbolt
         private string afffile = string.Empty;
         private string dicfile = string.Empty;
         private string dic = string.Empty;
+        private bool isIM = true;
+        private bool ischat = true;
+        private string tabname = string.Empty;
+        private UUID target = UUID.Zero;
+        private UUID session = UUID.Zero;  
 
         public frmSpelling(METAboltInstance instance, string sentence, string[] swords, ChatType type)
         {
@@ -60,6 +67,54 @@ namespace METAbolt
             richTextBox1.Text = sentence;
             this.swords = swords;
             this.ctype = type;
+
+            ischat = true;
+        }
+
+        public frmSpelling(METAboltInstance instance, string sentence, string[] swords, string type, UUID target, UUID session)
+        {
+            InitializeComponent();
+
+            this.instance = instance;
+            netcom = this.instance.Netcom;
+
+            afffile = this.instance.AffFile;   // "en_GB.aff";
+            dicfile = this.instance.DictionaryFile;   // "en_GB.dic";
+
+            string[] idic = dicfile.Split('.');
+            dic = dir + idic[0];
+
+            if (!System.IO.File.Exists(dic + ".csv"))
+            {
+                System.IO.File.Create(dic + ".csv");
+            }
+
+            try
+            {
+                hunspell.Load(dir + afffile, dir + dicfile);   //("en_us.aff", "en_us.dic");
+                ReadWords();
+            }
+            catch (Exception ex)
+            {
+                string exp = ex.Message;
+            }
+
+            //words = sentence;
+            richTextBox1.Text = sentence;
+            this.swords = swords;
+
+            if (type == "IM")
+            {
+                isIM = true;
+            }
+            else
+            {
+                isIM = false;
+            }
+
+            ischat = false;
+            this.target = target;
+            this.session = session; 
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -283,7 +338,14 @@ namespace METAbolt
 
         private void frmSpelling_FormClosing(object sender, FormClosingEventArgs e)
         {
-            instance.TabConsole.chatConsole.SendChat(richTextBox1.Text, ctype);
+            if (ischat)
+            {
+                instance.TabConsole.chatConsole.SendChat(richTextBox1.Text, ctype);
+            }
+            else
+            {
+                netcom.SendInstantMessage(richTextBox1.Text, target, session); 
+            }
         }
 
         private void AddWord(string aword)
