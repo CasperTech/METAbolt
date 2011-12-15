@@ -2420,18 +2420,29 @@ namespace METAbolt
             //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
             //        AgentState.None, true);
 
-            // turn left
+            //// turn left
 
-            client.Self.AnimationStart(Animations.TURNLEFT, false);
+            //client.Self.AnimationStart(Animations.TURNLEFT, false);
 
             ahead += 45.0;
             if (ahead > 360) ahead = 135.0;
 
-            client.Self.Movement.UpdateFromHeading(ahead, true);
+            //client.Self.Movement.TurnRight = false;
+            //client.Self.Movement.TurnLeft = true;
 
-            client.Self.Movement.FinishAnim = true;
-            System.Threading.Thread.Sleep(200);
-            client.Self.AnimationStop(Animations.TURNLEFT, false);
+            //client.Self.Movement.UpdateFromHeading(ahead, true);
+
+            //client.Self.Movement.FinishAnim = true;
+            //System.Threading.Thread.Sleep(200);
+            //client.Self.AnimationStop(Animations.TURNLEFT, false);
+
+            client.Self.Movement.TurnRight = false;
+            client.Self.Movement.TurnLeft = true;
+            client.Self.Movement.BodyRotation = client.Self.Movement.BodyRotation * Quaternion.CreateFromAxisAngle(Vector3.UnitZ, 45f);
+            client.Self.Movement.SendUpdate(true);
+            System.Threading.Thread.Sleep(500);
+            client.Self.Movement.TurnLeft = false;
+            client.Self.Movement.SendUpdate(true);
         }
 
         private void rgt()
@@ -2441,19 +2452,27 @@ namespace METAbolt
             //        client.Self.Movement.BodyRotation, client.Self.Movement.HeadRotation, client.Self.Movement.Camera.Far, AgentFlags.None,
             //        AgentState.None, true);
 
-            // turn right
 
-            client.Self.AnimationStart(Animations.TURNRIGHT, false);
+            //// turn right
+
+            //client.Self.AnimationStart(Animations.TURNRIGHT, false);
 
             ahead += -45.0;
             if (ahead > 360) ahead = 135.0;
 
+            //client.Self.Movement.UpdateFromHeading(ahead, true);
 
-            client.Self.Movement.UpdateFromHeading(ahead, true);
+            //client.Self.Movement.FinishAnim = true;
+            //System.Threading.Thread.Sleep(200);
+            //client.Self.AnimationStop(Animations.TURNRIGHT, false);
 
-            client.Self.Movement.FinishAnim = true;
-            System.Threading.Thread.Sleep(200);
-            client.Self.AnimationStop(Animations.TURNRIGHT, false);
+            client.Self.Movement.TurnLeft = false;
+            client.Self.Movement.TurnRight = true;
+            client.Self.Movement.BodyRotation = client.Self.Movement.BodyRotation * Quaternion.CreateFromAxisAngle(Vector3.UnitZ, -45f);
+            client.Self.Movement.SendUpdate(true);
+            System.Threading.Thread.Sleep(500);
+            client.Self.Movement.TurnRight = false;
+            client.Self.Movement.SendUpdate(true);
         }
 
         private void button7_Click(object sender, EventArgs e)
