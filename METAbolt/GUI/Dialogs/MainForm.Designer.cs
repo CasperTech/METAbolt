@@ -144,6 +144,8 @@ namespace METAbolt
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
+            this.sLGridStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
@@ -262,6 +264,8 @@ namespace METAbolt
             this.mETAboltQuickStartGToolStripMenuItem,
             this.reportABugToolStripMenuItem,
             this.toolStripMenuItem1,
+            this.sLGridStatusToolStripMenuItem,
+            this.toolStripSeparator27,
             this.sLHelpToolStripMenuItem,
             this.sLKnowledgebaseToolStripMenuItem,
             this.scriptingPortalToolStripMenuItem,
@@ -1202,6 +1206,18 @@ namespace METAbolt
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // toolStripSeparator27
+            // 
+            this.toolStripSeparator27.Name = "toolStripSeparator27";
+            this.toolStripSeparator27.Size = new System.Drawing.Size(195, 6);
+            // 
+            // sLGridStatusToolStripMenuItem
+            // 
+            this.sLGridStatusToolStripMenuItem.Name = "sLGridStatusToolStripMenuItem";
+            this.sLGridStatusToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.sLGridStatusToolStripMenuItem.Text = "SL Grid Status";
+            this.sLGridStatusToolStripMenuItem.Click += new System.EventHandler(this.sLGridStatusToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AccessibleName = "Main METAbolt window";
@@ -1348,6 +1364,8 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
+        private System.Windows.Forms.ToolStripMenuItem sLGridStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator27;
     }
 }
 

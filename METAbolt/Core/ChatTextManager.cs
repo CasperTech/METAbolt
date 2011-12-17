@@ -968,6 +968,8 @@ namespace METAbolt
         {
             if (e.RequestID == GroupRequestID)
             {
+                client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+
                 if (igroup != e.GroupID)
                 {
                     return;
@@ -982,10 +984,26 @@ namespace METAbolt
                     if (e.Members.TryGetValue(iperson, out gmember))
                     {
                         invitecounter = 0;
-                        client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
 
                         if (!ismember)
                         {
+                            DateTime dte = DateTime.Now;
+
+                            dte = this.instance.State.GetTimeStamp(dte);
+
+                            if (instance.Config.CurrentConfig.UseSLT)
+                            {
+                                string _timeZoneId = "Pacific Standard Time";
+                                DateTime startTime = DateTime.UtcNow;
+                                TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
+                                dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
+                            }
+
+                            string prefix = dte.ToString("[HH:mm] ");
+                            string gname = instance.State.GroupStore[igroup];
+
+                            textPrinter.SetSelectionForeColor(Color.Gray);
+                            textPrinter.PrintTextLine(prefix + "\n\n[ GroupMan Pro ] @ " + gmanlocation + "\n   Invite request for group " + gname.ToUpper() + " has been ignored. " + gavname + " (" + iperson.ToString() + ") is already a member.");
                             return;
                         }
                         else
@@ -997,9 +1015,7 @@ namespace METAbolt
                     }
                 }
 
-                client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
-
-                if (invitecounter > 1)   //if (invitecounter > 2)
+                if (invitecounter > 1)
                 {
                     invitecounter = 0;
                     ismember = false;
@@ -1035,7 +1051,7 @@ namespace METAbolt
             try
             {
                 client.Groups.Invite(igroup, roles, iperson);
-   
+
                 // start timer to check if invite has been accepted
                 aTimer = new System.Timers.Timer();
                 aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);

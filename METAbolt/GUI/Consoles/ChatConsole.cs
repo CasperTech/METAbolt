@@ -2424,8 +2424,8 @@ namespace METAbolt
 
             //client.Self.AnimationStart(Animations.TURNLEFT, false);
 
-            ahead += 45.0;
-            if (ahead > 360) ahead = 135.0;
+            //ahead += 45.0;
+            //if (ahead > 360) ahead = 135.0;
 
             //client.Self.Movement.TurnRight = false;
             //client.Self.Movement.TurnLeft = true;
@@ -2457,8 +2457,8 @@ namespace METAbolt
 
             //client.Self.AnimationStart(Animations.TURNRIGHT, false);
 
-            ahead += -45.0;
-            if (ahead > 360) ahead = 135.0;
+            //ahead += -45.0;
+            //if (ahead > 360) ahead = 135.0;
 
             //client.Self.Movement.UpdateFromHeading(ahead, true);
 

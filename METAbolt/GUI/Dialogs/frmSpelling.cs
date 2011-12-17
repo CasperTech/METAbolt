@@ -30,7 +30,6 @@ namespace METAbolt
         private string afffile = string.Empty;
         private string dicfile = string.Empty;
         private string dic = string.Empty;
-        private bool isIM = true;
         private bool ischat = true;
         private string tabname = string.Empty;
         private UUID target = UUID.Zero;
@@ -103,15 +102,6 @@ namespace METAbolt
             richTextBox1.Text = sentence;
             this.swords = swords;
 
-            if (type == "IM")
-            {
-                isIM = true;
-            }
-            else
-            {
-                isIM = false;
-            }
-
             ischat = false;
             this.target = target;
             this.session = session; 
@@ -119,7 +109,7 @@ namespace METAbolt
 
         private void button5_Click(object sender, EventArgs e)
         {
-            instance.TabConsole.chatConsole._textBox = richTextBox1.Text;
+            //instance.TabConsole.chatConsole._textBox = richTextBox1.Text;
 
             this.Close(); 
         }
@@ -178,7 +168,10 @@ namespace METAbolt
 
             if (mistakes.Count < 1)
             {
-                instance.TabConsole.chatConsole._textBox = richTextBox1.Text;
+                //if (ischat)
+                //{
+                //    instance.TabConsole.chatConsole._textBox = richTextBox1.Text;
+                //}
                 currentword = string.Empty;
 
                 this.Close();
@@ -298,7 +291,7 @@ namespace METAbolt
 
         private void button2_Click(object sender, EventArgs e)
         {
-            instance.TabConsole.chatConsole._textBox = richTextBox1.Text;
+            //instance.TabConsole.chatConsole._textBox = richTextBox1.Text;
 
             this.Close();
         }
