@@ -43,15 +43,12 @@ namespace METAbolt
             this.chkFriends = new System.Windows.Forms.CheckBox();
             this.chkTray = new System.Windows.Forms.CheckBox();
             this.chkMinimised = new System.Windows.Forms.CheckBox();
-            this.chkAutoAccept = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.nUD1 = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.chkLookAt = new System.Windows.Forms.CheckBox();
             this.chkInvites = new System.Windows.Forms.CheckBox();
-            this.chkDeclineInv = new System.Windows.Forms.CheckBox();
             this.chkHide = new System.Windows.Forms.CheckBox();
             this.picAutoSit = new System.Windows.Forms.PictureBox();
             this.chkAutoSit = new System.Windows.Forms.CheckBox();
@@ -120,6 +117,10 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.cbTag = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -204,6 +205,9 @@ namespace METAbolt
             // 
             this.tabPage1.AccessibleName = "Options tab";
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.cbTag);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.chkLSL);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.nUD2);
@@ -213,15 +217,12 @@ namespace METAbolt
             this.tabPage1.Controls.Add(this.chkFriends);
             this.tabPage1.Controls.Add(this.chkTray);
             this.tabPage1.Controls.Add(this.chkMinimised);
-            this.tabPage1.Controls.Add(this.chkAutoAccept);
-            this.tabPage1.Controls.Add(this.checkBox3);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.nUD1);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.checkBox2);
             this.tabPage1.Controls.Add(this.chkLookAt);
             this.tabPage1.Controls.Add(this.chkInvites);
-            this.tabPage1.Controls.Add(this.chkDeclineInv);
             this.tabPage1.Controls.Add(this.chkHide);
             this.tabPage1.Controls.Add(this.picAutoSit);
             this.tabPage1.Controls.Add(this.chkAutoSit);
@@ -242,7 +243,7 @@ namespace METAbolt
             // 
             this.chkLSL.AccessibleName = "Disable icon option";
             this.chkLSL.AutoSize = true;
-            this.chkLSL.Location = new System.Drawing.Point(203, 201);
+            this.chkLSL.Location = new System.Drawing.Point(8, 207);
             this.chkLSL.Name = "chkLSL";
             this.chkLSL.Size = new System.Drawing.Size(132, 17);
             this.chkLSL.TabIndex = 63;
@@ -252,17 +253,17 @@ namespace METAbolt
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(171, 228);
+            this.label12.Location = new System.Drawing.Point(291, 252);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.Size = new System.Drawing.Size(32, 13);
             this.label12.TabIndex = 62;
-            this.label12.Text = "minutes";
+            this.label12.Text = "mins.";
             // 
             // nUD2
             // 
             this.nUD2.AccessibleName = "Auto logout interval setting";
             this.nUD2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nUD2.Location = new System.Drawing.Point(116, 225);
+            this.nUD2.Location = new System.Drawing.Point(249, 249);
             this.nUD2.Maximum = new decimal(new int[] {
             2880,
             0,
@@ -274,7 +275,7 @@ namespace METAbolt
             0,
             0});
             this.nUD2.Name = "nUD2";
-            this.nUD2.Size = new System.Drawing.Size(49, 21);
+            this.nUD2.Size = new System.Drawing.Size(41, 21);
             this.nUD2.TabIndex = 61;
             this.nUD2.Value = new decimal(new int[] {
             10,
@@ -286,17 +287,17 @@ namespace METAbolt
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 228);
+            this.label11.Location = new System.Drawing.Point(166, 252);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(106, 13);
+            this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 60;
-            this.label11.Text = "METArestart interval";
+            this.label11.Text = "Restart interval";
             // 
             // chkAutoFriend
             // 
             this.chkAutoFriend.AccessibleName = "Auto accept received friendship offers";
             this.chkAutoFriend.AutoSize = true;
-            this.chkAutoFriend.Location = new System.Drawing.Point(8, 86);
+            this.chkAutoFriend.Location = new System.Drawing.Point(8, 91);
             this.chkAutoFriend.Name = "chkAutoFriend";
             this.chkAutoFriend.Size = new System.Drawing.Size(166, 17);
             this.chkAutoFriend.TabIndex = 59;
@@ -307,7 +308,7 @@ namespace METAbolt
             // 
             this.chkTyping.AccessibleName = "Disable typing animation";
             this.chkTyping.AutoSize = true;
-            this.chkTyping.Location = new System.Drawing.Point(8, 126);
+            this.chkTyping.Location = new System.Drawing.Point(8, 131);
             this.chkTyping.Name = "chkTyping";
             this.chkTyping.Size = new System.Drawing.Size(142, 17);
             this.chkTyping.TabIndex = 13;
@@ -318,7 +319,7 @@ namespace METAbolt
             // 
             this.chkFriends.AccessibleName = "Disable frienda online/offline";
             this.chkFriends.AutoSize = true;
-            this.chkFriends.Location = new System.Drawing.Point(8, 160);
+            this.chkFriends.Location = new System.Drawing.Point(8, 165);
             this.chkFriends.Name = "chkFriends";
             this.chkFriends.Size = new System.Drawing.Size(222, 17);
             this.chkFriends.TabIndex = 2;
@@ -329,7 +330,7 @@ namespace METAbolt
             // 
             this.chkTray.AccessibleName = "Disable icon option";
             this.chkTray.AutoSize = true;
-            this.chkTray.Location = new System.Drawing.Point(203, 143);
+            this.chkTray.Location = new System.Drawing.Point(203, 148);
             this.chkTray.Name = "chkTray";
             this.chkTray.Size = new System.Drawing.Size(105, 17);
             this.chkTray.TabIndex = 3;
@@ -348,38 +349,14 @@ namespace METAbolt
             this.chkMinimised.Text = "Start METAbolt minimised";
             this.chkMinimised.UseVisualStyleBackColor = true;
             // 
-            // chkAutoAccept
-            // 
-            this.chkAutoAccept.AccessibleName = "Auto accept given items option";
-            this.chkAutoAccept.AutoSize = true;
-            this.chkAutoAccept.Location = new System.Drawing.Point(8, 69);
-            this.chkAutoAccept.Name = "chkAutoAccept";
-            this.chkAutoAccept.Size = new System.Drawing.Size(218, 17);
-            this.chkAutoAccept.TabIndex = 7;
-            this.chkAutoAccept.Text = "Auto accept all received inventory items";
-            this.chkAutoAccept.UseVisualStyleBackColor = true;
-            this.chkAutoAccept.CheckedChanged += new System.EventHandler(this.chkAutoAccept_CheckedChanged);
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AccessibleName = "Optimise for dial-up option";
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(8, 201);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(161, 17);
-            this.checkBox3.TabIndex = 11;
-            this.checkBox3.Text = "Optimise settings for Dial-up";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(140, 252);
+            this.label9.Location = new System.Drawing.Point(131, 252);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 13);
+            this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 58;
-            this.label9.Text = "minutes";
+            this.label9.Text = "mins.";
             // 
             // nUD1
             // 
@@ -392,14 +369,14 @@ namespace METAbolt
             0,
             0});
             this.nUD1.Name = "nUD1";
-            this.nUD1.Size = new System.Drawing.Size(49, 21);
+            this.nUD1.Size = new System.Drawing.Size(45, 21);
             this.nUD1.TabIndex = 14;
             this.nUD1.ValueChanged += new System.EventHandler(this.nUD1_ValueChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 252);
+            this.label8.Location = new System.Drawing.Point(6, 252);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 13);
             this.label8.TabIndex = 56;
@@ -410,7 +387,7 @@ namespace METAbolt
             // 
             this.checkBox2.AccessibleName = "Disable auto restarts option";
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(203, 126);
+            this.checkBox2.Location = new System.Drawing.Point(203, 131);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(125, 17);
             this.checkBox2.TabIndex = 10;
@@ -421,7 +398,7 @@ namespace METAbolt
             // 
             this.chkLookAt.AccessibleName = "Disable lookat option";
             this.chkLookAt.AutoSize = true;
-            this.chkLookAt.Location = new System.Drawing.Point(203, 109);
+            this.chkLookAt.Location = new System.Drawing.Point(203, 114);
             this.chkLookAt.Name = "chkLookAt";
             this.chkLookAt.Size = new System.Drawing.Size(96, 17);
             this.chkLookAt.TabIndex = 9;
@@ -432,24 +409,12 @@ namespace METAbolt
             // 
             this.chkInvites.AccessibleName = "Disable invites option";
             this.chkInvites.AutoSize = true;
-            this.chkInvites.Location = new System.Drawing.Point(8, 109);
+            this.chkInvites.Location = new System.Drawing.Point(8, 114);
             this.chkInvites.Name = "chkInvites";
             this.chkInvites.Size = new System.Drawing.Size(166, 17);
             this.chkInvites.TabIndex = 8;
             this.chkInvites.Text = "Disable inbound group invites";
             this.chkInvites.UseVisualStyleBackColor = true;
-            // 
-            // chkDeclineInv
-            // 
-            this.chkDeclineInv.AccessibleName = "Decline inventory items option";
-            this.chkDeclineInv.AutoSize = true;
-            this.chkDeclineInv.Location = new System.Drawing.Point(8, 51);
-            this.chkDeclineInv.Name = "chkDeclineInv";
-            this.chkDeclineInv.Size = new System.Drawing.Size(219, 17);
-            this.chkDeclineInv.TabIndex = 6;
-            this.chkDeclineInv.Text = "Auto decline all received inventory items";
-            this.chkDeclineInv.UseVisualStyleBackColor = true;
-            this.chkDeclineInv.CheckedChanged += new System.EventHandler(this.chkDeclineInv_CheckedChanged);
             // 
             // chkHide
             // 
@@ -466,7 +431,7 @@ namespace METAbolt
             // picAutoSit
             // 
             this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
-            this.picAutoSit.Location = new System.Drawing.Point(159, 184);
+            this.picAutoSit.Location = new System.Drawing.Point(159, 189);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
             this.picAutoSit.TabIndex = 38;
@@ -479,7 +444,7 @@ namespace METAbolt
             // 
             this.chkAutoSit.AccessibleName = "Enable auto-sit option";
             this.chkAutoSit.AutoSize = true;
-            this.chkAutoSit.Location = new System.Drawing.Point(8, 184);
+            this.chkAutoSit.Location = new System.Drawing.Point(8, 189);
             this.chkAutoSit.Name = "chkAutoSit";
             this.chkAutoSit.Size = new System.Drawing.Size(151, 17);
             this.chkAutoSit.TabIndex = 12;
@@ -489,11 +454,12 @@ namespace METAbolt
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(158, 143);
+            this.pictureBox1.Location = new System.Drawing.Point(158, 148);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
             // 
@@ -501,7 +467,7 @@ namespace METAbolt
             // 
             this.chkNotifications.AccessibleName = "Disable notifications option";
             this.chkNotifications.AutoSize = true;
-            this.chkNotifications.Location = new System.Drawing.Point(8, 143);
+            this.chkNotifications.Location = new System.Drawing.Point(8, 148);
             this.chkNotifications.Name = "chkNotifications";
             this.chkNotifications.Size = new System.Drawing.Size(144, 17);
             this.chkNotifications.TabIndex = 1;
@@ -547,6 +513,7 @@ namespace METAbolt
             // 
             this.tabPage4.AccessibleName = "Radar tab";
             this.tabPage4.BackColor = System.Drawing.Color.White;
+            this.tabPage4.Controls.Add(this.checkBox3);
             this.tabPage4.Controls.Add(this.textBox2);
             this.tabPage4.Controls.Add(this.tbar2);
             this.tabPage4.Controls.Add(this.pictureBox5);
@@ -1239,6 +1206,51 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Ask",
+            "Auto decline",
+            "Auto accept"});
+            this.comboBox1.Location = new System.Drawing.Point(143, 67);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.TabIndex = 64;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(5, 70);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(135, 13);
+            this.label18.TabIndex = 65;
+            this.label18.Text = "Received inventory items: ";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AccessibleName = "Optimise for dial-up option";
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(10, 184);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(161, 17);
+            this.checkBox3.TabIndex = 58;
+            this.checkBox3.Text = "Optimise settings for Dial-up";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // cbTag
+            // 
+            this.cbTag.AccessibleName = "Start minimised option";
+            this.cbTag.AutoSize = true;
+            this.cbTag.Location = new System.Drawing.Point(8, 45);
+            this.cbTag.Name = "cbTag";
+            this.cbTag.Size = new System.Drawing.Size(173, 17);
+            this.cbTag.TabIndex = 66;
+            this.cbTag.Text = "Broadcast METAbolt Client Tag";
+            this.cbTag.UseVisualStyleBackColor = true;
+            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1299,7 +1311,6 @@ namespace METAbolt
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.CheckBox chkLookAt;
         private System.Windows.Forms.CheckBox chkInvites;
-        private System.Windows.Forms.CheckBox chkDeclineInv;
         private System.Windows.Forms.CheckBox chkHide;
         private System.Windows.Forms.PictureBox picAutoSit;
         private System.Windows.Forms.CheckBox chkAutoSit;
@@ -1329,7 +1340,6 @@ namespace METAbolt
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar tBar1;
-        private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -1353,7 +1363,6 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox chkAutoAccept;
         private System.Windows.Forms.CheckBox chkMinimised;
         private System.Windows.Forms.TextBox txtAdRemove;
         private System.Windows.Forms.PictureBox pictureBox7;
@@ -1380,6 +1389,10 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox checkBox12;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.CheckBox chkLSL;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox cbTag;
 
     }
 }

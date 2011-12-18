@@ -142,7 +142,6 @@ namespace METAbolt
             textBox2.Text = tbar2.Value.ToString(CultureInfo.CurrentCulture);
             textBox3.Text = config.CurrentConfig.GroupManPro;
             chkHide.Checked = config.CurrentConfig.HideMeta;
-            chkDeclineInv.Checked = config.CurrentConfig.DeclineInv;
             chkInvites.Checked = config.CurrentConfig.DisableInboundGroupInvites;
             chkLookAt.Checked = config.CurrentConfig.DisableLookAt;
             checkBox1.Checked = config.CurrentConfig.GivePresent;
@@ -153,6 +152,8 @@ namespace METAbolt
             //trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);    
             //textBox5.Text = trackBar1.Value.ToString();
             SetBarValue();
+
+            comboBox1.SelectedIndex = 0; 
 
             if (config.CurrentConfig.ClassicChatLayout)
             {
@@ -223,7 +224,6 @@ namespace METAbolt
             checkBox10.Checked = config.CurrentConfig.PlayGroupNoticeReceived;
             checkBox11.Checked = config.CurrentConfig.PlayInventoryItemReceived;
             checkBox5.Checked = config.CurrentConfig.PlayPaymentReceived;
-            chkAutoAccept.Checked = config.CurrentConfig.AutoAcceptItems;
             chkMinimised.Checked = config.CurrentConfig.StartMinimised;
             txtAdRemove.Text = config.CurrentConfig.AdRemove.Trim();
             txtMavatar.Text = config.CurrentConfig.MasterAvatar.Trim();
@@ -234,6 +234,17 @@ namespace METAbolt
             chkAutoFriend.Checked = config.CurrentConfig.AutoAcceptFriends;
             checkBox12.Checked = config.CurrentConfig.EnforceLSLsecurity;
             chkLSL.Checked = config.CurrentConfig.DisplayLSLcommands;
+            cbTag.Checked = config.CurrentConfig.BroadcastID;          
+
+            if (config.CurrentConfig.DeclineInv)
+            {
+                comboBox1.SelectedIndex = 1; 
+            }
+
+            if (config.CurrentConfig.AutoAcceptItems)
+            {
+                comboBox1.SelectedIndex = 2;
+            }
         }
 
         #region IPreferencePane Members
@@ -264,7 +275,6 @@ namespace METAbolt
             instance.Config.CurrentConfig.ObjectRange = tbar2.Value;
             instance.Config.CurrentConfig.GroupManPro = textBox3.Text.Trim();
             instance.Config.CurrentConfig.HideMeta = chkHide.Checked;
-            instance.Config.CurrentConfig.DeclineInv = chkDeclineInv.Checked;
             instance.Config.CurrentConfig.DisableInboundGroupInvites = chkInvites.Checked;
             instance.Config.CurrentConfig.DisableLookAt = chkLookAt.Checked;
             instance.Config.CurrentConfig.GivePresent = checkBox1.Checked;
@@ -300,7 +310,6 @@ namespace METAbolt
             config.CurrentConfig.PlayGroupNoticeReceived = checkBox10.Checked;
             config.CurrentConfig.PlayInventoryItemReceived = checkBox11.Checked;
             config.CurrentConfig.PlayPaymentReceived = checkBox5.Checked;
-            config.CurrentConfig.AutoAcceptItems = chkAutoAccept.Checked;
             config.CurrentConfig.StartMinimised = chkMinimised.Checked;
             config.CurrentConfig.AdRemove = txtAdRemove.Text.Trim();
             config.CurrentConfig.MasterAvatar = txtMavatar.Text.Trim();
@@ -310,7 +319,29 @@ namespace METAbolt
             config.CurrentConfig.DisableTyping = chkTyping.Checked;
             config.CurrentConfig.AutoAcceptFriends = chkAutoFriend.Checked;
             config.CurrentConfig.EnforceLSLsecurity = checkBox12.Checked;
-            config.CurrentConfig.DisplayLSLcommands = chkLSL.Checked;  
+            config.CurrentConfig.DisplayLSLcommands = chkLSL.Checked;
+            config.CurrentConfig.BroadcastID = cbTag.Checked;
+
+            if (comboBox1.SelectedIndex == 0)
+            {
+                instance.Config.CurrentConfig.DeclineInv = false;  // chkDeclineInv.Checked;
+                config.CurrentConfig.AutoAcceptItems = false;
+                return;
+            }
+
+            if (comboBox1.SelectedIndex == 1)
+            {
+                instance.Config.CurrentConfig.DeclineInv = true;  // chkDeclineInv.Checked;
+                config.CurrentConfig.AutoAcceptItems = false;
+                return;
+            }
+
+            if (comboBox1.SelectedIndex == 2)
+            {
+                config.CurrentConfig.AutoAcceptItems = true;   // chkAutoAccept.Checked;
+                instance.Config.CurrentConfig.DeclineInv = false;  // chkDeclineInv.Checked;
+                return;
+            }
         }
 
         #endregion
@@ -721,22 +752,6 @@ namespace METAbolt
 
         }
 
-        private void chkAutoAccept_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkAutoAccept.Checked)
-            {
-                chkDeclineInv.Checked = false;
-            }
-        }
-
-        private void chkDeclineInv_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkDeclineInv.Checked)
-            {
-                chkAutoAccept.Checked = false;
-            }
-        }
-
         private void pictureBox6_Click_1(object sender, EventArgs e)
         {
 
@@ -809,6 +824,11 @@ namespace METAbolt
         private void pictureBox2_MouseLeave_1(object sender, EventArgs e)
         {
             toolTip9.Close();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -238,6 +238,17 @@ namespace METAbolt
             //mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
         }
 
+        public void ReapplyConfig(string full_name)
+        {
+            //config = new ConfigManager(full_name);
+            ////config.ApplyDefault();
+            //config.ApplyCurrentConfig();
+
+            config.ChangeConfigFile(full_name);
+
+            SetSettings();
+        }
+
         private void SetExceptionReporter()
         {
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
@@ -776,8 +787,14 @@ namespace METAbolt
             client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
             client.Settings.MAX_CONCURRENT_TEXTURE_DOWNLOADS = 20;
 
-            //client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("8201f643-6006-c2ea-fbf3-0a5e8c0874ed");  
-             
+            if (config.CurrentConfig.BroadcastID)
+            {
+                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("8201f643-6006-c2ea-fbf3-0a5e8c0874ed");
+            }
+            else
+            {
+                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID(UUID.Zero.ToString());
+            }
 
             // Sizes
 

@@ -1307,7 +1307,7 @@ namespace METAbolt
 
         private void sLKnowledgebaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(@"https://support.secondlife.com/ics/support/default.asp?deptID=4417");
+            System.Diagnostics.Process.Start(@"http://community.secondlife.com/t5/tkb/communitypage");
         }
 
         private void mEToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1768,6 +1768,15 @@ namespace METAbolt
             statusTimer.Elapsed -= new ElapsedEventHandler(statusTimer_Elapsed);
             statusTimer.Stop();
 
+            if (!string.IsNullOrEmpty(netcom.LoginOptions.FirstName) && !string.IsNullOrEmpty(netcom.LoginOptions.LastName))
+            {
+                if (netcom.IsLoggedIn)
+                {
+                    string full_name = netcom.LoginOptions.FirstName + "_" + netcom.LoginOptions.LastName;
+                    instance.Config.SetAvConfig(full_name);
+                }
+            }
+
             if (netcom.IsLoggedIn)
             {
                 netcom.Logout();
@@ -1859,6 +1868,15 @@ namespace METAbolt
             // Functional shutdown
             statusTimer.Elapsed -= new ElapsedEventHandler(statusTimer_Elapsed);
             statusTimer.Stop();
+
+            if (!string.IsNullOrEmpty(netcom.LoginOptions.FirstName) && !string.IsNullOrEmpty(netcom.LoginOptions.LastName))
+            {
+                if (netcom.IsLoggedIn)
+                {
+                    string full_name = netcom.LoginOptions.FirstName + "_" + netcom.LoginOptions.LastName;
+                    instance.Config.SetAvConfig(full_name);
+                }
+            }
 
             if (netcom.IsLoggedIn)
             {
@@ -1954,6 +1972,16 @@ namespace METAbolt
         private void sLGridStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://status.secondlifegrid.net/");
+        }
+
+        private void getMETAboltPluginsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/METAbolt_Addins.ashx");
+        }
+
+        private void getMETAboltLSLPluginsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/lslcommands.ashx");
         }
     }
 }

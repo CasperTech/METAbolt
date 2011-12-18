@@ -372,6 +372,10 @@ namespace METAbolt
                 hunspell.Load(dir + afffile, dir + dicfile);
                 ReadWords();
             }
+            else
+            {
+                hunspell.Dispose();
+            }
         }
 
         private void AddNetcomEvents()
@@ -418,31 +422,9 @@ namespace METAbolt
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string message = cbxInput.Text;
-            string message1 = string.Empty;
-            string message2 = string.Empty;  
+            SendIM(cbxInput.Text);
 
-            if (message.Length == 0) return;
-
-            if (message.Length > 1023)
-            {
-                message1 = message.Substring(0, 1022);
-                netcom.SendInstantMessage(message1, target, session);
-
-                if (message.Length > 2046)
-                {
-                    message2 = message.Substring(1023, 2046);
-                    //netcom.SendInstantMessage(message2, target, session);
-                    SendIM(message2);
-                }
-            }
-            else
-            {
-                //netcom.SendInstantMessage(message, target, session);
-                SendIM(message);
-            }
-
-            this.ClearIMInput();
+            //this.ClearIMInput();
         }
 
         private void cbxInput_TextChanged(object sender, EventArgs e)
@@ -495,40 +477,83 @@ namespace METAbolt
 
             //netcom.SendInstantMessage(cbxInput.Text, target, session);
             SendIM(cbxInput.Text);
-            this.ClearIMInput();
+
+            //this.ClearIMInput();
         }
 
-        public void SendIM(string msg)
+        public void SendIM(string message)
         {
+            if (message.Length == 0) return;
+
+            message = message.TrimEnd();
+
             if (instance.Config.CurrentConfig.EnableSpelling)
             {
                 // put preference check here
                 //string cword = Regex.Replace(cbxInput.Text, @"[^a-zA-Z0-9]", "");
                 //string[] swords = cword.Split(' ');
-                string[] swords = cbxInput.Text.Split(' ');
+                string[] swords = message.Split(' ');
                 bool hasmistake = false;
+                bool correct = true;
 
                 foreach (string word in swords)
                 {
                     string cword = Regex.Replace(word, @"[^a-zA-Z0-9]", "");
 
-                    bool correct = hunspell.Spell(cword);
+                    try
+                    {
+                        correct = hunspell.Spell(cword);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message == "Dictionary is not loaded")
+                        {
+                            instance.Config.ApplyCurrentConfig();
+                            //correct = hunspell.Spell(cword);
+                        }
+                        else
+                        {
+                            Logger.Log("Spellcheck error IM: " + ex.Message, Helpers.LogLevel.Error);
+                        }
+                    }
 
                     if (!correct)
                     {
                         hasmistake = true;
+                        break;
                     }
                 }
 
                 if (hasmistake)
                 {
-                    (new frmSpelling(instance, cbxInput.Text, swords, "IM", target, session)).Show();
+                    (new frmSpelling(instance, message, swords, false, target, session)).Show();
+
+                    ClearIMInput();
                     hasmistake = false;
                     return;
                 }
             }
 
-            netcom.SendInstantMessage(msg, target, session);
+            string message1 = string.Empty;
+            string message2 = string.Empty;
+
+            if (message.Length > 1023)
+            {
+                message1 = message.Substring(0, 1022);
+                netcom.SendInstantMessage(message1, target, session);
+
+                if (message.Length > 2046)
+                {
+                    message2 = message.Substring(1023, 2045);
+                    netcom.SendInstantMessage(message2, target, session);
+                }
+            }
+            else
+            {
+                netcom.SendInstantMessage(message, target, session); ;
+            }
+
+            ClearIMInput();
         }
 
         private void ReadWords()

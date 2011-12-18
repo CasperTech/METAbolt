@@ -37,6 +37,10 @@ using Khendys.Controls;
 using System.Threading;
 using OpenMetaverse.Packets;
 using ExceptionReporting;
+using System.Threading;
+using NHunspell;
+using System.IO;
+using System.Text.RegularExpressions;
 
 
 namespace METAbolt
@@ -50,7 +54,7 @@ namespace METAbolt
         private string toName;
         private IMTextManager textManager;
         private bool typing = false;
-        private Group imgroup;
+        private OpenMetaverse.Group imgroup;
         private bool pasted = false;
         private SafeDictionary<UUID, string> people = new SafeDictionary<UUID, string>();
         ManualResetEvent WaitForSessionStart = new ManualResetEvent(false);
@@ -61,6 +65,12 @@ namespace METAbolt
         private TabsConsole tab;
         private bool hideparts = false;
 
+        private Hunspell hunspell = new Hunspell();
+        private string afffile = string.Empty;
+        private string dicfile = string.Empty;
+        private string dic = string.Empty;
+        private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+
         internal class ThreadExceptionHandler
         {
             public void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
@@ -70,7 +80,7 @@ namespace METAbolt
             }
         }
          
-        public IMTabWindowGroup(METAboltInstance instance, UUID session, UUID target, string toName, Group grp)
+        public IMTabWindowGroup(METAboltInstance instance, UUID session, UUID target, string toName, OpenMetaverse.Group grp)
         {
             InitializeComponent();
 
@@ -83,6 +93,9 @@ namespace METAbolt
             this.instance = instance;
             netcom = this.instance.Netcom;
             client = this.instance.Client;
+
+            afffile = this.instance.AffFile = instance.Config.CurrentConfig.SpellLanguage + ".aff";   // "en_GB.aff";
+            dicfile = this.instance.DictionaryFile = instance.Config.CurrentConfig.SpellLanguage + ".dic";   // "en_GB.dic";
 
             this.target = target;
             this.session = session;
@@ -536,6 +549,38 @@ namespace METAbolt
                 toolStrip1.RenderMode = ToolStripRenderMode.ManagerRenderMode;
 
             //rtbIMText.BackColor = instance.Config.CurrentConfig.BgColour;
+
+            if (instance.Config.CurrentConfig.EnableSpelling)
+            {
+                dicfile = instance.Config.CurrentConfig.SpellLanguage;   // "en_GB.dic";
+
+                this.instance.AffFile = afffile = dicfile + ".aff";
+                this.instance.DictionaryFile = dicfile + ".dic";
+
+                dic = dir + dicfile;
+
+                dicfile += ".dic";
+
+                if (!System.IO.File.Exists(dic + ".csv"))
+                {
+                    //System.IO.File.Create(dic + ".csv");
+
+                    using (StreamWriter sw = File.CreateText(dic + ".csv"))
+                    {
+                        sw.Dispose();
+                    }
+                }
+
+                hunspell.Dispose();
+                hunspell = new Hunspell();
+
+                hunspell.Load(dir + afffile, dir + dicfile);
+                ReadWords();
+            }
+            else
+            {
+                hunspell.Dispose();
+            }
         }
 
         private void AddNetcomEvents()
@@ -590,16 +635,98 @@ namespace METAbolt
 
             message = message.TrimEnd();
 
-            if (message.Length > 1023) message = message.Remove(1023);
+            if (instance.Config.CurrentConfig.EnableSpelling)
+            {
+                // put preference check here
+                //string cword = Regex.Replace(cbxInput.Text, @"[^a-zA-Z0-9]", "");
+                //string[] swords = cword.Split(' ');
+                string[] swords = message.Split(' ');
+                bool hasmistake = false;
+                bool correct = true;
 
-            netcom.SendInstantMessageGroup(message, target, session);
+                foreach (string word in swords)
+                {
+                    string cword = Regex.Replace(word, @"[^a-zA-Z0-9]", "");
+
+                    try
+                    {
+                        correct = hunspell.Spell(cword);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message == "Dictionary is not loaded")
+                        {
+                            instance.Config.ApplyCurrentConfig();
+                            //correct = hunspell.Spell(cword);
+                        }
+                        else
+                        {
+                            Logger.Log("Spellcheck error Group IM: " + ex.Message, Helpers.LogLevel.Error);
+                        }
+                    }
+
+                    if (!correct)
+                    {
+                        hasmistake = true;
+                        break;
+                    }
+                }
+
+                if (hasmistake)
+                {
+                    (new frmSpelling(instance, message, swords, true, target, session)).Show();
+
+                    ClearIMInput();
+                    hasmistake = false;
+                    return;
+                }
+            }
+
+            string message1 = string.Empty;
+            string message2 = string.Empty;
+
+            if (message.Length > 1023)
+            {
+                message1 = message.Substring(0, 1022);
+                netcom.SendInstantMessageGroup(message1, target, session);
+
+                if (message.Length > 2046)
+                {
+                    message2 = message.Substring(1023, 2045);
+                    netcom.SendInstantMessageGroup(message2, target, session);
+                }
+            }
+            else
+            {
+                netcom.SendInstantMessageGroup(message, target, session); ;
+            }
 
             this.ClearIMInput();
         }
 
+        private void ReadWords()
+        {
+            using (CsvFileReader reader = new CsvFileReader(dic + ".csv"))
+            {
+                CsvRow row = new CsvRow();
+
+                while (reader.ReadRow(row))
+                {
+                    foreach (string s in row)
+                    {
+                        hunspell.Add(s);
+                    }
+                }
+
+                reader.Dispose();
+            }
+        }
+
         private void btnSend_Click(object sender, EventArgs e)
         {
-            SendIM(cbxInput.Text); 
+            SendIM(cbxInput.Text);
+
+            //ClearIMInput();
         }
 
         private void cbxInput_TextChanged(object sender, EventArgs e)
@@ -717,12 +844,6 @@ namespace METAbolt
 
             SendIM(cbxInput.Text);
 
-            //if (e.KeyCode != Keys.Enter) return;
-            //e.SuppressKeyPress = true;
-
-            //if (cbxInput.Text.Length == 0) return;
-
-            //netcom.SendInstantMessage(cbxInput.Text, target, session);
             //this.ClearIMInput();
         }
 

@@ -33,7 +33,8 @@ namespace METAbolt
         private bool ischat = true;
         private string tabname = string.Empty;
         private UUID target = UUID.Zero;
-        private UUID session = UUID.Zero;  
+        private UUID session = UUID.Zero;
+        private bool isgroup = false;
 
         public frmSpelling(METAboltInstance instance, string sentence, string[] swords, ChatType type)
         {
@@ -70,7 +71,7 @@ namespace METAbolt
             ischat = true;
         }
 
-        public frmSpelling(METAboltInstance instance, string sentence, string[] swords, string type, UUID target, UUID session)
+        public frmSpelling(METAboltInstance instance, string sentence, string[] swords, bool type, UUID target, UUID session)
         {
             InitializeComponent();
 
@@ -102,6 +103,7 @@ namespace METAbolt
             richTextBox1.Text = sentence;
             this.swords = swords;
 
+            isgroup = type;
             ischat = false;
             this.target = target;
             this.session = session; 
@@ -331,13 +333,55 @@ namespace METAbolt
 
         private void frmSpelling_FormClosing(object sender, FormClosingEventArgs e)
         {
+            string message = richTextBox1.Text;
+            string message1 = string.Empty;
+            string message2 = string.Empty;
+
+            if (message.Length == 0) return;
+
             if (ischat)
             {
                 instance.TabConsole.chatConsole.SendChat(richTextBox1.Text, ctype);
             }
             else
             {
-                netcom.SendInstantMessage(richTextBox1.Text, target, session); 
+                if (!isgroup)
+                {
+                    //netcom.SendInstantMessage(richTextBox1.Text, target, session);
+                    if (message.Length > 1023)
+                    {
+                        message1 = message.Substring(0, 1022);
+                        netcom.SendInstantMessage(message1, target, session);
+
+                        if (message.Length > 2046)
+                        {
+                            message2 = message.Substring(1023, 2045);
+                            netcom.SendInstantMessage(message2, target, session);
+                        }
+                    }
+                    else
+                    {
+                        netcom.SendInstantMessage(message, target, session); ;
+                    }
+                }
+                else
+                {
+                    if (message.Length > 1023)
+                    {
+                        message1 = message.Substring(0, 1022);
+                        netcom.SendInstantMessageGroup(message1, target, session);
+
+                        if (message.Length > 2046)
+                        {
+                            message2 = message.Substring(1023, 2045);
+                            netcom.SendInstantMessageGroup(message2, target, session);
+                        }
+                    }
+                    else
+                    {
+                        netcom.SendInstantMessageGroup(message, target, session); ;
+                    }
+                }
             }
         }
 

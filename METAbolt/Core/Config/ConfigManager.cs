@@ -92,6 +92,13 @@ namespace METAbolt
             }
         }
 
+        public void SetAvConfig(string name)
+        {
+            string fileName = name + "_METAbolt.ini";
+
+            configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", fileName);
+        }
+
         public void ApplyCurrentConfig()
         {
             Apply(currentConfig);
@@ -133,9 +140,18 @@ namespace METAbolt
             //Check if the file has somehow became read-only
             FileInfo newFileInfo = new FileInfo(configPath);
 
-            if ((newFileInfo.Attributes & FileAttributes.ReadOnly) > 0)
+            if (newFileInfo.Exists)
             {
-                newFileInfo.Attributes ^= FileAttributes.ReadOnly;
+                if ((newFileInfo.Attributes & FileAttributes.ReadOnly) > 0)
+                {
+                    newFileInfo.Attributes ^= FileAttributes.ReadOnly;
+                }
+            }
+            else
+            {
+                //Reset();
+                Config config = new Config();
+                config.Save(configPath);
             }
 
             currentConfig.Save(configPath);

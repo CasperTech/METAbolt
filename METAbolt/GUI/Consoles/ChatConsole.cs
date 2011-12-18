@@ -985,6 +985,10 @@ namespace METAbolt
                 hunspell.Load(dir + afffile, dir + dicfile);
                 ReadWords();
             }
+            else
+            {
+                hunspell.Dispose();
+            }
 
             //rtbChat.BackColor = instance.Config.CurrentConfig.BgColour; 
         }
@@ -1649,14 +1653,30 @@ namespace METAbolt
                     // put preference check here
                     //string cword = Regex.Replace(cbxInput.Text, @"[^a-zA-Z0-9]", "");
                     //string[] swords = cword.Split(' ');
-                    string[] swords = cbxInput.Text.Split(' ');
+                    string[] swords = input.Split(' ');
                     bool hasmistake = false;
+                    bool correct = true;
 
                     foreach (string word in swords)
                     {
                         string cword = Regex.Replace(word, @"[^a-zA-Z0-9]", "");
 
-                        bool correct = hunspell.Spell(cword);
+                        try
+                        {
+                            correct = hunspell.Spell(cword);
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex.Message == "Dictionary is not loaded")
+                            {
+                                instance.Config.ApplyCurrentConfig();
+                                //correct = hunspell.Spell(cword);
+                            }
+                            else
+                            {
+                                Logger.Log("Spellcheck error chat: " + ex.Message, Helpers.LogLevel.Error);
+                            }
+                        }
 
                         if (!correct)
                         {
@@ -1714,9 +1734,6 @@ namespace METAbolt
             {
                 netcom.ChatOut(input, type, 0);
             }
-
-            // Only if it's enabled
-            ReadWords();
 
             ClearChatInput();
         }
