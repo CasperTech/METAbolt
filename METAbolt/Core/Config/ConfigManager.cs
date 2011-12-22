@@ -62,6 +62,8 @@ namespace METAbolt
 
         public void ChangeConfigFile(string name)
         {
+            //SaveCurrentConfig();
+
             string fileName = name + "_METAbolt.ini";
 
             // Check if the file exists first

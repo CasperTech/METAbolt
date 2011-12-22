@@ -311,7 +311,7 @@ namespace METAbolt
                 AddWord(currentword);
             }
 
-            //ContSearch();
+            ContSearch();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -397,6 +397,8 @@ namespace METAbolt
             richTextBox1.Undo();
             richTextBox1.ForeColor = Color.Black;
             richTextBox1.SelectionBackColor = Color.White;
+
+            instance.Config.ApplyCurrentConfig(); 
 
             CheckSpellings();
         }

@@ -345,6 +345,13 @@ namespace METAbolt
                     folderID = client.Inventory.Store.RootFolder.UUID;
                 }
 
+                InventoryFolder favs = client.Inventory.Store.RootFolder;
+                List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
+
+                //Update favourites
+                instance.MainForm.UpdateFavourites(foundfolders);  
+                
+
                 try
                 {
                     //treeViewElement.LoadChildren();

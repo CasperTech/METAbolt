@@ -425,7 +425,8 @@ namespace METAbolt
                                 }
                             }
 
-                            instance.Config.ChangeConfigFile(fname);
+                            //instance.Config.ChangeConfigFile(fname);
+                            this.instance.ReapplyConfig(fname);
 
                             if (instance.Config.CurrentConfig.AIon)
                             {
@@ -438,6 +439,8 @@ namespace METAbolt
                         }
 
                         LoadWebPage();
+
+                        //SetLang();
 
                         break;
 
@@ -460,7 +463,6 @@ namespace METAbolt
 
         // TODO: This is buggy in libopenmv and causes all sorts of problems
         // DO NOT enable it until it is fixed
-
         //private void SetLang()
         //{
         //    CultureInfo cult = CultureInfo.CurrentCulture;
@@ -660,8 +662,10 @@ namespace METAbolt
                 netcom.LoginOptions.FirstName = txtFirstName.Text;
                 netcom.LoginOptions.LastName = txtLastName.Text;
 
-                string full_name = txtFirstName.Text + "_" + txtLastName.Text;
-                this.instance.ReapplyConfig(full_name);  
+                //instance.Config.SaveCurrentConfig();
+
+                //string full_name = txtFirstName.Text + "_" + txtLastName.Text;
+                //this.instance.ReapplyConfig(full_name);  
 
                 // Fix thx to METAforum member Tipi (28/06/2010). I don't know how this
                 // escaped us all these years. Embarassing :S

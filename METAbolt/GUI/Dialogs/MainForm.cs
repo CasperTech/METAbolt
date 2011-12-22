@@ -1983,5 +1983,74 @@ namespace METAbolt
         {
             System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/lslcommands.ashx");
         }
+
+        public void UpdateFavourites(List<InventoryBase> foundfolders)
+        {
+            tsFavs.Items.Clear();
+  
+            foreach (InventoryBase o in foundfolders)
+            {
+                // for this to work the user needs to have a folder called "GroupMan Items"
+                if (o.Name.ToLower() == "favorites")
+                {
+                    if (o is InventoryFolder)
+                    {
+                        List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
+
+                        if (founditems.Count > 0)
+                        {
+                            tsFavs.Visible = true;
+
+                            foreach (InventoryBase oitem in founditems)
+                            {
+                                InventoryItem item = (InventoryItem)oitem;
+
+                                string iname = item.Name;
+                                string desc = item.Description; 
+
+                                if (iname.Length > 24)
+                                {
+                                    iname = iname.Substring(0, 21) + "...";
+                                }
+
+                                ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
+                                btn.ToolTipText = desc;
+                                tsFavs.Items.Add(btn);
+
+                                ToolStripSeparator sep = new ToolStripSeparator();
+                                tsFavs.Items.Add(sep);
+                            }
+                        }
+                        else
+                        {
+                            tsFavs.Visible = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void FavsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string cbtn = sender.ToString();
+
+            ToolStripButton btn = (ToolStripButton)sender;
+            UUID landmark = new UUID();
+
+            if (!UUID.TryParse(btn.Name, out landmark))
+            {
+                MessageBox.Show("Invalid Landmark", "Teleport");
+                return;
+            }
+
+            if (client.Self.Teleport(landmark))
+            {
+                MessageBox.Show("Teleport Succesful", "Teleport");
+            }
+            else
+            {
+                MessageBox.Show("Teleport Failed", "Teleport");
+            }
+        }
     }
 }

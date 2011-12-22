@@ -45,7 +45,6 @@ namespace METAbolt
     {
         private METAboltInstance instance;
         private GridClient client;
-        //private SLNetCom netcom;
         private InstantMessage imsg;
         private UUID assetfolder = UUID.Zero;
         private AssetType assettype;
@@ -57,12 +56,19 @@ namespace METAbolt
             InitializeComponent();
             this.instance = instance;
             client = this.instance.Client;
-            //netcom = this.instance.Netcom;
             imsg = e.IM;
 
             Disposed += new EventHandler(GroupNotice_Disposed);
+        }
 
-            client.Groups.GroupProfile += new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
+        private void GroupNotice_Disposed(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void frmGroupNotice_Load(object sender, EventArgs e)
+        {
+            this.CenterToParent();
 
             if (instance.Config.CurrentConfig.PlayGroupNoticeReceived)
             {
@@ -78,29 +84,24 @@ namespace METAbolt
             timer1.Start();
         }
 
-        private void GroupNotice_Disposed(object sender, EventArgs e)
-        {
-            client.Groups.GroupProfile -= new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
-        }
-
-        private void frmGroupNotice_Load(object sender, EventArgs e)
-        {
-            this.CenterToParent();
-            //PrepareGroupNotice();
-        }
-
         private void PrepareGroupNotice()
         {
-            //string fromAgent = imsg.FromAgentName;
-            UUID fromAgentID = imsg.FromAgentID;
-            //UUID Grp = UUID.Zero;
+            //UUID fromAgentID = imsg.FromAgentID;
+            UUID fromAgentID = new UUID(imsg.BinaryBucket, 2);
 
-            client.Groups.RequestGroupProfile(fromAgentID);
+            profile = instance.State.Groups[fromAgentID]; ;
 
             if (instance.State.Groups.ContainsKey(fromAgentID))
             {
                 string grp = instance.State.Groups[fromAgentID].Name.ToUpper();
-                label2.Text = "Sent by: " + imsg.FromAgentName + ", " + grp;
+
+                label2.Text = "Sent by: " + imsg.FromAgentName + ", " + profile.Name;
+
+                if ((profile.InsigniaID != null && (profile.InsigniaID != UUID.Zero)))
+                {
+                    // Request insignia
+                    client.Assets.RequestImage(profile.InsigniaID, ImageType.Normal, Assets_OnImageReceived);
+                }
             }
             else
             {
@@ -136,15 +137,6 @@ namespace METAbolt
                 // Check for attachment
                 if (imsg.BinaryBucket[0] != 0)
                 {
-
-                    //string s1 = Utils.BytesToString(imsg.BinaryBucket[0]);
-
-                    //OSD des = OSDParser.DeserializeLLSDBinary(imsg.BinaryBucket);
-
-                    //OSDMap desmap = (OSDMap)des;
-                    //UUID itemuuid = (UUID)desmap["item_id"].ToString();
-                    //UUID owneruuid = (UUID)desmap["owner_id"].ToString();
-
                     assettype = (AssetType)imsg.BinaryBucket[1];
 
                     assetfolder = client.Inventory.FindFolderForType(assettype);
@@ -157,16 +149,6 @@ namespace METAbolt
                     {
                         filename = string.Empty;  
                     }
-                    //string[] filecontent = filename.Split('\b');
-
-                    //if (filename.Contains('\b'))
-                    //{
-                    //    filename = filecontent[1];
-                    //}
-                    //else
-                    //{
-                    //    filename = filecontent[0];
-                    //}
 
                     panel1.Visible = true;
                     label4.Visible = true;
@@ -217,17 +199,6 @@ namespace METAbolt
             nFont.Dispose(); 
         }
 
-        private void GroupProfileHandler(object sender, GroupProfileEventArgs e)
-        {
-            profile = e.Group;
-
-            if (imsg.FromAgentID != profile.ID) return;   
-
-            client.Assets.RequestImage(profile.InsigniaID, ImageType.Normal, Assets_OnImageReceived);
-
-            client.Groups.GroupProfile -= new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
-        }
-
         void Assets_OnImageReceived(TextureRequestState image, AssetTexture texture)
         {
             if (texture.AssetID == profile.InsigniaID)
@@ -235,12 +206,19 @@ namespace METAbolt
                 ManagedImage imgData;
                 Image bitmap;
 
-                OpenJPEG.DecodeToImage(texture.AssetData, out imgData, out bitmap);
-
-                BeginInvoke(new MethodInvoker(delegate()
+                try
                 {
-                    picInsignia.Image = bitmap;
-                }));                               
+                    OpenJPEG.DecodeToImage(texture.AssetData, out imgData, out bitmap);
+
+                    BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        picInsignia.Image = bitmap;
+                    }));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "METAbolt");   
+                }                           
             }
         }
 

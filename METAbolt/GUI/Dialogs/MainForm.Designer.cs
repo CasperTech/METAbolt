@@ -50,6 +50,11 @@ namespace METAbolt
             this.mETAboltQuickStartGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.getMETAboltPluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getMETAboltLSLPluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
+            this.sLGridStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.sLHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sLKnowledgebaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingPortalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,11 +149,7 @@ namespace METAbolt
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
-            this.sLGridStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getMETAboltPluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
-            this.getMETAboltLSLPluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
@@ -347,6 +348,37 @@ namespace METAbolt
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(195, 6);
+            // 
+            // getMETAboltPluginsToolStripMenuItem
+            // 
+            this.getMETAboltPluginsToolStripMenuItem.Name = "getMETAboltPluginsToolStripMenuItem";
+            this.getMETAboltPluginsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.getMETAboltPluginsToolStripMenuItem.Text = "Get METAbolt Plugins";
+            this.getMETAboltPluginsToolStripMenuItem.Click += new System.EventHandler(this.getMETAboltPluginsToolStripMenuItem_Click);
+            // 
+            // getMETAboltLSLPluginsToolStripMenuItem
+            // 
+            this.getMETAboltLSLPluginsToolStripMenuItem.Name = "getMETAboltLSLPluginsToolStripMenuItem";
+            this.getMETAboltLSLPluginsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.getMETAboltLSLPluginsToolStripMenuItem.Text = "METAbolt LSL Commands";
+            this.getMETAboltLSLPluginsToolStripMenuItem.Click += new System.EventHandler(this.getMETAboltLSLPluginsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator29
+            // 
+            this.toolStripSeparator29.Name = "toolStripSeparator29";
+            this.toolStripSeparator29.Size = new System.Drawing.Size(195, 6);
+            // 
+            // sLGridStatusToolStripMenuItem
+            // 
+            this.sLGridStatusToolStripMenuItem.Name = "sLGridStatusToolStripMenuItem";
+            this.sLGridStatusToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.sLGridStatusToolStripMenuItem.Text = "SL Grid Status";
+            this.sLGridStatusToolStripMenuItem.Click += new System.EventHandler(this.sLGridStatusToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator27
+            // 
+            this.toolStripSeparator27.Name = "toolStripSeparator27";
+            this.toolStripSeparator27.Size = new System.Drawing.Size(195, 6);
             // 
             // sLHelpToolStripMenuItem
             // 
@@ -1203,6 +1235,7 @@ namespace METAbolt
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsFavs);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
@@ -1212,36 +1245,19 @@ namespace METAbolt
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // toolStripSeparator27
+            // tsFavs
             // 
-            this.toolStripSeparator27.Name = "toolStripSeparator27";
-            this.toolStripSeparator27.Size = new System.Drawing.Size(195, 6);
-            // 
-            // sLGridStatusToolStripMenuItem
-            // 
-            this.sLGridStatusToolStripMenuItem.Name = "sLGridStatusToolStripMenuItem";
-            this.sLGridStatusToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.sLGridStatusToolStripMenuItem.Text = "SL Grid Status";
-            this.sLGridStatusToolStripMenuItem.Click += new System.EventHandler(this.sLGridStatusToolStripMenuItem_Click);
-            // 
-            // getMETAboltPluginsToolStripMenuItem
-            // 
-            this.getMETAboltPluginsToolStripMenuItem.Name = "getMETAboltPluginsToolStripMenuItem";
-            this.getMETAboltPluginsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.getMETAboltPluginsToolStripMenuItem.Text = "Get METAbolt Plugins";
-            this.getMETAboltPluginsToolStripMenuItem.Click += new System.EventHandler(this.getMETAboltPluginsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator29
-            // 
-            this.toolStripSeparator29.Name = "toolStripSeparator29";
-            this.toolStripSeparator29.Size = new System.Drawing.Size(195, 6);
-            // 
-            // getMETAboltLSLPluginsToolStripMenuItem
-            // 
-            this.getMETAboltLSLPluginsToolStripMenuItem.Name = "getMETAboltLSLPluginsToolStripMenuItem";
-            this.getMETAboltLSLPluginsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.getMETAboltLSLPluginsToolStripMenuItem.Text = "METAbolt LSL Commands";
-            this.getMETAboltLSLPluginsToolStripMenuItem.Click += new System.EventHandler(this.getMETAboltLSLPluginsToolStripMenuItem_Click);
+            this.tsFavs.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tsFavs.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsFavs.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsFavs.Location = new System.Drawing.Point(0, 25);
+            this.tsFavs.Name = "tsFavs";
+            this.tsFavs.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.tsFavs.Size = new System.Drawing.Size(720, 25);
+            this.tsFavs.Stretch = true;
+            this.tsFavs.TabIndex = 0;
+            this.tsFavs.Text = "Favourites";
+            this.tsFavs.Visible = false;
             // 
             // frmMain
             // 
@@ -1394,6 +1410,7 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripMenuItem getMETAboltPluginsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
         private System.Windows.Forms.ToolStripMenuItem getMETAboltLSLPluginsToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip tsFavs;
     }
 }
 
