@@ -61,11 +61,8 @@ namespace SamplePlugin
             // whatever you need to do depending
             // on if it has been loaded or not
             if (ext.Host != null)
-                ext.Host.HostStatus("Hello from sample application");
-
-        }
-
-        
+                ext.Host.HostStatus("MB Combat Controller");
+        }        
 
         private void button1_Click(object sender, EventArgs e)
         {

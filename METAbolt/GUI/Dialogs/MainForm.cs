@@ -2028,6 +2028,11 @@ namespace METAbolt
                     }
                 }
             }
+
+            if (tsFavs.Visible)
+            {
+                this.Height += 25;
+            }
         }
 
         private void FavsToolStripMenuItem_Click(object sender, EventArgs e)

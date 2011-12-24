@@ -40,8 +40,8 @@ namespace SamplePlugin
         // You obviously need to change the below information to suite your development
 
         IHost host = null;
-		string title = "Sample Extension 1";
-        string description = "This is a sample application that shows how to develop extensions for METAbolt.";
+        string title = "MB Combat Controller";
+        string description = "This is a plugin to control land combat settings on combat enabled SIMs";
         string author = "Legolas Luke";
         string version = "V1.0";
          

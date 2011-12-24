@@ -1497,6 +1497,8 @@ namespace METAbolt
             TabAgentName = this.instance.State.GroupStore[e.IM.IMSessionID];
             Group grp = this.instance.State.Groups[e.IM.IMSessionID];
 
+            //UUID gsession = new UUID(e.IM.BinaryBucket, 2);
+
             IMTabWindowGroup imTab = AddIMTabGroup(e.IM.FromAgentID, e.IM.IMSessionID, TabAgentName, grp);
 
             DisplayOnIMGroup(imTab, e);

@@ -39,8 +39,9 @@ namespace METAbolt
     public partial class frmStats : Form
     {
         private METAboltInstance instance;
-        //private SLNetCom netcom;
         private GridClient client;
+        private Simulator sim;
+        private int score = 10;
 
         public frmStats(METAboltInstance instance)
         {
@@ -48,7 +49,8 @@ namespace METAbolt
 
             this.instance = instance;
             client = this.instance.Client;
-            //netcom = this.instance.Netcom;
+
+            sim = client.Network.CurrentSim;
         }
 
         private void frmStats_Load(object sender, EventArgs e)
@@ -60,96 +62,174 @@ namespace METAbolt
 
         private void GetStats()
         {
-            //StringBuilder output = new StringBuilder();
+            lbIssues.Items.Clear();
 
             try
             {
-            lock (client.Network.Simulators)
-            {
-                Simulator sim = client.Network.Simulators[0];
                 label1.Text = "Name: " + sim.ToString();
 
                 label22.Text = "Version: " + sim.SimVersion;
-                label23.Text = "Location: " + sim.ColoLocation; 
-                
-                label2.Text = "Dilation: " + sim.Stats.Dilation;
+                label23.Text = "Location: " + sim.ColoLocation;
+
+                label2.Text = "Dilation: " + sim.Stats.Dilation.ToString();
                 progressBar1.Value = (int)(sim.Stats.Dilation * 10);
- 
-                label3.Text = "In BPS: " + sim.Stats.IncomingBPS;
-                if ((int)sim.Stats.IncomingBPS > progressBar2.Maximum)
-                    progressBar2.Maximum = (int)sim.Stats.IncomingBPS;
-                progressBar2.Value = (int)sim.Stats.IncomingBPS;
 
-                label4.Text = "Out BPS: " + sim.Stats.OutgoingBPS;
-                if ((int)sim.Stats.OutgoingBPS > progressBar3.Maximum)
-                    progressBar3.Maximum = (int)sim.Stats.OutgoingBPS;
-                progressBar3.Value = (int)sim.Stats.OutgoingBPS;
+                label24.Text = sim.Stats.INPPS.ToString();
+                label25.Text = sim.Stats.OUTPPS.ToString();
 
-                label5.Text = "Resent Packets: " + sim.Stats.ResentPackets;
-                if ((int)sim.Stats.ResentPackets > progressBar4.Maximum)
-                    progressBar4.Maximum = (int)sim.Stats.ResentPackets;
-                progressBar4.Value = (int)sim.Stats.ResentPackets;
+                label26.Text = sim.Stats.ResentPackets.ToString();
+                label27.Text = sim.Stats.ReceivedResends.ToString();
 
-                label6.Text = "Received Resends: " + sim.Stats.ReceivedResends;
-                if ((int)sim.Stats.ReceivedResends > progressBar5.Maximum)
-                    progressBar5.Maximum = (int)sim.Stats.ReceivedResends;
-                progressBar5.Value = (int)sim.Stats.ReceivedResends;
-            }
+                label28.Text = client.Network.InboxCount.ToString();
 
-            Simulator csim = client.Network.CurrentSim;
-            label21.Text = "Packets in queue: " + client.Network.InboxCount;
-            if (client.Network.InboxCount > progressBar6.Maximum)
-                progressBar6.Maximum = client.Network.InboxCount;
-            progressBar6.Value = (int)client.Network.InboxCount;
+                label7.Text = "FPS: " + sim.Stats.FPS.ToString();
+                progressBar7.Value = (int)sim.Stats.FPS;
 
-            label7.Text = "FPS: " + csim.Stats.FPS;
-            progressBar7.Value = (int)csim.Stats.FPS;
+                label8.Text = "Physics FPS: " + sim.Stats.PhysicsFPS.ToString();
+                progressBar8.Value = (int)sim.Stats.PhysicsFPS;
 
-            label8.Text = "Physics FPS: " + csim.Stats.PhysicsFPS;
-            progressBar8.Value = (int)csim.Stats.PhysicsFPS;
+                label29.Text = sim.Stats.AgentUpdates.ToString();
 
-            label9.Text = "Agent Updates: " + csim.Stats.AgentUpdates;
-            if ((int)csim.Stats.AgentUpdates > progressBar9.Maximum)
-                progressBar9.Maximum = (int)csim.Stats.AgentUpdates;
-            progressBar9.Value = (int)csim.Stats.AgentUpdates;
+                label10.Text = "Objects: " + sim.Stats.Objects.ToString();
+                progressBar10.Value = (int)sim.Stats.Objects;
 
-            label10.Text = "Objects: " + csim.Stats.Objects;
-            progressBar10.Value = (int)csim.Stats.Objects;
+                label30.Text = sim.Stats.ScriptedObjects.ToString();
 
-            label11.Text = "Scripted Objects: " + csim.Stats.ScriptedObjects;
-            progressBar11.Value = (int)csim.Stats.ScriptedObjects;
+                label12.Text = "Frame Time: " + sim.Stats.FrameTime.ToString();
+                progressBar15.Value = (int)sim.Stats.FrameTime;
 
-            label12.Text = "Frame Time: " + csim.Stats.FrameTime;
-            progressBar15.Value = (int)csim.Stats.FrameTime;
+                label34.Text = sim.Stats.NetTime.ToString();
 
-            label13.Text = "Net Time: " + csim.Stats.NetTime;
-            progressBar16.Value = (int)csim.Stats.NetTime;
+                label35.Text = sim.Stats.ImageTime.ToString();
 
-            label14.Text = "Image Time" + csim.Stats.ImageTime;
-            progressBar17.Value = (int)csim.Stats.ImageTime;
+                label36.Text = sim.Stats.PhysicsTime.ToString();
 
-            label15.Text = "Physics Time: " + csim.Stats.PhysicsTime;
-            progressBar18.Value = (int)csim.Stats.PhysicsTime;
+                label37.Text = sim.Stats.ScriptTime.ToString();
 
-            label16.Text = "Script Time: " + csim.Stats.ScriptTime;
-            progressBar19.Value = (int)csim.Stats.ScriptTime;
+                label38.Text = sim.Stats.OtherTime.ToString();
 
-            label17.Text = "Other Time" + csim.Stats.OtherTime;
-            progressBar20.Value = (int)csim.Stats.OtherTime;
+                label32.Text = sim.Stats.Agents.ToString();
 
-            label18.Text = "Agents: " + csim.Stats.Agents;
-            progressBar13.Value = (int)csim.Stats.Agents;
+                label33.Text = sim.Stats.ChildAgents.ToString();
 
-            label19.Text = "Child Agents: " + csim.Stats.ChildAgents;
-            progressBar14.Value = (int)csim.Stats.ChildAgents;
+                label31.Text = sim.Stats.ActiveScripts.ToString();
 
-            label20.Text = "Active Scripts" + csim.Stats.ActiveScripts;
-            progressBar12.Value = (int)csim.Stats.ActiveScripts;
-
+                ScorePerformance();
             }
             catch
             {
                 ;
+            }
+        }
+
+        private void ScorePerformance()
+        {
+            float dil = sim.Stats.Dilation;
+            int fm = sim.Stats.FPS;
+
+            if (sim.Stats.PendingDownloads > 1)
+            {
+                lbIssues.Items.Add("Expect rezzing issues and delays in viewing notecards/scripts.");
+            }
+
+            if (sim.Stats.PendingUploads > 0)
+            {
+                lbIssues.Items.Add("Expect teleport issues.");
+            }
+
+            if (sim.Stats.PhysicsFPS > 5000)
+            {
+                lbIssues.Items.Add("SIM wide physics issues");
+            }
+
+            if (dil > 0.94)
+            {
+                //lblScore.Text = "Excellent";
+                // Excellent
+                if (fm > 29)
+                {
+                    // Excellent
+                    //lblScore.Text = "Excellent";
+                    lblScore.ForeColor = Color.Green;
+                    score = 5;
+                }
+                else if (fm > 14 && fm < 30)
+                {
+                    // Good
+                    //lblScore.Text = "Good";
+                    lblScore.ForeColor = Color.RoyalBlue;
+                    score = 3;
+                }
+                else
+                {
+                    // Poor
+                    //lblScore.Text = "Poor";
+                    lbIssues.Items.Add("Physics running-speed is almost zero i.e. barely running");
+                    lblScore.ForeColor = Color.Red;
+                    score = 1;
+                }
+            }
+            else if (dil < 0.95 && dil > 0.5)
+            {
+                lbIssues.Items.Add("Physics is running at half speed.");
+
+                // Good
+                if (fm > 29)
+                {
+                    // Excellent
+                    //lblScore.Text = "Good";
+                    lblScore.ForeColor = Color.RoyalBlue;
+                    score = 3;
+                }
+                else if (fm > 14 && fm < 30)
+                {
+                    lbIssues.Items.Add("Script running speed is reduced due to low dilation.");
+                    // Good
+                    //lblScore.Text = "Average";
+                    lblScore.ForeColor = Color.Black;
+                    score = 2;
+                }
+                else
+                {
+                    // Poor
+                    //lblScore.Text = "Very Poor";
+                    
+                    lblScore.ForeColor = Color.Red;
+                    score = 1;
+                }
+            }
+            else
+            {
+                // Poor
+                //lblScore.Text = "Extremely Poor";
+                lbIssues.Items.Add("Physics running-speed is almost zero i.e. barely running");
+                lblScore.ForeColor = Color.Red;
+                score = 1;
+            }
+
+            score += CalcFT();
+
+            pbScore.Value = score; 
+            lblScore.Text = score.ToString();
+        }
+
+        private int CalcFT()
+        {
+            float ft = sim.Stats.FrameTime;
+
+            if (ft < 22.1)
+            {
+                return 5;
+            }
+            else if (ft > 22.1 && ft < 22.5)
+            {
+                lbIssues.Items.Add("Healthy SIM but too many scripts/agents is causing script execution slow-down.");   
+                return 3;
+            }
+            else
+            {
+                lbIssues.Items.Add("There is a severe load on the SIM due to physics or too many agents. Expect lag.");
+                return 1;
             }
         }
 
@@ -174,6 +254,11 @@ namespace METAbolt
         }
 
         private void progressBar9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbScore_Click(object sender, EventArgs e)
         {
 
         }
