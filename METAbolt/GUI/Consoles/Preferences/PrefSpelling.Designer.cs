@@ -35,11 +35,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.picFlag = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ilFlags = new System.Windows.Forms.ImageList(this.components);
-            this.picFlag = new System.Windows.Forms.PictureBox();
+            this.picSpell = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFlag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSpell)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -92,9 +94,18 @@
             this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(38, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(339, 236);
+            this.groupBox1.Size = new System.Drawing.Size(300, 236);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // picFlag
+            // 
+            this.picFlag.Location = new System.Drawing.Point(21, 27);
+            this.picFlag.Name = "picFlag";
+            this.picFlag.Size = new System.Drawing.Size(16, 11);
+            this.picFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFlag.TabIndex = 4;
+            this.picFlag.TabStop = false;
             // 
             // label2
             // 
@@ -357,19 +368,23 @@
             this.ilFlags.Images.SetKeyName(245, "zm.png");
             this.ilFlags.Images.SetKeyName(246, "zw.png");
             // 
-            // picFlag
+            // picSpell
             // 
-            this.picFlag.Location = new System.Drawing.Point(21, 27);
-            this.picFlag.Name = "picFlag";
-            this.picFlag.Size = new System.Drawing.Size(16, 11);
-            this.picFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFlag.TabIndex = 4;
-            this.picFlag.TabStop = false;
+            this.picSpell.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.picSpell.Location = new System.Drawing.Point(323, 23);
+            this.picSpell.Name = "picSpell";
+            this.picSpell.Size = new System.Drawing.Size(15, 15);
+            this.picSpell.TabIndex = 18;
+            this.picSpell.TabStop = false;
+            this.picSpell.Click += new System.EventHandler(this.picSpell_Click);
+            this.picSpell.MouseLeave += new System.EventHandler(this.picSpell_MouseLeave);
+            this.picSpell.MouseHover += new System.EventHandler(this.picSpell_MouseHover);
             // 
             // PrefSpelling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.picSpell);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
@@ -378,6 +393,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFlag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSpell)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,5 +409,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox picFlag;
         private System.Windows.Forms.ImageList ilFlags;
+        private System.Windows.Forms.PictureBox picSpell;
     }
 }

@@ -8,7 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using PopupControl;
 using OpenMetaverse;
-using System.IO; 
+using System.IO;
+using PopupControl;
 
 namespace METAbolt
 {
@@ -17,6 +18,8 @@ namespace METAbolt
         private METAboltInstance instance;
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
         private string lang = string.Empty;
+        private Popup toolTip3;
+        private CustomToolTip customToolTip;
 
         public PrefSpelling(METAboltInstance instance)
         {
@@ -25,6 +28,12 @@ namespace METAbolt
             this.instance = instance; 
 
             GetDictionaries();
+
+            string msg = "Enables spell checking in public chat and IMs.\n\nClick for online help";
+            toolTip3 = new Popup(customToolTip = new CustomToolTip(instance, msg));
+            toolTip3.AutoClose = false;
+            toolTip3.FocusOnOpen = false;
+            toolTip3.ShowingAnimation = toolTip3.HidingAnimation = PopupAnimations.Blend;
 
             checkBox1.Checked = instance.Config.CurrentConfig.EnableSpelling;
             lang = instance.Config.CurrentConfig.SpellLanguage;
@@ -120,6 +129,21 @@ namespace METAbolt
             sfile = sfile[1].Split('.');
 
             picFlag.Image = ilFlags.Images[sfile[0] + ".png"];
+        }
+
+        private void picSpell_MouseHover(object sender, EventArgs e)
+        {
+            toolTip3.Show(picSpell);
+        }
+
+        private void picSpell_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip3.Close();
+        }
+
+        private void picSpell_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://www.metabolt.net/metawiki/How-customise-and-enable-spell-checking.ashx");
         }
     }
 }

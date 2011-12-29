@@ -183,5 +183,40 @@ namespace METAbolt
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string dir = Application.StartupPath.ToString() + "\\config\\Settings.xml";
+
+            if (System.IO.File.Exists(dir))
+            {
+                Process.Start("notepad.exe", dir); 
+            }
+            else
+            {
+                MessageBox.Show("File: \n" + dir + "\n\n could not be found", "METAbolt");  
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string dir = Application.StartupPath.ToString() + "\\config";
+
+            Process.Start("explorer.exe", dir);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string dir = Application.StartupPath.ToString() + "\\aiml"; ;
+
+            if (System.IO.Directory.Exists(dir))
+            {
+                Process.Start("explorer.exe", dir);
+            }
+            else
+            {
+                MessageBox.Show("AIML libraries could not be found!\nAre you sure they are installed?","METAbolt");  
+            }
+        }
     }
 }
