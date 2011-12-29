@@ -34,6 +34,9 @@ namespace METAbolt
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbTag = new System.Windows.Forms.CheckBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.chkLSL = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.nUD2 = new System.Windows.Forms.NumericUpDown();
@@ -58,6 +61,7 @@ namespace METAbolt
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.chkConnect4 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tbar2 = new System.Windows.Forms.TrackBar();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -117,10 +121,6 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.cbTag = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -238,6 +238,39 @@ namespace METAbolt
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Options";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // cbTag
+            // 
+            this.cbTag.AccessibleName = "Start minimised option";
+            this.cbTag.AutoSize = true;
+            this.cbTag.Location = new System.Drawing.Point(8, 45);
+            this.cbTag.Name = "cbTag";
+            this.cbTag.Size = new System.Drawing.Size(173, 17);
+            this.cbTag.TabIndex = 66;
+            this.cbTag.Text = "Broadcast METAbolt Client Tag";
+            this.cbTag.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(5, 70);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(135, 13);
+            this.label18.TabIndex = 65;
+            this.label18.Text = "Received inventory items: ";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Ask",
+            "Auto decline",
+            "Auto accept"});
+            this.comboBox1.Location = new System.Drawing.Point(143, 67);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.TabIndex = 64;
             // 
             // chkLSL
             // 
@@ -528,6 +561,18 @@ namespace METAbolt
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Radar/Range";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AccessibleName = "Optimise for dial-up option";
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(10, 184);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(156, 17);
+            this.checkBox3.TabIndex = 58;
+            this.checkBox3.Text = "Optimise settings for Dial-up";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // textBox2
             // 
@@ -1205,51 +1250,6 @@ namespace METAbolt
             this.fontDialog1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Ask",
-            "Auto decline",
-            "Auto accept"});
-            this.comboBox1.Location = new System.Drawing.Point(143, 67);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.comboBox1.TabIndex = 64;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(5, 70);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(135, 13);
-            this.label18.TabIndex = 65;
-            this.label18.Text = "Received inventory items: ";
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AccessibleName = "Optimise for dial-up option";
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(10, 184);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(161, 17);
-            this.checkBox3.TabIndex = 58;
-            this.checkBox3.Text = "Optimise settings for Dial-up";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            // 
-            // cbTag
-            // 
-            this.cbTag.AccessibleName = "Start minimised option";
-            this.cbTag.AutoSize = true;
-            this.cbTag.Location = new System.Drawing.Point(8, 45);
-            this.cbTag.Name = "cbTag";
-            this.cbTag.Size = new System.Drawing.Size(173, 17);
-            this.cbTag.TabIndex = 66;
-            this.cbTag.Text = "Broadcast METAbolt Client Tag";
-            this.cbTag.UseVisualStyleBackColor = true;
             // 
             // PrefGeneralConsole
             // 

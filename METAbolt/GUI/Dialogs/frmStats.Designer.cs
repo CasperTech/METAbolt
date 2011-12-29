@@ -83,7 +83,9 @@
             this.pbScore = new System.Windows.Forms.ProgressBar();
             this.lbIssues = new System.Windows.Forms.ListBox();
             this.label42 = new System.Windows.Forms.Label();
+            this.pbHelp = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -622,6 +624,18 @@
             this.label42.TabIndex = 66;
             this.label42.Text = "[ SIM Performance Diagnosis ]";
             // 
+            // pbHelp
+            // 
+            this.pbHelp.Image = ((System.Drawing.Image)(resources.GetObject("pbHelp.Image")));
+            this.pbHelp.Location = new System.Drawing.Point(412, 13);
+            this.pbHelp.Name = "pbHelp";
+            this.pbHelp.Size = new System.Drawing.Size(15, 15);
+            this.pbHelp.TabIndex = 67;
+            this.pbHelp.TabStop = false;
+            this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
+            this.pbHelp.MouseLeave += new System.EventHandler(this.pbHelp_MouseLeave);
+            this.pbHelp.MouseHover += new System.EventHandler(this.pbHelp_MouseHover);
+            // 
             // frmStats
             // 
             this.AccessibleName = "SIM statistics window";
@@ -632,6 +646,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(439, 598);
+            this.Controls.Add(this.pbHelp);
             this.Controls.Add(this.label42);
             this.Controls.Add(this.lbIssues);
             this.Controls.Add(this.lblScore);
@@ -691,6 +706,7 @@
             this.Text = "Simulator (SIM) Statistics";
             this.Load += new System.EventHandler(this.frmStats_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -751,5 +767,6 @@
         private System.Windows.Forms.ProgressBar pbScore;
         private System.Windows.Forms.ListBox lbIssues;
         private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.PictureBox pbHelp;
     }
 }

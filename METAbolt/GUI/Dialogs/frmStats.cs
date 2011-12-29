@@ -33,6 +33,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using OpenMetaverse.Packets;
+using PopupControl;
 
 namespace METAbolt
 {
@@ -42,14 +43,29 @@ namespace METAbolt
         private GridClient client;
         private Simulator sim;
         private int score = 10;
+        private Popup toolTip;
+        private CustomToolTip customToolTip;
 
         public frmStats(METAboltInstance instance)
         {
             InitializeComponent();
 
+            string msg1 = "Click for online help/guidance";
+            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            toolTip.AutoClose = false;
+            toolTip.FocusOnOpen = false;
+            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+
             this.instance = instance;
             client = this.instance.Client;
 
+            sim = client.Network.CurrentSim;
+
+            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(Network_SimChanged);
+        }
+
+        void Network_SimChanged(object sender, SimChangedEventArgs e)
+        {
             sim = client.Network.CurrentSim;
         }
 
@@ -261,6 +277,21 @@ namespace METAbolt
         private void pbScore_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pbHelp_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.Show(pbHelp);
+        }
+
+        private void pbHelp_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip.Close();
+        }
+
+        private void pbHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://wiki.secondlife.com/wiki/Statistics_Bar_Guide");
         }
     }
 }
