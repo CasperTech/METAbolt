@@ -56,10 +56,11 @@
             // 
             this.cmdInfo.AccessibleDescription = "Display group information window";
             this.cmdInfo.AccessibleName = "Information";
+            this.cmdInfo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdInfo.BackColor = System.Drawing.Color.RoyalBlue;
             this.cmdInfo.Enabled = false;
             this.cmdInfo.ForeColor = System.Drawing.Color.White;
-            this.cmdInfo.Location = new System.Drawing.Point(271, 408);
+            this.cmdInfo.Location = new System.Drawing.Point(243, 388);
             this.cmdInfo.Name = "cmdInfo";
             this.cmdInfo.Size = new System.Drawing.Size(43, 23);
             this.cmdInfo.TabIndex = 3;
@@ -71,10 +72,11 @@
             // 
             this.cmdActivate.AccessibleDescription = "Activate selected group i.e. wear as tag";
             this.cmdActivate.AccessibleName = "Activate";
+            this.cmdActivate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdActivate.BackColor = System.Drawing.Color.RoyalBlue;
             this.cmdActivate.Enabled = false;
             this.cmdActivate.ForeColor = System.Drawing.Color.White;
-            this.cmdActivate.Location = new System.Drawing.Point(195, 408);
+            this.cmdActivate.Location = new System.Drawing.Point(167, 388);
             this.cmdActivate.Name = "cmdActivate";
             this.cmdActivate.Size = new System.Drawing.Size(70, 23);
             this.cmdActivate.TabIndex = 2;
@@ -86,10 +88,11 @@
             // 
             this.cmdIM.AccessibleDescription = "IM selected group";
             this.cmdIM.AccessibleName = "IM";
+            this.cmdIM.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdIM.BackColor = System.Drawing.Color.RoyalBlue;
             this.cmdIM.Enabled = false;
             this.cmdIM.ForeColor = System.Drawing.Color.White;
-            this.cmdIM.Location = new System.Drawing.Point(136, 408);
+            this.cmdIM.Location = new System.Drawing.Point(108, 388);
             this.cmdIM.Name = "cmdIM";
             this.cmdIM.Size = new System.Drawing.Size(53, 23);
             this.cmdIM.TabIndex = 1;
@@ -101,10 +104,11 @@
             // 
             this.cmdLeave.AccessibleDescription = "Leave this group";
             this.cmdLeave.AccessibleName = "Leave";
+            this.cmdLeave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdLeave.BackColor = System.Drawing.Color.RoyalBlue;
             this.cmdLeave.Enabled = false;
             this.cmdLeave.ForeColor = System.Drawing.Color.White;
-            this.cmdLeave.Location = new System.Drawing.Point(320, 408);
+            this.cmdLeave.Location = new System.Drawing.Point(292, 388);
             this.cmdLeave.Name = "cmdLeave";
             this.cmdLeave.Size = new System.Drawing.Size(54, 23);
             this.cmdLeave.TabIndex = 4;
@@ -116,9 +120,10 @@
             // 
             this.label1.AccessibleDescription = "Currently active/worn group";
             this.label1.AccessibleName = "Current group";
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(136, 41);
+            this.label1.Location = new System.Drawing.Point(108, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 15;
@@ -127,9 +132,10 @@
             // 
             this.button1.AccessibleDescription = "Create a new group";
             this.button1.AccessibleName = "Create";
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button1.BackColor = System.Drawing.Color.RoyalBlue;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(440, 408);
+            this.button1.Location = new System.Drawing.Point(412, 388);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 23);
             this.button1.TabIndex = 5;
@@ -170,6 +176,7 @@
             // 
             this.textBox2.AccessibleDescription = "Description of the new group";
             this.textBox2.AccessibleName = "Charter";
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBox2.Location = new System.Drawing.Point(25, 120);
             this.textBox2.Multiline = true;
@@ -182,6 +189,7 @@
             // 
             this.button2.AccessibleDescription = "Create the new group";
             this.button2.AccessibleName = "Create group";
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button2.BackColor = System.Drawing.Color.RoyalBlue;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(209, 260);
@@ -195,6 +203,7 @@
             // button3
             // 
             this.button3.AccessibleName = "Cancel";
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button3.BackColor = System.Drawing.Color.RoyalBlue;
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(285, 260);
@@ -217,6 +226,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label4);
@@ -226,7 +236,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(138, 99);
+            this.panel1.Location = new System.Drawing.Point(110, 79);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(384, 294);
             this.panel1.TabIndex = 7;
@@ -236,6 +246,7 @@
             // 
             this.lstGroups.AccessibleDescription = "List og groups your avatar is a member of";
             this.lstGroups.AccessibleName = "Groups";
+            this.lstGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lstGroups.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lstGroups.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstGroups.FormattingEnabled = true;
@@ -247,9 +258,10 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.lstGroups);
-            this.panel2.Location = new System.Drawing.Point(138, 99);
+            this.panel2.Location = new System.Drawing.Point(110, 79);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(384, 294);
             this.panel2.TabIndex = 19;
@@ -258,9 +270,10 @@
             // 
             this.label6.AccessibleDescription = "Total number of groups in the list";
             this.label6.AccessibleName = "Total groups";
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(136, 57);
+            this.label6.Location = new System.Drawing.Point(108, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 21;
@@ -269,8 +282,9 @@
             // 
             this.label5.AccessibleDescription = "The UUID of the selected group";
             this.label5.AccessibleName = "UUID";
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label5.Location = new System.Drawing.Point(139, 73);
+            this.label5.Location = new System.Drawing.Point(111, 53);
             this.label5.Name = "label5";
             this.label5.ReadOnly = true;
             this.label5.Size = new System.Drawing.Size(381, 20);
@@ -280,10 +294,11 @@
             // 
             this.button4.AccessibleDescription = "Leave this group";
             this.button4.AccessibleName = "Leave";
+            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button4.BackColor = System.Drawing.Color.RoyalBlue;
             this.button4.Enabled = false;
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(380, 408);
+            this.button4.Location = new System.Drawing.Point(352, 388);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(54, 23);
             this.button4.TabIndex = 22;
