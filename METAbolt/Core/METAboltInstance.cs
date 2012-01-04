@@ -786,15 +786,7 @@ namespace METAbolt
             /// the grid interface</summary>
             client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
             client.Settings.MAX_CONCURRENT_TEXTURE_DOWNLOADS = 20;
-
-            if (config.CurrentConfig.BroadcastID)
-            {
-                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("8201f643-6006-c2ea-fbf3-0a5e8c0874ed");
-            }
-            else
-            {
-                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID(UUID.Zero.ToString());
-            }
+            client.Settings.USE_INTERPOLATION_TIMER = false;
 
             // Sizes
 
@@ -907,6 +899,15 @@ namespace METAbolt
             client.Throttle.Total = 4460000.0f;
 
             client.Settings.THROTTLE_OUTGOING_PACKETS = false;
+
+            if (config.CurrentConfig.BroadcastID)
+            {
+                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("8201f643-6006-c2ea-fbf3-0a5e8c0874ed");
+            }
+            else
+            {
+                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID(UUID.Zero.ToString());
+            }
         }
 
         private void InitializeConfig()

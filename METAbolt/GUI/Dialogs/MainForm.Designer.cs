@@ -33,7 +33,20 @@ namespace METAbolt
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tlblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tlblMoneyBalance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tlblRegionInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tb1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tb2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tb3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tb4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tb5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tb6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tlblParcel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tbtnMETAbolt = new System.Windows.Forms.ToolStripDropDownButton();
             this.tmnuPrefs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -135,62 +148,194 @@ namespace METAbolt
             this.tsFlag = new System.Windows.Forms.ToolStripButton();
             this.tsTime = new System.Windows.Forms.ToolStripLabel();
             this.tsTimeOut = new System.Windows.Forms.ToolStripLabel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tlblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tlblMoneyBalance = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tlblRegionInfo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tb1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tb2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tb3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tb4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tb5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tb6 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tlblParcel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsFavs = new System.Windows.Forms.ToolStrip();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // statusStrip1
             // 
-            this.toolStrip1.AccessibleName = "Main METAbolt menu";
-            this.toolStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbtnMETAbolt,
-            this.toolStripSeparator1,
-            this.tbtnHelp,
-            this.toolStripDropDownButton2,
-            this.toolStripDropDownButton1,
-            this.btnAvatar,
-            this.toolStripSeparator2,
-            this.tlTools,
-            this.toolStripSeparator3,
-            this.tlLogs,
-            this.toolStripSeparator24,
-            this.tsUtilities,
-            this.toolStripSeparator15,
-            this.tsPlugins,
-            this.toolStripSeparator25,
-            this.tsFlag,
-            this.tsTime,
-            this.tsTimeOut});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(720, 25);
-            this.toolStrip1.Stretch = true;
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
+            this.statusStrip1.AccessibleName = "Information strip";
+            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tlblLoginName,
+            this.tlblMoneyBalance,
+            this.tlblRegionInfo,
+            this.tb1,
+            this.tb2,
+            this.tb3,
+            this.tb4,
+            this.tb5,
+            this.tb6,
+            this.tlblParcel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(720, 24);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tlblLoginName
+            // 
+            this.tlblLoginName.AccessibleDescription = "Displays the name of your avatar when online";
+            this.tlblLoginName.AccessibleName = "Avatar name or status";
+            this.tlblLoginName.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.tlblLoginName.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.tlblLoginName.ForeColor = System.Drawing.Color.Red;
+            this.tlblLoginName.Name = "tlblLoginName";
+            this.tlblLoginName.Size = new System.Drawing.Size(47, 19);
+            this.tlblLoginName.Text = "Offline";
+            this.tlblLoginName.Click += new System.EventHandler(this.tlblLoginName_Click);
+            this.tlblLoginName.MouseEnter += new System.EventHandler(this.tlblLoginName_MouseEnter);
+            // 
+            // tlblMoneyBalance
+            // 
+            this.tlblMoneyBalance.AccessibleDescription = "Displays the amount of money yoru avatar has";
+            this.tlblMoneyBalance.AccessibleName = "Money";
+            this.tlblMoneyBalance.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.tlblMoneyBalance.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.tlblMoneyBalance.ForeColor = System.Drawing.Color.DarkGreen;
+            this.tlblMoneyBalance.Name = "tlblMoneyBalance";
+            this.tlblMoneyBalance.Size = new System.Drawing.Size(29, 19);
+            this.tlblMoneyBalance.Text = "L$0";
+            this.tlblMoneyBalance.Click += new System.EventHandler(this.tlblMoneyBalance_Click);
+            this.tlblMoneyBalance.MouseEnter += new System.EventHandler(this.tlblMoneyBalance_MouseEnter);
+            // 
+            // tlblRegionInfo
+            // 
+            this.tlblRegionInfo.AccessibleDescription = "Displays the name of the SIM you are in and the coordinates of your avatar\'s loca" +
+    "tion";
+            this.tlblRegionInfo.AccessibleName = "SIM name and coordinates";
+            this.tlblRegionInfo.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.tlblRegionInfo.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.tlblRegionInfo.Name = "tlblRegionInfo";
+            this.tlblRegionInfo.Size = new System.Drawing.Size(67, 19);
+            this.tlblRegionInfo.Text = "No Region";
+            this.tlblRegionInfo.Click += new System.EventHandler(this.tlblRegionInfo_Click);
+            this.tlblRegionInfo.MouseEnter += new System.EventHandler(this.tlblRegionInfo_MouseEnter);
+            // 
+            // tb1
+            // 
+            this.tb1.AccessibleDescription = "You cannot fly on this parcel";
+            this.tb1.AccessibleName = "No fly";
+            this.tb1.Image = ((System.Drawing.Image)(resources.GetObject("tb1.Image")));
+            this.tb1.Name = "tb1";
+            this.tb1.Size = new System.Drawing.Size(16, 19);
+            this.tb1.ToolTipText = "No Fly";
+            this.tb1.Visible = false;
+            this.tb1.Click += new System.EventHandler(this.tb1_Click);
+            this.tb1.MouseEnter += new System.EventHandler(this.tb1_MouseEnter);
+            // 
+            // tb2
+            // 
+            this.tb2.AccessibleName = "Building not allowed on current parcel";
+            this.tb2.Image = ((System.Drawing.Image)(resources.GetObject("tb2.Image")));
+            this.tb2.Name = "tb2";
+            this.tb2.Size = new System.Drawing.Size(16, 19);
+            this.tb2.ToolTipText = "No Build";
+            this.tb2.Visible = false;
+            this.tb2.MouseEnter += new System.EventHandler(this.tb2_MouseEnter);
+            // 
+            // tb3
+            // 
+            this.tb3.AccessibleName = "Scripts not allowed on current parcel";
+            this.tb3.Image = ((System.Drawing.Image)(resources.GetObject("tb3.Image")));
+            this.tb3.Name = "tb3";
+            this.tb3.Size = new System.Drawing.Size(16, 19);
+            this.tb3.ToolTipText = "No Scripts";
+            this.tb3.Visible = false;
+            this.tb3.MouseEnter += new System.EventHandler(this.tb3_MouseEnter);
+            // 
+            // tb4
+            // 
+            this.tb4.AccessibleName = "Push not allowed on current parcel";
+            this.tb4.Image = ((System.Drawing.Image)(resources.GetObject("tb4.Image")));
+            this.tb4.Name = "tb4";
+            this.tb4.Size = new System.Drawing.Size(16, 19);
+            this.tb4.ToolTipText = "No Push";
+            this.tb4.Visible = false;
+            this.tb4.MouseEnter += new System.EventHandler(this.tb4_MouseEnter);
+            // 
+            // tb5
+            // 
+            this.tb5.AccessibleName = "Damage not allowed on current parcel";
+            this.tb5.Image = ((System.Drawing.Image)(resources.GetObject("tb5.Image")));
+            this.tb5.Name = "tb5";
+            this.tb5.Size = new System.Drawing.Size(16, 19);
+            this.tb5.ToolTipText = "Safe";
+            this.tb5.Visible = false;
+            this.tb5.MouseEnter += new System.EventHandler(this.tb5_MouseEnter);
+            // 
+            // tb6
+            // 
+            this.tb6.AccessibleName = "This parcel is for sale";
+            this.tb6.Image = ((System.Drawing.Image)(resources.GetObject("tb6.Image")));
+            this.tb6.Name = "tb6";
+            this.tb6.Size = new System.Drawing.Size(16, 19);
+            this.tb6.ToolTipText = "For Sale";
+            this.tb6.Visible = false;
+            this.tb6.MouseEnter += new System.EventHandler(this.tb6_MouseEnter);
+            // 
+            // tlblParcel
+            // 
+            this.tlblParcel.AccessibleDescription = "The name of the parcel you are on";
+            this.tlblParcel.AccessibleName = "Parcel name";
+            this.tlblParcel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.tlblParcel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.tlblParcel.ForeColor = System.Drawing.Color.Navy;
+            this.tlblParcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlblParcel.Name = "tlblParcel";
+            this.tlblParcel.Size = new System.Drawing.Size(562, 19);
+            this.tlblParcel.Spring = true;
+            this.tlblParcel.Text = "No Parcel";
+            this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlblParcel.ToolTipText = "Parcel name. Click me for About Land";
+            this.tlblParcel.Click += new System.EventHandler(this.tlblParcel_Click);
+            this.tlblParcel.MouseEnter += new System.EventHandler(this.tlblParcel_MouseEnter);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.BottomToolStripPanel
+            // 
+            this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this.statusStrip1);
+            this.toolStripContainer1.BottomToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(720, 490);
+            this.toolStripContainer1.ContentPanel.Load += new System.EventHandler(this.toolStripContainer1_ContentPanel_Load);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            // 
+            // toolStripContainer1.LeftToolStripPanel
+            // 
+            this.toolStripContainer1.LeftToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            // 
+            // toolStripContainer1.RightToolStripPanel
+            // 
+            this.toolStripContainer1.RightToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStripContainer1.Size = new System.Drawing.Size(720, 564);
+            this.toolStripContainer1.TabIndex = 10;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsFavs);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tbtnMETAbolt
             // 
@@ -1065,199 +1210,57 @@ namespace METAbolt
             this.tsTimeOut.Size = new System.Drawing.Size(34, 22);
             this.tsTimeOut.Text = "00:00";
             // 
-            // statusStrip1
+            // toolStrip1
             // 
-            this.statusStrip1.AccessibleName = "Information strip";
-            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tlblLoginName,
-            this.tlblMoneyBalance,
-            this.tlblRegionInfo,
-            this.tb1,
-            this.tb2,
-            this.tb3,
-            this.tb4,
-            this.tb5,
-            this.tb6,
-            this.tlblParcel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 0);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(720, 24);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 9;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tlblLoginName
-            // 
-            this.tlblLoginName.AccessibleDescription = "Displays the name of your avatar when online";
-            this.tlblLoginName.AccessibleName = "Avatar name or status";
-            this.tlblLoginName.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.tlblLoginName.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.tlblLoginName.ForeColor = System.Drawing.Color.Red;
-            this.tlblLoginName.Name = "tlblLoginName";
-            this.tlblLoginName.Size = new System.Drawing.Size(47, 19);
-            this.tlblLoginName.Text = "Offline";
-            this.tlblLoginName.Click += new System.EventHandler(this.tlblLoginName_Click);
-            this.tlblLoginName.MouseEnter += new System.EventHandler(this.tlblLoginName_MouseEnter);
-            // 
-            // tlblMoneyBalance
-            // 
-            this.tlblMoneyBalance.AccessibleDescription = "Displays the amount of money yoru avatar has";
-            this.tlblMoneyBalance.AccessibleName = "Money";
-            this.tlblMoneyBalance.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.tlblMoneyBalance.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.tlblMoneyBalance.ForeColor = System.Drawing.Color.DarkGreen;
-            this.tlblMoneyBalance.Name = "tlblMoneyBalance";
-            this.tlblMoneyBalance.Size = new System.Drawing.Size(29, 19);
-            this.tlblMoneyBalance.Text = "L$0";
-            this.tlblMoneyBalance.Click += new System.EventHandler(this.tlblMoneyBalance_Click);
-            this.tlblMoneyBalance.MouseEnter += new System.EventHandler(this.tlblMoneyBalance_MouseEnter);
-            // 
-            // tlblRegionInfo
-            // 
-            this.tlblRegionInfo.AccessibleDescription = "Displays the name of the SIM you are in and the coordinates of your avatar\'s loca" +
-    "tion";
-            this.tlblRegionInfo.AccessibleName = "SIM name and coordinates";
-            this.tlblRegionInfo.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.tlblRegionInfo.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.tlblRegionInfo.Name = "tlblRegionInfo";
-            this.tlblRegionInfo.Size = new System.Drawing.Size(67, 19);
-            this.tlblRegionInfo.Text = "No Region";
-            this.tlblRegionInfo.Click += new System.EventHandler(this.tlblRegionInfo_Click);
-            this.tlblRegionInfo.MouseEnter += new System.EventHandler(this.tlblRegionInfo_MouseEnter);
-            // 
-            // tb1
-            // 
-            this.tb1.AccessibleDescription = "You cannot fly on this parcel";
-            this.tb1.AccessibleName = "No fly";
-            this.tb1.Image = ((System.Drawing.Image)(resources.GetObject("tb1.Image")));
-            this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(16, 19);
-            this.tb1.ToolTipText = "No Fly";
-            this.tb1.Visible = false;
-            this.tb1.Click += new System.EventHandler(this.tb1_Click);
-            this.tb1.MouseEnter += new System.EventHandler(this.tb1_MouseEnter);
-            // 
-            // tb2
-            // 
-            this.tb2.AccessibleName = "Building not allowed on current parcel";
-            this.tb2.Image = ((System.Drawing.Image)(resources.GetObject("tb2.Image")));
-            this.tb2.Name = "tb2";
-            this.tb2.Size = new System.Drawing.Size(16, 19);
-            this.tb2.ToolTipText = "No Build";
-            this.tb2.Visible = false;
-            this.tb2.MouseEnter += new System.EventHandler(this.tb2_MouseEnter);
-            // 
-            // tb3
-            // 
-            this.tb3.AccessibleName = "Scripts not allowed on current parcel";
-            this.tb3.Image = ((System.Drawing.Image)(resources.GetObject("tb3.Image")));
-            this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(16, 19);
-            this.tb3.ToolTipText = "No Scripts";
-            this.tb3.Visible = false;
-            this.tb3.MouseEnter += new System.EventHandler(this.tb3_MouseEnter);
-            // 
-            // tb4
-            // 
-            this.tb4.AccessibleName = "Push not allowed on current parcel";
-            this.tb4.Image = ((System.Drawing.Image)(resources.GetObject("tb4.Image")));
-            this.tb4.Name = "tb4";
-            this.tb4.Size = new System.Drawing.Size(16, 19);
-            this.tb4.ToolTipText = "No Push";
-            this.tb4.Visible = false;
-            this.tb4.MouseEnter += new System.EventHandler(this.tb4_MouseEnter);
-            // 
-            // tb5
-            // 
-            this.tb5.AccessibleName = "Damage not allowed on current parcel";
-            this.tb5.Image = ((System.Drawing.Image)(resources.GetObject("tb5.Image")));
-            this.tb5.Name = "tb5";
-            this.tb5.Size = new System.Drawing.Size(16, 19);
-            this.tb5.ToolTipText = "Safe";
-            this.tb5.Visible = false;
-            this.tb5.MouseEnter += new System.EventHandler(this.tb5_MouseEnter);
-            // 
-            // tb6
-            // 
-            this.tb6.AccessibleName = "This parcel is for sale";
-            this.tb6.Image = ((System.Drawing.Image)(resources.GetObject("tb6.Image")));
-            this.tb6.Name = "tb6";
-            this.tb6.Size = new System.Drawing.Size(16, 19);
-            this.tb6.ToolTipText = "For Sale";
-            this.tb6.Visible = false;
-            this.tb6.MouseEnter += new System.EventHandler(this.tb6_MouseEnter);
-            // 
-            // tlblParcel
-            // 
-            this.tlblParcel.AccessibleDescription = "The name of the parcel you are on";
-            this.tlblParcel.AccessibleName = "Parcel name";
-            this.tlblParcel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.tlblParcel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.tlblParcel.ForeColor = System.Drawing.Color.Navy;
-            this.tlblParcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlblParcel.Name = "tlblParcel";
-            this.tlblParcel.Size = new System.Drawing.Size(562, 19);
-            this.tlblParcel.Spring = true;
-            this.tlblParcel.Text = "No Parcel";
-            this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlblParcel.ToolTipText = "Parcel name. Click me for About Land";
-            this.tlblParcel.Click += new System.EventHandler(this.tlblParcel_Click);
-            this.tlblParcel.MouseEnter += new System.EventHandler(this.tlblParcel_MouseEnter);
-            // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.BottomToolStripPanel
-            // 
-            this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this.statusStrip1);
-            this.toolStripContainer1.BottomToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(720, 515);
-            this.toolStripContainer1.ContentPanel.Load += new System.EventHandler(this.toolStripContainer1_ContentPanel_Load);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            // 
-            // toolStripContainer1.LeftToolStripPanel
-            // 
-            this.toolStripContainer1.LeftToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            // 
-            // toolStripContainer1.RightToolStripPanel
-            // 
-            this.toolStripContainer1.RightToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripContainer1.Size = new System.Drawing.Size(720, 564);
-            this.toolStripContainer1.TabIndex = 10;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer1.TopToolStripPanel
-            // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsFavs);
-            this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip1.AccessibleName = "Main METAbolt menu";
+            this.toolStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbtnMETAbolt,
+            this.toolStripSeparator1,
+            this.tbtnHelp,
+            this.toolStripDropDownButton2,
+            this.toolStripDropDownButton1,
+            this.btnAvatar,
+            this.toolStripSeparator2,
+            this.tlTools,
+            this.toolStripSeparator3,
+            this.tlLogs,
+            this.toolStripSeparator24,
+            this.tsUtilities,
+            this.toolStripSeparator15,
+            this.tsPlugins,
+            this.toolStripSeparator25,
+            this.tsFlag,
+            this.tsTime,
+            this.tsTimeOut});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip1.Size = new System.Drawing.Size(720, 25);
+            this.toolStrip1.Stretch = true;
+            this.toolStrip1.TabIndex = 8;
+            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // tsFavs
             // 
+            this.tsFavs.AccessibleName = "Main METAbolt menu";
+            this.tsFavs.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
             this.tsFavs.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tsFavs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tsFavs.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsFavs.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsFavs.Font = new System.Drawing.Font("Arial Narrow", 8F);
             this.tsFavs.Location = new System.Drawing.Point(0, 25);
             this.tsFavs.Name = "tsFavs";
             this.tsFavs.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.tsFavs.Size = new System.Drawing.Size(720, 25);
             this.tsFavs.Stretch = true;
-            this.tsFavs.TabIndex = 0;
-            this.tsFavs.Text = "Favourites";
+            this.tsFavs.TabIndex = 10;
+            this.tsFavs.Text = "toolStrip2";
             this.tsFavs.Visible = false;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMain
             // 
@@ -1278,8 +1281,6 @@ namespace METAbolt
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.LocationChanged += new System.EventHandler(this.frmMain_LocationChanged);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
@@ -1288,40 +1289,20 @@ namespace METAbolt
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripDropDownButton tbtnMETAbolt;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripDropDownButton tbtnHelp;
-        private System.Windows.Forms.ToolStripMenuItem tmnuAbout;
-        private System.Windows.Forms.ToolStripMenuItem tmnuExit;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tlblLoginName;
         private System.Windows.Forms.ToolStripStatusLabel tlblRegionInfo;
         private System.Windows.Forms.ToolStripStatusLabel tlblMoneyBalance;
-        private System.Windows.Forms.ToolStripMenuItem tmnuPrefs;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripStatusLabel tlblParcel;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton btnAvatar;
-        private System.Windows.Forms.ToolStripMenuItem avatarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setHomeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setHomeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tPHomeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem standToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.ToolStripMenuItem mnuDollar;
-        private System.Windows.Forms.ToolStripMenuItem mnuDonate;
         private System.Windows.Forms.ToolStripStatusLabel tb1;
         private System.Windows.Forms.ToolStripStatusLabel tb2;
         private System.Windows.Forms.ToolStripStatusLabel tb4;
@@ -1329,87 +1310,109 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripStatusLabel tb6;
         private System.Windows.Forms.ToolStripStatusLabel tb3;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripDropDownButton tbtnMETAbolt;
+        private System.Windows.Forms.ToolStripMenuItem tmnuPrefs;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem tmnuBackup;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem tmnuExit;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripDropDownButton tbtnHelp;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mETAboltQuickStartGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem getMETAboltPluginsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getMETAboltLSLPluginsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
+        private System.Windows.Forms.ToolStripMenuItem sLGridStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator27;
+        private System.Windows.Forms.ToolStripMenuItem sLHelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sLKnowledgebaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptingPortalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem tmnuAbout;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
+        private System.Windows.Forms.ToolStripMenuItem mnuDollar;
+        private System.Windows.Forms.ToolStripMenuItem mnuDonate;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem linDexToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton btnAvatar;
         private System.Windows.Forms.ToolStripMenuItem statusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem awayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem busyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripMenuItem fallOnFaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripMenuItem bellyDanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clubToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salsaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alwaysRunToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem setHomeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tPHomeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setHomeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripDropDownButton tsUtilities;
-        private System.Windows.Forms.ToolStripMenuItem landMonitorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem linDexToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createLandmarkHereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToPicksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
+        private System.Windows.Forms.ToolStripMenuItem groundSitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem standToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem crouchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem stopAnimationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
+        private System.Windows.Forms.ToolStripMenuItem avatarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setPreviousAppearanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem accountHistoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sLHelpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sLKnowledgebaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mEToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private System.Windows.Forms.ToolStripMenuItem scriptingPortalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem aboutLandToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bellyDanceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
-        private System.Windows.Forms.ToolStripMenuItem clubToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salsaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
-        private System.Windows.Forms.ToolStripMenuItem fallOnFaceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem crouchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem launchSLViewerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripDropDownButton tlTools;
         private System.Windows.Forms.ToolStripMenuItem tbtnTeleport;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator22;
         private System.Windows.Forms.ToolStripMenuItem btnMap;
         private System.Windows.Forms.ToolStripMenuItem tbtnObjects;
-        private System.Windows.Forms.ToolStripLabel tsTime;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem tmnuBackup;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
-        private System.Windows.Forms.ToolStripMenuItem createLandmarkHereToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
-        private System.Windows.Forms.ToolStripMenuItem addToPicksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator22;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
-        private System.Windows.Forms.ToolStripMenuItem tsMenuDetect;
         private System.Windows.Forms.ToolStripMenuItem mETAplayerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator23;
-        private System.Windows.Forms.ToolStripMenuItem mETAboltQuickStartGToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator24;
+        private System.Windows.Forms.ToolStripMenuItem tsMenuDetect;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripDropDownButton tlLogs;
         private System.Windows.Forms.ToolStripMenuItem teleportHistoryToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem muteListToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripMenuItem debugLogsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton tsFlag;
         private System.Windows.Forms.ToolStripMenuItem chatLogsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator25;
-        private System.Windows.Forms.ToolStripDropDownButton tsPlugins;
-        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateConfigurationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setPreviousAppearanceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
-        private System.Windows.Forms.ToolStripMenuItem groundSitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchLogsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reloadAIMLLibrariesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolStripMenuItem stopAnimationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripLabel tsTimeOut;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
-        private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
+        private System.Windows.Forms.ToolStripMenuItem debugLogsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator24;
+        private System.Windows.Forms.ToolStripDropDownButton tsUtilities;
         private System.Windows.Forms.ToolStripMenuItem scriptManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
-        private System.Windows.Forms.ToolStripMenuItem sLGridStatusToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator27;
-        private System.Windows.Forms.ToolStripMenuItem getMETAboltPluginsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
-        private System.Windows.Forms.ToolStripMenuItem getMETAboltLSLPluginsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem landMonitorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadAIMLLibrariesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem launchSLViewerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripDropDownButton tsPlugins;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator25;
+        private System.Windows.Forms.ToolStripButton tsFlag;
+        private System.Windows.Forms.ToolStripLabel tsTime;
+        private System.Windows.Forms.ToolStripLabel tsTimeOut;
         private System.Windows.Forms.ToolStrip tsFavs;
     }
 }

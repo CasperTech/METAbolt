@@ -234,6 +234,8 @@ namespace METAbolt
                     this.parcel = parceln;
                 }
 
+                client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
+
                 List<UUID> avIDs = new List<UUID>();
                 avIDs.Add(parcel.OwnerID);
                 avIDs.Add(parcel.GroupID);
@@ -2014,11 +2016,15 @@ namespace METAbolt
                                 }
 
                                 ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
-                                btn.ToolTipText = desc;
-                                tsFavs.Items.Add(btn);
 
-                                ToolStripSeparator sep = new ToolStripSeparator();
-                                tsFavs.Items.Add(sep);
+                                //if (!tsFavs.Items.Contains(btn))
+                                //{
+                                    btn.ToolTipText = desc;
+                                    tsFavs.Items.Add(btn);
+
+                                    ToolStripSeparator sep = new ToolStripSeparator();
+                                    tsFavs.Items.Add(sep);
+                                //}
                             }
                         }
                         else

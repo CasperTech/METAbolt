@@ -86,10 +86,10 @@ namespace METAbolt
 
             this.parcel = this.instance.MainForm.parcel;
 
-            //client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
+            client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
             client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
 
-            //client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
+            client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
             PopData();
         }
@@ -143,20 +143,20 @@ namespace METAbolt
             client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
         }
 
-        //private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs ea)
-        //{
-        //    try
-        //    {
-        //        BeginInvoke(new MethodInvoker(delegate()
-        //        {
-        //            PopData();
-        //        }));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // do nothing
-        //    }
-        //}
+        private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs ea)
+        {
+            try
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    PopData();
+                }));
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
+        }
 
         private void SetOwnerProperties()
         {
@@ -615,7 +615,7 @@ namespace METAbolt
         {
             try
             {
-                //client.Parcels.ParcelDwellReply -= new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
+                client.Parcels.ParcelDwellReply -= new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
                 client.Parcels.ParcelAccessListReply -= new EventHandler<ParcelAccessListReplyEventArgs>(Parcels_ParcelAccessListReply);
                 client.Parcels.ParcelObjectOwnersReply -= new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
                 client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
