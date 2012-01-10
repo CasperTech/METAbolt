@@ -164,7 +164,7 @@ namespace METAbolt
             this.pnlLoginPrompt.Controls.Add(this.txtPassword);
             this.pnlLoginPrompt.Controls.Add(this.cbxLocation);
             this.pnlLoginPrompt.Controls.Add(this.label3);
-            this.pnlLoginPrompt.Location = new System.Drawing.Point(125, 369);
+            this.pnlLoginPrompt.Location = new System.Drawing.Point(124, 368);
             this.pnlLoginPrompt.Name = "pnlLoginPrompt";
             this.pnlLoginPrompt.Size = new System.Drawing.Size(554, 97);
             this.pnlLoginPrompt.TabIndex = 0;

@@ -511,7 +511,7 @@ namespace METAbolt
                         console.Controls["btnTP"].Visible = false;
                     }
 
-                    console.Controls["btnGive"].Visible = true;
+                    //console.Controls["btnGive"].Visible = true;
                 }
                 catch
                 {

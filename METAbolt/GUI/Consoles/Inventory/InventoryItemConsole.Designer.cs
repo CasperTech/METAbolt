@@ -42,6 +42,7 @@ namespace METAbolt
             this.label7 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pnlItemTypeProp = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -53,7 +54,6 @@ namespace METAbolt
             this.label9 = new System.Windows.Forms.Label();
             this.txtItemUUID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.pnlItemTypeProp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,7 +205,6 @@ namespace METAbolt
             this.pnlItemTypeProp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlItemTypeProp.Controls.Add(this.label11);
             this.pnlItemTypeProp.Controls.Add(this.progressBar1);
             this.pnlItemTypeProp.Controls.Add(this.label7);
             this.pnlItemTypeProp.Location = new System.Drawing.Point(6, 215);
@@ -213,6 +212,16 @@ namespace METAbolt
             this.pnlItemTypeProp.Size = new System.Drawing.Size(278, 214);
             this.pnlItemTypeProp.TabIndex = 8;
             this.pnlItemTypeProp.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlItemTypeProp_Paint);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(26, 440);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(258, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Right click on item to wear/attach/detach or take off";
             // 
             // checkBox1
             // 
@@ -261,9 +270,10 @@ namespace METAbolt
             // 
             // btnTP
             // 
+            this.btnTP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTP.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnTP.ForeColor = System.Drawing.Color.White;
-            this.btnTP.Location = new System.Drawing.Point(59, 439);
+            this.btnTP.Location = new System.Drawing.Point(63, 460);
             this.btnTP.Name = "btnTP";
             this.btnTP.Size = new System.Drawing.Size(75, 23);
             this.btnTP.TabIndex = 10;
@@ -274,23 +284,24 @@ namespace METAbolt
             // 
             // btnGive
             // 
+            this.btnGive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGive.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnGive.Enabled = false;
             this.btnGive.ForeColor = System.Drawing.Color.White;
-            this.btnGive.Location = new System.Drawing.Point(8, 439);
+            this.btnGive.Location = new System.Drawing.Point(12, 460);
             this.btnGive.Name = "btnGive";
             this.btnGive.Size = new System.Drawing.Size(46, 23);
             this.btnGive.TabIndex = 9;
             this.btnGive.Text = "Give";
             this.btnGive.UseVisualStyleBackColor = false;
-            this.btnGive.Visible = false;
             this.btnGive.Click += new System.EventHandler(this.btnGive_Click);
             // 
             // btnDetach
             // 
+            this.btnDetach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDetach.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnDetach.ForeColor = System.Drawing.Color.White;
-            this.btnDetach.Location = new System.Drawing.Point(136, 439);
+            this.btnDetach.Location = new System.Drawing.Point(140, 460);
             this.btnDetach.Name = "btnDetach";
             this.btnDetach.Size = new System.Drawing.Size(75, 23);
             this.btnDetach.TabIndex = 11;
@@ -301,9 +312,10 @@ namespace METAbolt
             // 
             // btnWear
             // 
+            this.btnWear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnWear.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnWear.ForeColor = System.Drawing.Color.White;
-            this.btnWear.Location = new System.Drawing.Point(217, 439);
+            this.btnWear.Location = new System.Drawing.Point(221, 460);
             this.btnWear.Name = "btnWear";
             this.btnWear.Size = new System.Drawing.Size(75, 23);
             this.btnWear.TabIndex = 12;
@@ -346,21 +358,13 @@ namespace METAbolt
             this.label10.TabIndex = 33;
             this.label10.Text = "UUID (item):";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 192);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(258, 13);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Right click on item to wear/attach/detach or take off";
-            // 
             // InventoryItemConsole
             // 
             this.AccessibleName = "Item console";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtItemUUID);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -389,7 +393,6 @@ namespace METAbolt
             this.Size = new System.Drawing.Size(306, 487);
             this.Load += new System.EventHandler(this.InventoryItemConsole_Load);
             this.pnlItemTypeProp.ResumeLayout(false);
-            this.pnlItemTypeProp.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

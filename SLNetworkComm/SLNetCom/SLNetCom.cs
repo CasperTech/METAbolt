@@ -287,10 +287,12 @@ namespace SLNetworkComm
 
                 string password;
 
-                if (loginOptions.IsPasswordMD5)
-                    password = loginOptions.Password;
-                else
-                    password = OpenMetaverse.Utils.MD5(loginOptions.Password);
+                //if (loginOptions.IsPasswordMD5)
+                //    password = loginOptions.Password;
+                //else
+                //    password = OpenMetaverse.Utils.MD5(loginOptions.Password);
+
+                password = OpenMetaverse.Utils.MD5(loginOptions.Password);
 
                 string[] agt = loginOptions.UserAgent.Split(' ');
  

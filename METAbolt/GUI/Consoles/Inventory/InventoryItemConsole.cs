@@ -202,6 +202,8 @@ namespace METAbolt
                 btnGive.Enabled = false; 
             }
 
+            label11.Visible = true;
+
             switch (item.InventoryType)
             {
                 case InventoryType.Object:
@@ -215,17 +217,20 @@ namespace METAbolt
                     InventoryNotecardConsole notecardConsole = new InventoryNotecardConsole(instance, item);
                     notecardConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(notecardConsole);
+                    label11.Visible = false;
                     break;
 
                 case InventoryType.LSL:
                     InventoryScriptConsole scriptConsole = new InventoryScriptConsole(instance, item);
                     scriptConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(scriptConsole);
+                    label11.Visible = false;
                     break;
                 case InventoryType.Snapshot:
                     InventoryImageConsole imageConsole = new InventoryImageConsole(instance, item);
                     imageConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(imageConsole);
+                    label11.Visible = false;
                     break;
                 case InventoryType.Wearable:
                     btnDetach.Text = "Take off";
@@ -234,21 +239,25 @@ namespace METAbolt
                     btnDetach.Text = "Detach";
                     break;
                 case InventoryType.Landmark:
+                    label11.Visible = false;
                     break;
                 case InventoryType.Animation:
                     InventoryAnimationConsole animationConsole = new InventoryAnimationConsole(instance, item);
                     animationConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(animationConsole);
+                    label11.Visible = false;
                     break;
                 case InventoryType.Texture:
                     imageConsole = new InventoryImageConsole(instance, item);
                     imageConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(imageConsole);
+                    label11.Visible = false;
                     break;
                 case InventoryType.Gesture:
                     InventoryGestureConsol gestureConsole = new InventoryGestureConsol(instance, item);
                     gestureConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(gestureConsole);
+                    label11.Visible = false;
                     break;
             }
 

@@ -366,7 +366,9 @@ namespace METAbolt
  
             if (e.IM.IMSessionID == UUID.Zero) return;
 
-            if (e.IM.Dialog == InstantMessageDialog.GroupNoticeRequested && grpid == e.IM.FromAgentID)
+            UUID fromAgentID = new UUID(e.IM.BinaryBucket, 2);
+
+            if (e.IM.Dialog == InstantMessageDialog.GroupNoticeRequested && grpid == fromAgentID)
             {
                 //string noticemsg =  e.IM.Message;
 
