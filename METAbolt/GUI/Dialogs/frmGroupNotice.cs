@@ -89,10 +89,10 @@ namespace METAbolt
             //UUID fromAgentID = imsg.FromAgentID;
             UUID fromAgentID = new UUID(imsg.BinaryBucket, 2);
 
-            profile = instance.State.Groups[fromAgentID]; ;
-
             if (instance.State.Groups.ContainsKey(fromAgentID))
             {
+                profile = instance.State.Groups[fromAgentID];
+
                 string grp = instance.State.Groups[fromAgentID].Name.ToUpper();
 
                 label2.Text = "Sent by: " + imsg.FromAgentName + ", " + profile.Name;
