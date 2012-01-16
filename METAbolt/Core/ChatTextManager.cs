@@ -1359,6 +1359,8 @@ namespace METAbolt
 
             if (string.IsNullOrEmpty(e.Message)) return;
 
+            if (e.Message.Substring(0, 1) == "@") return;   // Ignore RLV commands
+
             StringBuilder sb = new StringBuilder();  
 
             if (e.Message.StartsWith("/me "))
