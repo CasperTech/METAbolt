@@ -354,8 +354,11 @@ namespace METAbolt
 
                 this.sitting = false;
                 sitprim = UUID.Zero;
+
+                client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+
                 client.Self.RequestSit(target, Vector3.Zero);
-                client.Self.Sit();
+                client.Self.Sit();  
             }
             else
             {
@@ -364,6 +367,22 @@ namespace METAbolt
                 sitprim = UUID.Zero;
 
                 StopAnimations();
+            }
+        }
+
+        void Self_AvatarSitResponse(object sender, AvatarSitResponseEventArgs e)
+        {
+            client.Self.AvatarSitResponse -= new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+
+            if (e.ObjectID != UUID.Zero)
+            {
+                this.sitting = true;
+                sitprim = e.ObjectID;
+            }
+            else
+            {
+                // failed to sit
+                
             }
         }
 

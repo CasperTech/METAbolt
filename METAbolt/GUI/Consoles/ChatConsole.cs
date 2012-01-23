@@ -120,7 +120,11 @@ namespace METAbolt
 
         public ChatConsole(METAboltInstance instance)
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch { ; }
 
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
@@ -151,7 +155,7 @@ namespace METAbolt
             client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
             client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
             netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
-            client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+            //client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
 
             Disposed += new EventHandler(ChatConsole_Disposed);
 
@@ -652,21 +656,24 @@ namespace METAbolt
         {
             if (e.Properties.Description.Trim() == client.Self.AgentID.ToString().Trim())
             {
-                instance.State.SetSitting(true, e.Properties.ObjectID);
                 client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
+                //client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+
+                instance.State.SetSitting(true, e.Properties.ObjectID);
                 localids = null;
                 listnerdisposed = true;
+
                 Logger.Log("AUTOSIT: Found sit object and sitting", Helpers.LogLevel.Info);
             }
         }
 
-        void Self_AvatarSitResponse(object sender, AvatarSitResponseEventArgs e)
-        {
-            instance.State.SitPrim = e.ObjectID;
-            instance.State.IsSitting = true;
+        //void Self_AvatarSitResponse(object sender, AvatarSitResponseEventArgs e)
+        //{
+        //    //client.Self.AvatarSitResponse -= new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
 
-            client.Self.AvatarSitResponse -= new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
-        }
+        //    instance.State.SitPrim = e.ObjectID;
+        //    instance.State.IsSitting = true;
+        //}
 
         private void AddLanguages()
         {
