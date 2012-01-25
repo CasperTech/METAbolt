@@ -45,8 +45,8 @@ namespace METAbolt
             this.tb6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblParcel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tsFavs = new System.Windows.Forms.ToolStrip();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnMETAbolt = new System.Windows.Forms.ToolStripDropDownButton();
             this.tmnuPrefs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -148,12 +148,14 @@ namespace METAbolt
             this.tsFlag = new System.Windows.Forms.ToolStripButton();
             this.tsTime = new System.Windows.Forms.ToolStripLabel();
             this.tsTimeOut = new System.Windows.Forms.ToolStripLabel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsFavs = new System.Windows.Forms.ToolStrip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tsdefault = new System.Windows.Forms.ToolStripLabel();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            this.tsFavs.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -172,7 +174,7 @@ namespace METAbolt
             this.tb5,
             this.tb6,
             this.tlblParcel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 25);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(720, 24);
             this.statusStrip1.SizingGrip = false;
@@ -308,7 +310,7 @@ namespace METAbolt
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(720, 490);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(670, 465);
             this.toolStripContainer1.ContentPanel.Load += new System.EventHandler(this.toolStripContainer1_ContentPanel_Load);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
@@ -321,21 +323,68 @@ namespace METAbolt
             // toolStripContainer1.RightToolStripPanel
             // 
             this.toolStripContainer1.RightToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripContainer1.Size = new System.Drawing.Size(720, 564);
+            this.toolStripContainer1.Size = new System.Drawing.Size(720, 589);
             this.toolStripContainer1.TabIndex = 10;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsFavs);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsFavs);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
-            // timer1
+            // tsFavs
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.tsFavs.AccessibleName = "Main METAbolt menu";
+            this.tsFavs.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
+            this.tsFavs.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tsFavs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tsFavs.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsFavs.Font = new System.Drawing.Font("Arial Narrow", 8F);
+            this.tsFavs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsdefault});
+            this.tsFavs.Location = new System.Drawing.Point(0, 25);
+            this.tsFavs.Name = "tsFavs";
+            this.tsFavs.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.tsFavs.Size = new System.Drawing.Size(720, 25);
+            this.tsFavs.Stretch = true;
+            this.tsFavs.TabIndex = 10;
+            this.tsFavs.Text = "toolStrip2";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AccessibleName = "Main METAbolt menu";
+            this.toolStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbtnMETAbolt,
+            this.toolStripSeparator1,
+            this.tbtnHelp,
+            this.toolStripDropDownButton2,
+            this.toolStripDropDownButton1,
+            this.btnAvatar,
+            this.toolStripSeparator2,
+            this.tlTools,
+            this.toolStripSeparator3,
+            this.tlLogs,
+            this.toolStripSeparator24,
+            this.tsUtilities,
+            this.toolStripSeparator15,
+            this.tsPlugins,
+            this.toolStripSeparator25,
+            this.tsFlag,
+            this.tsTime,
+            this.tsTimeOut});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip1.Size = new System.Drawing.Size(720, 25);
+            this.toolStrip1.Stretch = true;
+            this.toolStrip1.TabIndex = 8;
+            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // tbtnMETAbolt
             // 
@@ -1210,57 +1259,17 @@ namespace METAbolt
             this.tsTimeOut.Size = new System.Drawing.Size(34, 22);
             this.tsTimeOut.Text = "00:00";
             // 
-            // toolStrip1
+            // timer1
             // 
-            this.toolStrip1.AccessibleName = "Main METAbolt menu";
-            this.toolStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbtnMETAbolt,
-            this.toolStripSeparator1,
-            this.tbtnHelp,
-            this.toolStripDropDownButton2,
-            this.toolStripDropDownButton1,
-            this.btnAvatar,
-            this.toolStripSeparator2,
-            this.tlTools,
-            this.toolStripSeparator3,
-            this.tlLogs,
-            this.toolStripSeparator24,
-            this.tsUtilities,
-            this.toolStripSeparator15,
-            this.tsPlugins,
-            this.toolStripSeparator25,
-            this.tsFlag,
-            this.tsTime,
-            this.tsTimeOut});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(720, 25);
-            this.toolStrip1.Stretch = true;
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // tsFavs
+            // tsdefault
             // 
-            this.tsFavs.AccessibleName = "Main METAbolt menu";
-            this.tsFavs.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.tsFavs.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tsFavs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tsFavs.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsFavs.Font = new System.Drawing.Font("Arial Narrow", 8F);
-            this.tsFavs.Location = new System.Drawing.Point(0, 25);
-            this.tsFavs.Name = "tsFavs";
-            this.tsFavs.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.tsFavs.Size = new System.Drawing.Size(720, 25);
-            this.tsFavs.Stretch = true;
-            this.tsFavs.TabIndex = 10;
-            this.tsFavs.Text = "toolStrip2";
-            this.tsFavs.Visible = false;
+            this.tsdefault.Name = "tsdefault";
+            this.tsdefault.Size = new System.Drawing.Size(99, 22);
+            this.tsdefault.Text = "[ No favourites found ]";
             // 
             // frmMain
             // 
@@ -1269,7 +1278,7 @@ namespace METAbolt
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(720, 564);
+            this.ClientSize = new System.Drawing.Size(720, 589);
             this.Controls.Add(this.toolStripContainer1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1289,6 +1298,8 @@ namespace METAbolt
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            this.tsFavs.ResumeLayout(false);
+            this.tsFavs.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1414,6 +1425,7 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripLabel tsTime;
         private System.Windows.Forms.ToolStripLabel tsTimeOut;
         private System.Windows.Forms.ToolStrip tsFavs;
+        private System.Windows.Forms.ToolStripLabel tsdefault;
     }
 }
 

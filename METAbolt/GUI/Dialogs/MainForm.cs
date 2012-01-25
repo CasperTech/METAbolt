@@ -1000,6 +1000,12 @@ namespace METAbolt
                 //}
 
                 tsPlugins.Visible = true;
+
+                //// Add the favourites toolstrip
+                //ToolStrip tsFavourites = new ToolStrip();
+                //tsFavourites.BackColor = Color.WhiteSmoke; 
+                //tsFavourites.Visible = true;
+                //toolStripContainer1.TopToolStripPanel.Controls.Add(tsFavourites); 
             }
         }
 
@@ -1988,11 +1994,8 @@ namespace METAbolt
 
         public void UpdateFavourites(List<InventoryBase> foundfolders)
         {
-            tsFavs.Items.Clear();
-  
             foreach (InventoryBase o in foundfolders)
             {
-                // for this to work the user needs to have a folder called "GroupMan Items"
                 if (o.Name.ToLower() == "favorites")
                 {
                     if (o is InventoryFolder)
@@ -2002,6 +2005,7 @@ namespace METAbolt
                         if (founditems.Count > 0)
                         {
                             tsFavs.Visible = true;
+                            tsFavs.Items.Clear();
 
                             foreach (InventoryBase oitem in founditems)
                             {
@@ -2026,18 +2030,17 @@ namespace METAbolt
                                     tsFavs.Items.Add(sep);
                                 //}
                             }
+
+                            //tsdefault.Visible = false;
+                            //this.Height += 25;
                         }
                         else
                         {
                             tsFavs.Visible = false;
+                            //tsdefault.Visible = true;
                         }
                     }
                 }
-            }
-
-            if (tsFavs.Visible)
-            {
-                this.Height += 25;
             }
         }
 
