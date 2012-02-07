@@ -72,7 +72,6 @@ namespace METAbolt
             this.button9 = new System.Windows.Forms.Button();
             this.tsFindText = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.cboLanguage = new METAbolt.ComboEx();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -119,7 +118,6 @@ namespace METAbolt
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -151,6 +149,8 @@ namespace METAbolt
             this.label10 = new System.Windows.Forms.Label();
             this.cboRender = new System.Windows.Forms.ComboBox();
             this.cboCapture = new System.Windows.Forms.ComboBox();
+            this.cboLanguage = new METAbolt.ComboEx();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -339,7 +339,7 @@ namespace METAbolt
             // 
             this.tsMovie.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsMovie.Enabled = false;
-            this.tsMovie.Image = global::METAbolt.Properties.Resources.wmp;
+            this.tsMovie.Image = ((System.Drawing.Image)(resources.GetObject("tsMovie.Image")));
             this.tsMovie.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsMovie.Name = "tsMovie";
             this.tsMovie.Size = new System.Drawing.Size(23, 22);
@@ -350,7 +350,7 @@ namespace METAbolt
             // 
             this.tsMusic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsMusic.Enabled = false;
-            this.tsMusic.Image = global::METAbolt.Properties.Resources.metaplayer;
+            this.tsMusic.Image = ((System.Drawing.Image)(resources.GetObject("tsMusic.Image")));
             this.tsMusic.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsMusic.Name = "tsMusic";
             this.tsMusic.Size = new System.Drawing.Size(23, 22);
@@ -587,24 +587,9 @@ namespace METAbolt
             this.panel3.Size = new System.Drawing.Size(539, 29);
             this.panel3.TabIndex = 4;
             // 
-            // cboLanguage
-            // 
-            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
-            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLanguage.Enabled = false;
-            this.cboLanguage.FormattingEnabled = true;
-            this.cboLanguage.ICImageList = this.imgFlags;
-            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
-            this.cboLanguage.Name = "cboLanguage";
-            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
-            this.cboLanguage.TabIndex = 6;
-            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::METAbolt.Properties.Resources.bing_logo_small;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(456, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(50, 19);
@@ -682,6 +667,7 @@ namespace METAbolt
             this.rtbChat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbChat_LinkClicked);
             this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
             this.rtbChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbChat_KeyDown);
+            this.rtbChat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rtbChat_MouseDown);
             // 
             // panel5
             // 
@@ -718,7 +704,7 @@ namespace METAbolt
             this.button8.AccessibleDescription = "Walk forward";
             this.button8.AccessibleName = "Motion forward";
             this.button8.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button8.BackgroundImage = global::METAbolt.Properties.Resources.arrow_left;
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
             this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button8.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -735,7 +721,7 @@ namespace METAbolt
             this.button6.AccessibleDescription = "Walk forward";
             this.button6.AccessibleName = "Motion forward";
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button6.BackgroundImage = global::METAbolt.Properties.Resources.arrow_right;
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -861,7 +847,7 @@ namespace METAbolt
             this.button7.AccessibleName = "Motion hover";
             this.button7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button7.BackColor = System.Drawing.Color.Red;
-            this.button7.BackgroundImage = global::METAbolt.Properties.Resources.fly1;
+            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
             this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(32, 72);
@@ -876,7 +862,7 @@ namespace METAbolt
             this.button5.AccessibleDescription = "Walk forward";
             this.button5.AccessibleName = "Motion forward";
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button5.BackgroundImage = global::METAbolt.Properties.Resources.arrow_forward;
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -896,7 +882,7 @@ namespace METAbolt
             this.button2.AccessibleDescription = "Walk to the left";
             this.button2.AccessibleName = "Motion left";
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button2.BackgroundImage = global::METAbolt.Properties.Resources.turnleft;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -912,7 +898,7 @@ namespace METAbolt
             this.button4.AccessibleDescription = "Walk back";
             this.button4.AccessibleName = "Motion back";
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button4.BackgroundImage = global::METAbolt.Properties.Resources.arrow_back;
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -932,7 +918,7 @@ namespace METAbolt
             this.button3.AccessibleDescription = "Walk to the right";
             this.button3.AccessibleName = "Motion right";
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button3.BackgroundImage = global::METAbolt.Properties.Resources.turnright;
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -1010,7 +996,7 @@ namespace METAbolt
             // 
             this.tbtnStartIM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnStartIM.Enabled = false;
-            this.tbtnStartIM.Image = global::METAbolt.Properties.Resources.im;
+            this.tbtnStartIM.Image = ((System.Drawing.Image)(resources.GetObject("tbtnStartIM.Image")));
             this.tbtnStartIM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnStartIM.Name = "tbtnStartIM";
             this.tbtnStartIM.Size = new System.Drawing.Size(21, 20);
@@ -1021,7 +1007,7 @@ namespace METAbolt
             // 
             this.tbtnProfile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnProfile.Enabled = false;
-            this.tbtnProfile.Image = global::METAbolt.Properties.Resources.profile;
+            this.tbtnProfile.Image = ((System.Drawing.Image)(resources.GetObject("tbtnProfile.Image")));
             this.tbtnProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnProfile.Name = "tbtnProfile";
             this.tbtnProfile.Size = new System.Drawing.Size(21, 20);
@@ -1032,7 +1018,7 @@ namespace METAbolt
             // 
             this.tbtnAttachments.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnAttachments.Enabled = false;
-            this.tbtnAttachments.Image = global::METAbolt.Properties.Resources.attachment;
+            this.tbtnAttachments.Image = ((System.Drawing.Image)(resources.GetObject("tbtnAttachments.Image")));
             this.tbtnAttachments.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAttachments.Name = "tbtnAttachments";
             this.tbtnAttachments.Size = new System.Drawing.Size(21, 20);
@@ -1049,7 +1035,7 @@ namespace METAbolt
             // 
             this.tbtnAddFriend.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnAddFriend.Enabled = false;
-            this.tbtnAddFriend.Image = global::METAbolt.Properties.Resources.friend;
+            this.tbtnAddFriend.Image = ((System.Drawing.Image)(resources.GetObject("tbtnAddFriend.Image")));
             this.tbtnAddFriend.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAddFriend.Name = "tbtnAddFriend";
             this.tbtnAddFriend.Size = new System.Drawing.Size(21, 20);
@@ -1065,7 +1051,7 @@ namespace METAbolt
             // 
             this.tbtnTurn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnTurn.Enabled = false;
-            this.tbtnTurn.Image = global::METAbolt.Properties.Resources.turnto_i;
+            this.tbtnTurn.Image = ((System.Drawing.Image)(resources.GetObject("tbtnTurn.Image")));
             this.tbtnTurn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnTurn.Name = "tbtnTurn";
             this.tbtnTurn.Size = new System.Drawing.Size(21, 20);
@@ -1076,7 +1062,7 @@ namespace METAbolt
             // 
             this.tbtnFollow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnFollow.Enabled = false;
-            this.tbtnFollow.Image = global::METAbolt.Properties.Resources.follow_new;
+            this.tbtnFollow.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFollow.Image")));
             this.tbtnFollow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFollow.Name = "tbtnFollow";
             this.tbtnFollow.Size = new System.Drawing.Size(21, 20);
@@ -1087,7 +1073,7 @@ namespace METAbolt
             // 
             this.tbtnGoto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnGoto.Enabled = false;
-            this.tbtnGoto.Image = global::METAbolt.Properties.Resources._goto;
+            this.tbtnGoto.Image = ((System.Drawing.Image)(resources.GetObject("tbtnGoto.Image")));
             this.tbtnGoto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnGoto.Name = "tbtnGoto";
             this.tbtnGoto.Size = new System.Drawing.Size(21, 20);
@@ -1103,7 +1089,7 @@ namespace METAbolt
             // 
             this.tbtnFreeze.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnFreeze.Enabled = false;
-            this.tbtnFreeze.Image = global::METAbolt.Properties.Resources.freeze;
+            this.tbtnFreeze.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFreeze.Image")));
             this.tbtnFreeze.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFreeze.Name = "tbtnFreeze";
             this.tbtnFreeze.Size = new System.Drawing.Size(21, 20);
@@ -1114,7 +1100,7 @@ namespace METAbolt
             // 
             this.tbtnEject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnEject.Enabled = false;
-            this.tbtnEject.Image = global::METAbolt.Properties.Resources.arrow_up_16;
+            this.tbtnEject.Image = ((System.Drawing.Image)(resources.GetObject("tbtnEject.Image")));
             this.tbtnEject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnEject.Name = "tbtnEject";
             this.tbtnEject.Size = new System.Drawing.Size(21, 20);
@@ -1125,7 +1111,7 @@ namespace METAbolt
             // 
             this.tbtnBan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tbtnBan.Enabled = false;
-            this.tbtnBan.Image = global::METAbolt.Properties.Resources.ban;
+            this.tbtnBan.Image = ((System.Drawing.Image)(resources.GetObject("tbtnBan.Image")));
             this.tbtnBan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnBan.Name = "tbtnBan";
             this.tbtnBan.Size = new System.Drawing.Size(21, 20);
@@ -1145,7 +1131,7 @@ namespace METAbolt
             // tsbSearch
             // 
             this.tsbSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSearch.Image = global::METAbolt.Properties.Resources.Search_16;
+            this.tsbSearch.Image = ((System.Drawing.Image)(resources.GetObject("tsbSearch.Image")));
             this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSearch.Name = "tsbSearch";
             this.tsbSearch.Size = new System.Drawing.Size(21, 20);
@@ -1155,7 +1141,7 @@ namespace METAbolt
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(21, 20);
@@ -1191,32 +1177,6 @@ namespace METAbolt
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Radar";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-    "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.White;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(2, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(152, 301);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.List;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
             // 
             // tabPage2
             // 
@@ -1450,9 +1410,9 @@ namespace METAbolt
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackgroundImage = global::METAbolt.Properties.Resources.Mic;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.InitialImage = global::METAbolt.Properties.Resources.Alpha_Dista_Icon_82;
+            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
             this.pictureBox3.Location = new System.Drawing.Point(3, 122);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
@@ -1462,9 +1422,9 @@ namespace METAbolt
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::METAbolt.Properties.Resources.speaker;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.InitialImage = global::METAbolt.Properties.Resources.Alpha_Dista_Icon_82;
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
             this.pictureBox2.Location = new System.Drawing.Point(3, 175);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
@@ -1479,7 +1439,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(51, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(72, 17);
+            this.checkBox5.Size = new System.Drawing.Size(69, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1612,6 +1572,47 @@ namespace METAbolt
             this.cboCapture.Size = new System.Drawing.Size(146, 21);
             this.cboCapture.TabIndex = 0;
             this.cboCapture.SelectedIndexChanged += new System.EventHandler(this.cboCapture_SelectedIndexChanged);
+            // 
+            // cboLanguage
+            // 
+            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
+            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLanguage.Enabled = false;
+            this.cboLanguage.FormattingEnabled = true;
+            this.cboLanguage.ICImageList = this.imgFlags;
+            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
+            this.cboLanguage.Name = "cboLanguage";
+            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
+            this.cboLanguage.TabIndex = 6;
+            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
+            // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+    "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(2, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(152, 301);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.List;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
             // 
             // ChatConsole
             // 

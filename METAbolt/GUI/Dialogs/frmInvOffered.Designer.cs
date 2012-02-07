@@ -46,7 +46,7 @@
             this.btnDecline.Location = new System.Drawing.Point(253, 141);
             this.btnDecline.Name = "btnDecline";
             this.btnDecline.Size = new System.Drawing.Size(54, 23);
-            this.btnDecline.TabIndex = 2;
+            this.btnDecline.TabIndex = 4;
             this.btnDecline.Text = "&Decline";
             this.btnDecline.UseVisualStyleBackColor = false;
             this.btnDecline.Click += new System.EventHandler(this.btnDecline_Click);
@@ -60,7 +60,7 @@
             this.btnAccept.Location = new System.Drawing.Point(196, 141);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(54, 23);
-            this.btnAccept.TabIndex = 1;
+            this.btnAccept.TabIndex = 2;
             this.btnAccept.Text = "&Accept";
             this.btnAccept.UseVisualStyleBackColor = false;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
@@ -103,12 +103,11 @@
             this.label1.Location = new System.Drawing.Point(7, 177);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
+            this.label1.TabIndex = 5;
             this.label1.Text = "label1";
             // 
             // frmInvOffered
             // 
-            this.AcceptButton = this.btnAccept;
             this.AccessibleName = "Inventory offer received window";
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +126,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Inventory item received";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmInvOffered_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

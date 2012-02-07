@@ -82,6 +82,7 @@ namespace METAbolt
         private UUID crouchAnimationID = new UUID(Animations.CROUCH.ToString());
         //private Primitive sitprim = null;
         private UUID sitprim = UUID.Zero;
+        private UUID requestedsitprim = UUID.Zero;
         //private ManualResetEvent PrimEvent = new ManualResetEvent(false);
         private bool groundsitting = false;
         private System.Timers.Timer pointtimer;
@@ -355,6 +356,8 @@ namespace METAbolt
                 this.sitting = false;
                 sitprim = UUID.Zero;
 
+                requestedsitprim = target;
+
                 client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
 
                 client.Self.RequestSit(target, Vector3.Zero);
@@ -374,7 +377,7 @@ namespace METAbolt
         {
             client.Self.AvatarSitResponse -= new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
 
-            if (e.ObjectID != UUID.Zero)
+            if (e.ObjectID == requestedsitprim)
             {
                 this.sitting = true;
                 sitprim = e.ObjectID;
@@ -382,8 +385,10 @@ namespace METAbolt
             else
             {
                 // failed to sit
-                
+                instance.TabConsole.DisplayChatScreen("Failed to sit on object " + requestedsitprim.ToString());
             }
+
+            requestedsitprim = UUID.Zero;  
         }
 
         public void SetGroundSit(bool sit)

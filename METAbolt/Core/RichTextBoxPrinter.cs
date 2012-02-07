@@ -35,6 +35,8 @@ using System.Resources;
 using System.Threading;
 //using System.Runtime.InteropServices;
 using System.Globalization;
+using System.Net;
+using System.IO;
 
 
 namespace METAbolt
@@ -151,6 +153,47 @@ namespace METAbolt
                 }
 
                 rtb.AppendText(buff + Environment.NewLine);
+            }
+        }
+
+        public void PrintLinkHeader(string text, string uuid, string link)
+        {
+            if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintLinkHeader(text, uuid, link); });
+            else
+            {
+                if (text == null) return;
+
+                rtb.AppendText(Environment.NewLine);
+
+                string[] str = text.Split(' ');
+                string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + uuid.Replace("-", "");
+                Stream ImageStream = new WebClient().OpenRead(url);
+                Image img = Image.FromStream(ImageStream);
+
+                Bitmap bmp = new Bitmap(img, 25, 20);
+                bmp.Tag = uuid;
+
+                rtb.InsertImage((Image)bmp);
+
+                rtb.SelectionFont = new Font(headerfont, headerfontsize, fontsy);
+                rtb.SelectionBackColor = Color.White;
+                rtb.SelectionBackColor = bkcolour;
+                rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
+                //rtb.InsertLink(" " + text, link);
+
+                int cwidth = rtb.Width - (text.Length);
+                string buff = string.Empty;
+
+                for (int a = 0; a < cwidth; a++)
+                {
+                    buff += " ";
+                }
+
+                rtb.InsertLink(" " + text, link);
+
+                rtb.SelectionBackColor = bkcolour;
+                rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
+                rtb.AppendText(buff);
             }
         }
 

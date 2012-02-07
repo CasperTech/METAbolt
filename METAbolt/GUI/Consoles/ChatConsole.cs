@@ -1176,7 +1176,7 @@ namespace METAbolt
             }
             lvwRadar.EndUpdate();
 
-            string sDist;
+            string sDist = string.Empty;
             
             try
             {
@@ -2902,7 +2902,7 @@ namespace METAbolt
                                     if (instance.avnames.ContainsKey(pos.Key))
                                     {
                                         string name = instance.avnames[pos.Key];
-
+                                        
                                         BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
                                     }
                                 }
@@ -3915,6 +3915,11 @@ namespace METAbolt
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://www.bing.com/");
+        }
+
+        private void rtbChat_MouseDown(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }

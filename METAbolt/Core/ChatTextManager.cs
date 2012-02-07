@@ -1204,7 +1204,7 @@ namespace METAbolt
                         {
                             if (!string.IsNullOrEmpty(item.FromName))
                             {
-                                textPrinter.PrintLinkHeader(item.FromName, item.Link + "&" + item.FromName);
+                                textPrinter.PrintLinkHeader(item.FromName, item.FromUUID.ToString(), item.Link + "&" + item.FromName);
                             }
                         }
                         else

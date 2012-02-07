@@ -973,7 +973,7 @@ namespace METAbolt
             }
             catch {
 
-                Vector3 ppos = new Vector3(0, 0,0);
+                Vector3 ppos = new Vector3(0, 0, 0);
                 return ppos;
             }
         }

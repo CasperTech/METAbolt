@@ -530,7 +530,8 @@ namespace METAbolt
                     {
                         if (fromName.ToLower() != client.Self.Name.ToLower())
                         {
-                            textPrinter.PrintLinkHeader(fromName, avid + "&" + fromName);
+                            //textPrinter.PrintLinkHeader(fromName, avid + "&" + fromName);
+                            textPrinter.PrintLinkHeader(fromName, uuid.ToString(), avid + "&" + fromName);
                         }
                         else
                         {
