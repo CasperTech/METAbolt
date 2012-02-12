@@ -482,7 +482,7 @@ namespace METAbolt
                 OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
                 OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.SrcAlpha, OpenTK.Graphics.OpenGL.BlendingFactorDest.OneMinusSrcAlpha);
 
-                enablemipmapd = OpenTK.Graphics.OpenGL.GL.GetString(OpenTK.Graphics.OpenGL.StringName.Extensions).Contains("GL_SGIS_generate_mipmap");
+                //enablemipmapd = OpenTK.Graphics.OpenGL.GL.GetString(OpenTK.Graphics.OpenGL.StringName.Extensions).Contains("GL_SGIS_generate_mipmap");
 
                 RenderingEnabled = true;
 
@@ -830,7 +830,9 @@ namespace METAbolt
                         //    OpenTK.Graphics.OpenGL.GL.GenerateMipmap(OpenTK.Graphics.OpenGL.GenerateMipmapTarget.Texture2D);
                         //}
 
-                        if (!enablemipmapd)
+                        //if (!enablemipmapd)
+
+                        if (instance.Config.CurrentConfig.DisableMipmaps)
                         {
                             OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.Linear);
                         }

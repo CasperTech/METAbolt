@@ -383,6 +383,12 @@
     <Compile Include="GUI\Consoles\Inventory\InventoryGestureConsole.Designer.cs">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Consoles\Preferences\Pref3D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Consoles\Preferences\Pref3D.Designer.cs">
+      <DependentUpon>Pref3D.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Consoles\Preferences\PrefIMETAgiver.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -825,6 +831,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Inventory\InventoryGestureConsole.resx">
       <DependentUpon>InventoryGestureConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Consoles\Preferences\Pref3D.resx">
+      <DependentUpon>Pref3D.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\PrefIMETAgiver.resx">
       <DependentUpon>PrefIMETAgiver.cs</DependentUpon>

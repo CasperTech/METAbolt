@@ -1209,7 +1209,7 @@ namespace METAbolt
                 if (name != client.Self.Name)
                 {
                     ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
-                    item.ForeColor = Color.DarkBlue; 
+                    item.ForeColor = Color.DarkBlue;
                     item.Tag = key;
 
                     if (avtyping.Contains(name))
@@ -3920,6 +3920,51 @@ namespace METAbolt
         private void rtbChat_MouseDown(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private void lvwRadar_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            //e.DrawBackground();
+
+            //if (e.ItemIndex < 0) return;
+
+            //ListViewItem itemToDraw = lvwRadar.Items[e.ItemIndex];
+
+            //string uuid = itemToDraw.Tag.ToString();
+
+            //string[] str = itemToDraw.Name.Split(' ');
+            //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + uuid.Replace("-", "");
+            //Stream ImageStream = new WebClient().OpenRead(url);
+            //Image img = Image.FromStream(ImageStream);
+
+            //Bitmap bmp = new Bitmap(img, 25, 20);
+            //bmp.Tag = uuid;
+
+        //    if ((e.State & ListViewItemStates.Selected) != 0)
+        //    {
+        //        //// Draw the background and focus rectangle for a selected item.
+        //        //e.Graphics.FillRectangle(Brushes.WhiteSmoke, e.Bounds);
+        //        //e.DrawFocusRectangle();
+
+        //        // Draw the background for an unselected item.
+        //        using (LinearGradientBrush brush =
+        //            new LinearGradientBrush(e.Bounds, Color.WhiteSmoke,
+        //            Color.Gray, LinearGradientMode.Horizontal))
+        //        {
+        //            e.Graphics.FillRectangle(brush, e.Bounds);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+        //        e.DrawFocusRectangle();
+        //    }
+
+        //    // Draw the item text for views other than the Details view.
+        //    if (lvwRadar.View != View.Details)
+        //    {
+        //        e.DrawText();
+        //    }
         }
     }
 }

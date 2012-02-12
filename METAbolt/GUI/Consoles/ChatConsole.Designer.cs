@@ -1609,6 +1609,7 @@ namespace METAbolt
             this.lvwRadar.TabIndex = 9;
             this.lvwRadar.UseCompatibleStateImageBehavior = false;
             this.lvwRadar.View = System.Windows.Forms.View.List;
+            this.lvwRadar.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lvwRadar_DrawItem);
             this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
             this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
             this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
