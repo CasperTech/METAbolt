@@ -1995,77 +1995,79 @@ namespace METAbolt
 
         public void UpdateFavourites(List<InventoryBase> foundfolders)
         {
-            foreach (InventoryBase o in foundfolders)
-            {
-                if (o.Name.ToLower() == "favorites")
-                {
-                    if (o is InventoryFolder)
-                    {
-                        List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
+            tabsConsole.chatConsole.UpdateFavourites(foundfolders);  
 
-                        if (founditems.Count > 0)
-                        {
-                            tsFavs.Visible = true;
-                            tsFavs.Items.Clear();
+            //foreach (InventoryBase o in foundfolders)
+            //{
+            //    if (o.Name.ToLower() == "favorites")
+            //    {
+            //        if (o is InventoryFolder)
+            //        {
+            //            List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
 
-                            foreach (InventoryBase oitem in founditems)
-                            {
-                                InventoryItem item = (InventoryItem)oitem;
+            //            if (founditems.Count > 0)
+            //            {
+            //                tsFavs.Visible = true;
+            //                tsFavs.Items.Clear();
 
-                                string iname = item.Name;
-                                string desc = item.Description; 
+            //                foreach (InventoryBase oitem in founditems)
+            //                {
+            //                    InventoryItem item = (InventoryItem)oitem;
 
-                                if (iname.Length > 24)
-                                {
-                                    iname = iname.Substring(0, 21) + "...";
-                                }
+            //                    string iname = item.Name;
+            //                    string desc = item.Description; 
 
-                                ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
+            //                    if (iname.Length > 24)
+            //                    {
+            //                        iname = iname.Substring(0, 21) + "...";
+            //                    }
 
-                                //if (!tsFavs.Items.Contains(btn))
-                                //{
-                                    btn.ToolTipText = desc;
-                                    tsFavs.Items.Add(btn);
+            //                    ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
 
-                                    ToolStripSeparator sep = new ToolStripSeparator();
-                                    tsFavs.Items.Add(sep);
-                                //}
-                            }
+            //                    //if (!tsFavs.Items.Contains(btn))
+            //                    //{
+            //                        btn.ToolTipText = desc;
+            //                        tsFavs.Items.Add(btn);
 
-                            //tsdefault.Visible = false;
-                            //this.Height += 25;
-                        }
-                        else
-                        {
-                            tsFavs.Visible = false;
-                            //tsdefault.Visible = true;
-                        }
-                    }
-                }
-            }
+            //                        ToolStripSeparator sep = new ToolStripSeparator();
+            //                        tsFavs.Items.Add(sep);
+            //                    //}
+            //                }
+
+            //                //tsdefault.Visible = false;
+            //                //this.Height += 25;
+            //            }
+            //            else
+            //            {
+            //                tsFavs.Visible = false;
+            //                //tsdefault.Visible = true;
+            //            }
+            //        }
+            //    }
+            //}
         }
 
-        private void FavsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string cbtn = sender.ToString();
+        //private void FavsToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    string cbtn = sender.ToString();
 
-            ToolStripButton btn = (ToolStripButton)sender;
-            UUID landmark = new UUID();
+        //    ToolStripButton btn = (ToolStripButton)sender;
+        //    UUID landmark = new UUID();
 
-            if (!UUID.TryParse(btn.Name, out landmark))
-            {
-                MessageBox.Show("Invalid Landmark", "Teleport");
-                return;
-            }
+        //    if (!UUID.TryParse(btn.Name, out landmark))
+        //    {
+        //        MessageBox.Show("Invalid Landmark", "Teleport");
+        //        return;
+        //    }
 
-            if (client.Self.Teleport(landmark))
-            {
-                MessageBox.Show("Teleport Succesful", "Teleport");
-            }
-            else
-            {
-                MessageBox.Show("Teleport Failed", "Teleport");
-            }
-        }
+        //    if (client.Self.Teleport(landmark))
+        //    {
+        //        MessageBox.Show("Teleport Succesful", "Teleport");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Teleport Failed", "Teleport");
+        //    }
+        //}
     }
 }

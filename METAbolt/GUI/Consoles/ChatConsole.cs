@@ -3028,6 +3028,10 @@ namespace METAbolt
             {
                 toolStrip1.Visible = false;
             }
+            else if (tabControl1.SelectedIndex == 3)
+            {
+                toolStrip1.Visible = false;
+            }
             else
             {
                 toolStrip1.Visible = true;
@@ -3965,6 +3969,77 @@ namespace METAbolt
         //    {
         //        e.DrawText();
         //    }
+        }
+
+        public void UpdateFavourites(List<InventoryBase> foundfolders)
+        {
+            foreach (InventoryBase o in foundfolders)
+            {
+                if (o.Name.ToLower() == "favorites")
+                {
+                    if (o is InventoryFolder)
+                    {
+                        List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
+
+                        if (founditems.Count > 0)
+                        {
+                            tsFavs.Visible = true;
+                            tsFavs.Items.Clear();
+
+                            foreach (InventoryBase oitem in founditems)
+                            {
+                                InventoryItem item = (InventoryItem)oitem;
+
+                                string iname = item.Name;
+                                string desc = item.Description;
+
+                                if (iname.Length > 39)
+                                {
+                                    iname = iname.Substring(0, 36) + "...";
+                                }
+
+                                ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
+
+                                //if (!tsFavs.Items.Contains(btn))
+                                //{
+                                btn.TextAlign = ContentAlignment.MiddleLeft;
+                                btn.ToolTipText = desc;
+                                tsFavs.Items.Add(btn);
+
+                                ToolStripSeparator sep = new ToolStripSeparator();
+                                tsFavs.Items.Add(sep);
+                                //}
+                            }
+
+                            //tsdefault.Visible = false;
+                            //this.Height += 25;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void FavsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string cbtn = sender.ToString();
+
+            ToolStripButton btn = (ToolStripButton)sender;
+            UUID landmark = new UUID();
+
+            if (!UUID.TryParse(btn.Name, out landmark))
+            {
+                MessageBox.Show("Invalid Landmark", "Teleport");
+                return;
+            }
+
+            if (client.Self.Teleport(landmark))
+            {
+                MessageBox.Show("Teleport Succesful", "Teleport");
+            }
+            else
+            {
+                MessageBox.Show("Teleport Failed", "Teleport");
+            }
         }
     }
 }
