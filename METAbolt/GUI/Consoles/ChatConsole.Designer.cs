@@ -1500,7 +1500,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(71, 277);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(69, 17);
+            this.checkBox5.Size = new System.Drawing.Size(72, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1652,14 +1652,14 @@ namespace METAbolt
             this.tsFavs.BackColor = System.Drawing.Color.Transparent;
             this.tsFavs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tsFavs.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tsFavs.Font = new System.Drawing.Font("Arial Narrow", 8F);
+            this.tsFavs.Font = new System.Drawing.Font("Tahoma", 7.5F);
             this.tsFavs.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsFavs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsdefault});
             this.tsFavs.Location = new System.Drawing.Point(0, 0);
             this.tsFavs.Name = "tsFavs";
             this.tsFavs.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.tsFavs.Size = new System.Drawing.Size(100, 304);
+            this.tsFavs.Size = new System.Drawing.Size(110, 304);
             this.tsFavs.Stretch = true;
             this.tsFavs.TabIndex = 11;
             this.tsFavs.Text = "toolStrip2";
@@ -1668,7 +1668,7 @@ namespace METAbolt
             // 
             this.tsdefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsdefault.Name = "tsdefault";
-            this.tsdefault.Size = new System.Drawing.Size(97, 15);
+            this.tsdefault.Size = new System.Drawing.Size(107, 12);
             this.tsdefault.Text = "[ No favourites found ]";
             this.tsdefault.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
