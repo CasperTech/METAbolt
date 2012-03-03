@@ -366,18 +366,28 @@ namespace METAbolt
  
             if (e.IM.IMSessionID == UUID.Zero) return;
 
-            UUID fromAgentID = new UUID(e.IM.BinaryBucket, 2);
-
-            if (e.IM.Dialog == InstantMessageDialog.GroupNoticeRequested && grpid == fromAgentID)
+            try
             {
-                //string noticemsg =  e.IM.Message;
+                if (e.IM.Dialog == InstantMessageDialog.GroupNoticeRequested)
+                {
+                    UUID fromAgentID = new UUID(e.IM.BinaryBucket, 2);
 
-                panel1.Visible = true;
-                panel2.Visible = false;
- 
-                char[] deli = "|".ToCharArray();
-                string[] Msg = imsg.Message.Split(deli);
-                textBox5.Text = Msg[1].Replace("\n", System.Environment.NewLine);
+                    if (grpid == fromAgentID)
+                    {
+                        //string noticemsg =  e.IM.Message;
+
+                        panel1.Visible = true;
+                        panel2.Visible = false;
+
+                        char[] deli = "|".ToCharArray();
+                        string[] Msg = imsg.Message.Split(deli);
+                        textBox5.Text = Msg[1].Replace("\n", System.Environment.NewLine);
+                    }
+                }
+            }
+            catch
+            {
+                ;
             }
         }
 
