@@ -488,10 +488,15 @@ namespace METAbolt
 
             lblGroupName.Text = Profile.Name;
             txtCharter.Text = Profile.Charter;
+
             //chkListInProfile.Checked = Profile.ListInProfile;
-            //chkGroupNotices.Checked = Profile.AcceptNotices; 
+            //chkGroupNotices.Checked = Profile.AcceptNotices;
+            chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
+            chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
+
             chkPublish.Checked = Profile.AllowPublish;
             chkOpenEnrollment.Checked = Profile.OpenEnrollment;
+            chkMature.Checked = Profile.MaturePublish;
 
             chkFee.Checked = (Profile.MembershipFee != 0);
 
@@ -507,8 +512,7 @@ namespace METAbolt
 
             catch { ; }
 
-            chkMature.Checked = Profile.MaturePublish;
-            chkGroupNotices.Checked = Profile.AcceptNotices;
+            //chkGroupNotices.Checked = Profile.AcceptNotices;
             textBox2.Text = "Group UUID: " + Profile.ID.ToString();
 
             floading = false;
@@ -654,12 +658,12 @@ namespace METAbolt
                         button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
                         button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
 
-                        try
-                        {
-                            chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
-                            chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
-                        }
-                        catch { ; }
+                        //try
+                        //{
+                        //    chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
+                        //    chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
+                        //}
+                        //catch { ; }
 
                         if (instance.State.Groups.ContainsKey(Profile.ID))
                         {
@@ -1264,6 +1268,8 @@ namespace METAbolt
             //Client.Groups.UpdateGroup(Profile.ID, Profile);
             Client.Groups.SetGroupAcceptNotices(Profile.ID, chkGroupNotices.Checked, chkListInProfile.Checked);
             Client.Groups.RequestCurrentGroups();
+
+            //instance.State.Groups[Profile.ID].AcceptNotices = chkGroupNotices.Checked;
         }
 
         private void chkMature_CheckedChanged(object sender, EventArgs e)
