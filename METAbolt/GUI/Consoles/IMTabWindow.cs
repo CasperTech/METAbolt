@@ -49,7 +49,7 @@ namespace METAbolt
         private string toName;
         private IMTextManager textManager;
         private bool typing = false;
-        private bool pasted = false;
+        //private bool pasted = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         //private const int WM_KEYUP = 0x101;
         private const int WM_KEYDOWN = 0x100;
@@ -463,13 +463,13 @@ namespace METAbolt
 
         private void cbxInput_KeyUp(object sender, KeyEventArgs e)
         {
-            if (pasted)
-            {
-                int pos = cbxInput.SelectionStart;
-                cbxInput.SelectionLength = cbxInput.Text.Length - pos;
-                cbxInput.Text = cbxInput.SelectedText;
-                pasted = false;
-            }
+            //if (pasted)
+            //{
+            //    int pos = cbxInput.SelectionStart;
+            //    cbxInput.SelectionLength = cbxInput.Text.Length - pos;
+            //    cbxInput.Text = cbxInput.SelectedText;
+            //    pasted = false;
+            //}
 
             if (e.KeyCode != Keys.Enter) return;
             e.SuppressKeyPress = true;
@@ -594,13 +594,13 @@ namespace METAbolt
         {
             if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
 
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                ClipboardAsync Clipboard2 = new ClipboardAsync();
-                cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+            //if (e.Control && e.KeyCode == Keys.V)
+            //{
+            //    ClipboardAsync Clipboard2 = new ClipboardAsync();
+            //    cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
 
-                pasted = true; 
-            }
+            //    pasted = true; 
+            //}
         }
 
         public UUID TargetId

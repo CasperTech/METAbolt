@@ -55,7 +55,7 @@ namespace METAbolt
         private IMTextManager textManager;
         private bool typing = false;
         private OpenMetaverse.Group imgroup;
-        private bool pasted = false;
+        //private bool pasted = false;
         private SafeDictionary<UUID, string> people = new SafeDictionary<UUID, string>();
         ManualResetEvent WaitForSessionStart = new ManualResetEvent(false);
         private UUID target = UUID.Zero;
@@ -818,24 +818,24 @@ namespace METAbolt
         {
             if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
 
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                ClipboardAsync Clipboard2 = new ClipboardAsync();
-                cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+            //if (e.Control && e.KeyCode == Keys.V)
+            //{
+            //    ClipboardAsync Clipboard2 = new ClipboardAsync();
+            //    cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
 
-                pasted = true; 
-            }
+            //    pasted = true; 
+            //}
         }
 
         private void cbxInput_KeyUp_1(object sender, KeyEventArgs e)
         {
-            if (pasted)
-            {
-                int pos = cbxInput.SelectionStart;
-                cbxInput.SelectionLength = cbxInput.Text.Length - pos;
-                cbxInput.Text = cbxInput.SelectedText;
-                pasted = false;
-            }
+            //if (pasted)
+            //{
+            //    int pos = cbxInput.SelectionStart;
+            //    cbxInput.SelectionLength = cbxInput.Text.Length - pos;
+            //    cbxInput.Text = cbxInput.SelectedText;
+            //    pasted = false;
+            //}
 
             if (e.KeyCode != Keys.Enter) return;
             e.SuppressKeyPress = true;

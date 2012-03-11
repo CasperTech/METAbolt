@@ -48,9 +48,9 @@ namespace METAbolt
             // 
             // rtbIMText_Ex
             // 
-            this.rtbIMText_Ex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbIMText_Ex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbIMText_Ex.BackColor = System.Drawing.Color.White;
             this.rtbIMText_Ex.HideSelection = false;
             this.rtbIMText_Ex.Location = new System.Drawing.Point(3, 240);
@@ -65,9 +65,10 @@ namespace METAbolt
             // 
             this.cbxInput.AccessibleDescription = "Type your message here to send an IM";
             this.cbxInput.AccessibleName = "IM output";
-            this.cbxInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxInput.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxInput.FormattingEnabled = true;
             this.cbxInput.Location = new System.Drawing.Point(3, 306);
             this.cbxInput.Name = "cbxInput";
@@ -190,9 +191,9 @@ namespace METAbolt
             // 
             this.rtbIMText.AccessibleDescription = "Displays inbound and the responses you have typed";
             this.rtbIMText.AccessibleName = "IM box";
-            this.rtbIMText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbIMText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbIMText.AutoWordSelection = true;
             this.rtbIMText.BackColor = System.Drawing.Color.White;
             this.rtbIMText.DetectUrls = true;

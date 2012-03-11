@@ -78,7 +78,7 @@ namespace METAbolt
         private Vector3 vDir;
         //private string clickedurl = string.Empty;
         private bool avrezzed = false;
-        private bool pasted = false;
+        //private bool pasted = false;
         private uint[] localids;
         private int newsize = 140;
         private bool listnerdisposed = true;
@@ -1880,30 +1880,10 @@ namespace METAbolt
         private void cbxInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
-
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                ClipboardAsync Clipboard2 = new ClipboardAsync();
-                cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
-
-                // This is a fix for a silly bug which I can't find
-                // what's causing it. There is a REWARD for the first that can :)
-                // The bug is that the 1st copied line is pasted twice!!!
-
-                pasted = true; 
-            }
         }
 
         private void cbxInput_KeyUp(object sender, KeyEventArgs e)
         {
-            if (pasted)
-            {
-                int pos = cbxInput.SelectionStart;
-                cbxInput.SelectionLength = cbxInput.Text.Length - pos;
-                cbxInput.Text = cbxInput.SelectedText;
-                pasted = false;
-            }
-
             if (e.KeyCode != Keys.Enter) return;
             e.SuppressKeyPress = true;
 
