@@ -32,14 +32,15 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
-using AWS_PAAPI;
+//using AWS_PAAPI;
 using System.IO;
 using System.Net;
 using System.Web;
 using System.Text.RegularExpressions;
-using System.Security.Cryptography.X509Certificates;
+//using System.Security.Cryptography.X509Certificates;
 using System.Diagnostics;
 using System.Threading;
+using System.Xml;
 
 namespace METAbolt
 {
@@ -218,108 +219,76 @@ namespace METAbolt
 
         private void GetLyrics()
         {
-            //LyricsResult result;
-            //bool sexists = true;   // false;
-
             if (string.IsNullOrEmpty(currentartist) || string.IsNullOrEmpty(currenttrack))
                 return;
 
             if (currentlyrics == currenttrack)
                 return;
 
-            //try
-            //{
-            //    sexists = wiki.checkSongExists(currentartist, currenttrack);
-            //}
-            //catch (Exception ex)
-            //{
-            //    string exp = ex.Message; 
-            //}
-
             currentlyrics = currenttrack;
 
             currentartist = currentartist.Replace(" ", "_");
             currenttrack = currenttrack.Replace(" ", "_");
 
-            //richTextBox1.Text = "Click for lyrics:\nhttp://lyrics.wikia.com/lyrics/" + currentartist.ToUpper() + ":" + currenttrack.ToUpper();
             richTextBox1.Text = "Click for lyrics:\nhttp://lyrics.wikia.com/Special:Search?titlesOnly=1&search=" + currentartist + ":" + currenttrack;
-
-            //if (sexists)
-            //{
-            //    // get the lyrics and add to richtextbox
-            //    //result = wiki.getSong(currentartist, currenttrack);
-            //    string lyricurl = "http://lyrics.wikia.com/lyrics/" + currentartist + ":" + currenttrack;   // result.url;
-
-            //    //richTextBox1.Text = "Lyrics from: www.lyricwiki.org\n\n" + RipURL(lyricurl);
-            //    richTextBox1.Text = "Lyrics from: http://lyrics.wikia.com/\n\n" + RipURL(lyricurl);
-
-            //    //Encoding iso8859 = Encoding.GetEncoding("ISO-8859-1");
-            //    //richTextBox1.Text = Encoding.UTF8.GetString(iso8859.GetBytes(result.lyrics));
-
-            //    ////getAlbumArt();
-            //}
-            //else
-            //{
-            //    richTextBox1.Text = "Lyrics not found for ~" + currenttrack + "~";
-            //}
         }
 
-        private string RipURL(string trURL)
-        {
-            HttpWebRequest request = null;
-            HttpWebResponse response = null;
+        //private string RipURL(string trURL)
+        //{
+        //    //HttpWebRequest request = null;
+        //    //HttpWebResponse response = null;
 
-            try
-            {
-                //Make the http request
-                request = (HttpWebRequest)HttpWebRequest.Create(trURL);
-                request.Timeout = 10000;
-                request.ReadWriteTimeout = 15000;
-                request.KeepAlive = false;
-                response = (HttpWebResponse)request.GetResponse();
-                Stream responseStream = response.GetResponseStream();
+        //    //try
+        //    //{
+        //    //    //Make the http request
+        //    //    request = (HttpWebRequest)HttpWebRequest.Create(trURL);
+        //    //    request.Timeout = 10000;
+        //    //    request.ReadWriteTimeout = 15000;
+        //    //    request.KeepAlive = false;
+        //    //    response = (HttpWebResponse)request.GetResponse();
+        //    //    Stream responseStream = response.GetResponseStream();
 
-                StreamReader readStream = new StreamReader(responseStream, Encoding.UTF8);
-                string page = readStream.ReadToEnd();
+        //    //    StreamReader readStream = new StreamReader(responseStream, Encoding.UTF8);
+        //    //    string page = readStream.ReadToEnd();
 
-                // Hello LyricsWiki
-                //Regex reg = new Regex(@"<div class='lyricbox' >((?:.|\n)*?)<p><!--", RegexOptions.IgnoreCase);
-                Regex reg = new Regex(@"<div class='lyricbox' >((?:.|\n)*?)<!--", RegexOptions.IgnoreCase);
+        //    //    // Hello LyricsWiki
+        //    //    //Regex reg = new Regex(@"<div class='lyricbox' >((?:.|\n)*?)<p><!--", RegexOptions.IgnoreCase);
+        //    //    Regex reg = new Regex(@"<div class='lyricbox' >((?:.|\n)*?)<!--", RegexOptions.IgnoreCase);
 
-                MatchCollection matches = reg.Matches(page);
+        //    //    MatchCollection matches = reg.Matches(page);
 
-                if (matches.Count != 1 || matches[0].Groups.Count != 2)
-                {
-                    // hmmm they have changed the page structure
-                    return "Lyrics could not be found/retrieved";
-                }
+        //    //    if (matches.Count != 1 || matches[0].Groups.Count != 2)
+        //    //    {
+        //    //        // hmmm they have changed the page structure
+        //    //        return "Lyrics could not be found/retrieved";
+        //    //    }
 
-                return NormaliseContent(matches[0].Groups[1].Value);
-            }
-            catch (WebException)
-            {
-                return "There has been an error";
-            }
-            catch (System.Security.SecurityException)
-            {
-                return "The re has been an HTTP error connecting to the lyrics site";
-            }
-            catch
-            {
-                return "There has been an error retrieving the lyrics";
-            }
-        }
+        //    //    return NormaliseContent(matches[0].Groups[1].Value);
+        //    //}
+        //    //catch (WebException)
+        //    //{
+        //    //    return "There has been an error";
+        //    //}
+        //    //catch (System.Security.SecurityException)
+        //    //{
+        //    //    return "The re has been an HTTP error connecting to the lyrics site";
+        //    //}
+        //    //catch
+        //    //{
+        //    //    return "There has been an error retrieving the lyrics";
+        //    //}
+        //}
 
-        private string NormaliseContent(string content)
-        {
-            string norm = content.Replace("<br />", "\n");
-            norm = norm.Replace("<p>", "\n\n");
-            norm = norm.Replace("</p>", "\n\n");
-            norm = norm.Replace("<b>", "");
-            norm = norm.Replace("</b>", "");
+        //private string NormaliseContent(string content)
+        //{
+        //    string norm = content.Replace("<br />", "\n");
+        //    norm = norm.Replace("<p>", "\n\n");
+        //    norm = norm.Replace("</p>", "\n\n");
+        //    norm = norm.Replace("<b>", "");
+        //    norm = norm.Replace("</b>", "");
 
-            return norm;
-        }
+        //    return norm;
+        //}
 
         private void getAlbumArt(bool reload)
         {
@@ -330,126 +299,136 @@ namespace METAbolt
             pictureBox1.Image = METAbolt.Properties.Resources.not_found;
             pictureBox1.Refresh();
             pictureBox2.Visible = false;
-            //string sysculture = Thread.CurrentThread.CurrentCulture.ToString();   
 
-            ConnectAWS serv = new ConnectAWS();
-
-            AWS_PAAPI.ItemSearchResponse response = serv.ConnectUSA(reload, currentartist, currenttrack);
-
-            if (response == null || response.Items[0].Item == null)
-            {
-                if (!reload)
-                {
-                    response = null;
-                    serv = null;
-
-                    serv = new ConnectAWS();
-
-                    response = serv.ConnectUK(reload, currentartist, currenttrack, "uk");
-                }
-                else
-                {
-                    return;
-                }
-            }
+            string method = "album.getinfo";   // "track.getinfo";
+            string apiKey = "164c28853903f4ea97fe0104dbbcc0c2";
+            string artist = currentartist;
+            string track = currenttrack;
+            string theArtWorkUrl = string.Empty;
 
             try
             {
-                if (response != null && response.Items[0].Item != null)
+                string baseUrl = "http://ws.audioscrobbler.com/2.0/?method=" + method + "&api_key=" + apiKey + "&artist=" + artist + "&album=" + track;
+
+                XmlReaderSettings settings = new XmlReaderSettings();
+                settings.IgnoreWhitespace = true;
+                settings.IgnoreComments = true;
+
+                int a = 0;
+
+                using (XmlReader reader = XmlReader.Create(baseUrl, settings))
                 {
-                    if (response.Items.Length > 0)
+                    while ((reader.Read()))
                     {
-                        foreach (AWS_PAAPI.Items items in response.Items)
+                        if ((reader.NodeType == XmlNodeType.Element & "image" == reader.LocalName))
                         {
-                            if (items == null)
+                            if (a == 3)
                             {
-                                if (!reload)
-                                {
-                                    getAlbumArt(true);
-                                    return;
-                                }
-                                else
-                                {
-                                    return;
-                                }
+                                theArtWorkUrl = reader.ReadElementString("image");
+                                break;
                             }
-
-                            foreach (var item in items.Item)
+                            else
                             {
-                                if (item == null)
-                                {
-                                    if (!reload)
-                                    {
-                                        getAlbumArt(true);
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        return;
-                                    }
-                                }
-
-                                string iurl = string.Empty;
-
-                                if (item.SmallImage != null)
-                                {
-                                    iurl = item.SmallImage.URL;
-                                }
-
-                                //string asin = item.ASIN;
-                                dets = HttpUtility.HtmlDecode(item.DetailPageURL);
-                                dets = HttpUtility.UrlDecode(dets);
-                                dets = dets.Trim();
-                                //AmazonProductAdvtApi.CustomerReviews revs = item.CustomerReviews;
-                                //AmazonProductAdvtApi.EditorialReview[] edr = item.EditorialReviews;
-
-                                //if (revs != null)
-                                //{
-                                //    decimal rating = revs.AverageRating;
-                                //    label4.Text = "Rating: " + rating.ToString();
-                                //}
-                                //else
-                                //{
-                                //    label4.Text = "Rank: " + item.SalesRank;
-                                //}
-
-                                if (!string.IsNullOrEmpty(dets))
-                                {
-                                    //dets = dets.Replace(".com", ".co.uk");
-                                    //dets = dets.Replace("&tag=ws", "&tag=" + amtag);
-                                    pictureBox2.Visible = true;
-                                }
-                                else
-                                {
-                                    pictureBox2.Visible = false;
-                                }
-
-                                if (!string.IsNullOrEmpty(iurl))
-                                {
-                                    pictureBox1.Image = LoadPicture(item.SmallImage.URL);
-                                    pictureBox1.Refresh();
-
-                                    return;
-                                }
+                                //not in the right node so go to the next
+                                a = a + 1;
                             }
                         }
                     }
                 }
+                if (!string.IsNullOrEmpty(theArtWorkUrl))
+                {
+                    pictureBox1.Image = LoadPicture(theArtWorkUrl);
+                    pictureBox1.Refresh();
+                    pictureBox2.Visible = true;
+
+                    dets = GetBuyLink();
+
+                    if (!string.IsNullOrEmpty(dets))
+                    {
+                        
+                    }
+                    else
+                    {
+                        pictureBox2.Visible = false;
+                    }
+                }
                 else
                 {
-                    if (!reload)
-                    {
-                        // if we have arrived here the track albun wasn't found
-                        // so display any album from the artist
-                        // better than displaying the questions mark icon
-                        getAlbumArt(true);
-                        return;
-                    }
+                    //album art not found
+                    pictureBox1.Image = METAbolt.Properties.Resources.not_found;
+                    pictureBox1.Refresh();
+                    pictureBox2.Visible = false;
                 }
             }
             catch
             {
                 ;
+            }
+        }
+
+        private string GetBuyLink()
+        {
+            string apiKey = "164c28853903f4ea97fe0104dbbcc0c2";
+            string artist = currentartist;
+            string track = currenttrack;
+            string theArtWorkUrl = string.Empty;
+
+            try
+            {
+                string baseUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getbuylinks&country=united%20states&api_key=" + apiKey + "&artist=" + artist + "&track=" + track;
+
+                XmlReaderSettings settings = new XmlReaderSettings();
+                settings.IgnoreWhitespace = true;
+                settings.IgnoreComments = true;
+
+                //int a = 0;
+
+                string supplier = string.Empty;
+
+                using (XmlReader reader = XmlReader.Create(baseUrl, settings))
+                {
+                    while ((reader.Read()))
+                    {
+                        if ((reader.NodeType == XmlNodeType.Element & "supplierName" == reader.LocalName))
+                        {
+                            supplier = reader.ReadElementString("supplierName");
+                        }
+
+                        if ((reader.NodeType == XmlNodeType.Element & "buyLink" == reader.LocalName))
+                        {
+                            if (supplier.ToLower() == "amazon mp3")
+                            {
+                                theArtWorkUrl = reader.ReadElementString("buyLink");
+                                break;
+                            }
+
+                            //if (a == 2)
+                            //{
+                            //    theArtWorkUrl = reader.ReadElementString("buyLink");
+                            //    break;
+                            //}
+                            //else
+                            //{
+                            //    a += 1;
+                            //}
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(theArtWorkUrl))
+                {
+                    return theArtWorkUrl;
+                }
+                else
+                {
+                    //album art not found
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                string exp = ex.Message;
+                return string.Empty;
             }
         }
 
