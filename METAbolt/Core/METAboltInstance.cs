@@ -900,14 +900,14 @@ namespace METAbolt
 
             client.Settings.THROTTLE_OUTGOING_PACKETS = false;
 
-            if (config.CurrentConfig.BroadcastID)
-            {
-                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("8201f643-6006-c2ea-fbf3-0a5e8c0874ed");
-            }
-            else
-            {
-                client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID(UUID.Zero.ToString());
-            }
+            //if (config.CurrentConfig.BroadcastID)
+            //{
+            //    client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID("8201f643-6006-c2ea-fbf3-0a5e8c0874ed");
+            //}
+            //else
+            //{
+            //    client.Settings.CLIENT_IDENTIFICATION_TAG = new UUID(UUID.Zero.ToString());
+            //}
         }
 
         private void InitializeConfig()

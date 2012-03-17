@@ -166,7 +166,7 @@ namespace METAbolt
         private bool multilingualai = false;
         private bool enablespellcheck = false;
         private string spelllang = "en_GB";
-        private bool broadcastid = true;
+        //private bool broadcastid = true;
 
         public Config()
         {
@@ -261,7 +261,7 @@ namespace METAbolt
                 config.DisableFriendsNotifications = conf.Configs["General"].GetBoolean("DisableFriendsNotifications", false);
                 config.DisableTyping = conf.Configs["General"].GetBoolean("DisableTyping", false);
                 config.AutoAcceptFriends = conf.Configs["General"].GetBoolean("AutoAcceptFriends", false);
-                config.BroadcastID = conf.Configs["General"].GetBoolean("BroadcastID", true);
+                //config.BroadcastID = conf.Configs["General"].GetBoolean("BroadcastID", true);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -436,7 +436,7 @@ namespace METAbolt
             config.Set("DisableFriendsNotifications", disablefriendsnotifications.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableTyping", disabletyping.ToString(CultureInfo.CurrentCulture));
             config.Set("AutoAcceptFriends", autoacceptfriends.ToString(CultureInfo.CurrentCulture));
-            config.Set("BroadcastID", broadcastid.ToString(CultureInfo.CurrentCulture));
+            //config.Set("BroadcastID", broadcastid.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1228,10 +1228,10 @@ namespace METAbolt
             set { spelllang = value; }
         }
 
-        public bool BroadcastID
-        {
-            get { return broadcastid; }
-            set { broadcastid = value; }
-        }
+        //public bool BroadcastID
+        //{
+        //    get { return broadcastid; }
+        //    set { broadcastid = value; }
+        //}
     }
 }

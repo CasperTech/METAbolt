@@ -234,7 +234,7 @@ namespace METAbolt
             chkAutoFriend.Checked = config.CurrentConfig.AutoAcceptFriends;
             checkBox12.Checked = config.CurrentConfig.EnforceLSLsecurity;
             chkLSL.Checked = config.CurrentConfig.DisplayLSLcommands;
-            cbTag.Checked = config.CurrentConfig.BroadcastID;          
+            //cbTag.Checked = config.CurrentConfig.BroadcastID;          
 
             if (config.CurrentConfig.DeclineInv)
             {
@@ -320,7 +320,7 @@ namespace METAbolt
             config.CurrentConfig.AutoAcceptFriends = chkAutoFriend.Checked;
             config.CurrentConfig.EnforceLSLsecurity = checkBox12.Checked;
             config.CurrentConfig.DisplayLSLcommands = chkLSL.Checked;
-            config.CurrentConfig.BroadcastID = cbTag.Checked;
+            //config.CurrentConfig.BroadcastID = cbTag.Checked;
 
             if (comboBox1.SelectedIndex == 0)
             {
