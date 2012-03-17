@@ -1556,6 +1556,8 @@
     <None Include="Resources\green_orb_off.png" />
     <None Include="Resources\im.png" />
     <None Include="Resources\goto.png" />
+    <None Include="Resources\Information.png" />
+    <None Include="Resources\lastfm.png" />
     <Content Include="Resources\logo_watermark.png" />
     <None Include="Resources\METAbolt_icon.png" />
     <None Include="Resources\My_Documents.png" />
@@ -1580,6 +1582,8 @@
     <None Include="Resources\LSL_Functions.txt" />
     <None Include="Resources\metaplayer.png" />
     <None Include="Resources\profile.png" />
+    <None Include="Resources\lyrics.gif" />
+    <None Include="Resources\lyrics.png" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />
@@ -1632,11 +1636,13 @@
     <None Include="Resources\wear.png" />
     <None Include="Resources\wait18trans.gif" />
     <None Include="Resources\wait30trans.gif" />
+    <None Include="Resources\Wikia_Logo.png" />
     <Content Include="Resources\wmp.png" />
     <None Include="Resources\world.png" />
     <None Include="SciLexer.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\youtube.png" />
     <Content Include="SciLexerx64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

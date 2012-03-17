@@ -73,6 +73,7 @@ namespace METAbolt
             this.button9 = new System.Windows.Forms.Button();
             this.tsFindText = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cboLanguage = new METAbolt.ComboEx();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -117,6 +118,7 @@ namespace METAbolt
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -151,8 +153,6 @@ namespace METAbolt
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
-            this.cboLanguage = new METAbolt.ComboEx();
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -612,6 +612,22 @@ namespace METAbolt
             this.panel3.Size = new System.Drawing.Size(519, 29);
             this.panel3.TabIndex = 4;
             // 
+            // cboLanguage
+            // 
+            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
+            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLanguage.Enabled = false;
+            this.cboLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboLanguage.FormattingEnabled = true;
+            this.cboLanguage.ICImageList = this.imgFlags;
+            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
+            this.cboLanguage.Name = "cboLanguage";
+            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
+            this.cboLanguage.TabIndex = 6;
+            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -983,10 +999,10 @@ namespace METAbolt
             this.toolStripSeparator19,
             this.tsbSearch,
             this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(182, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(174, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(24, 443);
+            this.toolStrip1.Size = new System.Drawing.Size(32, 443);
             this.toolStrip1.TabIndex = 20;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -994,7 +1010,7 @@ namespace METAbolt
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(21, 0);
+            this.toolStripLabel3.Size = new System.Drawing.Size(29, 0);
             // 
             // toolStripButton1
             // 
@@ -1002,7 +1018,7 @@ namespace METAbolt
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(21, 19);
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 19);
             this.toolStripButton1.Text = " ";
             // 
             // tbtnStartIM
@@ -1012,7 +1028,7 @@ namespace METAbolt
             this.tbtnStartIM.Image = ((System.Drawing.Image)(resources.GetObject("tbtnStartIM.Image")));
             this.tbtnStartIM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnStartIM.Name = "tbtnStartIM";
-            this.tbtnStartIM.Size = new System.Drawing.Size(21, 20);
+            this.tbtnStartIM.Size = new System.Drawing.Size(29, 20);
             this.tbtnStartIM.Text = "IM";
             this.tbtnStartIM.Click += new System.EventHandler(this.tbtnStartIM_Click);
             // 
@@ -1023,7 +1039,7 @@ namespace METAbolt
             this.tbtnProfile.Image = ((System.Drawing.Image)(resources.GetObject("tbtnProfile.Image")));
             this.tbtnProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnProfile.Name = "tbtnProfile";
-            this.tbtnProfile.Size = new System.Drawing.Size(21, 20);
+            this.tbtnProfile.Size = new System.Drawing.Size(29, 20);
             this.tbtnProfile.Text = "Avatar Profile";
             this.tbtnProfile.Click += new System.EventHandler(this.tbtnProfile_Click);
             // 
@@ -1034,14 +1050,14 @@ namespace METAbolt
             this.tbtnAttachments.Image = ((System.Drawing.Image)(resources.GetObject("tbtnAttachments.Image")));
             this.tbtnAttachments.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAttachments.Name = "tbtnAttachments";
-            this.tbtnAttachments.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAttachments.Size = new System.Drawing.Size(29, 20);
             this.tbtnAttachments.Text = "Worn attachments";
             this.tbtnAttachments.Click += new System.EventHandler(this.tbtnAttachments_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(29, 6);
             this.toolStripSeparator1.Click += new System.EventHandler(this.tbtnAddFriend_Click);
             // 
             // tbtnAddFriend
@@ -1051,14 +1067,14 @@ namespace METAbolt
             this.tbtnAddFriend.Image = ((System.Drawing.Image)(resources.GetObject("tbtnAddFriend.Image")));
             this.tbtnAddFriend.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAddFriend.Name = "tbtnAddFriend";
-            this.tbtnAddFriend.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAddFriend.Size = new System.Drawing.Size(29, 20);
             this.tbtnAddFriend.Text = "Add as friend";
             this.tbtnAddFriend.Click += new System.EventHandler(this.tbtnAddFriend_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(29, 6);
             // 
             // tbtnTurn
             // 
@@ -1067,7 +1083,7 @@ namespace METAbolt
             this.tbtnTurn.Image = ((System.Drawing.Image)(resources.GetObject("tbtnTurn.Image")));
             this.tbtnTurn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnTurn.Name = "tbtnTurn";
-            this.tbtnTurn.Size = new System.Drawing.Size(21, 20);
+            this.tbtnTurn.Size = new System.Drawing.Size(29, 20);
             this.tbtnTurn.Text = "Turn to";
             this.tbtnTurn.Click += new System.EventHandler(this.tbtnTurn_Click);
             // 
@@ -1078,7 +1094,7 @@ namespace METAbolt
             this.tbtnFollow.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFollow.Image")));
             this.tbtnFollow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFollow.Name = "tbtnFollow";
-            this.tbtnFollow.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFollow.Size = new System.Drawing.Size(29, 20);
             this.tbtnFollow.Text = "Follow";
             this.tbtnFollow.Click += new System.EventHandler(this.tbtnFollow_Click);
             // 
@@ -1089,14 +1105,14 @@ namespace METAbolt
             this.tbtnGoto.Image = ((System.Drawing.Image)(resources.GetObject("tbtnGoto.Image")));
             this.tbtnGoto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnGoto.Name = "tbtnGoto";
-            this.tbtnGoto.Size = new System.Drawing.Size(21, 20);
+            this.tbtnGoto.Size = new System.Drawing.Size(29, 20);
             this.tbtnGoto.Text = "Go to";
             this.tbtnGoto.Click += new System.EventHandler(this.tbtnGoto_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(29, 6);
             // 
             // tbtnFreeze
             // 
@@ -1105,7 +1121,7 @@ namespace METAbolt
             this.tbtnFreeze.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFreeze.Image")));
             this.tbtnFreeze.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFreeze.Name = "tbtnFreeze";
-            this.tbtnFreeze.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFreeze.Size = new System.Drawing.Size(29, 20);
             this.tbtnFreeze.Text = "Freeze";
             this.tbtnFreeze.Click += new System.EventHandler(this.tbtnFreeze_Click);
             // 
@@ -1116,7 +1132,7 @@ namespace METAbolt
             this.tbtnEject.Image = ((System.Drawing.Image)(resources.GetObject("tbtnEject.Image")));
             this.tbtnEject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnEject.Name = "tbtnEject";
-            this.tbtnEject.Size = new System.Drawing.Size(21, 20);
+            this.tbtnEject.Size = new System.Drawing.Size(29, 20);
             this.tbtnEject.Text = "Eject";
             this.tbtnEject.Click += new System.EventHandler(this.tbtnEject_Click_1);
             // 
@@ -1127,19 +1143,19 @@ namespace METAbolt
             this.tbtnBan.Image = ((System.Drawing.Image)(resources.GetObject("tbtnBan.Image")));
             this.tbtnBan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnBan.Name = "tbtnBan";
-            this.tbtnBan.Size = new System.Drawing.Size(21, 20);
+            this.tbtnBan.Size = new System.Drawing.Size(29, 20);
             this.tbtnBan.Text = "Ban";
             this.tbtnBan.Click += new System.EventHandler(this.tbtnBan_Click);
             // 
             // toolStripSeparator18
             // 
             this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator18.Size = new System.Drawing.Size(29, 6);
             // 
             // toolStripSeparator19
             // 
             this.toolStripSeparator19.Name = "toolStripSeparator19";
-            this.toolStripSeparator19.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator19.Size = new System.Drawing.Size(29, 6);
             // 
             // tsbSearch
             // 
@@ -1147,7 +1163,7 @@ namespace METAbolt
             this.tsbSearch.Image = ((System.Drawing.Image)(resources.GetObject("tsbSearch.Image")));
             this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSearch.Name = "tsbSearch";
-            this.tsbSearch.Size = new System.Drawing.Size(21, 20);
+            this.tsbSearch.Size = new System.Drawing.Size(29, 20);
             this.tsbSearch.Text = "Show chat search";
             this.tsbSearch.Click += new System.EventHandler(this.toolStripButton1_Click_2);
             // 
@@ -1157,7 +1173,7 @@ namespace METAbolt
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(21, 20);
+            this.toolStripButton3.Size = new System.Drawing.Size(29, 20);
             this.toolStripButton3.Text = "Online help";
             this.toolStripButton3.Click += new System.EventHandler(this.tbtnHelp_Click);
             // 
@@ -1196,6 +1212,33 @@ namespace METAbolt
             this.tabPage1.TabIndex = 0;
             this.tabPage1.ToolTipText = "Radar";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+    "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(0, 0);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(174, 298);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.List;
+            this.lvwRadar.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lvwRadar_DrawItem);
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
             // 
             // tabPage2
             // 
@@ -1460,7 +1503,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(71, 277);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(69, 17);
+            this.checkBox5.Size = new System.Drawing.Size(72, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1631,49 +1674,6 @@ namespace METAbolt
             this.tsdefault.Size = new System.Drawing.Size(107, 12);
             this.tsdefault.Text = "[ No favourites found ]";
             this.tsdefault.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cboLanguage
-            // 
-            this.cboLanguage.AccessibleName = "Language selection dropdown box. Select the language pair you want to use";
-            this.cboLanguage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLanguage.Enabled = false;
-            this.cboLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cboLanguage.FormattingEnabled = true;
-            this.cboLanguage.ICImageList = this.imgFlags;
-            this.cboLanguage.Location = new System.Drawing.Point(98, 3);
-            this.cboLanguage.Name = "cboLanguage";
-            this.cboLanguage.Size = new System.Drawing.Size(208, 22);
-            this.cboLanguage.TabIndex = 6;
-            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
-            // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-    "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.White;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(0, 0);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(174, 298);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.List;
-            this.lvwRadar.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lvwRadar_DrawItem);
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
             // 
             // ChatConsole
             // 

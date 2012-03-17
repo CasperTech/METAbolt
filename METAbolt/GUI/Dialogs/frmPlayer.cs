@@ -41,6 +41,9 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.Threading;
 using System.Xml;
+using SLNetworkComm;
+using WMPLib;
+using System.Web.UI.WebControls;
 
 namespace METAbolt
 {
@@ -54,6 +57,10 @@ namespace METAbolt
         private string currentlyrics = string.Empty;
         private string dets = string.Empty;
         //private LyricWiki wiki = new LyricWiki();
+        private string albumlink = string.Empty;
+        private string lyrics = string.Empty;
+        private SLNetCom netcom;
+        private List<RadioObj> Stations = new List<RadioObj>();
 
 
         public frmPlayer(METAboltInstance instance)
@@ -62,21 +69,145 @@ namespace METAbolt
 
             this.instance = instance;
             client = this.instance.Client;
+            netcom = this.instance.Netcom;
+
 
             Disposed += new EventHandler(Player_Disposed);
 
-            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(TP_Callback);
+            netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(TP_Callback);
+
+            PopulateStations();
+
+            listBox2.SelectedIndex = 3;
+        }
+
+        private void PopulateStations()
+        {
+            RadioObj robj = new RadioObj();
+            robj.genre = "80s";
+            robj.radioname = "SKY.FM";
+            robj.radiourl = "http://160.79.128.30:7712";
+            Stations.Add(robj);
+
+            robj = new RadioObj();
+            robj.genre = "80s";
+            robj.radioname = "Club .977";
+            robj.radiourl = "http://205.188.215.229:8004";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Hitz";
+            robj.radioname = "Club .977";
+            robj.radiourl = "http://205.188.215.230:8002";
+            Stations.Add(robj);
+
+            robj = new RadioObj();
+            robj.genre = "Hitz";
+            robj.radioname = "181.FM";
+            robj.radiourl = "http://205.188.215.228:8002";
+            Stations.Add(robj);
+
+            robj = new RadioObj();
+            robj.genre = "Hitz";
+            robj.radioname = "SKY.FM";
+            robj.radiourl = "http://207.200.96.230:8002";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Dance";
+            robj.radioname = "Ibiza Global Radio";
+            robj.radiourl = "http://213.251.162.25:8024";
+            Stations.Add(robj);
+
+            robj = new RadioObj();
+            robj.genre = "Dance";
+            robj.radioname = "TechnoBase.FM";
+            robj.radiourl = "http://85.17.26.85:80";
+            Stations.Add(robj);
+
+            robj = new RadioObj();
+            robj.genre = "Dance";
+            robj.radioname = "181.FM";
+            robj.radiourl = "http://207.200.96.226:8004";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Classical";
+            robj.radioname = "SKY.FM";
+            robj.radiourl = "http://scfire-mtc-aa04.stream.aol.com:80/stream/1006";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Jazz";
+            robj.radioname = "SKY.FM";
+            robj.radiourl = "http://160.79.128.30:7702";
+            Stations.Add(robj);
+
+            robj = new RadioObj();
+            robj.genre = "Jazz";
+            robj.radioname = "SMOOTHJAZZ.COM";
+            robj.radiourl = "http://207.200.96.226:8052";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Latin";
+            robj.radioname = "SKY.FM";
+            robj.radiourl = "http://72.26.204.18:6136";
+            Stations.Add(robj);
+
+            robj = new RadioObj();
+            robj.genre = "Latin";
+            robj.radioname = "LATINO FM EN DIRECTO";
+            robj.radiourl = "http://92.48.107.35:8000";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Trance";
+            robj.radioname = "1.FM";
+            robj.radiourl = "http://72.13.83.70:8042";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "R&B";
+            robj.radioname = "HOT 108 Jamz";
+            robj.radiourl = "http://205.188.215.229:8040";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Rock";
+            robj.radioname = "RMF FM";
+            robj.radiourl = "http://217.74.72.12:9000";
+            Stations.Add(robj);
+
+
+            robj = new RadioObj();
+            robj.genre = "Rock (Classic)";
+            robj.radioname = "181.FM";
+            robj.radiourl = "http://108.61.73.118:8030";
+            Stations.Add(robj);
         }
 
         private void TP_Callback(object sender, TeleportEventArgs e)
         {
             if (e.Status == TeleportStatus.Finished)
             {
+                //Thread.Sleep(8000);
+
                 BeginInvoke((MethodInvoker)delegate 
                 {
-                    axWindowsMediaPlayer1.Ctlcontrols.stop();
+                    //axWindowsMediaPlayer1.Ctlcontrols.stop();
                     axWindowsMediaPlayer1.URL = this.instance.Config.CurrentConfig.pURL;
-                    axWindowsMediaPlayer1.Ctlcontrols.play();
+                    //axWindowsMediaPlayer1.Ctlcontrols.play();
+
+                    //this.Close();
                 });
             }
         }
@@ -87,22 +218,44 @@ namespace METAbolt
             
             axWindowsMediaPlayer1.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(player_PlayStateChange);
             axWindowsMediaPlayer1.CurrentItemChange += new AxWMPLib._WMPOCXEvents_CurrentItemChangeEventHandler(player_CurrentItemChange);
-            axWindowsMediaPlayer1.CurrentPlaylistChange += new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(player_CurrentPlaylistChange);
+            //axWindowsMediaPlayer1.CurrentPlaylistChange += new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(player_CurrentPlaylistChange);
             axWindowsMediaPlayer1.MediaChange += new AxWMPLib._WMPOCXEvents_MediaChangeEventHandler(player_MediaChange);
+            axWindowsMediaPlayer1.MediaError += new AxWMPLib._WMPOCXEvents_MediaErrorEventHandler(axWindowsMediaPlayer1_MediaError);
 
             axWindowsMediaPlayer1.URL = this.instance.Config.CurrentConfig.pURL;
-            axWindowsMediaPlayer1.Ctlcontrols.stop();
+            //axWindowsMediaPlayer1.Ctlcontrols.stop();
             label2.Text = string.Empty;
             label3.Text = string.Empty;
         }
 
+        void axWindowsMediaPlayer1_MediaError(object sender, AxWMPLib._WMPOCXEvents_MediaErrorEvent e)
+        {
+            try
+            // If the Player encounters a corrupt or missing file, 
+            // show the hexadecimal error code and URL.
+            {
+                IWMPMedia2 errSource = e.pMediaObject as IWMPMedia2;
+                IWMPErrorItem errorItem = errSource.Error;
+                MessageBox.Show("Error " + errorItem.errorCode.ToString("X")
+                                + " in " + errSource.sourceURL);
+            }
+            catch (InvalidCastException)
+            // In case pMediaObject is not an IWMPMedia item.
+            {
+                MessageBox.Show("Error.");
+            } 
+        }
+
         private void Player_Disposed(object sender, EventArgs e)
         {
-            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(TP_Callback);
+            //client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(TP_Callback);
+            netcom.TeleportStatusChanged -= new EventHandler<TeleportEventArgs>(TP_Callback);
+
             axWindowsMediaPlayer1.PlayStateChange -= new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(player_PlayStateChange);
             axWindowsMediaPlayer1.CurrentItemChange -= new AxWMPLib._WMPOCXEvents_CurrentItemChangeEventHandler(player_CurrentItemChange);
-            axWindowsMediaPlayer1.CurrentPlaylistChange -= new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(player_CurrentPlaylistChange);
+            //axWindowsMediaPlayer1.CurrentPlaylistChange -= new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(player_CurrentPlaylistChange);
             axWindowsMediaPlayer1.MediaChange -= new AxWMPLib._WMPOCXEvents_MediaChangeEventHandler(player_MediaChange);
+            axWindowsMediaPlayer1.MediaError -= new AxWMPLib._WMPOCXEvents_MediaErrorEventHandler(axWindowsMediaPlayer1_MediaError);
         }
 
         private void player_MediaChange(object sender, AxWMPLib._WMPOCXEvents_MediaChangeEvent e)
@@ -110,10 +263,10 @@ namespace METAbolt
             GetTrackInfo(axWindowsMediaPlayer1.currentMedia.name);
         }
 
-        private void player_CurrentPlaylistChange(object sender, AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEvent e)
-        {
-            GetTrackInfo(axWindowsMediaPlayer1.currentMedia.name);
-        }
+        //private void player_CurrentPlaylistChange(object sender, AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEvent e)
+        //{
+        //    GetTrackInfo(axWindowsMediaPlayer1.currentMedia.name);
+        //}
 
         private void player_CurrentItemChange(object sender, AxWMPLib._WMPOCXEvents_CurrentItemChangeEvent e)
         {
@@ -154,7 +307,7 @@ namespace METAbolt
 
                 string eval = timestamp.ToShortTimeString() + ": " + track;
 
-                ListViewItem finditem = listView1.FindItemWithText(eval);
+                System.Windows.Forms.ListViewItem finditem = listView1.FindItemWithText(eval);
 
 
                 if (finditem == null)
@@ -162,15 +315,16 @@ namespace METAbolt
                     try
                     {
                         getAlbumArt(false);
+                        GetLyrics();
                     }
                     catch { ; }
 
-                    ListViewItem list = new ListViewItem();
+                    System.Windows.Forms.ListViewItem list = new System.Windows.Forms.ListViewItem();
 
                     list.Text = timestamp.ToShortTimeString() + ": " + track;
-                    list.Tag = dets;
+                    list.Tag = albumlink;   // dets;
 
-                    if (!string.IsNullOrEmpty(dets))
+                    if (!string.IsNullOrEmpty(albumlink))
                     {
                         list.ForeColor = Color.Cyan;
                     }
@@ -191,11 +345,15 @@ namespace METAbolt
                     if (axWindowsMediaPlayer1.network.bitRate != 0)
                     {
                         label1.Text = "Bit Rate: " + axWindowsMediaPlayer1.network.bitRate + " K bits/second";
+                        pictureBox4.Visible = true;
+                        pictureBox5.Visible = true;
                     }
                     break;
 
                 case (int)WMPLib.WMPPlayState.wmppsStopped:
                     label1.Text = "";
+                    pictureBox4.Visible = false;
+                    pictureBox5.Visible = false;
                     break;
 
                 case (int)WMPLib.WMPPlayState.wmppsPaused:
@@ -230,7 +388,8 @@ namespace METAbolt
             currentartist = currentartist.Replace(" ", "_");
             currenttrack = currenttrack.Replace(" ", "_");
 
-            richTextBox1.Text = "Click for lyrics:\nhttp://lyrics.wikia.com/Special:Search?titlesOnly=1&search=" + currentartist + ":" + currenttrack;
+            //richTextBox1.Text = "Click for lyrics:\nhttp://lyrics.wikia.com/Special:Search?titlesOnly=1&search=" + currentartist + ":" + currenttrack;
+            lyrics = "http://lyrics.wikia.com/Special:Search?titlesOnly=1&search=" + currentartist + ":" + currenttrack;
         }
 
         //private string RipURL(string trURL)
@@ -316,10 +475,17 @@ namespace METAbolt
 
                 int a = 0;
 
+                albumlink = string.Empty;
+
                 using (XmlReader reader = XmlReader.Create(baseUrl, settings))
                 {
                     while ((reader.Read()))
                     {
+                        if ((reader.NodeType == XmlNodeType.Element & "url" == reader.LocalName))
+                        {
+                            albumlink = reader.ReadElementString("url");
+                        }
+
                         if ((reader.NodeType == XmlNodeType.Element & "image" == reader.LocalName))
                         {
                             if (a == 3)
@@ -329,35 +495,46 @@ namespace METAbolt
                             }
                             else
                             {
-                                //not in the right node so go to the next
                                 a = a + 1;
                             }
                         }
                     }
                 }
+
                 if (!string.IsNullOrEmpty(theArtWorkUrl))
                 {
                     pictureBox1.Image = LoadPicture(theArtWorkUrl);
                     pictureBox1.Refresh();
-                    pictureBox2.Visible = true;
-
-                    dets = GetBuyLink();
-
-                    if (!string.IsNullOrEmpty(dets))
-                    {
-                        
-                    }
-                    else
-                    {
-                        pictureBox2.Visible = false;
-                    }
                 }
                 else
                 {
                     //album art not found
                     pictureBox1.Image = METAbolt.Properties.Resources.not_found;
                     pictureBox1.Refresh();
+                }
+
+                dets = GetBuyLink();
+
+                if (!string.IsNullOrEmpty(dets))
+                {
+                    pictureBox2.Visible = true;
+                    pictureBox2.Refresh();
+                }
+                else
+                {
                     pictureBox2.Visible = false;
+                    pictureBox2.Refresh();
+                }
+
+                if (!string.IsNullOrEmpty(albumlink))
+                {
+                    pictureBox3.Visible = true;
+                    pictureBox3.Refresh();
+                }
+                else
+                {
+                    pictureBox3.Visible = false;
+                    pictureBox3.Refresh();
                 }
             }
             catch
@@ -487,10 +664,10 @@ namespace METAbolt
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 2)
-            {
-                GetLyrics();
-            }
+            //if (tabControl1.SelectedIndex == 2)
+            //{
+            //    GetLyrics();
+            //}
         }
 
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
@@ -532,7 +709,7 @@ namespace METAbolt
 
         private void listView1_Click(object sender, EventArgs e)
         {
-            ListViewItem idx = listView1.SelectedItems[0];
+            System.Windows.Forms.ListViewItem idx = listView1.SelectedItems[0];
             string track = idx.Tag.ToString();
 
             if (!string.IsNullOrEmpty(track))
@@ -559,5 +736,94 @@ namespace METAbolt
         {
             listBox1.Items.Clear();
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(albumlink))
+            {
+                System.Diagnostics.Process.Start(@albumlink);
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lyrics))
+            {
+                System.Diagnostics.Process.Start(@lyrics);
+            }
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            string ulink = "http://www.youtube.com/results?search_query=" + currentartist + ":" + currenttrack; ;
+
+            System.Diagnostics.Process.Start(@ulink);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox1.Text)) return;
+
+            axWindowsMediaPlayer1.URL = textBox1.Text.Trim();
+        }
+
+        private void frmPlayer_Resize(object sender, EventArgs e)
+        {
+            pictureBox1.Height = pictureBox1.Width;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Parcel parcel = this.instance.MainForm.parcel;
+
+            parcel.MusicURL = textBox1.Text.Trim();
+            parcel.Update(client.Network.CurrentSim, false);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length == 0)
+            {
+                button2.Enabled = false;
+            }
+            else
+            {
+                button2.Enabled = true;
+            }
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedIndex == -1) return;
+
+            string sgenre = listBox2.SelectedItem.ToString();
+
+            listBox3.Items.Clear();
+            textBox1.Text = string.Empty;
+
+            foreach (RadioObj rad in Stations)
+            {
+                if (rad.genre == sgenre)
+                {
+                    listBox3.Items.Add(new ListItem() { Value = rad.radiourl, Text = rad.radioname });
+                }
+            }
+        }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox3.SelectedIndex == -1) return;
+
+            ListItem itm = (ListItem)listBox3.SelectedItem;
+
+            textBox1.Text = itm.Value;
+        }
+    }
+
+    public class RadioObj
+    {
+        public string radioname { get; set; }
+        public string genre { get; set; }
+        public string radiourl { get; set; }
     }
 }

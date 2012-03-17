@@ -234,6 +234,9 @@ namespace METAbolt
                     this.parcel = parceln;
                 }
 
+                this.instance.Config.CurrentConfig.pURL = @parcel.MusicURL;
+                tlblParcel.Text = parcel.Name.ToString();
+
                 client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
                 List<UUID> avIDs = new List<UUID>();
@@ -332,35 +335,10 @@ namespace METAbolt
                     AllowTerraform = true;
                 }
 
-                this.instance.Config.CurrentConfig.pURL = @parcel.MusicURL;
-                tlblParcel.Text = parcel.Name.ToString();
-
-                //if (currentparcelid != parceln.LocalID)
-                //{
-                //    List<UUID> avIDs = new List<UUID>();
-                //    avIDs.Add(parcel.OwnerID);
-                //    avIDs.Add(parcel.GroupID);
-
-                //    client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
-                //    client.Avatars.RequestAvatarNames(avIDs);
-
-                //    currentparcelid = parceln.LocalID;
-                //}
-
-                //throw new Exception("Test");
-
                 // Log tp/lm location into history
                 DateTime timestamp = DateTime.Now;
 
                 timestamp = this.instance.State.GetTimeStamp(timestamp);
-
-                //if (instance.Config.CurrentConfig.UseSLT)
-                //{
-                //    string _timeZoneId = "Pacific Standard Time";
-                //    DateTime startTime = DateTime.UtcNow;
-                //    TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
-                //    timestamp = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
-                //}
 
                 string strInfo = string.Format("{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
                                                                             Math.Round(instance.SIMsittingPos().X, 0),

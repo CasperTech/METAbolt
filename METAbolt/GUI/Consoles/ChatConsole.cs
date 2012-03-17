@@ -3973,9 +3973,9 @@ namespace METAbolt
                                 string iname = item.Name;
                                 string desc = item.Description;
 
-                                if (iname.Length > 39)
+                                if (iname.Length > 43)
                                 {
-                                    iname = iname.Substring(0, 36) + "...";
+                                    iname = iname.Substring(0, 40) + "...";
                                 }
 
                                 ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
@@ -3995,6 +3995,8 @@ namespace METAbolt
                             //this.Height += 25;
                         }
                     }
+
+                    break;
                 }
             }
         }

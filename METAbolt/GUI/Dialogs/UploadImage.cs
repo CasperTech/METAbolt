@@ -24,6 +24,14 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //  POSSIBILITY OF SUCH DAMAGE.
 
+
+// Some parts of this code has been adopted from OpenMetaverse.GUI
+//
+/*
+ * Copyright (c) 2007-2008, openmetaverse.org
+ * All rights reserved.
+*/
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

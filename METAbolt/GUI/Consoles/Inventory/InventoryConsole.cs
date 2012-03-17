@@ -72,6 +72,7 @@ namespace METAbolt
         private TreeNode rootNode;
         private TreeNode selectednode = null;
         //private bool nodecol = false;
+        private UUID favfolder = UUID.Zero;
 
         internal class ThreadExceptionHandler
         {
@@ -203,11 +204,21 @@ namespace METAbolt
                 //nodecol = false;
 
                 //addeditem = item.UUID;
-                UUID fldr = client.Inventory.Store.RootFolder.UUID;
+                //UUID fldr = client.Inventory.Store.RootFolder.UUID;
+                UUID fldr = item.UUID;
 
-                if (item.ParentUUID != UUID.Zero)
+                InventoryBase io = (InventoryBase)item;
+
+                if (io is InventoryFolder)
                 {
-                    fldr = item.ParentUUID;
+                    // do nothing
+                }
+                else
+                {
+                    if (item.ParentUUID != UUID.Zero)
+                    {
+                        fldr = item.ParentUUID;
+                    }
                 }
 
                 //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
@@ -219,21 +230,41 @@ namespace METAbolt
         private void Store_OnInventoryObjectRemoved(object sender, InventoryObjectRemovedEventArgs e)
         {
             //nodecol = false;
-            RefreshInventory();
+            //RefreshInventory();
+
+            UUID fldr = e.Obj.UUID;
+
+            InventoryBase io = (InventoryBase)e.Obj;
+
+            if (io is InventoryFolder)
+            {
+                // do nothing
+            }
+            else
+            {
+                if (e.Obj.ParentUUID != UUID.Zero)
+                {
+                    fldr = e.Obj.ParentUUID;
+                }
+            }
+
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
+            UpdateFolder(fldr);
+
         }
 
         //private void Store_OnInventoryObjectAdded(object sender, InventoryObjectAddedEventArgs e)
         //{
-        //    //if (InvokeRequired)
-        //    //{
+        //    if (InvokeRequired)
+        //    {
 
-        //    //    BeginInvoke(new MethodInvoker(delegate()
-        //    //    {
-        //    //        Store_OnInventoryObjectAdded(sender, e);
-        //    //    }));
+        //        BeginInvoke(new MethodInvoker(delegate()
+        //        {
+        //            Store_OnInventoryObjectAdded(sender, e);
+        //        }));
 
-        //    //    return;
-        //    //}
+        //        return;
+        //    }
 
         //    //////addeditem = item.UUID;
         //    //UUID fldr = client.Inventory.Store.RootFolder.UUID;
@@ -264,6 +295,8 @@ namespace METAbolt
         //    //((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
 
         //    //GetRoot();
+
+        //    UpdateFolder(e.Obj.ParentUUID);
         //}
 
         private void Inventory_OnAppearanceSet(object sender, AppearanceSetEventArgs e)
@@ -309,7 +342,6 @@ namespace METAbolt
             {
                 if (!searching)
                 {
-
                     if (folderproc == e.FolderID)
                     {
                         //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
@@ -321,6 +353,21 @@ namespace METAbolt
             catch { ; }
         }
 
+        //private void Store_OnInventoryObjectUpdated(object sender, InventoryObjectUpdatedEventArgs e)
+        //{
+        //    if (InvokeRequired)
+        //    {
+        //        BeginInvoke(new MethodInvoker(delegate()
+        //        {
+        //            Store_OnInventoryObjectUpdated(sender, e);
+        //        }));
+
+        //        return;
+        //    }
+
+        //    //UpdateFolder(e.NewObject.ParentUUID);
+        //    RefreshInventory();
+        //}
 
         private void CleanUp()
         {
@@ -345,24 +392,44 @@ namespace METAbolt
                     folderID = client.Inventory.Store.RootFolder.UUID;
                 }
 
-                InventoryFolder favs = client.Inventory.Store.RootFolder;
-                List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
+                if (favfolder == UUID.Zero)
+                {
+                    InventoryFolder favs = client.Inventory.Store.RootFolder;
+                    List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
 
-                //Update favourites
-                instance.MainForm.UpdateFavourites(foundfolders);  
-                
+                    foreach (InventoryBase o in foundfolders)
+                    {
+                        if (o.Name.ToLower() == "favorites")
+                        {
+                            if (o is InventoryFolder)
+                            {
+                                favfolder = o.UUID;
+                                break;
+                            }
+                        }
+                    }
+
+                    //Update favourites
+                    instance.MainForm.UpdateFavourites(foundfolders);
+                }
 
                 try
                 {
-                    //treeViewElement.LoadChildren();
                     TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
                     treeViewWalker.LoadInventory(instance, folderID);
+
+                    if (folderID == favfolder)
+                    {
+                        InventoryFolder favs = client.Inventory.Store.RootFolder;
+                        List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
+                        instance.MainForm.UpdateFavourites(foundfolders);
+                    }
 
                     if (selectednode != null)
                     {
                         treeView1.HideSelection = false;
                         treeView1.SelectedNode = selectednode;
-                        treeView1.TopNode.EnsureVisible();
+                        treeView1.SelectedNode.EnsureVisible();
                     }
                 }
                 catch { ; }
@@ -378,7 +445,7 @@ namespace METAbolt
                 //client.Inventory.InventoryObjectOffered += new EventHandler<InventoryObjectOfferedEventArgs>(Inventory_InventoryObjectOffered);
                 client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
                 client.Inventory.Store.InventoryObjectRemoved += new EventHandler<InventoryObjectRemovedEventArgs>(Store_OnInventoryObjectRemoved);
-                //client.Inventory.Store.InventoryObjectAdded += new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
+                //client.Inventory.Store.InventoryObjectUpdated += new EventHandler<InventoryObjectUpdatedEventArgs>(Store_OnInventoryObjectUpdated);
 
                 foreach (ITreeSortMethod method in treeSorter.GetSortMethods())
                 {
@@ -443,6 +510,7 @@ namespace METAbolt
             //client.Inventory.Store.InventoryObjectAdded -= new EventHandler<InventoryObjectAddedEventArgs>(Store_OnInventoryObjectAdded);
             //netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             //netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
+            //client.Inventory.Store.InventoryObjectUpdated -= new EventHandler<InventoryObjectUpdatedEventArgs>(Store_OnInventoryObjectUpdated);
         }
 
         private void SortMethodClick(object sender, EventArgs e)
@@ -667,6 +735,8 @@ namespace METAbolt
         private void tmnuNewFolder_Click(object sender, EventArgs e)
         {
             AddNewFolder();
+
+            RefreshInventory();
         }
 
         private void AddNewFolder()
@@ -687,11 +757,15 @@ namespace METAbolt
             {
                 InventoryFolder selfolder = (InventoryFolder)treeView1.SelectedNode.Tag;
                 client.Inventory.CreateFolder(selfolder.UUID, newFolderName);
+
+                //UpdateFolder(selfolder.UUID);
             }
             else if (treeView1.SelectedNode.Tag is InventoryItem)
             {
                 InventoryItem selfolder = (InventoryItem)treeView1.SelectedNode.Tag;
                 client.Inventory.CreateFolder(selfolder.ParentUUID, newFolderName);
+
+                //UpdateFolder(selfolder.ParentUUID);
             }
         }
 
@@ -935,6 +1009,17 @@ namespace METAbolt
                 //InventoryBase invObj = client.Inventory.Store[ifolder.UUID];
                 //UpdateFolder(ifolder.UUID);
                 //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), ifolder.UUID);
+
+                //InventoryItem ifitm = client.Inventory.FetchItem(itemID, client.Self.AgentID, 3000);
+
+                //UpdateFolder(ifitm.ParentUUID);
+
+                //if (selectednode != null)
+                //{
+                //    ReloadInventory();
+                //}
+
+                RefreshInventory();
             }
         }
 
@@ -990,6 +1075,8 @@ namespace METAbolt
             //Boolean found = false;
             //TreeNodeCollection nodes = sellectednode.Nodes;
             //TreeNodeCollection nodes = treeView1.Nodes;
+
+            client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
 
             sellectednode.Expand();
             //found = FindRecursive(sellectednode);
@@ -1203,45 +1290,29 @@ namespace METAbolt
 
                 if (node == null)
                 {
-                    folder = client.Inventory.Store.RootFolder;     
+                    folder = client.Inventory.Store.RootFolder;
                 }
                 else
                 {
-                    //if (node.Text == "(empty)") return;
-
                     if (node.Tag is InventoryFolder)
                     {
                         folder = (InventoryFolder)node.Tag;
-                        //folderNode = node;
                     }
                     else if (node.Tag is InventoryItem)
                     {
                         folder = (InventoryFolder)node.Parent.Tag;
-                        //folderNode = node.Parent;
                     }
-
-                    //if (node.Text == "(empty)")
-                    //{
-                    //    folder = (InventoryFolder)node.Parent.Tag;
-                    //    //folderNode = node.Parent;
-                    //}
                 }
 
-                //InventoryBase invObj = client.Inventory.Store[folder.UUID];
-                //UpdateFolder(folder.UUID);
-                //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), folder.UUID);
                 UpdateFolder(folder.UUID);
-
-                //treeView1.Sort();
             }
         }
 
         public void RefreshInventoryNode(TreeNode node)
         {
-            if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { RefreshInventory(); });
+            if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { RefreshInventoryNode(node); });
             else
             {
-                //TreeNode node = treeView1.SelectedNode;
                 InventoryFolder folder = null;
 
                 selectednode = node;
@@ -1252,47 +1323,34 @@ namespace METAbolt
                 }
                 else
                 {
-                    //if (node.Text == "(empty)") return;
-
                     if (node.Tag is InventoryFolder)
                     {
                         folder = (InventoryFolder)node.Tag;
-                        //folderNode = node;
                     }
                     else if (node.Tag is InventoryItem)
                     {
                         folder = (InventoryFolder)node.Parent.Tag;
-                        //folderNode = node.Parent;
                     }
-
-                    //if (node.Text == "(empty)")
-                    //{
-                    //    folder = (InventoryFolder)node.Parent.Tag;
-                    //    //folderNode = node.Parent;
-                    //}
                 }
 
-                //InventoryBase invObj = client.Inventory.Store[folder.UUID];
-                //UpdateFolder(folder.UUID);
-                //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), folder.UUID);
                 UpdateFolder(folder.UUID);
-
-                //treeView1.Sort();
             }
         }
 
         private void ReloadInventory()
         {
-            //nodecol = true;
+            if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { ReloadInventory(); });
+            else
+            {
+                treeView1.Nodes.Clear();
 
-            treeView1.Nodes.Clear();
+                treeSorter.CurrentSortName = SortBy;
+                treeView1.TreeViewNodeSorter = treeSorter;
 
-            treeSorter.CurrentSortName = SortBy;
-            treeView1.TreeViewNodeSorter = treeSorter;
+                ((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
 
-            ((ToolStripMenuItem)tbtnSort.DropDown.Items[0]).PerformClick();
-
-            GetRoot();
+                GetRoot();
+            }
         }
 
         public void SortInventory()

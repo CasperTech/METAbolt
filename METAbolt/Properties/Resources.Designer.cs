@@ -604,9 +604,23 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Information {
+            get {
+                object obj = ResourceManager.GetObject("Information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream Item_received {
             get {
                 return ResourceManager.GetStream("Item_received", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap lastfm {
+            get {
+                object obj = ResourceManager.GetObject("lastfm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -633,6 +647,13 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap lsl_scripts_16 {
             get {
                 object obj = ResourceManager.GetObject("lsl_scripts_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap lyrics {
+            get {
+                object obj = ResourceManager.GetObject("lyrics", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1124,6 +1145,13 @@ namespace METAbolt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Wikia_Logo {
+            get {
+                object obj = ResourceManager.GetObject("Wikia_Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap window_edit {
             get {
                 object obj = ResourceManager.GetObject("window_edit", resourceCulture);
@@ -1141,6 +1169,13 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap world {
             get {
                 object obj = ResourceManager.GetObject("world", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap youtube {
+            get {
+                object obj = ResourceManager.GetObject("youtube", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
