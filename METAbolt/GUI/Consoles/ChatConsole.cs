@@ -2619,7 +2619,11 @@ namespace METAbolt
 
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    Grid_OnCoarseLocationUpdate(sender, e);
+                    try
+                    {
+                        Grid_OnCoarseLocationUpdate(sender, e);
+                    }
+                    catch { ; }
                 }));
                 
                 return;
