@@ -1607,8 +1607,11 @@ namespace METAbolt
         {
             try
             {
-            Process process = Process.Start(updaterModulePath, "/configure");
-            process.Close();
+                if (System.IO.File.Exists(updaterModulePath))
+                {
+                    Process process = Process.Start(updaterModulePath, "/configure");
+                    process.Close();
+                }
             }
             catch (Exception ex)
             {
