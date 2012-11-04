@@ -164,7 +164,7 @@ namespace METAbolt
             sim = client.Network.CurrentSim;
 
             world.Cursor = Cursors.NoMove2D;
-            pictureBox1.Cursor = Cursors.Hand; 
+            //pictureBox1.Cursor = Cursors.Hand; 
 
             timer2.Enabled = true;
             timer2.Start();
@@ -680,79 +680,79 @@ namespace METAbolt
             // TODO: This should be converted into a language combobox component at
             // some stage
 
-            cboLanguage.Items.Clear();
-            //cboLanguage.Items.Add("Select...");
-            cboLanguage.Items.Add(new ComboEx.ICItem("Select...", -1));
+            //cboLanguage.Items.Clear();
+            ////cboLanguage.Items.Add("Select...");
+            //cboLanguage.Items.Add(new ComboEx.ICItem("Select...", -1));
 
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Arabic en|ar", 1));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(simp) en|zh-CN", 2));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(trad) en|zh-TW", 3));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Croatian en|hr", 4));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Czech en|cs", 5));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Danish en|da", 6));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Dutch en|nl", 7));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Filipino en|tl", 9));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Finnish en|fi", 10));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/French en|fr", 11));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/German en|de", 12));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Greek en|el", 13));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Hebrew en|iw", 14));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Hindi en|hi", 15));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Hungarian en|hu", 16));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Indonesian en|id", 17));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Italian en|it", 18));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Japanese en|ja", 19));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Korean en|ko", 20));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Lithuanian en|lt", 21));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Norwegian en|no", 22));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Polish en|pl", 23));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Portuguese en|p", 24));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Romanian en|ro", 25));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Russian en|ru", 26));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Slovenian en|sl", 27));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Spanish en|es", 28));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Swedish en|sv", 29));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Thai en|th", 30));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Turkish en|tr", 31));
-            cboLanguage.Items.Add(new ComboEx.ICItem("English/Ukrainian en|uk", 32));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Arabic en|ar", 1));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(simp) en|zh-CN", 2));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Chineese(trad) en|zh-TW", 3));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Croatian en|hr", 4));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Czech en|cs", 5));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Danish en|da", 6));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Dutch en|nl", 7));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Filipino en|tl", 9));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Finnish en|fi", 10));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/French en|fr", 11));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/German en|de", 12));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Greek en|el", 13));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Hebrew en|iw", 14));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Hindi en|hi", 15));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Hungarian en|hu", 16));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Indonesian en|id", 17));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Italian en|it", 18));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Japanese en|ja", 19));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Korean en|ko", 20));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Lithuanian en|lt", 21));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Norwegian en|no", 22));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Polish en|pl", 23));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Portuguese en|p", 24));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Romanian en|ro", 25));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Russian en|ru", 26));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Slovenian en|sl", 27));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Spanish en|es", 28));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Swedish en|sv", 29));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Thai en|th", 30));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Turkish en|tr", 31));
+            //cboLanguage.Items.Add(new ComboEx.ICItem("English/Ukrainian en|uk", 32));
 
-            cboLanguage.Items.Add("Arabic/English ar|en");
-            cboLanguage.Items.Add("Chineese(simp)/English zh-CN|en");
-            cboLanguage.Items.Add("Chineese(trad)/English zh-TW|en");
-            cboLanguage.Items.Add("Croatian/English hr|en");
-            cboLanguage.Items.Add("Czech/English cs|en");
-            cboLanguage.Items.Add("Danish/English da|en");
-            cboLanguage.Items.Add("Dutch/English nl|en");
-            cboLanguage.Items.Add("Finnish/English fi|en");
-            cboLanguage.Items.Add("Filipino/English tl|en");
-            cboLanguage.Items.Add("French/English fr|en");
-            cboLanguage.Items.Add("German/English de|en");
-            cboLanguage.Items.Add("Greek/English el|en");
-            cboLanguage.Items.Add("Hebrew/English iw|en");
-            cboLanguage.Items.Add("Hindi/English hi|en");
-            cboLanguage.Items.Add("Hungarian/English hu|en");
-            cboLanguage.Items.Add("Indonesian/English id|en");
-            cboLanguage.Items.Add("Italian/English it|en");
-            cboLanguage.Items.Add("Japanese/English ja|en");
-            cboLanguage.Items.Add("Korean/English ko|en");
-            cboLanguage.Items.Add("Lithuanian/English lt|en");
-            cboLanguage.Items.Add("Norwegian/English no|en");
-            cboLanguage.Items.Add("Polish/English pl|en");
-            cboLanguage.Items.Add("Portuguese/English pt|en");
-            cboLanguage.Items.Add("Russian/English ru|en");
-            cboLanguage.Items.Add("Romanian/English ro|en");
-            cboLanguage.Items.Add("Slovenian/English sl|en");
-            cboLanguage.Items.Add("Spanish/English es|en");
-            cboLanguage.Items.Add("Swedish/English sv|en");
-            cboLanguage.Items.Add("Thai/English th|en");
-            cboLanguage.Items.Add("Turkish/English tr|en");
-            cboLanguage.Items.Add("Ukrainian/English uk|en");
+            //cboLanguage.Items.Add("Arabic/English ar|en");
+            //cboLanguage.Items.Add("Chineese(simp)/English zh-CN|en");
+            //cboLanguage.Items.Add("Chineese(trad)/English zh-TW|en");
+            //cboLanguage.Items.Add("Croatian/English hr|en");
+            //cboLanguage.Items.Add("Czech/English cs|en");
+            //cboLanguage.Items.Add("Danish/English da|en");
+            //cboLanguage.Items.Add("Dutch/English nl|en");
+            //cboLanguage.Items.Add("Finnish/English fi|en");
+            //cboLanguage.Items.Add("Filipino/English tl|en");
+            //cboLanguage.Items.Add("French/English fr|en");
+            //cboLanguage.Items.Add("German/English de|en");
+            //cboLanguage.Items.Add("Greek/English el|en");
+            //cboLanguage.Items.Add("Hebrew/English iw|en");
+            //cboLanguage.Items.Add("Hindi/English hi|en");
+            //cboLanguage.Items.Add("Hungarian/English hu|en");
+            //cboLanguage.Items.Add("Indonesian/English id|en");
+            //cboLanguage.Items.Add("Italian/English it|en");
+            //cboLanguage.Items.Add("Japanese/English ja|en");
+            //cboLanguage.Items.Add("Korean/English ko|en");
+            //cboLanguage.Items.Add("Lithuanian/English lt|en");
+            //cboLanguage.Items.Add("Norwegian/English no|en");
+            //cboLanguage.Items.Add("Polish/English pl|en");
+            //cboLanguage.Items.Add("Portuguese/English pt|en");
+            //cboLanguage.Items.Add("Russian/English ru|en");
+            //cboLanguage.Items.Add("Romanian/English ro|en");
+            //cboLanguage.Items.Add("Slovenian/English sl|en");
+            //cboLanguage.Items.Add("Spanish/English es|en");
+            //cboLanguage.Items.Add("Swedish/English sv|en");
+            //cboLanguage.Items.Add("Thai/English th|en");
+            //cboLanguage.Items.Add("Turkish/English tr|en");
+            //cboLanguage.Items.Add("Ukrainian/English uk|en");
 
-            cboLanguage.Items.Add("German/French de|fr");
-            cboLanguage.Items.Add("Spanish/French es|fr");
-            cboLanguage.Items.Add("French/German fr|de");
-            cboLanguage.Items.Add("French/Spanish fr|es");
-            cboLanguage.SelectedIndex = 0;
+            //cboLanguage.Items.Add("German/French de|fr");
+            //cboLanguage.Items.Add("Spanish/French es|fr");
+            //cboLanguage.Items.Add("French/German fr|de");
+            //cboLanguage.Items.Add("French/Spanish fr|es");
+            //cboLanguage.SelectedIndex = 0;
         }
 
         private void CreateSmileys()
@@ -1628,7 +1628,7 @@ namespace METAbolt
                             sindex -= 1;
                         }
 
-                        cboLanguage.SelectedIndex = sindex;
+                        //cboLanguage.SelectedIndex = sindex;
                     }
                 }
             }
@@ -1638,23 +1638,23 @@ namespace METAbolt
         {
             if (string.IsNullOrEmpty(input)) return;
 
-            if (chkTranslate.Checked == true)
-            {
-                if (cboLanguage.SelectedIndex != 0)
-                {
-                    // Call translation here
-                    string oinp = input;
-                    string tinput = GetTranslation(input);
+            //if (chkTranslate.Checked == true)
+            //{
+            //    if (cboLanguage.SelectedIndex != 0)
+            //    {
+            //        // Call translation here
+            //        string oinp = input;
+            //        string tinput = GetTranslation(input);
 
-                    if (tinput != null)
-                    {
-                        tinput = HttpUtility.HtmlDecode(tinput);
-                        input = tinput + " (" + oinp + ")";
-                    }
-                }
-            }
-            else
-            {
+            //        if (tinput != null)
+            //        {
+            //            tinput = HttpUtility.HtmlDecode(tinput);
+            //            input = tinput + " (" + oinp + ")";
+            //        }
+            //    }
+            //}
+            //else
+            //{
                 if (instance.Config.CurrentConfig.EnableSpelling)
                 {
                     // put preference check here
@@ -1698,7 +1698,7 @@ namespace METAbolt
                         return;
                     }
                 }
-            }
+            //}
 
             SendChat(input, type);
         }
@@ -1765,24 +1765,26 @@ namespace METAbolt
 
         private string GetTranslation(string sTrStr)
         {
+            ////string sPair = GetLangPair(cboLanguage.Text);
+
+            ////GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+
+            ////return trans.Translation;
+
             //string sPair = GetLangPair(cboLanguage.Text);
 
-            //GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+            ////GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
+            ////return trans.Translation;
 
-            //return trans.Translation;
+            ////string sPair
 
-            string sPair = GetLangPair(cboLanguage.Text);
+            //MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
 
-            //GoogleTranslationUtils.Translate trans = new GoogleTranslationUtils.Translate(sTrStr, sPair);
-            //return trans.Translation;
+            //string tres = trans.Translate(sTrStr, sPair);
 
-            //string sPair
+            //return tres;
 
-            MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
-
-            string tres = trans.Translate(sTrStr, sPair);
-
-            return tres;
+            return string.Empty;  
         }
 
         private string GetLangPair(string sPair)
@@ -2032,16 +2034,16 @@ namespace METAbolt
 
         private void chkTranslate_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkTranslate.Checked == true)
-            {
-                MessageBox.Show("~ METAtranslate ~ \n \n You must now select a language pair \n from the dropdown box. \n \n Anything you say will be auto translated to that language.", "METAtranslate");
-                cboLanguage.Enabled = true;
-            }
-            else
-            {
-                cboLanguage.Enabled = false;
-                cboLanguage.SelectedIndex = 0;
-            }
+            //if (chkTranslate.Checked == true)
+            //{
+            //    MessageBox.Show("~ METAtranslate ~ \n \n You must now select a language pair \n from the dropdown box. \n \n Anything you say will be auto translated to that language.", "METAtranslate");
+            //    cboLanguage.Enabled = true;
+            //}
+            //else
+            //{
+            //    cboLanguage.Enabled = false;
+            //    cboLanguage.SelectedIndex = 0;
+            //}
         }
 
         //private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -3453,13 +3455,13 @@ namespace METAbolt
             {
                 panel7.Visible = false;
                 tsbSearch.ToolTipText = "Show chat search";
-                rtbChat.Height += 23; 
+                rtbChat.Height += 28; 
             }
             else
             {
                 panel7.Visible = true;
                 tsbSearch.ToolTipText = "Hide chat search";
-                rtbChat.Height -= 23;
+                rtbChat.Height -= 28;
             }
         }
 
