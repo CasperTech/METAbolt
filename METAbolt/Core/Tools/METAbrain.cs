@@ -140,13 +140,13 @@ namespace METAbolt
 
             if (instance.Config.CurrentConfig.MultiLingualAI)
             {
-                dland = trans.DetectLanguageShortName(msg);
+                //dland = trans.DetectLanguageShortName(msg);
 
-                if (dland != "en")
-                {
-                    // translate to english
-                    msg = trans.Translate(msg, dland + "|en");
-                }
+                //if (dland != "en")
+                //{
+                //    // translate to english
+                //    msg = trans.Translate(msg, dland + "|en");
+                //}
             }
 
             string reply = GetResp(msg, user);
