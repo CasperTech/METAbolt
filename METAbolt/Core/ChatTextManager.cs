@@ -475,31 +475,31 @@ namespace METAbolt
 
         private void CheckBufferSize()
         {
-            int lines = textBuffer.Count;
-            int maxlines = this.instance.Config.CurrentConfig.lineMax;
+            //int lines = textBuffer.Count;
+            //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-            if (maxlines == 0) return;
+            //if (maxlines == 0) return;
+
+            ////if (lines > maxlines)
+            ////{
+            ////    textBuffer.RemoveAt(0);
+
+            ////    ReprintAllText();
+            ////}
 
             //if (lines > maxlines)
             //{
-            //    textBuffer.RemoveAt(0);
+            //    int lineno = maxlines / 2;
+
+            //    for (int a = 0; a < lineno; a++)
+            //    {
+            //        textBuffer.RemoveAt(a);
+            //    }
+
+            //    reprinting = true;
 
             //    ReprintAllText();
             //}
-
-            if (lines > maxlines)
-            {
-                int lineno = maxlines / 2;
-
-                for (int a = 0; a < lineno; a++)
-                {
-                    textBuffer.RemoveAt(a);
-                }
-
-                reprinting = true;
-
-                ReprintAllText();
-            }
         }
 
         public void ProcessBufferItem(ChatBufferItem item, bool addToBuffer)
@@ -523,14 +523,14 @@ namespace METAbolt
             {
                 textBuffer.Add(item);
 
-                int lines = textBuffer.Count;
-                int maxlines = this.instance.Config.CurrentConfig.lineMax;
+                //int lines = textBuffer.Count;
+                //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-                if (lines > maxlines && maxlines > 0)
-                {
-                    CheckBufferSize();
-                    return;
-                }
+                //if (lines > maxlines && maxlines > 0)
+                //{
+                //    CheckBufferSize();
+                //    return;
+                //}
             }
 
             DateTime dte = item.Timestamp;
@@ -1143,14 +1143,14 @@ namespace METAbolt
             {
                 textBuffer.Add(item);
 
-                int lines = textBuffer.Count;
-                int maxlines = this.instance.Config.CurrentConfig.lineMax;
+                //int lines = textBuffer.Count;
+                //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-                if (lines > maxlines && maxlines > 0)
-                {
-                    CheckBufferSize();
-                    return;
-                }
+                //if (lines > maxlines && maxlines > 0)
+                //{
+                //    CheckBufferSize();
+                //    return;
+                //}
             }
 
             textPrinter.SetSelectionForeColor(Color.Gray);

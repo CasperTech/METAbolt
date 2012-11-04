@@ -223,14 +223,14 @@ namespace METAbolt
 
             textBuffer.Add(e);
 
-            int lines = textBuffer.Count;
-            int maxlines = this.instance.Config.CurrentConfig.lineMax;
+            //int lines = textBuffer.Count;
+            //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-            if (lines > maxlines && maxlines > 0)
-            {
-                CheckBufferSize();
-                return;
-            }
+            //if (lines > maxlines && maxlines > 0)
+            //{
+            //    CheckBufferSize();
+            //    return;
+            //}
 
             ProcessIM(e);
         }
@@ -253,14 +253,14 @@ namespace METAbolt
             {
                 textBuffer.Add(e);
 
-                int lines = textBuffer.Count;
-                int maxlines = this.instance.Config.CurrentConfig.lineMax;
+                //int lines = textBuffer.Count;
+                //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-                if (lines > maxlines && maxlines > 0)
-                {
-                    CheckBufferSize();
-                    return;
-                }
+                //if (lines > maxlines && maxlines > 0)
+                //{
+                //    CheckBufferSize();
+                //    return;
+                //}
 
                 ProcessIM(e);
             }
@@ -270,14 +270,14 @@ namespace METAbolt
             {
                 textBuffer.Add(e);
 
-                int lines = textBuffer.Count;
-                int maxlines = this.instance.Config.CurrentConfig.lineMax;
+                //int lines = textBuffer.Count;
+                //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-                if (lines > maxlines && maxlines > 0)
-                {
-                    CheckBufferSize();
-                    return;
-                }
+                //if (lines > maxlines && maxlines > 0)
+                //{
+                //    CheckBufferSize();
+                //    return;
+                //}
 
                 ProcessIM(e);
             }
@@ -600,23 +600,23 @@ namespace METAbolt
 
         private void CheckBufferSize()
         {
-            int lines = textBuffer.Count;
-            int maxlines = this.instance.Config.CurrentConfig.lineMax;
+            //int lines = textBuffer.Count;
+            //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-            if (maxlines == 0)
-                return;
+            //if (maxlines == 0)
+            //    return;
 
-            if (lines > maxlines)
-            {
-                int lineno = maxlines / 2;
+            //if (lines > maxlines)
+            //{
+            //    int lineno = maxlines / 2;
 
-                for (int a = 0; a < lineno; a++)
-                {
-                    textBuffer.RemoveAt(a);
-                }
+            //    for (int a = 0; a < lineno; a++)
+            //    {
+            //        textBuffer.RemoveAt(a);
+            //    }
 
-                ReprintAllText();
-            }
+            //    ReprintAllText();
+            //}
         }
 
         public void ClearInternalBuffer()
