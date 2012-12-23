@@ -152,6 +152,8 @@ namespace METAbolt
                     buff += " ";
                 }
 
+                //int line = rtb.GetLineFromCharIndex(cpos);
+
                 rtb.AppendText(buff + Environment.NewLine);
             }
         }

@@ -487,12 +487,18 @@ namespace METAbolt
             }
 
             lblGroupName.Text = Profile.Name;
-            txtCharter.Text = Profile.Charter;
+            txtCharter.Text = Profile.Charter;            
 
-            //chkListInProfile.Checked = Profile.ListInProfile;
-            //chkGroupNotices.Checked = Profile.AcceptNotices;
-            chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
-            chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
+            if (instance.State.Groups.ContainsKey(Profile.ID))
+            {
+                chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
+                chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
+            }
+            else
+            {
+                chkListInProfile.Checked = Profile.ListInProfile;
+                chkGroupNotices.Checked = Profile.AcceptNotices;
+            }
 
             chkPublish.Checked = Profile.AllowPublish;
             chkOpenEnrollment.Checked = Profile.OpenEnrollment;
