@@ -496,8 +496,9 @@ namespace METAbolt
             }
             else
             {
-                chkListInProfile.Checked = Profile.ListInProfile;
-                chkGroupNotices.Checked = Profile.AcceptNotices;
+                chkListInProfile.Enabled = false;
+                chkGroupNotices.Enabled = false;
+
             }
 
             chkPublish.Checked = Profile.AllowPublish;
