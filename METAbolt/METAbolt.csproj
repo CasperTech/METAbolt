@@ -137,10 +137,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MB_Translation_Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\MB_Translation_Utils.dll</HintPath>
-    </Reference>
     <Reference Include="MD5library, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\MD5library.dll</HintPath>
@@ -666,12 +662,6 @@
     <Compile Include="GUI\Dialogs\frmTPhistory.Designer.cs">
       <DependentUpon>frmTPhistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Dialogs\frmTranslate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Dialogs\frmTranslate.Designer.cs">
-      <DependentUpon>frmTranslate.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Dialogs\UploadImage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1005,10 +995,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmTPhistory.resx">
       <DependentUpon>frmTPhistory.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Dialogs\frmTranslate.resx">
-      <DependentUpon>frmTranslate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\UploadImage.resx">

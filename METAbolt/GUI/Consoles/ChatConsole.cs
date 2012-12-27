@@ -38,7 +38,7 @@ using System.IO;
 using System.Web;
 using System.Drawing.Drawing2D;
 //using GoogleTranslationUtils;
-using MB_Translation_Utils;
+//using MB_Translation_Utils;
 using OpenMetaverse.Imaging;
 using OpenMetaverse.Assets;
 using System.Drawing.Imaging;
@@ -1603,35 +1603,35 @@ namespace METAbolt
                 instance.State.LookAt(false, e.OwnerID);
             }
 
-            if (instance.DetectLang)
-            {
-                if (!string.IsNullOrEmpty(e.Message))
-                {
-                    //GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
+            //if (instance.DetectLang)
+            //{
+            //    if (!string.IsNullOrEmpty(e.Message))
+            //    {
+            //        //GoogleTranslationUtils.DetectLanguage detect = new GoogleTranslationUtils.DetectLanguage(e.Message);
 
-                    MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
-                    string dland = trans.DetectLanguageFullName(e.Message);
+            //        MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
+            //        string dland = trans.DetectLanguageFullName(e.Message);
 
-                    int sindex = trans.GetLangIndex(dland);
+            //        int sindex = trans.GetLangIndex(dland);
 
-                    if (sindex == 33)
-                        sindex = 0;
+            //        if (sindex == 33)
+            //            sindex = 0;
 
-                    this.instance.MainForm.SetFlag(imgFlags.Images[sindex], dland);
+            //        this.instance.MainForm.SetFlag(imgFlags.Images[sindex], dland);
 
-                    // select the language pair fro mthe combo
-                    if (sindex != 0 && sindex != 8)
-                    {
-                        // English does not exist in the combo so adjust
-                        if (sindex > 7)
-                        {
-                            sindex -= 1;
-                        }
+            //        // select the language pair fro mthe combo
+            //        if (sindex != 0 && sindex != 8)
+            //        {
+            //            // English does not exist in the combo so adjust
+            //            if (sindex > 7)
+            //            {
+            //                sindex -= 1;
+            //            }
 
-                        //cboLanguage.SelectedIndex = sindex;
-                    }
-                }
-            }
+            //            //cboLanguage.SelectedIndex = sindex;
+            //        }
+            //    }
+            //}
         }        
 
         public void ProcessChatInput(string input, ChatType type)
@@ -2060,7 +2060,7 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            (new frmTranslate(instance)).Show();
+            //(new frmTranslate(instance)).Show();
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)

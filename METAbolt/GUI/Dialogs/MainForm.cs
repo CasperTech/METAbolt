@@ -1283,7 +1283,7 @@ namespace METAbolt
 
         private void accountHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(@"https://secure-web4.secondlife.com/account/transactions.php?lang=en");
+            System.Diagnostics.Process.Start(@"https://secondlife.com/my/account/history.php?lang=en");
         }
 
         private void sLHelpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1515,10 +1515,10 @@ namespace METAbolt
             tsFlag.ToolTipText = "Detectected language: " + lang; 
         }
 
-        private void detectSpokenLanguageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            instance.DetectLang = tsMenuDetect.Checked;
-        }
+        //private void detectSpokenLanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    instance.DetectLang = tsMenuDetect.Checked;
+        //}
 
         private void mETAplayerToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -135,19 +135,19 @@ namespace METAbolt
 
         private void ProcessAI(string msg, string user, UUID target, UUID sess)
         {
-            string dland = "en";
-            MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
+            //string dland = "en";
+            //MB_Translation_Utils.Utils trans = new MB_Translation_Utils.Utils();
 
-            if (instance.Config.CurrentConfig.MultiLingualAI)
-            {
-                //dland = trans.DetectLanguageShortName(msg);
+            //if (instance.Config.CurrentConfig.MultiLingualAI)
+            //{
+            //    //dland = trans.DetectLanguageShortName(msg);
 
-                //if (dland != "en")
-                //{
-                //    // translate to english
-                //    msg = trans.Translate(msg, dland + "|en");
-                //}
-            }
+            //    //if (dland != "en")
+            //    //{
+            //    //    // translate to english
+            //    //    msg = trans.Translate(msg, dland + "|en");
+            //    //}
+            //}
 
             string reply = GetResp(msg, user);
 
@@ -164,17 +164,17 @@ namespace METAbolt
                 }
             }
 
-            if (instance.Config.CurrentConfig.MultiLingualAI)
-            {
-                if (dland != "en")
-                {
-                    reply = trans.Translate(reply, "en|" + dland);
-                }
-            }
+            //if (instance.Config.CurrentConfig.MultiLingualAI)
+            //{
+            //    if (dland != "en")
+            //    {
+            //        reply = trans.Translate(reply, "en|" + dland);
+            //    }
+            //}
 
             netcom.SendInstantMessage(reply, target, sess);
 
-            trans = null;
+            //trans = null;
         }
 
         public string GetResp(string msg, string user)

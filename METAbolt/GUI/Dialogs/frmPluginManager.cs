@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using METAxCommon;
+using System.Diagnostics;
 
 namespace METAbolt
 {
@@ -157,6 +158,11 @@ namespace METAbolt
                     }
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Extensions\\");
         }
     }
 }

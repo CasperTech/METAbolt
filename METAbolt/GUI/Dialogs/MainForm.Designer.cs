@@ -75,8 +75,6 @@ namespace METAbolt
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.mnuDollar = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDonate = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.linDexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAvatar = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.awayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,8 +119,6 @@ namespace METAbolt
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsMenuDetect = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.uploadImageL10PerUploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tlLogs = new System.Windows.Forms.ToolStripDropDownButton();
@@ -341,7 +337,6 @@ namespace METAbolt
             this.toolStripSeparator1,
             this.tbtnHelp,
             this.toolStripDropDownButton2,
-            this.toolStripDropDownButton1,
             this.btnAvatar,
             this.toolStripSeparator2,
             this.tlTools,
@@ -617,29 +612,6 @@ namespace METAbolt
             this.mnuDonate.Size = new System.Drawing.Size(138, 22);
             this.mnuDonate.Text = "Donate L$";
             this.mnuDonate.Click += new System.EventHandler(this.mnuDonate_Click);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.AccessibleName = "Currency exchange menu";
-            this.toolStripDropDownButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.linDexToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "Buy/Sell L$";
-            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
-            // 
-            // linDexToolStripMenuItem
-            // 
-            this.linDexToolStripMenuItem.AccessibleDescription = "Buy and sell Linden dollars";
-            this.linDexToolStripMenuItem.AccessibleName = "Lindex menu option";
-            this.linDexToolStripMenuItem.Name = "linDexToolStripMenuItem";
-            this.linDexToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.linDexToolStripMenuItem.Text = "LinDex (official Linden)";
-            this.linDexToolStripMenuItem.Click += new System.EventHandler(this.linDexToolStripMenuItem_Click_1);
             // 
             // btnAvatar
             // 
@@ -918,7 +890,7 @@ namespace METAbolt
             this.accountHistoryToolStripMenuItem.Image = global::METAbolt.Properties.Resources.acchist;
             this.accountHistoryToolStripMenuItem.Name = "accountHistoryToolStripMenuItem";
             this.accountHistoryToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.accountHistoryToolStripMenuItem.Text = "Account History";
+            this.accountHistoryToolStripMenuItem.Text = "SL Account History";
             this.accountHistoryToolStripMenuItem.Click += new System.EventHandler(this.accountHistoryToolStripMenuItem_Click);
             // 
             // toolStripSeparator12
@@ -953,8 +925,6 @@ namespace METAbolt
             this.toolStripSeparator19,
             this.toolStripMenuItem4,
             this.toolStripSeparator23,
-            this.tsMenuDetect,
-            this.toolStripSeparator11,
             this.uploadImageL10PerUploadToolStripMenuItem});
             this.tlTools.Enabled = false;
             this.tlTools.Image = global::METAbolt.Properties.Resources.tools1;
@@ -1032,20 +1002,6 @@ namespace METAbolt
             // 
             this.toolStripSeparator23.Name = "toolStripSeparator23";
             this.toolStripSeparator23.Size = new System.Drawing.Size(236, 6);
-            // 
-            // tsMenuDetect
-            // 
-            this.tsMenuDetect.AccessibleName = "Detect spoken language menu option";
-            this.tsMenuDetect.CheckOnClick = true;
-            this.tsMenuDetect.Name = "tsMenuDetect";
-            this.tsMenuDetect.Size = new System.Drawing.Size(239, 22);
-            this.tsMenuDetect.Text = "Detect Spoken Language";
-            this.tsMenuDetect.Click += new System.EventHandler(this.detectSpokenLanguageToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(236, 6);
             // 
             // uploadImageL10PerUploadToolStripMenuItem
             // 
@@ -1322,8 +1278,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
         private System.Windows.Forms.ToolStripMenuItem mnuDollar;
         private System.Windows.Forms.ToolStripMenuItem mnuDonate;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem linDexToolStripMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton btnAvatar;
         private System.Windows.Forms.ToolStripMenuItem statusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem awayToolStripMenuItem;
@@ -1368,8 +1322,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator23;
-        private System.Windows.Forms.ToolStripMenuItem tsMenuDetect;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem uploadImageL10PerUploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripDropDownButton tlLogs;
