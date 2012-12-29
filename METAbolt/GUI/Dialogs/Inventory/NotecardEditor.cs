@@ -109,6 +109,15 @@ namespace METAbolt
             rtbNotecard.TextChanged += new EventHandler(rtbNotecard_TextChanged);
 
             client.Assets.RequestInventoryAsset(assetUUID, item.UUID, UUID.Zero, item.OwnerID, item.AssetType, true, Assets_OnAssetReceived);
+
+            if (nreadonly)
+            {
+                rtbNotecard.ReadOnly = true;
+                btnSave.Enabled = false;
+                toolStripDropDownButton1.Enabled = false;
+                toolStripDropDownButton2.Enabled = false;
+                rtbNotecard.BackColor = Color.AliceBlue;
+            }
         }
 
         public frmNotecardEditor(METAboltInstance instance, InventoryNotecard item, Primitive obj)
@@ -194,7 +203,7 @@ namespace METAbolt
             tsStatus.Text = "Ready.";
             PB1.Visible = false;
 
-            if (!rtbNotecard.ReadOnly)
+            if (!nreadonly)
             {
                 btnSave.Enabled = true;
                 tsSave.Enabled = true;
@@ -202,7 +211,11 @@ namespace METAbolt
             }
             else
             {
+                rtbNotecard.ReadOnly = true;
                 btnSave.Enabled = false;
+                toolStripDropDownButton1.Enabled = false;
+                toolStripDropDownButton2.Enabled = false;
+                rtbNotecard.BackColor = Color.AliceBlue;
             }
         }
 
