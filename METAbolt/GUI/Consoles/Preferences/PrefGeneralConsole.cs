@@ -149,6 +149,7 @@ namespace METAbolt
             nUD1.Value = config.CurrentConfig.LogOffTime;
             nUD2.Value = config.CurrentConfig.ReStartTime;
             textBox4.Text = client.Settings.ASSET_CACHE_DIR;
+            checkBox13.Checked = config.CurrentConfig.HideDisconnectPrompt;   
             //trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);    
             //textBox5.Text = trackBar1.Value.ToString();
             SetBarValue();
@@ -282,6 +283,7 @@ namespace METAbolt
             instance.Config.CurrentConfig.LogOffTime = Convert.ToInt32(nUD1.Value);
             instance.Config.CurrentConfig.ReStartTime = Convert.ToInt32(nUD2.Value);
             //instance.Config.CurrentConfig.BandwidthThrottle = Convert.ToSingle(trackBar1.Value);
+            instance.Config.CurrentConfig.HideDisconnectPrompt = checkBox13.Checked; 
 
             if (checkBox4.Checked)
             {

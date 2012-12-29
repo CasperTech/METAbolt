@@ -120,6 +120,7 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -204,6 +205,7 @@ namespace METAbolt
             // 
             this.tabPage1.AccessibleName = "Options tab";
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.checkBox13);
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.chkLSL);
@@ -263,7 +265,7 @@ namespace METAbolt
             // 
             this.chkLSL.AccessibleName = "Disable icon option";
             this.chkLSL.AutoSize = true;
-            this.chkLSL.Location = new System.Drawing.Point(8, 191);
+            this.chkLSL.Location = new System.Drawing.Point(8, 215);
             this.chkLSL.Name = "chkLSL";
             this.chkLSL.Size = new System.Drawing.Size(132, 17);
             this.chkLSL.TabIndex = 63;
@@ -273,7 +275,7 @@ namespace METAbolt
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(291, 236);
+            this.label12.Location = new System.Drawing.Point(291, 248);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(32, 13);
             this.label12.TabIndex = 62;
@@ -283,7 +285,7 @@ namespace METAbolt
             // 
             this.nUD2.AccessibleName = "Auto logout interval setting";
             this.nUD2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nUD2.Location = new System.Drawing.Point(249, 233);
+            this.nUD2.Location = new System.Drawing.Point(249, 245);
             this.nUD2.Maximum = new decimal(new int[] {
             2880,
             0,
@@ -307,7 +309,7 @@ namespace METAbolt
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(166, 236);
+            this.label11.Location = new System.Drawing.Point(166, 248);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 60;
@@ -372,7 +374,7 @@ namespace METAbolt
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(131, 236);
+            this.label9.Location = new System.Drawing.Point(131, 248);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 58;
@@ -382,7 +384,7 @@ namespace METAbolt
             // 
             this.nUD1.AccessibleName = "Auto logout interval setting";
             this.nUD1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nUD1.Location = new System.Drawing.Point(85, 233);
+            this.nUD1.Location = new System.Drawing.Point(85, 245);
             this.nUD1.Maximum = new decimal(new int[] {
             2880,
             0,
@@ -396,7 +398,7 @@ namespace METAbolt
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 236);
+            this.label8.Location = new System.Drawing.Point(6, 248);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 13);
             this.label8.TabIndex = 56;
@@ -451,7 +453,7 @@ namespace METAbolt
             // picAutoSit
             // 
             this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
-            this.picAutoSit.Location = new System.Drawing.Point(159, 173);
+            this.picAutoSit.Location = new System.Drawing.Point(159, 197);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
             this.picAutoSit.TabIndex = 38;
@@ -464,7 +466,7 @@ namespace METAbolt
             // 
             this.chkAutoSit.AccessibleName = "Enable auto-sit option";
             this.chkAutoSit.AutoSize = true;
-            this.chkAutoSit.Location = new System.Drawing.Point(8, 173);
+            this.chkAutoSit.Location = new System.Drawing.Point(8, 197);
             this.chkAutoSit.Name = "chkAutoSit";
             this.chkAutoSit.Size = new System.Drawing.Size(151, 17);
             this.chkAutoSit.TabIndex = 12;
@@ -1238,6 +1240,17 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
+            // checkBox13
+            // 
+            this.checkBox13.AccessibleName = "Disable icon option";
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(8, 167);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(216, 17);
+            this.checkBox13.TabIndex = 66;
+            this.checkBox13.Text = "Disable \'Network Disconnected\' prompts";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1379,6 +1392,7 @@ namespace METAbolt
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox13;
 
     }
 }

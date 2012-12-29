@@ -1805,9 +1805,13 @@ namespace METAbolt
                     //instance.ReadIMs = false;
 
                     //(new frmDisconnected(instance, disconnectreason)).ShowDialog(this);
-                    (new frmDisconnected(instance, disconnectreason)).ShowDialog();
 
-                    if (instance.ReadIMs) return;
+                    if (!instance.Config.CurrentConfig.HideDisconnectPrompt)
+                    {
+                        (new frmDisconnected(instance, disconnectreason)).ShowDialog();
+
+                        if (instance.ReadIMs) return;
+                    }
                 }
             }
 

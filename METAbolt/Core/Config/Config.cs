@@ -167,6 +167,7 @@ namespace METAbolt
         private bool enablespellcheck = false;
         private string spelllang = "en_GB";
         //private bool broadcastid = true;
+        private bool hidedisconnectprompt = false;
 
         public Config()
         {
@@ -211,6 +212,7 @@ namespace METAbolt
                 config.HeaderFontStyle = conf.Configs["General"].GetString("HeaderFontStyle", "Regular");
                 config.HeaderFontSize = conf.Configs["General"].GetFloat("HeaderFontSize", 8.5f);
                 config.StartMinimised = conf.Configs["General"].GetBoolean("StartMinimised", false);
+                config.HideDisconnectPrompt = conf.Configs["General"].GetBoolean("HideDisconnectPrompt", false);
 
                 try
                 {
@@ -392,6 +394,7 @@ namespace METAbolt
             config.Set("ReStartTime", restarttime.ToString(CultureInfo.CurrentCulture));
             config.Set("BandwidthThrottle", bandwidththrottle.ToString(CultureInfo.CurrentCulture));
             config.Set("ClassicChatLayout", useclassicchatlayout.ToString(CultureInfo.CurrentCulture));
+            config.Set("HideDisconnectPrompt", hidedisconnectprompt.ToString(CultureInfo.CurrentCulture));
 
             if (headerfont == null)
             {
@@ -1226,6 +1229,12 @@ namespace METAbolt
         {
             get { return spelllang; }
             set { spelllang = value; }
+        }
+
+        public bool HideDisconnectPrompt
+        {
+            get { return hidedisconnectprompt; }
+            set { hidedisconnectprompt = value; }
         }
 
         //public bool BroadcastID
