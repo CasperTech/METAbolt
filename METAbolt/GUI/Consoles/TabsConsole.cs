@@ -224,16 +224,36 @@ namespace METAbolt
                     }
                     else
                     {
-                        if (!String.IsNullOrEmpty(ti.ItemDescription))
+                        if (!String.IsNullOrEmpty(e.Description))
                         {
-                            body = "You have received a payment of L$" + bal.ToString() + " from " + ti.ItemDescription;
+                            string pfrm = string.Empty;
+
+                            if (ti.TransactionType == 5008)
+                            {
+                                pfrm = " via " + ti.ItemDescription;
+                            }
+
+                            body = e.Description + pfrm;
                         }
                         else
                         {
-                            body = "You have received a payment of L$" + bal.ToString();
+                            if (!String.IsNullOrEmpty(ti.ItemDescription))
+                            {
+                                body = "You have received a payment of L$" + bal.ToString() + " from " + ti.ItemDescription;
+                            }
+                            else
+                            {
+                                body = "You have received a payment of L$" + bal.ToString();
+                            }
                         }
                     }
                 }
+
+                TrayNotifiy(ttl, body, false);
+            }
+            else
+            {
+                body = e.Description;
 
                 TrayNotifiy(ttl, body, false);
             }
