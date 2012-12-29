@@ -55,11 +55,20 @@ namespace METAbolt
         {
             //Vector3 forward = new Vector3(1, 0, 0);
             ////Vector3 offset = Vector3.Norm(target - myPos);
-            Vector3 rezpos = new Vector3(1, 0, 0);
-            rezpos = (instance.SIMsittingPos() + rezpos);
 
-            client.Inventory.RequestRezFromInventory(
-                client.Network.CurrentSim, Quaternion.Identity, rezpos, (InventoryObject)item);
+            try
+            {
+                Vector3 rezpos = new Vector3(1, 0, 0);
+                rezpos = (instance.SIMsittingPos() + rezpos);
+
+                client.Inventory.RequestRezFromInventory(
+                    client.Network.CurrentSim, Quaternion.Identity, rezpos, (InventoryObject)item);
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)

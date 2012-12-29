@@ -143,9 +143,17 @@ namespace METAbolt
                 TransactionInfo ti = e.TransactionInfo;
                 string desc = ti.ItemDescription;
 
-                if (!String.IsNullOrEmpty(desc))
+                int typtype = ti.TransactionType;
+
+                if (typtype > 0)
                 {
-                    tabsConsole.DisplayChatScreen(" => You paid L$" + ti.Amount.ToString() + " for " + desc + " ");
+                    if (!String.IsNullOrEmpty(desc))
+                    {
+                        if (ti.DestID != client.Self.AgentID)
+                        {
+                            tabsConsole.DisplayChatScreen(" => You paid L$" + ti.Amount.ToString() + " for " + desc + " ");
+                        }
+                    }
                 }
             }
         }

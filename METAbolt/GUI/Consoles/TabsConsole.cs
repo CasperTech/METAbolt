@@ -209,10 +209,32 @@ namespace METAbolt
 
             int bal = e.Balance - tmoneybalance;
 
+            TransactionInfo ti = e.TransactionInfo;
+
+            string ttl = "METAbolt Alert";
+            string body = string.Empty;
+
             if (bal > 0)
             {
-                string ttl = "METAbolt Alert";
-                string body = "You have received a payment of L$" + bal.ToString();
+                if (e.Success)
+                {
+                    if (ti.DestID != client.Self.AgentID)
+                    {
+                        body = "You paid L$" + ti.Amount.ToString() + " for " + ti.ItemDescription;
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(ti.ItemDescription))
+                        {
+                            body = "You have received a payment of L$" + bal.ToString() + " from " + ti.ItemDescription;
+                        }
+                        else
+                        {
+                            body = "You have received a payment of L$" + bal.ToString();
+                        }
+                    }
+                }
+
                 TrayNotifiy(ttl, body, false);
             }
 
