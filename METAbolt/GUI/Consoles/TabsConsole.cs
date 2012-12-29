@@ -198,18 +198,21 @@ namespace METAbolt
                 return;
             }
 
-            if (instance.Config.CurrentConfig.PlayPaymentReceived)
+            TransactionInfo ti = e.TransactionInfo;
+
+            if (ti.DestID != UUID.Zero && ti.SourceID != UUID.Zero)
             {
-                SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.MoneyBeep);
-                simpleSound.Play();
-                simpleSound.Dispose();
+                if (instance.Config.CurrentConfig.PlayPaymentReceived)
+                {
+                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.MoneyBeep);
+                    simpleSound.Play();
+                    simpleSound.Dispose();
+                }
             }
 
             //tabs["chat"].Highlight();
 
             int bal = e.Balance - tmoneybalance;
-
-            TransactionInfo ti = e.TransactionInfo;
 
             string ttl = "METAbolt Alert";
             string body = string.Empty;

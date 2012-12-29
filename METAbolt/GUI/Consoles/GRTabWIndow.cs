@@ -68,10 +68,9 @@ namespace METAbolt
 
                 split = gmsg.Split(new Char[] { ':' });
 
-                if (split.Rank > 1)
+                if (split.Length > 1)
                 {
-
-                    lblSubheading.Text = split[0].ToString() + "\n \n" + split[1].ToString();
+                    lblSubheading.Text = split[0].ToString().Replace("Group", "\nGroup: ") + split[1].ToString().Replace("\n", "");
                 }
                 else
                 {
