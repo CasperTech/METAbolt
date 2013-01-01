@@ -85,7 +85,7 @@ namespace METAbolt
                 label1.Text = "Name: " + sim.ToString();
 
                 label22.Text = "Version: " + sim.SimVersion;
-                label23.Text = "Location: " + sim.ColoLocation;
+                label23.Text = "Location: " + sim.Name;
 
                 label2.Text = "Dilation: " + sim.Stats.Dilation.ToString();
                 progressBar1.Value = (int)(sim.Stats.Dilation * 10);
