@@ -159,9 +159,17 @@ namespace METAbolt
             {
                 if (av.Key == sPr.Properties.OwnerID)
                 {
-                    label9.Text = av.Value;  
+                    label9.Text = av.Value;
                     pictureBox1.Enabled = true;
                     pictureBox1.Cursor = Cursors.Hand;
+                }
+
+                if (av.Key == sPr.Properties.CreatorID)
+                {
+                    txtCreator.Text = av.Value;
+                    pictureBox2.Enabled = true;
+                    pictureBox2.Cursor = Cursors.Hand;
+                    label21.Text = sPr.Properties.CreatorID.ToString(); 
                 }
 
                 if (!instance.avnames.ContainsKey(av.Key))
@@ -1295,10 +1303,15 @@ namespace METAbolt
 
         private void lbxPrims_SelectedIndexChanged(object sender, EventArgs e)
         {
+            sloading = true;
+
+            DisplaySelected();
+        }
+
+        private void DisplaySelected()
+        {
             try
             {
-                sloading = true;
-
                 lbxTask.Items.Clear();
 
                 button6.Enabled = groupBox1.Enabled = gbxInworld.Enabled = (lbxPrims.SelectedItem != null);
@@ -1344,22 +1357,42 @@ namespace METAbolt
                 {
                     label9.Text = instance.avnames[lookup];
                     pictureBox1.Enabled = true;
-                    pictureBox1.Cursor = Cursors.Hand;   
+                    pictureBox1.Cursor = Cursors.Hand;
                 }
 
-                //if (lookup == client.Self.AgentID)
-                //{
-                //    btnReturn.Enabled =  btnTake.Enabled = true;
-                //}
-                //else
-                //{
-                //    btnReturn.Enabled = btnTake.Enabled = false;
-                //}
+                txtCreator.Text = "??? (click on selected object)";
+
+                lookup = sPr.Properties.CreatorID;
+
+                if (lookup != UUID.Zero)
+                {
+
+                    if (!instance.avnames.ContainsKey(lookup))
+                    {
+                        client.Avatars.RequestAvatarName(lookup);
+                        pictureBox2.Cursor = Cursors.Default;
+                    }
+                    else
+                    {
+                        txtCreator.Text = instance.avnames[lookup];
+                        pictureBox2.Enabled = true;
+                        pictureBox2.Cursor = Cursors.Hand;
+                    }
+
+                    label21.Text = sPr.Properties.CreatorID.ToString();
+                }
+                else
+                {
+                    pictureBox2.Enabled = false;
+                    pictureBox2.Cursor = Cursors.Default;
+                }
+
 
                 btnReturn.Enabled = btnTake.Enabled = true;
 
                 PermissionMask sPerm = sPr.Properties.Permissions.NextOwnerMask;
                 PermissionMask sOPerm = sPr.Properties.Permissions.OwnerMask;
+
                 string sEp = sPerm.ToString();
                 string sOEp = sOPerm.ToString();
 
@@ -1534,6 +1567,9 @@ namespace METAbolt
             toolTip.AutoClose = false;
             toolTip.FocusOnOpen = false;
             toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+
+            lbxPrims.SelectedItem = lbxPrims.SelectedItem;
+            lbxPrims.Select();
         }
 
         private void SetPerm(Primitive sPr)
@@ -2803,6 +2839,13 @@ namespace METAbolt
         void Objects_Disposed(object sender, EventArgs e)
         {
             //GC.Collect();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            UUID aID = (UUID)label21.Text;
+
+            (new frmProfile(instance, txtCreator.Text, aID)).Show();
         }
     }
 }

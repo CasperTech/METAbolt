@@ -102,7 +102,6 @@ namespace METAbolt
             this.pBar2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pBar3 = new System.Windows.Forms.PictureBox();
-            this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -111,6 +110,11 @@ namespace METAbolt
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.txtCreator = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.gbxInworld.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -124,6 +128,7 @@ namespace METAbolt
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBar3)).BeginInit();
             this.mnuTask.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // gbxInworld
@@ -348,6 +353,10 @@ namespace METAbolt
             this.groupBox1.AccessibleName = "Object information panel";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.txtCreator);
+            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.lblUUID);
             this.groupBox1.Controls.Add(this.label9);
@@ -386,7 +395,7 @@ namespace METAbolt
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = global::METAbolt.Properties.Resources.profile;
-            this.pictureBox1.Location = new System.Drawing.Point(214, 135);
+            this.pictureBox1.Location = new System.Drawing.Point(214, 167);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(22, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -398,7 +407,7 @@ namespace METAbolt
             // 
             this.lblUUID.AccessibleName = "Object UUID textbox";
             this.lblUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblUUID.Location = new System.Drawing.Point(9, 202);
+            this.lblUUID.Location = new System.Drawing.Point(9, 213);
             this.lblUUID.Multiline = true;
             this.lblUUID.Name = "lblUUID";
             this.lblUUID.ReadOnly = true;
@@ -409,23 +418,24 @@ namespace METAbolt
             // 
             this.label9.AccessibleName = "Owner name textbox";
             this.label9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label9.Location = new System.Drawing.Point(42, 135);
+            this.label9.Location = new System.Drawing.Point(54, 167);
             this.label9.Multiline = true;
             this.label9.Name = "label9";
             this.label9.ReadOnly = true;
-            this.label9.Size = new System.Drawing.Size(166, 20);
+            this.label9.Size = new System.Drawing.Size(154, 20);
             this.label9.TabIndex = 3;
             // 
             // lblOwner
             // 
             this.lblOwner.AccessibleName = "Owner UUID textbox";
             this.lblOwner.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblOwner.Location = new System.Drawing.Point(9, 159);
+            this.lblOwner.Location = new System.Drawing.Point(40, 78);
             this.lblOwner.Multiline = true;
             this.lblOwner.Name = "lblOwner";
             this.lblOwner.ReadOnly = true;
-            this.lblOwner.Size = new System.Drawing.Size(227, 20);
+            this.lblOwner.Size = new System.Drawing.Size(22, 20);
             this.lblOwner.TabIndex = 4;
+            this.lblOwner.Visible = false;
             // 
             // label15
             // 
@@ -455,7 +465,7 @@ namespace METAbolt
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label16.Location = new System.Drawing.Point(6, 279);
+            this.label16.Location = new System.Drawing.Point(6, 285);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(71, 13);
             this.label16.TabIndex = 40;
@@ -466,7 +476,7 @@ namespace METAbolt
             this.checkBox4.AccessibleName = "Owner perms Resell option";
             this.checkBox4.AutoSize = true;
             this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(189, 278);
+            this.checkBox4.Location = new System.Drawing.Point(189, 284);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(48, 17);
             this.checkBox4.TabIndex = 10;
@@ -478,9 +488,9 @@ namespace METAbolt
             this.checkBox5.AccessibleName = "Owner perms Copy option";
             this.checkBox5.AutoSize = true;
             this.checkBox5.Enabled = false;
-            this.checkBox5.Location = new System.Drawing.Point(143, 278);
+            this.checkBox5.Location = new System.Drawing.Point(143, 284);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(50, 17);
+            this.checkBox5.Size = new System.Drawing.Size(51, 17);
             this.checkBox5.TabIndex = 9;
             this.checkBox5.Text = "Copy";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -491,9 +501,9 @@ namespace METAbolt
             this.checkBox6.AccessibleName = "Owner perms Modify option";
             this.checkBox6.AutoSize = true;
             this.checkBox6.Enabled = false;
-            this.checkBox6.Location = new System.Drawing.Point(102, 278);
+            this.checkBox6.Location = new System.Drawing.Point(102, 284);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(47, 17);
+            this.checkBox6.Size = new System.Drawing.Size(46, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mod";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -513,7 +523,7 @@ namespace METAbolt
             // 
             this.label13.AccessibleName = "Distance label";
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(75, 110);
+            this.label13.Location = new System.Drawing.Point(75, 113);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(0, 13);
             this.label13.TabIndex = 2;
@@ -522,7 +532,7 @@ namespace METAbolt
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label12.Location = new System.Drawing.Point(6, 108);
+            this.label12.Location = new System.Drawing.Point(6, 111);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 13);
             this.label12.TabIndex = 33;
@@ -542,7 +552,7 @@ namespace METAbolt
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label8.Location = new System.Drawing.Point(6, 303);
+            this.label8.Location = new System.Drawing.Point(6, 306);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(95, 13);
             this.label8.TabIndex = 28;
@@ -553,7 +563,7 @@ namespace METAbolt
             this.label5.AccessibleName = "Cost of ownership label";
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(111, 251);
+            this.label5.Location = new System.Drawing.Point(111, 262);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 7;
@@ -562,7 +572,7 @@ namespace METAbolt
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label7.Location = new System.Drawing.Point(6, 251);
+            this.label7.Location = new System.Drawing.Point(6, 262);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(96, 13);
             this.label7.TabIndex = 26;
@@ -573,7 +583,7 @@ namespace METAbolt
             this.label3.AccessibleName = "Sale price label";
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(102, 233);
+            this.label3.Location = new System.Drawing.Point(102, 244);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 6;
@@ -582,7 +592,7 @@ namespace METAbolt
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label4.Location = new System.Drawing.Point(6, 233);
+            this.label4.Location = new System.Drawing.Point(6, 244);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 24;
@@ -592,7 +602,7 @@ namespace METAbolt
             // 
             this.checkBox3.AccessibleName = "Next owner Resell option";
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(189, 302);
+            this.checkBox3.Location = new System.Drawing.Point(189, 305);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(48, 17);
             this.checkBox3.TabIndex = 13;
@@ -604,9 +614,9 @@ namespace METAbolt
             // 
             this.checkBox2.AccessibleName = "Next owner Copy option";
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(143, 302);
+            this.checkBox2.Location = new System.Drawing.Point(143, 305);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(50, 17);
+            this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Copy";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -616,9 +626,9 @@ namespace METAbolt
             // 
             this.checkBox1.AccessibleName = "Next owner modify option";
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(102, 302);
+            this.checkBox1.Location = new System.Drawing.Point(102, 305);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(47, 17);
+            this.checkBox1.Size = new System.Drawing.Size(46, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Mod";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -628,7 +638,7 @@ namespace METAbolt
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label6.Location = new System.Drawing.Point(6, 138);
+            this.label6.Location = new System.Drawing.Point(6, 170);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 19;
@@ -638,7 +648,7 @@ namespace METAbolt
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label2.Location = new System.Drawing.Point(6, 188);
+            this.label2.Location = new System.Drawing.Point(6, 199);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 17;
@@ -646,8 +656,8 @@ namespace METAbolt
             // 
             // pB1
             // 
-            this.pB1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pB1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pB1.Location = new System.Drawing.Point(6, 518);
             this.pB1.Name = "pB1";
             this.pB1.Size = new System.Drawing.Size(305, 12);
@@ -689,8 +699,8 @@ namespace METAbolt
             // 
             this.lbxChildren.AccessibleDescription = "Displays linked (child) objects of the selected object";
             this.lbxChildren.AccessibleName = "Linked objects listbox";
-            this.lbxChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbxChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxChildren.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbxChildren.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxChildren.FormattingEnabled = true;
@@ -734,8 +744,8 @@ namespace METAbolt
             // groupBox2
             // 
             this.groupBox2.AccessibleName = "Search panel";
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.picAutoSit);
             this.groupBox2.Controls.Add(this.radioButton2);
             this.groupBox2.Controls.Add(this.radioButton1);
@@ -769,7 +779,7 @@ namespace METAbolt
             this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(114, 41);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(67, 17);
+            this.radioButton2.Size = new System.Drawing.Size(66, 17);
             this.radioButton2.TabIndex = 3;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Distance";
@@ -782,7 +792,7 @@ namespace METAbolt
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(56, 41);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(53, 17);
+            this.radioButton1.Size = new System.Drawing.Size(52, 17);
             this.radioButton1.TabIndex = 2;
             this.radioButton1.Text = "Name";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -962,7 +972,7 @@ namespace METAbolt
             this.pBar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pBar2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pBar2.Image = global::METAbolt.Properties.Resources.wait30trans;
-            this.pBar2.Location = new System.Drawing.Point(140, 453);
+            this.pBar2.Location = new System.Drawing.Point(140, 451);
             this.pBar2.Name = "pBar2";
             this.pBar2.Size = new System.Drawing.Size(30, 30);
             this.pBar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -974,9 +984,9 @@ namespace METAbolt
             // panel1
             // 
             this.panel1.AccessibleName = "Object information display panel";
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.pBar3);
@@ -1003,9 +1013,9 @@ namespace METAbolt
             // 
             // pBar3
             // 
-            this.pBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pBar3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pBar3.Image = global::METAbolt.Properties.Resources.wait30trans;
             this.pBar3.Location = new System.Drawing.Point(140, 181);
@@ -1016,34 +1026,11 @@ namespace METAbolt
             this.pBar3.TabStop = false;
             this.pBar3.Visible = false;
             // 
-            // lbxPrims
-            // 
-            this.lbxPrims.AccessibleName = "List of objects listbox";
-            this.lbxPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lbxPrims.ForeColor = System.Drawing.Color.Black;
-            this.lbxPrims.FormattingEnabled = true;
-            this.lbxPrims.HorizontalScrollbar = true;
-            this.lbxPrims.IntegralHeight = false;
-            this.lbxPrims.ItemHeight = 18;
-            this.lbxPrims.Location = new System.Drawing.Point(6, 72);
-            this.lbxPrims.Name = "lbxPrims";
-            this.lbxPrims.Size = new System.Drawing.Size(304, 236);
-            this.lbxPrims.Sorted = true;
-            this.lbxPrims.TabIndex = 0;
-            this.lbxPrims.Visible = false;
-            this.lbxPrims.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxPrims_DrawItem);
-            this.lbxPrims.SelectedIndexChanged += new System.EventHandler(this.lbxPrims_SelectedIndexChanged);
-            this.lbxPrims.Leave += new System.EventHandler(this.lbxPrims_Leave);
-            // 
             // textBox1
             // 
             this.textBox1.AllowDrop = true;
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBox1.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox1.Location = new System.Drawing.Point(6, 496);
@@ -1094,8 +1081,8 @@ namespace METAbolt
             // 
             this.lbxTask.AccessibleDescription = "Displays the contents of the selected object";
             this.lbxTask.AccessibleName = "Object contents listbox";
-            this.lbxTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbxTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxTask.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbxTask.ContextMenuStrip = this.mnuTask;
             this.lbxTask.FullRowSelect = true;
@@ -1142,6 +1129,74 @@ namespace METAbolt
             this.toolStripMenuItem3.Text = "Delete";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.AccessibleName = "Owner profile button";
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Enabled = false;
+            this.pictureBox2.Image = global::METAbolt.Properties.Resources.profile;
+            this.pictureBox2.Location = new System.Drawing.Point(214, 138);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(22, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 49;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // txtCreator
+            // 
+            this.txtCreator.AccessibleName = "Owner name textbox";
+            this.txtCreator.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtCreator.Location = new System.Drawing.Point(54, 138);
+            this.txtCreator.Multiline = true;
+            this.txtCreator.Name = "txtCreator";
+            this.txtCreator.ReadOnly = true;
+            this.txtCreator.Size = new System.Drawing.Size(154, 20);
+            this.txtCreator.TabIndex = 47;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label20.Location = new System.Drawing.Point(6, 141);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(44, 13);
+            this.label20.TabIndex = 48;
+            this.label20.Text = "Creator";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 85);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(0, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Visible = false;
+            // 
+            // lbxPrims
+            // 
+            this.lbxPrims.AccessibleName = "List of objects listbox";
+            this.lbxPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.lbxPrims.ForeColor = System.Drawing.Color.Black;
+            this.lbxPrims.FormattingEnabled = true;
+            this.lbxPrims.HorizontalScrollbar = true;
+            this.lbxPrims.IntegralHeight = false;
+            this.lbxPrims.ItemHeight = 18;
+            this.lbxPrims.Location = new System.Drawing.Point(6, 72);
+            this.lbxPrims.Name = "lbxPrims";
+            this.lbxPrims.Size = new System.Drawing.Size(304, 236);
+            this.lbxPrims.Sorted = true;
+            this.lbxPrims.TabIndex = 0;
+            this.lbxPrims.Visible = false;
+            this.lbxPrims.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxPrims_DrawItem);
+            this.lbxPrims.SelectedIndexChanged += new System.EventHandler(this.lbxPrims_SelectedIndexChanged);
+            this.lbxPrims.Leave += new System.EventHandler(this.lbxPrims_Leave);
+            // 
             // frmObjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1184,6 +1239,7 @@ namespace METAbolt
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBar3)).EndInit();
             this.mnuTask.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1266,5 +1322,9 @@ namespace METAbolt
         private System.Windows.Forms.PictureBox pBar3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox picAutoSit;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TextBox txtCreator;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
     }
 }
