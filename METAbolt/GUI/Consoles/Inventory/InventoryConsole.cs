@@ -2062,11 +2062,11 @@ namespace METAbolt
                 }
                 else if (item.AssetType == AssetType.Object)
                 {
-                    client.Appearance.Attach(item, AttachmentPoint.Default);
+                    client.Appearance.Attach(item, AttachmentPoint.Default, false);
                 }
-            }
 
-            WearTakeoff(true, selectednode);  
+                WearTakeoff(true, selectednode);
+            }  
         }
 
         public void WearTakeoff(bool wear, TreeNode node)
