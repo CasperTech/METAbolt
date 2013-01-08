@@ -39,6 +39,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.pBar3 = new System.Windows.Forms.PictureBox();
+            this.txtUUID = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pBar3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +51,7 @@
             this.btnTouch.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnTouch.Enabled = false;
             this.btnTouch.ForeColor = System.Drawing.Color.White;
-            this.btnTouch.Location = new System.Drawing.Point(283, 388);
+            this.btnTouch.Location = new System.Drawing.Point(283, 403);
             this.btnTouch.Name = "btnTouch";
             this.btnTouch.Size = new System.Drawing.Size(77, 23);
             this.btnTouch.TabIndex = 5;
@@ -62,7 +64,7 @@
             this.btnClose.AccessibleName = "Close this window button";
             this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(366, 388);
+            this.btnClose.Location = new System.Drawing.Point(366, 403);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(51, 23);
             this.btnClose.TabIndex = 6;
@@ -98,7 +100,7 @@
             this.lbxPrimGroup.HorizontalScrollbar = true;
             this.lbxPrimGroup.IntegralHeight = false;
             this.lbxPrimGroup.ItemHeight = 18;
-            this.lbxPrimGroup.Location = new System.Drawing.Point(3, 237);
+            this.lbxPrimGroup.Location = new System.Drawing.Point(3, 252);
             this.lbxPrimGroup.Name = "lbxPrimGroup";
             this.lbxPrimGroup.Size = new System.Drawing.Size(414, 145);
             this.lbxPrimGroup.Sorted = true;
@@ -109,7 +111,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1, 221);
+            this.label3.Location = new System.Drawing.Point(1, 236);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 22;
@@ -132,7 +134,7 @@
             this.label2.AccessibleName = "Total child objects textbox";
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(3, 390);
+            this.label2.Location = new System.Drawing.Point(3, 405);
             this.label2.Name = "label2";
             this.label2.ReadOnly = true;
             this.label2.Size = new System.Drawing.Size(149, 21);
@@ -161,7 +163,7 @@
             this.button2.BackColor = System.Drawing.Color.DarkGreen;
             this.button2.Enabled = false;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(221, 388);
+            this.button2.Location = new System.Drawing.Point(221, 403);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 23);
             this.button2.TabIndex = 56;
@@ -180,6 +182,26 @@
             this.pBar3.TabStop = false;
             this.pBar3.Visible = false;
             // 
+            // txtUUID
+            // 
+            this.txtUUID.AccessibleName = "Total number of attachments textbox";
+            this.txtUUID.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.txtUUID.BackColor = System.Drawing.SystemColors.Control;
+            this.txtUUID.Location = new System.Drawing.Point(36, 210);
+            this.txtUUID.Name = "txtUUID";
+            this.txtUUID.ReadOnly = true;
+            this.txtUUID.Size = new System.Drawing.Size(241, 21);
+            this.txtUUID.TabIndex = 61;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1, 213);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 13);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "UUID:";
+            // 
             // WornAttachments
             // 
             this.AccessibleName = "Worn attachments window";
@@ -188,6 +210,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(420, 499);
+            this.Controls.Add(this.txtUUID);
             this.Controls.Add(this.pBar3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
@@ -199,6 +222,7 @@
             this.Controls.Add(this.lbxPrims);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnTouch);
+            this.Controls.Add(this.label6);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -228,5 +252,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pBar3;
+        private System.Windows.Forms.TextBox txtUUID;
+        private System.Windows.Forms.Label label6;
     }
 }
