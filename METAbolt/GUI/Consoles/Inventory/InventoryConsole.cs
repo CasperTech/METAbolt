@@ -823,6 +823,7 @@ namespace METAbolt
                 //tmnuRename.Enabled = false;
                 replaceOutfitToolStripMenuItem.Visible = true;
                 wearToolStripMenuItem.Visible = false;
+                attachToToolStripMenuItem.Visible = false;
                 toolStripButton2.Enabled = true;
 
                 InventoryFolder aitem = (InventoryFolder)treeView1.SelectedNode.Tag;   // (InventoryItem)node.Tag;
@@ -880,6 +881,11 @@ namespace METAbolt
 
                 //InventoryFolder aitem = (InventoryFolder)treeView1.SelectedNode.Tag;
                 InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+                if (io is InventoryObject || io is InventoryAttachment)
+                {
+                    attachToToolStripMenuItem.Visible = true;
+                }
 
                 if (io is InventoryWearable || io is InventoryObject || io is InventoryAttachment)
                 {
@@ -2062,11 +2068,18 @@ namespace METAbolt
                 }
                 else if (item.AssetType == AssetType.Object)
                 {
-                    client.Appearance.Attach(item, AttachmentPoint.Default, false);
+                    client.Appearance.Attach(item, AttachmentPoint.Default, true);
                 }
 
                 WearTakeoff(true, selectednode);
             }  
+        }
+
+        private void AttachTo(InventoryItem item, AttachmentPoint pnt)
+        {
+            client.Appearance.Attach(item, pnt, false);
+
+            WearTakeoff(true, selectednode);
         }
 
         public void WearTakeoff(bool wear, TreeNode node)
@@ -2122,6 +2135,358 @@ namespace METAbolt
             treeView1.SelectedNode = null;
             AddNewFolder();
             ReloadInventory();
+        }
+
+        private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Default); 
+        }
+
+        private void chestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Chest); 
+        }
+
+        private void chinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Chin); 
+        }
+
+        private void mouthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Mouth); 
+        }
+
+        private void neckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Neck); 
+        }
+
+        private void noseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Nose); 
+        }
+
+        private void pelvisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Pelvis); 
+        }
+
+        private void earToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftEar); 
+        }
+
+        private void eyeBallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftEyeball); 
+        }
+
+        private void footToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftFoot); 
+        }
+
+        private void foreArmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftForearm); 
+        }
+
+        private void handToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftHand); 
+        }
+
+        private void hipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftHip); 
+        }
+
+        private void lowerLegToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftLowerLeg); 
+        }
+
+        private void pecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftPec); 
+        }
+
+        private void shoulderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftShoulder); 
+        }
+
+        private void upperArmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftUpperArm); 
+        }
+
+        private void upperLegToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.LeftUpperLeg); 
+        }
+
+        private void earToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightEar); 
+        }
+
+        private void eyeBallToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightEyeball); 
+        }
+
+        private void footToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightFoot); 
+        }
+
+        private void foreArmToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightForearm); 
+        }
+
+        private void handToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightHand); 
+        }
+
+        private void hipToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightHip); 
+        }
+
+        private void lowerLegToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightLowerLeg); 
+        }
+
+        private void pecToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightPec); 
+        }
+
+        private void shoulderToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightShoulder); 
+        }
+
+        private void upperArmToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightUpperArm); 
+        }
+
+        private void upperLegToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.RightUpperLeg); 
+        }
+
+        private void skullToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Skull); 
+        }
+
+        private void spineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Spine); 
+        }
+
+        private void stomachToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null) return;
+
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+            InventoryItem item = (InventoryItem)io;
+
+            AttachTo(item, AttachmentPoint.Stomach); 
         }
     }
 }
