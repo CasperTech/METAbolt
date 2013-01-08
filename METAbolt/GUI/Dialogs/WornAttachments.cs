@@ -441,6 +441,7 @@ namespace METAbolt
         private void lbxPrims_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtUUID.Text = string.Empty;
+            txtPoint.Text = string.Empty;  
    
             label4.Text = string.Empty;
 
@@ -472,7 +473,8 @@ namespace METAbolt
                 btnTouch.Enabled = false;
             }
 
-            txtUUID.Text = item.Prim.ID.ToString();  
+            txtUUID.Text = item.Prim.ID.ToString();
+            txtPoint.Text = item.Prim.PrimData.AttachmentPoint.ToString(); 
 
             List<Primitive> group = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
                 delegate(Primitive prim)
