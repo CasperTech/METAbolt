@@ -1839,10 +1839,12 @@ namespace METAbolt
             Bitmap newbmp = new Bitmap(glControl.Width, glControl.Height);
             Bitmap bmp = newbmp;
 
-            System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
-                System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            //System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
+            //    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-            OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgr, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
+            System.Drawing.Imaging.BitmapData data = data = bmp.LockBits(glControl.ClientRectangle, ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            OpenTK.Graphics.OpenGL.GL.ReadPixels(0, 0, glControl.Width, glControl.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, OpenTK.Graphics.OpenGL.PixelType.UnsignedByte, data.Scan0);
 
             OpenTK.Graphics.OpenGL.GL.Finish();
 
@@ -1989,6 +1991,17 @@ namespace METAbolt
         private void chkMipmaps_CheckedChanged(object sender, EventArgs e)
         {
             //enablemipmapd = chkMipmaps.Checked; 
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            clearcolour = Color.Transparent;
+            //OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
+            //OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.SrcAlpha, OpenTK.Graphics.OpenGL.BlendingFactorDest.OneMinusSrcAlpha);
+            OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
+            OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
+            OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.SrcAlpha, OpenTK.Graphics.OpenGL.BlendingFactorDest.OneMinusSrcAlpha);
+            GLInvalidate();
         }
     }
 

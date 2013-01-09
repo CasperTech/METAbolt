@@ -66,6 +66,7 @@
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.button8 = new System.Windows.Forms.Button();
             this.gbZoom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             this.ctxObjects.SuspendLayout();
@@ -113,6 +114,7 @@
             // 
             // gbZoom
             // 
+            this.gbZoom.Controls.Add(this.button8);
             this.gbZoom.Controls.Add(this.button7);
             this.gbZoom.Controls.Add(this.button6);
             this.gbZoom.Controls.Add(this.button5);
@@ -288,59 +290,72 @@
             this.returnToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ctxObjects.Name = "ctxObjects";
-            this.ctxObjects.Size = new System.Drawing.Size(153, 170);
+            this.ctxObjects.Size = new System.Drawing.Size(119, 148);
             this.ctxObjects.Opening += new System.ComponentModel.CancelEventHandler(this.ctxObjects_Opening);
             // 
             // touchToolStripMenuItem
             // 
             this.touchToolStripMenuItem.Name = "touchToolStripMenuItem";
-            this.touchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.touchToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.touchToolStripMenuItem.Text = "Touch";
             // 
             // sitToolStripMenuItem
             // 
             this.sitToolStripMenuItem.Name = "sitToolStripMenuItem";
-            this.sitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sitToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.sitToolStripMenuItem.Text = "Sit";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(115, 6);
             // 
             // payBuyToolStripMenuItem
             // 
             this.payBuyToolStripMenuItem.Name = "payBuyToolStripMenuItem";
-            this.payBuyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.payBuyToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.payBuyToolStripMenuItem.Text = "Pay/Buy";
             this.payBuyToolStripMenuItem.Click += new System.EventHandler(this.payBuyToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(115, 6);
             // 
             // takeToolStripMenuItem
             // 
             this.takeToolStripMenuItem.Name = "takeToolStripMenuItem";
-            this.takeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.takeToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.takeToolStripMenuItem.Text = "Take";
             // 
             // returnToolStripMenuItem
             // 
             this.returnToolStripMenuItem.Name = "returnToolStripMenuItem";
-            this.returnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.returnToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.returnToolStripMenuItem.Text = "Return";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "jpg";
+            // 
+            // button8
+            // 
+            this.button8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button8.Location = new System.Drawing.Point(228, 16);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(20, 20);
+            this.button8.TabIndex = 47;
+            this.button8.Text = "T";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // META3D
             // 
@@ -397,6 +412,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem payBuyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Button button8;
 
     }
 }

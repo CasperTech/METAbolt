@@ -52,6 +52,7 @@ using OpenMetaverse.Voice;
 using PopupControl;
 using NHunspell;
 
+
 namespace METAbolt
 {
     public partial class ChatConsole : UserControl
@@ -2010,6 +2011,27 @@ namespace METAbolt
 
             //    rtbChat.Lines = newLines.ToArray();
             //}
+
+            //bool focused = rtbChat.Focused;
+            ////backup initial selection
+            //int selection = rtbChat.SelectionStart;
+            //int length = rtbChat.SelectionLength;
+            ////allow autoscroll if selection is at end of text
+            //bool autoscroll = (selection == rtbChat.Text.Length);
+
+            //if (!autoscroll)
+            //{
+            //    //shift focus from RichTextBox to some other control
+            //    if (focused) cbxInput.Focus();
+            //    //hide selection
+            //    SendMessage(rtbChat.Handle, EM_HIDESELECTION, 1, 0);
+            //}
+            //else
+            //{
+            //    SendMessage(rtbChat.Handle, EM_HIDESELECTION, 0, 0);
+            //    //restore focus to RichTextBox
+            //    if (focused) rtbChat.Focus();
+            //}
         }
 
         private void toolStripDropDownButton1_Click(object sender, EventArgs e)
@@ -2219,7 +2241,7 @@ namespace METAbolt
                 string[] split = e.LinkText.Split(new Char[] { '/' });
                 UUID uuid = (UUID)split[7].ToString();
 
-                if (uuid != UUID.Zero && split[7].ToString().ToLower() == "group")
+                if (uuid != UUID.Zero && split[6].ToString().ToLower() == "group")
                 {
                     frmGroupInfo frm = new frmGroupInfo(uuid, instance);
                     frm.Show();
@@ -4031,6 +4053,26 @@ namespace METAbolt
             {
                 MessageBox.Show("Teleport Failed", "Teleport");
             }
+        }
+
+        private void rtbChat_Click(object sender, EventArgs e)
+        {
+            //rtbChat.HideSelection = true;
+            //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 1, 0);
+            //cpos = rtbChat.SelectionStart;
+        }
+
+        private void rtbChat_Leave(object sender, EventArgs e)
+        {
+            //rtbChat.HideSelection = false;
+
+            //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 0, 0);
+        }
+
+        private void rtbChat_Enter(object sender, EventArgs e)
+        {
+            //rtbChat.HideSelection = true;
+            //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 1, 0);
         }
     }
 }

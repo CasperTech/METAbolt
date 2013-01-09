@@ -36,7 +36,8 @@ using ExceptionReporting;
 using System.Threading;
 using NHunspell;
 using System.IO;
-using System.Text.RegularExpressions; 
+using System.Text.RegularExpressions;
+
 
 namespace METAbolt
 {
@@ -60,6 +61,7 @@ namespace METAbolt
         private string dicfile = string.Empty;
         private string dic = string.Empty;
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+
 
         internal class ThreadExceptionHandler
         {

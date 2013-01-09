@@ -57,7 +57,8 @@ namespace METAbolt
         private string textfontstyle = "Normal";
         private float textfontsize = 8.5f;
         //private int _findex = 0;
-        //private Color bgcolour = Color.White;  
+        //private Color bgcolour = Color.White;
+
 
         public RichTextBoxPrinter(METAboltInstance instance, ExRichTextBox textBox)
         {
@@ -129,8 +130,6 @@ namespace METAbolt
 
         #region ITextPrinter Members
 
-
-
         public void PrintHeader(string text)
         {
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintHeader(text); });
@@ -142,6 +141,7 @@ namespace METAbolt
 
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionColor = Color.Black;
+
                 rtb.AppendText(Environment.NewLine + " " + text);   // + Environment.NewLine);
 
                 int cwidth = rtb.Width - (text.Length);

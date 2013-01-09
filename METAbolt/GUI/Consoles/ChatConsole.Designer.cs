@@ -610,8 +610,11 @@ namespace METAbolt
             this.rtbChat.Text = "";
             this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
             this.rtbChat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbChat_LinkClicked);
+            this.rtbChat.Click += new System.EventHandler(this.rtbChat_Click);
             this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
+            this.rtbChat.Enter += new System.EventHandler(this.rtbChat_Enter);
             this.rtbChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbChat_KeyDown);
+            this.rtbChat.Leave += new System.EventHandler(this.rtbChat_Leave);
             this.rtbChat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rtbChat_MouseDown);
             // 
             // panel5
