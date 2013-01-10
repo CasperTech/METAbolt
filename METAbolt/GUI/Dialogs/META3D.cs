@@ -87,8 +87,8 @@ namespace METAbolt
         BlockingQueue<TextureLoadItem> PendingTextures = new BlockingQueue<TextureLoadItem>();
         float[] lightPos = new float[] { 0f, 0f, 1f, 0f };
 
-        private bool TakeScreenShot = false;
-        private bool snapped = false;
+        //private bool TakeScreenShot = false;
+        //private bool snapped = false;
         bool dragging = false;
         int dragX, dragY, downX, downY;
         bool TextureThreadRunning = true;
@@ -128,7 +128,7 @@ namespace METAbolt
                             "ALT+Drag to Zoom\n" +
                             "Ctrl+Drag to Pan\n" +
                             "Wheel in/out to Zoom in/out\n\n" +
-                            "Click camera then object for snapshot";
+                            "Click camera button to take snapshot";
 
             toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
             toolTip.AutoClose = false;
@@ -419,7 +419,7 @@ namespace METAbolt
             glControl.MouseWheel += glControl_MouseWheel;
             glControl.Load += new EventHandler(glControl_Load);
             glControl.Disposed += new EventHandler(glControl_Disposed);
-            glControl.Click += new EventHandler(glControl_Click);
+            //glControl.Click += new EventHandler(glControl_Click);
             glControl.BackColor = clearcolour;
 
             glControl.Dock = DockStyle.Fill;
@@ -437,13 +437,13 @@ namespace METAbolt
             PendingTextures.Close();
         }
 
-        void glControl_Click(object sender, EventArgs e)
-        {
-            if (TakeScreenShot)
-            {
-                snapped = true;
-            }
-        }
+        //void glControl_Click(object sender, EventArgs e)
+        //{
+        //    if (TakeScreenShot)
+        //    {
+        //        snapped = true;
+        //    }
+        //}
 
         void glControl_Load(object sender, EventArgs e)
         {
@@ -514,55 +514,6 @@ namespace METAbolt
             }
         }
 
-        //float rotation = 0;
-        //void Application_Idle(object sender, EventArgs e)
-        //{
-        //    double milliseconds = ComputeTimeSlice();
-        //    Accumulate(milliseconds);
-        //    Animate(milliseconds);
-        //}
-
-        //private double ComputeTimeSlice()
-        //{
-        //    sw.Stop();
-        //    double timeslice = sw.Elapsed.TotalMilliseconds;
-        //    sw.Reset();
-        //    sw.Start();
-        //    return timeslice;
-        //}
-
-        //private void Animate(double milliseconds)
-        //{
-        //    float deltaRotation = (float)milliseconds / 20.0f;
-        //    rotation += deltaRotation;
-        //    glControl.Invalidate();
-
-        //    ThreadPool.QueueUserWorkItem(sync =>
-        //    {
-        //        if (client.Network.CurrentSim.ObjectsPrimitives.ContainsKey(RootPrimLocalID))
-        //        {
-        //            UpdatePrimBlocking(client.Network.CurrentSim.ObjectsPrimitives[RootPrimLocalID]);
-        //            var children = client.Network.CurrentSim.ObjectsPrimitives.FindAll((Primitive p) => { return p.ParentID == RootPrimLocalID; });
-        //            children.ForEach(p => UpdatePrimBlocking(p));
-        //        }
-        //    }
-        //    );
-        //}
-
-        //double accumulator = 0;
-        //int idleCounter = 0;
-        //private void Accumulate(double milliseconds)
-        //{
-        //    idleCounter++;
-        //    accumulator += milliseconds;
-        //    if (accumulator > 1000)
-        //    {
-        //        label1.Text = idleCounter.ToString();
-        //        accumulator -= 1000;
-        //        idleCounter = 0; // don't forget to reset the counter!
-        //    }
-        //}
-
         private void glControl_Paint(object sender, PaintEventArgs e)
         {
             if (!RenderingEnabled) return;
@@ -577,21 +528,6 @@ namespace METAbolt
             OpenTK.Graphics.OpenGL.GL.ClearColor(clearcolour);
 
             glControl.SwapBuffers();
-
-            // A LL
-            if (TakeScreenShot)
-            {
-                if (snapped)
-                {
-                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.camera_clic_with_flash);
-                    simpleSound.Play();
-                    simpleSound.Dispose();
-
-                    capScreenBeforeNextSwap();
-                    TakeScreenShot = false;
-                    snapped = false;
-                }
-            }
         }
 
         private void glControl_Resize(object sender, EventArgs e)
@@ -1824,14 +1760,20 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TakeScreenShot = true;
-            snapped = false;
+            //TakeScreenShot = true;
+            //snapped = false;
+
+            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.camera_clic_with_flash);
+            simpleSound.Play();
+            simpleSound.Dispose();
+
+            getScreehShot();
         }
 
-        private void capScreenBeforeNextSwap()
+        private void getScreehShot()
         {
-            snapped = false;
-            TakeScreenShot = false;
+            //snapped = false;
+            //TakeScreenShot = false;
 
             //Bitmap bmp = GrabScreenshot();
             //Image img = (Image)bmp;
@@ -1840,7 +1782,7 @@ namespace METAbolt
             Bitmap bmp = newbmp;
 
             //System.Drawing.Imaging.BitmapData data = bmp.LockBits(glControl.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
-            //    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //    System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
             System.Drawing.Imaging.BitmapData data = data = bmp.LockBits(glControl.ClientRectangle, ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
@@ -1867,7 +1809,6 @@ namespace METAbolt
             }
 
             newbmp.Dispose();
-            //bmp.Dispose();  
         }
 
         //public Bitmap GrabScreenshot()
