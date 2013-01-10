@@ -2064,7 +2064,8 @@ namespace METAbolt
                 if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
                 {
                     managerbusy = client.Appearance.ManagerBusy;
-                    client.Appearance.AddToOutfit((InventoryItem)io);
+                    //client.Appearance.AddToOutfit(item);
+                    client.Appearance.Attach(item, AttachmentPoint.Default, false);
                 }
                 else if (item.AssetType == AssetType.Object)
                 {
@@ -2077,7 +2078,8 @@ namespace METAbolt
 
         private void AttachTo(InventoryItem item, AttachmentPoint pnt)
         {
-            client.Appearance.Attach(item, pnt, false);
+            client.Appearance.Attach(item, pnt, true);
+            //client.Appearance.RequestSetAppearance(true);
 
             WearTakeoff(true, selectednode);
         }

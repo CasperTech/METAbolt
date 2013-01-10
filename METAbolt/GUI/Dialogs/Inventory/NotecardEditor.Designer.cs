@@ -206,7 +206,7 @@ namespace METAbolt
             this.indentLeftToolStripMenuItem});
             this.Menu1.Name = "Menu1";
             this.Menu1.OwnerItem = this.toolStripDropDownButton2;
-            this.Menu1.Size = new System.Drawing.Size(208, 248);
+            this.Menu1.Size = new System.Drawing.Size(208, 226);
             // 
             // undoToolStripMenuItem
             // 
@@ -467,7 +467,7 @@ namespace METAbolt
             this.rtbNotecard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbNotecard.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.rtbNotecard.BackColor = System.Drawing.Color.White;
             this.rtbNotecard.Location = new System.Drawing.Point(0, 28);
             this.rtbNotecard.Name = "rtbNotecard";
             this.rtbNotecard.Size = new System.Drawing.Size(658, 445);
@@ -483,8 +483,8 @@ namespace METAbolt
             this.ClientSize = new System.Drawing.Size(658, 528);
             this.Controls.Add(this.PB1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.lblSaveStatus);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);

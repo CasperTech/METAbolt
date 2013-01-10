@@ -208,6 +208,7 @@ namespace METAbolt
                 btnSave.Enabled = true;
                 tsSave.Enabled = true;
                 tsSaveDisk.Enabled = true;
+                rtbNotecard.BackColor = Color.White;
             }
             else
             {

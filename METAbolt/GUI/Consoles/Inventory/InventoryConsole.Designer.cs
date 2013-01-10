@@ -69,6 +69,16 @@ namespace METAbolt
             this.pelvisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rightEarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.earToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.eyeBallToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.footToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.foreArmToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.handToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hipToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lowerLegToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pecToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.shoulderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.upperArmToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.upperLegToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.skullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stomachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,16 +133,6 @@ namespace METAbolt
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.eyeBallToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.footToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.foreArmToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.handToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.hipToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.lowerLegToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pecToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.shoulderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.upperArmToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.upperLegToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -389,77 +389,77 @@ namespace METAbolt
             // earToolStripMenuItem
             // 
             this.earToolStripMenuItem.Name = "earToolStripMenuItem";
-            this.earToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.earToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.earToolStripMenuItem.Text = "Ear";
             this.earToolStripMenuItem.Click += new System.EventHandler(this.earToolStripMenuItem_Click);
             // 
             // eyeBallToolStripMenuItem
             // 
             this.eyeBallToolStripMenuItem.Name = "eyeBallToolStripMenuItem";
-            this.eyeBallToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eyeBallToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.eyeBallToolStripMenuItem.Text = "Eye Ball";
             this.eyeBallToolStripMenuItem.Click += new System.EventHandler(this.eyeBallToolStripMenuItem_Click);
             // 
             // footToolStripMenuItem
             // 
             this.footToolStripMenuItem.Name = "footToolStripMenuItem";
-            this.footToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.footToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.footToolStripMenuItem.Text = "Foot";
             this.footToolStripMenuItem.Click += new System.EventHandler(this.footToolStripMenuItem_Click);
             // 
             // foreArmToolStripMenuItem
             // 
             this.foreArmToolStripMenuItem.Name = "foreArmToolStripMenuItem";
-            this.foreArmToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.foreArmToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.foreArmToolStripMenuItem.Text = "Fore Arm";
             this.foreArmToolStripMenuItem.Click += new System.EventHandler(this.foreArmToolStripMenuItem_Click);
             // 
             // handToolStripMenuItem
             // 
             this.handToolStripMenuItem.Name = "handToolStripMenuItem";
-            this.handToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.handToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.handToolStripMenuItem.Text = "Hand";
             this.handToolStripMenuItem.Click += new System.EventHandler(this.handToolStripMenuItem_Click);
             // 
             // hipToolStripMenuItem
             // 
             this.hipToolStripMenuItem.Name = "hipToolStripMenuItem";
-            this.hipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hipToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.hipToolStripMenuItem.Text = "Hip";
             this.hipToolStripMenuItem.Click += new System.EventHandler(this.hipToolStripMenuItem_Click);
             // 
             // lowerLegToolStripMenuItem
             // 
             this.lowerLegToolStripMenuItem.Name = "lowerLegToolStripMenuItem";
-            this.lowerLegToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lowerLegToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.lowerLegToolStripMenuItem.Text = "Lower Leg";
             this.lowerLegToolStripMenuItem.Click += new System.EventHandler(this.lowerLegToolStripMenuItem_Click);
             // 
             // pecToolStripMenuItem
             // 
             this.pecToolStripMenuItem.Name = "pecToolStripMenuItem";
-            this.pecToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pecToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.pecToolStripMenuItem.Text = "Pec";
             this.pecToolStripMenuItem.Click += new System.EventHandler(this.pecToolStripMenuItem_Click);
             // 
             // shoulderToolStripMenuItem
             // 
             this.shoulderToolStripMenuItem.Name = "shoulderToolStripMenuItem";
-            this.shoulderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.shoulderToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.shoulderToolStripMenuItem.Text = "Shoulder";
             this.shoulderToolStripMenuItem.Click += new System.EventHandler(this.shoulderToolStripMenuItem_Click);
             // 
             // upperArmToolStripMenuItem
             // 
             this.upperArmToolStripMenuItem.Name = "upperArmToolStripMenuItem";
-            this.upperArmToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.upperArmToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.upperArmToolStripMenuItem.Text = "Upper Arm";
             this.upperArmToolStripMenuItem.Click += new System.EventHandler(this.upperArmToolStripMenuItem_Click);
             // 
             // upperLegToolStripMenuItem
             // 
             this.upperLegToolStripMenuItem.Name = "upperLegToolStripMenuItem";
-            this.upperLegToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.upperLegToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.upperLegToolStripMenuItem.Text = "Upper Leg";
             this.upperLegToolStripMenuItem.Click += new System.EventHandler(this.upperLegToolStripMenuItem_Click);
             // 
@@ -512,9 +512,79 @@ namespace METAbolt
             // earToolStripMenuItem1
             // 
             this.earToolStripMenuItem1.Name = "earToolStripMenuItem1";
-            this.earToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.earToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.earToolStripMenuItem1.Text = "Ear";
             this.earToolStripMenuItem1.Click += new System.EventHandler(this.earToolStripMenuItem1_Click);
+            // 
+            // eyeBallToolStripMenuItem1
+            // 
+            this.eyeBallToolStripMenuItem1.Name = "eyeBallToolStripMenuItem1";
+            this.eyeBallToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.eyeBallToolStripMenuItem1.Text = "Eye Ball";
+            this.eyeBallToolStripMenuItem1.Click += new System.EventHandler(this.eyeBallToolStripMenuItem1_Click);
+            // 
+            // footToolStripMenuItem1
+            // 
+            this.footToolStripMenuItem1.Name = "footToolStripMenuItem1";
+            this.footToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.footToolStripMenuItem1.Text = "Foot";
+            this.footToolStripMenuItem1.Click += new System.EventHandler(this.footToolStripMenuItem1_Click);
+            // 
+            // foreArmToolStripMenuItem1
+            // 
+            this.foreArmToolStripMenuItem1.Name = "foreArmToolStripMenuItem1";
+            this.foreArmToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.foreArmToolStripMenuItem1.Text = "Fore Arm";
+            this.foreArmToolStripMenuItem1.Click += new System.EventHandler(this.foreArmToolStripMenuItem1_Click);
+            // 
+            // handToolStripMenuItem1
+            // 
+            this.handToolStripMenuItem1.Name = "handToolStripMenuItem1";
+            this.handToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.handToolStripMenuItem1.Text = "Hand";
+            this.handToolStripMenuItem1.Click += new System.EventHandler(this.handToolStripMenuItem1_Click);
+            // 
+            // hipToolStripMenuItem1
+            // 
+            this.hipToolStripMenuItem1.Name = "hipToolStripMenuItem1";
+            this.hipToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.hipToolStripMenuItem1.Text = "Hip";
+            this.hipToolStripMenuItem1.Click += new System.EventHandler(this.hipToolStripMenuItem1_Click);
+            // 
+            // lowerLegToolStripMenuItem1
+            // 
+            this.lowerLegToolStripMenuItem1.Name = "lowerLegToolStripMenuItem1";
+            this.lowerLegToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.lowerLegToolStripMenuItem1.Text = "Lower Leg";
+            this.lowerLegToolStripMenuItem1.Click += new System.EventHandler(this.lowerLegToolStripMenuItem1_Click);
+            // 
+            // pecToolStripMenuItem1
+            // 
+            this.pecToolStripMenuItem1.Name = "pecToolStripMenuItem1";
+            this.pecToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.pecToolStripMenuItem1.Text = "Pec";
+            this.pecToolStripMenuItem1.Click += new System.EventHandler(this.pecToolStripMenuItem1_Click);
+            // 
+            // shoulderToolStripMenuItem1
+            // 
+            this.shoulderToolStripMenuItem1.Name = "shoulderToolStripMenuItem1";
+            this.shoulderToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.shoulderToolStripMenuItem1.Text = "Shoulder";
+            this.shoulderToolStripMenuItem1.Click += new System.EventHandler(this.shoulderToolStripMenuItem1_Click);
+            // 
+            // upperArmToolStripMenuItem1
+            // 
+            this.upperArmToolStripMenuItem1.Name = "upperArmToolStripMenuItem1";
+            this.upperArmToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.upperArmToolStripMenuItem1.Text = "Upper Arm";
+            this.upperArmToolStripMenuItem1.Click += new System.EventHandler(this.upperArmToolStripMenuItem1_Click);
+            // 
+            // upperLegToolStripMenuItem1
+            // 
+            this.upperLegToolStripMenuItem1.Name = "upperLegToolStripMenuItem1";
+            this.upperLegToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.upperLegToolStripMenuItem1.Text = "Upper Leg";
+            this.upperLegToolStripMenuItem1.Click += new System.EventHandler(this.upperLegToolStripMenuItem1_Click);
             // 
             // skullToolStripMenuItem
             // 
@@ -1048,76 +1118,6 @@ namespace METAbolt
             // 
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // eyeBallToolStripMenuItem1
-            // 
-            this.eyeBallToolStripMenuItem1.Name = "eyeBallToolStripMenuItem1";
-            this.eyeBallToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.eyeBallToolStripMenuItem1.Text = "Eye Ball";
-            this.eyeBallToolStripMenuItem1.Click += new System.EventHandler(this.eyeBallToolStripMenuItem1_Click);
-            // 
-            // footToolStripMenuItem1
-            // 
-            this.footToolStripMenuItem1.Name = "footToolStripMenuItem1";
-            this.footToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.footToolStripMenuItem1.Text = "Foot";
-            this.footToolStripMenuItem1.Click += new System.EventHandler(this.footToolStripMenuItem1_Click);
-            // 
-            // foreArmToolStripMenuItem1
-            // 
-            this.foreArmToolStripMenuItem1.Name = "foreArmToolStripMenuItem1";
-            this.foreArmToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.foreArmToolStripMenuItem1.Text = "Fore Arm";
-            this.foreArmToolStripMenuItem1.Click += new System.EventHandler(this.foreArmToolStripMenuItem1_Click);
-            // 
-            // handToolStripMenuItem1
-            // 
-            this.handToolStripMenuItem1.Name = "handToolStripMenuItem1";
-            this.handToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.handToolStripMenuItem1.Text = "Hand";
-            this.handToolStripMenuItem1.Click += new System.EventHandler(this.handToolStripMenuItem1_Click);
-            // 
-            // hipToolStripMenuItem1
-            // 
-            this.hipToolStripMenuItem1.Name = "hipToolStripMenuItem1";
-            this.hipToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.hipToolStripMenuItem1.Text = "Hip";
-            this.hipToolStripMenuItem1.Click += new System.EventHandler(this.hipToolStripMenuItem1_Click);
-            // 
-            // lowerLegToolStripMenuItem1
-            // 
-            this.lowerLegToolStripMenuItem1.Name = "lowerLegToolStripMenuItem1";
-            this.lowerLegToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.lowerLegToolStripMenuItem1.Text = "Lower Leg";
-            this.lowerLegToolStripMenuItem1.Click += new System.EventHandler(this.lowerLegToolStripMenuItem1_Click);
-            // 
-            // pecToolStripMenuItem1
-            // 
-            this.pecToolStripMenuItem1.Name = "pecToolStripMenuItem1";
-            this.pecToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.pecToolStripMenuItem1.Text = "Pec";
-            this.pecToolStripMenuItem1.Click += new System.EventHandler(this.pecToolStripMenuItem1_Click);
-            // 
-            // shoulderToolStripMenuItem1
-            // 
-            this.shoulderToolStripMenuItem1.Name = "shoulderToolStripMenuItem1";
-            this.shoulderToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.shoulderToolStripMenuItem1.Text = "Shoulder";
-            this.shoulderToolStripMenuItem1.Click += new System.EventHandler(this.shoulderToolStripMenuItem1_Click);
-            // 
-            // upperArmToolStripMenuItem1
-            // 
-            this.upperArmToolStripMenuItem1.Name = "upperArmToolStripMenuItem1";
-            this.upperArmToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.upperArmToolStripMenuItem1.Text = "Upper Arm";
-            this.upperArmToolStripMenuItem1.Click += new System.EventHandler(this.upperArmToolStripMenuItem1_Click);
-            // 
-            // upperLegToolStripMenuItem1
-            // 
-            this.upperLegToolStripMenuItem1.Name = "upperLegToolStripMenuItem1";
-            this.upperLegToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.upperLegToolStripMenuItem1.Text = "Upper Leg";
-            this.upperLegToolStripMenuItem1.Click += new System.EventHandler(this.upperLegToolStripMenuItem1_Click);
             // 
             // InventoryConsole
             // 

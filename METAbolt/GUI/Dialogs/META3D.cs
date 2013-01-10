@@ -166,7 +166,7 @@ namespace METAbolt
                             "ALT+Drag to Zoom\n" +
                             "Ctrl+Drag to Pan\n" +
                             "Wheel in/out to Zoom in/out\n\n" +
-                            "Click camera then object for snapshot";
+                            "Click camera button to take snapshot";
 
             toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
             toolTip.AutoClose = false;
@@ -1022,7 +1022,7 @@ namespace METAbolt
 
                         Printer.Begin();
 
-                        using (Font f = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Bold))
+                        using (Font f = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Regular))
                         {
                             var size = Printer.Measure(text, f);
                             screenPos.X -= size.BoundingBox.Width / 2;
