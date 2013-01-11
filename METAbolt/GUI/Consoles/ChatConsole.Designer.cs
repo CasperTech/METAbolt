@@ -595,7 +595,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbChat.AutoWordSelection = true;
             this.rtbChat.BackColor = System.Drawing.Color.White;
-            this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbChat.DetectUrls = true;
             this.rtbChat.Font = new System.Drawing.Font("Tahoma", 8.5F);
             this.rtbChat.HideSelection = false;

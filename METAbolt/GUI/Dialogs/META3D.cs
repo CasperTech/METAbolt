@@ -151,6 +151,8 @@ namespace METAbolt
             client.Objects.ObjectDataBlockUpdate += new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+            this.Text = "META3D " + "[" + selitem.Properties.Name + "]";
         }
 
         public META3D(METAboltInstance instance, ObjectsListItem obtectitem)
@@ -190,6 +192,8 @@ namespace METAbolt
             client.Objects.ObjectDataBlockUpdate += new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+            this.Text = "META3D " + "[" + selitem.Properties.Name + "]";
         }
 
         //private void SetExceptionReporter()
@@ -1349,6 +1353,11 @@ namespace METAbolt
 
         private void UpdatePrimBlocking(Primitive prim)
         {
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new MethodInvoker(() => UpdatePrimBlocking(prim)));
+            //    return;
+            //}
 
             FacetedMesh mesh = null;
             FacetedMesh existingMesh = null;

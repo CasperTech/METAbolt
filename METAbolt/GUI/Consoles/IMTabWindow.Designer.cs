@@ -52,6 +52,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbIMText_Ex.BackColor = System.Drawing.Color.White;
+            this.rtbIMText_Ex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbIMText_Ex.HideSelection = false;
             this.rtbIMText_Ex.Location = new System.Drawing.Point(3, 240);
             this.rtbIMText_Ex.Name = "rtbIMText_Ex";

@@ -121,7 +121,6 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLoginPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLoginPage.BackgroundImage")));
             this.pnlLoginPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlLoginPage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlLoginPage.Controls.Add(this.lblInitWebBrowser);
             this.pnlLoginPage.Location = new System.Drawing.Point(3, 4);
             this.pnlLoginPage.Name = "pnlLoginPage";
