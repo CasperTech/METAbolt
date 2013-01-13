@@ -274,7 +274,13 @@ namespace METAbolt
                 rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
                 //rtb.SelectionBackColor = rtb.BackColor = bgcolour;
 
-                text = text.Replace("secondlife:///", "http://secondlife:///");  
+                if (text.Contains("secondlife:///"))
+                {
+                    if (!text.Contains("http://secondlife:///"))
+                    {
+                        text = text.Replace("secondlife:///", "http://secondlife:///");
+                    }
+                }
 
                 rtb.AppendText(text);
                 int _findex = rtb.Text.Length - text.Length; // To be SAFE this has to be done after 'append' like this due to the buffer or we will get index out of range error when trying to replace

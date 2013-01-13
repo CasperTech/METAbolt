@@ -694,6 +694,18 @@ namespace METAbolt
                 }
                 catch { ; }
             }
+            else if (e.LinkText.Contains("http://secondlife:///"))
+            {
+                // Open up the Group Info form here
+                string[] split = e.LinkText.Split(new Char[] { '/' });
+                UUID uuid = (UUID)split[7].ToString();
+
+                if (uuid != UUID.Zero && split[6].ToString().ToLower() == "group")
+                {
+                    frmGroupInfo frm = new frmGroupInfo(uuid, instance);
+                    frm.Show();
+                }
+            }
             else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
