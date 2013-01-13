@@ -147,7 +147,7 @@ namespace METAbolt
             ApplyConfig(this.instance.Config.CurrentConfig);
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
             client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
-            client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
+            //client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
 
             CreateSmileys();
             AddLanguages();
@@ -626,11 +626,11 @@ namespace METAbolt
             localids = new uint[prims.Count];
             int i = 0;
 
-            if (listnerdisposed)
-            {
+            //if (listnerdisposed)
+            //{
                 client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
                 listnerdisposed = false;
-            }
+            //}
 
             foreach (Primitive prim in prims)
             {
@@ -659,12 +659,19 @@ namespace METAbolt
             {
                 client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
                 //client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
-
-                instance.State.SetSitting(true, e.Properties.ObjectID);
-                localids = null;
                 listnerdisposed = true;
 
-                Logger.Log("AUTOSIT: Found sit object and sitting", Helpers.LogLevel.Info);
+                if (instance.Config.CurrentConfig.AutoSit)
+                {
+                    if (!instance.State.IsSitting)
+                    {
+                        instance.State.SetSitting(true, e.Properties.ObjectID);
+                        localids = null;
+                        //listnerdisposed = true;
+
+                        Logger.Log("AUTOSIT: Found sit object and sitting", Helpers.LogLevel.Info);
+                    }
+                }
             }
         }
 

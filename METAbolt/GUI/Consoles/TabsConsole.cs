@@ -223,7 +223,23 @@ namespace METAbolt
                 {
                     if (ti.DestID != client.Self.AgentID)
                     {
-                        body = "You paid L$" + ti.Amount.ToString() + " for " + ti.ItemDescription;
+                        //if (tmoneybalance > e.Balance)
+                        //{
+                        //    body = "You paid L$" + ti.Amount.ToString() + " for " + ti.ItemDescription;
+                        //}
+                        //else
+                        //{
+                        //    body = "You have received a payment of L$" + ti.Amount.ToString() + " from " + ti.ItemDescription;
+                        //}
+
+                        if (!String.IsNullOrEmpty(ti.ItemDescription))
+                        {
+                            body = "You paid L$" + ti.Amount.ToString() + " to/for " + ti.ItemDescription;
+                        }
+                        else
+                        {
+                            body = "You paid L$" + ti.Amount.ToString();
+                        }
                     }
                     else
                     {
@@ -237,26 +253,46 @@ namespace METAbolt
                             }
 
                             body = e.Description + pfrm;
+
+                            body = body.Replace(".", string.Empty);   
                         }
                         else
                         {
                             if (!String.IsNullOrEmpty(ti.ItemDescription))
                             {
-                                body = "You have received a payment of L$" + bal.ToString() + " from " + ti.ItemDescription;
+                                body = "You have received a payment of L$" + ti.Amount.ToString() + " from " + ti.ItemDescription;
                             }
                             else
                             {
-                                body = "You have received a payment of L$" + bal.ToString();
+                                body = "You have received a payment of L$" + ti.Amount.ToString();
                             }
                         }
                     }
-                }
+
+                    //body = e.Description;
+                }                
 
                 TrayNotifiy(ttl, body, false);
             }
             else
             {
-                body = e.Description;
+                //body = e.Description;
+                if (ti.DestID != client.Self.AgentID)
+                {
+
+                    if (!String.IsNullOrEmpty(ti.ItemDescription))
+                    {
+                        body = "You paid L$" + ti.Amount.ToString() + " to/for " + ti.ItemDescription;
+                    }
+                    else
+                    {
+                        body = "You paid L$" + ti.Amount.ToString();
+                    }
+                }
+                else
+                {
+                    body = e.Description;
+                }
 
                 TrayNotifiy(ttl, body, false);
             }
