@@ -381,11 +381,12 @@ namespace METAbolt
             {
                 this.sitting = true;
                 sitprim = e.ObjectID;
+                instance.TabConsole.DisplayChatScreen("Auto-sitting on object " + requestedsitprim.ToString());
             }
             else
             {
                 // failed to sit
-                instance.TabConsole.DisplayChatScreen("Failed to sit on object " + requestedsitprim.ToString());
+                //instance.TabConsole.DisplayChatScreen("Failed to sit on object " + requestedsitprim.ToString());
             }
 
             requestedsitprim = UUID.Zero;  
