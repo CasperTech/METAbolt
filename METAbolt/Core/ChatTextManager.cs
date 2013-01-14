@@ -50,7 +50,7 @@ namespace METAbolt
         private ITextPrinter textPrinter;
         //private frmMain mainForm;
 
-        private List<ChatBufferItem> textBuffer;
+        //private List<ChatBufferItem> textBuffer;
 
         private bool showTimestamps;
 
@@ -112,7 +112,7 @@ namespace METAbolt
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             this.textPrinter = textPrinter;
-            this.textBuffer = new List<ChatBufferItem>();
+            //this.textBuffer = new List<ChatBufferItem>();
 
             this.instance = instance;
             netcom = this.instance.Netcom;
@@ -519,19 +519,19 @@ namespace METAbolt
 
             if (smsg.Contains(imu)) return; // Ignore the message for plugin use or whatever
 
-            if (addToBuffer)
-            {
-                textBuffer.Add(item);
+            //if (addToBuffer)
+            //{
+            //    textBuffer.Add(item);
 
-                //int lines = textBuffer.Count;
-                //int maxlines = this.instance.Config.CurrentConfig.lineMax;
+            //    //int lines = textBuffer.Count;
+            //    //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-                //if (lines > maxlines && maxlines > 0)
-                //{
-                //    CheckBufferSize();
-                //    return;
-                //}
-            }
+            //    //if (lines > maxlines && maxlines > 0)
+            //    //{
+            //    //    CheckBufferSize();
+            //    //    return;
+            //    //}
+            //}
 
             DateTime dte = item.Timestamp;
 
@@ -1139,19 +1139,19 @@ namespace METAbolt
 
         private void ProcessBufferItemResp(ChatBufferItem item, bool addToBuffer)
         {
-            if (addToBuffer)
-            {
-                textBuffer.Add(item);
+            //if (addToBuffer)
+            //{
+            //    textBuffer.Add(item);
 
-                //int lines = textBuffer.Count;
-                //int maxlines = this.instance.Config.CurrentConfig.lineMax;
+            //    //int lines = textBuffer.Count;
+            //    //int maxlines = this.instance.Config.CurrentConfig.lineMax;
 
-                //if (lines > maxlines && maxlines > 0)
-                //{
-                //    CheckBufferSize();
-                //    return;
-                //}
-            }
+            //    //if (lines > maxlines && maxlines > 0)
+            //    //{
+            //    //    CheckBufferSize();
+            //    //    return;
+            //    //}
+            //}
 
             textPrinter.SetSelectionForeColor(Color.Gray);
             DateTime dte = item.Timestamp;
@@ -1552,32 +1552,32 @@ namespace METAbolt
 
         public void ReprintAllText()
         {
-            textPrinter.ClearText();
+            //textPrinter.ClearText();
 
-            try
-            {
-                foreach (ChatBufferItem item in textBuffer)
-                {
-                    //ProcessBufferItem(item, false);
-                    if (item.FromName == client.Self.Name)
-                    {
-                        ProcessBufferItem(item, false);
-                    }
-                    else
-                    {
-                        ProcessBufferItemResp(item, false);
-                    }
-                }
-            }
-            catch
-            {
-                ;
-            }
+            //try
+            //{
+            //    foreach (ChatBufferItem item in textBuffer)
+            //    {
+            //        //ProcessBufferItem(item, false);
+            //        if (item.FromName == client.Self.Name)
+            //        {
+            //            ProcessBufferItem(item, false);
+            //        }
+            //        else
+            //        {
+            //            ProcessBufferItemResp(item, false);
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    ;
+            //}
         }
 
         public void ClearInternalBuffer()
         {
-            textBuffer.Clear();
+            //textBuffer.Clear();
         }
 
         public ITextPrinter TextPrinter

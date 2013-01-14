@@ -59,7 +59,7 @@ namespace METAbolt
         //private string tweetname = string.Empty;
         public mBrain answer;
 
-        private ArrayList textBuffer;
+        //private ArrayList textBuffer;
         private bool showTimestamps;
         private AIMLbot.Bot myBot;
         private string lastspeaker = string.Empty;
@@ -110,7 +110,7 @@ namespace METAbolt
             //this.sessionGroupName = groupname; 
 
             this.textPrinter = textPrinter;
-            this.textBuffer = new ArrayList();
+            //this.textBuffer = new ArrayList();
 
             this.instance = instance;
             client = this.instance.Client;
@@ -145,7 +145,7 @@ namespace METAbolt
             this.sessionAVname = avname;
 
             this.textPrinter = textPrinter;
-            this.textBuffer = new ArrayList();
+            //this.textBuffer = new ArrayList();
 
             this.instance = instance;
             client = this.instance.Client;
@@ -196,7 +196,7 @@ namespace METAbolt
         private void Config_ConfigApplied(object sender, ConfigAppliedEventArgs e)
         {
             showTimestamps = e.AppliedConfig.IMTimestamps;
-            ReprintAllText();
+            //ReprintAllText();
 
             //tName = e.AppliedConfig.TweeterName;
             //tPwd = e.AppliedConfig.TweeterPwd;
@@ -221,7 +221,7 @@ namespace METAbolt
         {
             if (e.SessionID != sessionID) return;
 
-            textBuffer.Add(e);
+            //textBuffer.Add(e);
 
             //int lines = textBuffer.Count;
             //int maxlines = this.instance.Config.CurrentConfig.lineMax;
@@ -251,7 +251,7 @@ namespace METAbolt
 
             if (e.IM.FromAgentID != client.Self.AgentID)
             {
-                textBuffer.Add(e);
+                //textBuffer.Add(e);
 
                 //int lines = textBuffer.Count;
                 //int maxlines = this.instance.Config.CurrentConfig.lineMax;
@@ -268,7 +268,7 @@ namespace METAbolt
             //not pretty but how else can we catch just the calling stuff?
             else if (e.IM.FromAgentID == client.Self.AgentID && e.IM.Message.StartsWith(cp))
             {
-                textBuffer.Add(e);
+                //textBuffer.Add(e);
 
                 //int lines = textBuffer.Count;
                 //int maxlines = this.instance.Config.CurrentConfig.lineMax;
@@ -583,20 +583,20 @@ namespace METAbolt
             sb = null;
         }
 
-        public void ReprintAllText()
-        {
-            try
-            {
-                textPrinter.ClearText();
+        //public void ReprintAllText()
+        //{
+        //    try
+        //    {
+        //        textPrinter.ClearText();
 
-                foreach (object obj in textBuffer)
-                    ProcessIM(obj);
-            }
-            catch
-            {
-                ;
-            }
-        }
+        //        foreach (object obj in textBuffer)
+        //            ProcessIM(obj);
+        //    }
+        //    catch
+        //    {
+        //        ;
+        //    }
+        //}
 
         private void CheckBufferSize()
         {
@@ -621,7 +621,7 @@ namespace METAbolt
 
         public void ClearInternalBuffer()
         {
-            textBuffer.Clear();
+            //textBuffer.Clear();
         }
 
         /// <summary>
@@ -636,8 +636,8 @@ namespace METAbolt
         {
             RemoveNetcomEvents();
 
-            textBuffer.Clear();
-            textBuffer = null;
+            //textBuffer.Clear();
+            //textBuffer = null;
 
 
             textPrinter = null;

@@ -144,6 +144,8 @@ namespace METAbolt
 
                 rtb.AppendText(Environment.NewLine + " " + text);   // + Environment.NewLine);
 
+                CheckBufferSize();
+
                 int cwidth = rtb.Width - (text.Length);
                 string buff = string.Empty;
 
@@ -155,6 +157,8 @@ namespace METAbolt
                 //int line = rtb.GetLineFromCharIndex(cpos);
 
                 rtb.AppendText(buff + Environment.NewLine);
+
+                CheckBufferSize();
             }
         }
 
@@ -166,6 +170,8 @@ namespace METAbolt
                 if (text == null) return;
 
                 rtb.AppendText(Environment.NewLine);
+
+                CheckBufferSize();
 
                 //string[] str = text.Split(' ');
                 //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + uuid.Replace("-", "");
@@ -196,6 +202,8 @@ namespace METAbolt
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
                 rtb.AppendText(buff);
+
+                CheckBufferSize();
             }
         }
 
@@ -210,6 +218,9 @@ namespace METAbolt
 
                 rtb.SelectionBackColor = Color.White;
                 rtb.AppendText(Environment.NewLine);
+
+                CheckBufferSize();
+
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
                 //rtb.InsertLink(" " + text, link);
@@ -226,6 +237,8 @@ namespace METAbolt
                 //rtb.AppendText(buff);
                 //rtb.AppendText(Environment.NewLine + " " + text + buff);
                 rtb.InsertLink(" " + text + buff, link);
+
+                CheckBufferSize();
             }
         }
 
@@ -283,6 +296,9 @@ namespace METAbolt
                 }
 
                 rtb.AppendText(text);
+
+                CheckBufferSize();
+
                 int _findex = rtb.Text.Length - text.Length; // To be SAFE this has to be done after 'append' like this due to the buffer or we will get index out of range error when trying to replace
 
                 PutSmiley(_findex);
@@ -310,9 +326,43 @@ namespace METAbolt
                 }
 
                 rtb.AppendText(text + Environment.NewLine);
+
+                CheckBufferSize();
+
                 int _findex = rtb.Text.Length - text.Length - Environment.NewLine.Length;
 
                 PutSmiley(_findex);
+            }
+        }
+
+        private void CheckBufferSize()
+        {
+            int lines = rtb.Lines.Length;   
+            int maxlines = this.instance.Config.CurrentConfig.lineMax;
+
+            if (maxlines == 0)
+                return;
+
+            if (lines > maxlines)
+            {
+                //rtb.Select(0, rtb.GetFirstCharIndexFromLine(1)); // select the first line
+                //rtb.SelectionStart = 0;
+
+                //rtb.SelectionLength = rtb.Text.IndexOf("\n", 0) + 1;
+                //rtb.SelectedText = "";
+
+                //rtb.SelectedText = "";
+
+                //int start_index = rtb.GetFirstCharIndexFromLine(1);
+                //int count = rtb.Lines[1].Length;
+
+                //rtb.Text = rtb.Text.Remove(start_index, count);
+
+                rtb.ReadOnly = false;
+                rtb.SelectionStart = 0;
+                rtb.SelectionLength = rtb.GetFirstCharIndexFromLine(1);
+                rtb.SelectedText = "";
+                rtb.ReadOnly = true;
             }
         }
 
