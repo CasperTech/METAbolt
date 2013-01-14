@@ -529,7 +529,8 @@ namespace METAbolt
                             prim.Properties.Description.ToLower(CultureInfo.CurrentCulture).Contains(query) ||
                             prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(query) ||
                             prim.Text.ToLower(CultureInfo.CurrentCulture).Contains(query) ||
-                            prim.ID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(query));
+                            prim.ID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(query) ||
+                            prim.Properties.CreatorID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(query));
                     }
                     catch
                     {
