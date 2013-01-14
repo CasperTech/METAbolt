@@ -301,7 +301,13 @@ namespace METAbolt
                 rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
                 //rtb.SelectionBackColor = rtb.BackColor = bgcolour;
 
-                text = text.Replace("secondlife:///", "http://secondlife:///");
+                if (text.Contains("secondlife:///"))
+                {
+                    if (!text.Contains("http://secondlife:///"))
+                    {
+                        text = text.Replace("secondlife:///", "http://secondlife:///");
+                    }
+                }
 
                 rtb.AppendText(text + Environment.NewLine);
                 int _findex = rtb.Text.Length - text.Length - Environment.NewLine.Length;

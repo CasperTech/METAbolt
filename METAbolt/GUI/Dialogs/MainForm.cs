@@ -124,7 +124,7 @@ namespace METAbolt
             logOffTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             logOffTimer.Interval = 60000;   // 300000;   // 3600000;
             logOffTimer.Enabled = false;
-            logOffTimer.Stop();  
+            logOffTimer.Stop();
 
             ApplyConfig(this.instance.Config.CurrentConfig, true);
 

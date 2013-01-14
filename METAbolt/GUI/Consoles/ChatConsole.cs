@@ -1663,6 +1663,9 @@ namespace METAbolt
             //}
             //else
             //{
+
+            input = input.Replace("http://secondlife:///", "secondlife:///");
+ 
                 if (instance.Config.CurrentConfig.EnableSpelling)
                 {
                     // put preference check here

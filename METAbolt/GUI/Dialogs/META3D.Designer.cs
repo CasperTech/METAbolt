@@ -44,6 +44,7 @@
             this.scrollYaw = new System.Windows.Forms.HScrollBar();
             this.scrollZoom = new System.Windows.Forms.HScrollBar();
             this.gbZoom = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button8 = new System.Windows.Forms.Button();
             this.gbZoom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             this.ctxObjects.SuspendLayout();
@@ -130,6 +130,19 @@
             this.gbZoom.Size = new System.Drawing.Size(644, 45);
             this.gbZoom.TabIndex = 8;
             this.gbZoom.TabStop = false;
+            // 
+            // button8
+            // 
+            this.button8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button8.Location = new System.Drawing.Point(228, 16);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(20, 20);
+            this.button8.TabIndex = 47;
+            this.button8.Text = "T";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -343,19 +356,6 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "jpg";
-            // 
-            // button8
-            // 
-            this.button8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button8.BackColor = System.Drawing.Color.Transparent;
-            this.button8.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.button8.Location = new System.Drawing.Point(228, 16);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(20, 20);
-            this.button8.TabIndex = 47;
-            this.button8.Text = "T";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // META3D
             // 
