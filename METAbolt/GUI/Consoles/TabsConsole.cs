@@ -223,23 +223,25 @@ namespace METAbolt
                 {
                     if (ti.DestID != client.Self.AgentID)
                     {
-                        //if (tmoneybalance > e.Balance)
+                        ////if (tmoneybalance > e.Balance)
+                        ////{
+                        ////    body = "You paid L$" + ti.Amount.ToString() + " for " + ti.ItemDescription;
+                        ////}
+                        ////else
+                        ////{
+                        ////    body = "You have received a payment of L$" + ti.Amount.ToString() + " from " + ti.ItemDescription;
+                        ////}
+
+                        //if (!String.IsNullOrEmpty(ti.ItemDescription))
                         //{
-                        //    body = "You paid L$" + ti.Amount.ToString() + " for " + ti.ItemDescription;
+                        //    body = "You paid L$" + ti.Amount.ToString() + " to/for " + ti.ItemDescription;
                         //}
                         //else
                         //{
-                        //    body = "You have received a payment of L$" + ti.Amount.ToString() + " from " + ti.ItemDescription;
+                        //    body = "You paid L$" + ti.Amount.ToString();
                         //}
 
-                        if (!String.IsNullOrEmpty(ti.ItemDescription))
-                        {
-                            body = "You paid L$" + ti.Amount.ToString() + " to/for " + ti.ItemDescription;
-                        }
-                        else
-                        {
-                            body = "You paid L$" + ti.Amount.ToString();
-                        }
+                        body = e.Description;
                     }
                     else
                     {
@@ -276,23 +278,25 @@ namespace METAbolt
             }
             else
             {
-                //body = e.Description;
-                if (ti.DestID != client.Self.AgentID)
-                {
+                ////body = e.Description;
+                //if (ti.DestID != client.Self.AgentID)
+                //{
 
-                    if (!String.IsNullOrEmpty(ti.ItemDescription))
-                    {
-                        body = "You paid L$" + ti.Amount.ToString() + " to/for " + ti.ItemDescription;
-                    }
-                    else
-                    {
-                        body = "You paid L$" + ti.Amount.ToString();
-                    }
-                }
-                else
-                {
-                    body = e.Description;
-                }
+                //    if (!String.IsNullOrEmpty(ti.ItemDescription))
+                //    {
+                //        body = "You paid L$" + ti.Amount.ToString() + " to/for " + ti.ItemDescription;
+                //    }
+                //    else
+                //    {
+                //        body = "You paid L$" + ti.Amount.ToString();
+                //    }
+                //}
+                //else
+                //{
+                //    body = e.Description;
+                //}
+
+                body = e.Description;
 
                 TrayNotifiy(ttl, body, false);
             }

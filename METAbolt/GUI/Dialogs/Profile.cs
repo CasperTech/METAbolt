@@ -326,7 +326,7 @@ namespace METAbolt
                 return;
             }
 
-            lvGroups.Items.Clear();  
+            //lvGroups.Items.Clear();  
 
             foreach (AvatarGroup group in e.Groups)
             {
