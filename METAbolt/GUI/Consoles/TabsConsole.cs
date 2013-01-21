@@ -315,15 +315,15 @@ namespace METAbolt
 
             if (e.Friend.Name != null)
             {
-                if (instance.Config.CurrentConfig.PlayFriendOffline)
-                {
-                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_Off);
-                    simpleSound.Play();
-                    simpleSound.Dispose();
-                }
-
                 if (!instance.Config.CurrentConfig.DisableFriendsNotifications)
                 {
+                    if (instance.Config.CurrentConfig.PlayFriendOffline)
+                    {
+                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_Off);
+                        simpleSound.Play();
+                        simpleSound.Dispose();
+                    }
+
                     string ttl = "METAbolt Alert";
                     string body = e.Friend.Name + " is offline";
                     TrayNotifiy(ttl, body, false);
@@ -342,16 +342,15 @@ namespace METAbolt
 
             if (!string.IsNullOrEmpty(e.Friend.Name) && !string.IsNullOrEmpty(avname))
             {
-
-                if (instance.Config.CurrentConfig.PlayFriendOnline)
-                {
-                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_On);
-                    simpleSound.Play();
-                    simpleSound.Dispose();
-                }
-
                 if (!instance.Config.CurrentConfig.DisableFriendsNotifications)
                 {
+                    if (instance.Config.CurrentConfig.PlayFriendOnline)
+                    {
+                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Friend_On);
+                        simpleSound.Play();
+                        simpleSound.Dispose();
+                    }
+
                     string ttl = "METAbolt Alert";
                     string body = e.Friend.Name + " is online";
                     TrayNotifiy(ttl, body, false);
@@ -619,17 +618,17 @@ namespace METAbolt
 
             notifyIcon1.Text = UpdateIconTitle();
 
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                chatConsole.ChatManager.PrintMsg(Environment.NewLine + getTimeStamp() + msg);
+            }));
+
             if (!stopnotify)
             {
                 notifyIcon1.BalloonTipText = msg;
                 notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
                 notifyIcon1.ShowBalloonTip(2000);
-
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                    chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
-                }));
 
                 if (this.instance.Config.CurrentConfig.PlaySound)
                 {
@@ -649,17 +648,17 @@ namespace METAbolt
 
             notifyIcon1.Text = UpdateIconTitle();
 
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                chatConsole.ChatManager.PrintMsg(Environment.NewLine + getTimeStamp() + msg);
+            }));
+
             if (!stopnotify)
             {
                 notifyIcon1.BalloonTipText = msg;
                 notifyIcon1.BalloonTipTitle = title + " [" + avname + "]";
                 notifyIcon1.ShowBalloonTip(2000);
-
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                    chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
-                }));
 
                 if (this.instance.Config.CurrentConfig.PlaySound && makesound)
                 {
@@ -669,6 +668,19 @@ namespace METAbolt
                     simpleSound.Dispose();
                 }
             }
+        }
+
+        private string getTimeStamp()
+        {
+            if (this.instance.Config.CurrentConfig.ChatTimestamps)
+            {
+                DateTime dte = DateTime.Now;
+                dte = this.instance.State.GetTimeStamp(dte);
+
+                return dte.ToString("[HH:mm] ");
+            }
+
+            return string.Empty;  
         }
 
         private string UpdateIconTitle()
