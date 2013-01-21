@@ -1665,6 +1665,7 @@ namespace METAbolt
             //{
 
             input = input.Replace("http://secondlife:///", "secondlife:///");
+            input = input.Replace("http://secondlife://", "secondlife:///");
  
                 if (instance.Config.CurrentConfig.EnableSpelling)
                 {

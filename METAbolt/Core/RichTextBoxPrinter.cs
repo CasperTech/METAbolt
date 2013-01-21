@@ -295,6 +295,14 @@ namespace METAbolt
                     }
                 }
 
+                if (text.Contains("secondlife://"))
+                {
+                    if (!text.Contains("http://secondlife://"))
+                    {
+                        text = text.Replace("secondlife://", "http://secondlife:///");
+                    }
+                }
+
                 rtb.AppendText(text);
 
                 CheckBufferSize();
@@ -322,6 +330,14 @@ namespace METAbolt
                     if (!text.Contains("http://secondlife:///"))
                     {
                         text = text.Replace("secondlife:///", "http://secondlife:///");
+                    }
+                }
+
+                if (text.Contains("secondlife://"))
+                {
+                    if (!text.Contains("http://secondlife://"))
+                    {
+                        text = text.Replace("secondlife://", "http://secondlife:///");
                     }
                 }
 
