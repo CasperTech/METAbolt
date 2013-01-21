@@ -600,6 +600,8 @@ namespace METAbolt
 
             ownersID.Add(oitem);
 
+            client.Parcels.RequestSelectObjects(parcel.LocalID, ObjectReturnType.Owner, oitem);
+
             client.Parcels.ReturnObjects(client.Network.CurrentSim, parcel.LocalID, ObjectReturnType.Owner, ownersID);
             client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
             PopData();
