@@ -1027,7 +1027,7 @@ namespace METAbolt
             }
             else
             {
-                MessageBox.Show("First you must select a role from the list above.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Select a role to invite to from under the 'Role' tab above first.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
