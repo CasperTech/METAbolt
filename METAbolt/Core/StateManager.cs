@@ -71,7 +71,7 @@ namespace METAbolt
         private string currenttab = "Chat";
         private int ccntr = 1;
 
-        //private Timer agentUpdateTicker;
+        private System.Timers.Timer agentUpdateTicker;
         private UUID awayAnimationID = new UUID("fd037134-85d4-f241-72c6-4f42164fedee");
         private UUID busyAnimationID = new UUID("efcf670c2d188128973a034ebc806b67");
         private UUID typingAnimationID = new UUID("c541c47f-e0c0-058b-ad1a-d6ae3a4584d9");
@@ -220,28 +220,28 @@ namespace METAbolt
             }
         }
 
-        private void InitializeAgentUpdateTimer()
-        {
-            //agentUpdateTicker = new Timer(60000);
-            //agentUpdateTicker.Elapsed += new ElapsedEventHandler(agentUpdateTicker_Elapsed);
-        }
+        //private void InitializeAgentUpdateTimer()
+        //{
+        //    //agentUpdateTicker = new System.Timers.Timer(250);
+        //    //agentUpdateTicker.Elapsed += new ElapsedEventHandler(agentUpdateTicker_Elapsed);
+        //}
 
-        private void agentUpdateTicker_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            UpdateStatus();
-        }
+        //private void agentUpdateTicker_Elapsed(object sender, ElapsedEventArgs e)
+        //{
+        //    UpdateStatus();
+        //}
 
-        private void UpdateStatus()
-        {
-            //AgentUpdatePacket update = new AgentUpdatePacket();
-            //update.Header.Reliable = true;
+        //private void UpdateStatus()
+        //{
+        //    //AgentUpdatePacket update = new AgentUpdatePacket();
+        //    //update.Header.Reliable = true;
 
-            //update.AgentData.AgentID = client.Self.AgentID;
-            //update.AgentData.SessionID = client.Self.SessionID;
-            //update.AgentData.HeadRotation = Quaternion.Identity;
-            //update.AgentData.BodyRotation = Quaternion.Identity;
-            //client.Network.SendPacket(update, client.Network.CurrentSim);
-        }
+        //    //update.AgentData.AgentID = client.Self.AgentID;
+        //    //update.AgentData.SessionID = client.Self.SessionID;
+        //    //update.AgentData.HeadRotation = Quaternion.Identity;
+        //    //update.AgentData.BodyRotation = Quaternion.Identity;
+        //    //client.Network.SendPacket(update, client.Network.CurrentSim);
+        //}
 
         public void Follow(string name)
         {

@@ -34,6 +34,7 @@ using System.Windows.Forms;
 using SLNetworkComm;
 using OpenMetaverse;
 using OpenMetaverse.Packets;
+using OpenMetaverse.Utilities;
 using System.Security.Cryptography;
 using MD5library;
 using System.Diagnostics;
@@ -118,7 +119,7 @@ namespace METAbolt
             netcom = this.instance.Netcom;
             client = this.instance.Client;
             AddNetcomEvents();
-
+            
             //TEnabled = this.instance.Config.CurrentConfig.EnableTweeter;
             //tName = this.instance.Config.CurrentConfig.TweeterName;
             //tPwd = this.instance.Config.CurrentConfig.TweeterPwd;
