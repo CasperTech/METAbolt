@@ -296,9 +296,12 @@ namespace METAbolt
                 //    body = e.Description;
                 //}
 
-                body = e.Description;
+                if (!String.IsNullOrEmpty(e.Description))
+                {
+                    body = e.Description;
 
-                TrayNotifiy(ttl, body, false);
+                    TrayNotifiy(ttl, body, false);
+                }
             }
 
             tmoneybalance = e.Balance;

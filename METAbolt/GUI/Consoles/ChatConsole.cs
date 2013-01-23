@@ -2257,6 +2257,10 @@ namespace METAbolt
                     frmGroupInfo frm = new frmGroupInfo(uuid, instance);
                     frm.Show();
                 }
+                else if (uuid != UUID.Zero && split[6].ToString().ToLower() == "agent")
+                {
+                    (new frmProfile(instance, string.Empty, uuid)).Show();
+                }
             }
             else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
             {
