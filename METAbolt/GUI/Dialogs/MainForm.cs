@@ -926,6 +926,9 @@ namespace METAbolt
             manager.SourceFileReferencedAssemblies.Add("METAxCommon.dll");
             manager.SourceFileReferencedAssemblies.Add("METAbolt.exe");
             manager.SourceFileReferencedAssemblies.Add("OpenMetaverse.dll");
+            manager.SourceFileReferencedAssemblies.Add("OpenMetaverseTypes.dll");
+            manager.SourceFileReferencedAssemblies.Add("OpenMetaverse.StructuredData.dll");
+            manager.SourceFileReferencedAssemblies.Add("OpenMetaverse.Utilities.dll");
             manager.SourceFileReferencedAssemblies.Add("SLNetworkComm.dll");
 
             try
