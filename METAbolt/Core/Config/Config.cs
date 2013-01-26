@@ -76,7 +76,7 @@ namespace METAbolt
         private bool connect4 = false;
         private bool aion = false;
         private bool autosit = false;
-        private int radarrange = 64;
+        //private int radarrange = 64;
         private bool useslt = false;
         private int objectrange = 20;
         private string groupmanpro = string.Empty;
@@ -205,7 +205,7 @@ namespace METAbolt
                 config.DisableNotifications = conf.Configs["General"].GetBoolean("DisableNotifications", false);
                 config.DisableInboundGroupInvites = conf.Configs["General"].GetBoolean("DisableInboundGroupInvites", false);
                 config.AutoSit = conf.Configs["General"].GetBoolean("AutoSit", false);
-                config.RadarRange = conf.Configs["General"].GetInt("RadarRange", 64);
+                //config.RadarRange = conf.Configs["General"].GetInt("RadarRange", 64);
                 config.ObjectRange = conf.Configs["General"].GetInt("ObjectRange", 20);
                 config.GroupManPro = conf.Configs["General"].GetString("GroupManPro");
                 config.HeaderFont = conf.Configs["General"].GetString("HeaderFont", "Tahoma");
@@ -382,7 +382,7 @@ namespace METAbolt
             config.Set("DisableNotifications", disablenotifications.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableInboundGroupInvites", disableinboundgroupinvites.ToString(CultureInfo.CurrentCulture));
             config.Set("AutoSit", autosit.ToString(CultureInfo.CurrentCulture));
-            config.Set("RadarRange", radarrange.ToString(CultureInfo.CurrentCulture));
+            //config.Set("RadarRange", radarrange.ToString(CultureInfo.CurrentCulture));
             config.Set("ObjectRange", objectrange.ToString(CultureInfo.CurrentCulture));
             config.Set("GroupManPro", groupmanpro);
             config.Set("GivePresent", givepressie.ToString(CultureInfo.CurrentCulture));
@@ -756,11 +756,11 @@ namespace METAbolt
             set { autosit = value; }
         }
 
-        public int RadarRange
-        {
-            get { return radarrange; }
-            set { radarrange = value; }
-        }
+        //public int RadarRange
+        //{
+        //    get { return radarrange; }
+        //    set { radarrange = value; }
+        //}
 
         public bool UseSLT
         {

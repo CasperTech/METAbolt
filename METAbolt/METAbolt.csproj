@@ -1092,7 +1092,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Sample_Extension.cs" />
     <Compile Include="Smileys.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
