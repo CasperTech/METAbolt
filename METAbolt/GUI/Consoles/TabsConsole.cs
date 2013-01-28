@@ -1162,7 +1162,7 @@ namespace METAbolt
                 this.BeginInvoke(new MethodInvoker(delegate()
                 {
                     InitializeMainTab();
-                    client.Self.RetrieveInstantMessages();
+                    //client.Self.RetrieveInstantMessages();
                 }));
 
                 return;

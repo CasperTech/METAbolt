@@ -345,13 +345,13 @@ namespace METAbolt
             {
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    CheckWearables();
-                    CheckLocation();
-
-                    client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
+                    //CheckWearables();
+                    //CheckLocation();
                 }));
             }
             catch { ; }
+
+            client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
         }
 
         private void CheckLocation()

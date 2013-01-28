@@ -803,7 +803,6 @@ namespace METAbolt
 
             // Enable stats
             client.Settings.TRACK_UTILIZATION = true;
-            //client.Settings.USE_LLSD_LOGIN = true;
 
             /// <summary>Enable to process packets synchronously, where all of the
             /// callbacks for each packet must return before the next packet is
@@ -813,7 +812,12 @@ namespace METAbolt
             /// overhead, but several calls currently block for a long time and
             /// would need to be rewritten as asynchronous code before this is
             /// feasible</remarks>
-            //client.Settings.SYNC_PACKETCALLBACKS = false;
+            ///
+ 
+            // For smooter bot movement
+            client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
+
+            client.Settings.USE_LLSD_LOGIN = true;
 
             client.Settings.SEND_AGENT_APPEARANCE = true;
             //client.Settings.CLIENT_IDENTIFICATION_TAG = 

@@ -374,11 +374,13 @@ namespace METAbolt
 
                 //rtb.Text = rtb.Text.Remove(start_index, count);
 
+                int cpos = rtb.SelectionStart; 
                 rtb.ReadOnly = false;
                 rtb.SelectionStart = 0;
                 rtb.SelectionLength = rtb.GetFirstCharIndexFromLine(1);
                 rtb.SelectedText = "";
                 rtb.ReadOnly = true;
+                rtb.SelectionStart = cpos;
             }
         }
 
