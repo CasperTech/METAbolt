@@ -209,8 +209,7 @@
       <HintPath>..\Libs\ScintillaNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SLNetworkComm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="SLNetworkComm">
       <HintPath>..\Libs\SLNetworkComm.dll</HintPath>
     </Reference>
     <Reference Include="System" />

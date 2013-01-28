@@ -133,7 +133,7 @@ namespace METAbolt
             chkNotifications.Checked = config.CurrentConfig.DisableNotifications;
             chkFriends.Checked = config.CurrentConfig.DisableFriendsNotifications; 
             chkAutoSit.Checked = config.CurrentConfig.AutoSit;
-            //tBar1.Value = config.CurrentConfig.RadarRange;
+            tBar1.Value = config.CurrentConfig.RadarRange;
             textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
 
             tbar2.Maximum = tBar1.Value;
@@ -272,7 +272,7 @@ namespace METAbolt
             instance.Config.CurrentConfig.DisableNotifications = chkNotifications.Checked;
             config.CurrentConfig.DisableFriendsNotifications = chkFriends.Checked;  
             instance.Config.CurrentConfig.AutoSit = chkAutoSit.Checked;
-            //instance.Config.CurrentConfig.RadarRange = tBar1.Value;
+            instance.Config.CurrentConfig.RadarRange = tBar1.Value;
             instance.Config.CurrentConfig.ObjectRange = tbar2.Value;
             instance.Config.CurrentConfig.GroupManPro = textBox3.Text.Trim();
             instance.Config.CurrentConfig.HideMeta = chkHide.Checked;
@@ -293,6 +293,8 @@ namespace METAbolt
             {
                 instance.Config.CurrentConfig.ClassicChatLayout = true;
             }
+
+            client.Self.Movement.Camera.Far = (float)tBar1.Value;
 
             instance.Config.CurrentConfig.HeaderFont = headerfont;
             instance.Config.CurrentConfig.HeaderFontStyle = headerfontstyle;

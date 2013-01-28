@@ -619,7 +619,7 @@ namespace METAbolt
                 delegate(Primitive prim)
                 {
                     Vector3 pos = prim.Position;
-                    return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < radius));
+                    return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < radius));
                 }
             );
 
@@ -1195,14 +1195,14 @@ namespace METAbolt
                     selfpos.Z = 1024f; // Convert.ToSingle(client.Self.GlobalPosition.Z);  
                 }
 
-                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
+                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
-                //if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
+                if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
 
                 if (avpos.Z < 0.1f)
                 {
                     avpos.Z = 1024f;
-                    dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
+                    //dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
                     sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
                 }
                 else
@@ -1340,14 +1340,14 @@ namespace METAbolt
             {
                 Vector3 selfpos = client.Self.SimPosition;
 
-                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
+                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
-                //if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
+                if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
 
                 if (avpos.Z < 0.1f)
                 {
                     avpos.Z = 1024f;
-                    dist = Math.Round(Vector3d.Distance(ConverToGLobal(avpos), ConverToGLobal(selfpos)), MidpointRounding.ToEven);
+                    //dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
                     sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
                 }
                 else

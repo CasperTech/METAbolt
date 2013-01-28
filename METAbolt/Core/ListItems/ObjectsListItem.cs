@@ -55,6 +55,7 @@ namespace METAbolt
                 if (prim.Properties == null)   // || string.IsNullOrEmpty(prim.Properties.Name)) //GM changed it to BOTH!
                 {
                     gettingProperties = true;
+                    client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_ObjectProperties);
                     client.Objects.ObjectPropertiesFamily += new EventHandler<ObjectPropertiesFamilyEventArgs>(Objects_OnObjectPropertiesFamily);
                     client.Objects.RequestObjectPropertiesFamily(client.Network.CurrentSim, prim.ID);
                 }
@@ -68,6 +69,28 @@ namespace METAbolt
             {
                 ;
             }
+        }
+
+        private void Objects_ObjectProperties(object sender, ObjectPropertiesEventArgs e)
+        {
+            if (e.Properties.ObjectID != prim.ID) return;
+
+            try
+            {
+                gettingProperties = false;
+                gotProperties = true;
+                prim.Properties = e.Properties;
+
+                listBox.BeginInvoke(
+                    new OnPropReceivedRaise(OnPropertiesReceived),
+                    new object[] { EventArgs.Empty });
+            }
+            catch
+            {
+                ;
+            }
+
+            client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_ObjectProperties);
         }
 
         private void Objects_OnObjectPropertiesFamily(object sender, ObjectPropertiesFamilyEventArgs e)
@@ -88,6 +111,8 @@ namespace METAbolt
             {
                 ;
             }
+
+            client.Objects.ObjectPropertiesFamily -= new EventHandler<ObjectPropertiesFamilyEventArgs>(Objects_OnObjectPropertiesFamily);
         }
 
         public override string ToString()

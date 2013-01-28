@@ -101,7 +101,7 @@ namespace METAbolt
             client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
             //client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
 
-            range = instance.Config.CurrentConfig.ObjectRange;
+            range = (float)instance.Config.CurrentConfig.ObjectRange;
             newrange = range;
             //numericUpDown1.Maximum = instance.Config.CurrentConfig.RadarRange;
             numericUpDown1.Value = Convert.ToDecimal(range);
@@ -309,7 +309,7 @@ namespace METAbolt
                 {
                     Vector3 location = instance.SIMsittingPos();
                     Vector3 pos = itemToDraw.Prim.Position;
-                    double dist = Math.Round(Vector3.Distance(pos, location), MidpointRounding.ToEven);
+                    double dist = Math.Round(Vector3.Distance(location, pos), MidpointRounding.ToEven);
 
                     distance = " [" + dist.ToString(CultureInfo.CurrentCulture) + "m]";
 
@@ -371,7 +371,7 @@ namespace METAbolt
                     delegate(Primitive prim)
                     {
                         Vector3 pos = prim.Position;
-                        return ((pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range));
+                        return ((pos != Vector3.Zero) && (Vector3.Distance(location,pos) < range));
                     }
                 );
 
@@ -474,7 +474,7 @@ namespace METAbolt
                         {
                             Vector3 pos = item.Prim.Position;
 
-                            if (Vector3.Distance(pos, location) < range)
+                            if (Vector3.Distance(location,pos) < range)
                             {
                                 lbxPrims.BeginUpdate();
                                 lbxPrims.Items.Add(item);
@@ -602,7 +602,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && (item.Prim.Properties.SaleType != 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && (item.Prim.Properties.SaleType != 0) && (pos != Vector3.Zero) && (Vector3.Distance(location,pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -654,7 +654,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && ((item.Prim.Flags & PrimFlags.Scripted) == PrimFlags.Scripted) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && ((item.Prim.Flags & PrimFlags.Scripted) == PrimFlags.Scripted) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -706,7 +706,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -751,7 +751,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && !item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && !item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -796,7 +796,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && ((item.Prim.Flags & PrimFlags.InventoryEmpty) == PrimFlags.InventoryEmpty) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && ((item.Prim.Flags & PrimFlags.InventoryEmpty) == PrimFlags.InventoryEmpty) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -841,7 +841,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && item.Prim.Properties.CreatorID.ToString().Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && item.Prim.Properties.CreatorID.ToString().Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -886,7 +886,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -939,7 +939,7 @@ namespace METAbolt
                         ObjectsListItem item = entry.Value;
                         Vector3 pos = item.Prim.Position;
 
-                        if ((item.Prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < range))
+                        if ((item.Prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
@@ -994,7 +994,7 @@ namespace METAbolt
                 Vector3 location = instance.SIMsittingPos();
                 Vector3 pos = item.Prim.Position;
 
-                if (Vector3.Distance(pos, location) < range)
+                if (Vector3.Distance(location, pos) < range)
                 {
                     lbxPrims.BeginUpdate();
                     lbxPrims.Items.Add(sender);
@@ -1048,7 +1048,7 @@ namespace METAbolt
                 Vector3 location = instance.SIMsittingPos();
                 Vector3 pos = item.Prim.Position;
 
-                if (Vector3.Distance(pos, location) < range)
+                if (Vector3.Distance(location,pos) < range)
                 {
                     lbxPrims.BeginUpdate();
                     lbxPrims.Items.Add(sender);
@@ -1431,7 +1431,7 @@ namespace METAbolt
                 //int hyp1 = (int)Math.Sqrt(h2);
                 //int hyp = instance.Distance3D(sX, sY, sZ, pX, pY, pZ);
 
-                double dist = Math.Round(Vector3.Distance(primpos, instance.SIMsittingPos()), MidpointRounding.ToEven);
+                double dist = Math.Round(Vector3.Distance(instance.SIMsittingPos(), primpos), MidpointRounding.ToEven);
 
                 label13.Text = " " + dist.ToString(CultureInfo.CurrentCulture) + "m - [ Elev.:" + vZ.ToString(CultureInfo.CurrentCulture) + "m]";
 
@@ -1800,7 +1800,8 @@ namespace METAbolt
             lbxPrims.Items.Clear();  
 
             RemoveObjectEvents();
-            RemoveNetcomEvents(); 
+            RemoveNetcomEvents();
+            
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
             client.Self.AvatarSitResponse -= new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
         }
@@ -2132,6 +2133,7 @@ namespace METAbolt
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             newrange = (float)numericUpDown1.Value;
+            instance.Config.CurrentConfig.ObjectRange = (int)newrange; 
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

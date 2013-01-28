@@ -305,6 +305,7 @@ namespace SLNetworkComm
                 loginParams.AgreeToTos = true;
                 loginParams.Channel = "METAbolt";
                 loginParams.Author = loginOptions.Author;
+                
                 //loginParams.MAC = GetMACAddress();
                 //loginParams.MethodName = string.Empty;
                 //loginParams.Platform = "Windows";

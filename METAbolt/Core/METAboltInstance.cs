@@ -127,6 +127,8 @@ namespace METAbolt
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+
             this.firstInstance = firstInstance;
 
             LoadXMLFile(appdir + "\\MuteList.xml");
@@ -157,8 +159,6 @@ namespace METAbolt
 
             //CheckForShortcut();
 
-            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-
             if (config.CurrentConfig.AIon)
             {
                 //myBot = new AIMLbot.Bot();
@@ -176,6 +176,8 @@ namespace METAbolt
         {
             SetExceptionReporter();
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
 
             this.firstInstance = firstInstance;
 
@@ -222,8 +224,6 @@ namespace METAbolt
             mainForm = new frmMain(this);
             mainForm.InitializeControls();
             tabsConsole = mainForm.TabConsole;
-
-            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
 
             if (config.CurrentConfig.AIon)
             {
@@ -877,7 +877,7 @@ namespace METAbolt
             client.Settings.ASSET_CACHE_MAX_SIZE = (1024 * 1024 * 1024) / 4;  //250MB
             client.Assets.Cache.AutoPruneEnabled = false; 
 
-            //client.Self.Movement.Camera.Far = config.CurrentConfig.RadarRange;
+            client.Self.Movement.Camera.Far = (float)config.CurrentConfig.RadarRange;
             client.Self.Movement.AutoResetControls = false;
             client.Self.Movement.UpdateInterval = 250;
 
@@ -896,7 +896,7 @@ namespace METAbolt
             //client.Throttle.Resend = 3f * 446000.0f;  //1000000.0f;   // 
             //client.Throttle.Texture = 3f * 446000.0f;     //1000000.0f;
 
-            client.Throttle.Total = 4460000.0f;
+            client.Throttle.Total = 5000000.0f;    //4460000.0f;
 
             client.Settings.THROTTLE_OUTGOING_PACKETS = false;
 

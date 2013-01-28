@@ -46,6 +46,7 @@ namespace METAbolt
         private int row = 1;
         private bool stopscroll = false;
 
+
         public frmAbout()
         {
             InitializeComponent();
@@ -53,7 +54,21 @@ namespace METAbolt
             lblVersion.Text = Properties.Resources.METAboltTitle + " V " + Properties.Resources.METAboltVersion;   
             txtDir.Text =  Application.StartupPath.ToString();
             textBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
+            //platform = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE").ToString();
+
+            lblVersion.Text += " (" + Properties.Resources.PlatformType + ")"; 
         }
+
+        //public static string Platform
+        //{
+        //    get
+        //    {
+        //        if (IntPtr.Size == 8)
+        //            return "64bit";
+        //        else
+        //            return "32bit";
+        //    }
+        //}
 
         private void btnClose_Click(object sender, EventArgs e)
         {

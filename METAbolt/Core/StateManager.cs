@@ -201,7 +201,7 @@ namespace METAbolt
                 if (prim != null) return;
 
 
-                if (Vector3.Distance(pos, instance.SIMsittingPos()) > followDistance)
+                if (Vector3.Distance(instance.SIMsittingPos(), pos) > followDistance)
                 {
                     client.Self.AutoPilotCancel();
                     ulong followRegionX = e.Simulator.Handle >> 32;
