@@ -1715,7 +1715,6 @@ namespace METAbolt
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ToolStripButton tbtnHelp;
         private System.Windows.Forms.PictureBox picVoice;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;

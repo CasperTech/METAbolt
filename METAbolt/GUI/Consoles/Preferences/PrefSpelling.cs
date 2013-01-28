@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using PopupControl;
 using OpenMetaverse;
 using System.IO;
-using PopupControl;
+
 
 namespace METAbolt
 {

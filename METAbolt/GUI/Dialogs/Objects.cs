@@ -56,7 +56,7 @@ namespace METAbolt
         //private int duplicateCount;
         private bool sloading;
         private float range = 20;
-        private float newrange = 20;
+        private float newrange = 21;
 
         private SafeDictionary<uint, ObjectsListItem> listItems = new SafeDictionary<uint, ObjectsListItem>();
         private SafeDictionary<uint, ObjectsListItem> ItemsProps = new SafeDictionary<uint, ObjectsListItem>();
@@ -102,7 +102,7 @@ namespace METAbolt
             //client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
 
             range = (float)instance.Config.CurrentConfig.ObjectRange;
-            newrange = range;
+            //newrange = range;
             //numericUpDown1.Maximum = instance.Config.CurrentConfig.RadarRange;
             numericUpDown1.Value = Convert.ToDecimal(range);
 
@@ -1115,7 +1115,8 @@ namespace METAbolt
                 radioButton1.Checked = true;
             }
 
-            AddAllObjects();
+            //AddAllObjects();
+            cboDisplay.SelectedIndex = 0;
         }
 
         //Separate thread
@@ -1272,7 +1273,7 @@ namespace METAbolt
                                         lbxPrims.Items.Remove(item);
                                     }
 
-                                    pB1.Maximum -= 1;
+                                    if (pB1.Maximum > 0) pB1.Maximum -= 1;
 
                                     try
                                     {
@@ -2189,6 +2190,8 @@ namespace METAbolt
                 if (cboDisplay.SelectedIndex == 0)
                 {
                     DisplayObjects();
+                    //lbxPrims.Items.Clear();
+                    //AddAllObjects();
                 }
                 else if (cboDisplay.SelectedIndex == 1)
                 {
@@ -2254,45 +2257,49 @@ namespace METAbolt
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            //ResetFields();
+            ////ResetFields();
 
-            if (range != newrange)
-            {
-                //range = newrange;
-                if (cboDisplay.SelectedIndex == 0)
-                {
-                    range = newrange;
-                    lbxPrims.Items.Clear();
-                    AddAllObjects();
-                }
-                else
-                {
-                    cboDisplay.SelectedIndex = 0;
-                }
-            }
-            //else
+            //if (range != newrange)
             //{
-            //    if (cboDisplay.SelectedIndex == -1)
-            //    {
-            //        MessageBox.Show("Select a 'Display' option from above first.", "Object Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        return;
-            //    }
-
+            //    //range = newrange;
             //    if (cboDisplay.SelectedIndex == 0)
             //    {
-            //        DisplayObjects();
+            //        range = newrange;
+            //        lbxPrims.Items.Clear();
+            //        AddAllObjects();
             //    }
-            //    else if (cboDisplay.SelectedIndex == 1)
+            //    else
             //    {
-            //        DisplayForSale();
+            //        cboDisplay.SelectedIndex = 0;
             //    }
-            //    else if (cboDisplay.SelectedIndex == 2)
-            //    {
-            //        DisplayScriptedObjects();
-            //    }
-
-            //    lbxPrims.SortList();
             //}
+            ////else
+            ////{
+            ////    if (cboDisplay.SelectedIndex == -1)
+            ////    {
+            ////        MessageBox.Show("Select a 'Display' option from above first.", "Object Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ////        return;
+            ////    }
+
+            ////    if (cboDisplay.SelectedIndex == 0)
+            ////    {
+            ////        DisplayObjects();
+            ////    }
+            ////    else if (cboDisplay.SelectedIndex == 1)
+            ////    {
+            ////        DisplayForSale();
+            ////    }
+            ////    else if (cboDisplay.SelectedIndex == 2)
+            ////    {
+            ////        DisplayScriptedObjects();
+            ////    }
+
+            ////    lbxPrims.SortList();
+            ////}
+
+            range = newrange = (float)numericUpDown1.Value;
+
+            cboDisplay.SelectedIndex = 0;
         }
 
         private void GetTaskInventory(UUID objID, uint localID)

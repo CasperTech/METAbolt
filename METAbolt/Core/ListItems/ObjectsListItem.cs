@@ -57,6 +57,7 @@ namespace METAbolt
                     gettingProperties = true;
                     client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_ObjectProperties);
                     client.Objects.ObjectPropertiesFamily += new EventHandler<ObjectPropertiesFamilyEventArgs>(Objects_OnObjectPropertiesFamily);
+                    //client.Objects.SelectObject(client.Network.CurrentSim, prim.LocalID);     
                     client.Objects.RequestObjectPropertiesFamily(client.Network.CurrentSim, prim.ID);
                 }
                 else

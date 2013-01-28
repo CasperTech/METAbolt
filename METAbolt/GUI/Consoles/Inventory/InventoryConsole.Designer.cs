@@ -1216,7 +1216,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripMenuItem createFolderOnRootToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attachToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem defaultToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem chestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chinToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem leftEarToolStripMenuItem;

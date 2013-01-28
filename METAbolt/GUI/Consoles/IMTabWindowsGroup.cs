@@ -37,7 +37,6 @@ using Khendys.Controls;
 using System.Threading;
 using OpenMetaverse.Packets;
 using ExceptionReporting;
-using System.Threading;
 using NHunspell;
 using System.IO;
 using System.Text.RegularExpressions;

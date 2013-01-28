@@ -152,7 +152,7 @@ namespace METAbolt
                     PopData();
                 }));
             }
-            catch (Exception ex)
+            catch
             {
                 // do nothing
             }

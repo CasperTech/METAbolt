@@ -71,7 +71,6 @@ namespace METAbolt
         private string currenttab = "Chat";
         private int ccntr = 1;
 
-        private System.Timers.Timer agentUpdateTicker;
         private UUID awayAnimationID = new UUID("fd037134-85d4-f241-72c6-4f42164fedee");
         private UUID busyAnimationID = new UUID("efcf670c2d188128973a034ebc806b67");
         private UUID typingAnimationID = new UUID("c541c47f-e0c0-058b-ad1a-d6ae3a4584d9");

@@ -56,19 +56,20 @@ namespace METAbolt
             textBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
             //platform = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE").ToString();
 
-            lblVersion.Text += " (" + Properties.Resources.PlatformType + ")"; 
+            //lblVersion.Text += " (" + Properties.Resources.PlatformType + ")";
+            lblVersion.Text += " (" + Platform + ")";
         }
 
-        //public static string Platform
-        //{
-        //    get
-        //    {
-        //        if (IntPtr.Size == 8)
-        //            return "64bit";
-        //        else
-        //            return "32bit";
-        //    }
-        //}
+        public static string Platform
+        {
+            get
+            {
+                if (IntPtr.Size == 8)
+                    return "64bit";
+                else
+                    return "32bit";
+            }
+        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {

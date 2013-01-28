@@ -64,7 +64,7 @@ namespace METAbolt
         private ChatTextManager chatManager;
         private TabsConsole tabConsole;
         private int previousChannel = 0;
-        private double ahead = 0.0;
+        //private double ahead = 0.0;
         private bool flying = false;
         private bool sayopen = false;
         private bool saveopen = false;
@@ -76,13 +76,13 @@ namespace METAbolt
         private Rectangle rect;
         private bool move = false;
         private string selectedname = string.Empty;
-        private Vector3 vDir;
+        //private Vector3 vDir;
         //private string clickedurl = string.Empty;
         private bool avrezzed = false;
         //private bool pasted = false;
         private uint[] localids;
         private int newsize = 140;
-        private bool listnerdisposed = true;
+        //private bool listnerdisposed = true;
         private System.Timers.Timer sitTimer;
         private bool showing = false;
         private UUID avuuid = UUID.Zero;
@@ -629,7 +629,7 @@ namespace METAbolt
             //if (listnerdisposed)
             //{
                 client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
-                listnerdisposed = false;
+                //listnerdisposed = false;
             //}
 
             foreach (Primitive prim in prims)
@@ -659,7 +659,7 @@ namespace METAbolt
             {
                 client.Objects.ObjectProperties -= new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
                 //client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
-                listnerdisposed = true;
+                //listnerdisposed = true;
 
                 if (instance.Config.CurrentConfig.AutoSit)
                 {

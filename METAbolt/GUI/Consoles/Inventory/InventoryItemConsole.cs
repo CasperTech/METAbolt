@@ -45,7 +45,7 @@ namespace METAbolt
         //private Primitive rootPrim;
         private bool fLoading = true;
         private InventoryConsole iconsole;
-        private TreeNode inode;
+        //private TreeNode inode;
 
         public InventoryItemConsole(METAboltInstance instance, InventoryItem item)
         {
