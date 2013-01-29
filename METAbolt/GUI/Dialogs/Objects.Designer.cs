@@ -53,6 +53,10 @@ namespace METAbolt
             this.lkLocation = new System.Windows.Forms.LinkLabel();
             this.btnTP = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.txtCreator = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblUUID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.TextBox();
@@ -110,13 +114,11 @@ namespace METAbolt
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.txtCreator = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.gbxInworld.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -128,7 +130,6 @@ namespace METAbolt
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBar3)).BeginInit();
             this.mnuTask.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // gbxInworld
@@ -353,6 +354,7 @@ namespace METAbolt
             this.groupBox1.AccessibleName = "Object information panel";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Controls.Add(this.txtCreator);
@@ -388,6 +390,51 @@ namespace METAbolt
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Object information";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 85);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(0, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Visible = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.AccessibleName = "Owner profile button";
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Enabled = false;
+            this.pictureBox2.Image = global::METAbolt.Properties.Resources.profile;
+            this.pictureBox2.Location = new System.Drawing.Point(214, 138);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(22, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 49;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // txtCreator
+            // 
+            this.txtCreator.AccessibleName = "Owner name textbox";
+            this.txtCreator.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtCreator.Location = new System.Drawing.Point(54, 138);
+            this.txtCreator.Multiline = true;
+            this.txtCreator.Name = "txtCreator";
+            this.txtCreator.ReadOnly = true;
+            this.txtCreator.Size = new System.Drawing.Size(154, 20);
+            this.txtCreator.TabIndex = 47;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label20.Location = new System.Drawing.Point(6, 141);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(44, 13);
+            this.label20.TabIndex = 48;
+            this.label20.Text = "Creator";
             // 
             // pictureBox1
             // 
@@ -661,6 +708,7 @@ namespace METAbolt
             this.pB1.Location = new System.Drawing.Point(6, 518);
             this.pB1.Name = "pB1";
             this.pB1.Size = new System.Drawing.Size(305, 12);
+            this.pB1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pB1.TabIndex = 33;
             this.pB1.Click += new System.EventHandler(this.pB1_Click);
             // 
@@ -1129,50 +1177,15 @@ namespace METAbolt
             this.toolStripMenuItem3.Text = "Delete";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // pictureBox2
+            // label22
             // 
-            this.pictureBox2.AccessibleName = "Owner profile button";
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Enabled = false;
-            this.pictureBox2.Image = global::METAbolt.Properties.Resources.profile;
-            this.pictureBox2.Location = new System.Drawing.Point(214, 138);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(22, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 49;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // txtCreator
-            // 
-            this.txtCreator.AccessibleName = "Owner name textbox";
-            this.txtCreator.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtCreator.Location = new System.Drawing.Point(54, 138);
-            this.txtCreator.Multiline = true;
-            this.txtCreator.Name = "txtCreator";
-            this.txtCreator.ReadOnly = true;
-            this.txtCreator.Size = new System.Drawing.Size(154, 20);
-            this.txtCreator.TabIndex = 47;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label20.Location = new System.Drawing.Point(6, 141);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(44, 13);
-            this.label20.TabIndex = 48;
-            this.label20.Text = "Creator";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(12, 85);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(0, 13);
-            this.label21.TabIndex = 50;
-            this.label21.Visible = false;
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.Gray;
+            this.label22.Location = new System.Drawing.Point(107, 197);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(0, 13);
+            this.label22.TabIndex = 51;
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbxPrims
             // 
@@ -1224,6 +1237,7 @@ namespace METAbolt
             this.gbxInworld.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -1239,7 +1253,6 @@ namespace METAbolt
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBar3)).EndInit();
             this.mnuTask.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1326,5 +1339,6 @@ namespace METAbolt
         private System.Windows.Forms.TextBox txtCreator;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
     }
 }

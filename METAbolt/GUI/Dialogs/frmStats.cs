@@ -96,6 +96,8 @@ namespace METAbolt
                 label26.Text = sim.Stats.ResentPackets.ToString();
                 label27.Text = sim.Stats.ReceivedResends.ToString();
 
+                label43.Text = sim.Stats.LastLag.ToString();
+                
                 label28.Text = client.Network.InboxCount.ToString();
 
                 label7.Text = "FPS: " + sim.Stats.FPS.ToString();

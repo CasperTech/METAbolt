@@ -415,7 +415,8 @@ namespace METAbolt
         private void tBar1_Scroll(object sender, EventArgs e)
         {
             textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
-            tbar2.Maximum = tBar1.Value;   
+            tbar2.Maximum = tBar1.Value;
+            client.Self.Movement.Camera.Far = (float)tBar1.Value;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

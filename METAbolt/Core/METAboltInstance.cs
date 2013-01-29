@@ -778,8 +778,8 @@ namespace METAbolt
             /// and try again</summary>
             /// <remarks>Setting this too low will cause web requests to repeatedly
             /// time out and retry</remarks>
-            client.Settings.CAPS_TIMEOUT = 120 * 1000;   //60 * 1000;
-            client.Settings.SIMULATOR_TIMEOUT = 120 * 1000;    //90 * 1000;
+            //client.Settings.CAPS_TIMEOUT = 120 * 1000;   //60 * 1000;
+            client.Settings.SIMULATOR_TIMEOUT = 180 * 1000;    //90 * 1000;
             /// <summary>Number of milliseconds for xml-rpc to timeout</summary>
             //client.Settings.RESEND_TIMEOUT = 8 * 1000;   //4 * 1000;
             /// <summary>Milliseconds to wait for a simulator info request through
@@ -802,7 +802,7 @@ namespace METAbolt
             // Configuration options (mostly booleans)
 
             // Enable stats
-            client.Settings.TRACK_UTILIZATION = true;
+            //client.Settings.TRACK_UTILIZATION = true;
 
             /// <summary>Enable to process packets synchronously, where all of the
             /// callbacks for each packet must return before the next packet is
@@ -814,12 +814,12 @@ namespace METAbolt
             /// feasible</remarks>
             ///
  
-            // For smooter bot movement
-            client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
+            // For smoother bot movement
+            //client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
 
-            client.Settings.USE_LLSD_LOGIN = true;
+            //client.Settings.USE_LLSD_LOGIN = true;
 
-            client.Settings.SEND_AGENT_APPEARANCE = true;
+            //client.Settings.SEND_AGENT_APPEARANCE = true;
             //client.Settings.CLIENT_IDENTIFICATION_TAG = 
 
             //client.Settings.STORE_LAND_PATCHES = true;
@@ -834,8 +834,8 @@ namespace METAbolt
             client.Settings.SEND_AGENT_THROTTLE = true;
             /// <summary>Enable/disable the sending of pings to monitor lag and 
             /// packet loss</summary>
-            client.Settings.SEND_PINGS = false;
-            client.Settings.LOG_RESENDS = false;
+            client.Settings.SEND_PINGS = true;
+            //client.Settings.LOG_RESENDS = false;
             /// <summary>Should we connect to multiple sims? This will allow
             /// viewing in to neighboring simulators and sim crossings
             /// (Experimental)</summary>
@@ -851,13 +851,13 @@ namespace METAbolt
             client.Settings.ALWAYS_REQUEST_OBJECTS = true;
             /// <summary>Whether to establish connections to HTTP capabilities
             /// servers for simulators</summary>
-            client.Settings.ENABLE_CAPS = true;
+            //client.Settings.ENABLE_CAPS = true;
             /// <summary>Whether to decode sim stats</summary>
             client.Settings.ENABLE_SIMSTATS = true;
             /// <summary>The capabilities servers are currently designed to
             /// periodically return a 502 error which signals for the client to
             /// re-establish a connection. Set this to true to log those 502 errors</summary>
-            client.Settings.LOG_ALL_CAPS_ERRORS = false;
+            //client.Settings.LOG_ALL_CAPS_ERRORS = false;
             /// <summary>If true, any reference received for a folder or item
             /// libsecondlife is not aware of will automatically be fetched.</summary>
             client.Settings.FETCH_MISSING_INVENTORY = true;
@@ -872,13 +872,13 @@ namespace METAbolt
             client.Settings.OBJECT_TRACKING = true;
             /// <summary>If true, parcel details will be stored in the 
             /// <code>Simulator.Parcels</code> dictionary as they are received</summary>
-            client.Settings.PARCEL_TRACKING = true;
+            //client.Settings.PARCEL_TRACKING = true;
             client.Settings.STORE_LAND_PATCHES = true;
 
             client.Settings.USE_ASSET_CACHE = true;
             //client.Settings.ASSET_CACHE_DIR = Application.StartupPath + System.IO.Path.DirectorySeparatorChar + "cache";
             client.Settings.ASSET_CACHE_DIR = appdir + System.IO.Path.DirectorySeparatorChar + client.Self.Name + System.IO.Path.DirectorySeparatorChar + "cache";
-            client.Settings.ASSET_CACHE_MAX_SIZE = (1024 * 1024 * 1024) / 4;  //250MB
+            //client.Settings.ASSET_CACHE_MAX_SIZE = (1024 * 1024 * 1024) / 4;  //250MB
             client.Assets.Cache.AutoPruneEnabled = false; 
 
             client.Self.Movement.Camera.Far = (float)config.CurrentConfig.RadarRange;
@@ -900,7 +900,7 @@ namespace METAbolt
             //client.Throttle.Resend = 3f * 446000.0f;  //1000000.0f;   // 
             //client.Throttle.Texture = 3f * 446000.0f;     //1000000.0f;
 
-            client.Throttle.Total = 5000000.0f;    //4460000.0f;
+            client.Throttle.Total = 5000000f;    //4460000.0f;
 
             client.Settings.THROTTLE_OUTGOING_PACKETS = false;
 

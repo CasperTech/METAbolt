@@ -50,15 +50,41 @@ namespace METAbolt
         {
             try
             {
+                    //if (string.IsNullOrEmpty(prim.Properties.Name))
+                    //if (prim.Properties == null) // Rollback ).9.2.1
+                        if (prim.Properties == null)   // || string.IsNullOrEmpty(prim.Properties.Name)) //GM changed it to BOTH!
+                        {
+                            gettingProperties = true;
+                            client.Objects.ObjectPropertiesFamily += new EventHandler<ObjectPropertiesFamilyEventArgs>(Objects_OnObjectPropertiesFamily);
+                            client.Objects.RequestObjectPropertiesFamily(client.Network.CurrentSim, prim.ID);
+                        }
+                        else
+                        {
+                            gotProperties = true;
+                            OnPropertiesReceived(EventArgs.Empty);
+                        }
+
+                //gettingProperties = true;
+                //client.Objects.ObjectPropertiesFamily += new EventHandler<ObjectPropertiesFamilyEventArgs>(Objects_OnObjectPropertiesFamily);
+                //client.Objects.RequestObjectPropertiesFamily(client.Network.CurrentSim, prim.ID);
+            }
+            catch
+            {
+                ;
+            }
+        }
+
+        public void RequestObjectProperties()
+        {
+            try
+            {
                 //if (string.IsNullOrEmpty(prim.Properties.Name))
                 //if (prim.Properties == null) // Rollback ).9.2.1
                 if (prim.Properties == null)   // || string.IsNullOrEmpty(prim.Properties.Name)) //GM changed it to BOTH!
                 {
                     gettingProperties = true;
                     client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_ObjectProperties);
-                    client.Objects.ObjectPropertiesFamily += new EventHandler<ObjectPropertiesFamilyEventArgs>(Objects_OnObjectPropertiesFamily);
-                    //client.Objects.SelectObject(client.Network.CurrentSim, prim.LocalID);     
-                    client.Objects.RequestObjectPropertiesFamily(client.Network.CurrentSim, prim.ID);
+                    client.Objects.SelectObject(client.Network.CurrentSim, prim.LocalID, true);     
                 }
                 else
                 {

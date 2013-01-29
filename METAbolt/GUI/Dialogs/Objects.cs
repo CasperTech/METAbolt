@@ -94,13 +94,6 @@ namespace METAbolt
             client = this.instance.Client;
             netcom = this.instance.Netcom;
 
-            client.Network.Disconnected += new EventHandler<DisconnectedEventArgs>(Network_OnDisconnected);
-            client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
-            netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
-            netcom.ClientDisconnected += new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
-            client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
-            //client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
-
             range = (float)instance.Config.CurrentConfig.ObjectRange;
             //newrange = range;
             //numericUpDown1.Maximum = instance.Config.CurrentConfig.RadarRange;
@@ -112,6 +105,12 @@ namespace METAbolt
             toolTip1.FocusOnOpen = false;
             toolTip1.ShowingAnimation = toolTip1.HidingAnimation = PopupAnimations.Blend;
 
+            client.Network.Disconnected += new EventHandler<DisconnectedEventArgs>(Network_OnDisconnected);
+            client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
+            netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
+            netcom.ClientDisconnected += new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
+            client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+            //client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
         }
 
         private void SetExceptionReporter()
@@ -341,6 +340,324 @@ namespace METAbolt
             textBrush = null;
         }
 
+        //Separate thread
+        private void Objects_OnNewPrim(object sender, PrimEventArgs e)
+        {
+            if (!this.IsHandleCreated) return;
+
+            try
+            {
+                if (e.Prim.ParentID != 0)
+                {
+                    lock (childItems)
+                    {
+                        ObjectsListItem citem = new ObjectsListItem(e.Prim, client, lbxChildren);
+
+                        if (!childItems.ContainsKey(e.Prim.LocalID))
+                        {
+                            try
+                            {
+                                childItems.Add(e.Prim.LocalID, citem);
+                            }
+                            catch
+                            {
+                                ;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lock (listItems)
+                    {
+                        ObjectsListItem item = new ObjectsListItem(e.Prim, client, lbxPrims);
+
+                        Vector3 location = instance.SIMsittingPos();
+                        Vector3 pos = item.Prim.Position;
+
+                        float dist = Vector3.Distance(location, pos);
+
+                        if (dist < range)
+                        {
+                            try
+                            {
+                                if (!listItems.ContainsKey(e.Prim.LocalID))
+                                {
+                                    listItems.Add(e.Prim.LocalID, item);
+
+                                    item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
+                                    item.RequestProperties();
+                                }
+                                else
+                                {
+                                    listItems.Remove(e.Prim.LocalID);
+                                    listItems.Add(e.Prim.LocalID, item);
+                                }
+                            }
+                            catch
+                            {
+                                ;
+                            }
+
+                            //BeginInvoke(new MethodInvoker(delegate()
+                            //{
+                            //    pB1.Maximum += 1;
+                            //}));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                ;
+            }
+        }
+
+        //Separate thread
+        private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
+        {
+            if (!this.IsHandleCreated) return;
+
+            ObjectsListItem item;
+
+            uint objectID = e.ObjectLocalID;
+
+            try
+            {
+                if (listItems.ContainsKey(objectID))
+                {
+                    item = listItems[objectID];
+                }
+                else
+                {
+                    return;
+                }
+
+                if (item.Prim.ParentID != 0)
+                {
+                    lock (childItems)
+                    {
+                        if (!childItems.ContainsKey(objectID)) return;
+
+                        try
+                        {
+                            BeginInvoke(new MethodInvoker(delegate()
+                            {
+                                item = childItems[objectID];
+
+                                if (lbxChildren.Items.Contains(item))
+                                {
+                                    lbxChildren.Items.Remove(item);
+                                }
+
+                                try
+                                {
+                                    childItems.Remove(objectID);
+                                }
+                                catch
+                                {
+                                    ;
+                                }
+                            }));
+                        }
+                        catch
+                        {
+                            ;
+                        }
+                    }
+                }
+                else
+                {
+                    lock (listItems)
+                    {
+                        if (!listItems.ContainsKey(objectID)) return;
+
+                        try
+                        {
+                            BeginInvoke(new MethodInvoker(delegate()
+                            {
+                                item = listItems[objectID];
+
+                                if (item != null)
+                                {
+                                    if (lbxPrims.Items.Contains(item))
+                                    {
+                                        lock (lbxPrims.Items)
+                                        {
+                                            lbxPrims.Items.Remove(item);
+                                        }
+                                    }
+
+                                    if (pB1.Maximum > 0) pB1.Maximum -= 1;
+
+                                    try
+                                    {
+                                        listItems.Remove(objectID);
+
+                                        lock (ItemsProps)
+                                        {
+                                            ItemsProps.Remove(objectID);
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        ;
+                                    }
+
+                                    //BeginInvoke(new MethodInvoker(delegate()
+                                    //{
+                                    //    pB1.Maximum -= 1;
+                                    //}));
+
+                                    tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
+                                }
+                            }));
+                        }
+                        catch
+                        {
+                            ;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // passed key wasn't available
+                return;
+            }
+        }
+
+        private void item_PropertiesReceived(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    item_PropertiesReceived(sender, e);
+
+                }));
+                return;
+            }
+
+            ObjectsListItem item = (ObjectsListItem)sender;
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                Vector3 location = instance.SIMsittingPos();
+                Vector3 pos = item.Prim.Position;
+
+                if (Vector3.Distance(location, pos) < range)
+                {
+                    lock (lbxPrims.Items)
+                    {
+                        lbxPrims.BeginUpdate();
+                        lbxPrims.Items.Add(item);
+                        lbxPrims.EndUpdate();
+                    }
+
+                    if (!ItemsProps.ContainsKey(item.Prim.LocalID))
+                    {
+                        lock (ItemsProps)
+                        {
+                            ItemsProps.Add(item.Prim.LocalID, item);
+                        }
+                    }
+
+                    tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
+                }
+
+                //if (pB1.Value + 1 <= pB1.Maximum)
+                //    pB1.Value += 1;
+
+                //if (pB1.Value >= pB1.Maximum)
+                //{
+                //    pB1.Value = 0;
+                //    pB1.Visible = false;
+
+                //    //lblStatus.Visible = true;
+                //    //lbxPrims.SortList();
+                //    //lblStatus.Visible = false;
+                //}
+
+                ////pB1.Visible = false;
+
+                lbxPrims.SortList();
+            }));
+
+            item.PropertiesReceived -= new EventHandler(item_PropertiesReceived);
+        }
+
+        private void iitem_PropertiesReceived(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    iitem_PropertiesReceived(sender, e);
+
+                }));
+                return;
+            }
+
+            ObjectsListItem item = (ObjectsListItem)sender;
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                Vector3 location = instance.SIMsittingPos();
+                Vector3 pos = item.Prim.Position;
+
+                if (Vector3.Distance(location, pos) < range)
+                {
+                    lock (lbxPrims.Items)
+                    {
+                        lbxPrims.BeginUpdate();
+                        lbxPrims.Items.Add(item);
+                        lbxPrims.EndUpdate();
+                    }
+
+                    if (!ItemsProps.ContainsKey(item.Prim.LocalID))
+                    {
+                        lock (ItemsProps)
+                        {
+                            ItemsProps.Add(item.Prim.LocalID, item);
+                        }
+                    }
+
+                    tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
+                }
+
+                //if (pB1.Value + 1 <= pB1.Maximum)
+                //    pB1.Value += 1;
+
+                //if (pB1.Value >= pB1.Maximum)
+                //{
+                //    pB1.Value = 0;
+                //    pB1.Visible = false;
+                //    groupBox2.Enabled = true;
+                //    groupBox3.Enabled = true;
+
+                //    //lblStatus.Visible = true;
+                //    pBar3.Visible = true;
+                //    lbxPrims.SortList();
+                //    pBar3.Visible = false;
+                //    //lblStatus.Visible = false;
+                //}
+
+                //pB1.Value = 0;
+                pB1.Visible = false;
+                groupBox2.Enabled = true;
+                groupBox3.Enabled = true;
+
+                //lblStatus.Visible = true;
+                pBar3.Visible = true;
+                lbxPrims.SortList();
+                pBar3.Visible = false;
+            }));
+
+            //lbxPrims.SortList();
+            item.PropertiesReceived -= new EventHandler(iitem_PropertiesReceived);
+        }
+
         private void AddAllObjects()
         {
             if (InvokeRequired)
@@ -351,6 +668,10 @@ namespace METAbolt
                 }));
             }
 
+            //pB1.Maximum = 0;
+
+            if (eventsremoved) AddObjectEvents();
+
             Cursor.Current = Cursors.WaitCursor;
 
             pB1.Visible = true;
@@ -358,36 +679,99 @@ namespace METAbolt
 
             lbxPrims.location = instance.SIMsittingPos();
             lbxPrims.SortByName = false;
-            pBar3.Visible = true;
-            lbxPrims.SortList();
-            pBar3.Visible = false;
+            //pBar3.Visible = true;
+            //lbxPrims.SortList();
+            //pBar3.Visible = false;
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                //Vector3 location = instance.SIMsittingPos();
 
-                // *** find all objects in radius ***
-                List<Primitive> results = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
-                    delegate(Primitive prim)
-                    {
-                        Vector3 pos = prim.Position;
-                        return ((pos != Vector3.Zero) && (Vector3.Distance(location,pos) < range));
-                    }
-                );
+                //// *** find all objects in radius ***
+                //List<Primitive> results = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
+                //    delegate(Primitive prim)
+                //    {
+                //        Vector3 pos = prim.Position;
+                //        return ((pos != Vector3.Zero) && (Vector3.Distance(location,pos) < range));
+                //    }
+                //);
 
-                pB1.Maximum = results.Count;
+                //pB1.Maximum = results.Count;
 
                 lock (listItems)
                 {
-                    foreach (Primitive prim in results)
-                    {
-                        try
-                        {
-                            if (prim.ParentID == 0) //root prims only
-                            {
-                                ObjectsListItem item = new ObjectsListItem(prim, client, lbxPrims);
+                    //foreach (Primitive prim in results)
+                    //{
+                    //    try
+                    //    {
+                    //        if (prim.ParentID == 0) //root prims only
+                    //        {
+                    //            ObjectsListItem item = new ObjectsListItem(prim, client, lbxPrims);
 
-                                if (!listItems.ContainsKey(prim.LocalID))
+                    //            if (!listItems.ContainsKey(prim.LocalID))
+                    //            {
+                    //                listItems.Add(prim.LocalID, item);
+
+                    //                item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
+                    //                item.RequestProperties();
+                    //                inmem = true;
+                    //            }
+                    //            else
+                    //            {
+                    //                if (pB1.Value < results.Count) pB1.Value += 1;
+
+                    //                lock (lbxPrims.Items)
+                    //                {
+                    //                    lbxPrims.BeginUpdate();
+                    //                    lbxPrims.Items.Add(item);
+                    //                    lbxPrims.EndUpdate();
+                    //                }
+                    //                inmem = true;
+                    //            }
+                    //        }
+                    //        else
+                    //        {
+                    //            ObjectsListItem citem = new ObjectsListItem(prim, client, lbxChildren);
+
+                    //            if (!childItems.ContainsKey(prim.LocalID))
+                    //            {
+                    //                childItems.Add(prim.LocalID, citem);
+                    //            }
+                    //        }
+
+                    //    }
+                    //    catch
+                    //    {
+                    //        ;
+                    //    }
+                    //}
+
+                Vector3 location = client.Self.SimPosition;
+
+                //pB1.Maximum = client.Network.CurrentSim.ObjectsPrimitives.Count;
+
+                client.Network.CurrentSim.ObjectsPrimitives.ForEach(
+                new Action<Primitive>(
+                delegate(Primitive prim)
+                {
+                    Vector3 pos = prim.Position;
+
+                    //if (prim.ID == (UUID)"10e860a2-7232-42e0-ede6-2a75ef9672fd" || prim.ID == (UUID)"05c544b9-df84-2935-d829-24ec2876c197")
+                    //{
+                    //    pos = prim.Position;
+                    //}
+
+                    float dist = Vector3.Distance(location, pos);
+
+                    if ((int)dist < (int)range)
+                    {
+                        ObjectsListItem item = new ObjectsListItem(prim, client, lbxPrims);
+
+                        if (prim.ParentID == 0) //root prims only
+                        {
+                            if (!listItems.ContainsKey(prim.LocalID))
+                            {
+                                lock (listItems)
                                 {
                                     listItems.Add(prim.LocalID, item);
 
@@ -395,46 +779,61 @@ namespace METAbolt
                                     item.RequestProperties();
                                     inmem = true;
                                 }
-                                else
-                                {
-                                    if (pB1.Value < results.Count) pB1.Value += 1;
-                                    lbxPrims.BeginUpdate();
-                                    lbxPrims.Items.Add(item);
-                                    lbxPrims.EndUpdate();
-                                    inmem = true;
-                                }
+
+                                //pB1.Maximum += 1;
                             }
                             else
                             {
-                                ObjectsListItem citem = new ObjectsListItem(prim, client, lbxChildren);
+                                lock (listItems)
+                                {
+                                    listItems.Remove(prim.LocalID);
+                                    listItems.Add(prim.LocalID, item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ObjectsListItem citem = new ObjectsListItem(prim, client, lbxChildren);
 
-                                if (!childItems.ContainsKey(prim.LocalID))
+                            if (!childItems.ContainsKey(prim.LocalID))
+                            {
+                                lock (childItems)
                                 {
                                     childItems.Add(prim.LocalID, citem);
                                 }
                             }
-
-                        }
-                        catch
-                        {
-                            ;
+                            else
+                            {
+                                lock (childItems)
+                                {
+                                    childItems.Remove(prim.LocalID);
+                                    childItems.Add(prim.LocalID, citem);
+                                }
+                            }
                         }
                     }
+                }));
                 }
 
-                if (!inmem)
-                {
-                    pB1.Value = 0;
-                    pB1.Visible = false;
+
+
+                //if (!inmem)
+                //{
+                    //pB1.Value = 0;
+                    //pB1.Visible = false;
                     groupBox2.Enabled = true;
                     groupBox3.Enabled = true;
                     //lbxPrims.SortList();
-                }
+                //}
 
                 lblStatus.Visible = false;
                 lbxPrims.Visible = true;
                 lbxChildren.Visible = true;
                 txtSearch.Enabled = true;
+
+                lbxPrims.SortList();
+
+                pB1.Visible = false;
 
                 //tlbStatus.Text = listItems.Count.ToString() + " objects";
                 tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
@@ -476,9 +875,12 @@ namespace METAbolt
 
                             if (Vector3.Distance(location,pos) < range)
                             {
-                                lbxPrims.BeginUpdate();
-                                lbxPrims.Items.Add(item);
-                                lbxPrims.EndUpdate();
+                                lock (lbxPrims.Items)
+                                {
+                                    lbxPrims.BeginUpdate();
+                                    lbxPrims.Items.Add(item);
+                                    lbxPrims.EndUpdate();
+                                }
                             }
                         }
 
@@ -559,9 +961,13 @@ namespace METAbolt
                         else
                         {
                             if (pB1.Value < results.Count) pB1.Value += 1;
-                            lbxPrims.BeginUpdate();
-                            lbxPrims.Items.Add(item);
-                            lbxPrims.EndUpdate();
+
+                            lock (lbxPrims.Items)
+                            {
+                                lbxPrims.BeginUpdate();
+                                lbxPrims.Items.Add(item);
+                                lbxPrims.EndUpdate();
+                            }
                         }
                     }
                     catch
@@ -606,9 +1012,12 @@ namespace METAbolt
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
-                                lbxPrims.BeginUpdate();
-                                lbxPrims.Items.Add(item);
-                                lbxPrims.EndUpdate();
+                                lock (lbxPrims.Items)
+                                {
+                                    lbxPrims.BeginUpdate();
+                                    lbxPrims.Items.Add(item);
+                                    lbxPrims.EndUpdate();
+                                }
                             }
                         }
 
@@ -658,9 +1067,12 @@ namespace METAbolt
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
-                                lbxPrims.BeginUpdate();
-                                lbxPrims.Items.Add(item);
-                                lbxPrims.EndUpdate();
+                                lock (lbxPrims.Items)
+                                {
+                                    lbxPrims.BeginUpdate();
+                                    lbxPrims.Items.Add(item);
+                                    lbxPrims.EndUpdate();
+                                }
                             }
                         }
 
@@ -710,9 +1122,12 @@ namespace METAbolt
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
-                                lbxPrims.BeginUpdate();
-                                lbxPrims.Items.Add(item);
-                                lbxPrims.EndUpdate();
+                                lock (lbxPrims.Items)
+                                {
+                                    lbxPrims.BeginUpdate();
+                                    lbxPrims.Items.Add(item);
+                                    lbxPrims.EndUpdate();
+                                }
                             }
                         }
 
@@ -755,9 +1170,12 @@ namespace METAbolt
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
-                                lbxPrims.BeginUpdate();
-                                lbxPrims.Items.Add(item);
-                                lbxPrims.EndUpdate();
+                                lock (lbxPrims.Items)
+                                {
+                                    lbxPrims.BeginUpdate();
+                                    lbxPrims.Items.Add(item);
+                                    lbxPrims.EndUpdate();
+                                }
                             }
                         }
 
@@ -800,9 +1218,12 @@ namespace METAbolt
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
-                                lbxPrims.BeginUpdate();
-                                lbxPrims.Items.Add(item);
-                                lbxPrims.EndUpdate();
+                                lock (lbxPrims.Items)
+                                {
+                                    lbxPrims.BeginUpdate();
+                                    lbxPrims.Items.Add(item);
+                                    lbxPrims.EndUpdate();
+                                }
                             }
                         }
 
@@ -845,9 +1266,12 @@ namespace METAbolt
                         {
                             if (item.Prim.ParentID == 0) //root prims only
                             {
-                                lbxPrims.BeginUpdate();
-                                lbxPrims.Items.Add(item);
-                                lbxPrims.EndUpdate();
+                                lock (lbxPrims.Items)
+                                {
+                                    lbxPrims.BeginUpdate();
+                                    lbxPrims.Items.Add(item);
+                                    lbxPrims.EndUpdate();
+                                }
                             }
                         }
 
@@ -897,9 +1321,12 @@ namespace METAbolt
 
                                 if (sEp.ToLower(CultureInfo.CurrentCulture).Contains("modify") && sEp.ToLower(CultureInfo.CurrentCulture).Contains("copy") & sEp.ToLower(CultureInfo.CurrentCulture).Contains("transfer"))
                                 {
-                                    lbxPrims.BeginUpdate();
-                                    lbxPrims.Items.Add(item);
-                                    lbxPrims.EndUpdate();
+                                    lock (lbxPrims.Items)
+                                    {
+                                        lbxPrims.BeginUpdate();
+                                        lbxPrims.Items.Add(item);
+                                        lbxPrims.EndUpdate();
+                                    }
                                 }
                             }
                         }
@@ -950,9 +1377,12 @@ namespace METAbolt
 
                                 if (sEp.ToLower(CultureInfo.CurrentCulture).Contains("modify") && sEp.ToLower(CultureInfo.CurrentCulture).Contains("copy") & sEp.ToLower(CultureInfo.CurrentCulture).Contains("transfer"))
                                 {
-                                    lbxPrims.BeginUpdate();
-                                    lbxPrims.Items.Add(item);
-                                    lbxPrims.EndUpdate();
+                                    lock (lbxPrims.Items)
+                                    {
+                                        lbxPrims.BeginUpdate();
+                                        lbxPrims.Items.Add(item);
+                                        lbxPrims.EndUpdate();
+                                    }
                                 }
                             }
                         }
@@ -973,116 +1403,6 @@ namespace METAbolt
                 //string exp = exc.Message;
                 reporter.Show(ex);
             }
-        }
-
-        private void item_PropertiesReceived(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    item_PropertiesReceived(sender, e);
-                    
-                }));
-                return;
-            }
-
-            ObjectsListItem item = (ObjectsListItem)sender;
-
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                Vector3 location = instance.SIMsittingPos();
-                Vector3 pos = item.Prim.Position;
-
-                if (Vector3.Distance(location, pos) < range)
-                {
-                    lbxPrims.BeginUpdate();
-                    lbxPrims.Items.Add(sender);
-                    lbxPrims.EndUpdate();
-
-                    if (!ItemsProps.ContainsKey(item.Prim.LocalID))
-                    {
-                        ItemsProps.Add(item.Prim.LocalID, item);
-                    }                
-                }
-
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
-
-                if (pB1.Value + 1 <= pB1.Maximum)
-                    pB1.Value += 1;
-
-                if (pB1.Value >= pB1.Maximum)
-                {
-                    pB1.Value = 0;
-                    pB1.Visible = false;
-
-                    //lblStatus.Visible = true;
-                    //lbxPrims.SortList();
-                    //lblStatus.Visible = false;
-                }
-
-                //pB1.Visible = false;
-
-                //lbxPrims.SortList();
-            }));
-
-            item.PropertiesReceived -= new EventHandler(item_PropertiesReceived);
-        }
-
-        private void iitem_PropertiesReceived(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    iitem_PropertiesReceived(sender, e);
-                    
-                }));
-                return;
-            }
-
-            ObjectsListItem item = (ObjectsListItem)sender;
-
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                Vector3 location = instance.SIMsittingPos();
-                Vector3 pos = item.Prim.Position;
-
-                if (Vector3.Distance(location,pos) < range)
-                {
-                    lbxPrims.BeginUpdate();
-                    lbxPrims.Items.Add(sender);
-                    lbxPrims.EndUpdate();
-
-                    if (!ItemsProps.ContainsKey(item.Prim.LocalID))
-                    {
-                        ItemsProps.Add(item.Prim.LocalID, item);
-                    }  
-                }
-
-                //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
-
-                if (pB1.Value + 1 <= pB1.Maximum)
-                    pB1.Value += 1;
-
-                if (pB1.Value >= pB1.Maximum)
-                {
-                    pB1.Value = 0;
-                    pB1.Visible = false;
-                    groupBox2.Enabled = true;
-                    groupBox3.Enabled = true;
-
-                    //lblStatus.Visible = true;
-                    pBar3.Visible = true;
-                    lbxPrims.SortList();
-                    pBar3.Visible = false;
-                    //lblStatus.Visible = false;
-                }
-            }));
-
-            //lbxPrims.SortList();
-            item.PropertiesReceived -= new EventHandler(iitem_PropertiesReceived);
         }
 
         private void ResetObjects()
@@ -1117,190 +1437,6 @@ namespace METAbolt
 
             //AddAllObjects();
             cboDisplay.SelectedIndex = 0;
-        }
-
-        //Separate thread
-        private void Objects_OnNewPrim(object sender, PrimEventArgs e)
-        {
-            if (!this.IsHandleCreated) return;
-
-            try
-            {
-                if (e.Prim.ParentID != 0)
-                {
-                    lock (childItems)
-                    {
-                        ObjectsListItem citem = new ObjectsListItem(e.Prim, client, lbxChildren);
-
-                        if (!childItems.ContainsKey(e.Prim.LocalID))
-                        {
-                            try
-                            {
-                                childItems.Add(e.Prim.LocalID, citem);
-                            }
-                            catch
-                            {
-                                ;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    lock (listItems)
-                    {
-                        try
-                        {
-                            if (listItems.ContainsKey(e.Prim.LocalID)) return;
-                        }
-                        catch
-                        { 
-                            ; 
-                        }
-
-                        try
-                        {
-                            BeginInvoke(new MethodInvoker(delegate()
-                            {
-                                ObjectsListItem item = new ObjectsListItem(e.Prim, client, lbxPrims);
-
-                                try
-                                {
-                                    if (listItems.ContainsKey(e.Prim.LocalID)) return;
-                                }
-                                catch { ; }
-
-                                try
-                                {
-                                    listItems.Add(e.Prim.LocalID, item);
-
-                                    BeginInvoke(new MethodInvoker(delegate()
-                                    {
-                                        pB1.Maximum += 1;
-                                    }));
-
-                                    item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
-                                    item.RequestProperties();
-                                }
-                                catch
-                                {
-                                    ;
-                                }
-                            }));
-                        }
-                        catch
-                        {
-                            ;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                ;  
-            }
-        }
-
-        //Separate thread
-        private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
-        {
-            if (!this.IsHandleCreated) return;
-
-            ObjectsListItem item;
-
-            uint objectID = e.ObjectLocalID; 
-
-            try
-            {
-                if (listItems.ContainsKey(objectID))
-                {
-                    item = listItems[objectID];
-                }
-                else
-                {
-                    return;
-                }
-
-                if (item.Prim.ParentID != 0)
-                {
-                    lock (childItems)
-                    {
-                        if (!childItems.ContainsKey(objectID)) return;
-
-                        try
-                        {
-                            BeginInvoke(new MethodInvoker(delegate()
-                            {
-                                item = childItems[objectID];
-
-                                if (lbxChildren.Items.Contains(item))
-                                {
-                                    lbxChildren.Items.Remove(item);
-                                }
-
-                                try
-                                {
-                                    childItems.Remove(objectID);
-                                }
-                                catch
-                                {
-                                    ;
-                                }
-                            }));
-                        }
-                        catch
-                        {
-                            ;
-                        }
-                    }
-                }
-                else
-                {
-                    lock (listItems)
-                    {
-                        if (!listItems.ContainsKey(objectID)) return;
-
-                        try
-                        {
-                            BeginInvoke(new MethodInvoker(delegate()
-                            {
-                                item = listItems[objectID];
-
-                                if (item != null)
-                                {
-                                    if (lbxPrims.Items.Contains(item))
-                                    {
-                                        lbxPrims.Items.Remove(item);
-                                    }
-
-                                    if (pB1.Maximum > 0) pB1.Maximum -= 1;
-
-                                    try
-                                    {
-                                        listItems.Remove(objectID);
-                                    }
-                                    catch
-                                    {
-                                        ;
-                                    }
-
-                                    //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                                    tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
-                                }
-                            }));
-                        }
-                        catch
-                        {
-                            ;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                // passed key wasn't available
-                return;
-            }
         }
 
         private void lbxPrims_SelectedIndexChanged(object sender, EventArgs e)
@@ -1504,6 +1640,8 @@ namespace METAbolt
 
                 pBar1.Visible = true;
                 pBar1.Refresh();
+
+                label22.Text = "Local ID: " + sPr.LocalID.ToString();  
 
                 // Populate child items here
                 lbxChildren.BeginUpdate();
@@ -1800,7 +1938,7 @@ namespace METAbolt
             ClearLists();
             lbxPrims.Items.Clear();  
 
-            RemoveObjectEvents();
+            //RemoveObjectEvents();
             RemoveNetcomEvents();
             
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
@@ -2189,9 +2327,11 @@ namespace METAbolt
             {
                 if (cboDisplay.SelectedIndex == 0)
                 {
-                    DisplayObjects();
+                    //DisplayObjects();
                     //lbxPrims.Items.Clear();
                     //AddAllObjects();
+                    lbxPrims.Items.Clear();
+                    AddAllObjects();
                 }
                 else if (cboDisplay.SelectedIndex == 1)
                 {
@@ -2299,7 +2439,15 @@ namespace METAbolt
 
             range = newrange = (float)numericUpDown1.Value;
 
-            cboDisplay.SelectedIndex = 0;
+            if (cboDisplay.SelectedIndex != 0)
+            {
+                cboDisplay.SelectedIndex = 0;
+            }
+            else
+            {
+                lbxPrims.Items.Clear();
+                AddAllObjects();
+            }
         }
 
         private void GetTaskInventory(UUID objID, uint localID)

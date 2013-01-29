@@ -1197,7 +1197,7 @@ namespace METAbolt
 
                 double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
-                if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
+                //if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
 
                 if (avpos.Z < 0.1f)
                 {
@@ -1342,7 +1342,7 @@ namespace METAbolt
 
                 double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
-                if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
+                //if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
 
                 if (avpos.Z < 0.1f)
                 {
