@@ -53,6 +53,7 @@ namespace METAbolt
             this.lkLocation = new System.Windows.Forms.LinkLabel();
             this.btnTP = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtCreator = new System.Windows.Forms.TextBox();
@@ -106,6 +107,7 @@ namespace METAbolt
             this.pBar2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pBar3 = new System.Windows.Forms.PictureBox();
+            this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -114,8 +116,6 @@ namespace METAbolt
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.gbxInworld.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -390,6 +390,16 @@ namespace METAbolt
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Object information";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.Gray;
+            this.label22.Location = new System.Drawing.Point(107, 197);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(0, 13);
+            this.label22.TabIndex = 51;
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label21
             // 
@@ -880,6 +890,7 @@ namespace METAbolt
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(229, 21);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.Click += new System.EventHandler(this.txtSearch_Click);
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // groupBox3
@@ -1074,6 +1085,29 @@ namespace METAbolt
             this.pBar3.TabStop = false;
             this.pBar3.Visible = false;
             // 
+            // lbxPrims
+            // 
+            this.lbxPrims.AccessibleName = "List of objects listbox";
+            this.lbxPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.lbxPrims.ForeColor = System.Drawing.Color.Black;
+            this.lbxPrims.FormattingEnabled = true;
+            this.lbxPrims.HorizontalScrollbar = true;
+            this.lbxPrims.IntegralHeight = false;
+            this.lbxPrims.ItemHeight = 18;
+            this.lbxPrims.Location = new System.Drawing.Point(6, 72);
+            this.lbxPrims.Name = "lbxPrims";
+            this.lbxPrims.Size = new System.Drawing.Size(304, 236);
+            this.lbxPrims.Sorted = true;
+            this.lbxPrims.TabIndex = 0;
+            this.lbxPrims.Visible = false;
+            this.lbxPrims.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxPrims_DrawItem);
+            this.lbxPrims.SelectedIndexChanged += new System.EventHandler(this.lbxPrims_SelectedIndexChanged);
+            this.lbxPrims.Leave += new System.EventHandler(this.lbxPrims_Leave);
+            // 
             // textBox1
             // 
             this.textBox1.AllowDrop = true;
@@ -1176,39 +1210,6 @@ namespace METAbolt
             this.toolStripMenuItem3.Size = new System.Drawing.Size(169, 22);
             this.toolStripMenuItem3.Text = "Delete";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.Gray;
-            this.label22.Location = new System.Drawing.Point(107, 197);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(0, 13);
-            this.label22.TabIndex = 51;
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lbxPrims
-            // 
-            this.lbxPrims.AccessibleName = "List of objects listbox";
-            this.lbxPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lbxPrims.ForeColor = System.Drawing.Color.Black;
-            this.lbxPrims.FormattingEnabled = true;
-            this.lbxPrims.HorizontalScrollbar = true;
-            this.lbxPrims.IntegralHeight = false;
-            this.lbxPrims.ItemHeight = 18;
-            this.lbxPrims.Location = new System.Drawing.Point(6, 72);
-            this.lbxPrims.Name = "lbxPrims";
-            this.lbxPrims.Size = new System.Drawing.Size(304, 236);
-            this.lbxPrims.Sorted = true;
-            this.lbxPrims.TabIndex = 0;
-            this.lbxPrims.Visible = false;
-            this.lbxPrims.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxPrims_DrawItem);
-            this.lbxPrims.SelectedIndexChanged += new System.EventHandler(this.lbxPrims_SelectedIndexChanged);
-            this.lbxPrims.Leave += new System.EventHandler(this.lbxPrims_Leave);
             // 
             // frmObjects
             // 

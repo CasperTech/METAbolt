@@ -31,7 +31,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using SLNetworkComm;
-using OpenMetaverse.Packets;
+//using OpenMetaverse.Packets;
 using PopupControl;
 using ExceptionReporting;
 using System.Threading;
@@ -377,7 +377,7 @@ namespace METAbolt
 
                         float dist = Vector3.Distance(location, pos);
 
-                        if (dist < range)
+                        if ((dist < range) && (item.Prim.Position != Vector3.Zero))
                         {
                             try
                             {
@@ -588,7 +588,7 @@ namespace METAbolt
 
                 ////pB1.Visible = false;
 
-                lbxPrims.SortList();
+                //lbxPrims.SortList();
             }));
 
             item.PropertiesReceived -= new EventHandler(item_PropertiesReceived);
@@ -682,7 +682,7 @@ namespace METAbolt
             Cursor.Current = Cursors.WaitCursor;
 
             pB1.Visible = true;
-            bool inmem = false;
+            //bool inmem = false;
 
             lbxPrims.location = instance.SIMsittingPos();
             lbxPrims.SortByName = false;
@@ -773,7 +773,7 @@ namespace METAbolt
 
                     float dist = Vector3.Distance(location, pos);
 
-                    if ((int)dist < (int)range)
+                    if (((int)dist < (int)range) && (prim.Position != Vector3.Zero))
                     {
                         ObjectsListItem item = new ObjectsListItem(prim, client, lbxPrims);
 
@@ -787,7 +787,7 @@ namespace METAbolt
 
                                     item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
                                     item.RequestProperties();
-                                    inmem = true;
+                                    //inmem = true;
                                 }
 
                                 //pB1.Maximum += 1;
@@ -848,7 +848,7 @@ namespace METAbolt
                 lbxChildren.Visible = true;
                 txtSearch.Enabled = true;
 
-                lbxPrims.SortList();
+                //lbxPrims.SortList();
 
                 pB1.Visible = false;
 
@@ -864,67 +864,67 @@ namespace METAbolt
             Cursor.Current = Cursors.Default;
         }
 
-        private void DisplayObjects()
-        {
-            if (eventsremoved) AddObjectEvents();
+        //private void DisplayObjects()
+        //{
+        //    if (eventsremoved) AddObjectEvents();
  
-            lbxPrims.Items.Clear();
+        //    lbxPrims.Items.Clear();
 
-            try
-            {
-                Vector3 location = instance.SIMsittingPos();
-                pBar3.Visible = true;
-                pB1.Visible = true;
-                pB1.Value = 0;
-                pB1.Maximum = ItemsProps.Count;
+        //    try
+        //    {
+        //        Vector3 location = instance.SIMsittingPos();
+        //        pBar3.Visible = true;
+        //        pB1.Visible = true;
+        //        pB1.Value = 0;
+        //        pB1.Maximum = ItemsProps.Count;
 
-                lock (ItemsProps)
-                {
-                    //Vector3 location = instance.SIMsittingPos();
+        //        lock (ItemsProps)
+        //        {
+        //            //Vector3 location = instance.SIMsittingPos();
 
-                    foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
-                    {
-                        ObjectsListItem item = entry.Value;
+        //            foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
+        //            {
+        //                ObjectsListItem item = entry.Value;
 
-                        if (item.Prim.ParentID == 0) //root prims only
-                        {
-                            Vector3 pos = item.Prim.Position;
+        //                if (item.Prim.ParentID == 0) //root prims only
+        //                {
+        //                    Vector3 pos = item.Prim.Position;
 
-                            if (Vector3.Distance(location,pos) < range)
-                            {
-                                lock (lbxPrims.Items)
-                                {
-                                    lbxPrims.BeginUpdate();
-                                    lbxPrims.Items.Add(item);
-                                    lbxPrims.EndUpdate();
-                                }
-                            }
-                        }
+        //                    if (Vector3.Distance(location,pos) < range)
+        //                    {
+        //                        lock (lbxPrims.Items)
+        //                        {
+        //                            lbxPrims.BeginUpdate();
+        //                            lbxPrims.Items.Add(item);
+        //                            lbxPrims.EndUpdate();
+        //                        }
+        //                    }
+        //                }
 
-                        if (pB1.Value < ItemsProps.Count) pB1.Value += 1;
-                    }
-                }
+        //                if (pB1.Value < ItemsProps.Count) pB1.Value += 1;
+        //            }
+        //        }
 
-                pB1.Visible = false;
-                pBar3.Visible = false;
+        //        pB1.Visible = false;
+        //        pBar3.Visible = false;
 
-                //lblStatus.Visible = true;
-                //lbxPrims.SortList();
-                //lblStatus.Visible = false;
+        //        //lblStatus.Visible = true;
+        //        //lbxPrims.SortList();
+        //        //lblStatus.Visible = false;
 
-                //lbxPrims.Visible = true;
-                //lbxChildren.Visible = true;
-                txtSearch.Enabled = true;
+        //        //lbxPrims.Visible = true;
+        //        //lbxChildren.Visible = true;
+        //        txtSearch.Enabled = true;
 
-                //tlbStatus.Text = listItems.Count.ToString() + " objects";
-                tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
-            }
-            catch (Exception ex)
-            {
-                //string exp = exc.Message;
-                reporter.Show(ex);
-            }
-        }
+        //        //tlbStatus.Text = listItems.Count.ToString() + " objects";
+        //        tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //string exp = exc.Message;
+        //        reporter.Show(ex);
+        //    }
+        //}
 
         private void SearchFor(string text)
         {
@@ -934,7 +934,7 @@ namespace METAbolt
             pB1.Visible = true;
 
             string query = text.ToLower(CultureInfo.CurrentCulture);
-            bool inmem = false;
+            //bool inmem = false;
 
             List<Primitive> results =
                 client.Network.CurrentSim.ObjectsPrimitives.FindAll(
@@ -973,7 +973,7 @@ namespace METAbolt
 
                             item.PropertiesReceived += new EventHandler(item_PropertiesReceived);
                             item.RequestProperties();
-                            inmem = true;
+                            //inmem = true;
                         }
                         else
                         {
@@ -994,12 +994,12 @@ namespace METAbolt
                 }
             }
 
-            if (!inmem)
-            {
+            //if (!inmem)
+            //{
                 pB1.Value = 0;
                 pB1.Visible = false;
-                //lbxPrims.SortList();
-            }
+                lbxPrims.SortList();
+            //}
 
             //tlbStatus.Text = listItems.Count.ToString() + " objects";
             tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
@@ -1043,7 +1043,7 @@ namespace METAbolt
                 }
 
                 //lblStatus.Visible = true;
-                //lbxPrims.SortList();
+                lbxPrims.SortList();
                 //lblStatus.Visible = false;
                 pB1.Visible = false;
                 pBar3.Visible = false;
@@ -1098,7 +1098,7 @@ namespace METAbolt
                 }
 
                 //lblStatus.Visible = true;
-                //lbxPrims.SortList();
+                lbxPrims.SortList();
                 //lblStatus.Visible = false;
                 pB1.Visible = false;
                 pBar3.Visible = false;
@@ -1154,6 +1154,7 @@ namespace METAbolt
 
                 pB1.Visible = false;
                 pBar3.Visible = false;
+                lbxPrims.SortList();
 
                 txtSearch.Enabled = true;
 
@@ -1202,6 +1203,7 @@ namespace METAbolt
 
                 pB1.Visible = false;
                 pBar3.Visible = false;
+                lbxPrims.SortList();
 
                 txtSearch.Enabled = true;
 
@@ -1250,6 +1252,7 @@ namespace METAbolt
 
                 pB1.Visible = false;
                 pBar3.Visible = false;
+                lbxPrims.SortList();
 
                 txtSearch.Enabled = true;
 
@@ -1298,6 +1301,7 @@ namespace METAbolt
 
                 pB1.Visible = false;
                 pBar3.Visible = false;
+                lbxPrims.SortList();
 
                 txtSearch.Enabled = true;
 
@@ -1354,6 +1358,7 @@ namespace METAbolt
 
                 pB1.Visible = false;
                 pBar3.Visible = false;
+                lbxPrims.SortList();
 
                 txtSearch.Enabled = true;
 
@@ -1410,6 +1415,7 @@ namespace METAbolt
 
                 pB1.Visible = false;
                 pBar3.Visible = false;
+                lbxPrims.SortList();
 
                 txtSearch.Enabled = true;
 
@@ -1422,16 +1428,16 @@ namespace METAbolt
             }
         }
 
-        private void ResetObjects()
-        {
-            lbxPrims.Items.Clear();
-            lbxChildren.Items.Clear();
-            lbxTask.Items.Clear();
-            listItems.Clear();
-            childItems.Clear();
-            DisplayObjects();
-            button3.Visible = button7.Visible = false;
-        }
+        //private void ResetObjects()
+        //{
+        //    lbxPrims.Items.Clear();
+        //    lbxChildren.Items.Clear();
+        //    lbxTask.Items.Clear();
+        //    listItems.Clear();
+        //    childItems.Clear();
+        //    DisplayObjects();
+        //    button3.Visible = button7.Visible = false;
+        //}
 
         private void frmObjects_Load(object sender, EventArgs e)
         {
@@ -2454,6 +2460,8 @@ namespace METAbolt
             ////    lbxPrims.SortList();
             ////}
 
+            txtSearch.Text = string.Empty;  
+
             range = newrange = (float)numericUpDown1.Value;
 
             if (cboDisplay.SelectedIndex != 0)
@@ -2465,6 +2473,8 @@ namespace METAbolt
                 lbxPrims.Items.Clear();
                 AddAllObjects();
             }
+
+            lbxPrims.SortList();
         }
 
         private void GetTaskInventory(UUID objID, uint localID)
@@ -3021,6 +3031,12 @@ namespace METAbolt
             UUID aID = (UUID)label21.Text;
 
             (new frmProfile(instance, txtCreator.Text, aID)).Show();
+        }
+
+        private void txtSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.SelectionStart = 0;
+            txtSearch.SelectionLength = txtSearch.Text.Length;
         }
     }
 }
