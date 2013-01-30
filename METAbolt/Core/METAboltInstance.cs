@@ -802,7 +802,7 @@ namespace METAbolt
             // Configuration options (mostly booleans)
 
             // Enable stats
-            //client.Settings.TRACK_UTILIZATION = true;
+            client.Settings.TRACK_UTILIZATION = true;
 
             /// <summary>Enable to process packets synchronously, where all of the
             /// callbacks for each packet must return before the next packet is
@@ -815,7 +815,7 @@ namespace METAbolt
             ///
  
             // For smoother bot movement
-            //client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
+            client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
 
             //client.Settings.USE_LLSD_LOGIN = true;
 

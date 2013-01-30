@@ -392,6 +392,13 @@ namespace METAbolt
                                 {
                                     listItems.Remove(e.Prim.LocalID);
                                     listItems.Add(e.Prim.LocalID, item);
+
+                                    lock (lbxPrims.Items)
+                                    {
+                                        lbxPrims.BeginUpdate();
+                                        lbxPrims.Items.Add(item);
+                                        lbxPrims.EndUpdate();
+                                    }
                                 }
                             }
                             catch
@@ -756,10 +763,13 @@ namespace METAbolt
                 {
                     Vector3 pos = prim.Position;
 
-                    //if (prim.ID == (UUID)"10e860a2-7232-42e0-ede6-2a75ef9672fd" || prim.ID == (UUID)"05c544b9-df84-2935-d829-24ec2876c197")
-                    //{
-                    //    pos = prim.Position;
-                    //}
+                    if (prim.ID == (UUID)"10e860a2-7232-42e0-ede6-2a75ef9672fd" || prim.ID == (UUID)"05c544b9-df84-2935-d829-24ec2876c197"
+                        || prim.ID == (UUID)"7fb00860-7f08-1d1f-8e05-7a54c4862455"
+                        || prim.ID == (UUID)"428c0880-0e76-298b-af4d-43bece47014f"
+                        || prim.ID == (UUID)"4abe6202-e728-7d18-69c4-f51fc61209b0")
+                    {
+                        pos = prim.Position;
+                    }
 
                     float dist = Vector3.Distance(location, pos);
 
@@ -788,6 +798,13 @@ namespace METAbolt
                                 {
                                     listItems.Remove(prim.LocalID);
                                     listItems.Add(prim.LocalID, item);
+
+                                    lock (lbxPrims.Items)
+                                    {
+                                        lbxPrims.BeginUpdate();
+                                        lbxPrims.Items.Add(item);
+                                        lbxPrims.EndUpdate();
+                                    }
                                 }
                             }
                         }
