@@ -75,8 +75,6 @@ namespace METAbolt
             client = this.instance.Client;
             AddNetcomEvents();
 
-            client.Groups.RequestCurrentGroups();  
-
             InitializeMainTab();
             InitializeChatTab();
 
@@ -392,6 +390,7 @@ namespace METAbolt
                     if (selectedTab.Name == "main")
                         tabs["chat"].Select();
 
+                    //client.Groups.RequestCurrentGroups();
                     client.Self.RetrieveInstantMessages();
                 }
             }

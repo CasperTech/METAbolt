@@ -72,7 +72,7 @@ namespace METAbolt
         private Image _MapLayer;
         private int px = 0;
         private int py =0;
-        private Simulator sim;
+        public Simulator sim;
         private Rectangle rect;
         private bool move = false;
         private string selectedname = string.Empty;
@@ -133,8 +133,8 @@ namespace METAbolt
             this.instance = instance;
             netcom = this.instance.Netcom;
             client = this.instance.Client;
+
             AddNetcomEvents();
-            AddClientEvents();
 
             chatManager = new ChatTextManager(instance, new RichTextBoxPrinter(instance, rtbChat));
             chatManager.PrintStartupMessage();
@@ -146,29 +146,18 @@ namespace METAbolt
 
             ApplyConfig(this.instance.Config.CurrentConfig);
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
-            client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
-            //client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
 
             CreateSmileys();
-            AddLanguages();
-
-            //client.Appearance.OnAppearanceUpdated += new AppearanceManager.AppearanceUpdatedCallback(Appearance_OnAppearanceUpdated);
-            client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
-            client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
-            netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
-            //client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+            //AddLanguages();
 
             Disposed += new EventHandler(ChatConsole_Disposed);
 
             lvwRadar.ListViewItemSorter = new RadarSorter();
 
-            sim = client.Network.CurrentSim;
+            //sim = client.Network.CurrentSim;
 
             world.Cursor = Cursors.NoMove2D;
             //pictureBox1.Cursor = Cursors.Hand; 
-
-            timer2.Enabled = true;
-            timer2.Start();
 
             string msg1 = "Click for help on how to use/setup the Voice feature.";
             tTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
@@ -464,26 +453,6 @@ namespace METAbolt
             {
                 tsMusic.Enabled = true;
             }
-        }
-
-        public void RemoveEvents()
-        {
-            netcom.ClientLoginStatus -= new EventHandler<LoginProgressEventArgs>(netcom_ClientLoginStatus);
-            netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
-            netcom.ChatReceived -= new EventHandler<ChatEventArgs>(netcom_ChatReceived);
-
-            client.Objects.AvatarUpdate -= new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
-            client.Objects.KillObject -= new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
-            client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
-            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
-            client.Self.MeanCollision -= new EventHandler<MeanCollisionEventArgs>(Self_Collision);
-            client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
-
-            //if (instance.Config.CurrentConfig.iRadar)
-            //{
-            //    //client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
-            //    client.Self.MeanCollision -= new EventHandler<MeanCollisionEventArgs>(Self_Collision);
-            //}
         }
 
         private void CheckWearables()
@@ -1008,15 +977,39 @@ namespace METAbolt
             //rtbChat.BackColor = instance.Config.CurrentConfig.BgColour; 
         }
 
+        public void RemoveEvents()
+        {
+            netcom.ClientLoginStatus -= new EventHandler<LoginProgressEventArgs>(netcom_ClientLoginStatus);
+            netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
+            netcom.ChatReceived -= new EventHandler<ChatEventArgs>(netcom_ChatReceived);
+            netcom.TeleportStatusChanged -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+
+            client.Objects.AvatarUpdate -= new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
+            client.Objects.KillObject -= new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
+            client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
+            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
+            client.Self.MeanCollision -= new EventHandler<MeanCollisionEventArgs>(Self_Collision);
+            client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
+
+            //if (instance.Config.CurrentConfig.iRadar)
+            //{
+            //    //client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            //    client.Self.MeanCollision -= new EventHandler<MeanCollisionEventArgs>(Self_Collision);
+            //}
+        }
+
         private void AddNetcomEvents()
         {
             netcom.ClientLoginStatus += new EventHandler<LoginProgressEventArgs>(netcom_ClientLoginStatus);
             netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
-            netcom.ChatReceived += new EventHandler<ChatEventArgs>(netcom_ChatReceived);
         }
 
         private void AddClientEvents()
         {
+            netcom.ChatReceived += new EventHandler<ChatEventArgs>(netcom_ChatReceived);
+            netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+
             client.Objects.AvatarUpdate += new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
             client.Objects.KillObject += new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
             client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
@@ -1024,6 +1017,15 @@ namespace METAbolt
 
             client.Self.MeanCollision += new EventHandler<MeanCollisionEventArgs>(Self_Collision);
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+
+            //client.Appearance.OnAppearanceUpdated += new AppearanceManager.AppearanceUpdatedCallback(Appearance_OnAppearanceUpdated);
+            client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
+            client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
+            
+            //client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
+
+            client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
+            //client.Objects.ObjectProperties += new EventHandler<ObjectPropertiesEventArgs>(Objects_OnObjectProperties);
 
             //if (instance.Config.CurrentConfig.iRadar)
             //{
@@ -1547,6 +1549,11 @@ namespace METAbolt
             if (e.Status != LoginStatus.Success) return;
 
             cbxInput.Enabled = true;
+            sim = client.Network.CurrentSim;
+
+            AddClientEvents();
+            timer2.Enabled = true;
+            timer2.Start();
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
