@@ -1509,7 +1509,8 @@ namespace METAbolt
 
                 // Texture transform for this face
                 Primitive.TextureEntryFace teFace = prim.Textures.GetFace((uint)j);
-                renderer.TransformTexCoords(face.Vertices, face.Center, teFace, mesh.Prim.Scale);
+
+                if (teFace != null) renderer.TransformTexCoords(face.Vertices, face.Center, teFace, mesh.Prim.Scale);
 
                 // Texcoords for this face
                 data.TexCoords = new float[face.Vertices.Count * 2];
