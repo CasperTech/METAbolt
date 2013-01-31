@@ -149,9 +149,9 @@ namespace METAbolt
             netcom = new SLNetCom(client);
             InitializeConfig();
 
-            imageCache = new ImageCache();
-
             state = new StateManager(this);
+
+            imageCache = new ImageCache();
 
             mainForm = new frmMain(this);
             mainForm.InitializeControls();
@@ -815,7 +815,7 @@ namespace METAbolt
             ///
  
             // For smoother bot movement
-            client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
+            //client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
 
             //client.Settings.USE_LLSD_LOGIN = true;
 
@@ -824,7 +824,7 @@ namespace METAbolt
 
             //client.Settings.STORE_LAND_PATCHES = true;
             /// <summary>Enable/disable sending periodic camera updates</summary>
-            client.Settings.SEND_AGENT_UPDATES = true;
+            client.Settings.SEND_AGENT_UPDATES = false;
             /// <summary>Enable/disable libsecondlife automatically setting the
             /// bandwidth throttle after connecting to each simulator</summary>
             /// <remarks>The default libsecondlife throttle uses the equivalent of

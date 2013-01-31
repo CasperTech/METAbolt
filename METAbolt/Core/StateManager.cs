@@ -84,7 +84,10 @@ namespace METAbolt
         private UUID requestedsitprim = UUID.Zero;
         //private ManualResetEvent PrimEvent = new ManualResetEvent(false);
         private bool groundsitting = false;
+        
         private System.Timers.Timer pointtimer;
+        private System.Timers.Timer agentUpdateTicker;
+        
         private Vector3d offset = Vector3d.Zero; 
         private Vector3d beamoffset1 = new Vector3d(0, 0, 0.1);
         private Vector3d beamoffset2 = new Vector3d(0, 0.1, 0);
@@ -106,7 +109,7 @@ namespace METAbolt
 
             AddNetcomEvents();
             AddClientEvents();
-            //InitializeAgentUpdateTimer();
+            InitializeAgentUpdateTimer();
 
             pointtimer = new System.Timers.Timer();
             pointtimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -219,28 +222,32 @@ namespace METAbolt
             }
         }
 
-        //private void InitializeAgentUpdateTimer()
-        //{
-        //    //agentUpdateTicker = new System.Timers.Timer(250);
-        //    //agentUpdateTicker.Elapsed += new ElapsedEventHandler(agentUpdateTicker_Elapsed);
-        //}
+        private void InitializeAgentUpdateTimer()
+        {
+            agentUpdateTicker = new System.Timers.Timer(250);
+            agentUpdateTicker.Elapsed += new ElapsedEventHandler(agentUpdateTicker_Elapsed);
+            agentUpdateTicker.Enabled = true;
+        }
 
-        //private void agentUpdateTicker_Elapsed(object sender, ElapsedEventArgs e)
-        //{
-        //    UpdateStatus();
-        //}
+        private void agentUpdateTicker_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            UpdateStatus();
+        }
 
-        //private void UpdateStatus()
-        //{
-        //    //AgentUpdatePacket update = new AgentUpdatePacket();
-        //    //update.Header.Reliable = true;
+        private void UpdateStatus()
+        {
+            AgentUpdatePacket update = new AgentUpdatePacket();
+            update.Header.Reliable = true;
 
-        //    //update.AgentData.AgentID = client.Self.AgentID;
-        //    //update.AgentData.SessionID = client.Self.SessionID;
-        //    //update.AgentData.HeadRotation = Quaternion.Identity;
-        //    //update.AgentData.BodyRotation = Quaternion.Identity;
-        //    //client.Network.SendPacket(update, client.Network.CurrentSim);
-        //}
+            update.AgentData.AgentID = client.Self.AgentID;
+            update.AgentData.SessionID = client.Self.SessionID;
+            update.AgentData.HeadRotation = Quaternion.Identity;
+            update.AgentData.BodyRotation = Quaternion.Identity;
+            update.AgentData.Far = (float)instance.Config.CurrentConfig.RadarRange;
+            update.Type = PacketType.AgentUpdate; 
+            //client.Network.SendPacket(update, client.Network.CurrentSim);
+            client.Network.CurrentSim.SendPacket(update);
+        }
 
         public void Follow(string name)
         {

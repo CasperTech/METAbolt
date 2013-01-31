@@ -88,6 +88,9 @@ namespace METAbolt
 
             client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
             client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+            client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
+            client.Parcels.ParcelObjectOwnersReply += new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
+            client.Parcels.ParcelAccessListReply += new EventHandler<ParcelAccessListReplyEventArgs>(Parcels_ParcelAccessListReply);
 
             client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
@@ -121,6 +124,7 @@ namespace METAbolt
             //client.Parcels.ParcelDwellReply -= new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
             client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+            client.Parcels.ParcelObjectOwnersReply -= new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
         }
 
         private void GroupMembersHandler(object sender, GroupMembersReplyEventArgs e)
@@ -181,10 +185,6 @@ namespace METAbolt
             //callback = new ParcelManager.ParcelPrimOwners ParcelObjectOwnersListReplyCallback(Parcel_ObjectOwners);
             //client.Parcels.OnPrimOwnersListReply += callback;
 
-            client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
-            client.Parcels.ParcelObjectOwnersReply +=new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
-            client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
-
             cbcreater.Enabled = true;
             cbcreateg.Enabled = true;
             cbplace.Enabled = true;
@@ -198,9 +198,6 @@ namespace METAbolt
             cblandmark.Enabled = true;
             cbTerrain.Enabled = true;
             cbpush.Enabled = true;
-            
-            client.Parcels.ParcelAccessListReply += new EventHandler<ParcelAccessListReplyEventArgs>(Parcels_ParcelAccessListReply);
-            client.Parcels.RequestParcelAccessList(client.Network.CurrentSim, parcel.LocalID, AccessList.Ban, 1);
         }
 
         private void PopData()
@@ -362,6 +359,7 @@ namespace METAbolt
             {
                 blacklist = e.AccessList;
                 lvwBlackList.BeginUpdate();
+                lvwBlackList.Items.Clear();  
 
                 foreach (ParcelManager.ParcelAccessEntry pe in blacklist)
                 {
@@ -399,10 +397,10 @@ namespace METAbolt
         private void Parcel_ObjectOwners(object sender, ParcelObjectOwnersReplyEventArgs ea)
         {
             BeginInvoke(new MethodInvoker(delegate()
-            {     
-                lvwPrimOwners.Enabled = true;
+            {
                 lvwPrimOwners.BeginUpdate();
-                //lvwPrimOwners.Items.Clear();
+                lvwPrimOwners.Items.Clear();
+                lvwPrimOwners.Enabled = true;
 
                 List<ParcelManager.ParcelPrimOwners> primOwners = ea.PrimOwners; 
 
@@ -414,19 +412,22 @@ namespace METAbolt
                         item.Tag = primOwners[i].OwnerID;
                         item.SubItems.Add(primOwners[i].Count.ToString(CultureInfo.CurrentCulture));
 
-                        if (!instance.avnames.ContainsKey(primOwners[i].OwnerID))
-                        {
-                            client.Avatars.RequestAvatarName(primOwners[i].OwnerID);
-                        }
-                        else
-                        {
-                            ListViewItem foundItem = lvwPrimOwners.FindItemWithText(instance.avnames[primOwners[i].OwnerID].ToString());
+                        //if (!instance.avnames.ContainsKey(primOwners[i].OwnerID))
+                        //{
+                        //    //foundItem.Text = primOwners[i].OwnerID.ToString(); 
+                        //    client.Avatars.RequestAvatarName(primOwners[i].OwnerID);
+                        //}
+                        //else
+                        //{
+                        //    ListViewItem foundItem = lvwPrimOwners.FindItemWithText(instance.avnames[primOwners[i].OwnerID].ToString());
 
-                            if (foundItem != null)
-                            {
-                                foundItem.Text = instance.avnames[primOwners[i].OwnerID].ToString();
-                            }
-                        }
+                        //    if (foundItem != null)
+                        //    {
+                        //        foundItem.Text = instance.avnames[primOwners[i].OwnerID].ToString();
+                        //    }
+                        //}
+
+                        client.Avatars.RequestAvatarName(primOwners[i].OwnerID);
                     }
                     catch (Exception ex)
                     {
@@ -439,6 +440,8 @@ namespace METAbolt
                 lvwPrimOwners.EndUpdate();
                 //lvwPrimOwners.Sort();
             }));
+
+            //client.Parcels.ParcelObjectOwnersReply -= new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
         }
 
         // separate thread
@@ -475,6 +478,7 @@ namespace METAbolt
                 }
 
                 ListViewItem foundItem = lvwPrimOwners.FindItemWithText(av.Key.ToString());
+                //ListViewItem foundItem = lvwPrimOwners.FindItemWithText(instance.avnames[primOwners[i].OwnerID].ToString());
 
                 try
                 {
@@ -575,7 +579,7 @@ namespace METAbolt
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            List<UUID> ownersID = null;
+            List<UUID> ownersID = new List<UUID>();
 
             UUID oitem = (UUID)lvwPrimOwners.SelectedItems[0].Tag;
 
@@ -600,10 +604,11 @@ namespace METAbolt
 
             ownersID.Add(oitem);
 
-            client.Parcels.RequestSelectObjects(parcel.LocalID, ObjectReturnType.Owner, oitem);
+            //client.Parcels.RequestSelectObjects(parcel.LocalID, ObjectReturnType.Owner, oitem);
 
             client.Parcels.ReturnObjects(client.Network.CurrentSim, parcel.LocalID, ObjectReturnType.Owner, ownersID);
-            client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
+            lvwPrimOwners.SelectedItems[0].Remove(); 
+            //client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
             PopData();
             //btnSelect.Enabled = false;
             btnReturn.Enabled = false;
@@ -1006,6 +1011,12 @@ namespace METAbolt
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmAboutLand_Shown(object sender, EventArgs e)
+        {
+            client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
+            client.Parcels.RequestParcelAccessList(client.Network.CurrentSim, parcel.LocalID, AccessList.Ban, 1);
         }
     }
 }

@@ -1183,6 +1183,7 @@
             this.Text = "About Land";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAboutLand_FormClosing);
             this.Load += new System.EventHandler(this.frmAboutLand_Load);
+            this.Shown += new System.EventHandler(this.frmAboutLand_Shown);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);

@@ -367,7 +367,9 @@ namespace METAbolt
                         string uname = client.Self.FirstName + " " + client.Self.LastName + "\\";
 
                         Wildcard wildcard = new Wildcard(client.Self.FirstName + " " + client.Self.LastName + "*", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                        List<string> torem = new List<string>(); 
+                        List<string> torem = new List<string>();
+
+                        client.Self.Movement.Camera.Far = (float)instance.Config.CurrentConfig.RadarRange;
 
                         foreach (string s in usernlist)
                         {

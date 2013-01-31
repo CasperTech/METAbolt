@@ -343,7 +343,9 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnNewPrim(object sender, PrimEventArgs e)
         {
-            if (!this.IsHandleCreated) return;
+            //if (!this.IsHandleCreated) return;
+
+            if (e.Simulator.Handle != client.Network.CurrentSim.Handle || e.Prim.Position == Vector3.Zero || e.Prim is Avatar) return;
 
             try
             {
@@ -377,7 +379,7 @@ namespace METAbolt
 
                         float dist = Vector3.Distance(location, pos);
 
-                        if ((dist < range) && (item.Prim.Position != Vector3.Zero))
+                        if (dist < range)
                         {
                             try
                             {
@@ -423,7 +425,9 @@ namespace METAbolt
         //Separate thread
         private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
         {
-            if (!this.IsHandleCreated) return;
+            //if (!this.IsHandleCreated) return;
+
+            if (e.Simulator.Handle != client.Network.CurrentSim.Handle) return;
 
             ObjectsListItem item;
 
