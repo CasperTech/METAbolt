@@ -2008,6 +2008,7 @@ namespace METAbolt
             if (item == null) return;
 
             Vector3 target = item.Prim.Position; // the object to look at
+            
             client.Self.Movement.TurnToward(target);
         }
 

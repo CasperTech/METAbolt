@@ -602,16 +602,20 @@ namespace METAbolt
                 }
             }
 
-            ownersID.Add(oitem);
+            // TODO: disabled for user safety
+            // this function returns all the objects belonging to the landowner regardless of what avatar UUID is passed!!
+            // either a bug in libopenmv and/or SL
 
-            //client.Parcels.RequestSelectObjects(parcel.LocalID, ObjectReturnType.Owner, oitem);
+            //ownersID.Add(oitem);
 
-            client.Parcels.ReturnObjects(client.Network.CurrentSim, parcel.LocalID, ObjectReturnType.Owner, ownersID);
-            lvwPrimOwners.SelectedItems[0].Remove(); 
-            //client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
-            PopData();
-            //btnSelect.Enabled = false;
-            btnReturn.Enabled = false;
+            ////client.Parcels.RequestSelectObjects(parcel.LocalID, ObjectReturnType.Owner, oitem);
+
+            //client.Parcels.ReturnObjects(client.Network.CurrentSim, parcel.LocalID, ObjectReturnType.Owner, ownersID);
+            //lvwPrimOwners.SelectedItems[0].Remove(); 
+            ////client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
+            //PopData();
+            ////btnSelect.Enabled = false;
+            //btnReturn.Enabled = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -906,11 +910,27 @@ namespace METAbolt
         {
             if (lvwBlackList.SelectedItems.Count > 0)
             {
-                ParcelManager.ParcelAccessEntry person = (ParcelManager.ParcelAccessEntry)lvwBlackList.SelectedItems[0].Tag;
+                try
+                {
+                    //ParcelManager.ParcelAccessEntry p1 = new ParcelManager.ParcelAccessEntry();
+                    //p1.AgentID = (UUID)lvwBlackList.SelectedItems[0].Tag;
+                    //p1.Flags = AccessList.Ban;
 
-                blacklist.Remove(person);
-                parcel.AccessBlackList = blacklist;
-                this.parcel.Update(client.Network.CurrentSim, false);  
+                    ParcelManager.ParcelAccessEntry person = new ParcelManager.ParcelAccessEntry();
+
+                    person = (ParcelManager.ParcelAccessEntry)lvwBlackList.SelectedItems[0].Tag;
+                    //person.Flags = AccessList.Access;
+
+                    blacklist.Remove(person);
+                    parcel.AccessBlackList = blacklist;
+                    parcel.AccessBlackList.Remove(person);
+                    this.parcel.Update(client.Network.CurrentSim, false);
+
+                    client.Parcels.RequestParcelAccessList(client.Network.CurrentSim, parcel.LocalID, AccessList.Ban, 1);
+
+                    button2.Enabled = false;
+                }
+                catch { ; }
             }
         }
 
