@@ -1584,7 +1584,9 @@ namespace METAbolt
             }
             catch (Exception exp)
             {
-                Logger.Log(String.Format("Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
+                //Logger.Log(String.Format("Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
+                debugLogForm.Dispose(); 
+                debugLogForm = new frmDebugLog(instance);
             }
         }
 

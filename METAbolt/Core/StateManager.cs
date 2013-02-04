@@ -236,17 +236,20 @@ namespace METAbolt
 
         private void UpdateStatus()
         {
-            AgentUpdatePacket update = new AgentUpdatePacket();
-            update.Header.Reliable = true;
+            if (netcom.IsLoggedIn)
+            {
+                AgentUpdatePacket update = new AgentUpdatePacket();
+                update.Header.Reliable = true;
 
-            update.AgentData.AgentID = client.Self.AgentID;
-            update.AgentData.SessionID = client.Self.SessionID;
-            update.AgentData.HeadRotation = Quaternion.Identity;
-            update.AgentData.BodyRotation = Quaternion.Identity;
-            update.AgentData.Far = (float)instance.Config.CurrentConfig.RadarRange;
-            update.Type = PacketType.AgentUpdate; 
-            //client.Network.SendPacket(update, client.Network.CurrentSim);
-            client.Network.CurrentSim.SendPacket(update);
+                update.AgentData.AgentID = client.Self.AgentID;
+                update.AgentData.SessionID = client.Self.SessionID;
+                update.AgentData.HeadRotation = Quaternion.Identity;
+                update.AgentData.BodyRotation = Quaternion.Identity;
+                update.AgentData.Far = (float)instance.Config.CurrentConfig.RadarRange;
+                update.Type = PacketType.AgentUpdate;
+                //client.Network.SendPacket(update, client.Network.CurrentSim);
+                client.Network.CurrentSim.SendPacket(update);
+            }
         }
 
         public void Follow(string name)
