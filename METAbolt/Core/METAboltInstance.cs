@@ -824,7 +824,7 @@ namespace METAbolt
 
             //client.Settings.STORE_LAND_PATCHES = true;
             /// <summary>Enable/disable sending periodic camera updates</summary>
-            client.Settings.SEND_AGENT_UPDATES = false;
+            client.Settings.SEND_AGENT_UPDATES = true;
             /// <summary>Enable/disable libsecondlife automatically setting the
             /// bandwidth throttle after connecting to each simulator</summary>
             /// <remarks>The default libsecondlife throttle uses the equivalent of

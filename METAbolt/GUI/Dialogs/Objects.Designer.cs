@@ -547,7 +547,7 @@ namespace METAbolt
             this.checkBox5.Enabled = false;
             this.checkBox5.Location = new System.Drawing.Point(143, 284);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(51, 17);
+            this.checkBox5.Size = new System.Drawing.Size(50, 17);
             this.checkBox5.TabIndex = 9;
             this.checkBox5.Text = "Copy";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -560,7 +560,7 @@ namespace METAbolt
             this.checkBox6.Enabled = false;
             this.checkBox6.Location = new System.Drawing.Point(102, 284);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(46, 17);
+            this.checkBox6.Size = new System.Drawing.Size(47, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mod";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -673,7 +673,7 @@ namespace METAbolt
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(143, 305);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(51, 17);
+            this.checkBox2.Size = new System.Drawing.Size(50, 17);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Copy";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -685,7 +685,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(102, 305);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(46, 17);
+            this.checkBox1.Size = new System.Drawing.Size(47, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Mod";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -837,7 +837,7 @@ namespace METAbolt
             this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(114, 41);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(66, 17);
+            this.radioButton2.Size = new System.Drawing.Size(67, 17);
             this.radioButton2.TabIndex = 3;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Distance";
@@ -850,7 +850,7 @@ namespace METAbolt
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(56, 41);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(52, 17);
+            this.radioButton1.Size = new System.Drawing.Size(53, 17);
             this.radioButton1.TabIndex = 2;
             this.radioButton1.Text = "Name";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -1188,7 +1188,7 @@ namespace METAbolt
             this.toolStripSeparator1,
             this.toolStripMenuItem3});
             this.mnuTask.Name = "mnuTask";
-            this.mnuTask.Size = new System.Drawing.Size(170, 54);
+            this.mnuTask.Size = new System.Drawing.Size(170, 76);
             this.mnuTask.Opening += new System.ComponentModel.CancelEventHandler(this.mnuTask_Opening);
             // 
             // toolStripMenuItem2
@@ -1197,6 +1197,7 @@ namespace METAbolt
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(169, 22);
             this.toolStripMenuItem2.Text = "Copy to inventory";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripSeparator1
             // 

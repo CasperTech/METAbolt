@@ -109,7 +109,7 @@ namespace METAbolt
 
             AddNetcomEvents();
             AddClientEvents();
-            InitializeAgentUpdateTimer();
+            //InitializeAgentUpdateTimer();
 
             pointtimer = new System.Timers.Timer();
             pointtimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);

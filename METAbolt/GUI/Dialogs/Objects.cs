@@ -2898,6 +2898,8 @@ namespace METAbolt
             Primitive sPr = item.Prim;
 
             InventoryItem llitem = ((ListViewItem)lbxTask.SelectedItems[0]).Tag as InventoryItem;
+            InventoryItem llitemname = ((ListViewItem)lbxPrims.SelectedItems[0]).Tag as InventoryItem;
+            
             //ListViewItem selitem = lbxTask.SelectedItems[0];
 
 
@@ -2909,25 +2911,28 @@ namespace METAbolt
 
             foreach (InventoryBase o in foundfolders)
             {
-                if (o.Name.ToLower(CultureInfo.CurrentCulture) == llitem.Name.ToLower(CultureInfo.CurrentCulture))
+                if (o.Name.ToLower(CultureInfo.CurrentCulture) == llitemname.Name.ToLower(CultureInfo.CurrentCulture))
                 {
                     if (o is InventoryFolder)
                     {
                         folderfound = true;
-                        newfolder = o.UUID; 
+                        newfolder = o.UUID;
+                        break;
                     }
                 }
             }
 
             if (!folderfound)
             {
-                newfolder = client.Inventory.CreateFolder(client.Inventory.Store.RootFolder.UUID, llitem.Name);
+                newfolder = client.Inventory.CreateFolder(client.Inventory.Store.RootFolder.UUID, llitemname.Name);
             }
 
             client.Inventory.MoveTaskInventory(sPr.LocalID, llitem.UUID, newfolder, client.Network.CurrentSim);
 
             button4.PerformClick();
             button6.PerformClick();
+
+            MessageBox.Show("Item has been copied to " + llitemname.Name + " folder");
         }
 
         private void lbxTask_MouseDown(object sender, MouseEventArgs e)
@@ -3042,6 +3047,11 @@ namespace METAbolt
         {
             txtSearch.SelectionStart = 0;
             txtSearch.SelectionLength = txtSearch.Text.Length;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            CopyTaskItem();
         }
     }
 }
