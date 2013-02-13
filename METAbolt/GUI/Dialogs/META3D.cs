@@ -54,7 +54,7 @@ using System.Threading;
 using System.Diagnostics;
 using PopupControl;
 using System.Media;
-//using ExceptionReporting;
+using ExceptionReporting;
 using System.Globalization;
 
 
@@ -67,7 +67,7 @@ namespace METAbolt
         public bool RenderingEnabled = false;
         Dictionary<uint, FacetedMesh> Prims = new Dictionary<uint, FacetedMesh>();
         public uint RootPrimLocalID = 0;
-        public OpenMetaverse.Vector3 Center = OpenMetaverse.Vector3.Zero;
+        public OpenMetaverse.Vector3 Center = new OpenMetaverse.Vector3(OpenMetaverse.Vector3.Zero);
 
 #pragma warning disable 0612
         public TextPrinter Printer = new TextPrinter(OpenTK.Graphics.TextQuality.High);
@@ -101,25 +101,30 @@ namespace METAbolt
         //Bitmap TextBitmap;   // = new Bitmap(512, 512);
         //int texture;
         //bool viewport_changed = true;
-        private Primitive selitem = null;
+        private Primitive selitem = new Primitive();
+        private bool msgdisplayed = false;
 
 
-        //private ExceptionReporter reporter = new ExceptionReporter();
+        private ExceptionReporter reporter = new ExceptionReporter();
 
-        //internal class ThreadExceptionHandler
-        //{
-        //    public void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
-        //    {
-        //        ExceptionReporter reporter = new ExceptionReporter();
-        //        reporter.Show(e.Exception);
-        //    }
-        //}
+        internal class ThreadExceptionHandler
+        {
+            public void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
+            {
+                ExceptionReporter reporter = new ExceptionReporter();
+                reporter.Show(e.Exception);
+            }
+        }
 
         public META3D(METAboltInstance instance, uint rootLocalID, Primitive item)
             : base(instance)
         {
             InitializeComponent();
-            Disposed += new EventHandler(META3D_Disposed);
+
+            SetExceptionReporter();
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+
+            //Disposed += new EventHandler(META3D_Disposed);
 
             this.RootPrimLocalID = rootLocalID;
             selitem = item;
@@ -157,7 +162,11 @@ namespace METAbolt
             : base(instance)
         {
             InitializeComponent();
-            Disposed += new EventHandler(META3D_Disposed);
+
+            SetExceptionReporter();
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+
+            //Disposed += new EventHandler(META3D_Disposed);
 
             this.RootPrimLocalID = obtectitem.Prim.LocalID;
             selitem = obtectitem.Prim;
@@ -192,58 +201,66 @@ namespace METAbolt
             client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
         }
 
-        //private void SetExceptionReporter()
-        //{
-        //    reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
-        //    reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
-        //    reporter.Config.CompanyName = "METAbolt";
-        //    reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
-        //    reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
-        //    reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
-        //    reporter.Config.AppName = "METAbolt";
-        //    reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
-        //    reporter.Config.BackgroundColor = Color.White;
-        //    reporter.Config.ShowButtonIcons = false;
-        //    reporter.Config.ShowLessMoreDetailButton = true;
-        //    reporter.Config.TakeScreenshot = true;
-        //    reporter.Config.ShowContactTab = true;
-        //    reporter.Config.ShowExceptionsTab = true;
-        //    reporter.Config.ShowFullDetail = true;
-        //    reporter.Config.ShowGeneralTab = true;
-        //    reporter.Config.ShowSysInfoTab = true;
-        //    reporter.Config.TitleText = "METAbolt Exception Reporter";
-        //}
-
-        void META3D_Disposed(object sender, EventArgs e)
+        private void SetExceptionReporter()
         {
-            if (glControl != null)
-            {
-                glControl.Dispose();
-            }
-
-            glControl = null;
-
-            base.Dispose(true);
-
-            client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
-            client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
-            client.Objects.ObjectDataBlockUpdate -= new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
-            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
-            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
-
-            lock (this.Prims)
-            {
-                Prims.Clear();
-            }
-
-            lock (this.Textures)
-            {
-                Textures.Clear();
-            }
-
-            //GC.Collect();
-            //GC.WaitForPendingFinalizers();
+            reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically
+            reporter.Config.ShowFlatButtons = true;   // this particular config is code-only
+            reporter.Config.CompanyName = "METAbolt";
+            reporter.Config.ContactEmail = "metabolt@vistalogic.co.uk";
+            reporter.Config.EmailReportAddress = "metabolt@vistalogic.co.uk";
+            reporter.Config.WebUrl = "http://www.metabolt.net/metaforums/";
+            reporter.Config.AppName = "METAbolt";
+            reporter.Config.MailMethod = ExceptionReporting.Core.ExceptionReportInfo.EmailMethod.SimpleMAPI;
+            reporter.Config.BackgroundColor = Color.White;
+            reporter.Config.ShowButtonIcons = false;
+            reporter.Config.ShowLessMoreDetailButton = true;
+            reporter.Config.TakeScreenshot = true;
+            reporter.Config.ShowContactTab = true;
+            reporter.Config.ShowExceptionsTab = true;
+            reporter.Config.ShowFullDetail = true;
+            reporter.Config.ShowGeneralTab = true;
+            reporter.Config.ShowSysInfoTab = true;
+            reporter.Config.TitleText = "METAbolt Exception Reporter";
         }
+
+        //void META3D_Disposed(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (glControl != null)
+        //        {
+        //            glControl.Dispose();
+        //        }
+
+        //        glControl = null;
+
+        //        base.Dispose(true);
+
+        //        client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
+        //        client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
+        //        client.Objects.ObjectDataBlockUpdate -= new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
+        //        client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+        //        client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+        //        lock (this.Prims)
+        //        {
+        //            Prims.Clear();
+        //        }
+
+        //        lock (this.Textures)
+        //        {
+        //            Textures.Clear();
+        //        }
+
+        //        //GC.Collect();
+        //        //GC.WaitForPendingFinalizers();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string exp = ex.Message;
+        //        reporter.Show(ex);
+        //    }
+        //}
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
         {
@@ -838,11 +855,24 @@ namespace METAbolt
                         }
                         else
                         {
-                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.LinearMipmapLinear);
-                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureWrapS, (int)OpenTK.Graphics.OpenGL.TextureWrapMode.Repeat);
-                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureWrapT, (int)OpenTK.Graphics.OpenGL.TextureWrapMode.Repeat);
-                            OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.GenerateMipmap, 1);
-                            OpenTK.Graphics.OpenGL.GL.GenerateMipmap(OpenTK.Graphics.OpenGL.GenerateMipmapTarget.Texture2D);
+                            try
+                            {
+                                OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.LinearMipmapLinear);
+                                OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureWrapS, (int)OpenTK.Graphics.OpenGL.TextureWrapMode.Repeat);
+                                OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureWrapT, (int)OpenTK.Graphics.OpenGL.TextureWrapMode.Repeat);
+                                OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.GenerateMipmap, 1);
+                                OpenTK.Graphics.OpenGL.GL.GenerateMipmap(OpenTK.Graphics.OpenGL.GenerateMipmapTarget.Texture2D);
+                            }
+                            catch
+                            {
+                                if (!msgdisplayed)
+                                {
+                                    OpenTK.Graphics.OpenGL.GL.TexParameter(OpenTK.Graphics.OpenGL.TextureTarget.Texture2D, OpenTK.Graphics.OpenGL.TextureParameterName.TextureMinFilter, (int)OpenTK.Graphics.OpenGL.TextureMinFilter.Linear);
+                                    //Logger.Log("META3D TextureThread: Your video card does not support Mipmap. Try disabling Mipmaps from META3D tab under the Application/Preferences menu", Helpers.LogLevel.Warning);
+                                    MessageBox.Show("Your video card does not support Mipmaps.\nDisable Mipmaps from the META3D tab under\nthe Application/Preferences menu");
+                                    msgdisplayed = true;
+                                }
+                            }
                         }
 
                         bitmap.UnlockBits(bitmapData);
@@ -857,11 +887,11 @@ namespace METAbolt
                 newcontext.Dispose();
                 newwindow.Dispose();
 
-                Logger.DebugLog("Texture thread exited");
+                //Logger.DebugLog("Texture thread exited");
             }
-            catch
+            catch (Exception ex)
             {
-                Logger.Log("META3D TextureThread: Your video card does not support Mipmap. Try disabling Mipmaps from META3D tab under the Application/Preferences menu", Helpers.LogLevel.Warning);
+                Logger.Log("META3D TextureThread: " + ex.Message, Helpers.LogLevel.Warning);
             }
         }
         #endregion Texture thread
@@ -950,11 +980,15 @@ namespace METAbolt
                     {
                         OSDMap subMeshMap = (OSDMap)subMeshOsd;
 
-                        OpenMetaverse.Vector3 posMax = ((OSDMap)subMeshMap["PositionDomain"])["Max"];
-                        OpenMetaverse.Vector3 posMin = ((OSDMap)subMeshMap["PositionDomain"])["Min"];
+                        OpenMetaverse.Vector3 posMax = new OpenMetaverse.Vector3();
+                        posMax = ((OSDMap)subMeshMap["PositionDomain"])["Max"];
+                        OpenMetaverse.Vector3 posMin = new OpenMetaverse.Vector3(); 
+                        posMin = ((OSDMap)subMeshMap["PositionDomain"])["Min"];
 
-                        OpenMetaverse.Vector2 texPosMax = ((OSDMap)subMeshMap["TexCoord0Domain"])["Max"];
-                        OpenMetaverse.Vector2 texPosMin = ((OSDMap)subMeshMap["TexCoord0Domain"])["Min"];
+                        OpenMetaverse.Vector2 texPosMax = new OpenMetaverse.Vector2();
+                        texPosMax = ((OSDMap)subMeshMap["TexCoord0Domain"])["Max"];
+                        OpenMetaverse.Vector2 texPosMin = new OpenMetaverse.Vector2();
+                        texPosMin = ((OSDMap)subMeshMap["TexCoord0Domain"])["Min"];
 
 
                         byte[] posBytes = subMeshMap["Position"];
@@ -1059,7 +1093,8 @@ namespace METAbolt
                 foreach (FacetedMesh mesh in Prims.Values)
                 {
                     primNr++;
-                    Primitive prim = mesh.Prim;
+                    Primitive prim = new Primitive();
+                    prim = mesh.Prim;
 
                     if (!string.IsNullOrEmpty(prim.Text))
                     {
@@ -1164,7 +1199,8 @@ namespace METAbolt
                 foreach (FacetedMesh mesh in Prims.Values)
                 {
                     primNr++;
-                    Primitive prim = mesh.Prim;
+                    Primitive prim = new Primitive();
+                    prim = mesh.Prim;
                     // Individual prim matrix
                     OpenTK.Graphics.OpenGL.GL.PushMatrix();
 
@@ -2005,7 +2041,8 @@ namespace METAbolt
 
         private void payBuyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Primitive sPr = RightclickedPrim.Prim;
+            Primitive sPr = new Primitive();
+            sPr = RightclickedPrim.Prim;
 
             if (sPr.Properties == null)
             {
@@ -2048,6 +2085,40 @@ namespace METAbolt
             OpenTK.Graphics.OpenGL.GL.Enable(OpenTK.Graphics.OpenGL.EnableCap.Blend);
             OpenTK.Graphics.OpenGL.GL.BlendFunc(OpenTK.Graphics.OpenGL.BlendingFactorSrc.SrcAlpha, OpenTK.Graphics.OpenGL.BlendingFactorDest.OneMinusSrcAlpha);
             GLInvalidate();
+        }
+
+        private void META3D_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                //if (glControl != null)
+                //{
+                //    glControl.Dispose();
+                //}
+
+                //glControl = null;
+
+                client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
+                client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
+                client.Objects.ObjectDataBlockUpdate -= new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
+                client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+                client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+                lock (this.Prims)
+                {
+                    Prims.Clear();
+                }
+
+                lock (this.Textures)
+                {
+                    Textures.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                string exp = ex.Message;
+                reporter.Show(ex);
+            }
         }
     }
 
@@ -2144,7 +2215,7 @@ namespace METAbolt
 
                             #region Vertex
 
-                            OpenMetaverse.Vector3 pos = vertex.Position;
+                            OpenMetaverse.Vector3 pos = new OpenMetaverse.Vector3(vertex.Position);
 
                             // Apply scaling
                             pos *= mesh.Prim.Scale;

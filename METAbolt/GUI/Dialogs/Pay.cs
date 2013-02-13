@@ -39,7 +39,7 @@ namespace METAbolt
         private GridClient client;
         private UUID target = UUID.Zero;
         private string name;
-        private Primitive Prim = null;
+        private Primitive Prim = new Primitive();
 
         public frmPay(METAboltInstance instance, UUID target, string name)
         {

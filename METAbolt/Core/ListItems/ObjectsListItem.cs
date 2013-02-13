@@ -33,7 +33,7 @@ namespace METAbolt
 {
     public class ObjectsListItem
     {
-        private Primitive prim;
+        private Primitive prim = new Primitive();
         private GridClient client;
         private ListBox listBox;
         private bool gotProperties = false;

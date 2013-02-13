@@ -362,7 +362,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 apos = client.Self.SimPosition;
+                Vector3 apos = new Vector3(Vector3.Zero);
+                apos = client.Self.SimPosition;
 
                 float f1 = 64.0f * (apos.Y / 256.0f);
                 float f2 = 64.0f * (apos.X / 256.0f);
@@ -410,7 +411,8 @@ namespace METAbolt
             try
             {
                 Parcel parcel;
-                Vector3 apos = instance.SIMsittingPos();
+                Vector3 apos = new Vector3(Vector3.Zero); 
+                apos = instance.SIMsittingPos();
 
                 float f1 = 64.0f * (apos.Y / 256.0f);
                 float f2 = 64.0f * (apos.X / 256.0f);
@@ -579,15 +581,17 @@ namespace METAbolt
             sitTimer.Elapsed -= new ElapsedEventHandler(OnTimedEvent);
 
             Logger.Log("AUTOSIT: Searching for sit object", Helpers.LogLevel.Info);
-            
-            Vector3 location = client.Self.SimPosition;
+
+            Vector3 location = new Vector3(Vector3.Zero); 
+            location = client.Self.SimPosition;
             float radius = 21;
 
             // *** find all objects in radius ***
             List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
                 delegate(Primitive prim)
                 {
-                    Vector3 pos = prim.Position;
+                    Vector3 pos = new Vector3(Vector3.Zero); 
+                    pos = prim.Position;
                     return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < radius));
                 }
             );
@@ -984,12 +988,12 @@ namespace METAbolt
             netcom.ChatReceived -= new EventHandler<ChatEventArgs>(netcom_ChatReceived);
             netcom.TeleportStatusChanged -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
 
-            client.Objects.AvatarUpdate -= new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
-            client.Objects.KillObject -= new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
+            //client.Objects.AvatarUpdate -= new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
+            //client.Objects.KillObject -= new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
             client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
             client.Self.MeanCollision -= new EventHandler<MeanCollisionEventArgs>(Self_Collision);
-            client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            //client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
 
             //if (instance.Config.CurrentConfig.iRadar)
@@ -1010,13 +1014,13 @@ namespace METAbolt
             netcom.ChatReceived += new EventHandler<ChatEventArgs>(netcom_ChatReceived);
             netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
 
-            client.Objects.AvatarUpdate += new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
-            client.Objects.KillObject += new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
+            //client.Objects.AvatarUpdate += new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
+            //client.Objects.KillObject += new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
             client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
 
             client.Self.MeanCollision += new EventHandler<MeanCollisionEventArgs>(Self_Collision);
-            client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            //client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
 
             //client.Appearance.OnAppearanceUpdated += new AppearanceManager.AppearanceUpdatedCallback(Appearance_OnAppearanceUpdated);
             client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
@@ -1067,96 +1071,96 @@ namespace METAbolt
             }
         }
 
-        //Separate thread
-        private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Objects_OnObjectKilled(sender, e);
-                }));
+        ////Separate thread
+        //private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
+        //{
+        //    if (InvokeRequired)
+        //    {
+        //        BeginInvoke(new MethodInvoker(delegate()
+        //        {
+        //            Objects_OnObjectKilled(sender, e);
+        //        }));
 
-                return;
-            }
+        //        return;
+        //    }
 
-            if (e.Simulator != client.Network.CurrentSim) return;
-            if (sfavatar == null) return;
-            if (!sfavatar.ContainsKey(e.ObjectLocalID)) return;
+        //    if (e.Simulator != client.Network.CurrentSim) return;
+        //    if (sfavatar == null) return;
+        //    if (!sfavatar.ContainsKey(e.ObjectLocalID)) return;
 
-            foreach (ListViewItem litem in lvwRadar.Items)
-            {
+        //    foreach (ListViewItem litem in lvwRadar.Items)
+        //    {
 
-                if (litem.Tag.ToString() == sfavatar[e.ObjectLocalID].ID.ToString())
-                {
-                    lvwRadar.BeginUpdate();
-                    lvwRadar.Items.RemoveByKey(sfavatar[e.ObjectLocalID].Name);
-                    lvwRadar.EndUpdate();
-                }
-            }
+        //        if (litem.Tag.ToString() == sfavatar[e.ObjectLocalID].ID.ToString())
+        //        {
+        //            lvwRadar.BeginUpdate();
+        //            lvwRadar.Items.RemoveByKey(sfavatar[e.ObjectLocalID].Name);
+        //            lvwRadar.EndUpdate();
+        //        }
+        //    }
 
-            try
-            {
-                lock (sfavatar)
-                {
-                    sfavatar.Remove(e.ObjectLocalID);
-                }
-            }
-            catch { ; }
-        }
+        //    try
+        //    {
+        //        lock (sfavatar)
+        //        {
+        //            sfavatar.Remove(e.ObjectLocalID);
+        //        }
+        //    }
+        //    catch { ; }
+        //}
 
-        //Separate thread
-        private void Objects_OnNewAvatar(object sender, AvatarUpdateEventArgs e)
-        {
-            if (InvokeRequired)
-            {
+        ////Separate thread
+        //private void Objects_OnNewAvatar(object sender, AvatarUpdateEventArgs e)
+        //{
+        //    if (InvokeRequired)
+        //    {
 
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Objects_OnNewAvatar(sender, e);
-                }));
+        //        BeginInvoke(new MethodInvoker(delegate()
+        //        {
+        //            Objects_OnNewAvatar(sender, e);
+        //        }));
 
-                return;
-            }
+        //        return;
+        //    }
 
-            if (e.Simulator != client.Network.CurrentSim) return;
-            if (sfavatar.ContainsKey(e.Avatar.LocalID)) return;
+        //    if (e.Simulator != client.Network.CurrentSim) return;
+        //    if (sfavatar.ContainsKey(e.Avatar.LocalID)) return;
 
-            try
-            {
-                lock (sfavatar)
-                {
-                    sfavatar.Add(e.Avatar.LocalID, e.Avatar);
-                }
-            }
-            catch { ; }
-        }
+        //    try
+        //    {
+        //        lock (sfavatar)
+        //        {
+        //            sfavatar.Add(e.Avatar.LocalID, e.Avatar);
+        //        }
+        //    }
+        //    catch { ; }
+        //}
 
-        private void Objects_OnObjectUpdated(object sender, TerseObjectUpdateEventArgs e)
-        {
-            if (e.Simulator != client.Network.CurrentSim) return;
-            if (!e.Update.Avatar) return;
+        //private void Objects_OnObjectUpdated(object sender, TerseObjectUpdateEventArgs e)
+        //{
+        //    if (e.Simulator != client.Network.CurrentSim) return;
+        //    if (!e.Update.Avatar) return;
 
-            if (!sfavatar.ContainsKey(e.Prim.LocalID))
-            {
-                Avatar av;
-                client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
+        //    if (!sfavatar.ContainsKey(e.Prim.LocalID))
+        //    {
+        //        Avatar av = new Avatar();
+        //        client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
 
-                if (av == null) return;
+        //        if (av == null) return;
 
-                if (!sfavatar.ContainsKey(av.LocalID))
-                {
-                    try
-                    {
-                        lock (sfavatar)
-                        {
-                            sfavatar.Add(av.LocalID, av);
-                        }
-                    }
-                    catch { ; }
-                }
-            }
-        }
+        //        if (!sfavatar.ContainsKey(av.LocalID))
+        //        {
+        //            try
+        //            {
+        //                lock (sfavatar)
+        //                {
+        //                    sfavatar.Add(av.LocalID, av);
+        //                }
+        //            }
+        //            catch { ; }
+        //        }
+        //    }
+        //}
 
         private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos);
         public void AddSIMAvatar(string av, UUID key, Vector3 avpos)
@@ -1190,7 +1194,8 @@ namespace METAbolt
             
             try
             {
-                Vector3 selfpos = client.Self.SimPosition;
+                Vector3 selfpos = new Vector3(Vector3.Zero); 
+                selfpos = client.Self.SimPosition;
 
                 if (selfpos.Z == 0)
                 {
@@ -1296,7 +1301,8 @@ namespace METAbolt
 
             string sDist;
 
-            Vector3 avpos = av.Position;
+            Vector3 avpos = new Vector3(Vector3.Zero); 
+            avpos = av.Position;
 
             uint oID = av.ParentID;
             string astate = string.Empty;
@@ -1309,7 +1315,7 @@ namespace METAbolt
             if (oID != 0)
             {
                 // the av is sitting
-                Primitive prim;
+                Primitive prim = new Primitive();
 
                 try
                 {
@@ -1340,7 +1346,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 selfpos = client.Self.SimPosition;
+                Vector3 selfpos = new Vector3(Vector3.Zero); 
+                selfpos = client.Self.SimPosition;
 
                 double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
@@ -1359,7 +1366,8 @@ namespace METAbolt
 
                 if (av.Name != client.Self.Name)
                 {
-                    Vector3 dirv = Vector3.Normalize(avpos - selfpos);
+                    Vector3 dirv = new Vector3(Vector3.Zero); 
+                    dirv = Vector3.Normalize(avpos - selfpos);
                     dirv.Normalize();
 
                     Quaternion avRot = client.Self.RelativeRotation;
@@ -1510,7 +1518,8 @@ namespace METAbolt
 
         public Vector3 QuaternionToEuler(Quaternion q)
         {
-            Vector3 v = Vector3.Zero;
+            Vector3 v = new Vector3(Vector3.Zero); 
+            v = Vector3.Zero;
 
             v.X = (float)Math.Atan2
             (
@@ -2137,7 +2146,8 @@ namespace METAbolt
 
             //string name = instance.avnames[av];
 
-            Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+            Avatar sav = new Avatar();
+            sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
             {
                 return fa.ID == av;
             }
@@ -2145,7 +2155,8 @@ namespace METAbolt
 
             if (sav != null)
             {
-                Vector3 pos = sav.Position;
+                Vector3 pos = new Vector3(Vector3.Zero); 
+                pos = sav.Position;
                 ulong regionHandle = client.Network.CurrentSim.Handle;
 
                 //int followRegionX = (int)(regionHandle >> 32);
@@ -2179,17 +2190,19 @@ namespace METAbolt
 
             //string name = instance.avnames[av];
 
-            Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
-            {
-                return fa.ID == av;
-            }
-            );
+            Avatar sav = new Avatar();
+            sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+             {
+                 return fa.ID == av;
+             }
+             );
 
             if (sav != null)
             {
                 client.Self.AnimationStart(Animations.TURNLEFT, false);
 
-                Vector3 pos = sav.Position;
+                Vector3 pos = new Vector3(Vector3.Zero); 
+                pos = sav.Position;
 
                 client.Self.Movement.TurnToward(pos);
 
@@ -2678,7 +2691,11 @@ namespace METAbolt
                 return;
             }
 
-            List<UUID> tremove = e.RemovedEntries;
+            List<UUID> tremove = new List<UUID>();
+            tremove = e.RemovedEntries;
+
+            //List<UUID> tadd = new List<UUID>();
+            //tadd = e.NewEntries;
 
             foreach (UUID id in tremove)
             {
@@ -2690,8 +2707,54 @@ namespace METAbolt
                         lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
                         lvwRadar.EndUpdate();
                     }
-                } 
+
+                    List<uint> avremove = new List<uint>();
+                }
             }
+
+            e.Simulator.AvatarPositions.ForEach(delegate(KeyValuePair<UUID, Vector3> favpos)
+                    {
+                        Avatar nav = new Avatar();
+                        //nav = e.Simulator.ObjectsAvatars.Find((Avatar fnav) => { return fnav.ID == favpos.Key; });
+
+                        nav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar avr)
+                        {
+                            return avr.ID == favpos.Key;
+                        });
+
+                        if (nav != null)
+                        {
+                            if (!sfavatar.ContainsKey(nav.LocalID))
+                            {
+                                lock (sfavatar)
+                                {
+                                    sfavatar.Add(nav.LocalID, nav);
+                                }
+                            }
+                        }
+                    });
+
+            //foreach (UUID id in tadd)
+            //{
+            //    Avatar nav = new Avatar();
+
+            //    //nav = client.Network.CurrentSim.ObjectsAvatars.Find(
+            //    // delegate(Avatar fnav)
+            //    // {
+            //    //     return fnav.ID == id;
+            //    // }
+            //    // );
+
+            //    nav = e.Simulator.ObjectsAvatars.Find((Avatar fnav) => { return fnav.ID == id; });
+
+            //    if (!sfavatar.ContainsKey(nav.LocalID))
+            //    {
+            //        lock (sfavatar)
+            //        {
+            //            sfavatar.Add(nav.LocalID, nav);
+            //        }
+            //    }
+            //}
 
             try
             {
@@ -2928,7 +2991,8 @@ namespace METAbolt
                                 
                                 instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
 
-                                Avatar fav = sim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
+                                Avatar fav = new Avatar();
+                                fav = sim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
 
                                 if (fav == null)
                                 {
@@ -2955,13 +3019,17 @@ namespace METAbolt
                     {
                         lock (sfavatar)
                         {
+                            List<uint> arem = new List<uint>();
+ 
                             foreach (KeyValuePair<uint, Avatar> av in sfavatar)
                             {
-                                Avatar sav = av.Value;
+                                Avatar sav = new Avatar();
+                                sav = av.Value;
 
                                 if (!sim.AvatarPositions.ContainsKey(sav.ID))
                                 {
-                                    sfavatar.Remove(sav.LocalID);
+                                    //sfavatar.Remove(sav.LocalID);
+                                    arem.Add(sav.LocalID);
 
                                     if (lvwRadar.Items.ContainsKey(sav.Name))
                                     {
@@ -2978,9 +3046,12 @@ namespace METAbolt
                                 else
                                 {
                                     BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { sav });
-                                }
+                                }                                
+                            }
 
-                                
+                            foreach (uint avt in arem)
+                            {
+                                sfavatar.Remove(avt);
                             }
                         }
                     }
@@ -3201,10 +3272,25 @@ namespace METAbolt
             }
         }
 
+        private Avatar GetAvID()
+        {
+            Avatar nav = new Avatar();
+            //nav = e.Simulator.ObjectsAvatars.Find((Avatar fnav) => { return fnav.ID == favpos.Key; });
+
+            UUID avid = (UUID)lvwRadar.SelectedItems[0].Tag;
+
+            nav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar avr)
+            {
+                return avr.ID == avid;
+            });
+
+            return nav;
+        }
+
         private void tbtnAttachments_Click(object sender, EventArgs e)
         {
-            //Avatar av = ((ListViewItem)lvwRadar.SelectedItems[0]).Tag as Avatar;
-            //if (av == null) return;
+            ////Avatar av = ((ListViewItem)lvwRadar.SelectedItems[0]).Tag as Avatar;
+            ////if (av == null) return;
 
             UUID av = (UUID)lvwRadar.SelectedItems[0].Tag;
 
@@ -3212,11 +3298,14 @@ namespace METAbolt
 
             //string name = instance.avnames[av];
 
-            Avatar sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
-            {
-                return fa.ID == av;
-            }
-            );
+            Avatar sav = new Avatar();
+            sav = GetAvID(); 
+
+            //sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+            // {
+            //     return fa.ID == av;
+            // }
+            // );
 
             if (sav != null)
             {

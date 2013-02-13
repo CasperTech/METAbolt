@@ -291,7 +291,7 @@ namespace METAbolt
                 g.DrawString("S", new Font("Arial", 9, FontStyle.Bold), Brushes.White, new RectangleF(0, 0, bmp.Width, bmp.Height), strFormat);
 
                 // V0.9.8.0 changes for OpenSIM compatibility
-                Vector3 myPos;
+                Vector3 myPos = new Vector3();
 
                 // Rollback change from 9.2.1
                 if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
@@ -392,7 +392,8 @@ namespace METAbolt
 
             GetMap();
 
-            Vector3 apos = instance.SIMsittingPos();
+            Vector3 apos = new Vector3();
+            apos = instance.SIMsittingPos();
             float aZ = apos.Z;
 
             //printMap();

@@ -67,7 +67,7 @@ namespace METAbolt
         private SafeDictionary<UUID, String> groupstore = new SafeDictionary<UUID, String>();
         private Dictionary<UUID, Group> groups = new Dictionary<UUID, Group>();
         //private Dictionary<UUID, FriendInfo> avatarfriends = new Dictionary<UUID,FriendInfo>();  
-        private List<FriendInfo> avatarfriends;
+        private List<FriendInfo> avatarfriends = new List<FriendInfo>();
         private string currenttab = "Chat";
         private int ccntr = 1;
 
@@ -88,10 +88,10 @@ namespace METAbolt
         private System.Timers.Timer pointtimer;
         private System.Timers.Timer agentUpdateTicker;
         
-        private Vector3d offset = Vector3d.Zero; 
+        private Vector3d offset = new Vector3d(Vector3d.Zero); 
         private Vector3d beamoffset1 = new Vector3d(0, 0, 0.1);
         private Vector3d beamoffset2 = new Vector3d(0, 0.1, 0);
-        private Primitive prim = null;
+        private Primitive prim = new Primitive();
         private Color4 mncolour = new Color4(255, 0, 0, 0);   //new Color4(0, 255, 12, 0); // Green
         private Color4 spcolour = new Color4(0, 0, 255, 0);
         private Color4 tdcolour = new Color4(0, 255, 12, 0);
@@ -165,21 +165,22 @@ namespace METAbolt
             if (!e.Update.Avatar) return;
             if (!following) return;
 
-            Avatar av;
+            Avatar av = new Avatar();
             client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
 
             if (av == null) return;
 
             if (av.Name == followName)
             {
-                Vector3 pos;
+                Vector3 pos = new Vector3(Vector3.Zero); ;
 
                 pos = av.Position;
 
                 if (av.ParentID != 0)
                 {
                     // the avatar sat
-                    Vector3 avpos = av.Position;
+                    Vector3 avpos = new Vector3(Vector3.Zero); 
+                    avpos = av.Position;
                     uint oID = av.ParentID;
 
                     if (prim == null)

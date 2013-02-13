@@ -152,7 +152,8 @@ namespace METAbolt
             if (iDx == -1) return; 
 
             ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             foreach (KeyValuePair<UUID, string> av in names.Names)
             {
@@ -306,8 +307,10 @@ namespace METAbolt
                 }
                 else
                 {
-                    Vector3 location = instance.SIMsittingPos();
-                    Vector3 pos = itemToDraw.Prim.Position;
+                    Vector3 location = new Vector3(Vector3.Zero); 
+                    location = instance.SIMsittingPos();
+                    Vector3 pos = new Vector3(Vector3.Zero); 
+                    pos = itemToDraw.Prim.Position;
                     double dist = Math.Round(Vector3.Distance(location, pos), MidpointRounding.ToEven);
 
                     distance = " [" + dist.ToString(CultureInfo.CurrentCulture) + "m]";
@@ -374,8 +377,10 @@ namespace METAbolt
                     {
                         ObjectsListItem item = new ObjectsListItem(e.Prim, client, lbxPrims);
 
-                        Vector3 location = instance.SIMsittingPos();
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 location = new Vector3(Vector3.Zero); 
+                        location = instance.SIMsittingPos();
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         float dist = Vector3.Distance(location, pos);
 
@@ -554,8 +559,10 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
-                Vector3 location = instance.SIMsittingPos();
-                Vector3 pos = item.Prim.Position;
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
+                Vector3 pos = new Vector3(Vector3.Zero); 
+                pos = item.Prim.Position;
 
                 if (Vector3.Distance(location, pos) < range)
                 {
@@ -614,8 +621,10 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
-                Vector3 location = instance.SIMsittingPos();
-                Vector3 pos = item.Prim.Position;
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
+                Vector3 pos = new Vector3(Vector3.Zero);
+                pos = item.Prim.Position;
 
                 if (Vector3.Distance(location, pos) < range)
                 {
@@ -757,7 +766,8 @@ namespace METAbolt
                     //    }
                     //}
 
-                Vector3 location = client.Self.SimPosition;
+                    Vector3 location = new Vector3(Vector3.Zero); 
+                    location = client.Self.SimPosition;
 
                 //pB1.Maximum = client.Network.CurrentSim.ObjectsPrimitives.Count;
 
@@ -765,7 +775,8 @@ namespace METAbolt
                 new Action<Primitive>(
                 delegate(Primitive prim)
                 {
-                    Vector3 pos = prim.Position;
+                    Vector3 pos = new Vector3(Vector3.Zero); 
+                    pos = prim.Position;
 
                     if (prim.ID == (UUID)"10e860a2-7232-42e0-ede6-2a75ef9672fd" || prim.ID == (UUID)"05c544b9-df84-2935-d829-24ec2876c197"
                         || prim.ID == (UUID)"7fb00860-7f08-1d1f-8e05-7a54c4862455"
@@ -1015,7 +1026,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pB1.Value = 0;
                 pB1.Visible = true; 
@@ -1027,7 +1039,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && (item.Prim.Properties.SaleType != 0) && (pos != Vector3.Zero) && (Vector3.Distance(location,pos) < range))
                         {
@@ -1073,7 +1086,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pBar3.Visible = true;
 
@@ -1082,7 +1096,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && ((item.Prim.Flags & PrimFlags.Scripted) == PrimFlags.Scripted) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
@@ -1128,7 +1143,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pBar3.Visible = true;
 
@@ -1137,7 +1153,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
@@ -1177,7 +1194,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pBar3.Visible = true;
 
@@ -1186,7 +1204,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && !item.Prim.Properties.OwnerID.ToString().ToLower(CultureInfo.CurrentCulture).Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
@@ -1226,7 +1245,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pBar3.Visible = true;
 
@@ -1235,7 +1255,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && ((item.Prim.Flags & PrimFlags.InventoryEmpty) == PrimFlags.InventoryEmpty) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
@@ -1275,7 +1296,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pBar3.Visible = true;
 
@@ -1284,7 +1306,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && item.Prim.Properties.CreatorID.ToString().Contains(client.Self.AgentID.ToString()) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
@@ -1324,7 +1347,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pBar3.Visible = true;
 
@@ -1333,7 +1357,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
@@ -1381,7 +1406,8 @@ namespace METAbolt
 
             try
             {
-                Vector3 location = instance.SIMsittingPos();
+                Vector3 location = new Vector3(Vector3.Zero); 
+                location = instance.SIMsittingPos();
                 pB1.Maximum = ItemsProps.Count;
                 pBar3.Visible = true;
 
@@ -1390,7 +1416,8 @@ namespace METAbolt
                     foreach (KeyValuePair<uint, ObjectsListItem> entry in ItemsProps)
                     {
                         ObjectsListItem item = entry.Value;
-                        Vector3 pos = item.Prim.Position;
+                        Vector3 pos = new Vector3(Vector3.Zero); 
+                        pos = item.Prim.Position;
 
                         if ((item.Prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(location, pos) < range))
                         {
@@ -1488,7 +1515,8 @@ namespace METAbolt
 
                 ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-                Primitive sPr = item.Prim;
+                Primitive sPr = new Primitive();
+                sPr = item.Prim;
 
                 client.Objects.SelectObject(client.Network.CurrentSim, sPr.LocalID);
 
@@ -1573,7 +1601,8 @@ namespace METAbolt
                 label15.Text = sPr.Properties.Description;
                 label11.Text = sPr.Text;
 
-                Vector3 primpos = sPr.Position;
+                Vector3 primpos = new Vector3(Vector3.Zero); 
+                primpos = sPr.Position;
                 //// Calculate the distance here in metres
                 //int pX = (int)primpos.X;
                 //int pY = (int)primpos.Y;
@@ -1783,12 +1812,13 @@ namespace METAbolt
             List<uint> localIDs = new List<uint>();
             UUID rootID = oPrm.ID;
 
-            Primitive rootPrim = client.Network.CurrentSim.ObjectsPrimitives.Find(
-            delegate(Primitive prim)
-            {
-                return prim.ID == oPrm.ID;
-            }
-            );
+            Primitive rootPrim = new Primitive();
+            rootPrim = client.Network.CurrentSim.ObjectsPrimitives.Find(
+             delegate(Primitive prim)
+             {
+                 return prim.ID == oPrm.ID;
+             }
+             );
 
             if (checkBox1.Checked)
             {
@@ -1939,7 +1969,8 @@ namespace METAbolt
 
             if ((item.Prim.Flags & PrimFlags.Touch) != 0)
             {
-                Vector3 pos = item.Prim.Position;
+                Vector3 pos = new Vector3(Vector3.Zero); 
+                pos = item.Prim.Position;
 
                 uint regionX, regionY;
                 Utils.LongToUInts(client.Network.CurrentSim.Handle, out regionX, out regionY);
@@ -2007,7 +2038,8 @@ namespace METAbolt
 
             if (item == null) return;
 
-            Vector3 target = item.Prim.Position; // the object to look at
+            Vector3 target = new Vector3(Vector3.Zero); 
+            target = item.Prim.Position; // the object to look at
             
             client.Self.Movement.TurnToward(target);
         }
@@ -2049,7 +2081,8 @@ namespace METAbolt
 
             if (item == null) return;
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
             SaleType styp = sPr.Properties.SaleType;
 
             int sprice = sPr.Properties.SalePrice;
@@ -2075,7 +2108,8 @@ namespace METAbolt
 
             uint regionX, regionY;
             Utils.LongToUInts(client.Network.CurrentSim.Handle, out regionX, out regionY);
-            Vector3 pos = item.Prim.Position;
+            Vector3 pos = new Vector3(Vector3.Zero); 
+            pos = item.Prim.Position;
 
             Vector3d objpos;
  
@@ -2199,8 +2233,10 @@ namespace METAbolt
 
                 if (item == null) return;
 
-                Primitive prim = item.Prim;
-                Vector3 pos = prim.Position;
+                Primitive prim = new Primitive();
+                prim = item.Prim;
+                Vector3 pos = new Vector3(Vector3.Zero); 
+                pos = prim.Position;
                 ulong regionHandle = client.Network.CurrentSim.Handle;
 
                 int followRegionX = (int)(regionHandle >> 32);
@@ -2228,11 +2264,13 @@ namespace METAbolt
 
             if (item == null) return;
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             if (sPr.Properties.OwnerID == client.Self.AgentID)
             {
-                Vector3 pos = sPr.Position;
+                Vector3 pos = new Vector3(Vector3.Zero); 
+                pos = sPr.Position;
 
                 UUID pointID = UUID.Random();
                 UUID beamID = UUID.Random();
@@ -2260,7 +2298,8 @@ namespace METAbolt
 
             ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             SetPerms(sPr);
         }
@@ -2276,7 +2315,8 @@ namespace METAbolt
 
             ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             SetPerms(sPr);
         }
@@ -2292,7 +2332,8 @@ namespace METAbolt
 
             ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             SetPerms(sPr);
         }
@@ -2590,7 +2631,8 @@ namespace METAbolt
             pBar2.Refresh();
 
             ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             GetTaskInventory(sPr.ID, sPr.LocalID);
         }
@@ -2606,7 +2648,8 @@ namespace METAbolt
             pBar2.Refresh();
 
             ObjectsListItem item = (ObjectsListItem)lbxChildren.Items[iDx];
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             GetTaskInventory(sPr.ID, sPr.LocalID);
         }
@@ -2662,7 +2705,8 @@ namespace METAbolt
 
             ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             SetPerms(sPr);
         }
@@ -2678,7 +2722,8 @@ namespace METAbolt
 
             ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             SetPerms(sPr);
         }
@@ -2702,7 +2747,8 @@ namespace METAbolt
                 if (iDx < 0) return;
 
                 ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
-                Primitive sPr = item.Prim;
+                Primitive sPr = new Primitive();
+                sPr = item.Prim;
 
                 if (sPr.Properties.OwnerID != client.Self.AgentID)
                 {
@@ -2778,7 +2824,8 @@ namespace METAbolt
                     tiobject = (ObjectsListItem)lbxChildren.Items[iDx2];
                 }
 
-                Primitive sPr = tiobject.Prim;
+                Primitive sPr = new Primitive();
+                sPr = tiobject.Prim;
 
                 InventoryItem item = node.Tag as InventoryItem;
 
@@ -2865,7 +2912,8 @@ namespace METAbolt
                 item = (ObjectsListItem)lbxChildren.Items[iDx2];
             }
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             InventoryItem llitem = ((ListViewItem)lbxTask.SelectedItems[0]).Tag as InventoryItem;
             //ListViewItem selitem = lbxTask.SelectedItems[0];
@@ -2895,7 +2943,8 @@ namespace METAbolt
                 item = (ObjectsListItem)lbxChildren.Items[iDx2];
             }
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             InventoryItem llitem = ((ListViewItem)lbxTask.SelectedItems[0]).Tag as InventoryItem;
             InventoryItem llitemname = ((ListViewItem)lbxPrims.SelectedItems[0]).Tag as InventoryItem;
@@ -2998,7 +3047,8 @@ namespace METAbolt
 
             if (item == null) return;
 
-            Primitive sPr = item.Prim;
+            Primitive sPr = new Primitive();
+            sPr = item.Prim;
 
             //if (sPr.Properties.OwnerID != client.Self.AgentID) return;
 

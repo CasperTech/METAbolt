@@ -906,10 +906,10 @@ namespace METAbolt
             this.toolStripSeparator19,
             this.tsbSearch,
             this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(182, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(174, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(24, 443);
+            this.toolStrip1.Size = new System.Drawing.Size(32, 443);
             this.toolStrip1.TabIndex = 20;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -917,7 +917,7 @@ namespace METAbolt
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(21, 0);
+            this.toolStripLabel3.Size = new System.Drawing.Size(29, 0);
             // 
             // toolStripButton1
             // 
@@ -925,7 +925,7 @@ namespace METAbolt
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(21, 19);
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 19);
             this.toolStripButton1.Text = " ";
             // 
             // tbtnStartIM
@@ -935,7 +935,7 @@ namespace METAbolt
             this.tbtnStartIM.Image = ((System.Drawing.Image)(resources.GetObject("tbtnStartIM.Image")));
             this.tbtnStartIM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnStartIM.Name = "tbtnStartIM";
-            this.tbtnStartIM.Size = new System.Drawing.Size(21, 20);
+            this.tbtnStartIM.Size = new System.Drawing.Size(29, 20);
             this.tbtnStartIM.Text = "IM";
             this.tbtnStartIM.Click += new System.EventHandler(this.tbtnStartIM_Click);
             // 
@@ -946,7 +946,7 @@ namespace METAbolt
             this.tbtnProfile.Image = ((System.Drawing.Image)(resources.GetObject("tbtnProfile.Image")));
             this.tbtnProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnProfile.Name = "tbtnProfile";
-            this.tbtnProfile.Size = new System.Drawing.Size(21, 20);
+            this.tbtnProfile.Size = new System.Drawing.Size(29, 20);
             this.tbtnProfile.Text = "Avatar Profile";
             this.tbtnProfile.Click += new System.EventHandler(this.tbtnProfile_Click);
             // 
@@ -957,14 +957,14 @@ namespace METAbolt
             this.tbtnAttachments.Image = ((System.Drawing.Image)(resources.GetObject("tbtnAttachments.Image")));
             this.tbtnAttachments.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAttachments.Name = "tbtnAttachments";
-            this.tbtnAttachments.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAttachments.Size = new System.Drawing.Size(29, 20);
             this.tbtnAttachments.Text = "Worn attachments";
             this.tbtnAttachments.Click += new System.EventHandler(this.tbtnAttachments_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(29, 6);
             this.toolStripSeparator1.Click += new System.EventHandler(this.tbtnAddFriend_Click);
             // 
             // tbtnAddFriend
@@ -974,14 +974,14 @@ namespace METAbolt
             this.tbtnAddFriend.Image = ((System.Drawing.Image)(resources.GetObject("tbtnAddFriend.Image")));
             this.tbtnAddFriend.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnAddFriend.Name = "tbtnAddFriend";
-            this.tbtnAddFriend.Size = new System.Drawing.Size(21, 20);
+            this.tbtnAddFriend.Size = new System.Drawing.Size(29, 20);
             this.tbtnAddFriend.Text = "Add as friend";
             this.tbtnAddFriend.Click += new System.EventHandler(this.tbtnAddFriend_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(29, 6);
             // 
             // tbtnTurn
             // 
@@ -990,7 +990,7 @@ namespace METAbolt
             this.tbtnTurn.Image = ((System.Drawing.Image)(resources.GetObject("tbtnTurn.Image")));
             this.tbtnTurn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnTurn.Name = "tbtnTurn";
-            this.tbtnTurn.Size = new System.Drawing.Size(21, 20);
+            this.tbtnTurn.Size = new System.Drawing.Size(29, 20);
             this.tbtnTurn.Text = "Turn to";
             this.tbtnTurn.Click += new System.EventHandler(this.tbtnTurn_Click);
             // 
@@ -1001,7 +1001,7 @@ namespace METAbolt
             this.tbtnFollow.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFollow.Image")));
             this.tbtnFollow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFollow.Name = "tbtnFollow";
-            this.tbtnFollow.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFollow.Size = new System.Drawing.Size(29, 20);
             this.tbtnFollow.Text = "Follow";
             this.tbtnFollow.Click += new System.EventHandler(this.tbtnFollow_Click);
             // 
@@ -1012,14 +1012,14 @@ namespace METAbolt
             this.tbtnGoto.Image = ((System.Drawing.Image)(resources.GetObject("tbtnGoto.Image")));
             this.tbtnGoto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnGoto.Name = "tbtnGoto";
-            this.tbtnGoto.Size = new System.Drawing.Size(21, 20);
+            this.tbtnGoto.Size = new System.Drawing.Size(29, 20);
             this.tbtnGoto.Text = "Go to";
             this.tbtnGoto.Click += new System.EventHandler(this.tbtnGoto_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(29, 6);
             // 
             // tbtnFreeze
             // 
@@ -1028,7 +1028,7 @@ namespace METAbolt
             this.tbtnFreeze.Image = ((System.Drawing.Image)(resources.GetObject("tbtnFreeze.Image")));
             this.tbtnFreeze.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnFreeze.Name = "tbtnFreeze";
-            this.tbtnFreeze.Size = new System.Drawing.Size(21, 20);
+            this.tbtnFreeze.Size = new System.Drawing.Size(29, 20);
             this.tbtnFreeze.Text = "Freeze";
             this.tbtnFreeze.Click += new System.EventHandler(this.tbtnFreeze_Click);
             // 
@@ -1039,7 +1039,7 @@ namespace METAbolt
             this.tbtnEject.Image = ((System.Drawing.Image)(resources.GetObject("tbtnEject.Image")));
             this.tbtnEject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnEject.Name = "tbtnEject";
-            this.tbtnEject.Size = new System.Drawing.Size(21, 20);
+            this.tbtnEject.Size = new System.Drawing.Size(29, 20);
             this.tbtnEject.Text = "Eject";
             this.tbtnEject.Click += new System.EventHandler(this.tbtnEject_Click_1);
             // 
@@ -1050,19 +1050,19 @@ namespace METAbolt
             this.tbtnBan.Image = ((System.Drawing.Image)(resources.GetObject("tbtnBan.Image")));
             this.tbtnBan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnBan.Name = "tbtnBan";
-            this.tbtnBan.Size = new System.Drawing.Size(21, 20);
+            this.tbtnBan.Size = new System.Drawing.Size(29, 20);
             this.tbtnBan.Text = "Ban";
             this.tbtnBan.Click += new System.EventHandler(this.tbtnBan_Click);
             // 
             // toolStripSeparator18
             // 
             this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator18.Size = new System.Drawing.Size(29, 6);
             // 
             // toolStripSeparator19
             // 
             this.toolStripSeparator19.Name = "toolStripSeparator19";
-            this.toolStripSeparator19.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator19.Size = new System.Drawing.Size(29, 6);
             // 
             // tsbSearch
             // 
@@ -1070,7 +1070,7 @@ namespace METAbolt
             this.tsbSearch.Image = ((System.Drawing.Image)(resources.GetObject("tsbSearch.Image")));
             this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSearch.Name = "tsbSearch";
-            this.tsbSearch.Size = new System.Drawing.Size(21, 20);
+            this.tsbSearch.Size = new System.Drawing.Size(29, 20);
             this.tsbSearch.Text = "Show chat search";
             this.tsbSearch.Click += new System.EventHandler(this.toolStripButton1_Click_2);
             // 
@@ -1080,7 +1080,7 @@ namespace METAbolt
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(21, 20);
+            this.toolStripButton3.Size = new System.Drawing.Size(29, 20);
             this.toolStripButton3.Text = "Online help";
             this.toolStripButton3.Click += new System.EventHandler(this.tbtnHelp_Click);
             // 

@@ -38,7 +38,7 @@ namespace METAbolt.Core.Components
         }
 
         public bool SortByName;
-        public Vector3 location;
+        public Vector3 location = new Vector3();
 
         protected override void Sort()
         {
@@ -68,11 +68,13 @@ namespace METAbolt.Core.Components
                         else
                         {
                             ObjectsListItem itemp1 = (ObjectsListItem)this.Items[counter];
-                            Vector3 pos1 = itemp1.Prim.Position;
+                            Vector3 pos1 = new Vector3();
+                            pos1 = itemp1.Prim.Position;
                             double dist1 = Math.Round(Vector3.Distance(location, pos1), MidpointRounding.ToEven);
 
                             ObjectsListItem itemp2 = (ObjectsListItem)this.Items[counter - 1];
-                            Vector3 pos2 = itemp2.Prim.Position;
+                            Vector3 pos2 = new Vector3();
+                            pos2 = itemp2.Prim.Position;
                             double dist2 = Math.Round(Vector3.Distance(location, pos2), MidpointRounding.ToEven);
 
                             if (dist1 < dist2)
