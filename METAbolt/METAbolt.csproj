@@ -322,6 +322,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\ListItems\AttachmentsListItem.cs" />
+    <Compile Include="Core\TextRendering.cs" />
     <Compile Include="Core\Tools\ClipboardAsync.cs" />
     <Compile Include="Core\Tools\METAbrain.cs" />
     <Compile Include="Core\Tools\METAproxy.cs" />

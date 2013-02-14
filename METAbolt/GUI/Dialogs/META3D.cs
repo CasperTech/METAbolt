@@ -69,6 +69,11 @@ namespace METAbolt
         public uint RootPrimLocalID = 0;
         public OpenMetaverse.Vector3 Center = new OpenMetaverse.Vector3(OpenMetaverse.Vector3.Zero);
 
+        TextRendering textRendering;
+        OpenTK.Matrix4 ModelMatrix;
+        OpenTK.Matrix4 ProjectionMatrix;
+        int[] Viewport = new int[4];
+
 #pragma warning disable 0612
         public TextPrinter Printer = new TextPrinter(OpenTK.Graphics.TextQuality.High);
 #pragma warning restore 0612
@@ -150,6 +155,7 @@ namespace METAbolt
             TexturePointers[0] = 0;
 
             renderer = new MeshmerizerR();
+            textRendering = new TextRendering(instance);
 
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
             client.Objects.ObjectUpdate += new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
@@ -193,6 +199,7 @@ namespace METAbolt
             TexturePointers[0] = 0;
 
             renderer = new MeshmerizerR();
+            textRendering = new TextRendering(instance);
 
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
             client.Objects.ObjectUpdate += new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
@@ -1104,28 +1111,47 @@ namespace METAbolt
                         OpenTK.Vector3 primPos = new OpenTK.Vector3();
                         primPos = OpenTK.Vector3.Zero;
 
-                        // Is it a child prim
-                        if (prim.ParentID == RootPrimLocalID)
+                        //// Is it a child prim
+                        //if (prim.ParentID == RootPrimLocalID)
+                        //{
+                        //    primPos = new OpenTK.Vector3(prim.Position.X, prim.Position.Y, prim.Position.Z);
+                        //}
+
+                        //OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Modelview);
+
+                        //primPos.Z += prim.Scale.Z * 0.7f;
+                        //screenPos = WorldToScreen(primPos);
+
+                        //OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);
+
+                        ////Color color = Color.FromArgb((int)(prim.TextColor.A * 255), (int)(prim.TextColor.R * 255), (int)(prim.TextColor.G * 255), (int)(prim.TextColor.B * 255));
+
+                        ////Printer.Begin();
+
+                        // Is it child prim
+                        FacetedMesh parent = null;
+
+                        if (Prims.TryGetValue(prim.ParentID, out parent))
                         {
-                            primPos = new OpenTK.Vector3(prim.Position.X, prim.Position.Y, prim.Position.Z);
+                            var newPrimPos = prim.Position * OpenMetaverse.Matrix4.CreateFromQuaternion(parent.Prim.Rotation);
+                            primPos = new OpenTK.Vector3(newPrimPos.X, newPrimPos.Y, newPrimPos.Z);
                         }
 
-                        OpenTK.Graphics.OpenGL.GL.MatrixMode(OpenTK.Graphics.OpenGL.MatrixMode.Modelview);
+                        primPos.Z += prim.Scale.Z * 0.8f;
+                        if (!Math3D.GluProject(primPos, ModelMatrix, ProjectionMatrix, Viewport, out screenPos)) continue;
+                        screenPos.Y = glControl.Height - screenPos.Y;
 
-                        primPos.Z += prim.Scale.Z * 0.7f;
-                        screenPos = WorldToScreen(primPos);
-
-                        OpenTK.Graphics.OpenGL.GL.TexEnv(OpenTK.Graphics.OpenGL.TextureEnvTarget.TextureEnv, OpenTK.Graphics.OpenGL.TextureEnvParameter.TextureEnvMode, (float)OpenTK.Graphics.OpenGL.TextureEnvMode.ReplaceExt);
+                        textRendering.Begin();
 
                         Color color = Color.FromArgb((int)(prim.TextColor.A * 255), (int)(prim.TextColor.R * 255), (int)(prim.TextColor.G * 255), (int)(prim.TextColor.B * 255));
+                        TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.Top;
 
-                        Printer.Begin();
-
-                        using (Font f = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Bold))
+                        using (Font f = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Regular))
                         {
-                            var size = Printer.Measure(text, f);
-                            screenPos.X -= size.BoundingBox.Width / 2;
-                            screenPos.Y -= size.BoundingBox.Height;
+                            //var size = Printer.Measure(text, f);
+                            var size = TextRendering.Measure(text, f, flags);
+                            screenPos.X -= size.Width / 2;
+                            screenPos.Y -= size.Height;
 
                             //MBTextWriter writer = new MBTextWriter(glControl.ClientSize, glControl.ClientSize);
 
@@ -1137,13 +1163,16 @@ namespace METAbolt
                             //Shadow
                             if (color != Color.DarkGray)
                             {
-                                Printer.Print(text, f, Color.DarkGray, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
+                                //Printer.Print(text, f, Color.DarkGray, new RectangleF(screenPos.X + 0.75f, screenPos.Y + 0.75f, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
+                                textRendering.Print(text, f, Color.DarkGray, new Rectangle((int)screenPos.X + 1, (int)screenPos.Y + 1, size.Width, size.Height), flags);
                             }
 
-                            Printer.Print(text, f, color, new RectangleF(screenPos.X, screenPos.Y, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
+                            //Printer.Print(text, f, color, new RectangleF(screenPos.X, screenPos.Y, size.BoundingBox.Width, size.BoundingBox.Height), OpenTK.Graphics.TextPrinterOptions.Default, OpenTK.Graphics.TextAlignment.Center);
+                            textRendering.Print(text, f, color, new Rectangle((int)screenPos.X, (int)screenPos.Y, size.Width, size.Height), flags);
                         }
 
-                        Printer.End();
+                        //Printer.End();
+                        textRendering.End();
 
                         //glControl.SwapBuffers();
                     }
@@ -1341,6 +1370,10 @@ namespace METAbolt
             OpenTK.Graphics.OpenGL.GL.Rotate((float)scrollPitch.Value, 0f, 1f, 0f);
             OpenTK.Graphics.OpenGL.GL.Rotate((float)scrollYaw.Value, 0f, 0f, 1f);
 
+            OpenTK.Graphics.OpenGL.GL.GetInteger(OpenTK.Graphics.OpenGL.GetPName.Viewport, Viewport);
+            OpenTK.Graphics.OpenGL.GL.GetFloat(OpenTK.Graphics.OpenGL.GetPName.ModelviewMatrix, out ModelMatrix);
+            OpenTK.Graphics.OpenGL.GL.GetFloat(OpenTK.Graphics.OpenGL.GetPName.ProjectionMatrix, out ProjectionMatrix);
+
             if (picking)
             {
                 RenderObjects(RenderPass.Picking);
@@ -1350,7 +1383,7 @@ namespace METAbolt
                 RenderObjects(RenderPass.Simple);
                 RenderObjects(RenderPass.Alpha);
                 RenderText();
-                RenderAvatar();
+                //RenderAvatar();
             }
 
             // Pop the world matrix
@@ -2098,6 +2131,12 @@ namespace METAbolt
 
                 //glControl = null;
 
+                if (textRendering != null)
+                {
+                    textRendering.Dispose();
+                    textRendering = null;
+                }
+
                 client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
                 client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
                 client.Objects.ObjectDataBlockUpdate -= new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);
@@ -2366,6 +2405,85 @@ namespace METAbolt
             mat[15] = 1;
 
             return mat;
+        }
+
+        public static bool GluProject(OpenTK.Vector3 objPos, OpenTK.Matrix4 modelMatrix, OpenTK.Matrix4 projMatrix, int[] viewport, out OpenTK.Vector3 screenPos)
+        {
+            OpenTK.Vector4 _in;
+            OpenTK.Vector4 _out;
+
+            _in.X = objPos.X;
+            _in.Y = objPos.Y;
+            _in.Z = objPos.Z;
+            _in.W = 1.0f;
+
+            _out = OpenTK.Vector4.Transform(_in, modelMatrix);
+            _in = OpenTK.Vector4.Transform(_out, projMatrix);
+
+            if (_in.W <= 0.0)
+            {
+                screenPos = OpenTK.Vector3.Zero;
+                return false;
+            }
+
+            _in.X /= _in.W;
+            _in.Y /= _in.W;
+            _in.Z /= _in.W;
+            /* Map x, y and z to range 0-1 */
+            _in.X = _in.X * 0.5f + 0.5f;
+            _in.Y = _in.Y * 0.5f + 0.5f;
+            _in.Z = _in.Z * 0.5f + 0.5f;
+
+            /* Map x,y to viewport */
+            _in.X = _in.X * viewport[2] + viewport[0];
+            _in.Y = _in.Y * viewport[3] + viewport[1];
+
+            screenPos.X = _in.X;
+            screenPos.Y = _in.Y;
+            screenPos.Z = _in.Z;
+
+            return true;
+        }
+
+        public static bool GluUnProject(float winx, float winy, float winz, OpenTK.Matrix4 modelMatrix, OpenTK.Matrix4 projMatrix, int[] viewport, out OpenTK.Vector3 pos)
+        {
+            OpenTK.Matrix4 finalMatrix;
+            OpenTK.Vector4 _in;
+            OpenTK.Vector4 _out;
+
+            finalMatrix = OpenTK.Matrix4.Mult(modelMatrix, projMatrix);
+
+            finalMatrix.Invert();
+
+            _in.X = winx;
+            _in.Y = winy;
+            _in.Z = winz;
+            _in.W = 1.0f;
+
+            /* Map x and y from window coordinates */
+            _in.X = (_in.X - viewport[0]) / viewport[2];
+            _in.Y = (_in.Y - viewport[1]) / viewport[3];
+
+            pos = OpenTK.Vector3.Zero;
+
+            /* Map to range -1 to 1 */
+            _in.X = _in.X * 2 - 1;
+            _in.Y = _in.Y * 2 - 1;
+            _in.Z = _in.Z * 2 - 1;
+
+            //__gluMultMatrixVecd(finalMatrix, _in, _out);
+            // check if this works:
+            _out = OpenTK.Vector4.Transform(_in, finalMatrix);
+
+            if (_out.W == 0.0f)
+                return false;
+            _out.X /= _out.W;
+            _out.Y /= _out.W;
+            _out.Z /= _out.W;
+            pos.X = _out.X;
+            pos.Y = _out.Y;
+            pos.Z = _out.Z;
+            return true;
         }
     }
 
