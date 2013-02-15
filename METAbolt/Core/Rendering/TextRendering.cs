@@ -39,7 +39,7 @@ using OpenMetaverse;
 
 namespace METAbolt
 {
-    public class TextRendering : IDisposable
+    public class TextRendering
     {
         class CachedInfo
         {
@@ -85,10 +85,6 @@ namespace METAbolt
         {
             this.Instance = instance;
             textItems = new List<TextItem>();
-        }
-
-        public void Dispose()
-        {
         }
 
         public void Print(string text, Font font, Color color, Rectangle box, TextFormatFlags flags)
@@ -217,6 +213,7 @@ namespace METAbolt
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
+
             if (useMipmap)
             {
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);

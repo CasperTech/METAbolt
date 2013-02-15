@@ -63,7 +63,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
@@ -322,7 +322,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\ListItems\AttachmentsListItem.cs" />
-    <Compile Include="Core\TextRendering.cs" />
+    <Compile Include="Core\Rendering\TextRendering.cs" />
+    <Compile Include="Core\Rendering\TextRenderingHelper.cs" />
     <Compile Include="Core\Tools\ClipboardAsync.cs" />
     <Compile Include="Core\Tools\METAbrain.cs" />
     <Compile Include="Core\Tools\METAproxy.cs" />
