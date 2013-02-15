@@ -4097,11 +4097,13 @@ namespace METAbolt
         {
             foreach (InventoryBase o in foundfolders)
             {
-                if (o.Name.ToLower() == "favorites")
+                if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
                 {
                     if (o is InventoryFolder)
                     {
                         List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
+
+                        if (founditems == null) return;
 
                         if (founditems.Count > 0)
                         {
@@ -4112,25 +4114,28 @@ namespace METAbolt
                             {
                                 InventoryItem item = (InventoryItem)oitem;
 
-                                string iname = item.Name;
-                                string desc = item.Description;
-
-                                if (iname.Length > 43)
+                                if (item.InventoryType == InventoryType.Landmark)
                                 {
-                                    iname = iname.Substring(0, 40) + "...";
+                                    string iname = item.Name;
+                                    string desc = item.Description;
+
+                                    if (iname.Length > 43)
+                                    {
+                                        iname = iname.Substring(0, 40) + "...";
+                                    }
+
+                                    ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
+
+                                    //if (!tsFavs.Items.Contains(btn))
+                                    //{
+                                    btn.TextAlign = ContentAlignment.MiddleLeft;
+                                    btn.ToolTipText = desc;
+                                    tsFavs.Items.Add(btn);
+
+                                    ToolStripSeparator sep = new ToolStripSeparator();
+                                    tsFavs.Items.Add(sep);
+                                    //}
                                 }
-
-                                ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
-
-                                //if (!tsFavs.Items.Contains(btn))
-                                //{
-                                btn.TextAlign = ContentAlignment.MiddleLeft;
-                                btn.ToolTipText = desc;
-                                tsFavs.Items.Add(btn);
-
-                                ToolStripSeparator sep = new ToolStripSeparator();
-                                tsFavs.Items.Add(sep);
-                                //}
                             }
 
                             //tsdefault.Visible = false;

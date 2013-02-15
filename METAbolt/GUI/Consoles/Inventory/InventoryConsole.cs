@@ -392,6 +392,8 @@ namespace METAbolt
                     folderID = client.Inventory.Store.RootFolder.UUID;
                 }
 
+                List<InventoryBase> favfolders = new List<InventoryBase>();
+
                 if (favfolder == UUID.Zero)
                 {
                     InventoryFolder favs = client.Inventory.Store.RootFolder;
@@ -399,11 +401,12 @@ namespace METAbolt
 
                     foreach (InventoryBase o in foundfolders)
                     {
-                        if (o.Name.ToLower() == "favorites")
+                        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
                         {
                             if (o is InventoryFolder)
                             {
                                 favfolder = o.UUID;
+                                favfolders.Add(o); 
                                 break;
                             }
                         }
@@ -411,6 +414,8 @@ namespace METAbolt
 
                     //Update favourites
                     instance.MainForm.UpdateFavourites(foundfolders);
+                    //favfolders.Clear();
+                    //favfolders = null;
                 }
 
                 try
@@ -418,11 +423,12 @@ namespace METAbolt
                     TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
                     treeViewWalker.LoadInventory(instance, folderID);
 
-                    if (folderID == favfolder)
+                    if (folderID == favfolder && folderID != UUID.Zero)
                     {
                         InventoryFolder favs = client.Inventory.Store.RootFolder;
                         List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
                         instance.MainForm.UpdateFavourites(foundfolders);
+                        //instance.MainForm.UpdateFavourites(favfolders);
                     }
 
                     if (selectednode != null)

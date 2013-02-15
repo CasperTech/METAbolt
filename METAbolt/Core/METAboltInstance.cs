@@ -1047,6 +1047,25 @@ namespace METAbolt
             catch { return false; }
         }
 
+        public string SetTime()
+        {
+            DateTime dte = DateTime.Now;
+
+            dte = State.GetTimeStamp(dte);
+
+            if (Config.CurrentConfig.UseSLT)
+            {
+                string _timeZoneId = "Pacific Standard Time";
+                DateTime startTime = DateTime.UtcNow;
+                TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
+                dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
+            }
+
+            string prefix = dte.ToString("[HH:mm] ");
+
+            return prefix;
+        }
+
         public GridClient Client
         {
             get { return client; }

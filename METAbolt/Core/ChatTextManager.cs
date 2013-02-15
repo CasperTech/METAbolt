@@ -988,19 +988,19 @@ namespace METAbolt
 
                         if (!ismember)
                         {
-                            DateTime dte = DateTime.Now;
+                            //DateTime dte = DateTime.Now;
 
-                            dte = this.instance.State.GetTimeStamp(dte);
+                            //dte = this.instance.State.GetTimeStamp(dte);
 
-                            if (instance.Config.CurrentConfig.UseSLT)
-                            {
-                                string _timeZoneId = "Pacific Standard Time";
-                                DateTime startTime = DateTime.UtcNow;
-                                TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
-                                dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
-                            }
+                            //if (instance.Config.CurrentConfig.UseSLT)
+                            //{
+                            //    string _timeZoneId = "Pacific Standard Time";
+                            //    DateTime startTime = DateTime.UtcNow;
+                            //    TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
+                            //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
+                            //}
 
-                            string prefix = dte.ToString("[HH:mm] ");
+                            string prefix = instance.SetTime();    //dte.ToString("[HH:mm] ");
                             string gname = instance.State.GroupStore[igroup];
 
                             textPrinter.SetSelectionForeColor(Color.Gray);
@@ -1034,20 +1034,20 @@ namespace METAbolt
 
         private void WriteToChat()
         {
-            DateTime dte = DateTime.Now;
+            //DateTime dte = DateTime.Now;
 
-            dte = this.instance.State.GetTimeStamp(dte);
+            //dte = this.instance.State.GetTimeStamp(dte);
 
-            if (instance.Config.CurrentConfig.UseSLT)
-            {
-                string _timeZoneId = "Pacific Standard Time";
-                DateTime startTime = DateTime.UtcNow;
-                TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
-                dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
-            }
+            //if (instance.Config.CurrentConfig.UseSLT)
+            //{
+            //    string _timeZoneId = "Pacific Standard Time";
+            //    DateTime startTime = DateTime.UtcNow;
+            //    TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
+            //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
+            //}
 
             //textPrinter.ForeColor = Color.Gray;
-            string prefix = dte.ToString("[HH:mm] ");
+            string prefix = instance.SetTime();    //dte.ToString("[HH:mm] ");
 
             try
             {
@@ -1114,19 +1114,19 @@ namespace METAbolt
 
                         if ((item.Permissions.OwnerMask & PermissionMask.Transfer) == PermissionMask.Transfer)
                         {
-                            DateTime dte = DateTime.Now;
+                            //DateTime dte = DateTime.Now;
 
-                            dte = this.instance.State.GetTimeStamp(dte);
+                            //dte = this.instance.State.GetTimeStamp(dte);
 
-                            if (instance.Config.CurrentConfig.UseSLT)
-                            {
-                                string _timeZoneId = "Pacific Standard Time";
-                                DateTime startTime = DateTime.UtcNow;
-                                TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
-                                dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
-                            }
+                            //if (instance.Config.CurrentConfig.UseSLT)
+                            //{
+                            //    string _timeZoneId = "Pacific Standard Time";
+                            //    DateTime startTime = DateTime.UtcNow;
+                            //    TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
+                            //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
+                            //}
 
-                            string prefix = dte.ToString("[HH:mm] ");
+                            string prefix = instance.SetTime();   // dte.ToString("[HH:mm] ");
 
                             //Give the item
                             client.Self.InstantMessage(iperson, "I am giving you a present for joining our group. Thank you.");   
