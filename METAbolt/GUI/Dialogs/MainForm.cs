@@ -1582,7 +1582,7 @@ namespace METAbolt
             {
                 debugLogForm.Show(this);
             }
-            catch (Exception exp)
+            catch
             {
                 //Logger.Log(String.Format("Debug Form Display Error: {0}", exp), Helpers.LogLevel.Error);
                 debugLogForm.Dispose(); 
