@@ -116,7 +116,7 @@ namespace METAbolt
         {
             int iprice = (int)nudAmount.Value;
 
-            if (Prim != null)
+            if (Prim != null && Prim.ID != UUID.Zero)
             {
                 SaleType styp = Prim.Properties.SaleType;
 
