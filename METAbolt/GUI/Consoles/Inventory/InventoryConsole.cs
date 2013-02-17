@@ -2070,8 +2070,8 @@ namespace METAbolt
                 if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
                 {
                     managerbusy = client.Appearance.ManagerBusy;
-                    //client.Appearance.AddToOutfit(item);
-                    client.Appearance.Attach(item, AttachmentPoint.Default, false);
+                    client.Appearance.AddToOutfit(item);
+                    //client.Appearance.Attach(item, AttachmentPoint.Default, false);
                 }
                 else if (item.AssetType == AssetType.Object)
                 {

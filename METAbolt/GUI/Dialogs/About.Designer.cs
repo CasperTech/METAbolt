@@ -144,7 +144,7 @@ namespace METAbolt
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(246, 23);
             this.label10.TabIndex = 1;
-            this.label10.Text = "Copyright © 2008-2011 www.metabolt.net";
+            this.label10.Text = "Copyright © 2008-2013 www.metabolt.net";
             // 
             // pictureBox1
             // 

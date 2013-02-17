@@ -60,7 +60,7 @@ using System.Globalization;
 
 namespace METAbolt
 {
-    public partial class META3D : METAboltForm
+    public partial class META3D : Form
     {
         public OpenTK.GLControl glControl = null;
         public bool UseMultiSampling = false;   //true;
@@ -94,7 +94,7 @@ namespace METAbolt
         int[] TexturePointers = new int[1];
         Dictionary<UUID, Image> Textures = new Dictionary<UUID, Image>();
         METAboltInstance instance;
-        //private GridClient client;
+        private GridClient client;
         //private SLNetCom netcom;
         MeshmerizerR renderer;
         OpenTK.Graphics.GraphicsMode GLMode = null;
@@ -138,9 +138,13 @@ namespace METAbolt
                 if (glControl != null)
                 {
                     glControl.Dispose();
-                }
+                    glControl = null;
+                }                
 
-                glControl = null;
+                if (textRendering != null)
+                {
+                    textRendering = null;
+                }
 
             }
             catch (Exception ex)
@@ -151,7 +155,6 @@ namespace METAbolt
         }
 
         public META3D(METAboltInstance instance, uint rootLocalID, Primitive item)
-            : base(instance)
         {
             InitializeComponent();
 
@@ -178,7 +181,7 @@ namespace METAbolt
             UseMultiSampling = false;
 
             this.instance = instance;
-            //client = this.instance.Client;
+            client = this.instance.Client;
             //netcom = this.instance.Netcom;
             isobject = false;
 
@@ -195,7 +198,6 @@ namespace METAbolt
         }
 
         public META3D(METAboltInstance instance, ObjectsListItem obtectitem)
-            : base(instance)
         {
             InitializeComponent();
 
@@ -222,7 +224,7 @@ namespace METAbolt
             UseMultiSampling = false;
 
             this.instance = instance;
-            //client = this.instance.Client;
+            client = this.instance.Client;
             //netcom = this.instance.Netcom;
             isobject = true;
             this.objectitem = obtectitem;
@@ -2151,19 +2153,6 @@ namespace METAbolt
         {
             try
             {
-                //if (glControl != null)
-                //{
-                //    glControl.Dispose();
-                //}
-
-                //glControl = null;
-
-                //if (textRendering != null)
-                //{
-                //    textRendering.Dispose();
-                //    textRendering = null;
-                //}
-
                 client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_TerseObjectUpdate);
                 client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_ObjectUpdate);
                 client.Objects.ObjectDataBlockUpdate -= new EventHandler<ObjectDataBlockUpdateEventArgs>(Objects_ObjectDataBlockUpdate);

@@ -33,7 +33,6 @@ namespace METAbolt
             this.btnLogin = new System.Windows.Forms.Button();
             this.pnlLoggingIn = new System.Windows.Forms.Panel();
             this.lblLoginStatus = new System.Windows.Forms.Label();
-            this.btnInfo = new System.Windows.Forms.Button();
             this.pnlLoginPage = new System.Windows.Forms.Panel();
             this.lblInitWebBrowser = new System.Windows.Forms.Label();
             this.pnlLoginPrompt = new System.Windows.Forms.Panel();
@@ -55,6 +54,7 @@ namespace METAbolt
             this.cbxLocation = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.label7 = new System.Windows.Forms.Label();
             this.pnlLoggingIn.SuspendLayout();
             this.pnlLoginPage.SuspendLayout();
             this.pnlLoginPrompt.SuspendLayout();
@@ -98,18 +98,6 @@ namespace METAbolt
             this.lblLoginStatus.TabIndex = 12;
             this.lblLoginStatus.Text = "Login status goes here.";
             this.lblLoginStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnInfo
-            // 
-            this.btnInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnInfo.Location = new System.Drawing.Point(3, 412);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(116, 23);
-            this.btnInfo.TabIndex = 18;
-            this.btnInfo.Text = "Show Grid Status";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Visible = false;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // pnlLoginPage
             // 
@@ -370,6 +358,18 @@ namespace METAbolt
             this.timer2.Interval = 305000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.label7.Location = new System.Drawing.Point(4, 365);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 12);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "version";
+            // 
             // MainConsole
             // 
             this.AccessibleDescription = "Console to login to SL or other OpenSim based grid";
@@ -378,10 +378,10 @@ namespace METAbolt
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.pnlLoginPrompt);
             this.Controls.Add(this.pnlLoggingIn);
             this.Controls.Add(this.pnlLoginPage);
-            this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnLogin);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -394,6 +394,7 @@ namespace METAbolt
             this.pnlLoginPrompt.ResumeLayout(false);
             this.pnlLoginPrompt.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -402,7 +403,6 @@ namespace METAbolt
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Panel pnlLoggingIn;
         private System.Windows.Forms.Label lblLoginStatus;
-        private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.Panel pnlLoginPage;
         private System.Windows.Forms.Label lblInitWebBrowser;
         private System.Windows.Forms.Panel pnlLoginPrompt;
@@ -424,5 +424,6 @@ namespace METAbolt
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label7;
     }
 }

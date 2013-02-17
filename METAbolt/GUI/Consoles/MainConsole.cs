@@ -83,7 +83,8 @@ namespace METAbolt
                 this.InitializeWebBrowser();
 
             webBrowser.Visible = true;
-            btnInfo.Text = "Hide Grid Status";
+            //btnInfo.Text = "Hide Grid Status";
+            label7.Text = "V " + Properties.Resources.METAboltVersion; 
 
             Disposed += new EventHandler(MainConsole_Disposed);
 
@@ -519,8 +520,8 @@ namespace METAbolt
             lblInitWebBrowser.Visible = true;
             lblInitWebBrowser.Refresh();
 
-            btnInfo.Enabled = false;
-            btnInfo.Refresh();
+            //btnInfo.Enabled = false;
+            //btnInfo.Refresh();
 
             string lkey = instance.Config.CurrentConfig.AdRemove;
 
@@ -634,7 +635,7 @@ namespace METAbolt
         private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             lblInitWebBrowser.Visible = false;
-            btnInfo.Enabled = true;
+            //btnInfo.Enabled = true;
 
             HtmlElementCollection links = webBrowser.Document.Links;
 
@@ -831,25 +832,6 @@ namespace METAbolt
             catch (Exception ex)
             {
                 Logger.Log("Login (create cmd file): " + ex.Message, Helpers.LogLevel.Error);
-            }
-        }
-
-        private void btnInfo_Click(object sender, EventArgs e)
-        {
-            switch (btnInfo.Text)
-            {
-                case "Show Grid Status":
-                    if (webBrowser == null)
-                        this.InitializeWebBrowser();
-
-                    webBrowser.Visible = true;
-                    btnInfo.Text = "Hide Grid Status";
-                    break;
-
-                case "Hide Grid Status":
-                    webBrowser.Visible = false;
-                    btnInfo.Text = "Show Grid Status";
-                    break;
             }
         }
 

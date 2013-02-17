@@ -287,9 +287,6 @@
     <Compile Include="Core\Config\FileINI.cs" />
     <Compile Include="Core\ListItems\NumericStringComparer.cs" />
     <Compile Include="Core\ListItems\RadarSorter.cs" />
-    <Compile Include="Core\METAboltForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Core\ChatBufferItem.cs" />
     <Compile Include="Core\Components\RichTextBoxFR.cs">
       <SubType>Component</SubType>

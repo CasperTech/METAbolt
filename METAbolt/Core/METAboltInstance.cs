@@ -45,11 +45,11 @@ namespace METAbolt
 {
     public class METAboltInstance
     {
-        public event Action<METAboltForm> METAboltFormCreated;
-        public virtual void OnMETAboltFormCreated(METAboltForm form)
-        {
-            if (METAboltFormCreated != null) METAboltFormCreated(form);
-        }
+        //public event Action<METAboltForm> METAboltFormCreated;
+        //public virtual void OnMETAboltFormCreated(METAboltForm form)
+        //{
+        //    if (METAboltFormCreated != null) METAboltFormCreated(form);
+        //}
 
         public class AvLocation
         {
@@ -815,9 +815,9 @@ namespace METAbolt
             ///
  
             // For smoother bot movement
-            //client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
+            client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
 
-            client.Settings.USE_LLSD_LOGIN = true;
+            //client.Settings.USE_LLSD_LOGIN = true;
 
             client.Settings.SEND_AGENT_APPEARANCE = true;
             //client.Settings.CLIENT_IDENTIFICATION_TAG = 
