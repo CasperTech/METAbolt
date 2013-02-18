@@ -53,6 +53,7 @@ namespace METAbolt
         private bool formloading = true;
         private List<ParcelManager.ParcelAccessEntry> blacklist;
         //private List<ParcelManager.ParcelAccessEntry> whitelist;
+        private Group parcelgroup;
 
         private ExceptionReporter reporter = new ExceptionReporter();
 
@@ -134,7 +135,13 @@ namespace METAbolt
             {
                 this.BeginInvoke(new MethodInvoker(delegate()
                 {
-                    SetOwnerProperties();
+                    GroupMember mem = new GroupMember();
+                    mem = e.Members[client.Self.AgentID];
+
+                    if (((mem.Powers & GroupPowers.FindPlaces) != 0) && ((mem.Powers & GroupPowers.LandChangeIdentity) != 0))
+                    {
+                        SetOwnerProperties();
+                    }
                 }));
 
                 return;
@@ -179,7 +186,7 @@ namespace METAbolt
             txtParcelname.ReadOnly = false;
             txtPrimreturn.ReadOnly = false;
             txtMusic.ReadOnly = false;
-            button1.Visible = true; 
+            button1.Visible = true;
 
             //Populate prim owners
             //callback = new ParcelManager.ParcelPrimOwners ParcelObjectOwnersListReplyCallback(Parcel_ObjectOwners);
@@ -215,7 +222,7 @@ namespace METAbolt
             if (!instance.LoggedIn)
             {
                 this.Close();
-                return; 
+                return;
             }
 
             try
@@ -273,18 +280,26 @@ namespace METAbolt
                     txtGroupOwner.Text = "";   //this.instance.MainForm.AboutlandOwneridname; 
                 }
 
+                if (parcel.GroupID != UUID.Zero)
+                {
+                    client.Groups.GroupNamesReply += new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
+                    txtGroupOwner.Text = parcel.GroupID.ToString();
+                    client.Groups.RequestGroupMembers(parcel.GroupID);
+                    client.Groups.RequestGroupName(parcel.GroupID);
+                }
+
                 txtClaimDate.Text = parcel.ClaimDate.ToString(CultureInfo.CurrentCulture);
                 txtArea.Text = parcel.Area.ToString(CultureInfo.CurrentCulture) + "sq. m.";
 
                 if (this.instance.MainForm.Aboutlandforsale)
                 {
                     txtForsale.Text = "L$ " + parcel.SalePrice.ToString(CultureInfo.CurrentCulture);
-                    btnBuy.Visible = true; 
+                    btnBuy.Visible = true;
                 }
                 else
                 {
                     txtForsale.Text = "Not For Sale";
-                    btnBuy.Visible = false; 
+                    btnBuy.Visible = false;
                 }
 
                 // Obects tab
@@ -299,7 +314,7 @@ namespace METAbolt
                 lblTraffic.Text = parcel.Dwell.ToString(CultureInfo.CurrentCulture);
                 txtMusic.Text = parcel.MusicURL;
 
-                lblLocalID.Text = parcel.LocalID.ToString();  
+                lblLocalID.Text = parcel.LocalID.ToString();
 
                 //pictureBox1.Image = OpenJPEGNet.OpenJPEG.DecodeToImage(parcel.Bitmap);  
 
@@ -349,8 +364,17 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                Logger.Log("About Land error: " + ex.Message, Helpers.LogLevel.Error);     
+                Logger.Log("About Land error: " + ex.Message, Helpers.LogLevel.Error);
             }
+        }
+
+        void Groups_GroupNamesReply(object sender, GroupNamesEventArgs e)
+        {
+            if (!e.GroupNames.ContainsKey(parcel.GroupID)) return;
+
+            client.Groups.GroupNamesReply -= new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
+            txtGroupOwner.Text = e.GroupNames[parcel.GroupID];
+            pictureBox3.Visible = true;
         }
 
         private void Parcels_ParcelAccessListReply(object sender, ParcelAccessListReplyEventArgs e)
@@ -359,7 +383,7 @@ namespace METAbolt
             {
                 blacklist = e.AccessList;
                 lvwBlackList.BeginUpdate();
-                lvwBlackList.Items.Clear();  
+                lvwBlackList.Items.Clear();
 
                 foreach (ParcelManager.ParcelAccessEntry pe in blacklist)
                 {
@@ -388,7 +412,7 @@ namespace METAbolt
                     button4.Enabled = true;
                 }
                 else
-                    button4.Enabled = false; 
+                    button4.Enabled = false;
 
                 //lvwBlackList.Sort();
             }));
@@ -402,7 +426,7 @@ namespace METAbolt
                 lvwPrimOwners.Items.Clear();
                 lvwPrimOwners.Enabled = true;
 
-                List<ParcelManager.ParcelPrimOwners> primOwners = ea.PrimOwners; 
+                List<ParcelManager.ParcelPrimOwners> primOwners = ea.PrimOwners;
 
                 for (int i = 0; i < primOwners.Count; i++)
                 {
@@ -431,12 +455,12 @@ namespace METAbolt
                     }
                     catch (Exception ex)
                     {
-                        Logger.Log("About Land (object owners) error: " + ex.Message, Helpers.LogLevel.Error); 
+                        Logger.Log("About Land (object owners) error: " + ex.Message, Helpers.LogLevel.Error);
                     }
                 }
 
                 //button2.Enabled = true;
- 
+
                 lvwPrimOwners.EndUpdate();
                 //lvwPrimOwners.Sort();
             }));
@@ -489,7 +513,7 @@ namespace METAbolt
                 }
                 catch
                 {
-                   ; 
+                    ;
                 }
             }
 
@@ -511,7 +535,7 @@ namespace METAbolt
                 }
             }
 
-            lvwBlackList.EndUpdate(); 
+            lvwBlackList.EndUpdate();
 
             lvwBlackList.Sort();
         }
@@ -533,14 +557,14 @@ namespace METAbolt
         {
             if (formloading) return;
 
-            this.parcel.Desc = txtParceldesc.Text.Replace("\r\n","\n"); 
-            this.parcel.Update(client.Network.CurrentSim, false);  
+            this.parcel.Desc = txtParceldesc.Text.Replace("\r\n", "\n");
+            this.parcel.Update(client.Network.CurrentSim, false);
         }
 
         private void txtParceldesc_Leave(object sender, EventArgs e)
         {
             if (!parcelowner) return;
-                
+
             UpdateDesc();
         }
 
@@ -557,7 +581,7 @@ namespace METAbolt
         private void txtParcelname_Leave(object sender, EventArgs e)
         {
             if (!parcelowner) return;
-                
+
             UpdatePName();
         }
 
@@ -620,7 +644,7 @@ namespace METAbolt
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
 
         private void frmAboutLand_FormClosing(object sender, FormClosingEventArgs e)
@@ -987,11 +1011,11 @@ namespace METAbolt
                             SW.WriteLine("Name,UUID,");
 
                             for (int i = 0; i < lvwBlackList.Items.Count; i++)
-                            { 
+                            {
                                 ParcelManager.ParcelAccessEntry person = (ParcelManager.ParcelAccessEntry)lvwBlackList.Items[i].Tag;
                                 string personame = lvwBlackList.Items[i].Text;
-                                
-                                string line = personame + "," + person.AgentID.ToString()  + ",";
+
+                                string line = personame + "," + person.AgentID.ToString() + ",";
                                 SW.WriteLine(line);
                             }
 
@@ -1001,7 +1025,7 @@ namespace METAbolt
                     catch (Exception ex)
                     {
                         //MessageBox.Show(ex.Message);
-                        reporter.Show(ex); 
+                        reporter.Show(ex);
                     }
                 }
             }
@@ -1037,6 +1061,16 @@ namespace METAbolt
         {
             client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
             client.Parcels.RequestParcelAccessList(client.Network.CurrentSim, parcel.LocalID, AccessList.Ban, 1);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            (new frmProfile(instance, this.instance.MainForm.AboutlandOwneridname, parcel.OwnerID)).Show();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            (new frmGroupInfo(parcel.GroupID, instance)).Show();
         }
     }
 }

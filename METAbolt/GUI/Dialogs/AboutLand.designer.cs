@@ -114,6 +114,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabOptions.SuspendLayout();
@@ -121,6 +123,8 @@
             this.tabObjects.SuspendLayout();
             this.tabGenral.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage2
@@ -901,6 +905,8 @@
             // 
             this.tabGenral.AccessibleName = "General tab";
             this.tabGenral.BackColor = System.Drawing.Color.White;
+            this.tabGenral.Controls.Add(this.pictureBox3);
+            this.tabGenral.Controls.Add(this.pictureBox2);
             this.tabGenral.Controls.Add(this.lblLocalID);
             this.tabGenral.Controls.Add(this.label29);
             this.tabGenral.Controls.Add(this.btnBuy);
@@ -1065,7 +1071,7 @@
             this.txtGroupOwner.AccessibleDescription = "Name of the owner group if any";
             this.txtGroupOwner.AccessibleName = "Group owner";
             this.txtGroupOwner.AutoSize = true;
-            this.txtGroupOwner.Location = new System.Drawing.Point(69, 128);
+            this.txtGroupOwner.Location = new System.Drawing.Point(88, 128);
             this.txtGroupOwner.Name = "txtGroupOwner";
             this.txtGroupOwner.Size = new System.Drawing.Size(65, 13);
             this.txtGroupOwner.TabIndex = 3;
@@ -1086,7 +1092,7 @@
             this.txtOwnerid.AccessibleDescription = "Owner of the land";
             this.txtOwnerid.AccessibleName = "Owner";
             this.txtOwnerid.AutoSize = true;
-            this.txtOwnerid.Location = new System.Drawing.Point(69, 111);
+            this.txtOwnerid.Location = new System.Drawing.Point(88, 111);
             this.txtOwnerid.Name = "txtOwnerid";
             this.txtOwnerid.Size = new System.Drawing.Size(65, 13);
             this.txtOwnerid.TabIndex = 2;
@@ -1164,6 +1170,31 @@
             this.tabControl1.Size = new System.Drawing.Size(445, 355);
             this.tabControl1.TabIndex = 0;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Image = global::METAbolt.Properties.Resources.Information;
+            this.pictureBox3.Location = new System.Drawing.Point(72, 127);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(14, 14);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Image = global::METAbolt.Properties.Resources.profile;
+            this.pictureBox2.Location = new System.Drawing.Point(72, 110);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(14, 14);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 19;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // frmAboutLand
             // 
             this.AccessibleDescription = "ABout Land window displays information about the land your avatar is on";
@@ -1196,6 +1227,8 @@
             this.tabGenral.ResumeLayout(false);
             this.tabGenral.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1287,5 +1320,7 @@
         private System.Windows.Forms.Button btnBuy;
         private System.Windows.Forms.Label lblLocalID;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
