@@ -2076,6 +2076,7 @@ namespace METAbolt
                 else if (item.AssetType == AssetType.Object)
                 {
                     client.Appearance.Attach(item, AttachmentPoint.Default, true);
+                    //client.Appearance.(item, AttachmentPoint.Default, true);
                 }
 
                 WearTakeoff(true, selectednode);
@@ -2084,7 +2085,7 @@ namespace METAbolt
 
         private void AttachTo(InventoryItem item, AttachmentPoint pnt)
         {
-            client.Appearance.Attach(item, pnt, true);
+            client.Appearance.Attach(item, pnt, false);
             //client.Appearance.RequestSetAppearance(true);
 
             WearTakeoff(true, selectednode);
