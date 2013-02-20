@@ -1509,6 +1509,17 @@ namespace METAbolt
             return picked != null;
         }
 
+        //private void ShowAvatar(Avatar av)
+        //{
+        //    GLAvatar ga = new GLAvatar();
+
+        //    RenderAvatar ra = new Rendering.RenderAvatar();
+        //    ra.avatar = av;
+        //    ra.glavatar = ga;
+        //    updateAVtes(ra);
+        //    ra.glavatar.morph(av);
+        //}
+
         private void UpdatePrimBlocking(Primitive prim)
         {
 
@@ -1525,6 +1536,11 @@ namespace METAbolt
 
             if (prim.Textures == null)
                 return;
+
+            //if (prim.PrimData.PCode == PCode.Avatar)
+            //{
+            //    ShowAvatar(client.Network.CurrentSim.ObjectsAvatars[prim.LocalID]);
+            //}
 
             try
             {

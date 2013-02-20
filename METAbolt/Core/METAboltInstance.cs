@@ -792,7 +792,7 @@ namespace METAbolt
 
             /// <summary>Maximum number of queued ACKs to be sent before SendAcks()
             /// is forced</summary>
-            //client.Settings.MAX_PENDING_ACKS = 10;
+            client.Settings.MAX_PENDING_ACKS = 1;
             /// <summary>Maximum number of ACKs to append to a packet</summary>
             //client.Settings.MAX_APPENDED_ACKS = 10;
             /// <summary>Network stats queue length (seconds)</summary>

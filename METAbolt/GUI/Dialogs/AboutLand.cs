@@ -53,7 +53,7 @@ namespace METAbolt
         private bool formloading = true;
         private List<ParcelManager.ParcelAccessEntry> blacklist;
         //private List<ParcelManager.ParcelAccessEntry> whitelist;
-        private Group parcelgroup;
+        //private Group parcelgroup;
 
         private ExceptionReporter reporter = new ExceptionReporter();
 
@@ -527,7 +527,10 @@ namespace METAbolt
 
                 try
                 {
-                    foundItem.Text = av.Value;
+                    if (foundItem != null)
+                    {
+                        foundItem.Text = av.Value;
+                    }
                 }
                 catch
                 {

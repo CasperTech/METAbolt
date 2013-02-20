@@ -993,7 +993,7 @@ namespace METAbolt
             client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
             client.Self.MeanCollision -= new EventHandler<MeanCollisionEventArgs>(Self_Collision);
-            //client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
             client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
 
             //if (instance.Config.CurrentConfig.iRadar)
@@ -1020,7 +1020,7 @@ namespace METAbolt
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
 
             client.Self.MeanCollision += new EventHandler<MeanCollisionEventArgs>(Self_Collision);
-            //client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
 
             //client.Appearance.OnAppearanceUpdated += new AppearanceManager.AppearanceUpdatedCallback(Appearance_OnAppearanceUpdated);
             client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
@@ -1136,31 +1136,39 @@ namespace METAbolt
         //    catch { ; }
         //}
 
-        //private void Objects_OnObjectUpdated(object sender, TerseObjectUpdateEventArgs e)
-        //{
-        //    if (e.Simulator != client.Network.CurrentSim) return;
-        //    if (!e.Update.Avatar) return;
+        private void Objects_OnObjectUpdated(object sender, TerseObjectUpdateEventArgs e)
+        {
+            if (e.Simulator != client.Network.CurrentSim) return;
+            if (!e.Update.Avatar) return;
 
-        //    if (!sfavatar.ContainsKey(e.Prim.LocalID))
-        //    {
-        //        Avatar av = new Avatar();
-        //        client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
+            Avatar av = new Avatar();
+            client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
 
-        //        if (av == null) return;
+            if (!sfavatar.ContainsKey(e.Prim.LocalID))
+            {
+                //Avatar av = new Avatar();
+                //client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
 
-        //        if (!sfavatar.ContainsKey(av.LocalID))
-        //        {
-        //            try
-        //            {
-        //                lock (sfavatar)
-        //                {
-        //                    sfavatar.Add(av.LocalID, av);
-        //                }
-        //            }
-        //            catch { ; }
-        //        }
-        //    }
-        //}
+                if (av == null) return;
+
+                try
+                {
+                    lock (sfavatar)
+                    {
+                        sfavatar.Add(av.LocalID, av);
+                    }
+                }
+                catch { ; }
+            }
+            else
+            {
+                lock (sfavatar)
+                {
+                    sfavatar.Remove(av.LocalID);
+                    sfavatar.Add(av.LocalID, av);
+                }
+            }
+        }
 
         private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos);
         public void AddSIMAvatar(string av, UUID key, Vector3 avpos)
@@ -2694,9 +2702,6 @@ namespace METAbolt
             List<UUID> tremove = new List<UUID>();
             tremove = e.RemovedEntries;
 
-            //List<UUID> tadd = new List<UUID>();
-            //tadd = e.NewEntries;
-
             foreach (UUID id in tremove)
             {
                 foreach (ListViewItem litem in lvwRadar.Items)
@@ -2731,30 +2736,16 @@ namespace METAbolt
                                     sfavatar.Add(nav.LocalID, nav);
                                 }
                             }
+                            else
+                            {
+                                lock (sfavatar)
+                                {
+                                    sfavatar.Remove(nav.LocalID);
+                                    sfavatar.Add(nav.LocalID, nav);
+                                }
+                            }
                         }
                     });
-
-            //foreach (UUID id in tadd)
-            //{
-            //    Avatar nav = new Avatar();
-
-            //    //nav = client.Network.CurrentSim.ObjectsAvatars.Find(
-            //    // delegate(Avatar fnav)
-            //    // {
-            //    //     return fnav.ID == id;
-            //    // }
-            //    // );
-
-            //    nav = e.Simulator.ObjectsAvatars.Find((Avatar fnav) => { return fnav.ID == id; });
-
-            //    if (!sfavatar.ContainsKey(nav.LocalID))
-            //    {
-            //        lock (sfavatar)
-            //        {
-            //            sfavatar.Add(nav.LocalID, nav);
-            //        }
-            //    }
-            //}
 
             try
             {
@@ -3901,7 +3892,7 @@ namespace METAbolt
         {
             if (!avrezzed && netcom.IsLoggedIn)
             {
-                client.Appearance.RequestSetAppearance(false);
+                client.Appearance.RequestSetAppearance(true);
                 timer2.Enabled = false;
                 timer2.Stop();
             }  

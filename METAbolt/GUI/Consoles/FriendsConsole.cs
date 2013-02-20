@@ -208,7 +208,10 @@ namespace METAbolt
 
             try
             {
-                fconfig.Save();
+                if (fconfig != null)
+                {
+                    fconfig.Save();
+                }
             }
             catch { ; }
         }
