@@ -5,7 +5,7 @@ Francogrid,http://grid.francogrid.net:8002
 InWorldz,http://inworldz.com:8002
 Legend City Online,http://login.legendcityonline.com
 Meta7,https://login.meta7.com
-OSGrid,http://osgrid.org:8002
+OSGrid,http://login.osgrid.org/
 ReactionGrid,http://reactiongrid.com:8008
 The Gor Grid,http://thegorgrid.com:8002
 The New World Grid,http://grid.newworldgrid.com:8002

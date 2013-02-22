@@ -28,6 +28,7 @@ namespace METAbolt
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGroupInfo));
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
@@ -102,7 +103,9 @@ namespace METAbolt
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.cmdApply = new System.Windows.Forms.Button();
@@ -125,6 +128,7 @@ namespace METAbolt
             this.tabNotices.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
@@ -228,7 +232,7 @@ namespace METAbolt
             this.chkListInProfile.AutoSize = true;
             this.chkListInProfile.Location = new System.Drawing.Point(250, 64);
             this.chkListInProfile.Name = "chkListInProfile";
-            this.chkListInProfile.Size = new System.Drawing.Size(111, 17);
+            this.chkListInProfile.Size = new System.Drawing.Size(113, 17);
             this.chkListInProfile.TabIndex = 7;
             this.chkListInProfile.Text = "Show in my profile";
             this.chkListInProfile.UseVisualStyleBackColor = true;
@@ -240,7 +244,7 @@ namespace METAbolt
             this.chkMature.AutoSize = true;
             this.chkMature.Location = new System.Drawing.Point(16, 90);
             this.chkMature.Name = "chkMature";
-            this.chkMature.Size = new System.Drawing.Size(95, 17);
+            this.chkMature.Size = new System.Drawing.Size(96, 17);
             this.chkMature.TabIndex = 1;
             this.chkMature.Text = "Mature publish";
             this.chkMature.UseVisualStyleBackColor = true;
@@ -268,7 +272,7 @@ namespace METAbolt
             this.chkGroupNotices.AutoSize = true;
             this.chkGroupNotices.Location = new System.Drawing.Point(250, 87);
             this.chkGroupNotices.Name = "chkGroupNotices";
-            this.chkGroupNotices.Size = new System.Drawing.Size(137, 17);
+            this.chkGroupNotices.Size = new System.Drawing.Size(134, 17);
             this.chkGroupNotices.TabIndex = 6;
             this.chkGroupNotices.Text = "Receive Group Notices";
             this.chkGroupNotices.UseVisualStyleBackColor = true;
@@ -280,7 +284,7 @@ namespace METAbolt
             this.chkFee.AutoSize = true;
             this.chkFee.Location = new System.Drawing.Point(36, 67);
             this.chkFee.Name = "chkFee";
-            this.chkFee.Size = new System.Drawing.Size(114, 17);
+            this.chkFee.Size = new System.Drawing.Size(115, 17);
             this.chkFee.TabIndex = 4;
             this.chkFee.Text = "Enrollment Fee: L$";
             this.chkFee.UseVisualStyleBackColor = true;
@@ -292,7 +296,7 @@ namespace METAbolt
             this.chkOpenEnrollment.AutoSize = true;
             this.chkOpenEnrollment.Location = new System.Drawing.Point(16, 44);
             this.chkOpenEnrollment.Name = "chkOpenEnrollment";
-            this.chkOpenEnrollment.Size = new System.Drawing.Size(104, 17);
+            this.chkOpenEnrollment.Size = new System.Drawing.Size(105, 17);
             this.chkOpenEnrollment.TabIndex = 3;
             this.chkOpenEnrollment.Text = "Open Enrollment";
             this.chkOpenEnrollment.UseVisualStyleBackColor = true;
@@ -805,7 +809,7 @@ namespace METAbolt
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Location = new System.Drawing.Point(2, 208);
+            this.panel2.Location = new System.Drawing.Point(2, 270);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(404, 270);
             this.panel2.TabIndex = 4;
@@ -945,6 +949,7 @@ namespace METAbolt
             this.lstNotices.Location = new System.Drawing.Point(3, 8);
             this.lstNotices.Name = "lstNotices";
             this.lstNotices.Size = new System.Drawing.Size(403, 145);
+            this.lstNotices.SmallImageList = this.imageList1;
             this.lstNotices.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstNotices.TabIndex = 0;
             this.lstNotices.UseCompatibleStateImageBehavior = false;
@@ -967,14 +972,40 @@ namespace METAbolt
             this.columnHeader6.Text = "Date";
             this.columnHeader6.Width = 87;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "documents_16.png");
+            this.imageList1.Images.SetKeyName(1, "lsl_scripts_16.PNG");
+            this.imageList1.Images.SetKeyName(2, "lm.png");
+            this.imageList1.Images.SetKeyName(3, "texture.png");
+            this.imageList1.Images.SetKeyName(4, "wear.png");
+            this.imageList1.Images.SetKeyName(5, "objects.png");
+            this.imageList1.Images.SetKeyName(6, "applications_16.png");
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Location = new System.Drawing.Point(2, 208);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(407, 270);
             this.panel1.TabIndex = 30;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Location = new System.Drawing.Point(381, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label7
             // 
@@ -1103,6 +1134,7 @@ namespace METAbolt
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1192,6 +1224,8 @@ namespace METAbolt
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ListView lvRoleMembers;
         private System.Windows.Forms.ListView lvAssignedRoles;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }

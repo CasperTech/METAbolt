@@ -156,7 +156,7 @@ namespace METAbolt
 
                     if (filename.Length > label3.Size.Width)
                     {
-                        filename = filename.Substring(0, label3.Size.Width - 3) + "...";
+                        label3.Text = filename.Substring(0, label3.Size.Width - 3) + "...";
                     }
 
                     switch (assettype)

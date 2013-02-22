@@ -403,6 +403,7 @@ namespace METAbolt
                                     lock (lbxPrims.Items)
                                     {
                                         lbxPrims.BeginUpdate();
+                                        lbxPrims.Items.Remove(item); 
                                         lbxPrims.Items.Add(item);
                                         lbxPrims.EndUpdate();
                                     }
@@ -520,11 +521,6 @@ namespace METAbolt
                                         ;
                                     }
 
-                                    //BeginInvoke(new MethodInvoker(delegate()
-                                    //{
-                                    //    pB1.Maximum -= 1;
-                                    //}));
-
                                     tlbDisplay.Text = lbxPrims.Items.Count.ToString(CultureInfo.CurrentCulture) + " objects";
                                 }
                             }));
@@ -569,6 +565,7 @@ namespace METAbolt
                     lock (lbxPrims.Items)
                     {
                         lbxPrims.BeginUpdate();
+                        lbxPrims.Items.Remove(item);
                         lbxPrims.Items.Add(item);
                         lbxPrims.EndUpdate();
                     }
@@ -631,6 +628,7 @@ namespace METAbolt
                     lock (lbxPrims.Items)
                     {
                         lbxPrims.BeginUpdate();
+                        lbxPrims.Items.Remove(item); 
                         lbxPrims.Items.Add(item);
                         lbxPrims.EndUpdate();
                     }
@@ -703,73 +701,14 @@ namespace METAbolt
             //lbxPrims.SortList();
             //pBar3.Visible = false;
 
+            int ocnt = 1;
+
             try
             {
-                //Vector3 location = instance.SIMsittingPos();
-
-                //// *** find all objects in radius ***
-                //List<Primitive> results = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
-                //    delegate(Primitive prim)
-                //    {
-                //        Vector3 pos = prim.Position;
-                //        return ((pos != Vector3.Zero) && (Vector3.Distance(location,pos) < range));
-                //    }
-                //);
-
-                //pB1.Maximum = results.Count;
-
                 lock (listItems)
                 {
-                    //foreach (Primitive prim in results)
-                    //{
-                    //    try
-                    //    {
-                    //        if (prim.ParentID == 0) //root prims only
-                    //        {
-                    //            ObjectsListItem item = new ObjectsListItem(prim, client, lbxPrims);
-
-                    //            if (!listItems.ContainsKey(prim.LocalID))
-                    //            {
-                    //                listItems.Add(prim.LocalID, item);
-
-                    //                item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
-                    //                item.RequestProperties();
-                    //                inmem = true;
-                    //            }
-                    //            else
-                    //            {
-                    //                if (pB1.Value < results.Count) pB1.Value += 1;
-
-                    //                lock (lbxPrims.Items)
-                    //                {
-                    //                    lbxPrims.BeginUpdate();
-                    //                    lbxPrims.Items.Add(item);
-                    //                    lbxPrims.EndUpdate();
-                    //                }
-                    //                inmem = true;
-                    //            }
-                    //        }
-                    //        else
-                    //        {
-                    //            ObjectsListItem citem = new ObjectsListItem(prim, client, lbxChildren);
-
-                    //            if (!childItems.ContainsKey(prim.LocalID))
-                    //            {
-                    //                childItems.Add(prim.LocalID, citem);
-                    //            }
-                    //        }
-
-                    //    }
-                    //    catch
-                    //    {
-                    //        ;
-                    //    }
-                    //}
-
                     Vector3 location = new Vector3(Vector3.Zero); 
                     location = client.Self.SimPosition;
-
-                //pB1.Maximum = client.Network.CurrentSim.ObjectsPrimitives.Count;
 
                 client.Network.CurrentSim.ObjectsPrimitives.ForEach(
                 new Action<Primitive>(
@@ -778,15 +717,23 @@ namespace METAbolt
                     Vector3 pos = new Vector3(Vector3.Zero); 
                     pos = prim.Position;
 
-                    if (prim.ID == (UUID)"10e860a2-7232-42e0-ede6-2a75ef9672fd" || prim.ID == (UUID)"05c544b9-df84-2935-d829-24ec2876c197"
-                        || prim.ID == (UUID)"7fb00860-7f08-1d1f-8e05-7a54c4862455"
-                        || prim.ID == (UUID)"428c0880-0e76-298b-af4d-43bece47014f"
-                        || prim.ID == (UUID)"4abe6202-e728-7d18-69c4-f51fc61209b0")
-                    {
-                        pos = prim.Position;
-                    }
+                                    
 
                     float dist = Vector3.Distance(location, pos);
+
+                    // Work around for the Magnum problem
+                    if (ocnt < 4)
+                    {
+                        //instance.State.SetPointing(true, prim.ID);
+                        //instance.State.SetPointing(false, prim.ID);
+
+                        Vector3 target = new Vector3(Vector3.Zero);
+                        target = prim.Position; // the object to look at
+
+                        client.Self.Movement.TurnToward(target);
+
+                        ocnt += 1;
+                    }
 
                     if (((int)dist < (int)range) && (prim.Position != Vector3.Zero))
                     {
@@ -817,6 +764,7 @@ namespace METAbolt
                                     lock (lbxPrims.Items)
                                     {
                                         lbxPrims.BeginUpdate();
+                                        lbxPrims.Items.Remove(item); 
                                         lbxPrims.Items.Add(item);
                                         lbxPrims.EndUpdate();
                                     }
@@ -997,6 +945,7 @@ namespace METAbolt
                             lock (lbxPrims.Items)
                             {
                                 lbxPrims.BeginUpdate();
+                                lbxPrims.Items.Remove(item);
                                 lbxPrims.Items.Add(item);
                                 lbxPrims.EndUpdate();
                             }
@@ -1518,7 +1467,11 @@ namespace METAbolt
                 Primitive sPr = new Primitive();
                 sPr = item.Prim;
 
-                client.Objects.SelectObject(client.Network.CurrentSim, sPr.LocalID);
+                if (sPr.Properties == null)
+                {
+                    client.Objects.SelectObject(client.Network.CurrentSim, sPr.LocalID);
+                    return;
+                }
 
                 lblOwner.Text = sPr.Properties.OwnerID.ToString();
                 lblUUID.Text = sPr.Properties.ObjectID.ToString();
@@ -1559,7 +1512,6 @@ namespace METAbolt
 
                 if (lookup != UUID.Zero)
                 {
-
                     if (!instance.avnames.ContainsKey(lookup))
                     {
                         client.Avatars.RequestAvatarName(lookup);
@@ -2101,39 +2053,46 @@ namespace METAbolt
 
         private void btnPointAt_Click_1(object sender, EventArgs e)
         {
-            int iDx = lbxPrims.SelectedIndex;
-            ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
-
-            if (item == null) return;
-
-            uint regionX, regionY;
-            Utils.LongToUInts(client.Network.CurrentSim.Handle, out regionX, out regionY);
-            Vector3 pos = new Vector3(Vector3.Zero); 
-            pos = item.Prim.Position;
-
-            Vector3d objpos;
- 
-            objpos.X = (double)pos.X + (double)regionX;
-            objpos.Y = (double)pos.Y + (double)regionY;
-            objpos.Z  = pos.Z;   // -2f;
-
-            if (btnPointAt.Text == "Po&int At")
+            try
             {
-                client.Self.AnimationStart(Animations.TURNLEFT, false);
-                client.Self.Movement.TurnToward(item.Prim.Position);
-                client.Self.Movement.FinishAnim = true;
-                System.Threading.Thread.Sleep(200);
-                client.Self.AnimationStop(Animations.TURNLEFT, false);
+                int iDx = lbxPrims.SelectedIndex;
+                ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-                instance.State.SetPointing(true, item.Prim.ID, objpos, pos);
-                instance.State.LookAtObject(true, item.Prim.ID);
-                btnPointAt.Text = "Unpo&int";
+                if (item == null) return;
+
+                uint regionX, regionY;
+                Utils.LongToUInts(client.Network.CurrentSim.Handle, out regionX, out regionY);
+                Vector3 pos = new Vector3(Vector3.Zero);
+                pos = item.Prim.Position;
+
+                Vector3d objpos;
+
+                objpos.X = (double)pos.X + (double)regionX;
+                objpos.Y = (double)pos.Y + (double)regionY;
+                objpos.Z = pos.Z;   // -2f;
+
+                if (btnPointAt.Text == "Po&int At")
+                {
+                    client.Self.AnimationStart(Animations.TURNLEFT, false);
+                    client.Self.Movement.TurnToward(item.Prim.Position);
+                    client.Self.Movement.FinishAnim = true;
+                    System.Threading.Thread.Sleep(200);
+                    client.Self.AnimationStop(Animations.TURNLEFT, false);
+
+                    instance.State.SetPointing(true, item.Prim.ID, objpos, pos);
+                    instance.State.LookAtObject(true, item.Prim.ID);
+                    btnPointAt.Text = "Unpo&int";
+                }
+                else if (btnPointAt.Text == "Unpo&int")
+                {
+                    instance.State.SetPointing(false, item.Prim.ID, objpos, pos);
+                    instance.State.LookAtObject(false, item.Prim.ID);
+                    btnPointAt.Text = "Po&int At";
+                }
             }
-            else if (btnPointAt.Text == "Unpo&int")
+            catch (Exception ex)
             {
-                instance.State.SetPointing(false, item.Prim.ID, objpos, pos);
-                instance.State.LookAtObject(false, item.Prim.ID);
-                btnPointAt.Text = "Po&int At";
+                reporter.Show(ex);
             }
         }
 

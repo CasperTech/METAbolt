@@ -153,16 +153,82 @@ namespace METAbolt
         private void AddClientEvents()
         {
             client.Objects.TerseObjectUpdate += new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            client.Network.EventQueueRunning += new EventHandler<EventQueueRunningEventArgs>(Network_OnEventQueueRunning);
+            client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+            client.Objects.AvatarUpdate += new EventHandler<AvatarUpdateEventArgs>(Objects_OnAvatarUpdate);
+            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(Network_OnSimChanged);
         }
 
         private void RemoveClientEvents()
         {
             client.Objects.TerseObjectUpdate -= new EventHandler<TerseObjectUpdateEventArgs>(Objects_OnObjectUpdated);
+            client.Network.EventQueueRunning -= new EventHandler<EventQueueRunningEventArgs>(Network_OnEventQueueRunning);
+            client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+            client.Objects.AvatarUpdate -= new EventHandler<AvatarUpdateEventArgs>(Objects_OnAvatarUpdate);
+            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(Network_OnSimChanged);
+        }
+
+        private void Objects_OnAvatarUpdate(object sender, AvatarUpdateEventArgs e)
+        {
+            if (e.Avatar.ID == client.Self.AgentID)
+            {
+                ResetCamera();
+            }
+        }
+
+        private void ResetCamera()
+        {
+            client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5,0,0)  * client.Self.Movement.BodyRotation, client.Self.SimPosition);
+        }
+
+        private void Self_TeleportProgress(object sender, TeleportEventArgs e)
+        {
+            if (e.Status == TeleportStatus.Finished)
+            {
+                SetLookat();
+            }
+        }
+
+        private void Network_OnEventQueueRunning(object sender, EventQueueRunningEventArgs e)
+        {
+            if (e.Simulator == client.Network.CurrentSim)
+            {
+                SetLookat();
+            }
+        }
+
+        public void SetAgentFOV()
+        {
+            OpenMetaverse.Packets.AgentFOVPacket msg = new OpenMetaverse.Packets.AgentFOVPacket();
+            msg.AgentData.AgentID = client.Self.AgentID;
+            msg.AgentData.SessionID = client.Self.SessionID;
+            msg.AgentData.CircuitCode = client.Network.CircuitCode;
+            msg.FOVBlock.GenCounter = 0;
+            msg.FOVBlock.VerticalAngle = Utils.TWO_PI - 0.05f;
+            client.Network.SendPacket(msg);
+        }
+
+        private void SetLookat()
+        {
+            Random rnd = new Random();
+
+            client.Self.Movement.UpdateFromHeading(Utils.TWO_PI * rnd.NextDouble(), true);
+
+            Vector3d lkpos = new Vector3d(new Vector3(3, 0, 0) * Quaternion.Identity);
+            client.Self.LookAtEffect(client.Self.AgentID, client.Self.AgentID, lkpos, LookAtType.Idle, UUID.Random());
+        }
+
+        private void Network_OnSimChanged(object sender, SimChangedEventArgs e)
+        {
+            SetAgentFOV();
         }
 
         private void Objects_OnObjectUpdated(object sender, TerseObjectUpdateEventArgs e)
         { 
             if (!e.Update.Avatar) return;
+
+            if (e.Prim.LocalID == client.Self.LocalID) ResetCamera();    
+
             if (!following) return;
 
             Avatar av = new Avatar();
@@ -578,7 +644,7 @@ namespace METAbolt
                     lookID = UUID.Random();
                 }
 
-                client.Self.LookAtEffect(client.Self.AgentID, target, Vector3d.Zero, LookAtType.Idle, lookID);
+                client.Self.LookAtEffect(client.Self.AgentID, target, new Vector3d(0,0,0), LookAtType.Idle, lookID);
                 //lookattarget = target;
             }
             else

@@ -673,9 +673,12 @@ namespace METAbolt
                 string inFile = fi.FullName;
                 string finname = fi.Name;
 
-                if (finname.Contains(fullName))
+                if (fullName != null)
                 {
-                    rtbNotes.LoadFile(inFile);
+                    if (finname.Contains(fullName))
+                    {
+                        rtbNotes.LoadFile(inFile);
+                    }
                 }
             }
         }

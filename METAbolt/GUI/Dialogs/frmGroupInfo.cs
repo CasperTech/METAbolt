@@ -73,6 +73,9 @@ namespace METAbolt
         //private GroupMemberData currentmember = new GroupMemberData();
         private bool checkignore = false;
         private NumericStringComparer lvwColumnSorter;
+        private AssetType assettype;
+        private UUID assetfolder = UUID.Zero;
+        private string filename = string.Empty;
 
         internal class ThreadExceptionHandler
         {
@@ -345,9 +348,46 @@ namespace METAbolt
                 lvsi.Text = ndte.ToShortDateString();
                 lvi.SubItems.Add(lvsi);
 
+                if (notice.HasAttachment)
+                {
+                    lvi.ImageIndex = GetAttachment(notice.AssetType);
+                }
+
                 lvi.Tag = notice;
                 lstNotices.Items.Add(lvi);
             }
+        }
+
+        private int GetAttachment(AssetType assettype)
+        {
+            int at = 0;
+
+            switch (assettype)
+            {
+                case AssetType.Notecard:
+                    at = 0;
+                    break;
+                case AssetType.LSLText:
+                    at = 1;
+                    break;
+                case AssetType.Landmark:
+                    at = 2;
+                    break;
+                case AssetType.Texture:
+                    at = 3;
+                    break;
+                case AssetType.Clothing:
+                    at = 4;
+                    break;
+                case AssetType.Object:
+                    at = 5;
+                    break;
+                default:
+                    at = 6;
+                    break;
+            }
+
+            return at;
         }
 
         private void netcom_InstantMessageReceived(object sender, OpenMetaverse.InstantMessageEventArgs e)
@@ -382,6 +422,54 @@ namespace METAbolt
                         char[] deli = "|".ToCharArray();
                         string[] Msg = imsg.Message.Split(deli);
                         textBox5.Text = Msg[1].Replace("\n", System.Environment.NewLine);
+
+                        // Check for attachment
+                        if (imsg.BinaryBucket[0] != 0)
+                        {
+                            assettype = (AssetType)imsg.BinaryBucket[1];
+
+                            assetfolder = Client.Inventory.FindFolderForType(assettype);
+
+                            if (imsg.BinaryBucket.Length > 18)
+                            {
+                                filename = Utils.BytesToString(imsg.BinaryBucket, 18, imsg.BinaryBucket.Length - 19);
+                            }
+                            else
+                            {
+                                filename = string.Empty;
+                            }
+
+                            pictureBox1.Visible = true;
+
+                            switch (assettype)
+                            {
+                                case AssetType.Notecard:
+                                    pictureBox1.Image = Properties.Resources.documents_16;
+                                    break;
+                                case AssetType.LSLText:
+                                    pictureBox1.Image = Properties.Resources.lsl_scripts_16;
+                                    break;
+                                case AssetType.Landmark:
+                                    pictureBox1.Image = Properties.Resources.lm;
+                                    break;
+                                case AssetType.Texture:
+                                    pictureBox1.Image = Properties.Resources.texture;
+                                    break;
+                                case AssetType.Clothing:
+                                    pictureBox1.Image = Properties.Resources.wear;
+                                    break;
+                                case AssetType.Object:
+                                    pictureBox1.Image = Properties.Resources.objects;
+                                    break;
+                                default:
+                                    pictureBox1.Image = Properties.Resources.applications_16;
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            pictureBox1.Visible = false;
+                        }
                     }
                 }
             }
@@ -1171,6 +1259,8 @@ namespace METAbolt
 
         private void lstNotices_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pictureBox1.Visible = false;
+
             if (lstNotices.SelectedItems.Count > 0)
             {
                 textBox5.Text = string.Empty;
@@ -1569,6 +1659,48 @@ namespace METAbolt
             packet.AgentData.GroupID = Profile.ID;
             packet.RoleChange = changes.ToArray();
             Client.Network.CurrentSim.SendPacket(packet);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Client.Self.InstantMessage(Client.Self.Name, imsg.FromAgentID, string.Empty, imsg.IMSessionID, InstantMessageDialog.GroupNoticeInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), Client.Network.CurrentSim.RegionID, assetfolder.GetBytes());
+            //button1.Enabled = false;
+
+            if (assettype != AssetType.Notecard && assettype != AssetType.LSLText)
+            {
+                MessageBox.Show("Attachment has been saved to your inventory", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                List<InventoryBase> contents = Client.Inventory.FolderContents(assetfolder, Client.Self.AgentID, false, true, InventorySortOrder.ByName | InventorySortOrder.ByDate, 5000);
+
+                if (contents != null)
+                {
+                    foreach (InventoryBase ibase in contents)
+                    {
+                        if (ibase is InventoryItem)
+                        {
+                            if (ibase.Name.ToLower() == filename.ToLower())
+                            {
+                                //UUID itemid = item.AssetUUID;
+                                InventoryItem item = (InventoryItem)ibase;
+
+                                switch (assettype)
+                                {
+                                    case AssetType.Notecard:
+                                        (new frmNotecardEditor(instance, item)).Show();
+                                        break;
+                                    case AssetType.LSLText:
+                                        (new frmScriptEditor(instance, item)).Show();
+                                        break;
+                                }
+
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

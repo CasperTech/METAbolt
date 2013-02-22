@@ -815,7 +815,7 @@ namespace METAbolt
             ///
  
             // For smoother bot movement
-            client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
+            //client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
 
             //client.Settings.USE_LLSD_LOGIN = true;
 

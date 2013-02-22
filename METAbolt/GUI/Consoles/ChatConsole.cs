@@ -4092,7 +4092,8 @@ namespace METAbolt
                 {
                     if (o is InventoryFolder)
                     {
-                        List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
+                        //List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
+                        List<InventoryBase> founditems = client.Inventory.Store.GetContents(o.UUID);
 
                         if (founditems == null) return;
 
