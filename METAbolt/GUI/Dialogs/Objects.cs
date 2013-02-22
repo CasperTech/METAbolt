@@ -701,7 +701,7 @@ namespace METAbolt
             //lbxPrims.SortList();
             //pBar3.Visible = false;
 
-            int ocnt = 1;
+            //int ocnt = 1;
 
             try
             {
@@ -721,19 +721,19 @@ namespace METAbolt
 
                     float dist = Vector3.Distance(location, pos);
 
-                    // Work around for the Magnum problem
-                    if (ocnt < 4)
-                    {
-                        //instance.State.SetPointing(true, prim.ID);
-                        //instance.State.SetPointing(false, prim.ID);
+                    //// Work around for the Magnum problem
+                    //if (ocnt < 4)
+                    //{
+                    //    //instance.State.SetPointing(true, prim.ID);
+                    //    //instance.State.SetPointing(false, prim.ID);
 
-                        Vector3 target = new Vector3(Vector3.Zero);
-                        target = prim.Position; // the object to look at
+                    //    Vector3 target = new Vector3(Vector3.Zero);
+                    //    target = prim.Position; // the object to look at
 
-                        client.Self.Movement.TurnToward(target);
+                    //    client.Self.Movement.TurnToward(target);
 
-                        ocnt += 1;
-                    }
+                    //    ocnt += 1;
+                    //}
 
                     if (((int)dist < (int)range) && (prim.Position != Vector3.Zero))
                     {
