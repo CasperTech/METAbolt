@@ -135,13 +135,19 @@ namespace METAbolt
             {
                 this.BeginInvoke(new MethodInvoker(delegate()
                 {
-                    GroupMember mem = new GroupMember();
-                    mem = e.Members[client.Self.AgentID];
+                    //GroupMember mem = new GroupMember();
+                    //mem = e.Members[client.Self.AgentID];
 
-                    if (((mem.Powers & GroupPowers.FindPlaces) != 0) && ((mem.Powers & GroupPowers.LandChangeIdentity) != 0))
-                    {
+                    //GroupMemberData memberData = new GroupMemberData();
+                    //memberData.ID = mem.ID;
+                    //memberData.Powers = (ulong)mem.Powers;
+
+
+                    //if (((mem.Powers & GroupPowers.FindPlaces) != 0) && ((mem.Powers & GroupPowers.LandChangeIdentity) != 0))
+                    //if ((memberData.Powers & GroupPowers.FindPlaces) != 0) 
+                    //{
                         SetOwnerProperties();
-                    }
+                    //}
                 }));
 
                 return;
@@ -150,6 +156,27 @@ namespace METAbolt
             {
                 parcelowner = false;
             }
+
+            //Dictionary<UUID, GroupMember> Members = new Dictionary<UUID, GroupMember>();
+            //SafeDictionary<UUID, GroupMemberData> MemberData = new SafeDictionary<UUID, GroupMemberData>();
+
+            //foreach (GroupMember member in Members.Values)
+            //{
+            //    GroupMemberData memberData = new GroupMemberData();
+            //    memberData.ID = member.ID;
+            //    MemberData[member.ID] = memberData;
+
+            //    // Add this ID to the name request batch
+            //    if (!instance.avnames.ContainsKey(member.ID))
+            //    {
+            //        requestids.Add(member.ID);
+            //    }
+            //    else
+            //    {
+            //        Names[member.ID] = instance.avnames[member.ID];
+            //        UpdateNames();
+            //    }
+            //}
 
             client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
         }
@@ -187,6 +214,7 @@ namespace METAbolt
             txtPrimreturn.ReadOnly = false;
             txtMusic.ReadOnly = false;
             button1.Visible = true;
+            txtMusic.PasswordChar = char.Parse("\0"); ;
 
             //Populate prim owners
             //callback = new ParcelManager.ParcelPrimOwners ParcelObjectOwnersListReplyCallback(Parcel_ObjectOwners);
@@ -205,6 +233,8 @@ namespace METAbolt
             cblandmark.Enabled = true;
             cbTerrain.Enabled = true;
             cbpush.Enabled = true;
+
+            lvwPrimOwners.Visible = true;
         }
 
         private void PopData()
@@ -259,8 +289,9 @@ namespace METAbolt
                     cbTerrain.Enabled = false;
                     cbpush.Enabled = false;
 
-                    lvwPrimOwners.Clear();
-                    lvwPrimOwners.Enabled = false;
+                    //lvwPrimOwners.Clear();
+                    //lvwPrimOwners.Enabled = false;
+                    lvwPrimOwners.Visible = false;
                 }
 
                 //main tab
@@ -430,32 +461,35 @@ namespace METAbolt
 
                 for (int i = 0; i < primOwners.Count; i++)
                 {
-                    try
+                    if (primOwners[i].OwnerID != UUID.Zero)
                     {
-                        ListViewItem item = lvwPrimOwners.Items.Add(primOwners[i].OwnerID.ToString());
-                        item.Tag = primOwners[i].OwnerID;
-                        item.SubItems.Add(primOwners[i].Count.ToString(CultureInfo.CurrentCulture));
+                        try
+                        {
+                            ListViewItem item = lvwPrimOwners.Items.Add(primOwners[i].OwnerID.ToString());
+                            item.Tag = primOwners[i].OwnerID;
+                            item.SubItems.Add(primOwners[i].Count.ToString(CultureInfo.CurrentCulture));
 
-                        //if (!instance.avnames.ContainsKey(primOwners[i].OwnerID))
-                        //{
-                        //    //foundItem.Text = primOwners[i].OwnerID.ToString(); 
-                        //    client.Avatars.RequestAvatarName(primOwners[i].OwnerID);
-                        //}
-                        //else
-                        //{
-                        //    ListViewItem foundItem = lvwPrimOwners.FindItemWithText(instance.avnames[primOwners[i].OwnerID].ToString());
+                            //if (!instance.avnames.ContainsKey(primOwners[i].OwnerID))
+                            //{
+                            //    //foundItem.Text = primOwners[i].OwnerID.ToString(); 
+                            //    client.Avatars.RequestAvatarName(primOwners[i].OwnerID);
+                            //}
+                            //else
+                            //{
+                            //    ListViewItem foundItem = lvwPrimOwners.FindItemWithText(instance.avnames[primOwners[i].OwnerID].ToString());
 
-                        //    if (foundItem != null)
-                        //    {
-                        //        foundItem.Text = instance.avnames[primOwners[i].OwnerID].ToString();
-                        //    }
-                        //}
+                            //    if (foundItem != null)
+                            //    {
+                            //        foundItem.Text = instance.avnames[primOwners[i].OwnerID].ToString();
+                            //    }
+                            //}
 
-                        client.Avatars.RequestAvatarName(primOwners[i].OwnerID);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Log("About Land (object owners) error: " + ex.Message, Helpers.LogLevel.Error);
+                            client.Avatars.RequestAvatarName(primOwners[i].OwnerID);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Log("About Land (object owners) error: " + ex.Message, Helpers.LogLevel.Error);
+                        }
                     }
                 }
 
@@ -633,16 +667,16 @@ namespace METAbolt
             // this function returns all the objects belonging to the landowner regardless of what avatar UUID is passed!!
             // either a bug in libopenmv and/or SL
 
-            //ownersID.Add(oitem);
+            ownersID.Add(oitem);
 
             ////client.Parcels.RequestSelectObjects(parcel.LocalID, ObjectReturnType.Owner, oitem);
 
-            //client.Parcels.ReturnObjects(client.Network.CurrentSim, parcel.LocalID, ObjectReturnType.Owner, ownersID);
-            //lvwPrimOwners.SelectedItems[0].Remove(); 
-            ////client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
-            //PopData();
-            ////btnSelect.Enabled = false;
-            //btnReturn.Enabled = false;
+            client.Parcels.ReturnObjects(client.Network.CurrentSim, parcel.LocalID, ObjectReturnType.List, ownersID);
+            lvwPrimOwners.SelectedItems[0].Remove();
+            //client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
+            PopData();
+            //btnSelect.Enabled = false;
+            btnReturn.Enabled = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
