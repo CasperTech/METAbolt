@@ -955,6 +955,9 @@ namespace METAbolt
             Client.Groups.RequestGroupProfile(Group.ID);
             groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
             grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
+
+            lstNotices.Items.Clear();  
+
             Client.Groups.RequestGroupNoticesList(Group.ID);
             Client.Groups.RequestGroupRoles(Group.ID); 
         }

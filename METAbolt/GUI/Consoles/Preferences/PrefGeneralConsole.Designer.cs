@@ -34,6 +34,7 @@ namespace METAbolt
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.chkLSL = new System.Windows.Forms.CheckBox();
@@ -120,7 +121,6 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -152,7 +152,7 @@ namespace METAbolt
             this.rdoSystemStyle.Checked = true;
             this.rdoSystemStyle.Location = new System.Drawing.Point(6, 20);
             this.rdoSystemStyle.Name = "rdoSystemStyle";
-            this.rdoSystemStyle.Size = new System.Drawing.Size(59, 17);
+            this.rdoSystemStyle.Size = new System.Drawing.Size(60, 17);
             this.rdoSystemStyle.TabIndex = 1;
             this.rdoSystemStyle.TabStop = true;
             this.rdoSystemStyle.Text = "System";
@@ -164,7 +164,7 @@ namespace METAbolt
             this.rdoOfficeStyle.AutoSize = true;
             this.rdoOfficeStyle.Location = new System.Drawing.Point(72, 20);
             this.rdoOfficeStyle.Name = "rdoOfficeStyle";
-            this.rdoOfficeStyle.Size = new System.Drawing.Size(80, 17);
+            this.rdoOfficeStyle.Size = new System.Drawing.Size(81, 17);
             this.rdoOfficeStyle.TabIndex = 2;
             this.rdoOfficeStyle.Text = "Office 2003";
             this.rdoOfficeStyle.UseVisualStyleBackColor = true;
@@ -238,6 +238,17 @@ namespace METAbolt
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Options";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AccessibleName = "Disable icon option";
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(8, 167);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(216, 17);
+            this.checkBox13.TabIndex = 66;
+            this.checkBox13.Text = "Disable \'Network Disconnected\' prompts";
+            this.checkBox13.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
@@ -557,7 +568,7 @@ namespace METAbolt
             this.checkBox3.AutoSize = true;
             this.checkBox3.Location = new System.Drawing.Point(10, 184);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(156, 17);
+            this.checkBox3.Size = new System.Drawing.Size(161, 17);
             this.checkBox3.TabIndex = 58;
             this.checkBox3.Text = "Optimise settings for Dial-up";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -571,7 +582,7 @@ namespace METAbolt
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(33, 21);
             this.textBox2.TabIndex = 56;
-            this.textBox2.Text = "64";
+            this.textBox2.Text = "20";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbar2
@@ -628,7 +639,7 @@ namespace METAbolt
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(32, 21);
             this.textBox1.TabIndex = 52;
-            this.textBox1.Text = "1231";
+            this.textBox1.Text = "40";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -652,7 +663,7 @@ namespace METAbolt
             this.tBar1.Size = new System.Drawing.Size(207, 32);
             this.tBar1.TabIndex = 0;
             this.tBar1.TickFrequency = 25;
-            this.tBar1.Value = 1231;
+            this.tBar1.Value = 140;
             this.tBar1.Scroll += new System.EventHandler(this.tBar1_Scroll);
             this.tBar1.ValueChanged += new System.EventHandler(this.tBar1_ValueChanged);
             // 
@@ -780,7 +791,7 @@ namespace METAbolt
             this.checkBox12.AutoSize = true;
             this.checkBox12.Location = new System.Drawing.Point(79, 147);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(173, 17);
+            this.checkBox12.Size = new System.Drawing.Size(171, 17);
             this.checkBox12.TabIndex = 63;
             this.checkBox12.Text = "Enforce LSL command security";
             this.checkBox12.UseVisualStyleBackColor = true;
@@ -800,7 +811,7 @@ namespace METAbolt
             this.chkAutoTransfer.AutoSize = true;
             this.chkAutoTransfer.Location = new System.Drawing.Point(79, 58);
             this.chkAutoTransfer.Name = "chkAutoTransfer";
-            this.chkAutoTransfer.Size = new System.Drawing.Size(217, 17);
+            this.chkAutoTransfer.Size = new System.Drawing.Size(222, 17);
             this.chkAutoTransfer.TabIndex = 1;
             this.chkAutoTransfer.Text = "Transfer all received L$ to Master avatar";
             this.chkAutoTransfer.UseVisualStyleBackColor = true;
@@ -909,7 +920,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(35, 62);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(210, 17);
+            this.checkBox1.Size = new System.Drawing.Size(211, 17);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Give a present when invite is accepted";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -1126,7 +1137,7 @@ namespace METAbolt
             this.checkBox4.AutoSize = true;
             this.checkBox4.Location = new System.Drawing.Point(25, 107);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(229, 17);
+            this.checkBox4.Size = new System.Drawing.Size(231, 17);
             this.checkBox4.TabIndex = 2;
             this.checkBox4.Text = "Use \'modern\' layout in chat and IM screens";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -1156,7 +1167,7 @@ namespace METAbolt
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(58, 200);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(217, 17);
+            this.checkBox5.Size = new System.Drawing.Size(220, 17);
             this.checkBox5.TabIndex = 13;
             this.checkBox5.Text = "Play sound when payments are received";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1167,7 +1178,7 @@ namespace METAbolt
             this.checkBox11.AutoSize = true;
             this.checkBox11.Location = new System.Drawing.Point(58, 177);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(221, 17);
+            this.checkBox11.Size = new System.Drawing.Size(227, 17);
             this.checkBox11.TabIndex = 12;
             this.checkBox11.Text = "Play sound when Inventory Item received";
             this.checkBox11.UseVisualStyleBackColor = true;
@@ -1178,7 +1189,7 @@ namespace METAbolt
             this.checkBox10.AutoSize = true;
             this.checkBox10.Location = new System.Drawing.Point(58, 154);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(217, 17);
+            this.checkBox10.Size = new System.Drawing.Size(216, 17);
             this.checkBox10.TabIndex = 11;
             this.checkBox10.Text = "Play sound when Group Notice received";
             this.checkBox10.UseVisualStyleBackColor = true;
@@ -1200,7 +1211,7 @@ namespace METAbolt
             this.checkBox8.AutoSize = true;
             this.checkBox8.Location = new System.Drawing.Point(58, 108);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(171, 17);
+            this.checkBox8.Size = new System.Drawing.Size(169, 17);
             this.checkBox8.TabIndex = 9;
             this.checkBox8.Text = "Play sound when IM Received";
             this.checkBox8.UseVisualStyleBackColor = true;
@@ -1211,7 +1222,7 @@ namespace METAbolt
             this.checkBox7.AutoSize = true;
             this.checkBox7.Location = new System.Drawing.Point(58, 85);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(170, 17);
+            this.checkBox7.Size = new System.Drawing.Size(173, 17);
             this.checkBox7.TabIndex = 8;
             this.checkBox7.Text = "Play sound when Friend offline";
             this.checkBox7.UseVisualStyleBackColor = true;
@@ -1222,7 +1233,7 @@ namespace METAbolt
             this.checkBox6.AutoSize = true;
             this.checkBox6.Location = new System.Drawing.Point(58, 62);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(170, 17);
+            this.checkBox6.Size = new System.Drawing.Size(171, 17);
             this.checkBox6.TabIndex = 7;
             this.checkBox6.Text = "Play sound when Friend online";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -1239,17 +1250,6 @@ namespace METAbolt
             this.fontDialog1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.AccessibleName = "Disable icon option";
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(8, 167);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(216, 17);
-            this.checkBox13.TabIndex = 66;
-            this.checkBox13.Text = "Disable \'Network Disconnected\' prompts";
-            this.checkBox13.UseVisualStyleBackColor = true;
             // 
             // PrefGeneralConsole
             // 

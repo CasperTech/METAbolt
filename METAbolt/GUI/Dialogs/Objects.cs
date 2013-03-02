@@ -1469,7 +1469,9 @@ namespace METAbolt
 
                 if (sPr.Properties == null)
                 {
-                    client.Objects.SelectObject(client.Network.CurrentSim, sPr.LocalID);
+                    //client.Objects.SelectObject(client.Network.CurrentSim, sPr.LocalID);
+                    client.Objects.SelectObject(client.Network.CurrentSim, sPr.LocalID, true);
+                    //client.Objects.RequestObject(client.Network.CurrentSim, sPr.LocalID);
                     return;
                 }
 

@@ -575,6 +575,8 @@ namespace METAbolt
 
             if (!sitTimer.Enabled) return;
 
+            instance.State.ResetCamera();   
+
             sitTimer.Stop();
             sitTimer.Enabled = false;
             sitTimer.Dispose();
@@ -596,6 +598,11 @@ namespace METAbolt
                 }
             );
 
+            if (prims == null)
+            {
+                //
+            }
+
             localids = new uint[prims.Count];
             int i = 0;
 
@@ -611,10 +618,13 @@ namespace METAbolt
                 {
                     if (prim.ParentID == 0) //root prims only
                     {
-                        localids[i] = prims[i].LocalID;
+                        //localids[i] = prim.LocalID;
+
+                        //client.Objects.RequestObject(client.Network.CurrentSim, localids[i]);
+                        client.Objects.SelectObject(client.Network.CurrentSim, prim.LocalID, true);
+
                         i += 1;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -623,7 +633,7 @@ namespace METAbolt
                 }
             }
 
-            client.Objects.SelectObjects(client.Network.CurrentSim, localids);
+            //client.Objects.SelectObjects(client.Network.CurrentSim, localids);
         }
 
         private void Objects_OnObjectProperties(object sender, ObjectPropertiesEventArgs e)

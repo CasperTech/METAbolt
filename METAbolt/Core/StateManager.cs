@@ -176,7 +176,7 @@ namespace METAbolt
             }
         }
 
-        private void ResetCamera()
+        public void ResetCamera()
         {
             client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5,0,0)  * client.Self.Movement.BodyRotation, client.Self.SimPosition);
         }
