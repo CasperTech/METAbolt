@@ -1009,12 +1009,13 @@ namespace METAbolt
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 7);
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Location = new System.Drawing.Point(5, 7);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(327, 13);
+            this.label7.Size = new System.Drawing.Size(370, 13);
             this.label7.TabIndex = 25;
             this.label7.Text = "To send a new notice, click the \"Create New Notice\" button above.";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBox5
             // 

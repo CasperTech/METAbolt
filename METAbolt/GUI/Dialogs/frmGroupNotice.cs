@@ -237,41 +237,43 @@ namespace METAbolt
             client.Self.InstantMessage(client.Self.Name, imsg.FromAgentID, string.Empty, imsg.IMSessionID, InstantMessageDialog.GroupNoticeInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), client.Network.CurrentSim.RegionID, assetfolder.GetBytes());
             button1.Enabled = false;
 
-            if (assettype != AssetType.Notecard && assettype != AssetType.LSLText)
-            {
-                MessageBox.Show("Attachment has been saved to your inventory", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                List<InventoryBase> contents = client.Inventory.FolderContents(assetfolder, client.Self.AgentID, false, true, InventorySortOrder.ByName | InventorySortOrder.ByDate, 5000);
+            MessageBox.Show("Attachment has been saved to your inventory", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (contents != null)
-                {
-                    foreach (InventoryBase ibase in contents)
-                    {
-                        if (ibase is InventoryItem)
-                        {
-                            if (ibase.Name.ToLower() == filename.ToLower())
-                            {
-                                //UUID itemid = item.AssetUUID;
-                                InventoryItem item = (InventoryItem)ibase;
+            //if (assettype != AssetType.Notecard && assettype != AssetType.LSLText)
+            //{
+            //    MessageBox.Show("Attachment has been saved to your inventory", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //else
+            //{
+            //    List<InventoryBase> contents = client.Inventory.FolderContents(assetfolder, client.Self.AgentID, false, true, InventorySortOrder.ByName | InventorySortOrder.ByDate, 5000);
 
-                                switch (assettype)
-                                {
-                                    case AssetType.Notecard:
-                                        (new frmNotecardEditor(instance, item)).Show();
-                                        break;
-                                    case AssetType.LSLText:
-                                        (new frmScriptEditor(instance, item)).Show();
-                                        break;
-                                }
+            //    if (contents != null)
+            //    {
+            //        foreach (InventoryBase ibase in contents)
+            //        {
+            //            if (ibase is InventoryItem)
+            //            {
+            //                if (ibase.Name.ToLower() == filename.ToLower())
+            //                {
+            //                    //UUID itemid = item.AssetUUID;
+            //                    InventoryItem item = (InventoryItem)ibase;
 
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
+            //                    switch (assettype)
+            //                    {
+            //                        case AssetType.Notecard:
+            //                            (new frmNotecardEditor(instance, item)).Show();
+            //                            break;
+            //                        case AssetType.LSLText:
+            //                            (new frmScriptEditor(instance, item)).Show();
+            //                            break;
+            //                    }
+
+            //                    return;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         static IEnumerable<T> ReverseIterator<T>(IList<T> list)

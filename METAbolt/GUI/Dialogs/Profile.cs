@@ -1170,7 +1170,7 @@ namespace METAbolt
 
             parcelname = string.Empty;
             simname = string.Empty;
-            pickUUID = UUID.Zero;  
+            //pickUUID = UUID.Zero;  
 
             posX = 0;
             posY = 0;
@@ -1199,8 +1199,16 @@ namespace METAbolt
                 MessageBox.Show("To DELETE a pick you need to select one from the list first", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-  
-            client.Self.PickDelete(pickUUID);  
+
+            UUID pick = (UUID)lvwPicks.SelectedItems[0].Tag;
+
+            client.Self.PickDelete(pick);
+
+            txtTitle.Text = string.Empty;
+            txtDescription.Text = string.Empty;
+            pictureBox1.Image = null;
+
+            client.Avatars.RequestAvatarPicks(agentID);
         }
 
         private void txtPartner_TextChanged(object sender, EventArgs e)
@@ -1328,6 +1336,15 @@ namespace METAbolt
         private void loadwait2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            UUID pick = UUID.Random();
+            UUID pid = client.Parcels.RequestRemoteParcelID(client.Self.SimPosition, client.Network.CurrentSim.Handle, client.Network.CurrentSim.ID);
+
+            client.Self.PickInfoUpdate(pick, false, pid, this.instance.MainForm.parcel.Name, client.Self.GlobalPosition, this.instance.MainForm.parcel.SnapshotID, this.instance.MainForm.parcel.Desc);
+            client.Avatars.RequestAvatarPicks(agentID);
         }
     }
 }

@@ -76,6 +76,7 @@ namespace METAbolt
             this.txtWebURL = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tpgPicks = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.loadwait2 = new System.Windows.Forms.PictureBox();
             this.loadwait1 = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -712,6 +713,7 @@ namespace METAbolt
             // 
             this.tpgPicks.AccessibleName = "Picks tab";
             this.tpgPicks.BackColor = System.Drawing.Color.White;
+            this.tpgPicks.Controls.Add(this.button8);
             this.tpgPicks.Controls.Add(this.loadwait2);
             this.tpgPicks.Controls.Add(this.loadwait1);
             this.tpgPicks.Controls.Add(this.button5);
@@ -726,6 +728,20 @@ namespace METAbolt
             this.tpgPicks.Size = new System.Drawing.Size(460, 471);
             this.tpgPicks.TabIndex = 3;
             this.tpgPicks.Text = "Picks";
+            // 
+            // button8
+            // 
+            this.button8.AccessibleName = "Delete button";
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button8.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button8.ForeColor = System.Drawing.Color.White;
+            this.button8.Location = new System.Drawing.Point(80, 421);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 47;
+            this.button8.Text = "&New";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // loadwait2
             // 
@@ -1131,5 +1147,6 @@ namespace METAbolt
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.PictureBox pBar3;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button8;
     }
 }

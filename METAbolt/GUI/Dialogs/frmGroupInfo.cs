@@ -423,6 +423,10 @@ namespace METAbolt
                         string[] Msg = imsg.Message.Split(deli);
                         textBox5.Text = Msg[1].Replace("\n", System.Environment.NewLine);
 
+                        label7.Text = string.Empty;
+                        label7.TextAlign = ContentAlignment.MiddleLeft;
+                        label7.Refresh();
+
                         // Check for attachment
                         if (imsg.BinaryBucket[0] != 0)
                         {
@@ -438,6 +442,10 @@ namespace METAbolt
                             {
                                 filename = string.Empty;
                             }
+
+                            label7.Text = filename;
+                            label7.TextAlign = ContentAlignment.MiddleRight;
+                            label7.Refresh();
 
                             pictureBox1.Visible = true;
 
