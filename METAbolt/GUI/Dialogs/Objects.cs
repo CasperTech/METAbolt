@@ -281,16 +281,20 @@ namespace METAbolt
             ObjectsListItem itemToDraw = (ObjectsListItem)lbxPrims.Items[e.Index];
 
             Brush textBrush = null;
+            Brush dBrush = null;
             Font boldFont = new Font(e.Font, FontStyle.Bold);
             Font regularFont = new Font(e.Font, FontStyle.Regular);
+            Font italicFont = new Font("Arial",7, FontStyle.Italic);
 
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
                 textBrush = new SolidBrush(Color.FromKnownColor(KnownColor.HighlightText));
+                dBrush = new SolidBrush(Color.Yellow);
             }
             else
             {
                 textBrush = new SolidBrush(Color.FromKnownColor(KnownColor.ControlText));
+                dBrush = new SolidBrush(Color.RoyalBlue);
             }
 
             string name = string.Empty;
@@ -316,7 +320,7 @@ namespace METAbolt
                     distance = " [" + dist.ToString(CultureInfo.CurrentCulture) + "m]";
 
                     name = itemToDraw.Prim.Properties.Name;
-                    description = itemToDraw.Prim.Properties.Description + distance;
+                    description = itemToDraw.Prim.Properties.Description;
                 }
             }
             catch (Exception ex)
@@ -330,9 +334,15 @@ namespace METAbolt
             float nameX = e.Bounds.Left + 4;
             float nameY = e.Bounds.Top + 2;
 
-            e.Graphics.DrawString(name, boldFont, textBrush, nameX, nameY);
-            e.Graphics.DrawString(description, regularFont, textBrush, nameX + nameSize.Width + 8, nameY);
+            SizeF distanceSize = e.Graphics.MeasureString(distance, boldFont);
 
+            e.Graphics.DrawString(name, boldFont, textBrush, nameX, nameY);
+            //e.Graphics.DrawString(description, regularFont, textBrush, nameX + nameSize.Width + 5, nameY);
+            e.Graphics.DrawString(distance, regularFont, dBrush, new PointF(nameX, nameY + nameSize.Height));
+            //e.Graphics.DrawString(description, italicFont, textBrush, nameX + distanceSize.Width + 5, nameY);
+            e.Graphics.DrawString(description, italicFont, textBrush, new PointF(nameX + distanceSize.Width + 5, nameY + nameSize.Height + 2));
+
+            e.Graphics.DrawLine(new Pen(Color.FromArgb(200, 200, 200)), new Point(e.Bounds.Left, e.Bounds.Bottom - 1), new Point(e.Bounds.Right, e.Bounds.Bottom - 1));
             e.DrawFocusRectangle();
 
             boldFont.Dispose();
@@ -341,6 +351,8 @@ namespace METAbolt
             boldFont = null;
             regularFont = null;
             textBrush = null;
+
+            lbxPrims.ItemHeight = 35;
         }
 
         //Separate thread

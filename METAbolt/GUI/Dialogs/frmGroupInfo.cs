@@ -1677,41 +1677,43 @@ namespace METAbolt
             Client.Self.InstantMessage(Client.Self.Name, imsg.FromAgentID, string.Empty, imsg.IMSessionID, InstantMessageDialog.GroupNoticeInventoryAccepted, InstantMessageOnline.Offline, instance.SIMsittingPos(), Client.Network.CurrentSim.RegionID, assetfolder.GetBytes());
             //button1.Enabled = false;
 
-            if (assettype != AssetType.Notecard && assettype != AssetType.LSLText)
-            {
-                MessageBox.Show("Attachment has been saved to your inventory", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                List<InventoryBase> contents = Client.Inventory.FolderContents(assetfolder, Client.Self.AgentID, false, true, InventorySortOrder.ByName | InventorySortOrder.ByDate, 5000);
+            //if (assettype != AssetType.Notecard && assettype != AssetType.LSLText)
+            //{
+            //    MessageBox.Show("Attachment has been saved to your inventory", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //else
+            //{
+            //    List<InventoryBase> contents = Client.Inventory.FolderContents(assetfolder, Client.Self.AgentID, false, true, InventorySortOrder.ByName | InventorySortOrder.ByDate, 5000);
 
-                if (contents != null)
-                {
-                    foreach (InventoryBase ibase in contents)
-                    {
-                        if (ibase is InventoryItem)
-                        {
-                            if (ibase.Name.ToLower() == filename.ToLower())
-                            {
-                                //UUID itemid = item.AssetUUID;
-                                InventoryItem item = (InventoryItem)ibase;
+            //    if (contents != null)
+            //    {
+            //        foreach (InventoryBase ibase in contents)
+            //        {
+            //            if (ibase is InventoryItem)
+            //            {
+            //                if (ibase.Name.ToLower() == filename.ToLower())
+            //                {
+            //                    //UUID itemid = item.AssetUUID;
+            //                    InventoryItem item = (InventoryItem)ibase;
 
-                                switch (assettype)
-                                {
-                                    case AssetType.Notecard:
-                                        (new frmNotecardEditor(instance, item)).Show();
-                                        break;
-                                    case AssetType.LSLText:
-                                        (new frmScriptEditor(instance, item)).Show();
-                                        break;
-                                }
+            //                    switch (assettype)
+            //                    {
+            //                        case AssetType.Notecard:
+            //                            (new frmNotecardEditor(instance, item)).Show();
+            //                            break;
+            //                        case AssetType.LSLText:
+            //                            (new frmScriptEditor(instance, item)).Show();
+            //                            break;
+            //                    }
 
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
+            //                    return;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+
+            MessageBox.Show("Attachment has been saved to your inventory", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 

@@ -149,7 +149,7 @@ namespace METAbolt
             this.gbxInworld.Controls.Add(this.btnSitOn);
             this.gbxInworld.Controls.Add(this.btnPay);
             this.gbxInworld.Enabled = false;
-            this.gbxInworld.Location = new System.Drawing.Point(319, 73);
+            this.gbxInworld.Location = new System.Drawing.Point(390, 73);
             this.gbxInworld.Name = "gbxInworld";
             this.gbxInworld.Size = new System.Drawing.Size(239, 112);
             this.gbxInworld.TabIndex = 7;
@@ -317,7 +317,7 @@ namespace METAbolt
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(458, 530);
+            this.btnClose.Location = new System.Drawing.Point(529, 530);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 23);
             this.btnClose.TabIndex = 12;
@@ -341,7 +341,7 @@ namespace METAbolt
             this.btnTP.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnTP.Enabled = false;
             this.btnTP.ForeColor = System.Drawing.Color.White;
-            this.btnTP.Location = new System.Drawing.Point(319, 530);
+            this.btnTP.Location = new System.Drawing.Point(390, 530);
             this.btnTP.Name = "btnTP";
             this.btnTP.Size = new System.Drawing.Size(60, 23);
             this.btnTP.TabIndex = 11;
@@ -384,7 +384,7 @@ namespace METAbolt
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(319, 191);
+            this.groupBox1.Location = new System.Drawing.Point(390, 191);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(239, 326);
             this.groupBox1.TabIndex = 8;
@@ -547,7 +547,7 @@ namespace METAbolt
             this.checkBox5.Enabled = false;
             this.checkBox5.Location = new System.Drawing.Point(143, 284);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(50, 17);
+            this.checkBox5.Size = new System.Drawing.Size(51, 17);
             this.checkBox5.TabIndex = 9;
             this.checkBox5.Text = "Copy";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -560,7 +560,7 @@ namespace METAbolt
             this.checkBox6.Enabled = false;
             this.checkBox6.Location = new System.Drawing.Point(102, 284);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(47, 17);
+            this.checkBox6.Size = new System.Drawing.Size(46, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mod";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -673,7 +673,7 @@ namespace METAbolt
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(143, 305);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(50, 17);
+            this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Copy";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -685,7 +685,7 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(102, 305);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(47, 17);
+            this.checkBox1.Size = new System.Drawing.Size(46, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Mod";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -717,7 +717,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pB1.Location = new System.Drawing.Point(6, 518);
             this.pB1.Name = "pB1";
-            this.pB1.Size = new System.Drawing.Size(305, 12);
+            this.pB1.Size = new System.Drawing.Size(376, 12);
             this.pB1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pB1.TabIndex = 33;
             this.pB1.Click += new System.EventHandler(this.pB1_Click);
@@ -730,7 +730,7 @@ namespace METAbolt
             this.tlbDisplay});
             this.statusStrip1.Location = new System.Drawing.Point(0, 561);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(570, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(641, 24);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 34;
             this.statusStrip1.Text = "statusStrip1";
@@ -766,7 +766,7 @@ namespace METAbolt
             this.lbxChildren.ItemHeight = 18;
             this.lbxChildren.Location = new System.Drawing.Point(6, 339);
             this.lbxChildren.Name = "lbxChildren";
-            this.lbxChildren.Size = new System.Drawing.Size(304, 72);
+            this.lbxChildren.Size = new System.Drawing.Size(375, 72);
             this.lbxChildren.Sorted = true;
             this.lbxChildren.TabIndex = 2;
             this.lbxChildren.Visible = false;
@@ -813,7 +813,7 @@ namespace METAbolt
             this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(6, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(305, 64);
+            this.groupBox2.Size = new System.Drawing.Size(376, 64);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
@@ -837,7 +837,7 @@ namespace METAbolt
             this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(114, 41);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(67, 17);
+            this.radioButton2.Size = new System.Drawing.Size(66, 17);
             this.radioButton2.TabIndex = 3;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Distance";
@@ -850,7 +850,7 @@ namespace METAbolt
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(56, 41);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(53, 17);
+            this.radioButton1.Size = new System.Drawing.Size(52, 17);
             this.radioButton1.TabIndex = 2;
             this.radioButton1.Text = "Name";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -872,7 +872,7 @@ namespace METAbolt
             this.btnClear.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnClear.Enabled = false;
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(239, 15);
+            this.btnClear.Location = new System.Drawing.Point(310, 15);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(60, 23);
             this.btnClear.TabIndex = 1;
@@ -888,7 +888,7 @@ namespace METAbolt
             this.txtSearch.Enabled = false;
             this.txtSearch.Location = new System.Drawing.Point(7, 16);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(229, 21);
+            this.txtSearch.Size = new System.Drawing.Size(300, 21);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.Click += new System.EventHandler(this.txtSearch_Click);
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -903,7 +903,7 @@ namespace METAbolt
             this.groupBox3.Controls.Add(this.numericUpDown1);
             this.groupBox3.Controls.Add(this.cboDisplay);
             this.groupBox3.Enabled = false;
-            this.groupBox3.Location = new System.Drawing.Point(319, 3);
+            this.groupBox3.Location = new System.Drawing.Point(390, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(239, 64);
             this.groupBox3.TabIndex = 9;
@@ -994,7 +994,7 @@ namespace METAbolt
             this.btnTask.Enabled = false;
             this.btnTask.Font = new System.Drawing.Font("Tahoma", 6.25F);
             this.btnTask.ForeColor = System.Drawing.Color.White;
-            this.btnTask.Location = new System.Drawing.Point(245, 411);
+            this.btnTask.Location = new System.Drawing.Point(316, 411);
             this.btnTask.Name = "btnTask";
             this.btnTask.Size = new System.Drawing.Size(67, 21);
             this.btnTask.TabIndex = 3;
@@ -1018,7 +1018,7 @@ namespace METAbolt
             this.pBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pBar1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pBar1.Image = global::METAbolt.Properties.Resources.wait30trans;
-            this.pBar1.Location = new System.Drawing.Point(140, 362);
+            this.pBar1.Location = new System.Drawing.Point(176, 362);
             this.pBar1.Name = "pBar1";
             this.pBar1.Size = new System.Drawing.Size(30, 30);
             this.pBar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1031,7 +1031,7 @@ namespace METAbolt
             this.pBar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pBar2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pBar2.Image = global::METAbolt.Properties.Resources.wait30trans;
-            this.pBar2.Location = new System.Drawing.Point(140, 451);
+            this.pBar2.Location = new System.Drawing.Point(176, 451);
             this.pBar2.Name = "pBar2";
             this.pBar2.Size = new System.Drawing.Size(30, 30);
             this.pBar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1067,17 +1067,15 @@ namespace METAbolt
             this.panel1.Controls.Add(this.lbxTask);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(313, 561);
+            this.panel1.Size = new System.Drawing.Size(384, 561);
             this.panel1.TabIndex = 54;
             // 
             // pBar3
             // 
-            this.pBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBar3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pBar3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pBar3.Image = global::METAbolt.Properties.Resources.wait30trans;
-            this.pBar3.Location = new System.Drawing.Point(140, 181);
+            this.pBar3.Location = new System.Drawing.Point(176, 181);
             this.pBar3.Name = "pBar3";
             this.pBar3.Size = new System.Drawing.Size(30, 30);
             this.pBar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1100,7 +1098,7 @@ namespace METAbolt
             this.lbxPrims.ItemHeight = 18;
             this.lbxPrims.Location = new System.Drawing.Point(6, 72);
             this.lbxPrims.Name = "lbxPrims";
-            this.lbxPrims.Size = new System.Drawing.Size(304, 236);
+            this.lbxPrims.Size = new System.Drawing.Size(375, 236);
             this.lbxPrims.Sorted = true;
             this.lbxPrims.TabIndex = 0;
             this.lbxPrims.Visible = false;
@@ -1118,7 +1116,7 @@ namespace METAbolt
             this.textBox1.Location = new System.Drawing.Point(6, 496);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(304, 21);
+            this.textBox1.Size = new System.Drawing.Size(375, 21);
             this.textBox1.TabIndex = 57;
             this.textBox1.Text = "Drag-Drop inventory item in here to place in selected object";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1133,7 +1131,7 @@ namespace METAbolt
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button7.BackColor = System.Drawing.Color.RoyalBlue;
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(237, 530);
+            this.button7.Location = new System.Drawing.Point(308, 530);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(73, 23);
             this.button7.TabIndex = 6;
@@ -1151,7 +1149,7 @@ namespace METAbolt
             this.button6.Enabled = false;
             this.button6.Font = new System.Drawing.Font("Tahoma", 6.25F);
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(245, 314);
+            this.button6.Location = new System.Drawing.Point(316, 314);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(67, 21);
             this.button6.TabIndex = 1;
@@ -1174,7 +1172,7 @@ namespace METAbolt
             this.lbxTask.MultiSelect = false;
             this.lbxTask.Name = "lbxTask";
             this.lbxTask.ShowGroups = false;
-            this.lbxTask.Size = new System.Drawing.Size(304, 61);
+            this.lbxTask.Size = new System.Drawing.Size(375, 61);
             this.lbxTask.TabIndex = 4;
             this.lbxTask.UseCompatibleStateImageBehavior = false;
             this.lbxTask.View = System.Windows.Forms.View.List;
@@ -1188,7 +1186,7 @@ namespace METAbolt
             this.toolStripSeparator1,
             this.toolStripMenuItem3});
             this.mnuTask.Name = "mnuTask";
-            this.mnuTask.Size = new System.Drawing.Size(170, 76);
+            this.mnuTask.Size = new System.Drawing.Size(170, 54);
             this.mnuTask.Opening += new System.ComponentModel.CancelEventHandler(this.mnuTask_Opening);
             // 
             // toolStripMenuItem2
@@ -1219,7 +1217,7 @@ namespace METAbolt
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(570, 585);
+            this.ClientSize = new System.Drawing.Size(641, 585);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.statusStrip1);
