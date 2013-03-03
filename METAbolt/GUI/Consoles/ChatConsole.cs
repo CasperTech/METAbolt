@@ -4096,56 +4096,92 @@ namespace METAbolt
 
         public void UpdateFavourites(List<InventoryBase> foundfolders)
         {
-            foreach (InventoryBase o in foundfolders)
+            //foreach (InventoryBase o in foundfolders)
+            //{
+            //    if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+            //    {
+            //        if (o is InventoryFolder)
+            //        {
+            //            //List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
+            //            List<InventoryBase> founditems = client.Inventory.Store.GetContents(o.UUID);
+
+            //            if (founditems == null) return;
+
+            //            if (founditems.Count > 0)
+            //            {
+            //                tsFavs.Visible = true;
+            //                tsFavs.Items.Clear();
+
+            //                foreach (InventoryBase oitem in founditems)
+            //                {
+            //                    InventoryItem item = (InventoryItem)oitem;
+
+            //                    if (item.InventoryType == InventoryType.Landmark)
+            //                    {
+            //                        string iname = item.Name;
+            //                        string desc = item.Description;
+
+            //                        if (iname.Length > 43)
+            //                        {
+            //                            iname = iname.Substring(0, 40) + "...";
+            //                        }
+
+            //                        ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
+
+            //                        //if (!tsFavs.Items.Contains(btn))
+            //                        //{
+            //                        btn.TextAlign = ContentAlignment.MiddleLeft;
+            //                        btn.ToolTipText = desc;
+            //                        tsFavs.Items.Add(btn);
+
+            //                        ToolStripSeparator sep = new ToolStripSeparator();
+            //                        tsFavs.Items.Add(sep);
+            //                        //}
+            //                    }
+            //                }
+
+            //                //tsdefault.Visible = false;
+            //                //this.Height += 25;
+            //            }
+            //        }
+
+            //        break;
+            //    }
+            //}
+
+            if (foundfolders == null) return;
+
+            if (foundfolders.Count > 0)
             {
-                if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                tsFavs.Visible = true;
+                tsFavs.Items.Clear();
+
+                foreach (InventoryBase oitem in foundfolders)
                 {
-                    if (o is InventoryFolder)
+                    InventoryItem item = (InventoryItem)oitem;
+
+                    if (item.InventoryType == InventoryType.Landmark)
                     {
-                        //List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
-                        List<InventoryBase> founditems = client.Inventory.Store.GetContents(o.UUID);
+                        string iname = item.Name;
+                        string desc = item.Description;
 
-                        if (founditems == null) return;
-
-                        if (founditems.Count > 0)
+                        if (iname.Length > 43)
                         {
-                            tsFavs.Visible = true;
-                            tsFavs.Items.Clear();
-
-                            foreach (InventoryBase oitem in founditems)
-                            {
-                                InventoryItem item = (InventoryItem)oitem;
-
-                                if (item.InventoryType == InventoryType.Landmark)
-                                {
-                                    string iname = item.Name;
-                                    string desc = item.Description;
-
-                                    if (iname.Length > 43)
-                                    {
-                                        iname = iname.Substring(0, 40) + "...";
-                                    }
-
-                                    ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
-
-                                    //if (!tsFavs.Items.Contains(btn))
-                                    //{
-                                    btn.TextAlign = ContentAlignment.MiddleLeft;
-                                    btn.ToolTipText = desc;
-                                    tsFavs.Items.Add(btn);
-
-                                    ToolStripSeparator sep = new ToolStripSeparator();
-                                    tsFavs.Items.Add(sep);
-                                    //}
-                                }
-                            }
-
-                            //tsdefault.Visible = false;
-                            //this.Height += 25;
+                            iname = iname.Substring(0, 40) + "...";
                         }
-                    }
 
-                    break;
+                        ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
+
+                        //if (!tsFavs.Items.Contains(btn))
+                        //{
+                        btn.TextAlign = ContentAlignment.MiddleLeft;
+                        btn.ToolTipText = desc;
+                        tsFavs.Items.Add(btn);
+
+                        ToolStripSeparator sep = new ToolStripSeparator();
+                        tsFavs.Items.Add(sep);
+                        //}
+                    }
                 }
             }
         }

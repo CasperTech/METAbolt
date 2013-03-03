@@ -73,6 +73,8 @@ namespace METAbolt
         private TreeNode selectednode = null;
         //private bool nodecol = false;
         private UUID favfolder = UUID.Zero;
+        private Dictionary<UUID, InventoryItem> inventoryitems = new Dictionary<UUID, InventoryItem>();
+        private bool AppearanceSet = false;
 
         internal class ThreadExceptionHandler
         {
@@ -312,17 +314,113 @@ namespace METAbolt
                 return;
             }
 
+            AppearanceSet = true;
+
+            //CheckAttachments();
+
             try
             {
                 RefreshInventory();
+
+                List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favfolder);
+                instance.MainForm.UpdateFavourites(foundfolders);
             }
             catch { ; }
 
-            if (managerbusy)
+            //if (managerbusy)
+            //{
+            //    managerbusy = false;
+            //    client.Appearance.RequestSetAppearance(true);
+            //}
+        }
+
+        private void Network_OnEventQueueRunning(object sender, EventQueueRunningEventArgs e)
+        {
+            if (e.Simulator == client.Network.CurrentSim)
             {
-                managerbusy = false;
-                client.Appearance.RequestSetAppearance(true);
+                List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
+
+                foreach (InventoryBase o in invroot)
+                {
+                    if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                    {
+                        if (o is InventoryFolder)
+                        {
+                            favfolder = o.UUID;
+
+                            client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+
+                            break;
+                        }
+                    }
+                }
             }
+        }
+
+        private void CheckAttachments()
+        {
+            //inventoryitems
+
+            lock (inventoryitems)
+            {
+                List<Primitive> attachments = client.Network.CurrentSim.ObjectsPrimitives.FindAll((Primitive p) => p.ParentID == client.Self.LocalID);
+
+                //foreach (InventoryItem item in inventoryitems.Values)
+                //{
+                //    //if (item is InventoryObject || item is InventoryAttachment)
+                //    //{
+                //        if (!IsAttached(attachments, item))
+                //        {
+                //            client.Appearance.Attach(item, AttachmentPoint.Default, false);
+                //        }
+                //    //}
+                //}
+
+                foreach (Primitive prim in attachments)
+                {
+                    //if (prim.NameValues != null)
+                    //{
+                    //    for (int i = 0; i < prim.NameValues.Length; i++)
+                    //    {
+                    //        if (prim.NameValues[i].Name == "AttachItemID")
+                    //        {
+                    //            return (UUID)prim.NameValues[i].Value.ToString(); prim.
+                    //        }
+                    //    }
+                    //}
+
+                    client.Appearance.Detach(prim.ID);
+                    client.Appearance.Attach(prim.ID, client.Self.AgentID, "", "", Permissions.FullPermissions, 0, AttachmentPoint.Default, false); 
+                }
+            }
+        }
+
+        public static bool IsAttached(List<Primitive> attachments, InventoryItem item)
+        {
+            foreach (Primitive prim in attachments)
+            {
+                if (IsAttachment(prim) == item.UUID)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static UUID IsAttachment(Primitive prim)
+        {
+            if (prim.NameValues == null) return UUID.Zero;
+
+            for (int i = 0; i < prim.NameValues.Length; i++)
+            {
+                if (prim.NameValues[i].Name == "AttachItemID")
+                {
+                    return (UUID)prim.NameValues[i].Value.ToString();
+                }
+            }
+
+            return UUID.Zero;
         }
 
         //Seperate thread
@@ -392,44 +490,48 @@ namespace METAbolt
                     folderID = client.Inventory.Store.RootFolder.UUID;
                 }
 
-                List<InventoryBase> favfolders = new List<InventoryBase>();
+                //List<InventoryBase> favfolders = new List<InventoryBase>();
 
-                if (favfolder == UUID.Zero)
-                {
-                    InventoryFolder favs = client.Inventory.Store.RootFolder;
-                    List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
+                //if (favfolder == UUID.Zero)
+                //{
+                //    InventoryFolder favs = client.Inventory.Store.RootFolder;
+                //    List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
 
-                    foreach (InventoryBase o in foundfolders)
-                    {
-                        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
-                        {
-                            if (o is InventoryFolder)
-                            {
-                                favfolder = o.UUID;
-                                favfolders.Add(o); 
-                                break;
-                            }
-                        }
-                    }
+                //    foreach (InventoryBase o in foundfolders)
+                //    {
+                //        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                //        {
+                //            if (o is InventoryFolder)
+                //            {
+                //                favfolder = o.UUID;
+                //                //favfolders.Add(o);
 
-                    //Update favourites
-                    instance.MainForm.UpdateFavourites(foundfolders);
-                    //favfolders.Clear();
-                    //favfolders = null;
-                }
+                //                client.Inventory.RequestFolderContents(folderID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+
+                //                favfolders = client.Inventory.Store.GetContents(o.UUID);
+
+                //                break;
+                //            }
+                //        }
+                //    }
+
+                //    //Update favourites
+                //    instance.MainForm.UpdateFavourites(foundfolders);
+                //    //favfolders.Clear();
+                //    //favfolders = null;
+                //}
 
                 try
                 {
                     TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
                     treeViewWalker.LoadInventory(instance, folderID);
 
-                    if (folderID == favfolder && folderID != UUID.Zero)
-                    {
-                        InventoryFolder favs = client.Inventory.Store.RootFolder;
-                        List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
-                        instance.MainForm.UpdateFavourites(foundfolders);
-                        //instance.MainForm.UpdateFavourites(favfolders);
-                    }
+                    //if (folderID == favfolder && folderID != UUID.Zero)
+                    //{
+                    //    List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(folderID);
+                    //    instance.MainForm.UpdateFavourites(foundfolders);
+                    //    //instance.MainForm.UpdateFavourites(favfolders);
+                    //}
 
                     if (selectednode != null)
                     {
@@ -452,6 +554,7 @@ namespace METAbolt
                 client.Appearance.AppearanceSet += new EventHandler<AppearanceSetEventArgs>(Inventory_OnAppearanceSet);
                 client.Inventory.Store.InventoryObjectRemoved += new EventHandler<InventoryObjectRemovedEventArgs>(Store_OnInventoryObjectRemoved);
                 //client.Inventory.Store.InventoryObjectUpdated += new EventHandler<InventoryObjectUpdatedEventArgs>(Store_OnInventoryObjectUpdated);
+                client.Network.EventQueueRunning += new EventHandler<EventQueueRunningEventArgs>(Network_OnEventQueueRunning);
 
                 foreach (ITreeSortMethod method in treeSorter.GetSortMethods())
                 {
@@ -517,6 +620,7 @@ namespace METAbolt
             //netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             //netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
             //client.Inventory.Store.InventoryObjectUpdated -= new EventHandler<InventoryObjectUpdatedEventArgs>(Store_OnInventoryObjectUpdated);
+            client.Network.EventQueueRunning -= new EventHandler<EventQueueRunningEventArgs>(Network_OnEventQueueRunning);
         }
 
         private void SortMethodClick(object sender, EventArgs e)
