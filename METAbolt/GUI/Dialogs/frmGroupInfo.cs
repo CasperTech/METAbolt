@@ -141,7 +141,7 @@ namespace METAbolt
             lstNotices.ListViewItemSorter = lvwColumnSorter;
 
             Client.Groups.RequestGroupProfile(group.GroupID);
-            groupmembers = Client.Groups.RequestGroupMembers(group.GroupID);
+            //groupmembers = Client.Groups.RequestGroupMembers(group.GroupID);
             grouptitles = Client.Groups.RequestGroupTitles(group.GroupID);
             // and the notices
             Client.Groups.RequestGroupNoticesList(group.GroupID);
@@ -174,7 +174,7 @@ namespace METAbolt
             lstNotices.ListViewItemSorter = lvwColumnSorter;
 
             Client.Groups.RequestGroupProfile(groupid);
-            groupmembers = Client.Groups.RequestGroupMembers(groupid);
+            //groupmembers = Client.Groups.RequestGroupMembers(groupid);
             grouptitles = Client.Groups.RequestGroupTitles(groupid);
             // and the notices
             Client.Groups.RequestGroupNoticesList(groupid);
@@ -223,7 +223,7 @@ namespace METAbolt
         {
             // Request the group information
             Client.Groups.RequestGroupProfile(Group.ID);
-            groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+            //groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
             grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
             // and the notices
             Client.Groups.RequestGroupNoticesList(Group.ID);
@@ -534,6 +534,12 @@ namespace METAbolt
                 else
                 {
                     lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
+                }
+
+                if (Profile.GroupMembershipCount < 5001)
+                {
+                    groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
+                    label10.Text = "Too many to list";
                 }
 
                 UpdateProfile();
