@@ -753,12 +753,26 @@ namespace METAbolt
 
             if (console.SelectedAgentUUID == null) return;
 
+            DialogResult res = MessageBox.Show("Are you sure you want to ban this avatar?", "METAbolt", MessageBoxButtons.YesNo);
+
+            if (res == System.Windows.Forms.DialogResult.No)
+            {
+                return;
+            }
+
             client.Parcels.EjectUser(console.SelectedAgentUUID, true);
         }
 
         private void btnJoin_Click(object sender, EventArgs e)
         {
             if (groupsconsole.SelectedName == null) return;
+
+            DialogResult res = MessageBox.Show("Are you sure you want to JOIN this Group\nwithout knowing if it's free?", "METAbolt", MessageBoxButtons.YesNo);
+
+            if (res == System.Windows.Forms.DialogResult.No)
+            {
+                return;
+            }
 
             client.Groups.GroupJoinedReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupJoined);
             client.Groups.RequestJoinGroup(groupsconsole.SelectedGroupUUID);

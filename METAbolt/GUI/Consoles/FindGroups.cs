@@ -103,7 +103,7 @@ namespace METAbolt
 
                 ListViewItem item = lvwFindGroups.Items.Add(group.GroupName);
                 item.Tag = group.GroupID;
-                item.SubItems.Add("UUID: " + group.GroupID.ToString() + ", Total " + group.Members.ToString() + " members");
+                item.SubItems.Add("Total " + group.Members.ToString() + " members");
             }
 
             lvwFindGroups.Sort();

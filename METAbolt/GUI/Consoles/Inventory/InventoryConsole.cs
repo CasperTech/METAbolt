@@ -490,48 +490,10 @@ namespace METAbolt
                     folderID = client.Inventory.Store.RootFolder.UUID;
                 }
 
-                //List<InventoryBase> favfolders = new List<InventoryBase>();
-
-                //if (favfolder == UUID.Zero)
-                //{
-                //    InventoryFolder favs = client.Inventory.Store.RootFolder;
-                //    List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favs);
-
-                //    foreach (InventoryBase o in foundfolders)
-                //    {
-                //        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
-                //        {
-                //            if (o is InventoryFolder)
-                //            {
-                //                favfolder = o.UUID;
-                //                //favfolders.Add(o);
-
-                //                client.Inventory.RequestFolderContents(folderID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
-
-                //                favfolders = client.Inventory.Store.GetContents(o.UUID);
-
-                //                break;
-                //            }
-                //        }
-                //    }
-
-                //    //Update favourites
-                //    instance.MainForm.UpdateFavourites(foundfolders);
-                //    //favfolders.Clear();
-                //    //favfolders = null;
-                //}
-
                 try
                 {
                     TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
                     treeViewWalker.LoadInventory(instance, folderID);
-
-                    //if (folderID == favfolder && folderID != UUID.Zero)
-                    //{
-                    //    List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(folderID);
-                    //    instance.MainForm.UpdateFavourites(foundfolders);
-                    //    //instance.MainForm.UpdateFavourites(favfolders);
-                    //}
 
                     if (selectednode != null)
                     {
@@ -584,30 +546,6 @@ namespace METAbolt
                 Logger.Log("Inventory error (initialise tree): " + ex.Message, Helpers.LogLevel.Error);
             }
         }
-
-        // TODO IN THE FUTURE: DO NOT enable this event. Received task inventory items are lost due to bug in libopenmv
-        //private void Inventory_InventoryObjectOffered(object sender, InventoryObjectOfferedEventArgs e)
-        //{
-        //    if (InvokeRequired)
-        //    {
-        //        BeginInvoke(new MethodInvoker(delegate()
-        //        {
-        //            Inventory_InventoryObjectOffered(sender, e);
-        //        }));
-
-        //        return;
-        //    }
-
-        //    if (!instance.State.FolderRcvd)
-        //    {
-        //        RefreshInventory();
-        //        return;
-        //    }
-
-        //    instance.State.FolderRcvd = false;
-
-        //    ReloadInventory();
-        //}
 
         private void InventoryConsole_Disposed(object sender, EventArgs e)
         {

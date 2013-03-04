@@ -3015,17 +3015,22 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int iDx = lbxPrims.SelectedIndex;
-            ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
+            DialogResult res = MessageBox.Show("Are you sure you want to return the selected object?", "METAbolt", MessageBoxButtons.YesNo);
 
-            if (item == null) return;
+            if (res == System.Windows.Forms.DialogResult.Yes)
+            {
+                int iDx = lbxPrims.SelectedIndex;
+                ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = new Primitive();
-            sPr = item.Prim;
+                if (item == null) return;
 
-            //if (sPr.Properties.OwnerID != client.Self.AgentID) return;
+                Primitive sPr = new Primitive();
+                sPr = item.Prim;
 
-            client.Inventory.RequestDeRezToInventory(sPr.LocalID, DeRezDestination.ReturnToOwner, UUID.Zero, UUID.Random());
+                //if (sPr.Properties.OwnerID != client.Self.AgentID) return;
+
+                client.Inventory.RequestDeRezToInventory(sPr.LocalID, DeRezDestination.ReturnToOwner, UUID.Zero, UUID.Random());
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)

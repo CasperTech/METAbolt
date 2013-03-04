@@ -1509,6 +1509,16 @@ namespace METAbolt
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (numFee.Value > 0)
+            {
+                DialogResult res = MessageBox.Show("Are you sure you want to JOIN this Group for L$" + numFee.Value.ToString() + "?", "METAbolt", MessageBoxButtons.YesNo);
+
+                if (res == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             Client.Groups.RequestJoinGroup(grpid);
         }
 

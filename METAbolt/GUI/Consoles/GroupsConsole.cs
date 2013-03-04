@@ -261,6 +261,13 @@ namespace METAbolt
         {
             if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "_None")
             {
+                DialogResult res = MessageBox.Show("Are you sure you want to LEAVE this Group?", "METAbolt", MessageBoxButtons.YesNo);
+
+                if (res == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+
                 Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
                 Client.Groups.LeaveGroup(group.ID);
             }

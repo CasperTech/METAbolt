@@ -557,6 +557,13 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DialogResult res = MessageBox.Show("Are you sure you want to terminate\nyour friendship with " + selectedFriend.Name + "?", "METAbolt", MessageBoxButtons.YesNo);
+
+            if (res == System.Windows.Forms.DialogResult.No)
+            {
+                return;
+            }
+
             client.Friends.TerminateFriendship(selectedFriend.UUID);
         }
 
