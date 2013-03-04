@@ -70,6 +70,8 @@ namespace METAbolt
         private bool eventsremoved = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         //private System.Timers.Timer sittimer;
+        private bool txtDescChanged = false;
+        private bool txtNameChanged = false;
 
 
         internal class ThreadExceptionHandler
@@ -1564,8 +1566,9 @@ namespace METAbolt
                     label3.Text = "Not for sale";
                 }
 
-                label15.Text = sPr.Properties.Description;
                 label11.Text = sPr.Text;
+                textBox2.Text = sPr.Properties.Name;
+                label15.Text = sPr.Properties.Description;
 
                 Vector3 primpos = new Vector3(Vector3.Zero); 
                 primpos = sPr.Position;
@@ -1817,8 +1820,8 @@ namespace METAbolt
             }
 
             // Save the description
-            client.Objects.SetDescription(client.Network.CurrentSim, rootPrim.LocalID , label15.Text);
-            client.Objects.SetName(client.Network.CurrentSim, rootPrim.LocalID, label11.Text);         
+            //client.Objects.SetDescription(client.Network.CurrentSim, rootPrim.LocalID , label15.Text);
+            //client.Objects.SetName(client.Network.CurrentSim, rootPrim.LocalID, textBox2.Text );         
 
             // Find all of the child objects linked to this root
             childPrims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(delegate(Primitive prim) { return prim.ParentID == rootPrim.LocalID; });
@@ -2669,36 +2672,43 @@ namespace METAbolt
 
         private void label11_Leave(object sender, EventArgs e)
         {
-            if (sloading) return;
+            //if (sloading) return;
 
-            int iDx = lbxPrims.SelectedIndex;
+            //int iDx = lbxPrims.SelectedIndex;
 
-            if (iDx < 0)
-                return;
+            //if (iDx < 0)
+            //    return;
 
-            ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
+            //ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = new Primitive();
-            sPr = item.Prim;
+            //Primitive sPr = new Primitive();
+            //sPr = item.Prim;
 
-            SetPerms(sPr);
+            //SetPerms(sPr);
         }
 
         private void label15_Leave(object sender, EventArgs e)
         {
             if (sloading) return;
 
-            int iDx = lbxPrims.SelectedIndex;
+            if (txtDescChanged)
+            {
+                int iDx = lbxPrims.SelectedIndex;
 
-            if (iDx < 0)
-                return;
+                if (iDx < 0)
+                    return;
 
-            ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
+                ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
-            Primitive sPr = new Primitive();
-            sPr = item.Prim;
+                Primitive sPr = new Primitive();
+                sPr = item.Prim;
 
-            SetPerms(sPr);
+                txtDescChanged = false;
+
+                //SetPerms(sPr);
+
+                client.Objects.SetDescription(client.Network.CurrentSim, sPr.LocalID, label15.Text);
+            }
         }
 
         private void lvwRadar_SelectedIndexChanged(object sender, EventArgs e)
@@ -3080,6 +3090,61 @@ namespace METAbolt
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             CopyTaskItem();
+        }
+
+        private void label11_TextChanged(object sender, EventArgs e)
+        {
+            //if (sloading) return;
+
+            //int iDx = lbxPrims.SelectedIndex;
+
+            //if (iDx < 0)
+            //    return;
+
+            //ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
+
+            //Primitive sPr = new Primitive();
+            //sPr = item.Prim;
+
+            //SetPerms(sPr);
+        }
+
+        private void label15_TextChanged(object sender, EventArgs e)
+        {
+            if (sloading) return;
+
+            txtDescChanged = true;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (sloading) return;
+
+            txtNameChanged = true;
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (sloading) return;
+
+            if (txtNameChanged)
+            {
+                int iDx = lbxPrims.SelectedIndex;
+
+                if (iDx < 0)
+                    return;
+
+                ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
+
+                Primitive sPr = new Primitive();
+                sPr = item.Prim;
+
+                txtNameChanged = false;
+
+                //SetPerms(sPr);
+
+                client.Objects.SetName(client.Network.CurrentSim, sPr.LocalID, textBox2.Text);     
+            }
         }
     }
 }
