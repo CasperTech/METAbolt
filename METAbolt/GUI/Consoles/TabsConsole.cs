@@ -500,8 +500,23 @@ namespace METAbolt
                             DisplayOnChat(e);
                             return;
                         }
+                        else if (e.IM.FromAgentID == UUID.Zero)
+                        {
+                            // Marketplace Received item notification
+                            MessageBox.Show(e.IM.Message, "METAbolt");
+                        }
+                        else if (e.IM.IMSessionID == UUID.Zero)
+                        {
+                            // Region message
+                            String msg = "Region message from " + e.IM.FromAgentName + "\n\n";
+                            msg += e.IM.Message;
 
-                        HandleIM(e);
+                            MessageBox.Show(msg, "METAbolt");
+                        }
+                        else
+                        {
+                            HandleIM(e);
+                        }
                     //}
                     
                     break;
