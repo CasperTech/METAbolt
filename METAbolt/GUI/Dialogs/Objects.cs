@@ -1711,14 +1711,16 @@ namespace METAbolt
 
                 SetPerm(sPr);
 
-                if (sPr.Properties.OwnerID != client.Self.AgentID)
-                {
-                    checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = false;
-                }
-                else
-                {
-                    checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = true;
-                }
+                //if (sPr.Properties.OwnerID != client.Self.AgentID)
+                //{
+                //    //checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = label11.Enabled = label15.Enabled = textBox2.Enabled = false;
+                //    label11.Enabled = label15.Enabled = textBox2.Enabled = false;
+                //}
+                //else
+                //{
+                //    //checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = label11.Enabled = label15.Enabled = textBox2.Enabled = true;
+                //    label11.Enabled = label15.Enabled = textBox2.Enabled = true;
+                //}
 
                 sloading = false;
             }
@@ -1739,38 +1741,51 @@ namespace METAbolt
 
         private void SetPerm(Primitive sPr)
         {
-            // Set permission checboxes  
-            if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Modify) == PermissionMask.Modify)
-            {
-                checkBox1.Enabled = true;
-            }
-            else
-            {
-                checkBox1.Enabled = false;
-            }
-
-            if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Copy) == PermissionMask.Copy)
-            {
-                checkBox2.Enabled = true;
-            }
-            else
-            {
-                checkBox2.Enabled = false;
-            }
-
-            if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Transfer) == PermissionMask.Transfer)
-            {
-                checkBox3.Enabled = true;
-            }
-            else
-            {
-                checkBox3.Enabled = false;
-            }
-
-            if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Modify) != PermissionMask.Modify)
+            if (sPr.Properties.OwnerID != client.Self.AgentID)
             {
                 checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = false;
+                //label11.Enabled = label15.Enabled = textBox2.Enabled = false;
+                label11.ReadOnly = label15.ReadOnly = textBox2.ReadOnly = true;
             }
+            else
+            {
+                checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = true;
+                //label11.Enabled = label15.Enabled = textBox2.Enabled = true;
+                label11.ReadOnly = label15.ReadOnly = textBox2.ReadOnly = false;
+            }
+
+            //// Set permission checboxes  
+            //if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Modify) == PermissionMask.Modify)
+            //{
+            //    checkBox1.Enabled = true;
+            //}
+            //else
+            //{
+            //    checkBox1.Enabled = false;
+            //}
+
+            //if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Copy) == PermissionMask.Copy)
+            //{
+            //    checkBox2.Enabled = true;
+            //}
+            //else
+            //{
+            //    checkBox2.Enabled = false;
+            //}
+
+            //if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Transfer) == PermissionMask.Transfer)
+            //{
+            //    checkBox3.Enabled = true;
+            //}
+            //else
+            //{
+            //    checkBox3.Enabled = false;
+            //}
+
+            //if ((sPr.Properties.Permissions.OwnerMask & PermissionMask.Modify) != PermissionMask.Modify)
+            //{
+            //    checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = false;
+            //}
         }
 
         private void SetPerms(Primitive oPrm)
