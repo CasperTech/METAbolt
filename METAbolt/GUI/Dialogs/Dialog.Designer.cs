@@ -38,6 +38,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tsButtons = new System.Windows.Forms.ToolStrip();
+            this.button1 = new System.Windows.Forms.Button();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -158,6 +159,20 @@
             this.tsButtons.TabIndex = 1;
             this.tsButtons.Text = "toolStrip2";
             // 
+            // button1
+            // 
+            this.button1.AccessibleName = "Ignore and close this dialog";
+            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(269, 188);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Se&nd";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmDialog
             // 
             this.AccessibleDescription = "Displays script generated dialogs to interact with objects";
@@ -168,6 +183,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(397, 313);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.cboReply);
@@ -203,5 +219,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip tsButtons;
+        private System.Windows.Forms.Button button1;
     }
 }

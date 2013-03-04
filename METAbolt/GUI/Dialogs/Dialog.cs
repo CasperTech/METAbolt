@@ -77,20 +77,28 @@ namespace METAbolt
 
             int count = btns.Count;
 
-            for (int i = 0; i < count; i++)
+            if (btns.Count == 1 && btns[0] == "!!llTextBox!!")
             {
-                //cboReply.Items.Add(i.ToString(CultureInfo.CurrentCulture) + "-" + btns[i]);
-                cboReply.Items.Add(btns[i]);
+                txtMessage.ReadOnly = false;
+                button1.Visible = true; 
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    //cboReply.Items.Add(i.ToString(CultureInfo.CurrentCulture) + "-" + btns[i]);
+                    cboReply.Items.Add(btns[i]);
 
-                ToolStripSeparator sep = new ToolStripSeparator();
+                    ToolStripSeparator sep = new ToolStripSeparator();
 
-                tsButtons.Items.Add(sep);
+                    tsButtons.Items.Add(sep);
 
-                ToolStripButton btn = new ToolStripButton();
-                btn.Click += new System.EventHandler(AnyMenuItem_Click);
-                btn.Text = btns[i];
+                    ToolStripButton btn = new ToolStripButton();
+                    btn.Click += new System.EventHandler(AnyMenuItem_Click);
+                    btn.Text = btns[i];
 
-                tsButtons.Items.Add(btn);
+                    tsButtons.Items.Add(btn);
+                }
             }
 
             if (this.instance.DialogCount == 7)
@@ -149,6 +157,12 @@ namespace METAbolt
         private void txtMessage_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            instance.Client.Self.ReplyToScriptDialog(ed.Channel, 0, txtMessage.Text, ed.ObjectID);
+            CleanUp();
         }
     }
 }
