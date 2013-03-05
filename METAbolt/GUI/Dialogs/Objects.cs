@@ -112,7 +112,7 @@ namespace METAbolt
             netcom.ClientLoggedOut += new EventHandler(netcom_ClientLoggedOut);
             netcom.ClientDisconnected += new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
             client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
-            //client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
         }
 
         private void SetExceptionReporter()
@@ -196,7 +196,7 @@ namespace METAbolt
             client.Network.Disconnected -= new EventHandler<DisconnectedEventArgs>(Network_OnDisconnected);
             netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
-            //client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
         }
 
         private void RemoveObjectEvents()
@@ -232,33 +232,34 @@ namespace METAbolt
             }
         }
 
-        //private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
-        //{
-        //    if (InvokeRequired)
-        //    {
-        //        BeginInvoke(new MethodInvoker(delegate()
-        //        {
-        //            SIM_OnSimChanged(sender, e);
-        //        }));
-        //    }
+        private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    SIM_OnSimChanged(sender, e);
+                }));
+            }
 
-        //    if (!this.IsHandleCreated) return;
+            if (!this.IsHandleCreated) return;
 
-        //    BeginInvoke(new MethodInvoker(delegate()
-        //    {
-        //        //ClearLists();
-        //        //lbxPrims.Items.Clear();  
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                ClearLists();
+                ResetFields();
+                lbxPrims.Items.Clear();  
 
-        //        //AddAllObjects();
+                //AddAllObjects();
 
-        //        ////ResetObjects();
-        //        //lbxPrims.Items.Clear();
-        //        //lbxChildren.Items.Clear();
-        //        //lbxTask.Items.Clear();
-        //        //DisplayObjects();
-        //        //button3.Visible = button7.Visible = false;
-        //    }));
-        //}
+                ////ResetObjects();
+                //lbxPrims.Items.Clear();
+                //lbxChildren.Items.Clear();
+                //lbxTask.Items.Clear();
+                //DisplayObjects();
+                //button3.Visible = button7.Visible = false;
+            }));
+        }
 
         private void ClearLists()
         {
@@ -423,6 +424,8 @@ namespace METAbolt
                                                     lbxPrims.Items.Add(item);
                                                     lbxPrims.EndUpdate();
                                                 }
+
+                                                lbxPrims.SortList();
                                             }
                                         }
                                         catch
