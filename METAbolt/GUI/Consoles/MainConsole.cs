@@ -548,7 +548,7 @@ namespace METAbolt
             webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
             webBrowser.Url = new Uri(murl);
             webBrowser.AllowNavigation = true;
-            webBrowser.AllowWebBrowserDrop = false;
+            //webBrowser.AllowWebBrowserDrop = false;
             webBrowser.Dock = DockStyle.Fill;
             webBrowser.IsWebBrowserContextMenuEnabled = false;
             webBrowser.ScriptErrorsSuppressed = true;

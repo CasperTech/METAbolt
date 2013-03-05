@@ -615,11 +615,15 @@ namespace METAbolt
 
             notifyIcon1.Text = UpdateIconTitle();
 
-            BeginInvoke(new MethodInvoker(delegate()
+            try
             {
-                //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                chatConsole.ChatManager.PrintMsg(Environment.NewLine + getTimeStamp() + msg);
-            }));
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                    chatConsole.ChatManager.PrintMsg(Environment.NewLine + getTimeStamp() + msg);
+                }));
+            }
+            catch { ; }
 
             if (!stopnotify)
             {
