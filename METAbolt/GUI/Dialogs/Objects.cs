@@ -56,7 +56,7 @@ namespace METAbolt
         //private int duplicateCount;
         private bool sloading;
         private float range = 20;
-        private float newrange = 21;
+        private float newrange = 20;
 
         private SafeDictionary<uint, ObjectsListItem> listItems = new SafeDictionary<uint, ObjectsListItem>();
         private SafeDictionary<uint, ObjectsListItem> ItemsProps = new SafeDictionary<uint, ObjectsListItem>();
@@ -387,53 +387,56 @@ namespace METAbolt
                 }
                 else
                 {
-                    lock (listItems)
-                    {
-                        ObjectsListItem item = new ObjectsListItem(e.Prim, client, lbxPrims);
-
-                        Vector3 location = new Vector3(Vector3.Zero); 
-                        location = instance.SIMsittingPos();
-                        Vector3 pos = new Vector3(Vector3.Zero); 
-                        pos = item.Prim.Position;
-
-                        float dist = Vector3.Distance(location, pos);
-
-                        if (dist < range)
-                        {
-                            try
+                    BeginInvoke(new MethodInvoker(delegate()
                             {
-                                if (!listItems.ContainsKey(e.Prim.LocalID))
+                                lock (listItems)
                                 {
-                                    listItems.Add(e.Prim.LocalID, item);
+                                    ObjectsListItem item = new ObjectsListItem(e.Prim, client, lbxPrims);
 
-                                    item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
-                                    item.RequestProperties();
-                                }
-                                else
-                                {
-                                    listItems.Remove(e.Prim.LocalID);
-                                    listItems.Add(e.Prim.LocalID, item);
+                                    Vector3 location = new Vector3(Vector3.Zero);
+                                    location = instance.SIMsittingPos();
+                                    Vector3 pos = new Vector3(Vector3.Zero);
+                                    pos = item.Prim.Position;
 
-                                    lock (lbxPrims.Items)
+                                    float dist = Vector3.Distance(location, pos);
+
+                                    if (dist < range)
                                     {
-                                        lbxPrims.BeginUpdate();
-                                        lbxPrims.Items.Remove(item); 
-                                        lbxPrims.Items.Add(item);
-                                        lbxPrims.EndUpdate();
+                                        try
+                                        {
+                                            if (!listItems.ContainsKey(e.Prim.LocalID))
+                                            {
+                                                listItems.Add(e.Prim.LocalID, item);
+
+                                                item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
+                                                item.RequestProperties();
+                                            }
+                                            else
+                                            {
+                                                listItems.Remove(e.Prim.LocalID);
+                                                listItems.Add(e.Prim.LocalID, item);
+
+                                                lock (lbxPrims.Items)
+                                                {
+                                                    lbxPrims.BeginUpdate();
+                                                    lbxPrims.Items.Remove(item);
+                                                    lbxPrims.Items.Add(item);
+                                                    lbxPrims.EndUpdate();
+                                                }
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            ;
+                                        }
+
+                                        //BeginInvoke(new MethodInvoker(delegate()
+                                        //{
+                                        //    pB1.Maximum += 1;
+                                        //}));
                                     }
                                 }
-                            }
-                            catch
-                            {
-                                ;
-                            }
-
-                            //BeginInvoke(new MethodInvoker(delegate()
-                            //{
-                            //    pB1.Maximum += 1;
-                            //}));
-                        }
-                    }
+                            }));
                 }
             }
             catch
@@ -2332,7 +2335,7 @@ namespace METAbolt
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             newrange = (float)numericUpDown1.Value;
-            instance.Config.CurrentConfig.ObjectRange = (int)newrange; 
+            //instance.Config.CurrentConfig.ObjectRange = (int)newrange; 
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
