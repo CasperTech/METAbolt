@@ -49,6 +49,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic1)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -61,7 +62,7 @@
             this.btnGive.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnGive.Enabled = false;
             this.btnGive.ForeColor = System.Drawing.Color.White;
-            this.btnGive.Location = new System.Drawing.Point(268, 289);
+            this.btnGive.Location = new System.Drawing.Point(268, 325);
             this.btnGive.Name = "btnGive";
             this.btnGive.Size = new System.Drawing.Size(53, 23);
             this.btnGive.TabIndex = 8;
@@ -75,7 +76,7 @@
             this.lvwFindFriends.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwFindFriends.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName});
-            this.lvwFindFriends.Location = new System.Drawing.Point(17, 90);
+            this.lvwFindFriends.Location = new System.Drawing.Point(17, 126);
             this.lvwFindFriends.Name = "lvwFindFriends";
             this.lvwFindFriends.Size = new System.Drawing.Size(205, 185);
             this.lvwFindFriends.TabIndex = 2;
@@ -94,7 +95,7 @@
             this.lvwSelected.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwSelected.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.lvwSelected.Location = new System.Drawing.Point(255, 90);
+            this.lvwSelected.Location = new System.Drawing.Point(255, 126);
             this.lvwSelected.Name = "lvwSelected";
             this.lvwSelected.Size = new System.Drawing.Size(205, 185);
             this.lvwSelected.TabIndex = 7;
@@ -111,7 +112,7 @@
             // 
             this.button1.AccessibleName = "Chose selected avatar";
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(222, 131);
+            this.button1.Location = new System.Drawing.Point(222, 167);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 23);
             this.button1.TabIndex = 3;
@@ -125,7 +126,7 @@
             this.button2.AccessibleName = "Un-chose selected avatar";
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(222, 160);
+            this.button2.Location = new System.Drawing.Point(222, 196);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(32, 23);
             this.button2.TabIndex = 4;
@@ -138,7 +139,7 @@
             // 
             this.button3.AccessibleName = "Chose all avatar";
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(222, 214);
+            this.button3.Location = new System.Drawing.Point(222, 250);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 23);
             this.button3.TabIndex = 5;
@@ -152,7 +153,7 @@
             this.button4.AccessibleName = "Un-chose all avatars";
             this.button4.Enabled = false;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(222, 243);
+            this.button4.Location = new System.Drawing.Point(222, 279);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(32, 23);
             this.button4.TabIndex = 6;
@@ -166,7 +167,7 @@
             this.button5.AccessibleName = "Close this window";
             this.button5.BackColor = System.Drawing.Color.RoyalBlue;
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(417, 289);
+            this.button5.Location = new System.Drawing.Point(417, 325);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(53, 23);
             this.button5.TabIndex = 10;
@@ -177,7 +178,7 @@
             // pb1
             // 
             this.pb1.AccessibleName = "Progress bar";
-            this.pb1.Location = new System.Drawing.Point(255, 79);
+            this.pb1.Location = new System.Drawing.Point(255, 115);
             this.pb1.Name = "pb1";
             this.pb1.Size = new System.Drawing.Size(205, 10);
             this.pb1.TabIndex = 15;
@@ -188,7 +189,7 @@
             this.label1.AccessibleName = "Information on give operation";
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(14, 294);
+            this.label1.Location = new System.Drawing.Point(14, 330);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 13);
             this.label1.TabIndex = 9;
@@ -223,7 +224,7 @@
             // pic1
             // 
             this.pic1.Image = ((System.Drawing.Image)(resources.GetObject("pic1.Image")));
-            this.pic1.Location = new System.Drawing.Point(228, 90);
+            this.pic1.Location = new System.Drawing.Point(228, 126);
             this.pic1.Name = "pic1";
             this.pic1.Size = new System.Drawing.Size(20, 20);
             this.pic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -280,7 +281,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(8, 2);
+            this.tabControl1.Location = new System.Drawing.Point(8, 38);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(462, 281);
@@ -296,6 +297,14 @@
             this.tabPage4.Text = "Friends";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 44;
+            // 
             // frmGive
             // 
             this.AccessibleDescription = "Utility to give one or more items to avatars";
@@ -304,7 +313,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(477, 318);
+            this.ClientSize = new System.Drawing.Size(477, 361);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pic1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pb1);
@@ -358,5 +368,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label2;
     }
 }

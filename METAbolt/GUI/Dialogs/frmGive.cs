@@ -75,6 +75,8 @@ namespace METAbolt
 
             client.Groups.RequestCurrentGroups();
 
+            label2.Text = "Give item: " + item.Name;  
+
             lvwColumnSorter = new NumericStringComparer();
             lvwFindFriends.ListViewItemSorter = lvwColumnSorter;
             lvwSelected.ListViewItemSorter = lvwColumnSorter;
@@ -194,7 +196,7 @@ namespace METAbolt
         {
             List<FriendInfo> friendslist;
 
-            if (this.instance.State.AvatarFriends == null)
+            if (this.instance.State.AvatarFriends == null || this.instance.State.AvatarFriends.Count == 0)
             {
                 friendslist = client.Friends.FriendList.FindAll(delegate(FriendInfo friend) { return true; });
 
