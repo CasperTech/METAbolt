@@ -121,6 +121,11 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label19 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -144,6 +149,8 @@ namespace METAbolt
             this.tabPage5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // rdoSystemStyle
@@ -546,6 +553,7 @@ namespace METAbolt
             // 
             this.tabPage4.AccessibleName = "Radar tab";
             this.tabPage4.BackColor = System.Drawing.Color.White;
+            this.tabPage4.Controls.Add(this.groupBox4);
             this.tabPage4.Controls.Add(this.checkBox3);
             this.tabPage4.Controls.Add(this.textBox2);
             this.tabPage4.Controls.Add(this.tbar2);
@@ -566,7 +574,7 @@ namespace METAbolt
             // 
             this.checkBox3.AccessibleName = "Optimise for dial-up option";
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(10, 184);
+            this.checkBox3.Location = new System.Drawing.Point(10, 243);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(161, 17);
             this.checkBox3.TabIndex = 58;
@@ -577,7 +585,7 @@ namespace METAbolt
             // textBox2
             // 
             this.textBox2.AccessibleName = "Object select range numeric display textbox";
-            this.textBox2.Location = new System.Drawing.Point(275, 100);
+            this.textBox2.Location = new System.Drawing.Point(275, 77);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(33, 21);
@@ -590,7 +598,7 @@ namespace METAbolt
             this.tbar2.AccessibleName = "Object select range trackbar";
             this.tbar2.AutoSize = false;
             this.tbar2.BackColor = System.Drawing.Color.White;
-            this.tbar2.Location = new System.Drawing.Point(124, 98);
+            this.tbar2.Location = new System.Drawing.Point(124, 75);
             this.tbar2.Maximum = 512;
             this.tbar2.Minimum = 5;
             this.tbar2.Name = "tbar2";
@@ -604,7 +612,7 @@ namespace METAbolt
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(314, 103);
+            this.pictureBox5.Location = new System.Drawing.Point(314, 80);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(15, 15);
             this.pictureBox5.TabIndex = 57;
@@ -614,7 +622,7 @@ namespace METAbolt
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(26, 100);
+            this.label5.Location = new System.Drawing.Point(26, 77);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(110, 23);
             this.label5.TabIndex = 55;
@@ -623,7 +631,7 @@ namespace METAbolt
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(313, 57);
+            this.pictureBox4.Location = new System.Drawing.Point(313, 34);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(15, 15);
             this.pictureBox4.TabIndex = 53;
@@ -634,7 +642,7 @@ namespace METAbolt
             // textBox1
             // 
             this.textBox1.AccessibleName = "Radar range numeric display textbox";
-            this.textBox1.Location = new System.Drawing.Point(275, 54);
+            this.textBox1.Location = new System.Drawing.Point(275, 31);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(32, 21);
@@ -644,7 +652,7 @@ namespace METAbolt
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(7, 55);
+            this.label3.Location = new System.Drawing.Point(7, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 23);
             this.label3.TabIndex = 51;
@@ -656,11 +664,12 @@ namespace METAbolt
             this.tBar1.AutoSize = false;
             this.tBar1.BackColor = System.Drawing.Color.White;
             this.tBar1.LargeChange = 10;
-            this.tBar1.Location = new System.Drawing.Point(73, 53);
-            this.tBar1.Maximum = 2048;
+            this.tBar1.Location = new System.Drawing.Point(73, 30);
+            this.tBar1.Maximum = 1024;
             this.tBar1.Minimum = 5;
             this.tBar1.Name = "tBar1";
             this.tBar1.Size = new System.Drawing.Size(207, 32);
+            this.tBar1.SmallChange = 5;
             this.tBar1.TabIndex = 0;
             this.tBar1.TickFrequency = 25;
             this.tBar1.Value = 140;
@@ -1251,6 +1260,67 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(19, 32);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(108, 17);
+            this.radioButton1.TabIndex = 59;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Use auto-throttle";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(19, 55);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(80, 17);
+            this.radioButton2.TabIndex = 60;
+            this.radioButton2.Text = "Set throttle";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.trackBar1);
+            this.groupBox4.Controls.Add(this.radioButton1);
+            this.groupBox4.Controls.Add(this.radioButton2);
+            this.groupBox4.Location = new System.Drawing.Point(10, 124);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(318, 103);
+            this.groupBox4.TabIndex = 61;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Throttle (bandwidth) setting";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.Enabled = false;
+            this.trackBar1.LargeChange = 10;
+            this.trackBar1.Location = new System.Drawing.Point(133, 54);
+            this.trackBar1.Maximum = 500;
+            this.trackBar1.Minimum = 10;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(179, 31);
+            this.trackBar1.SmallChange = 10;
+            this.trackBar1.TabIndex = 61;
+            this.trackBar1.TickFrequency = 10;
+            this.trackBar1.Value = 500;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label19
+            // 
+            this.label19.Location = new System.Drawing.Point(203, 86);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(100, 14);
+            this.label19.TabIndex = 62;
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1295,6 +1365,9 @@ namespace METAbolt
             this.groupBox3.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1393,6 +1466,11 @@ namespace METAbolt
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Label label19;
 
     }
 }

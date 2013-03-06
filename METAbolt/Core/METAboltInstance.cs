@@ -889,18 +889,22 @@ namespace METAbolt
             //client.Throttle.Land = 0.0f;
             //client.Throttle.Wind = 0.0f;
 
-            ////float throttle = config.CurrentConfig.BandwidthThrottle * 1000f;
+            // This is for backward compatibility
+            if (config.CurrentConfig.BandwidthThrottle > 500.0f)
+            {
+                config.CurrentConfig.BandwidthThrottle = 500.0f;
+            }
 
-            ////// TODO: Does this override the above cloud, land, wind settings??? I have no idea. Luke
-            ////// it needs to be looked at
-            ////client.Throttle.Total = throttle;
+            float throttle = config.CurrentConfig.BandwidthThrottle * 10000f;
+
+            client.Throttle.Total = throttle;
 
             //client.Throttle.Task = 2f * 446000.0f;   // 846000.0f;   // 220000.0f;    //1000000;
             //client.Throttle.Asset = 2f * 446000.0f;    //220000.0f;
             //client.Throttle.Resend = 3f * 446000.0f;  //1000000.0f;   // 
             //client.Throttle.Texture = 3f * 446000.0f;     //1000000.0f;
 
-            client.Throttle.Total = 5000000f;    //4460000.0f;
+            //client.Throttle.Total = 5000000f;    //4460000.0f;
 
             client.Settings.THROTTLE_OUTGOING_PACKETS = false;
 

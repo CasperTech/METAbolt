@@ -149,9 +149,30 @@ namespace METAbolt
             nUD1.Value = config.CurrentConfig.LogOffTime;
             nUD2.Value = config.CurrentConfig.ReStartTime;
             textBox4.Text = client.Settings.ASSET_CACHE_DIR;
-            checkBox13.Checked = config.CurrentConfig.HideDisconnectPrompt;   
-            //trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);    
-            //textBox5.Text = trackBar1.Value.ToString();
+            checkBox13.Checked = config.CurrentConfig.HideDisconnectPrompt;
+
+            if (config.CurrentConfig.BandwidthThrottle > 500.0f)
+            {
+                config.CurrentConfig.BandwidthThrottle = 500.0f;
+            }
+
+            if (config.CurrentConfig.BandwidthThrottle < 500.0f)
+            {
+                radioButton2.Checked = true;
+                trackBar1.Enabled = true;
+
+                trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);
+                label19.Text = trackBar1.Value.ToString();
+            }
+            else
+            {
+                radioButton1.Checked = true;
+                trackBar1.Enabled = false;
+
+                trackBar1.Value = 500;
+                label19.Text = "500";
+            }
+
             SetBarValue();
 
             comboBox1.SelectedIndex = 0; 
@@ -282,7 +303,7 @@ namespace METAbolt
             instance.Config.CurrentConfig.AutoRestart = checkBox2.Checked;
             instance.Config.CurrentConfig.LogOffTime = Convert.ToInt32(nUD1.Value);
             instance.Config.CurrentConfig.ReStartTime = Convert.ToInt32(nUD2.Value);
-            //instance.Config.CurrentConfig.BandwidthThrottle = Convert.ToSingle(trackBar1.Value);
+            instance.Config.CurrentConfig.BandwidthThrottle = Convert.ToSingle(trackBar1.Value);
             instance.Config.CurrentConfig.HideDisconnectPrompt = checkBox13.Checked; 
 
             if (checkBox4.Checked)
@@ -648,23 +669,23 @@ namespace METAbolt
         {
             if (checkBox3.Checked)
             {
-                //trackBar1.Value = 50;
+                trackBar1.Value = 50;
                 chkConnect4.Checked = false;
                 tBar1.Value = 25;
                 tbar2.Value = 10;
             }
             else
             {
-                //trackBar1.Value = 3000;
+                trackBar1.Value = 500;
                 tBar1.Value = 64;
                 tbar2.Value = 20;
             }
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
-        {
-            SetBarValue();
-        }
+        //private void trackBar1_ValueChanged(object sender, EventArgs e)
+        //{
+        //    SetBarValue();
+        //}
 
         private void SetBarValue()
         {
@@ -834,6 +855,24 @@ namespace METAbolt
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked) trackBar1.Enabled = false;
+
+            trackBar1.Value = 500; 
+            label19.Text = "500";
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked) trackBar1.Enabled = true;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            label19.Text = trackBar1.Value.ToString();    
         }
     }
 }

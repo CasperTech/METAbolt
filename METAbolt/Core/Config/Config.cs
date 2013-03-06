@@ -128,7 +128,7 @@ namespace METAbolt
         private bool givepressie = false;
         private bool autorestart = true;
         private int logofftime = 0;
-        private float bandwidththrottle = 3000;
+        private float bandwidththrottle = 500;
         private bool logofftimerchanged = true;
         private bool useclassicchatlayout = false;
         private string headerfont = "Tahoma";
@@ -235,7 +235,7 @@ namespace METAbolt
                 config.AutoRestart = conf.Configs["General"].GetBoolean("AutoRestart", false);
                 config.LogOffTime = conf.Configs["General"].GetInt("LogOffTime", 0);
                 config.ReStartTime = conf.Configs["General"].GetInt("ReStartTime", 10);
-                config.BandwidthThrottle = conf.Configs["General"].GetFloat("BandwidthThrottle", 3000f);
+                config.BandwidthThrottle = conf.Configs["General"].GetFloat("BandwidthThrottle", 500f);
 
                 config.PlayFriendOnline = conf.Configs["General"].GetBoolean("PlayFriendOnline", false);
                 config.PlayFriendOffline = conf.Configs["General"].GetBoolean("PlayFriendOffline", false);
