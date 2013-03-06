@@ -113,6 +113,7 @@ namespace METAbolt
             netcom.ClientDisconnected += new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
             client.Self.AvatarSitResponse += new EventHandler<AvatarSitResponseEventArgs>(Self_AvatarSitResponse);
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            //client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
         }
 
         private void SetExceptionReporter()
@@ -197,6 +198,7 @@ namespace METAbolt
             netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
             netcom.ClientDisconnected -= new EventHandler<DisconnectedEventArgs>(netcom_ClientDisconnected);
             client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
+            //client.Self.TeleportProgress -= new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
         }
 
         private void RemoveObjectEvents()
@@ -260,6 +262,16 @@ namespace METAbolt
                 //button3.Visible = button7.Visible = false;
             }));
         }
+
+        //private void Self_TeleportProgress(object sender, TeleportEventArgs e)
+        //{
+        //    if (e.Status == TeleportStatus.Finished)
+        //    {
+        //        ClearLists();
+        //        ResetFields();
+        //        lbxPrims.Items.Clear();
+        //    }
+        //}
 
         private void ClearLists()
         {
