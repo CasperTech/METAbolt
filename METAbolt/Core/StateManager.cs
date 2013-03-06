@@ -179,7 +179,7 @@ namespace METAbolt
 
         public void ResetCamera()
         {
-            client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-10,0,0)  * client.Self.Movement.BodyRotation, client.Self.SimPosition);
+            client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5,0,0)  * client.Self.Movement.BodyRotation, client.Self.SimPosition);
         }
 
         private void Self_TeleportProgress(object sender, TeleportEventArgs e)

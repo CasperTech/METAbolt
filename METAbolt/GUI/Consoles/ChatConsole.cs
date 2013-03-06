@@ -53,7 +53,6 @@ using PopupControl;
 using NHunspell;
 
 
-
 namespace METAbolt
 {
     public partial class ChatConsole : UserControl
@@ -1245,6 +1244,17 @@ namespace METAbolt
                     ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
                     item.ForeColor = Color.DarkBlue;
                     item.Tag = key;
+                    item.ToolTipText = rentry;
+                    
+
+                    //string[] str = name.Split(' ');
+                    //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + key.ToString().Replace("-", "");
+                    //Stream ImageStream = new WebClient().OpenRead(url);
+                    //Image img = Image.FromStream(ImageStream);
+
+                    //Bitmap bmp = new Bitmap(img, 25, 20);
+                    //bmp.Tag = key.ToString();
+
 
                     if (avtyping.Contains(name))
                     {
@@ -1264,7 +1274,7 @@ namespace METAbolt
                     item.Font = new Font(item.Font, FontStyle.Bold);
                     item.Tag = client.Self.AgentID;
                 }
-                
+
                 lvwRadar.EndUpdate();
             }
             catch (Exception ex)
@@ -1427,6 +1437,7 @@ namespace METAbolt
                     {
                         ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
                         item.Tag = av.ID;
+                        item.ToolTipText = rentry;
 
                         if (avtyping.Contains(name))
                         {
@@ -4068,9 +4079,9 @@ namespace METAbolt
 
         private void lvwRadar_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            //e.DrawBackground();
+            e.DrawBackground();
 
-            //if (e.ItemIndex < 0) return;
+            if (e.ItemIndex < 0) return;
 
             //ListViewItem itemToDraw = lvwRadar.Items[e.ItemIndex];
 
@@ -4084,31 +4095,33 @@ namespace METAbolt
             //Bitmap bmp = new Bitmap(img, 25, 20);
             //bmp.Tag = uuid;
 
-        //    if ((e.State & ListViewItemStates.Selected) != 0)
-        //    {
-        //        //// Draw the background and focus rectangle for a selected item.
-        //        //e.Graphics.FillRectangle(Brushes.WhiteSmoke, e.Bounds);
-        //        //e.DrawFocusRectangle();
+            //if ((e.State & ListViewItemStates.Selected) != 0)
+            //{
+            //    //// Draw the background and focus rectangle for a selected item.
+            //    //e.Graphics.FillRectangle(Brushes.WhiteSmoke, e.Bounds);
+            //    //e.DrawFocusRectangle();
 
-        //        // Draw the background for an unselected item.
-        //        using (LinearGradientBrush brush =
-        //            new LinearGradientBrush(e.Bounds, Color.WhiteSmoke,
-        //            Color.Gray, LinearGradientMode.Horizontal))
-        //        {
-        //            e.Graphics.FillRectangle(brush, e.Bounds);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        e.Graphics.FillRectangle(Brushes.White, e.Bounds);
-        //        e.DrawFocusRectangle();
-        //    }
+            //    // Draw the background for an unselected item.
+            //    using (LinearGradientBrush brush =
+            //        new LinearGradientBrush(e.Bounds, Color.WhiteSmoke,
+            //        Color.Gray, LinearGradientMode.Horizontal))
+            //    {
+            //        e.Graphics.FillRectangle(brush, e.Bounds);
+            //    }
+            //}
+            //else
+            //{
+            //    e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+            //    e.DrawFocusRectangle();
+            //}
 
-        //    // Draw the item text for views other than the Details view.
-        //    if (lvwRadar.View != View.Details)
-        //    {
-        //        e.DrawText();
-        //    }
+            e.Graphics.DrawLine(new Pen(Color.FromArgb(200, 200, 200)), new Point(e.Bounds.Left, e.Bounds.Bottom - 1), new Point(e.Bounds.Right, e.Bounds.Bottom - 1));
+
+            // Draw the item text for views other than the Details view.
+            if (lvwRadar.View != View.Details)
+            {
+                e.DrawText();
+            }
         }
 
         public void UpdateFavourites(List<InventoryBase> foundfolders)
@@ -4182,9 +4195,9 @@ namespace METAbolt
                         string iname = item.Name;
                         string desc = item.Description;
 
-                        if (iname.Length > 43)
+                        if (iname.Length > 48)
                         {
-                            iname = iname.Substring(0, 40) + "...";
+                            iname = iname.Substring(0, 45) + "...";
                         }
 
                         ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
