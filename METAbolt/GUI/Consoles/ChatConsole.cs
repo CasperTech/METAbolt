@@ -53,6 +53,7 @@ using PopupControl;
 using NHunspell;
 
 
+
 namespace METAbolt
 {
     public partial class ChatConsole : UserControl
@@ -2241,7 +2242,9 @@ namespace METAbolt
                 try
                 {
                     // Open up the TP form here
-                    string[] split = e.LinkText.Split(new Char[] { '/' });
+                    string encoded = HttpUtility.UrlDecode(e.LinkText);
+                    string[] split = encoded.Split(new Char[] { '/' });
+                    //string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
                     double x = Convert.ToDouble(split[5].ToString());
                     double y = Convert.ToDouble(split[6].ToString());
@@ -2257,7 +2260,9 @@ namespace METAbolt
                 try
                 {
                     // Open up the TP form here
-                    string[] split = e.LinkText.Split(new Char[] { '/' });
+                    string encoded = HttpUtility.UrlDecode(e.LinkText);
+                    string[] split = encoded.Split(new Char[] { '/' });
+                    //string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
                     double x = Convert.ToDouble(split[5].ToString());
                     double y = Convert.ToDouble(split[6].ToString());
@@ -2272,7 +2277,9 @@ namespace METAbolt
             {
                 try
                 {
-                    string[] split = e.LinkText.Split(new Char[] { '#' });
+                    string encoded = HttpUtility.UrlDecode(e.LinkText);
+                    string[] split = encoded.Split(new Char[] { '/' });
+                    //string[] split = e.LinkText.Split(new Char[] { '#' });
                     string aavname = split[0].ToString();
                     split = e.LinkText.Split(new Char[] { ':' });
                     string elink = split[2].ToString();
@@ -2287,7 +2294,8 @@ namespace METAbolt
             else if (e.LinkText.Contains("http://secondlife:///"))
             {
                 // Open up the Group Info form here
-                string[] split = e.LinkText.Split(new Char[] { '/' });
+                string encoded = HttpUtility.UrlDecode(e.LinkText);
+                string[] split = encoded.Split(new Char[] { '/' });
                 UUID uuid = (UUID)split[7].ToString();
 
                 if (uuid != UUID.Zero && split[6].ToString().ToLower() == "group")
