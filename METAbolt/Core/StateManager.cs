@@ -64,6 +64,7 @@ namespace METAbolt
         private bool following = false;
         private string followName = string.Empty;
         private float followDistance = 5.0f;
+        private UUID followid = UUID.Zero;  
         private SafeDictionary<UUID, String> groupstore = new SafeDictionary<UUID, String>();
         private Dictionary<UUID, Group> groups = new Dictionary<UUID, Group>();
         //private Dictionary<UUID, FriendInfo> avatarfriends = new Dictionary<UUID,FriendInfo>();  
@@ -235,7 +236,11 @@ namespace METAbolt
             Avatar av = new Avatar();
             client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
 
-            if (av == null) return;
+            if (av == null)
+            {
+                client.Self.AutoPilotCancel();
+                return;
+            }
 
             if (av.Name == followName)
             {
@@ -286,6 +291,10 @@ namespace METAbolt
                 {
                     client.Self.AutoPilotCancel();
                     client.Self.Movement.TurnToward(pos);
+
+                    followid = UUID.Zero;
+                    followName = string.Empty;
+                    following = false;
                 }
             }
         }
@@ -320,8 +329,9 @@ namespace METAbolt
             }
         }
 
-        public void Follow(string name)
+        public void Follow(string name, UUID fid)
         {
+            followid = fid;
             followName = name;
             following = !string.IsNullOrEmpty(followName);
         }
@@ -820,6 +830,12 @@ namespace METAbolt
         {
             get { return followDistance; }
             set { followDistance = value; }
+        }
+
+        public UUID FollowID
+        {
+            get { return followid; }
+            set { followid = value; }
         }
 
         public SafeDictionary<UUID, String> GroupStore

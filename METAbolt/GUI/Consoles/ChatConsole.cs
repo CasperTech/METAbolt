@@ -1902,12 +1902,12 @@ namespace METAbolt
 
             if (instance.State.FollowName != name)
             {
-                instance.State.Follow(name);
+                instance.State.Follow(name, av);
                 tbtnFollow.ToolTipText = "Stop Following";
             }
             else
             {
-                instance.State.Follow(string.Empty);
+                instance.State.Follow(string.Empty, UUID.Zero);
                 tbtnFollow.ToolTipText = "Follow";
             }
         }
@@ -2732,6 +2732,15 @@ namespace METAbolt
                     }
 
                     List<uint> avremove = new List<uint>();
+                }
+
+                if (instance.State.IsFollowing)
+                {
+                    if (id == instance.State.FollowID)
+                    {
+                        instance.State.Follow(string.Empty, UUID.Zero);
+                        tbtnFollow.ToolTipText = "Follow";
+                    }
                 }
             }
 
