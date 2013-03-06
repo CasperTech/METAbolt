@@ -165,7 +165,7 @@ namespace METAbolt
             tTip.FocusOnOpen = false;
             tTip.ShowingAnimation = tTip.HidingAnimation = PopupAnimations.Blend;
 
-            string msg2 = "Hover mouse on avatar icon for info.\n\nClick on avatar icon for Profile.\n\nLeft click on map and drag to zoom.";
+            string msg2 = ">Hover mouse on avatar icon for info\n>Click on avatar icon for Profile\n>Left click on map and drag to zoom\n>Double click on map to open large map";
             tTip1 = new Popup(customToolTip = new CustomToolTip(instance, msg2));
             tTip1.AutoClose = false;
             tTip1.FocusOnOpen = false;
@@ -4227,6 +4227,11 @@ namespace METAbolt
         {
             //rtbChat.HideSelection = true;
             //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 1, 0);
+        }
+
+        private void world_DoubleClick(object sender, EventArgs e)
+        {
+            (new frmMapClient(instance)).Show();
         }
     }
 }
