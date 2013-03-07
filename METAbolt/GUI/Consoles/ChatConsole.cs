@@ -3073,14 +3073,15 @@ namespace METAbolt
                                 instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
 
                                 Avatar fav = new Avatar();
-                                fav = sim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
+                                fav = client.Network.CurrentSim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
 
                                 if (fav == null)
                                 {
                                     if (instance.avnames.ContainsKey(pos.Key))
                                     {
                                         string name = instance.avnames[pos.Key];
-                                        
+
+                                        client.Avatars.RequestTrackAgent(pos.Key);
                                         BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
                                     }
                                 }
