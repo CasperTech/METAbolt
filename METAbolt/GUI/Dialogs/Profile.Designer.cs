@@ -76,6 +76,7 @@ namespace METAbolt
             this.txtWebURL = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tpgPicks = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.loadwait2 = new System.Windows.Forms.PictureBox();
             this.loadwait1 = new System.Windows.Forms.PictureBox();
@@ -713,6 +714,7 @@ namespace METAbolt
             // 
             this.tpgPicks.AccessibleName = "Picks tab";
             this.tpgPicks.BackColor = System.Drawing.Color.White;
+            this.tpgPicks.Controls.Add(this.button11);
             this.tpgPicks.Controls.Add(this.button8);
             this.tpgPicks.Controls.Add(this.loadwait2);
             this.tpgPicks.Controls.Add(this.loadwait1);
@@ -728,6 +730,21 @@ namespace METAbolt
             this.tpgPicks.Size = new System.Drawing.Size(460, 471);
             this.tpgPicks.TabIndex = 3;
             this.tpgPicks.Text = "Picks";
+            // 
+            // button11
+            // 
+            this.button11.AccessibleName = "Delete button";
+            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button11.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button11.Enabled = false;
+            this.button11.ForeColor = System.Drawing.Color.White;
+            this.button11.Location = new System.Drawing.Point(161, 421);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 48;
+            this.button11.Text = "&Save";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button8
             // 
@@ -1148,5 +1165,6 @@ namespace METAbolt
         private System.Windows.Forms.PictureBox pBar3;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button11;
     }
 }

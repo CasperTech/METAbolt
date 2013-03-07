@@ -132,6 +132,8 @@ namespace METAbolt
                 picFLImage.AllowDrop = true;
                 //txtDisplayName.ReadOnly = false;
                 button7.Enabled = true;
+                txtTitle.ReadOnly = false;
+                txtDescription.ReadOnly = false;
             }
 
             lvwColumnSorter = new NumericStringComparer();
@@ -269,10 +271,11 @@ namespace METAbolt
             {
                 txtTitle.Text = e.Pick.Name;
                 txtDescription.Text = e.Pick.Desc;
+                txtSlurl.Text = "None";
             }));
 
             pickUUID = e.Pick.ParcelID;
-            client.Parcels.RequestParcelInfo(pickUUID);
+            client.Parcels.RequestParcelInfo(e.Pick.ParcelID);
 
             PickImageID = e.Pick.SnapshotID;
 
@@ -307,8 +310,8 @@ namespace METAbolt
                 posY = (int)e.Parcel.GlobalY % 256;
                 posZ = (int)e.Parcel.GlobalZ % 256;
 
-                txtSlurl.Text = parcelname + ", " + simname + "(" + posX.ToString(CultureInfo.CurrentCulture) + "," + posY.ToString(CultureInfo.CurrentCulture) + "," + posZ.ToString(CultureInfo.CurrentCulture) + ")";     
-            })); 
+                txtSlurl.Text = parcelname + ", " + simname + "(" + posX.ToString(CultureInfo.CurrentCulture) + "," + posY.ToString(CultureInfo.CurrentCulture) + "," + posZ.ToString(CultureInfo.CurrentCulture) + ")";
+            }));
         }
 
         private void Avatars_OnAvatarNames(object sender, UUIDNameReplyEventArgs e)
@@ -1168,7 +1171,8 @@ namespace METAbolt
 
             UUID pick = (UUID)lvwPicks.SelectedItems[0].Tag;
 
-            loadwait2.Visible = true; 
+            loadwait2.Visible = true;
+            button11.Enabled = true;
 
             client.Avatars.RequestPickInfo(agentID, pick);
             txtTitle.Text = string.Empty;
@@ -1201,7 +1205,7 @@ namespace METAbolt
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (pickUUID == UUID.Zero) return;
+            //if (pickUUID == UUID.Zero) return;
 
             if (lvwPicks.SelectedItems.Count == 0)
             {
@@ -1354,6 +1358,17 @@ namespace METAbolt
 
             client.Self.PickInfoUpdate(pick, false, pid, this.instance.MainForm.parcel.Name, client.Self.GlobalPosition, this.instance.MainForm.parcel.SnapshotID, this.instance.MainForm.parcel.Desc);
             client.Avatars.RequestAvatarPicks(agentID);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            UUID pick = (UUID)lvwPicks.SelectedItems[0].Tag;
+            UUID pid = client.Parcels.RequestRemoteParcelID(client.Self.SimPosition, client.Network.CurrentSim.Handle, client.Network.CurrentSim.ID);
+
+            client.Self.PickInfoUpdate(pick, false, pid, txtTitle.Text.Trim(), client.Self.GlobalPosition, this.instance.MainForm.parcel.SnapshotID, txtDescription.Text.Trim());
+            client.Avatars.RequestAvatarPicks(agentID);
+
+            button11.Enabled = false;
         }
     }
 }
