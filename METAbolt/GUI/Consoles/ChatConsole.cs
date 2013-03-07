@@ -1356,10 +1356,15 @@ namespace METAbolt
 
                     client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
 
-                    if (prim == null) return;
-
-                    avpos = prim.Position + avpos;
-                    astate = " (SITTING)";
+                    if (prim == null)
+                    {
+                        // do nothing
+                    }
+                    else
+                    {
+                        avpos = prim.Position + avpos;
+                        astate = " (SIT.)";
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -2190,8 +2195,37 @@ namespace METAbolt
 
             if (sav != null)
             {
-                Vector3 pos = new Vector3(Vector3.Zero); 
+                Vector3 pos = new Vector3(Vector3.Zero);
                 pos = sav.Position;
+
+                // Is the avatar sitting
+                uint oID = sav.ParentID;
+
+                if (oID != 0)
+                {
+                    // the av is sitting
+                    Primitive prim = new Primitive();
+
+                    try
+                    {
+                        client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
+
+                        if (prim == null)
+                        {
+                            // do nothing
+                        }
+                        else
+                        {
+                            pos = prim.Position + pos;
+                        }
+                    }
+                    catch
+                    {
+                        ;
+                        //reporter.Show(ex);
+                    }
+                }
+                
                 ulong regionHandle = client.Network.CurrentSim.Handle;
 
                 //int followRegionX = (int)(regionHandle >> 32);
