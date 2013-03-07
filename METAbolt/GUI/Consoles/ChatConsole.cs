@@ -1228,14 +1228,14 @@ namespace METAbolt
                 {
                     avpos.Z = 1024f;
                     //dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
-                    sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = "  >[" + Convert.ToInt32(dist).ToString() + "m]  ";
                 }
                 else
                 {
-                    sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = "  [" + Convert.ToInt32(dist).ToString() + "m]  ";
                 }
 
-                string rentry = name + sDist;
+                string rentry = sDist + name;
 
                 lvwRadar.BeginUpdate();
 
@@ -1245,7 +1245,6 @@ namespace METAbolt
                     item.ForeColor = Color.DarkBlue;
                     item.Tag = key;
                     item.ToolTipText = rentry;
-                    
 
                     //string[] str = name.Split(' ');
                     //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + key.ToString().Replace("-", "");
@@ -1386,11 +1385,11 @@ namespace METAbolt
                 {
                     avpos.Z = 1024f;
                     //dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
-                    sDist = " >[" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = "  >[" + Convert.ToInt32(dist).ToString() + "m]  ";
                 }
                 else
                 {
-                    sDist = " [" + Convert.ToInt32(dist).ToString() + "m]";
+                    sDist = "  [" + Convert.ToInt32(dist).ToString() + "m]  ";
                 }
 
                 if (av.Name != client.Self.Name)
@@ -1427,7 +1426,8 @@ namespace METAbolt
                     double degrees = angle * 180 / Math.PI;
                 }
 
-                string rentry = name + sDist + astate;
+                string rentry = sDist + name + astate;
+                //string rentry = name;
 
                 BeginInvoke(new MethodInvoker(delegate()
                 { 
@@ -1438,6 +1438,11 @@ namespace METAbolt
                         ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
                         item.Tag = av.ID;
                         item.ToolTipText = rentry;
+
+                        //ListViewItem lvi = new ListViewItem(sDist + astate);
+                        //lvi.UseItemStyleForSubItems = false;
+                        //lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi,
+                        //    "subitem", Color.White, Color.Blue, lvi.Font));
 
                         if (avtyping.Contains(name))
                         {
@@ -4079,49 +4084,34 @@ namespace METAbolt
 
         private void lvwRadar_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            e.DrawBackground();
+            //e.DrawBackground();
 
-            if (e.ItemIndex < 0) return;
+            //if (e.ItemIndex < 0) return;
 
             //ListViewItem itemToDraw = lvwRadar.Items[e.ItemIndex];
 
-            //string uuid = itemToDraw.Tag.ToString();
-
-            //string[] str = itemToDraw.Name.Split(' ');
-            //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + uuid.Replace("-", "");
-            //Stream ImageStream = new WebClient().OpenRead(url);
-            //Image img = Image.FromStream(ImageStream);
-
-            //Bitmap bmp = new Bitmap(img, 25, 20);
-            //bmp.Tag = uuid;
-
             //if ((e.State & ListViewItemStates.Selected) != 0)
             //{
-            //    //// Draw the background and focus rectangle for a selected item.
-            //    //e.Graphics.FillRectangle(Brushes.WhiteSmoke, e.Bounds);
-            //    //e.DrawFocusRectangle();
-
-            //    // Draw the background for an unselected item.
+            //    // Draw the background and focus rectangle for a selected item.
+            //    e.Graphics.FillRectangle(Brushes.Maroon, e.Bounds);
+            //    e.DrawFocusRectangle();
+            //}
+            //else
+            //{
+            //    // Draw the background for an unselected item. 
             //    using (LinearGradientBrush brush =
-            //        new LinearGradientBrush(e.Bounds, Color.WhiteSmoke,
-            //        Color.Gray, LinearGradientMode.Horizontal))
+            //        new LinearGradientBrush(e.Bounds, Color.Orange,
+            //        Color.Maroon, LinearGradientMode.Horizontal))
             //    {
             //        e.Graphics.FillRectangle(brush, e.Bounds);
             //    }
             //}
-            //else
+
+            //// Draw the item text for views other than the Details view.
+            //if (lvwRadar.View != View.Details)
             //{
-            //    e.Graphics.FillRectangle(Brushes.White, e.Bounds);
-            //    e.DrawFocusRectangle();
+            //    e.DrawText();
             //}
-
-            e.Graphics.DrawLine(new Pen(Color.FromArgb(200, 200, 200)), new Point(e.Bounds.Left, e.Bounds.Bottom - 1), new Point(e.Bounds.Right, e.Bounds.Bottom - 1));
-
-            // Draw the item text for views other than the Details view.
-            if (lvwRadar.View != View.Details)
-            {
-                e.DrawText();
-            }
         }
 
         public void UpdateFavourites(List<InventoryBase> foundfolders)
