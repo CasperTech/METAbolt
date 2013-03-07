@@ -246,6 +246,15 @@ namespace METAbolt
                 ListViewItem item = lvwPicks.Items.Add(pick.Value);
                 item.Tag = pick.Key;
             }
+
+            if (picks.Count < 10)
+            {
+                button8.Enabled = true;
+            }
+            else
+            {
+                button8.Enabled = false;
+            }
         }
 
         private void Avatars_OnPicksInfoReply(object sender, PickInfoReplyEventArgs e)
