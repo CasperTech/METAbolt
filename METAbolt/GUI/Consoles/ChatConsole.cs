@@ -177,6 +177,20 @@ namespace METAbolt
             toolTip.AutoPopDelay = 7000;
             toolTip.InitialDelay = 450;
             toolTip.ReshowDelay = 450;
+            toolTip.IsBalloon = false;
+            //toolTip.ToolTipIcon = ToolTipIcon.Info;
+
+            toolTip.OwnerDraw = true;
+            toolTip.BackColor = Color.RoyalBlue;
+            toolTip.ForeColor = Color.White;
+            toolTip.Draw += new DrawToolTipEventHandler(toolTip_Draw); 
+        }
+
+        private void toolTip_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
         }
 
         private void SetExceptionReporter()
@@ -1451,7 +1465,7 @@ namespace METAbolt
                     {
                         ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
                         item.Tag = av.ID;
-                        item.ToolTipText = name;
+                        item.ToolTipText = name + "  " + astate;
                         //item.ToolTipText = "test";
 
                         //ListViewItem lvi = new ListViewItem(sDist + astate);
