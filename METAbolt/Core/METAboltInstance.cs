@@ -885,10 +885,6 @@ namespace METAbolt
             client.Self.Movement.AutoResetControls = false;
             client.Self.Movement.UpdateInterval = 250;
 
-            //client.Throttle.Cloud = 0.0f;
-            //client.Throttle.Land = 0.0f;
-            //client.Throttle.Wind = 0.0f;
-
             // This is for backward compatibility
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)
             {
@@ -897,12 +893,21 @@ namespace METAbolt
 
             float throttle = config.CurrentConfig.BandwidthThrottle * 10000f;
 
-            client.Throttle.Total = throttle;
+            if (config.CurrentConfig.BandwidthThrottle == 500.0f)
+            {
+                client.Throttle.Total = throttle;
+            }
+            else
+            {
+                client.Throttle.Cloud = 0.0f;
+                client.Throttle.Land = 0.0f;
+                client.Throttle.Wind = 0.0f;
 
-            //client.Throttle.Task = 2f * 446000.0f;   // 846000.0f;   // 220000.0f;    //1000000;
-            //client.Throttle.Asset = 2f * 446000.0f;    //220000.0f;
-            //client.Throttle.Resend = 3f * 446000.0f;  //1000000.0f;   // 
-            //client.Throttle.Texture = 3f * 446000.0f;     //1000000.0f;
+                client.Throttle.Task = 2f * (throttle/10f);   // 846000.0f;   // 220000.0f;    //1000000;
+                client.Throttle.Asset = 2f * (throttle / 10f);    //220000.0f;
+                client.Throttle.Resend = 3f * (throttle / 10f);  //1000000.0f;   // 
+                client.Throttle.Texture = 2f * (throttle / 10f);     //1000000.0f;
+            }
 
             //client.Throttle.Total = 5000000f;    //4460000.0f;
 
