@@ -1340,6 +1340,8 @@ namespace METAbolt
                 instance.avtags.Add(av.ID, av.GroupName);
             }
 
+            bool avissit = false;
+
             if (oID != 0)
             {
                 // the av is sitting
@@ -1347,24 +1349,19 @@ namespace METAbolt
 
                 try
                 {
-                    //// Stop following if in following mode
-                    //if (instance.State.IsFollowing)
-                    //{
-                    //    instance.State.Follow(string.Empty);
-                    //    tbtnFollow.ToolTipText = "Follow";
-                    //}
-
                     client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
 
                     if (prim == null)
                     {
                         // do nothing
+                        avissit = true;
                     }
                     else
                     {
-                        avpos = prim.Position + avpos;
-                        astate = " (SIT.)";
+                        avpos += prim.Position;
                     }
+
+                    astate = " (SIT.)";
                 }
                 catch (Exception ex)
                 {
@@ -1395,6 +1392,11 @@ namespace METAbolt
                 else
                 {
                     sDist = "  [" + Convert.ToInt32(dist).ToString() + "m]  ";
+                }
+
+                if (avissit)
+                {
+                    sDist = "  [???m]  ";
                 }
 
                 if (av.Name != client.Self.Name)
@@ -2213,10 +2215,13 @@ namespace METAbolt
                         if (prim == null)
                         {
                             // do nothing
+                            client.Self.AutoPilotCancel();
+                            Logger.Log("GoTo cancelled. Could find the object the target avatar is sitting on.", Helpers.LogLevel.Warning);
+                            return;
                         }
                         else
                         {
-                            pos = prim.Position + pos;
+                            pos += prim.Position;
                         }
                     }
                     catch

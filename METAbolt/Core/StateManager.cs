@@ -250,9 +250,6 @@ namespace METAbolt
 
                 if (av.ParentID != 0)
                 {
-                    // the avatar sat
-                    Vector3 avpos = new Vector3(Vector3.Zero); 
-                    avpos = av.Position;
                     uint oID = av.ParentID;
 
                     if (prim == null)
@@ -260,11 +257,14 @@ namespace METAbolt
                         client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
                     }
 
-                    if (prim == null) return;
+                    if (prim == null)
+                    {
+                        client.Self.AutoPilotCancel();
+                        Logger.Log("Follow cancelled. Could find the object the target avatar is sitting on.", Helpers.LogLevel.Warning);
+                        return;
+                    }
 
-                    avpos = prim.Position + avpos;
-
-                    pos = avpos;
+                    pos += prim.Position;
                 }
                 else
                 {
@@ -272,9 +272,6 @@ namespace METAbolt
                 }
 
                 client.Self.Movement.TurnToward(pos);
-
-                if (prim != null) return;
-
 
                 if (Vector3.Distance(instance.SIMsittingPos(), pos) > followDistance)
                 {
