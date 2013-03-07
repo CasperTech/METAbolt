@@ -109,6 +109,9 @@ namespace METAbolt
         private string dic = string.Empty;
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
 
+        private ToolTip toolTip = new ToolTip();
+        private string tooltiptext = string.Empty;  
+
 
         internal class ThreadExceptionHandler
         {
@@ -170,6 +173,10 @@ namespace METAbolt
             tTip1.AutoClose = false;
             tTip1.FocusOnOpen = false;
             tTip1.ShowingAnimation = tTip1.HidingAnimation = PopupAnimations.Blend;
+
+            toolTip.AutoPopDelay = 7000;
+            toolTip.InitialDelay = 450;
+            toolTip.ReshowDelay = 450;
         }
 
         private void SetExceptionReporter()
@@ -1244,7 +1251,7 @@ namespace METAbolt
                     ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
                     item.ForeColor = Color.DarkBlue;
                     item.Tag = key;
-                    item.ToolTipText = rentry;
+                    item.ToolTipText = name;
 
                     //string[] str = name.Split(' ');
                     //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + key.ToString().Replace("-", "");
@@ -1444,7 +1451,8 @@ namespace METAbolt
                     {
                         ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
                         item.Tag = av.ID;
-                        item.ToolTipText = rentry;
+                        item.ToolTipText = name;
+                        //item.ToolTipText = "test";
 
                         //ListViewItem lvi = new ListViewItem(sDist + astate);
                         //lvi.UseItemStyleForSubItems = false;
@@ -4291,6 +4299,26 @@ namespace METAbolt
         private void world_DoubleClick(object sender, EventArgs e)
         {
             (new frmMapClient(instance)).Show();
+        }
+
+        private void lvwRadar_MouseMove(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = lvwRadar.GetItemAt(e.X, e.Y);
+            ListViewHitTestInfo info = lvwRadar.HitTest(e.X, e.Y);
+
+            if (item != null)
+            {
+                if (tooltiptext != info.Item.ToolTipText)
+                {
+                    tooltiptext = info.Item.ToolTipText;
+                    toolTip.SetToolTip(lvwRadar, info.Item.ToolTipText);
+                }
+            }
+            else
+            {
+                tooltiptext = string.Empty;
+                toolTip.SetToolTip(lvwRadar, null);
+            }
         }
     }
 }

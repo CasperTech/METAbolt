@@ -1581,6 +1581,7 @@ namespace METAbolt
             this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
             this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
             this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
+            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
             // 
             // ChatConsole
             // 
