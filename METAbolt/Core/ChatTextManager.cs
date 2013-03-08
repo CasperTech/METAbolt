@@ -352,7 +352,7 @@ namespace METAbolt
 
             if (this.instance.DialogCount < 9)
             {
-                (new frmDialog(instance, e)).ShowDialog();
+                (new frmDialog(instance, e)).ShowDialog(instance.MainForm);
 
                 if (this.instance.DialogCount == 8)
                 {
@@ -1474,7 +1474,7 @@ namespace METAbolt
             if (instance.IsAvatarMuted(e.ObjectID))
                 return;
 
-            (new frmDialog(instance, e)).ShowDialog();
+            (new frmDialog(instance, e)).ShowDialog(instance.MainForm);
         }
 
         private void LogMessage(DateTime timestamp, string uuid, string fromName, string msg)

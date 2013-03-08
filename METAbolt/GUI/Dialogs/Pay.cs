@@ -52,6 +52,8 @@ namespace METAbolt
             this.target = target;
 
             LoadCallBacks();
+
+            this.Text += "   " + "[ " + client.Self.Name + " ]";
         }
 
         public frmPay(METAboltInstance instance, UUID target, string name, string itemname)

@@ -1069,7 +1069,7 @@ namespace METAbolt
                         }
 
                         //(new frmInvOffered(instance, e.IM, oID, type)).Show(this);
-                        (new frmInvOffered(instance, e.IM, oID, type)).Show();
+                        (new frmInvOffered(instance, e.IM, oID, type)).Show(this);
                     }
                 }
                 catch (Exception ex)

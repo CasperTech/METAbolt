@@ -57,7 +57,9 @@ namespace METAbolt
 
             timer1.Interval = instance.DialogTimeOut;
             timer1.Enabled = true;
-            timer1.Start();  
+            timer1.Start();
+
+            this.Text += "   " + "[ " + client.Self.Name + " ]";
         }
 
         private void Dialog_Load(object sender, EventArgs e)

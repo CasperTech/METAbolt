@@ -46,6 +46,8 @@ namespace METAbolt
             this.instance = instance;
 
             rea = reason;
+
+            this.Text += "   " + "[ " + instance.Client.Self.Name + " ]";
         }
 
         private void btnExit_Click(object sender, EventArgs e)

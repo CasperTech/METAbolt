@@ -113,7 +113,9 @@ namespace METAbolt
 
             DateTime dte = DateTime.Now.AddMinutes(15.0d);
 
-            label1.Text = "This item will be auto accepted @ " + dte.ToShortTimeString();   
+            label1.Text = "This item will be auto accepted @ " + dte.ToShortTimeString();
+
+            this.Text += "   " + "[ " + client.Self.Name + " ]";
         }
 
         private void SetExceptionReporter()
