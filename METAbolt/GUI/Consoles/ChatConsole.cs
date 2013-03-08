@@ -1209,15 +1209,15 @@ namespace METAbolt
             }
         }
 
-        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr);
-        public void AddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr)
+        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state);
+        public void AddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state)
         {
             if (InvokeRequired)
             {
 
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    AddSIMAvatar(av, key, avpos, clr);
+                    AddSIMAvatar(av, key, avpos, clr, state);
                 }));
 
                 return;
@@ -1271,9 +1271,9 @@ namespace METAbolt
                     sym = ">";
                 }
 
-                sDist = sym + "[" + Convert.ToInt32(dist).ToString() + "m]  ";
+                sDist = "[" + Convert.ToInt32(dist).ToString() + "m]  ";
 
-                string rentry = sDist + name;
+                string rentry = sDist + name + "  (" + sym + ")" + state;
 
                 lvwRadar.BeginUpdate();
 
@@ -3049,7 +3049,7 @@ namespace METAbolt
                                 g.FillRectangle(Brushes.DarkRed, rect);
                                 g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
                             }
-                            else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
+                            else if (myPos.Z - pos.Value.Z > -11 && myPos.Z - pos.Value.Z < 11)
                             {
                                 g.FillEllipse(Brushes.LightGreen, rect);
                                 g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
@@ -3076,6 +3076,7 @@ namespace METAbolt
 
                                 Avatar fav = new Avatar();
                                 fav = ssim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
+                                string st = string.Empty;
 
                                 if (fav == null)
                                 {
@@ -3083,11 +3084,18 @@ namespace METAbolt
                                     client.Self.Movement.Camera.LookAt(pos.Value + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, pos.Value);
                                     client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
                                 }
+                                else
+                                {
+                                    if (fav.ParentID != 0)
+                                    {
+                                        st = " (S)";
+                                    }
+                                }
 
                                 if (instance.avnames.ContainsKey(pos.Key))
                                 {
                                     string name = instance.avnames[pos.Key];
-                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr });
+                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr, st });
                                 }
                             }
                             catch (Exception ex)
@@ -4327,5 +4335,6 @@ namespace METAbolt
                 toolTip.SetToolTip(lvwRadar, null);
             }
         }
+
     }
 }

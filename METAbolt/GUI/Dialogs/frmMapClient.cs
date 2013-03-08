@@ -323,7 +323,7 @@ namespace METAbolt
                                     g.FillRectangle(Brushes.DarkRed, rect);
                                     g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
                                 }
-                                else if (myPos.Z - pos.Value.Z > -21 && myPos.Z - pos.Value.Z < 21)
+                                else if (myPos.Z - pos.Value.Z > -11 && myPos.Z - pos.Value.Z < 11)
                                 {
                                     g.FillEllipse(Brushes.LightGreen, rect);
                                     g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
