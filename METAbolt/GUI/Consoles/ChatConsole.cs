@@ -3080,7 +3080,7 @@ namespace METAbolt
                                 if (fav == null)
                                 {
                                     aclr = Color.RoyalBlue;
-                                    client.Self.Movement.Camera.LookAt(pos.Value + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
+                                    client.Self.Movement.Camera.LookAt(pos.Value + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, pos.Value);
                                     client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
                                 }
 

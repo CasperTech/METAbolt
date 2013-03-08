@@ -302,13 +302,15 @@ namespace METAbolt
                 {
                     txtOwnerid.Text = "(Group Owned)";
                     txtGroupOwner.Text = this.instance.MainForm.AboutlandGroupidname; //For some reason on this new code it shows (???)(???) :-/ TODO: fix me
+                    pictureBox2.Enabled = false;
 
                     client.Groups.RequestGroupMembers(parcel.GroupID);
                 }
                 else
                 {
                     txtOwnerid.Text = this.instance.MainForm.AboutlandOwneridname;
-                    txtGroupOwner.Text = "";   //this.instance.MainForm.AboutlandOwneridname; 
+                    txtGroupOwner.Text = "";   //this.instance.MainForm.AboutlandOwneridname;
+                    pictureBox2.Enabled = true;
                 }
 
                 if (parcel.GroupID != UUID.Zero)
