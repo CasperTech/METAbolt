@@ -1574,7 +1574,6 @@ namespace METAbolt
             this.columnHeader2});
             this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.GridLines = true;
             this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwRadar.HideSelection = false;
             this.lvwRadar.LabelWrap = false;

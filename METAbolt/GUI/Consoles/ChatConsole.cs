@@ -1274,7 +1274,7 @@ namespace METAbolt
                 sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
                 // sDist = Convert.ToInt32(dist).ToString() + "m]";
 
-                string rentry = "  (" + sym + ")" + state;
+                string rentry = "  (" + sym + ") " + state;
 
                 lvwRadar.BeginUpdate();
 
@@ -1283,6 +1283,8 @@ namespace METAbolt
                     ListViewItem item = lvwRadar.Items.Add(name, sDist + name, string.Empty);
                     item.ForeColor = clr;
                     item.Tag = key;
+
+                    rentry = rentry.Replace("*", "(S)");  
                     item.ToolTipText = sDist + name + rentry;
                     item.BackColor = rowclr;
 
