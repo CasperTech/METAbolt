@@ -57,6 +57,7 @@ namespace METAbolt
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.picMap = new System.Windows.Forms.PictureBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -112,7 +113,6 @@ namespace METAbolt
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.picMap = new System.Windows.Forms.PictureBox();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -149,10 +149,10 @@ namespace METAbolt
             this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -163,7 +163,6 @@ namespace METAbolt
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.world)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -436,6 +435,19 @@ namespace METAbolt
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
             // 
+            // picMap
+            // 
+            this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
+            this.picMap.Location = new System.Drawing.Point(166, 44);
+            this.picMap.Name = "picMap";
+            this.picMap.Size = new System.Drawing.Size(15, 15);
+            this.picMap.TabIndex = 43;
+            this.picMap.TabStop = false;
+            this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
+            this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
+            this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
+            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
@@ -512,7 +524,7 @@ namespace METAbolt
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Size = new System.Drawing.Size(729, 443);
-            this.splitContainer1.SplitterDistance = 481;
+            this.splitContainer1.SplitterDistance = 505;
             this.splitContainer1.TabIndex = 7;
             // 
             // panel7
@@ -525,7 +537,7 @@ namespace METAbolt
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(0, 415);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(481, 28);
+            this.panel7.Size = new System.Drawing.Size(505, 28);
             this.panel7.TabIndex = 19;
             this.panel7.Visible = false;
             // 
@@ -533,7 +545,7 @@ namespace METAbolt
             // 
             this.checkBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(399, 6);
+            this.checkBox2.Location = new System.Drawing.Point(423, 6);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(82, 17);
             this.checkBox2.TabIndex = 3;
@@ -544,7 +556,7 @@ namespace METAbolt
             // 
             this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(314, 6);
+            this.checkBox1.Location = new System.Drawing.Point(338, 6);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(80, 17);
             this.checkBox1.TabIndex = 2;
@@ -557,7 +569,7 @@ namespace METAbolt
             this.button9.BackColor = System.Drawing.Color.RoyalBlue;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(229, 3);
+            this.button9.Location = new System.Drawing.Point(253, 3);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 1;
@@ -571,7 +583,7 @@ namespace METAbolt
             this.tsFindText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tsFindText.Location = new System.Drawing.Point(5, 4);
             this.tsFindText.Name = "tsFindText";
-            this.tsFindText.Size = new System.Drawing.Size(218, 21);
+            this.tsFindText.Size = new System.Drawing.Size(242, 21);
             this.tsFindText.TabIndex = 0;
             this.tsFindText.Click += new System.EventHandler(this.tsFindText_Click);
             this.tsFindText.Enter += new System.EventHandler(this.tsFindText_Click);
@@ -595,7 +607,7 @@ namespace METAbolt
             this.rtbChat.ReadOnly = true;
             this.rtbChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
             this.rtbChat.ShowSelectionMargin = true;
-            this.rtbChat.Size = new System.Drawing.Size(480, 440);
+            this.rtbChat.Size = new System.Drawing.Size(504, 440);
             this.rtbChat.TabIndex = 6;
             this.rtbChat.Text = "";
             this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
@@ -634,7 +646,7 @@ namespace METAbolt
             this.panel5.ForeColor = System.Drawing.Color.LightGray;
             this.panel5.Location = new System.Drawing.Point(1, 338);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(240, 105);
+            this.panel5.Size = new System.Drawing.Size(216, 105);
             this.panel5.TabIndex = 10;
             // 
             // button8
@@ -676,7 +688,7 @@ namespace METAbolt
             this.picCompass.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.picCompass.BackColor = System.Drawing.Color.Transparent;
             this.picCompass.Image = ((System.Drawing.Image)(resources.GetObject("picCompass.Image")));
-            this.picCompass.Location = new System.Drawing.Point(162, 21);
+            this.picCompass.Location = new System.Drawing.Point(138, 21);
             this.picCompass.Name = "picCompass";
             this.picCompass.Size = new System.Drawing.Size(65, 65);
             this.picCompass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -689,7 +701,7 @@ namespace METAbolt
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.SlateGray;
-            this.label20.Location = new System.Drawing.Point(146, 46);
+            this.label20.Location = new System.Drawing.Point(122, 46);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(18, 13);
             this.label20.TabIndex = 37;
@@ -701,7 +713,7 @@ namespace METAbolt
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.SlateGray;
-            this.label19.Location = new System.Drawing.Point(189, 89);
+            this.label19.Location = new System.Drawing.Point(165, 89);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(14, 13);
             this.label19.TabIndex = 36;
@@ -713,7 +725,7 @@ namespace METAbolt
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.SlateGray;
-            this.label2.Location = new System.Drawing.Point(227, 46);
+            this.label2.Location = new System.Drawing.Point(203, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 35;
@@ -725,7 +737,7 @@ namespace METAbolt
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(189, 4);
+            this.label1.Location = new System.Drawing.Point(165, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 13);
             this.label1.TabIndex = 34;
@@ -737,7 +749,7 @@ namespace METAbolt
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Red;
-            this.label21.Location = new System.Drawing.Point(223, 10);
+            this.label21.Location = new System.Drawing.Point(199, 10);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(10, 13);
             this.label21.TabIndex = 38;
@@ -749,7 +761,7 @@ namespace METAbolt
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(156, 10);
+            this.label22.Location = new System.Drawing.Point(132, 10);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(10, 13);
             this.label22.TabIndex = 39;
@@ -761,7 +773,7 @@ namespace METAbolt
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(157, 76);
+            this.label23.Location = new System.Drawing.Point(133, 76);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(10, 13);
             this.label23.TabIndex = 40;
@@ -773,7 +785,7 @@ namespace METAbolt
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.Red;
-            this.label24.Location = new System.Drawing.Point(224, 76);
+            this.label24.Location = new System.Drawing.Point(200, 76);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(10, 13);
             this.label24.TabIndex = 41;
@@ -896,7 +908,7 @@ namespace METAbolt
             this.toolStripSeparator19,
             this.tsbSearch,
             this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(220, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(196, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.Size = new System.Drawing.Size(24, 443);
@@ -1094,7 +1106,7 @@ namespace METAbolt
             this.tabControl1.Padding = new System.Drawing.Point(3, 3);
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.ShowToolTips = true;
-            this.tabControl1.Size = new System.Drawing.Size(242, 337);
+            this.tabControl1.Size = new System.Drawing.Size(218, 337);
             this.tabControl1.TabIndex = 8;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -1106,7 +1118,7 @@ namespace METAbolt
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(234, 304);
+            this.tabPage1.Size = new System.Drawing.Size(210, 304);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.ToolTipText = "Radar";
             // 
@@ -1131,22 +1143,9 @@ namespace METAbolt
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(234, 304);
+            this.tabPage2.Size = new System.Drawing.Size(210, 304);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.ToolTipText = "Mini Map";
-            // 
-            // picMap
-            // 
-            this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
-            this.picMap.Location = new System.Drawing.Point(166, 44);
-            this.picMap.Name = "picMap";
-            this.picMap.Size = new System.Drawing.Size(15, 15);
-            this.picMap.TabIndex = 43;
-            this.picMap.TabStop = false;
-            this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
-            this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
-            this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
             // 
             // progressBar7
             // 
@@ -1339,7 +1338,7 @@ namespace METAbolt
             this.tabPage3.ImageIndex = 11;
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(234, 304);
+            this.tabPage3.Size = new System.Drawing.Size(210, 304);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.ToolTipText = "Voice";
             // 
@@ -1528,7 +1527,7 @@ namespace METAbolt
             this.tabPage4.ImageIndex = 13;
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(234, 304);
+            this.tabPage4.Size = new System.Drawing.Size(210, 304);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.ToolTipText = "Favourites";
             // 
@@ -1565,14 +1564,15 @@ namespace METAbolt
     "ion preferences settings";
             this.lvwRadar.AccessibleName = "Radar list";
             this.lvwRadar.AllowColumnReorder = true;
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwRadar.BackColor = System.Drawing.Color.White;
             this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvwRadar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvwRadar.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.columnHeader2});
+            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwRadar.FullRowSelect = true;
             this.lvwRadar.GridLines = true;
             this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -1581,7 +1581,7 @@ namespace METAbolt
             this.lvwRadar.Location = new System.Drawing.Point(3, 3);
             this.lvwRadar.MultiSelect = false;
             this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(228, 298);
+            this.lvwRadar.Size = new System.Drawing.Size(185, 298);
             this.lvwRadar.TabIndex = 9;
             this.lvwRadar.UseCompatibleStateImageBehavior = false;
             this.lvwRadar.View = System.Windows.Forms.View.Details;
@@ -1593,20 +1593,14 @@ namespace METAbolt
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Dist/Name";
+            this.columnHeader1.Text = "[Dist.] Av. Name";
             this.columnHeader1.Width = 150;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Alt.";
+            this.columnHeader2.Text = "Sit";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 30;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "St.";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 30;
             // 
             // ChatConsole
             // 
@@ -1626,6 +1620,7 @@ namespace METAbolt
             this.toolStrip2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -1641,7 +1636,6 @@ namespace METAbolt
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.world)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -1781,6 +1775,5 @@ namespace METAbolt
         public FlickerFreeListView lvwRadar;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

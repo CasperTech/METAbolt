@@ -1209,15 +1209,15 @@ namespace METAbolt
             }
         }
 
-        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state);
-        public void AddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state)
+        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state, Color rowclr);
+        public void AddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state, Color rowclr)
         {
             if (InvokeRequired)
             {
 
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    AddSIMAvatar(av, key, avpos, clr, state);
+                    AddSIMAvatar(av, key, avpos, clr, state, rowclr);
                 }));
 
                 return;
@@ -1271,9 +1271,10 @@ namespace METAbolt
                     sym = ">";
                 }
 
-                sDist = "[" + Convert.ToInt32(dist).ToString() + "m]  ";
+                sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
+                // sDist = Convert.ToInt32(dist).ToString() + "m]";
 
-                string rentry = sDist + name + "  (" + sym + ")" + state;
+                string rentry = "  (" + sym + ")" + state;
 
                 lvwRadar.BeginUpdate();
 
@@ -1282,10 +1283,11 @@ namespace METAbolt
                     ListViewItem item = lvwRadar.Items.Add(name, sDist + name, string.Empty);
                     item.ForeColor = clr;
                     item.Tag = key;
-                    item.ToolTipText = name;
+                    item.ToolTipText = sDist + name + rentry;
+                    item.BackColor = rowclr;
 
-                    item.SubItems.Add(sym);
                     item.SubItems.Add(state);
+                    //item.SubItems.Add(state);
 
                     //string[] str = name.Split(' ');
                     //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + key.ToString().Replace("-", "");
@@ -1312,9 +1314,11 @@ namespace METAbolt
                     ListViewItem item = lvwRadar.Items.Add(avsnem, avsnem, string.Empty);
                     item.Font = new Font(item.Font, FontStyle.Bold);
                     item.Tag = client.Self.AgentID;
-
+                    item.BackColor = Color.RoyalBlue;
+                    item.ForeColor = Color.LightGray;  
+                    
                     item.SubItems.Add(string.Empty);
-                    item.SubItems.Add(string.Empty);
+                    //item.SubItems.Add(string.Empty);
                 }
 
                 lvwRadar.EndUpdate();
@@ -3040,6 +3044,10 @@ namespace METAbolt
 
                     instance.avlocations.Clear();
 
+                    Color rclr = Color.White;
+
+                    int rctr = 0;
+
                     ssim.AvatarPositions.ForEach(
                     delegate(KeyValuePair<UUID, Vector3> pos)
                     {
@@ -3094,14 +3102,25 @@ namespace METAbolt
                                 {
                                     if (fav.ParentID != 0)
                                     {
-                                        st = " (S)";
+                                        st = "*";
                                     }
+                                }
+
+                                if (rctr == 1)
+                                {
+                                    rclr = Color.WhiteSmoke;
+                                    rctr = 0;
+                                }
+                                else
+                                {
+                                    rclr = Color.White;
+                                    rctr = 1;
                                 }
 
                                 if (instance.avnames.ContainsKey(pos.Key))
                                 {
                                     string name = instance.avnames[pos.Key];
-                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr, st });
+                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr, st, rclr });
                                 }
                             }
                             catch (Exception ex)
