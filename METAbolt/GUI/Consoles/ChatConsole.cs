@@ -110,7 +110,8 @@ namespace METAbolt
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
 
         private ToolTip toolTip = new ToolTip();
-        private string tooltiptext = string.Empty;  
+        private string tooltiptext = string.Empty;
+        private Simulator CurrentSIM;
 
 
         internal class ThreadExceptionHandler
@@ -1206,22 +1207,17 @@ namespace METAbolt
                 instance.State.ResetCamera();
                 return;
             }
-
-            if (!instance.avnames.ContainsKey(e.Prim.ID))
-            {
-                client.Avatars.RequestAvatarName(e.Prim.ID);
-            }
         }
 
-        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos);
-        public void AddSIMAvatar(string av, UUID key, Vector3 avpos)
+        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr);
+        public void AddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr)
         {
             if (InvokeRequired)
             {
 
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    AddSIMAvatar(av, key, avpos);
+                    AddSIMAvatar(av, key, avpos, clr);
                 }));
 
                 return;
@@ -1248,25 +1244,34 @@ namespace METAbolt
                 Vector3 selfpos = new Vector3(Vector3.Zero); 
                 selfpos = client.Self.SimPosition;
 
-                if (selfpos.Z == 0)
+                if (selfpos.Z < 0.1f)
                 {
                     selfpos.Z = 1024f; // Convert.ToSingle(client.Self.GlobalPosition.Z);  
                 }
 
-                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
-
-                //if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
-
                 if (avpos.Z < 0.1f)
                 {
                     avpos.Z = 1024f;
-                    //dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
-                    sDist = "  >[" + Convert.ToInt32(dist).ToString() + "m]  ";
+                }
+
+                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos), ConverToGLobal(avpos)), MidpointRounding.ToEven);
+
+                string sym = "=";
+
+                if (selfpos.Z - avpos.Z > 20)
+                {
+                    sym = "<";
+                }
+                else if (selfpos.Z - avpos.Z > -11 && selfpos.Z - avpos.Z < 11)
+                {
+                    sym = "=";
                 }
                 else
                 {
-                    sDist = "  [" + Convert.ToInt32(dist).ToString() + "m]  ";
+                    sym = ">";
                 }
+
+                sDist = sym + "[" + Convert.ToInt32(dist).ToString() + "m]  ";
 
                 string rentry = sDist + name;
 
@@ -1275,7 +1280,7 @@ namespace METAbolt
                 if (name != client.Self.Name)
                 {
                     ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
-                    //item.ForeColor = Color.DarkBlue;
+                    item.ForeColor = clr;
                     item.Tag = key;
                     item.ToolTipText = name;
 
@@ -1286,7 +1291,6 @@ namespace METAbolt
 
                     //Bitmap bmp = new Bitmap(img, 25, 20);
                     //bmp.Tag = key.ToString();
-
 
                     if (avtyping.Contains(name))
                     {
@@ -1328,196 +1332,196 @@ namespace METAbolt
             return objpos; 
         }
 
-        private delegate void OnAddAvatar(Avatar av);
-        public void AddAvatar(Avatar av)
-        {
-            if (InvokeRequired)
-            {
+        //private delegate void OnAddAvatar(Avatar av);
+        //public void AddAvatar(Avatar av)
+        //{
+        //    if (InvokeRequired)
+        //    {
 
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    AddAvatar(av);
-                }));
+        //        BeginInvoke(new MethodInvoker(delegate()
+        //        {
+        //            AddAvatar(av);
+        //        }));
 
-                return;
-            }
+        //        return;
+        //    }
 
-            if (!string.IsNullOrEmpty(selectedname)) return;
+        //    if (!string.IsNullOrEmpty(selectedname)) return;
 
-            if (av == null) return;
-            string name = av.Name;
+        //    if (av == null) return;
+        //    string name = av.Name;
 
-            if (string.IsNullOrEmpty(name)) return;
+        //    if (string.IsNullOrEmpty(name)) return;
 
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                lvwRadar.BeginUpdate();
-                if (lvwRadar.Items.ContainsKey(name))
-                {
-                    lvwRadar.Items.RemoveByKey(name);
-                }
+        //    BeginInvoke(new MethodInvoker(delegate()
+        //    {
+        //        lvwRadar.BeginUpdate();
+        //        if (lvwRadar.Items.ContainsKey(name))
+        //        {
+        //            lvwRadar.Items.RemoveByKey(name);
+        //        }
 
-                lvwRadar.EndUpdate();
-            }));
+        //        lvwRadar.EndUpdate();
+        //    }));
 
-            string sDist;
+        //    string sDist;
 
-            Vector3 avpos = new Vector3(Vector3.Zero); 
-            avpos = av.Position;
+        //    Vector3 avpos = new Vector3(Vector3.Zero); 
+        //    avpos = av.Position;
 
-            uint oID = av.ParentID;
-            string astate = string.Empty;
+        //    uint oID = av.ParentID;
+        //    string astate = string.Empty;
 
-            if (!instance.avtags.ContainsKey(av.ID))
-            {
-                instance.avtags.Add(av.ID, av.GroupName);
-            }
+        //    if (!instance.avtags.ContainsKey(av.ID))
+        //    {
+        //        instance.avtags.Add(av.ID, av.GroupName);
+        //    }
 
-            bool avissit = false;
+        //    bool avissit = false;
 
-            if (oID != 0)
-            {
-                // the av is sitting
-                Primitive prim = new Primitive();
+        //    if (oID != 0)
+        //    {
+        //        // the av is sitting
+        //        Primitive prim = new Primitive();
 
-                try
-                {
-                    client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
+        //        try
+        //        {
+        //            client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
 
-                    if (prim == null)
-                    {
-                        // do nothing
-                        avissit = true;
-                    }
-                    else
-                    {
-                        avpos += prim.Position;
-                    }
+        //            if (prim == null)
+        //            {
+        //                // do nothing
+        //                avissit = true;
+        //            }
+        //            else
+        //            {
+        //                avpos += prim.Position;
+        //            }
 
-                    astate = " (SIT.)";
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log("Chat console: (add avatar) when adding " + av.FirstName + " " + av.LastName + " - " + ex.Message, Helpers.LogLevel.Error, ex);
-                    //reporter.Show(ex);
-                }
-            }
-            else
-            {
-                astate = string.Empty;
-            }
+        //            astate = " (SIT.)";
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Logger.Log("Chat console: (add avatar) when adding " + av.FirstName + " " + av.LastName + " - " + ex.Message, Helpers.LogLevel.Error, ex);
+        //            //reporter.Show(ex);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        astate = string.Empty;
+        //    }
 
-            try
-            {
-                Vector3 selfpos = new Vector3(Vector3.Zero); 
-                selfpos = client.Self.SimPosition;
+        //    try
+        //    {
+        //        Vector3 selfpos = new Vector3(Vector3.Zero); 
+        //        selfpos = client.Self.SimPosition;
 
-                double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
+        //        double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
-                //if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
+        //        //if ((int)dist > instance.Config.CurrentConfig.RadarRange) return;
 
-                if (avpos.Z < 0.1f)
-                {
-                    avpos.Z = 1024f;
-                    //dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
-                    sDist = "  >[" + Convert.ToInt32(dist).ToString() + "m]  ";
-                }
-                else
-                {
-                    sDist = "  [" + Convert.ToInt32(dist).ToString() + "m]  ";
-                }
+        //        if (avpos.Z < 0.1f)
+        //        {
+        //            avpos.Z = 1024f;
+        //            //dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos),ConverToGLobal(avpos)), MidpointRounding.ToEven);
+        //            sDist = "  >[" + Convert.ToInt32(dist).ToString() + "m]  ";
+        //        }
+        //        else
+        //        {
+        //            sDist = "  [" + Convert.ToInt32(dist).ToString() + "m]  ";
+        //        }
 
-                if (avissit)
-                {
-                    sDist = "  [???m]  ";
-                }
+        //        if (avissit)
+        //        {
+        //            sDist = "  [???m]  ";
+        //        }
 
-                //if (av.Name != client.Self.Name)
-                //{
-                //    Vector3 dirv = new Vector3(Vector3.Zero); 
-                //    dirv = Vector3.Normalize(avpos - selfpos);
-                //    dirv.Normalize();
+        //        //if (av.Name != client.Self.Name)
+        //        //{
+        //        //    Vector3 dirv = new Vector3(Vector3.Zero); 
+        //        //    dirv = Vector3.Normalize(avpos - selfpos);
+        //        //    dirv.Normalize();
 
-                //    Quaternion avRot = client.Self.RelativeRotation;
+        //        //    Quaternion avRot = client.Self.RelativeRotation;
 
-                //    Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
+        //        //    Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
 
-                //    Vector3 myrot = new Vector3(Vector3.Zero);
-                //    myrot.X = m.M11;
-                //    myrot.Y = m.M21;
-                //    myrot.Z = m.M31;
+        //        //    Vector3 myrot = new Vector3(Vector3.Zero);
+        //        //    myrot.X = m.M11;
+        //        //    myrot.Y = m.M21;
+        //        //    myrot.Z = m.M31;
 
-                //    float vs = Vector3.Dot(myrot, dirv);
+        //        //    float vs = Vector3.Dot(myrot, dirv);
 
-                //    bool isonfront = Vector3.Dot(myrot, dirv) > 0f; // less than 90 degrees
+        //        //    bool isonfront = Vector3.Dot(myrot, dirv) > 0f; // less than 90 degrees
 
-                //    Vector3 v1 = new Vector3(0, 0, 0);
-                //    Vector3 v2 = new Vector3(0, 0, 0);
+        //        //    Vector3 v1 = new Vector3(0, 0, 0);
+        //        //    Vector3 v2 = new Vector3(0, 0, 0);
 
-                //    v1 = selfpos;
-                //    v2 = avpos;
+        //        //    v1 = selfpos;
+        //        //    v2 = avpos;
 
-                //    v1.Normalize();
-                //    v2.Normalize();
+        //        //    v1.Normalize();
+        //        //    v2.Normalize();
 
-                //    double angle = (float)Math.Acos(Vector3.Dot(v1, v2));
-                //    //double angle = (float)Math.Acos(Vector3.Dot(myrot, dirv));
+        //        //    double angle = (float)Math.Acos(Vector3.Dot(v1, v2));
+        //        //    //double angle = (float)Math.Acos(Vector3.Dot(myrot, dirv));
 
-                //    double degrees = angle * 180 / Math.PI;
-                //}
+        //        //    double degrees = angle * 180 / Math.PI;
+        //        //}
 
-                string rentry = sDist + name + astate;
-                //string rentry = name;
+        //        string rentry = sDist + name + astate;
+        //        //string rentry = name;
 
-                BeginInvoke(new MethodInvoker(delegate()
-                { 
-                    lvwRadar.BeginUpdate();
+        //        BeginInvoke(new MethodInvoker(delegate()
+        //        { 
+        //            lvwRadar.BeginUpdate();
 
-                    if (name != client.Self.Name)
-                    {
-                        ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
-                        item.Tag = av.ID;
-                        item.ToolTipText = name + "  " + astate;
-                        //item.ToolTipText = "test";
+        //            if (name != client.Self.Name)
+        //            {
+        //                ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
+        //                item.Tag = av.ID;
+        //                item.ToolTipText = name + "  " + astate;
+        //                //item.ToolTipText = "test";
 
-                        //ListViewItem lvi = new ListViewItem(sDist + astate);
-                        //lvi.UseItemStyleForSubItems = false;
-                        //lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi,
-                        //    "subitem", Color.White, Color.Blue, lvi.Font));
+        //                //ListViewItem lvi = new ListViewItem(sDist + astate);
+        //                //lvi.UseItemStyleForSubItems = false;
+        //                //lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi,
+        //                //    "subitem", Color.White, Color.Blue, lvi.Font));
 
-                        if (avtyping.Contains(name))
-                        {
-                            int index = lvwRadar.Items.IndexOfKey(name);
-                            if (index != -1)
-                            {
-                                lvwRadar.Items[index].ForeColor = Color.Red;
-                            }
-                        }
-                    }
-                    //else
-                    //{
-                    //    ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
-                    //    item.Font = new Font(item.Font, FontStyle.Bold);
-                    //    item.Tag = av.ID;
-                    //}
+        //                if (avtyping.Contains(name))
+        //                {
+        //                    int index = lvwRadar.Items.IndexOfKey(name);
+        //                    if (index != -1)
+        //                    {
+        //                        lvwRadar.Items[index].ForeColor = Color.Red;
+        //                    }
+        //                }
+        //            }
+        //            //else
+        //            //{
+        //            //    ListViewItem item = lvwRadar.Items.Add(name, name, string.Empty);
+        //            //    item.Font = new Font(item.Font, FontStyle.Bold);
+        //            //    item.Tag = av.ID;
+        //            //}
 
-                    string avsnem = client.Self.Name;
+        //            string avsnem = client.Self.Name;
 
-                    if (!lvwRadar.Items.ContainsKey(avsnem))
-                    {
-                        ListViewItem item = lvwRadar.Items.Add(avsnem, avsnem, string.Empty);
-                        item.Font = new Font(item.Font, FontStyle.Bold);
-                        item.Tag = av.ID;
-                    }
+        //            if (!lvwRadar.Items.ContainsKey(avsnem))
+        //            {
+        //                ListViewItem item = lvwRadar.Items.Add(avsnem, avsnem, string.Empty);
+        //                item.Font = new Font(item.Font, FontStyle.Bold);
+        //                item.Tag = av.ID;
+        //            }
 
-                    lvwRadar.EndUpdate();
-                }));
-            }
-            catch (Exception ex)
-            {
-                Logger.Log("Radar update: " + ex.Message, Helpers.LogLevel.Warning);
-            }
-        }
+        //            lvwRadar.EndUpdate();
+        //        }));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Log("Radar update: " + ex.Message, Helpers.LogLevel.Warning);
+        //    }
+        //}
 
         private void GetCompass()
         {
@@ -2223,7 +2227,7 @@ namespace METAbolt
             //string name = instance.avnames[av];
 
             Avatar sav = new Avatar();
-            sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+            sav = CurrentSIM.ObjectsAvatars.Find(delegate(Avatar fa)
             {
                 return fa.ID == av;
             }
@@ -2299,7 +2303,7 @@ namespace METAbolt
             //string name = instance.avnames[av];
 
             Avatar sav = new Avatar();
-            sav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar fa)
+            sav = CurrentSIM.ObjectsAvatars.Find(delegate(Avatar fa)
              {
                  return fa.ID == av;
              }
@@ -2791,6 +2795,8 @@ namespace METAbolt
         {
             if (e.Simulator != client.Network.CurrentSim) return;
 
+            CurrentSIM = e.Simulator;
+
             if (InvokeRequired)
             {
 
@@ -2819,8 +2825,6 @@ namespace METAbolt
                         lvwRadar.Items.RemoveAt(lvwRadar.Items.IndexOf(litem));
                         lvwRadar.EndUpdate();
                     }
-
-                    //List<uint> avremove = new List<uint>();
                 }
 
                 if (instance.State.IsFollowing)
@@ -2835,33 +2839,6 @@ namespace METAbolt
 
             e.Simulator.AvatarPositions.ForEach(delegate(KeyValuePair<UUID, Vector3> favpos)
                     {
-                        //Avatar nav = new Avatar();
-                        ////nav = e.Simulator.ObjectsAvatars.Find((Avatar fnav) => { return fnav.ID == favpos.Key; });
-
-                        //nav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar avr)
-                        //{
-                        //    return avr.ID == favpos.Key;
-                        //});
-
-                        //if (nav != null)
-                        //{
-                        //    if (!sfavatar.ContainsKey(nav.LocalID))
-                        //    {
-                        //        lock (sfavatar)
-                        //        {
-                        //            sfavatar.Add(nav.LocalID, nav);
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        lock (sfavatar)
-                        //        {
-                        //            sfavatar.Remove(nav.LocalID);
-                        //            sfavatar.Add(nav.LocalID, nav);
-                        //        }
-                        //    }
-                        //}
-
                         if (!instance.avnames.ContainsKey(favpos.Key))
                         {
                             client.Avatars.RequestAvatarName(favpos.Key);
@@ -2979,15 +2956,12 @@ namespace METAbolt
                         label11.Visible = false;
                     }
 
-                    // SIM stats
-                    Simulator sims = sim = ssim;   // client.Network.Simulators[0];
-
                     try
                     {
-                        //sims = client.Network.Simulators[0];
+                        //ssim = client.Network.Simulators[0];
 
-                        label4.Text = "Ttl objects: " + sims.Stats.Objects.ToString();
-                        label5.Text = "Scripted objects: " + sims.Stats.ScriptedObjects.ToString();
+                        label4.Text = "Ttl objects: " + ssim.Stats.Objects.ToString();
+                        label5.Text = "Scripted objects: " + ssim.Stats.ScriptedObjects.ToString();
                         label8.Text = client.Network.CurrentSim.Name;
 
                         Simulator csim = client.Network.CurrentSim;
@@ -3021,27 +2995,27 @@ namespace METAbolt
                     Vector3 myPos = new Vector3(0,0,0);
                     string strInfo = string.Empty;
 
-                    if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
+                    if (!ssim.AvatarPositions.ContainsKey(client.Self.AgentID))
                     {
                         myPos = instance.SIMsittingPos();
-                        label12.Text = sims.SimVersion;
-                        strInfo = string.Format("Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count + 1);
+                        label12.Text = ssim.SimVersion;
+                        strInfo = string.Format("Ttl Avatars: {0}", ssim.AvatarPositions.Count + 1);
                     }
                     else
                     {
                         try
                         {
-                            myPos = sim.AvatarPositions[client.Self.AgentID];
+                            myPos = ssim.AvatarPositions[client.Self.AgentID];
 
                             try
                             {
-                                string[] svers = sims.SimVersion.Split(' ');
+                                string[] svers = ssim.SimVersion.Split(' ');
                                 var e = from s in svers
                                         select s;
 
                                 int cnt = e.Count() - 1;
 
-                                //label12.Text = sims.SimVersion.Remove(0, 18);
+                                //label12.Text = ssim.SimVersion.Remove(0, 18);
                                 label12.Text = svers[cnt]; 
                             }
                             catch
@@ -3049,7 +3023,7 @@ namespace METAbolt
                                 label12.Text = "na";
                             }
 
-                            strInfo = string.Format("Ttl Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
+                            strInfo = string.Format("Ttl Avatars: {0}", ssim.AvatarPositions.Count);
                         }
                         catch { ; }
                     }
@@ -3060,14 +3034,9 @@ namespace METAbolt
 
                     instance.avlocations.Clear();
 
-                    client.Network.CurrentSim.AvatarPositions.ForEach(
+                    ssim.AvatarPositions.ForEach(
                     delegate(KeyValuePair<UUID, Vector3> pos)
                     {
-                        //if (!instance.avnames.ContainsKey(pos.Key))
-                        //{
-                        //    client.Avatars.RequestAvatarName(pos.Key);
-                        //}
-
                         int x = (int)pos.Value.X - 2;
                         int y = 255 - (int)pos.Value.Y - 2;
 
@@ -3103,28 +3072,22 @@ namespace METAbolt
                                 
                                 instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
 
-                                //Avatar fav = new Avatar();
-                                //fav = client.Network.CurrentSim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
+                                Color aclr = Color.Black;
 
-                                //if (fav == null)
-                                //{
-                                //    if (instance.avnames.ContainsKey(pos.Key))
-                                //    {
-                                //        string name = instance.avnames[pos.Key];
+                                Avatar fav = new Avatar();
+                                fav = ssim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
 
-                                //        //client.Avatars.RequestTrackAgent(pos.Key);
-                                //        BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
-                                //    }
-                                //}
-                                //else
-                                //{
-                                //    BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { fav });
-                                //}
+                                if (fav == null)
+                                {
+                                    aclr = Color.RoyalBlue;
+                                    client.Self.Movement.Camera.LookAt(pos.Value + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
+                                    client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
+                                }
 
                                 if (instance.avnames.ContainsKey(pos.Key))
                                 {
                                     string name = instance.avnames[pos.Key];
-                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
+                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr });
                                 }
                             }
                             catch (Exception ex)
@@ -3402,10 +3365,12 @@ namespace METAbolt
 
             UUID avid = (UUID)lvwRadar.SelectedItems[0].Tag;
 
-            nav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar avr)
-            {
-                return avr.ID == avid;
-            });
+            //nav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar avr)
+            //{
+            //    return avr.ID == avid;
+            //});
+
+            nav = CurrentSIM.ObjectsAvatars.Find((Avatar av) => { return av.ID == avid; });
 
             return nav;
         }
