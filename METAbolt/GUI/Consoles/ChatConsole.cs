@@ -1172,32 +1172,44 @@ namespace METAbolt
             if (e.Simulator != client.Network.CurrentSim) return;
             if (!e.Update.Avatar) return;
 
-            Avatar av = new Avatar();
-            client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
+            //Avatar av = new Avatar();
+            //client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
+            ////client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Prim.LocalID, out av);
 
-            if (!sfavatar.ContainsKey(e.Prim.LocalID))
+            //if (av == null) return;
+
+            //if (!sfavatar.ContainsKey(av.LocalID))
+            //{
+            //    //Avatar av = new Avatar();
+            //    //client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
+
+            //    try
+            //    {
+            //        lock (sfavatar)
+            //        {
+            //            sfavatar.Add(av.LocalID, av);
+            //        }
+            //    }
+            //    catch { ; }
+            //}
+            //else
+            //{
+            //    lock (sfavatar)
+            //    {
+            //        sfavatar.Remove(av.LocalID);
+            //        sfavatar.Add(av.LocalID, av);
+            //    }
+            //}
+
+            if (e.Prim.ID == client.Self.AgentID)
             {
-                //Avatar av = new Avatar();
-                //client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
-
-                if (av == null) return;
-
-                try
-                {
-                    lock (sfavatar)
-                    {
-                        sfavatar.Add(av.LocalID, av);
-                    }
-                }
-                catch { ; }
+                instance.State.ResetCamera();
+                return;
             }
-            else
+
+            if (!instance.avnames.ContainsKey(e.Prim.ID))
             {
-                lock (sfavatar)
-                {
-                    sfavatar.Remove(av.LocalID);
-                    sfavatar.Add(av.LocalID, av);
-                }
+                client.Avatars.RequestAvatarName(e.Prim.ID);
             }
         }
 
@@ -1263,7 +1275,7 @@ namespace METAbolt
                 if (name != client.Self.Name)
                 {
                     ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
-                    item.ForeColor = Color.DarkBlue;
+                    //item.ForeColor = Color.DarkBlue;
                     item.Tag = key;
                     item.ToolTipText = name;
 
@@ -1420,39 +1432,39 @@ namespace METAbolt
                     sDist = "  [???m]  ";
                 }
 
-                if (av.Name != client.Self.Name)
-                {
-                    Vector3 dirv = new Vector3(Vector3.Zero); 
-                    dirv = Vector3.Normalize(avpos - selfpos);
-                    dirv.Normalize();
+                //if (av.Name != client.Self.Name)
+                //{
+                //    Vector3 dirv = new Vector3(Vector3.Zero); 
+                //    dirv = Vector3.Normalize(avpos - selfpos);
+                //    dirv.Normalize();
 
-                    Quaternion avRot = client.Self.RelativeRotation;
+                //    Quaternion avRot = client.Self.RelativeRotation;
 
-                    Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
+                //    Matrix4 m = Matrix4.CreateFromQuaternion(avRot);
 
-                    Vector3 myrot = new Vector3(Vector3.Zero);
-                    myrot.X = m.M11;
-                    myrot.Y = m.M21;
-                    myrot.Z = m.M31;
+                //    Vector3 myrot = new Vector3(Vector3.Zero);
+                //    myrot.X = m.M11;
+                //    myrot.Y = m.M21;
+                //    myrot.Z = m.M31;
 
-                    float vs = Vector3.Dot(myrot, dirv);
+                //    float vs = Vector3.Dot(myrot, dirv);
 
-                    bool isonfront = Vector3.Dot(myrot, dirv) > 0f; // less than 90 degrees
+                //    bool isonfront = Vector3.Dot(myrot, dirv) > 0f; // less than 90 degrees
 
-                    Vector3 v1 = new Vector3(0, 0, 0);
-                    Vector3 v2 = new Vector3(0, 0, 0);
+                //    Vector3 v1 = new Vector3(0, 0, 0);
+                //    Vector3 v2 = new Vector3(0, 0, 0);
 
-                    v1 = selfpos;
-                    v2 = avpos;
+                //    v1 = selfpos;
+                //    v2 = avpos;
 
-                    v1.Normalize();
-                    v2.Normalize();
+                //    v1.Normalize();
+                //    v2.Normalize();
 
-                    double angle = (float)Math.Acos(Vector3.Dot(v1, v2));
-                    //double angle = (float)Math.Acos(Vector3.Dot(myrot, dirv));
+                //    double angle = (float)Math.Acos(Vector3.Dot(v1, v2));
+                //    //double angle = (float)Math.Acos(Vector3.Dot(myrot, dirv));
 
-                    double degrees = angle * 180 / Math.PI;
-                }
+                //    double degrees = angle * 180 / Math.PI;
+                //}
 
                 string rentry = sDist + name + astate;
                 //string rentry = name;
@@ -2808,7 +2820,7 @@ namespace METAbolt
                         lvwRadar.EndUpdate();
                     }
 
-                    List<uint> avremove = new List<uint>();
+                    //List<uint> avremove = new List<uint>();
                 }
 
                 if (instance.State.IsFollowing)
@@ -2823,31 +2835,36 @@ namespace METAbolt
 
             e.Simulator.AvatarPositions.ForEach(delegate(KeyValuePair<UUID, Vector3> favpos)
                     {
-                        Avatar nav = new Avatar();
-                        //nav = e.Simulator.ObjectsAvatars.Find((Avatar fnav) => { return fnav.ID == favpos.Key; });
+                        //Avatar nav = new Avatar();
+                        ////nav = e.Simulator.ObjectsAvatars.Find((Avatar fnav) => { return fnav.ID == favpos.Key; });
 
-                        nav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar avr)
-                        {
-                            return avr.ID == favpos.Key;
-                        });
+                        //nav = client.Network.CurrentSim.ObjectsAvatars.Find(delegate(Avatar avr)
+                        //{
+                        //    return avr.ID == favpos.Key;
+                        //});
 
-                        if (nav != null)
+                        //if (nav != null)
+                        //{
+                        //    if (!sfavatar.ContainsKey(nav.LocalID))
+                        //    {
+                        //        lock (sfavatar)
+                        //        {
+                        //            sfavatar.Add(nav.LocalID, nav);
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        lock (sfavatar)
+                        //        {
+                        //            sfavatar.Remove(nav.LocalID);
+                        //            sfavatar.Add(nav.LocalID, nav);
+                        //        }
+                        //    }
+                        //}
+
+                        if (!instance.avnames.ContainsKey(favpos.Key))
                         {
-                            if (!sfavatar.ContainsKey(nav.LocalID))
-                            {
-                                lock (sfavatar)
-                                {
-                                    sfavatar.Add(nav.LocalID, nav);
-                                }
-                            }
-                            else
-                            {
-                                lock (sfavatar)
-                                {
-                                    sfavatar.Remove(nav.LocalID);
-                                    sfavatar.Add(nav.LocalID, nav);
-                                }
-                            }
+                            client.Avatars.RequestAvatarName(favpos.Key);
                         }
                     });
 
@@ -3046,10 +3063,10 @@ namespace METAbolt
                     client.Network.CurrentSim.AvatarPositions.ForEach(
                     delegate(KeyValuePair<UUID, Vector3> pos)
                     {
-                        if (!instance.avnames.ContainsKey(pos.Key))
-                        {
-                            client.Avatars.RequestAvatarName(pos.Key);
-                        }
+                        //if (!instance.avnames.ContainsKey(pos.Key))
+                        //{
+                        //    client.Avatars.RequestAvatarName(pos.Key);
+                        //}
 
                         int x = (int)pos.Value.X - 2;
                         int y = 255 - (int)pos.Value.Y - 2;
@@ -3086,23 +3103,33 @@ namespace METAbolt
                                 
                                 instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
 
-                                Avatar fav = new Avatar();
-                                fav = client.Network.CurrentSim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
+                                //Avatar fav = new Avatar();
+                                //fav = client.Network.CurrentSim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
 
-                                if (fav == null)
+                                //if (fav == null)
+                                //{
+                                //    if (instance.avnames.ContainsKey(pos.Key))
+                                //    {
+                                //        string name = instance.avnames[pos.Key];
+
+                                //        //client.Avatars.RequestTrackAgent(pos.Key);
+                                //        BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { fav });
+                                //}
+
+                                if (instance.avnames.ContainsKey(pos.Key))
                                 {
-                                    if (instance.avnames.ContainsKey(pos.Key))
-                                    {
-                                        string name = instance.avnames[pos.Key];
-
-                                        client.Avatars.RequestTrackAgent(pos.Key);
-                                        BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
-                                    }
+                                    string name = instance.avnames[pos.Key];
+                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value });
                                 }
                             }
                             catch (Exception ex)
                             {
-                                Logger.Log("UpdateMiniMap: " + ex.Message, Helpers.LogLevel.Warning);   
+                                Logger.Log("UpdateMiniMap: " + ex.Message, Helpers.LogLevel.Warning);
                                 //reporter.Show(ex);
                             }
                         }
@@ -3111,47 +3138,47 @@ namespace METAbolt
                     }
                     );
 
-                    try
-                    {
-                        lock (sfavatar)
-                        {
-                            List<uint> arem = new List<uint>();
+                    //try
+                    //{
+                    //    lock (sfavatar)
+                    //    {
+                    //        List<uint> arem = new List<uint>();
  
-                            foreach (KeyValuePair<uint, Avatar> av in sfavatar)
-                            {
-                                Avatar sav = new Avatar();
-                                sav = av.Value;
+                    //        foreach (KeyValuePair<uint, Avatar> av in sfavatar)
+                    //        {
+                    //            Avatar sav = new Avatar();
+                    //            sav = av.Value;
 
-                                if (!sim.AvatarPositions.ContainsKey(sav.ID))
-                                {
-                                    //sfavatar.Remove(sav.LocalID);
-                                    arem.Add(sav.LocalID);
+                    //            if (!sim.AvatarPositions.ContainsKey(sav.ID))
+                    //            {
+                    //                //sfavatar.Remove(sav.LocalID);
+                    //                arem.Add(sav.LocalID);
 
-                                    if (lvwRadar.Items.ContainsKey(sav.Name))
-                                    {
-                                        lvwRadar.BeginUpdate();
-                                        lvwRadar.Items.RemoveByKey(sav.Name);
-                                        lvwRadar.EndUpdate();
-                                    }
+                    //                if (lvwRadar.Items.ContainsKey(sav.Name))
+                    //                {
+                    //                    lvwRadar.BeginUpdate();
+                    //                    lvwRadar.Items.RemoveByKey(sav.Name);
+                    //                    lvwRadar.EndUpdate();
+                    //                }
 
-                                    if (instance.avtags.ContainsKey(sav.ID))
-                                    {
-                                        instance.avtags.Remove(sav.ID);
-                                    }
-                                }
-                                else
-                                {
-                                    BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { sav });
-                                }                                
-                            }
+                    //                if (instance.avtags.ContainsKey(sav.ID))
+                    //                {
+                    //                    instance.avtags.Remove(sav.ID);
+                    //                }
+                    //            }
+                    //            else
+                    //            {
+                    //                BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { sav });
+                    //            }                                
+                    //        }
 
-                            foreach (uint avt in arem)
-                            {
-                                sfavatar.Remove(avt);
-                            }
-                        }
-                    }
-                    catch { ; }
+                    //        foreach (uint avt in arem)
+                    //        {
+                    //            sfavatar.Remove(avt);
+                    //        }
+                    //    }
+                    //}
+                    //catch { ; }
 
                     // Draw self position
                     Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
