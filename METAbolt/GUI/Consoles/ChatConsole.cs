@@ -1279,10 +1279,13 @@ namespace METAbolt
 
                 if (name != client.Self.Name)
                 {
-                    ListViewItem item = lvwRadar.Items.Add(name, rentry, string.Empty);
+                    ListViewItem item = lvwRadar.Items.Add(name, sDist + name, string.Empty);
                     item.ForeColor = clr;
                     item.Tag = key;
                     item.ToolTipText = name;
+
+                    item.SubItems.Add(sym);
+                    item.SubItems.Add(state);
 
                     //string[] str = name.Split(' ');
                     //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + key.ToString().Replace("-", "");
@@ -1309,6 +1312,9 @@ namespace METAbolt
                     ListViewItem item = lvwRadar.Items.Add(avsnem, avsnem, string.Empty);
                     item.Font = new Font(item.Font, FontStyle.Bold);
                     item.Tag = client.Self.AgentID;
+
+                    item.SubItems.Add(string.Empty);
+                    item.SubItems.Add(string.Empty);
                 }
 
                 lvwRadar.EndUpdate();
@@ -4146,91 +4152,110 @@ namespace METAbolt
 
         private void lvwRadar_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            //e.DrawBackground();
+            ////e.DrawBackground();
 
-            //if (e.ItemIndex < 0) return;
+            ////if (e.ItemIndex < 0) return;
+
+            ////ListViewItem itemToDraw = lvwRadar.Items[e.ItemIndex];
+
+            ////if ((e.State & ListViewItemStates.Selected) != 0)
+            ////{
+            ////    // Draw the background and focus rectangle for a selected item.
+            ////    e.Graphics.FillRectangle(Brushes.Maroon, e.Bounds);
+            ////    e.DrawFocusRectangle();
+            ////}
+            ////else
+            ////{
+            ////    // Draw the background for an unselected item. 
+            ////    using (LinearGradientBrush brush =
+            ////        new LinearGradientBrush(e.Bounds, Color.Orange,
+            ////        Color.Maroon, LinearGradientMode.Horizontal))
+            ////    {
+            ////        e.Graphics.FillRectangle(brush, e.Bounds);
+            ////    }
+            ////}
+
+            ////// Draw the item text for views other than the Details view.
+            ////if (lvwRadar.View != View.Details)
+            ////{
+            ////    e.DrawText();
+            ////}
+
+            e.DrawBackground();
+            
+
+            ////TextFormatFlags flags = TextFormatFlags.Left;
 
             //ListViewItem itemToDraw = lvwRadar.Items[e.ItemIndex];
 
+            ////Brush textBrush = null;
+            ////Brush dBrush = null;
+            ////Brush rBrush = null;
+            ////Font boldFont = new Font("Arial", 8, FontStyle.Bold);
+            ////Font regularFont = new Font("Arial", 8, FontStyle.Regular);
+            ////Font italicFont = new Font("Arial", 7, FontStyle.Italic);
+
             //if ((e.State & ListViewItemStates.Selected) != 0)
             //{
-            //    // Draw the background and focus rectangle for a selected item.
-            //    e.Graphics.FillRectangle(Brushes.Maroon, e.Bounds);
+            //    //textBrush = new SolidBrush(Color.FromKnownColor(KnownColor.HighlightText));
+            //    //dBrush = new SolidBrush(Color.Yellow);
+            //    e.Graphics.FillRectangle(Brushes.White, e.Bounds);
             //    e.DrawFocusRectangle();
             //}
             //else
             //{
-            //    // Draw the background for an unselected item. 
-            //    using (LinearGradientBrush brush =
-            //        new LinearGradientBrush(e.Bounds, Color.Orange,
-            //        Color.Maroon, LinearGradientMode.Horizontal))
-            //    {
-            //        e.Graphics.FillRectangle(brush, e.Bounds);
-            //    }
+            //    //textBrush = new SolidBrush(Color.FromKnownColor(KnownColor.ControlText));
+            //    //dBrush = new SolidBrush(Color.RoyalBlue);
+            //    e.Graphics.FillRectangle(Brushes.RoyalBlue, e.Bounds);
             //}
+
+            ////float nameX = e.Bounds.Location.X;
+            ////float nameY = e.Bounds.Location.Y;
+
+            //string name = string.Empty;
+            ////string description = string.Empty;
+            ////string distance = string.Empty;
+
+            //name = itemToDraw.Name;
+
+            //if (avtyping.Contains(name))
+            //{
+            //    //rBrush = new SolidBrush(Color.Red);
+            //    //e.Graphics.DrawString(name, regularFont, rBrush, nameX, nameY);
+            //}
+            //else if (client.Self.AgentID == (UUID)itemToDraw.Tag)
+            //{
+            //    //e.Graphics.DrawString(name, boldFont, textBrush, nameX, nameY);
+            //    e.Graphics.DrawImage(Properties.Resources.green_orb, e.Bounds.Location);
+            //}
+            //else
+            //{
+            //    //e.Graphics.DrawString(name, regularFont, textBrush, nameX, nameY);
+            //}
+
+            ////e.Graphics.DrawLine(new Pen(Color.FromArgb(200, 200, 200)), new Point(e.Bounds.Left, e.Bounds.Bottom - 1), new Point(e.Bounds.Right, e.Bounds.Bottom - 1));
+            //////e.DrawFocusRectangle();
+
+            ////boldFont.Dispose();
+            ////regularFont.Dispose();
+            ////textBrush.Dispose();
+            ////boldFont = null;
+            ////regularFont = null;
+            ////textBrush = null;
+            ////dBrush = null;
+            ////rBrush = null;
+
+            ////e.DrawText(flags);
 
             //// Draw the item text for views other than the Details view.
             //if (lvwRadar.View != View.Details)
             //{
-            //    e.DrawText();
+                e.DrawText();
             //}
         }
 
         public void UpdateFavourites(List<InventoryBase> foundfolders)
         {
-            //foreach (InventoryBase o in foundfolders)
-            //{
-            //    if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
-            //    {
-            //        if (o is InventoryFolder)
-            //        {
-            //            //List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
-            //            List<InventoryBase> founditems = client.Inventory.Store.GetContents(o.UUID);
-
-            //            if (founditems == null) return;
-
-            //            if (founditems.Count > 0)
-            //            {
-            //                tsFavs.Visible = true;
-            //                tsFavs.Items.Clear();
-
-            //                foreach (InventoryBase oitem in founditems)
-            //                {
-            //                    InventoryItem item = (InventoryItem)oitem;
-
-            //                    if (item.InventoryType == InventoryType.Landmark)
-            //                    {
-            //                        string iname = item.Name;
-            //                        string desc = item.Description;
-
-            //                        if (iname.Length > 43)
-            //                        {
-            //                            iname = iname.Substring(0, 40) + "...";
-            //                        }
-
-            //                        ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
-
-            //                        //if (!tsFavs.Items.Contains(btn))
-            //                        //{
-            //                        btn.TextAlign = ContentAlignment.MiddleLeft;
-            //                        btn.ToolTipText = desc;
-            //                        tsFavs.Items.Add(btn);
-
-            //                        ToolStripSeparator sep = new ToolStripSeparator();
-            //                        tsFavs.Items.Add(sep);
-            //                        //}
-            //                    }
-            //                }
-
-            //                //tsdefault.Visible = false;
-            //                //this.Height += 25;
-            //            }
-            //        }
-
-            //        break;
-            //    }
-            //}
-
             if (foundfolders == null) return;
 
             if (foundfolders.Count > 0)
@@ -4247,9 +4272,11 @@ namespace METAbolt
                         string iname = item.Name;
                         string desc = item.Description;
 
+                        int twh = tabPage4.Width; 
+
                         if (iname.Length > 48)
                         {
-                            iname = iname.Substring(0, 45) + "...";
+                            iname = iname.Substring(0, twh - 5) + "...";
                         }
 
                         ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
@@ -4336,5 +4363,18 @@ namespace METAbolt
             }
         }
 
+        //private void lvwRadar_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        //{
+        //    if (e.ColumnIndex == 1)
+        //    {
+        //        e.Graphics.DrawImage(Properties.Resources.green_orb, e.SubItem.Bounds.Location);
+        //        e.Item.UseItemStyleForSubItems = false;
+        //    }
+        //}
+
+        //private void lvwRadar_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        //{
+        //    e.DrawDefault = true;
+        //}
     }
 }

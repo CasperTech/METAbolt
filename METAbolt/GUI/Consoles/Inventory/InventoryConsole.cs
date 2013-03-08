@@ -503,6 +503,12 @@ namespace METAbolt
                     }
                 }
                 catch { ; }
+
+                if (folderID == favfolder)
+                {
+                    List<InventoryBase> invroot = client.Inventory.Store.GetContents(favfolder);
+                    instance.MainForm.UpdateFavourites(invroot);
+                }
             }
         }
 
