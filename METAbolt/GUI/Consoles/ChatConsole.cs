@@ -2933,7 +2933,7 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
-                lvwRadar.Clear();
+                lvwRadar.Items.Clear();
             }));
 
             //GetMap();
