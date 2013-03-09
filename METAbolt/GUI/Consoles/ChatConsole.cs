@@ -1964,8 +1964,7 @@ namespace METAbolt
 
         private void tbtnFollow_Click(object sender, EventArgs e)
         {
-            //Avatar av = ((ListViewItem)lvwRadar.SelectedItems[0]).Tag as Avatar;
-            //if (av == null) return;
+            client.Self.AutoPilotCancel();
 
             UUID av = (UUID)lvwRadar.SelectedItems[0].Tag;
 
@@ -1973,8 +1972,24 @@ namespace METAbolt
 
             string name = instance.avnames[av];
 
+            Avatar sav = new Avatar();
+            sav = CurrentSIM.ObjectsAvatars.Find(delegate(Avatar fa)
+            {
+                return fa.ID == av;
+            }
+            );
+
+            if (sav == null)
+            {
+                MessageBox.Show("Avatar is out of range for this function.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             if (instance.State.FollowName != name)
             {
+                //instance.State.GoTo(string.Empty, UUID.Zero);
+
+                instance.State.Follow(string.Empty, UUID.Zero);
                 instance.State.Follow(name, av);
                 tbtnFollow.ToolTipText = "Stop Following";
             }
@@ -2229,14 +2244,14 @@ namespace METAbolt
         {
             client.Self.AutoPilotCancel();
 
-            //Avatar av = ((ListViewItem)lvwRadar.SelectedItems[0]).Tag as Avatar;
-            //if (av == null) return;
+            ////Avatar av = ((ListViewItem)lvwRadar.SelectedItems[0]).Tag as Avatar;
+            ////if (av == null) return;
 
             UUID av = (UUID)lvwRadar.SelectedItems[0].Tag;
 
             if (av == UUID.Zero || av == null) return;
 
-            //string name = instance.avnames[av];
+            string name = instance.avnames[av];
 
             Avatar sav = new Avatar();
             sav = CurrentSIM.ObjectsAvatars.Find(delegate(Avatar fa)
@@ -2245,62 +2260,70 @@ namespace METAbolt
             }
             );
 
-            if (sav != null)
-            {
-                Vector3 pos = new Vector3(Vector3.Zero);
-                pos = sav.Position;
-
-                // Is the avatar sitting
-                uint oID = sav.ParentID;
-
-                if (oID != 0)
-                {
-                    // the av is sitting
-                    Primitive prim = new Primitive();
-
-                    try
-                    {
-                        client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
-
-                        if (prim == null)
-                        {
-                            // do nothing
-                            client.Self.AutoPilotCancel();
-                            Logger.Log("GoTo cancelled. Could find the object the target avatar is sitting on.", Helpers.LogLevel.Warning);
-                            return;
-                        }
-                        else
-                        {
-                            pos += prim.Position;
-                        }
-                    }
-                    catch
-                    {
-                        ;
-                        //reporter.Show(ex);
-                    }
-                }
-                
-                ulong regionHandle = client.Network.CurrentSim.Handle;
-
-                //int followRegionX = (int)(regionHandle >> 32);
-                //int followRegionY = (int)(regionHandle & 0xFFFFFFFF);
-                //ulong x = (ulong)pos.X + (ulong)followRegionX;
-                //ulong y = (ulong)pos.Y + (ulong)followRegionY;
-
-                ulong followRegionX = regionHandle >> 32;
-                ulong followRegionY = regionHandle & (ulong)0xFFFFFFFF;
-
-                ulong x = (ulong)pos.X + followRegionX;
-                ulong y = (ulong)pos.Y + followRegionY;
-                float z = pos.Z - 1f;
-
-                client.Self.AutoPilot(x, y, z);
-            }
-            else
+            if (sav == null)
             {
                 MessageBox.Show("Avatar is out of range for this function.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+
+            Vector3 pos = new Vector3(Vector3.Zero);
+            pos = sav.Position;
+
+            // Is the avatar sitting
+            uint oID = sav.ParentID;
+
+            if (oID != 0)
+            {
+                // the av is sitting
+                Primitive prim = new Primitive();
+
+                try
+                {
+                    client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
+
+                    if (prim == null)
+                    {
+                        // do nothing
+                        client.Self.AutoPilotCancel();
+                        Logger.Log("GoTo cancelled. Could find the object the target avatar is sitting on.", Helpers.LogLevel.Warning);
+                        return;
+                    }
+                    else
+                    {
+                        pos += prim.Position;
+                    }
+                }
+                catch
+                {
+                    ;
+                    //reporter.Show(ex);
+                }
+            }
+
+            ulong regionHandle = client.Network.CurrentSim.Handle;
+
+            ulong followRegionX = regionHandle >> 32;
+            ulong followRegionY = regionHandle & (ulong)0xFFFFFFFF;
+
+            ulong x = (ulong)pos.X + followRegionX;
+            ulong y = (ulong)pos.Y + followRegionY;
+            float z = pos.Z - 1f;
+
+            //if (instance.State.GoName != name)
+            //{
+            //    instance.State.Follow(string.Empty, UUID.Zero);
+
+            //    instance.State.GoTo(string.Empty, UUID.Zero);
+            //    instance.State.GoTo(name, av);
+            //    //tbtnGoto.ToolTipText = "Stop Go to";
+            //}
+            //else
+            //{
+            //    instance.State.GoTo(string.Empty, UUID.Zero);
+            //    //tbtnFollow.ToolTipText = "Go to";
+            //}
+
+            client.Self.AutoPilot(x, y, z);
         }
 
         private void tbtnTurn_Click(object sender, EventArgs e)

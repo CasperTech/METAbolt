@@ -64,7 +64,11 @@ namespace METAbolt
         private bool following = false;
         private string followName = string.Empty;
         private float followDistance = 5.0f;
-        private UUID followid = UUID.Zero;  
+        private UUID followid = UUID.Zero;
+        //private bool goingto = false;
+        //private string goName = string.Empty;
+        //private UUID goid = UUID.Zero;
+
         private SafeDictionary<UUID, String> groupstore = new SafeDictionary<UUID, String>();
         private Dictionary<UUID, Group> groups = new Dictionary<UUID, Group>();
         //private Dictionary<UUID, FriendInfo> avatarfriends = new Dictionary<UUID,FriendInfo>();  
@@ -229,8 +233,9 @@ namespace METAbolt
         { 
             if (!e.Update.Avatar) return;
 
-            if (e.Prim.LocalID == client.Self.LocalID) ResetCamera();    
+            if (e.Prim.LocalID == client.Self.LocalID) ResetCamera();
 
+            //if (!following && !goingto) return;
             if (!following) return;
 
             Avatar av = new Avatar();
@@ -239,60 +244,83 @@ namespace METAbolt
             if (av == null)
             {
                 client.Self.AutoPilotCancel();
+                Logger.Log("Follow/GoTo cancelled. Could not find the target avatar on the SIM.", Helpers.LogLevel.Warning);
                 return;
             }
 
+            Vector3 pos = new Vector3(Vector3.Zero); ;
+
+            pos = av.Position;
+
+            if (av.ParentID != 0)
+            {
+                uint oID = av.ParentID;
+
+                if (prim == null)
+                {
+                    client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
+                }
+
+                if (prim == null)
+                {
+                    client.Self.AutoPilotCancel();
+                    Logger.Log("Follow/GoTo cancelled. Could not find the object the target avatar is sitting on.", Helpers.LogLevel.Warning);
+                    return;
+                }
+
+                pos += prim.Position;
+            }
+            else
+            {
+                prim = null;
+            }
+
+            client.Self.Movement.TurnToward(pos);
+
+            float dist = Vector3.Distance(instance.SIMsittingPos(), pos);
+
+            //if (av.Name == goName)
+            //{
+            //    if (goingto)
+            //    {
+            //        if (dist < 3.0f)
+            //        {
+            //            client.Self.AutoPilotCancel();
+            //            client.Self.Movement.TurnToward(pos);
+
+            //            goid = UUID.Zero;
+            //            goName = string.Empty;
+            //            goingto = false;
+            //        }
+            //        else
+            //        {
+            //            client.Self.AutoPilotCancel();
+            //            ulong followRegionX = e.Simulator.Handle >> 32;
+            //            ulong followRegionY = e.Simulator.Handle & (ulong)0xFFFFFFFF;
+            //            ulong xTarget = (ulong)pos.X + followRegionX;
+            //            ulong yTarget = (ulong)pos.Y + followRegionY;
+            //            float zTarget = pos.Z - 1f;
+
+            //            client.Self.AutoPilot(xTarget, yTarget, zTarget);
+            //        }
+            //    }
+
+            //    return;
+            //}
+
             if (av.Name == followName)
             {
-                Vector3 pos = new Vector3(Vector3.Zero); ;
-
-                pos = av.Position;
-
-                if (av.ParentID != 0)
-                {
-                    uint oID = av.ParentID;
-
-                    if (prim == null)
-                    {
-                        client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(oID, out prim);
-                    }
-
-                    if (prim == null)
+                    if (dist > followDistance)
                     {
                         client.Self.AutoPilotCancel();
-                        Logger.Log("Follow cancelled. Could find the object the target avatar is sitting on.", Helpers.LogLevel.Warning);
-                        return;
+                        ulong followRegionX = e.Simulator.Handle >> 32;
+                        ulong followRegionY = e.Simulator.Handle & (ulong)0xFFFFFFFF;
+                        ulong xTarget = (ulong)pos.X + followRegionX;
+                        ulong yTarget = (ulong)pos.Y + followRegionY;
+                        float zTarget = pos.Z - 1f;
+
+                        client.Self.AutoPilot(xTarget, yTarget, zTarget);
                     }
-
-                    pos += prim.Position;
-                }
-                else
-                {
-                    prim = null;
-                }
-
-                client.Self.Movement.TurnToward(pos);
-
-                if (Vector3.Distance(instance.SIMsittingPos(), pos) > followDistance)
-                {
-                    client.Self.AutoPilotCancel();
-                    ulong followRegionX = e.Simulator.Handle >> 32;
-                    ulong followRegionY = e.Simulator.Handle & (ulong)0xFFFFFFFF;
-                    ulong xTarget = (ulong)pos.X + followRegionX;
-                    ulong yTarget = (ulong)pos.Y + followRegionY;
-                    float zTarget = pos.Z - 1f;
-
-                    client.Self.AutoPilot(xTarget, yTarget, zTarget);
-                }
-                else
-                {
-                    client.Self.AutoPilotCancel();
-                    client.Self.Movement.TurnToward(pos);
-
-                    followid = UUID.Zero;
-                    followName = string.Empty;
-                    following = false;
-                }
             }
         }
 
@@ -331,7 +359,18 @@ namespace METAbolt
             followid = fid;
             followName = name;
             following = !string.IsNullOrEmpty(followName);
+
+            //if (!following) client.Self.AutoPilotCancel();
         }
+
+        //public void GoTo(string name, UUID fid)
+        //{
+        //    goid = fid;
+        //    goName = name;
+        //    goingto = !string.IsNullOrEmpty(followName);
+
+        //    //if (!goingto) client.Self.AutoPilotCancel();
+        //}
 
         public void SetTyping(bool ttyping)
         {
@@ -822,6 +861,12 @@ namespace METAbolt
             get { return followName; }
             set { followName = value; }
         }
+
+        //public string GoName
+        //{
+        //    get { return goName; }
+        //    set { goName = value; }
+        //}
 
         public float FollowDistance
         {
