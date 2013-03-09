@@ -49,7 +49,7 @@
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.9.64.%2a</ApplicationVersion>
+    <ApplicationVersion>0.9.65.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
