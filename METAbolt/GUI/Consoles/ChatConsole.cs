@@ -1336,11 +1336,21 @@ namespace METAbolt
                     //item.SubItems.Add(string.Empty);
                 }
 
+                recolorListItems(lvwRadar);
                 lvwRadar.EndUpdate();
             }
             catch (Exception ex)
             {
                 Logger.Log("Radar update: " + ex.Message, Helpers.LogLevel.Warning);
+            }
+        }
+
+        private static void recolorListItems(ListView lv)
+        {
+            for (int ix = 0; ix < lv.Items.Count; ++ix)
+            {
+                var item = lv.Items[ix];
+                item.BackColor = (ix % 2 == 0) ? Color.WhiteSmoke : Color.White;
             }
         }
 
