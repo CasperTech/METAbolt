@@ -724,6 +724,9 @@ namespace METAbolt
                     }
                 }
 
+                // To avoid LSL errors in SL
+                instance.State.SetStanding();
+
                 // Save the window state. As the main application is exiting it will save the state to the config file.
                 this.Visible = false;
                 instance.Config.CurrentConfig.MainWindowState = (int)this.WindowState;
@@ -1152,7 +1155,7 @@ namespace METAbolt
 
         private void standToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            instance.State.SetStanding();  
+            instance.State.SetStanding();
             RefreshWindowTitle();
         }
 

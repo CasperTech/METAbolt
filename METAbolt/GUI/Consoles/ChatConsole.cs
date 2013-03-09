@@ -1246,35 +1246,48 @@ namespace METAbolt
 
                 if (selfpos.Z < 0.1f)
                 {
-                    selfpos.Z = 1024f; // Convert.ToSingle(client.Self.GlobalPosition.Z);  
+                    selfpos.Z = 1024f;
+                    //selfpos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);
                 }
 
                 if (avpos.Z < 0.1f)
                 {
                     avpos.Z = 1024f;
+                    //avpos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);
                 }
 
                 double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos), ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
-                string sym = "=";
+                string sym = string.Empty;
+                
+                sym = "(Alt.: " + avpos.Z.ToString("#0") + "m)";
 
-                if (selfpos.Z - avpos.Z > 20)
-                {
-                    sym = "<";
-                }
-                else if (selfpos.Z - avpos.Z > -11 && selfpos.Z - avpos.Z < 11)
-                {
-                    sym = "=";
-                }
-                else
-                {
-                    sym = ">";
-                }
+                //if (avpos.Z == 1024f)
+                //{
+                //    sym = "(Alt: >" + avpos.Z.ToString("#0") + "m)";
+                //}
+                //else
+                //{
+                //    sym = "(Alt: " + avpos.Z.ToString("#0") + "m)";
+                //}
+
+                //if (selfpos.Z - avpos.Z > 20)
+                //{
+                //    sym = "<";
+                //}
+                //else if (selfpos.Z - avpos.Z > -11 && selfpos.Z - avpos.Z < 11)
+                //{
+                //    sym = "=";
+                //}
+                //else
+                //{
+                //    sym = ">";
+                //}
 
                 sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
                 // sDist = Convert.ToInt32(dist).ToString() + "m]";
 
-                string rentry = "  (" + sym + ") " + state;
+                string rentry = " " + sym + state;
 
                 lvwRadar.BeginUpdate();
 
@@ -1284,7 +1297,7 @@ namespace METAbolt
                     item.ForeColor = clr;
                     item.Tag = key;
 
-                    rentry = rentry.Replace("*", "(S)");  
+                    rentry = rentry.Replace("*", " (Sitting)");  
                     item.ToolTipText = sDist + name + rentry;
                     //item.BackColor = rowclr;
 
@@ -3100,7 +3113,9 @@ namespace METAbolt
                             }
 
                             Point mouse = new Point(x, y);
-                            string anme = string.Empty; 
+                            string anme = string.Empty;
+
+                            instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
 
                             try
                             {
@@ -3109,8 +3124,6 @@ namespace METAbolt
                                     anme = instance.avtags[pos.Key];
                                 }
                                 
-                                instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
-
                                 Color aclr = Color.Black;
 
                                 Avatar fav = new Avatar();
