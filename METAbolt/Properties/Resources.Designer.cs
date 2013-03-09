@@ -570,6 +570,16 @@ namespace METAbolt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap donate_icon {
+            get {
+                object obj = ResourceManager.GetObject("donate_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap donate2 {
             get {
                 object obj = ResourceManager.GetObject("donate2", resourceCulture);

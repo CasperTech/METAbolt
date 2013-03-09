@@ -1506,7 +1506,8 @@
     <None Include="Resources\debug.png" />
     <None Include="Resources\donate2.png" />
     <None Include="Resources\decrease_indent_i.png" />
-    <Content Include="Resources\donate.png" />
+    <None Include="Resources\donate_icon.png" />
+    <None Include="Resources\Donate.png" />
     <Content Include="Resources\down.png" />
     <None Include="Resources\Favorites.png" />
     <None Include="Resources\Entire_Network_16.png" />
