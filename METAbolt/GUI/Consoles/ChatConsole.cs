@@ -1209,15 +1209,15 @@ namespace METAbolt
             }
         }
 
-        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state, Color rowclr);
-        public void AddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state, Color rowclr)
+        private delegate void OnAddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state);
+        public void AddSIMAvatar(string av, UUID key, Vector3 avpos, Color clr, string state)
         {
             if (InvokeRequired)
             {
 
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    AddSIMAvatar(av, key, avpos, clr, state, rowclr);
+                    AddSIMAvatar(av, key, avpos, clr, state);
                 }));
 
                 return;
@@ -1286,9 +1286,9 @@ namespace METAbolt
 
                     rentry = rentry.Replace("*", "(S)");  
                     item.ToolTipText = sDist + name + rentry;
-                    item.BackColor = rowclr;
+                    //item.BackColor = rowclr;
 
-                    item.SubItems.Add(state);
+                    //item.SubItems.Add(state);
                     //item.SubItems.Add(state);
 
                     //string[] str = name.Split(' ');
@@ -1316,8 +1316,8 @@ namespace METAbolt
                     ListViewItem item = lvwRadar.Items.Add(avsnem, avsnem, string.Empty);
                     item.Font = new Font(item.Font, FontStyle.Bold);
                     item.Tag = client.Self.AgentID;
-                    item.BackColor = Color.RoyalBlue;
-                    item.ForeColor = Color.LightGray;  
+                    item.BackColor = Color.WhiteSmoke;
+                    item.ForeColor = Color.Black;  
                     
                     item.SubItems.Add(string.Empty);
                     //item.SubItems.Add(string.Empty);
@@ -3046,9 +3046,9 @@ namespace METAbolt
 
                     instance.avlocations.Clear();
 
-                    Color rclr = Color.White;
+                    //Color rclr = Color.White;
 
-                    int rctr = 0;
+                    //int rctr = 0;
 
                     ssim.AvatarPositions.ForEach(
                     delegate(KeyValuePair<UUID, Vector3> pos)
@@ -3097,8 +3097,8 @@ namespace METAbolt
                                 if (fav == null)
                                 {
                                     aclr = Color.RoyalBlue;
-                                    client.Self.Movement.Camera.LookAt(pos.Value + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, pos.Value);
-                                    client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
+                                    //client.Self.Movement.Camera.LookAt(pos.Value + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, pos.Value);
+                                    //client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
                                 }
                                 else
                                 {
@@ -3108,21 +3108,21 @@ namespace METAbolt
                                     }
                                 }
 
-                                if (rctr == 1)
-                                {
-                                    rclr = Color.WhiteSmoke;
-                                    rctr = 0;
-                                }
-                                else
-                                {
-                                    rclr = Color.White;
-                                    rctr = 1;
-                                }
+                                //if (rctr == 1)
+                                //{
+                                //    rclr = Color.WhiteSmoke;
+                                //    rctr = 0;
+                                //}
+                                //else
+                                //{
+                                //    rclr = Color.White;
+                                //    rctr = 1;
+                                //}
 
                                 if (instance.avnames.ContainsKey(pos.Key))
                                 {
                                     string name = instance.avnames[pos.Key];
-                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr, st, rclr });
+                                    BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr, st });
                                 }
                             }
                             catch (Exception ex)
@@ -3135,48 +3135,6 @@ namespace METAbolt
                         i++;
                     }
                     );
-
-                    //try
-                    //{
-                    //    lock (sfavatar)
-                    //    {
-                    //        List<uint> arem = new List<uint>();
- 
-                    //        foreach (KeyValuePair<uint, Avatar> av in sfavatar)
-                    //        {
-                    //            Avatar sav = new Avatar();
-                    //            sav = av.Value;
-
-                    //            if (!sim.AvatarPositions.ContainsKey(sav.ID))
-                    //            {
-                    //                //sfavatar.Remove(sav.LocalID);
-                    //                arem.Add(sav.LocalID);
-
-                    //                if (lvwRadar.Items.ContainsKey(sav.Name))
-                    //                {
-                    //                    lvwRadar.BeginUpdate();
-                    //                    lvwRadar.Items.RemoveByKey(sav.Name);
-                    //                    lvwRadar.EndUpdate();
-                    //                }
-
-                    //                if (instance.avtags.ContainsKey(sav.ID))
-                    //                {
-                    //                    instance.avtags.Remove(sav.ID);
-                    //                }
-                    //            }
-                    //            else
-                    //            {
-                    //                BeginInvoke(new OnAddAvatar(AddAvatar), new object[] { sav });
-                    //            }                                
-                    //        }
-
-                    //        foreach (uint avt in arem)
-                    //        {
-                    //            sfavatar.Remove(avt);
-                    //        }
-                    //    }
-                    //}
-                    //catch { ; }
 
                     // Draw self position
                     Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
@@ -3520,16 +3478,18 @@ namespace METAbolt
 
         private void ChatConsole_SizeChanged(object sender, EventArgs e)
         {
-            newsize = tabPage2.Width - 30;
+            //newsize = tabPage2.Width - 40;
 
-            px = world.Top;
-            py = world.Left;
+            //px = world.Top;
+            //py = world.Left;
 
-            System.Drawing.Size sz = new Size();
-            sz.Height = newsize;
-            sz.Width = newsize;
+            //System.Drawing.Size sz = new Size();
+            //sz.Height = newsize;
+            //sz.Width = newsize;
 
-            panel6.Size = sz;
+            //panel6.Size = sz;
+
+            //lvwRadar.Columns[0].Width = lvwRadar.Width - 3;
 
             //if (instance.MainForm.WindowState == FormWindowState.Maximized)
             //{
@@ -4382,6 +4342,25 @@ namespace METAbolt
                 tooltiptext = string.Empty;
                 toolTip.SetToolTip(lvwRadar, null);
             }
+        }
+
+        private void lvwRadar_SizeChanged(object sender, EventArgs e)
+        {
+            lvwRadar.Columns[0].Width = lvwRadar.Width - 3;
+        }
+
+        private void tabPage2_SizeChanged(object sender, EventArgs e)
+        {
+            newsize = tabPage2.Width - 40;
+
+            px = world.Top;
+            py = world.Left;
+
+            System.Drawing.Size sz = new Size();
+            sz.Height = newsize;
+            sz.Width = newsize;
+
+            panel6.Size = sz;
         }
 
         //private void lvwRadar_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
