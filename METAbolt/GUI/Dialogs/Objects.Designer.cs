@@ -1022,11 +1022,11 @@ namespace METAbolt
             this.btnTask.Enabled = false;
             this.btnTask.Font = new System.Drawing.Font("Tahoma", 6.25F);
             this.btnTask.ForeColor = System.Drawing.Color.White;
-            this.btnTask.Location = new System.Drawing.Point(316, 425);
+            this.btnTask.Location = new System.Drawing.Point(263, 426);
             this.btnTask.Name = "btnTask";
-            this.btnTask.Size = new System.Drawing.Size(67, 21);
+            this.btnTask.Size = new System.Drawing.Size(119, 21);
             this.btnTask.TabIndex = 3;
-            this.btnTask.Text = "Task show";
+            this.btnTask.Text = "Show object contents";
             this.btnTask.UseVisualStyleBackColor = false;
             this.btnTask.Click += new System.EventHandler(this.btnTask_Click);
             // 
@@ -1177,11 +1177,11 @@ namespace METAbolt
             this.button6.Enabled = false;
             this.button6.Font = new System.Drawing.Font("Tahoma", 6.25F);
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(316, 328);
+            this.button6.Location = new System.Drawing.Point(264, 328);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(67, 21);
+            this.button6.Size = new System.Drawing.Size(119, 21);
             this.button6.TabIndex = 1;
-            this.button6.Text = "Task show";
+            this.button6.Text = "Show object contents";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
