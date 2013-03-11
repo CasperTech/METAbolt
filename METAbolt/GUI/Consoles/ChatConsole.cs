@@ -2432,6 +2432,9 @@ namespace METAbolt
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '#' });
                     string aavname = split[0].ToString();
+                    string[] avnamesplit = aavname.Split(new Char[] { '#' });
+                    aavname = avnamesplit[0].ToString();
+
                     split = e.LinkText.Split(new Char[] { ':' });
                     string elink = split[2].ToString();
                     split = elink.Split(new Char[] { '&' });

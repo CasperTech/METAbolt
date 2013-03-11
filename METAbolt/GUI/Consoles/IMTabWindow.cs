@@ -693,14 +693,17 @@ namespace METAbolt
                     string encoded = HttpUtility.UrlDecode(e.LinkText);
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '#' });
-                    string avname = split[0].ToString();
+                    string aavname = split[0].ToString();
+                    string[] avnamesplit = aavname.Split(new Char[] { '#' });
+                    aavname = avnamesplit[0].ToString();
+
                     split = e.LinkText.Split(new Char[] { ':' });
                     string elink = split[2].ToString();
                     split = elink.Split(new Char[] { '&' });
 
                     UUID avid = (UUID)split[0].ToString();
 
-                    (new frmProfile(instance, avname, avid)).Show();
+                    (new frmProfile(instance, aavname, avid)).Show();
                 }
                 catch { ; }
             }
