@@ -37,7 +37,11 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.Timers;
 using ExceptionReporting;
+//using System.Net;
+using System.IO;
+using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
 
 
 namespace METAbolt
@@ -49,11 +53,22 @@ namespace METAbolt
 
         private System.Timers.Timer aTimer1;
         private NetworkTraffic networkTraffic = new NetworkTraffic();
+        private float lastAmountOfBytesReceived = 0.0f;
+        private float lastAmountOfBytesSent = 0.0f;
+
+        private PerformanceCounter bytesSentPerformanceCounter = new PerformanceCounter();
+        private PerformanceCounter bytesReceivedPerformanceCounter = new PerformanceCounter();
+        private int iniheight = 100;
+
         //private double ins = 0.0d;
         //private double iny = 0.0d;
 
         //float pastval1 = 0f;
         //float pastval2 = 0f;
+        //private double ins = 0.0d;
+        //private double iny = 0.0d;
+        //private float pastval1 = 0f;
+        //private float pastval2 = 0f;
 
         //Workaround for window handle exception on login
         private List<DebugLogMessage> initQueue = new List<DebugLogMessage>();
@@ -85,11 +100,76 @@ namespace METAbolt
 
             this.dataChart3.BackColor = System.Drawing.Color.Black;
             this.dataChart3.ChartType = SystemMonitor.ChartType.Line;
+            this.dataChart1.ChartType = SystemMonitor.ChartType.Line;
             //this.dataChart2.Cursor = System.Windows.Forms.Cursors.Default;
             this.dataChart3.GridColor = System.Drawing.Color.Green;
             //this.dataChart2.GridPixels = 8;
-            this.dataChart3.InitialHeight = 300;
+            this.dataChart3.InitialHeight = 250;
+            this.dataChart1.InitialHeight = iniheight;
+            //this.dataChart1.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            //this.dataChart1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.dataChart3.LineColor = System.Drawing.Color.White;
+
+            bytesSentPerformanceCounter.CategoryName = ".NET CLR Networking";
+            bytesSentPerformanceCounter.CounterName = "Bytes Sent";
+            bytesSentPerformanceCounter.InstanceName = GetInstanceName(); ;   // networkTraffic.GetInstanceNme();
+            bytesSentPerformanceCounter.ReadOnly = true;
+            //bytesSentPerformanceCounter.RawValue = 0;
+
+            //bytesReceivedPerformanceCounter
+            bytesReceivedPerformanceCounter.CategoryName = ".NET CLR Networking";
+            bytesReceivedPerformanceCounter.CounterName = "Bytes Received";
+            bytesReceivedPerformanceCounter.InstanceName = GetInstanceName();    //networkTraffic.GetInstanceNme();
+            bytesReceivedPerformanceCounter.ReadOnly = true;
+            //bytesReceivedPerformanceCounter.RawValue = 0;
+        }
+
+        private static string GetInstanceName()
+        {
+            // Used Reflector to find the correct formatting:
+            string assemblyName = GetAssemblyName();
+            if ((assemblyName == null) || (assemblyName.Length == 0))
+            {
+                assemblyName = AppDomain.CurrentDomain.FriendlyName;
+            }
+            StringBuilder builder = new StringBuilder(assemblyName);
+            for (int i = 0; i < builder.Length; i++)
+            {
+                switch (builder[i])
+                {
+                    case '/':
+                    case '\\':
+                    case '#':
+                        builder[i] = '_';
+                        break;
+                    case '(':
+                        builder[i] = '[';
+                        break;
+
+                    case ')':
+                        builder[i] = ']';
+                        break;
+                }
+            }
+            return string.Format(CultureInfo.CurrentCulture,
+                                 "{0}[{1}]",
+                                 builder.ToString(),
+                                 Process.GetCurrentProcess().Id);
+        }
+
+        private static string GetAssemblyName()
+        {
+            string str = null;
+            Assembly entryAssembly = Assembly.GetEntryAssembly();
+            if (entryAssembly != null)
+            {
+                AssemblyName name = entryAssembly.GetName();
+                if (name != null)
+                {
+                    str = name.Name;
+                }
+            }
+            return str;
         }
 
         private void SetExceptionReporter()
@@ -353,7 +433,7 @@ namespace METAbolt
             aTimer1 = new System.Timers.Timer();
             aTimer1.Elapsed += new ElapsedEventHandler(OnTimedEvent1);
             // Set the Interval to 5 seconds.
-            aTimer1.Interval = 5000;
+            aTimer1.Interval = 1000;
             aTimer1.Enabled = true;
             aTimer1.Start();
         }
@@ -417,34 +497,66 @@ namespace METAbolt
 
         private void ping_ChangeTimer(object sender, PingEventArgs pa)
         {
-            BeginInvoke(new MethodInvoker(delegate()
-            {
-                if (pa.Message().Contains("Approximate round trip times in milli-seconds"))
+            //if (this.IsHandleCreated)
+            //{
+                BeginInvoke(new MethodInvoker(delegate()
                 {
-                    string[] ltimes = pa.Message().Split(new Char[] { '=' });
-                    int enrs = ltimes.Length;
-
-                    string lval = ltimes[enrs - 1].Trim();
-                    label12.Text = "Latency: " + lval;
-
-                    try
+                    if (pa.Message().Contains("Approximate round trip times in milli-seconds"))
                     {
-                        if (lval.Contains("ms"))
-                        {
-                            string valg = lval.Substring(0, lval.Length - 2);
-                            double dvalg = Convert.ToDouble(valg, CultureInfo.CurrentCulture);
+                        string[] ltimes = pa.Message().Split(new Char[] { '=' });
+                        int enrs = ltimes.Length;
 
-                            dataChart3.UpdateChart(dvalg);
+                        string lval = ltimes[enrs - 1].Trim();
+                        label12.Text = "Latency: " + lval;
+
+                        try
+                        {
+                            if (lval.Contains("ms"))
+                            {
+                                string valg = lval.Substring(0, lval.Length - 2);
+                                double dvalg = Convert.ToDouble(valg, CultureInfo.CurrentCulture);
+
+                                dataChart3.UpdateChart(dvalg);
+                            }
                         }
+                        catch { ; }
                     }
-                    catch { ; }
-                }
-            }));
+                }));
+            //}
         }
 
         private void OnTimedEvent1(object sender, ElapsedEventArgs e)
         {
             PingSIM();
+
+            // Get traffic
+            float currentAmountOfBytesReceived = bytesReceivedPerformanceCounter.NextValue();   // networkTraffic.GetBytesReceived();
+            float currentAmountOfBytesSent = bytesSentPerformanceCounter.NextValue();
+            float busedr = (currentAmountOfBytesReceived - lastAmountOfBytesReceived) / 1024;
+            float buseds = (currentAmountOfBytesSent - lastAmountOfBytesSent) / 1024;
+
+            lastAmountOfBytesReceived = currentAmountOfBytesReceived;
+            lastAmountOfBytesSent = currentAmountOfBytesSent;
+
+            BeginInvoke(new MethodInvoker(delegate()
+                {
+                    label3.Text = string.Format("Current Consumption (In): {0} KB/Sec", busedr.ToString("0.00"));
+                    label5.Text = string.Format("Current Consumption (Out): {0} KB/Sec", buseds.ToString("0.00"));
+
+                    float cgb = lastAmountOfBytesReceived / 1073741824;
+                    label6.Text = string.Format("Total in (In): {0} Gb", cgb.ToString("0.00"));
+                    cgb = lastAmountOfBytesSent / 1073741824;
+                    label7.Text = string.Format("Total in (Out): {0} Gb", cgb.ToString("0.00"));
+
+                    //if (Convert.ToInt32(lastAmountOfBytesReceived) > iniheight)
+                    //{
+                    //    iniheight = Convert.ToInt32(lastAmountOfBytesReceived);this.dataChart1.
+                    //}
+
+                    this.dataChart1.InitialHeight = iniheight;
+
+                    dataChart1.UpdateChart(System.Convert.ToDouble(busedr));
+                }));
         }
     }
 }
