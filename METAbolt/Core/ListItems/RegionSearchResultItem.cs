@@ -1,4 +1,4 @@
-//  Copyright (c) 2008 - 2011, www.metabolt.net (METAbolt)
+//  Copyright (c) 2008 - 2013, www.metabolt.net (METAbolt)
 //  Copyright (c) 2006-2008, Paul Clement (a.k.a. Delta)
 //  All rights reserved.
 
