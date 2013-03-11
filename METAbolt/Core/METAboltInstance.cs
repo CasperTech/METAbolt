@@ -903,10 +903,10 @@ namespace METAbolt
                 client.Throttle.Land = 0.0f;
                 client.Throttle.Wind = 0.0f;
 
-                client.Throttle.Task = 2f * (throttle/10f);   // 846000.0f;   // 220000.0f;    //1000000;
-                client.Throttle.Asset = 2f * (throttle / 10f);    //220000.0f;
-                client.Throttle.Resend = 3f * (throttle / 10f);  //1000000.0f;   // 
-                client.Throttle.Texture = 2f * (throttle / 10f);     //1000000.0f;
+                client.Throttle.Task = throttle / 10f;   // 2f * (throttle / 10f);   // 846000.0f;   // 220000.0f;    //1000000;
+                client.Throttle.Asset = throttle / 10f;   // 2f * (throttle / 10f);    //220000.0f;
+                client.Throttle.Resend = throttle / 10f;   // 3f * (throttle / 10f);  //1000000.0f;   // 
+                client.Throttle.Texture = throttle / 10f;   // 2f * (throttle / 10f);     //1000000.0f;
             }
 
             //client.Throttle.Total = 5000000f;    //4460000.0f;
