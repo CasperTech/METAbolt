@@ -49,6 +49,7 @@ namespace METAbolt
             this.pnlTeleportOptions = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.trkIconSize = new System.Windows.Forms.TrackBar();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudZ)).BeginInit();
@@ -276,7 +277,7 @@ namespace METAbolt
             this.pnlTeleportOptions.Controls.Add(this.label4);
             this.pnlTeleportOptions.Location = new System.Drawing.Point(382, 0);
             this.pnlTeleportOptions.Name = "pnlTeleportOptions";
-            this.pnlTeleportOptions.Size = new System.Drawing.Size(172, 272);
+            this.pnlTeleportOptions.Size = new System.Drawing.Size(172, 240);
             this.pnlTeleportOptions.TabIndex = 3;
             this.pnlTeleportOptions.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTeleportOptions_Paint);
             // 
@@ -305,6 +306,20 @@ namespace METAbolt
             this.trkIconSize.Value = 100;
             this.trkIconSize.Scroll += new System.EventHandler(this.trkIconSize_Scroll);
             // 
+            // button1
+            // 
+            this.button1.AccessibleName = "Teleport button";
+            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.Enabled = false;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(382, 246);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(172, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "&Open in browser";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmTeleport
             // 
             this.AccessibleName = "Teleport window";
@@ -313,6 +328,7 @@ namespace METAbolt
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(566, 389);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pnlTeleportOptions);
             this.Controls.Add(this.pnlTeleporting);
             this.Controls.Add(this.lbxRegionSearch);
@@ -368,5 +384,6 @@ namespace METAbolt
         private System.Windows.Forms.Panel pnlTeleportOptions;
         private System.Windows.Forms.TrackBar trkIconSize;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
     }
 }

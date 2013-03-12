@@ -59,6 +59,8 @@ namespace METAbolt
         private PerformanceCounter bytesSentPerformanceCounter = new PerformanceCounter();
         private PerformanceCounter bytesReceivedPerformanceCounter = new PerformanceCounter();
         private int iniheight = 100;
+        private int tcntr = 0;
+        private int cmod = 1;
 
         //private double ins = 0.0d;
         //private double iny = 0.0d;
@@ -449,6 +451,8 @@ namespace METAbolt
             aTimer1.Stop();
             aTimer1.Enabled = false;
             aTimer1.Dispose();
+
+            tcntr = 0;
         }
 
         private void frmDebugLog_FormClosing(object sender, FormClosingEventArgs e)
@@ -540,22 +544,35 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
                 {
-                    label3.Text = string.Format("Current Consumption (In): {0} KB/Sec", busedr.ToString("0.00"));
-                    label5.Text = string.Format("Current Consumption (Out): {0} KB/Sec", buseds.ToString("0.00"));
+                    label3.Text = string.Format("Current (In): {0} KB/Sec", busedr.ToString("0.00"));
+                    label5.Text = string.Format("Current (Out): {0} KB/Sec", buseds.ToString("0.00"));
 
                     float cgb = lastAmountOfBytesReceived / 1073741824;
-                    label6.Text = string.Format("Total in (In): {0} Gb", cgb.ToString("0.00"));
+                    label6.Text = string.Format("Total (In): {0} GB", cgb.ToString("0.00"));
                     cgb = lastAmountOfBytesSent / 1073741824;
-                    label7.Text = string.Format("Total in (Out): {0} Gb", cgb.ToString("0.00"));
+                    label7.Text = string.Format("Total (Out): {0} GB", cgb.ToString("0.00"));
 
                     //if (Convert.ToInt32(lastAmountOfBytesReceived) > iniheight)
                     //{
                     //    iniheight = Convert.ToInt32(lastAmountOfBytesReceived);this.dataChart1.
                     //}
 
-                    this.dataChart1.InitialHeight = iniheight;
+                    //this.dataChart1.InitialHeight = iniheight;
 
-                    dataChart1.UpdateChart(System.Convert.ToDouble(busedr));
+                    if (cmod < 4)
+                    {
+                        cmod += 1;
+                    }
+                    else
+                    {
+                        dataChart1.UpdateChart(System.Convert.ToDouble(busedr));
+
+                        TimeSpan ts = TimeSpan.FromSeconds(Convert.ToInt32(tcntr));
+
+                        label14.Text = Convert.ToInt32(ts.Hours).ToString("00") + ":" + Convert.ToInt32(ts.Minutes).ToString("00") + ":" + Convert.ToInt32(ts.Seconds).ToString("00");
+                    }
+
+                    tcntr += 1;
                 }));
         }
     }

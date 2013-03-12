@@ -39,6 +39,12 @@ namespace METAbolt
             this.tpgDebug = new System.Windows.Forms.TabPage();
             this.rtbDebug = new System.Windows.Forms.RichTextBox();
             this.tpgMonitor = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dataChart1 = new SystemMonitor.DataChart();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dataChart3 = new SystemMonitor.DataChart();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,8 +56,6 @@ namespace METAbolt
             this.label4 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.dataChart1 = new SystemMonitor.DataChart();
-            this.dataChart3 = new SystemMonitor.DataChart();
             this.tpgIP = new System.Windows.Forms.TabPage();
             this.rtBox1 = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -60,6 +64,7 @@ namespace METAbolt
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabLogs.SuspendLayout();
             this.tpgInfo.SuspendLayout();
             this.tpgWarning.SuspendLayout();
@@ -194,6 +199,13 @@ namespace METAbolt
             // 
             this.tpgMonitor.BackColor = System.Drawing.Color.White;
             this.tpgMonitor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tpgMonitor.Controls.Add(this.label14);
+            this.tpgMonitor.Controls.Add(this.label13);
+            this.tpgMonitor.Controls.Add(this.label11);
+            this.tpgMonitor.Controls.Add(this.dataChart1);
+            this.tpgMonitor.Controls.Add(this.label9);
+            this.tpgMonitor.Controls.Add(this.dataChart3);
+            this.tpgMonitor.Controls.Add(this.label8);
             this.tpgMonitor.Controls.Add(this.label7);
             this.tpgMonitor.Controls.Add(this.label6);
             this.tpgMonitor.Controls.Add(this.label5);
@@ -202,8 +214,6 @@ namespace METAbolt
             this.tpgMonitor.Controls.Add(this.panel1);
             this.tpgMonitor.Controls.Add(this.label12);
             this.tpgMonitor.Controls.Add(this.label10);
-            this.tpgMonitor.Controls.Add(this.dataChart1);
-            this.tpgMonitor.Controls.Add(this.dataChart3);
             this.tpgMonitor.Location = new System.Drawing.Point(4, 25);
             this.tpgMonitor.Name = "tpgMonitor";
             this.tpgMonitor.Size = new System.Drawing.Size(540, 356);
@@ -211,8 +221,85 @@ namespace METAbolt
             this.tpgMonitor.Text = "Network Monitor";
             this.tpgMonitor.Click += new System.EventHandler(this.tpgMonitor_Click);
             // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.Gray;
+            this.label13.Location = new System.Drawing.Point(513, 306);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(13, 13);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Gray;
+            this.label11.Location = new System.Drawing.Point(511, 176);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(13, 13);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "0";
+            // 
+            // dataChart1
+            // 
+            this.dataChart1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataChart1.BackColor = System.Drawing.Color.Black;
+            this.dataChart1.ChartType = SystemMonitor.ChartType.Stick;
+            this.dataChart1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataChart1.GridColor = System.Drawing.Color.SeaGreen;
+            this.dataChart1.GridPixels = 8;
+            this.dataChart1.InitialHeight = 100;
+            this.dataChart1.LineColor = System.Drawing.Color.GreenYellow;
+            this.dataChart1.Location = new System.Drawing.Point(21, 214);
+            this.dataChart1.Name = "dataChart1";
+            this.dataChart1.Size = new System.Drawing.Size(490, 105);
+            this.dataChart1.TabIndex = 34;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Gray;
+            this.label9.Location = new System.Drawing.Point(513, 212);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(25, 13);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "100";
+            // 
+            // dataChart3
+            // 
+            this.dataChart3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataChart3.BackColor = System.Drawing.Color.Silver;
+            this.dataChart3.ChartType = SystemMonitor.ChartType.Stick;
+            this.dataChart3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataChart3.GridColor = System.Drawing.Color.Yellow;
+            this.dataChart3.GridPixels = 8;
+            this.dataChart3.InitialHeight = 100;
+            this.dataChart3.LineColor = System.Drawing.Color.Green;
+            this.dataChart3.Location = new System.Drawing.Point(21, 84);
+            this.dataChart3.Name = "dataChart3";
+            this.dataChart3.Size = new System.Drawing.Size(490, 105);
+            this.dataChart3.TabIndex = 31;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Gray;
+            this.label8.Location = new System.Drawing.Point(511, 82);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 13);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "250";
+            // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Location = new System.Drawing.Point(319, 335);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(192, 13);
@@ -221,6 +308,7 @@ namespace METAbolt
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.Location = new System.Drawing.Point(316, 322);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(195, 13);
@@ -253,12 +341,14 @@ namespace METAbolt
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(219, 198);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 13);
+            this.label2.Size = new System.Drawing.Size(134, 13);
             this.label2.TabIndex = 33;
-            this.label2.Text = "Bandwidth Usage (kb/sec)";
+            this.label2.Text = "Bandwidth Usage (KB/Sec)";
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button5);
@@ -273,7 +363,7 @@ namespace METAbolt
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.BackColor = System.Drawing.Color.RoyalBlue;
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(387, 8);
+            this.button4.Location = new System.Drawing.Point(396, 8);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(59, 23);
             this.button4.TabIndex = 1;
@@ -287,7 +377,7 @@ namespace METAbolt
             this.button5.BackColor = System.Drawing.Color.RoyalBlue;
             this.button5.Enabled = false;
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(452, 8);
+            this.button5.Location = new System.Drawing.Point(461, 8);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 23);
             this.button5.TabIndex = 2;
@@ -324,38 +414,6 @@ namespace METAbolt
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 12;
-            // 
-            // dataChart1
-            // 
-            this.dataChart1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataChart1.BackColor = System.Drawing.Color.Black;
-            this.dataChart1.ChartType = SystemMonitor.ChartType.Stick;
-            this.dataChart1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dataChart1.GridColor = System.Drawing.Color.SeaGreen;
-            this.dataChart1.GridPixels = 8;
-            this.dataChart1.InitialHeight = 100;
-            this.dataChart1.LineColor = System.Drawing.Color.GreenYellow;
-            this.dataChart1.Location = new System.Drawing.Point(21, 214);
-            this.dataChart1.Name = "dataChart1";
-            this.dataChart1.Size = new System.Drawing.Size(490, 105);
-            this.dataChart1.TabIndex = 34;
-            // 
-            // dataChart3
-            // 
-            this.dataChart3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataChart3.BackColor = System.Drawing.Color.Silver;
-            this.dataChart3.ChartType = SystemMonitor.ChartType.Stick;
-            this.dataChart3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dataChart3.GridColor = System.Drawing.Color.Yellow;
-            this.dataChart3.GridPixels = 8;
-            this.dataChart3.InitialHeight = 100;
-            this.dataChart3.LineColor = System.Drawing.Color.Green;
-            this.dataChart3.Location = new System.Drawing.Point(21, 84);
-            this.dataChart3.Name = "dataChart3";
-            this.dataChart3.Size = new System.Drawing.Size(490, 105);
-            this.dataChart3.TabIndex = 31;
             // 
             // tpgIP
             // 
@@ -459,6 +517,15 @@ namespace METAbolt
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label14
+            // 
+            this.label14.Location = new System.Drawing.Point(433, 50);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(100, 13);
+            this.label14.TabIndex = 43;
+            this.label14.Text = "00:00:00";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmDebugLog
             // 
             this.AccessibleDescription = "Displays warning, errors and debug information to help troubleshooting";
@@ -528,5 +595,10 @@ namespace METAbolt
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label14;
     }
 }

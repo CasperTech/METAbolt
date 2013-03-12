@@ -287,6 +287,15 @@ namespace METAbolt
         private void txtRegion_TextChanged(object sender, EventArgs e)
         {
             btnTeleport.Enabled = (txtRegion.Text.Trim().Length > 0);
+
+            if (txtRegion.TextLength > 0)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
         }
 
         private void btnTeleport_Click(object sender, EventArgs e)
@@ -465,6 +474,15 @@ namespace METAbolt
         private void frmTeleport_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRegion.Text))
+            {
+                string surl = "http://slurl.com/secondlife/" + txtRegion.Text + "/" + nudX.Value.ToString() + "/" + nudY.Value.ToString() + "/" + nudZ.Value.ToString();
+                System.Diagnostics.Process.Start(@surl);
+            }
         }
     }
 }
