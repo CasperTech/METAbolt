@@ -2940,6 +2940,8 @@ namespace METAbolt
                 lvwRadar.Items.Clear();
             }));
 
+            _MapLayer = null;
+
             //GetMap();
             BeginInvoke((MethodInvoker)delegate { GetMap(); });
         }
@@ -2958,8 +2960,11 @@ namespace METAbolt
 
             GridRegion region;
 
+            label11.Text = "Map downloading...";
+
             if (_MapLayer == null || sim != client.Network.CurrentSim)
             {
+                world.Image = null; 
                 sim = client.Network.CurrentSim;
                 label8.Text = client.Network.CurrentSim.Name;
 
@@ -2978,6 +2983,10 @@ namespace METAbolt
                             {
                                 _MapImageID = region.MapImageID;
                                 client.Assets.RequestImage(_MapImageID, ImageType.Baked, Assets_OnImageReceived);
+                            }
+                            else
+                            {
+                                label11.Text = "Map unavailable"; 
                             }
                         }
                     }

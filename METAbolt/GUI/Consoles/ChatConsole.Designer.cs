@@ -57,6 +57,7 @@ namespace METAbolt
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.picMap = new System.Windows.Forms.PictureBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -112,7 +113,6 @@ namespace METAbolt
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.picMap = new System.Windows.Forms.PictureBox();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -151,6 +151,7 @@ namespace METAbolt
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -161,7 +162,6 @@ namespace METAbolt
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.world)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -433,6 +433,19 @@ namespace METAbolt
             // 
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
+            // 
+            // picMap
+            // 
+            this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
+            this.picMap.Location = new System.Drawing.Point(158, 44);
+            this.picMap.Name = "picMap";
+            this.picMap.Size = new System.Drawing.Size(15, 15);
+            this.picMap.TabIndex = 43;
+            this.picMap.TabStop = false;
+            this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
+            this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
+            this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
             // 
             // toolStripSeparator7
             // 
@@ -1134,19 +1147,6 @@ namespace METAbolt
             this.tabPage2.ToolTipText = "Mini Map";
             this.tabPage2.SizeChanged += new System.EventHandler(this.tabPage2_SizeChanged);
             // 
-            // picMap
-            // 
-            this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
-            this.picMap.Location = new System.Drawing.Point(158, 44);
-            this.picMap.Name = "picMap";
-            this.picMap.Size = new System.Drawing.Size(15, 15);
-            this.picMap.TabIndex = 43;
-            this.picMap.TabStop = false;
-            this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
-            this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
-            this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
-            // 
             // progressBar7
             // 
             this.progressBar7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1180,8 +1180,7 @@ namespace METAbolt
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.ForeColor = System.Drawing.Color.Red;
@@ -1189,7 +1188,7 @@ namespace METAbolt
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(122, 23);
             this.label11.TabIndex = 24;
-            this.label11.Text = "MAP downloading...";
+            this.label11.Text = "Map downloading...";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // world
@@ -1613,6 +1612,7 @@ namespace METAbolt
             this.toolStrip2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -1628,7 +1628,6 @@ namespace METAbolt
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.world)).EndInit();
             this.tabPage3.ResumeLayout(false);

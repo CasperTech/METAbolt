@@ -441,10 +441,10 @@ namespace METAbolt
         public void PrintStartupMessage()
         {
             ChatBufferItem title = new ChatBufferItem(
-                DateTime.Now, " " + Properties.Resources.METAboltTitle + " " + Properties.Resources.METAboltVersion, ChatBufferTextStyle.StartupTitle);
+                DateTime.Now, Properties.Resources.METAboltTitle + " " + Properties.Resources.METAboltVersion + Environment.NewLine, ChatBufferTextStyle.StartupTitle);
 
             ChatBufferItem ready = new ChatBufferItem(
-                DateTime.Now, " Ready.\n", ChatBufferTextStyle.StatusBlue);
+                DateTime.Now, " Ready to login...\n", ChatBufferTextStyle.StatusBlue);
 
             ProcessBufferItem(title, true);
             ProcessBufferItem(ready, true);
@@ -558,8 +558,11 @@ namespace METAbolt
                     }
                     else
                     {
-                        //textPrinter.PrintText(dte.ToString("[HH:mm] "));
-                        prefix = dte.ToString("[HH:mm] ");
+                        if (item.Style != ChatBufferTextStyle.StartupTitle)
+                        {
+                            //textPrinter.PrintText(dte.ToString("[HH:mm] "));
+                            prefix = dte.ToString("[HH:mm] ");
+                        }
                     }
                 }
                 else
@@ -591,32 +594,35 @@ namespace METAbolt
 
                 if (showTimestamps)
                 {
-                    dte = this.instance.State.GetTimeStamp(dte);
-
-                    //if (instance.Config.CurrentConfig.UseSLT)
-                    //{
-                    //    string _timeZoneId = "Pacific Standard Time";
-                    //    DateTime startTime = DateTime.UtcNow;
-                    //    TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
-                    //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
-                    //}
-
-                    //textPrinter.ForeColor = Color.Gray;
-
-                    if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
+                    if (item.Style != ChatBufferTextStyle.StartupTitle)
                     {
-                        prefix = "\n" + dte.ToString("[HH:mm] ");
-                        //prefix = dte.ToString("[HH:mm] ");
-                    }
-                    else
-                    {
-                        if (item.FromName == client.Self.FirstName + " " + client.Self.LastName)
+                        dte = this.instance.State.GetTimeStamp(dte);
+
+                        //if (instance.Config.CurrentConfig.UseSLT)
+                        //{
+                        //    string _timeZoneId = "Pacific Standard Time";
+                        //    DateTime startTime = DateTime.UtcNow;
+                        //    TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneId);
+                        //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
+                        //}
+
+                        //textPrinter.ForeColor = Color.Gray;
+
+                        if (item.Style == ChatBufferTextStyle.StatusDarkBlue || item.Style == ChatBufferTextStyle.Alert)
                         {
-                            prefix = dte.ToString("   [HH:mm] ");
+                            prefix = "\n" + dte.ToString("[HH:mm] ");
+                            //prefix = dte.ToString("[HH:mm] ");
                         }
                         else
                         {
-                            prefix = dte.ToString("[HH:mm] ");
+                            if (item.FromName == client.Self.FirstName + " " + client.Self.LastName)
+                            {
+                                prefix = dte.ToString("   [HH:mm] ");
+                            }
+                            else
+                            {
+                                prefix = dte.ToString("[HH:mm] ");
+                            }
                         }
                     }
                 }
