@@ -51,6 +51,7 @@ using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
 using PopupControl;
 using NHunspell;
+//using System.Runtime.InteropServices;
 
 
 namespace METAbolt
@@ -4353,6 +4354,8 @@ namespace METAbolt
             //rtbChat.HideSelection = true;
             //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 1, 0);
             //cpos = rtbChat.SelectionStart;
+
+            //LockWindow(this.Handle);
         }
 
         private void rtbChat_Leave(object sender, EventArgs e)
@@ -4360,6 +4363,8 @@ namespace METAbolt
             //rtbChat.HideSelection = false;
 
             //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 0, 0);
+
+            //LockWindow(IntPtr.Zero);
         }
 
         private void rtbChat_Enter(object sender, EventArgs e)

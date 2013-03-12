@@ -1028,7 +1028,7 @@ namespace METAbolt
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Enabled = false;
-            this.groupBox3.Location = new System.Drawing.Point(25, 145);
+            this.groupBox3.Location = new System.Drawing.Point(25, 130);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(285, 102);
             this.groupBox3.TabIndex = 3;
@@ -1100,7 +1100,7 @@ namespace METAbolt
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(24, 192);
+            this.label10.Location = new System.Drawing.Point(24, 177);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(141, 13);
             this.label10.TabIndex = 41;
@@ -1109,7 +1109,7 @@ namespace METAbolt
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(235, 187);
+            this.button8.Location = new System.Drawing.Point(235, 172);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(61, 23);
             this.button8.TabIndex = 40;
@@ -1122,7 +1122,7 @@ namespace METAbolt
             // 
             this.textBox9.BackColor = System.Drawing.Color.White;
             this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(197, 122);
+            this.textBox9.Location = new System.Drawing.Point(197, 107);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(21, 21);
             this.textBox9.TabIndex = 39;
@@ -1131,7 +1131,7 @@ namespace METAbolt
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 172);
+            this.label1.Location = new System.Drawing.Point(24, 157);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 13);
             this.label1.TabIndex = 38;
@@ -1140,7 +1140,7 @@ namespace METAbolt
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(235, 167);
+            this.button7.Location = new System.Drawing.Point(235, 152);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(61, 23);
             this.button7.TabIndex = 37;
@@ -1153,7 +1153,7 @@ namespace METAbolt
             // 
             this.textBox5.BackColor = System.Drawing.Color.White;
             this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(197, 169);
+            this.textBox5.Location = new System.Drawing.Point(197, 154);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(21, 21);
             this.textBox5.TabIndex = 36;
@@ -1161,13 +1161,15 @@ namespace METAbolt
             // 
             // label16
             // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.DarkGray;
-            this.label16.Location = new System.Drawing.Point(41, 124);
+            this.label16.ForeColor = System.Drawing.Color.DimGray;
+            this.label16.Location = new System.Drawing.Point(77, 246);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(142, 13);
+            this.label16.Size = new System.Drawing.Size(202, 13);
             this.label16.TabIndex = 35;
-            this.label16.Text = "(requires METAbolt re-start)";
+            this.label16.Text = "(Any change requires METAbolt re-start)";
             // 
             // button6
             // 
@@ -1205,7 +1207,7 @@ namespace METAbolt
             // 
             this.checkBox4.AccessibleName = "Use modern layout option";
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(25, 107);
+            this.checkBox4.Location = new System.Drawing.Point(25, 92);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(231, 17);
             this.checkBox4.TabIndex = 2;

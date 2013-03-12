@@ -249,12 +249,16 @@ namespace METAbolt
             {
                 if (text == null) return;
 
-                rtb.SelectionColor = Color.DarkGray;
-                //rtb.SelectionCharOffset = 6;
-                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 2, rtb.SelectionFont.Style);
+                //rtb.SelectionColor = Color.DarkGray;
+                ////rtb.SelectionCharOffset = 6;
+                //rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 2, rtb.SelectionFont.Style);
                 rtb.SelectionCharOffset = 10;
-                rtb.AppendText(text);
-                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, headerfontsize, rtb.SelectionFont.Style);
+                ////rtb.AppendText(text);
+                
+                rtb.AppendTextAsRtf(text, new Font(rtb.SelectionFont.Name, textfontsize - 2), RtfColor.Gray, RtfColor.White);
+                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
+                //rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
+                //rtb.SelectionColor = Color.Black;
                 rtb.SelectionCharOffset = 0;
                 //rtb.SelectionBackColor = rtb.BackColor = bgcolour;
             }
@@ -284,8 +288,8 @@ namespace METAbolt
 
                 if (text == null) return;
 
-                rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
-                //rtb.SelectionBackColor = rtb.BackColor = bgcolour;
+                //rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
+                ////rtb.SelectionBackColor = rtb.BackColor = bgcolour;
 
                 if (text.Contains("secondlife:///"))
                 {
@@ -304,6 +308,9 @@ namespace METAbolt
                 }
 
                 rtb.AppendText(text);
+                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
+
+                //rtb.AppendTextAsRtf(text, new Font(textfont, textfontsize, fontst));
 
                 CheckBufferSize();
 
@@ -322,7 +329,7 @@ namespace METAbolt
 
                 if (text == null) return;
 
-                rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
+                //rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
                 //rtb.SelectionBackColor = rtb.BackColor = bgcolour;
 
                 if (text.Contains("secondlife:///"))
@@ -342,6 +349,8 @@ namespace METAbolt
                 }
 
                 rtb.AppendText(text + Environment.NewLine);
+                //rtb.AppendTextAsRtf(text, new Font(textfont, textfontsize, fontst));
+                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
 
                 CheckBufferSize();
 
