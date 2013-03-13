@@ -147,7 +147,9 @@ namespace METAbolt
             if (e.LinkText.StartsWith("http://slurl."))
             {
                 // Open up the TP form here
-                string[] split = e.LinkText.Split(new Char[] { '/' });
+                string encoded = System.Web.HttpUtility.UrlDecode(e.LinkText);
+                string[] split = encoded.Split(new Char[] { '/' });
+                //string[] split = e.LinkText.Split(new Char[] { '/' });
                 string sim = split[4].ToString();
                 double x = Convert.ToDouble(split[5].ToString());
                 double y = Convert.ToDouble(split[6].ToString());
@@ -159,7 +161,9 @@ namespace METAbolt
             if (e.LinkText.StartsWith("http://maps.secondlife"))
             {
                 // Open up the TP form here
-                string[] split = e.LinkText.Split(new Char[] { '/' });
+                string encoded = System.Web.HttpUtility.UrlDecode(e.LinkText);
+                string[] split = encoded.Split(new Char[] { '/' });
+                //string[] split = e.LinkText.Split(new Char[] { '/' });
                 string sim = split[4].ToString();
                 double x = Convert.ToDouble(split[5].ToString());
                 double y = Convert.ToDouble(split[6].ToString());
@@ -170,15 +174,20 @@ namespace METAbolt
             }
             else if (e.LinkText.Contains("http://mbprofile:"))
             {
-                string[] split = e.LinkText.Split(new Char[] { '#' });
-                string avname = split[0].ToString();
+                string encoded = System.Web.HttpUtility.UrlDecode(e.LinkText);
+                string[] split = encoded.Split(new Char[] { '/' });
+                //string[] split = e.LinkText.Split(new Char[] { '#' });
+                string aavname = split[0].ToString();
+                string[] avnamesplit = aavname.Split(new Char[] { '#' });
+                aavname = avnamesplit[0].ToString();
+
                 split = e.LinkText.Split(new Char[] { ':' });
                 string elink = split[2].ToString();
                 split = elink.Split(new Char[] { '&' });
 
                 UUID avid = (UUID)split[0].ToString();
 
-                (new frmProfile(instance, avname, avid)).Show();
+                (new frmProfile(instance, aavname, avid)).Show();
             }
             //else if (e.LinkText.Contains("secondlife:///"))
             //{

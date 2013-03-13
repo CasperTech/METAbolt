@@ -4389,21 +4389,33 @@ namespace METAbolt
 
         private void lvwRadar_MouseMove(object sender, MouseEventArgs e)
         {
-            ListViewItem item = lvwRadar.GetItemAt(e.X, e.Y);
-            ListViewHitTestInfo info = lvwRadar.HitTest(e.X, e.Y);
-
-            if (item != null)
+            try
             {
-                if (tooltiptext != info.Item.ToolTipText)
+                ListViewItem item = lvwRadar.GetItemAt(e.X, e.Y);
+                ListViewHitTestInfo info = lvwRadar.HitTest(e.X, e.Y);
+
+                if (item != null)
                 {
-                    tooltiptext = info.Item.ToolTipText;
-                    toolTip.SetToolTip(lvwRadar, info.Item.ToolTipText);
+                    if (tooltiptext != info.Item.ToolTipText)
+                    {
+                        tooltiptext = info.Item.ToolTipText;
+                        toolTip.SetToolTip(lvwRadar, info.Item.ToolTipText);
+                    }
+                }
+                else
+                {
+                    tooltiptext = string.Empty;
+                    toolTip.SetToolTip(lvwRadar, null);
                 }
             }
-            else
+            catch
             {
-                tooltiptext = string.Empty;
-                toolTip.SetToolTip(lvwRadar, null);
+                try
+                {
+                    tooltiptext = string.Empty;
+                    toolTip.SetToolTip(lvwRadar, null);
+                }
+                catch { ; }
             }
         }
 

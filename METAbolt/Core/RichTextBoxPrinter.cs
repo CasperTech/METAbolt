@@ -144,7 +144,7 @@ namespace METAbolt
 
                 rtb.AppendText(Environment.NewLine + " " + text);   // + Environment.NewLine);
 
-                CheckBufferSize();
+                //CheckBufferSize();
 
                 int cwidth = rtb.Width - (text.Length);
                 string buff = string.Empty;
@@ -171,7 +171,7 @@ namespace METAbolt
 
                 rtb.AppendText(Environment.NewLine);
 
-                CheckBufferSize();
+                //CheckBufferSize();
 
                 //string[] str = text.Split(' ');
                 //string url = "https://my-secondlife.s3.amazonaws.com/users/" + str[0].ToLower() + "." + str[1].ToLower() + "/sl_image.png?" + uuid.Replace("-", "");
@@ -219,7 +219,7 @@ namespace METAbolt
                 rtb.SelectionBackColor = Color.White;
                 rtb.AppendText(Environment.NewLine);
 
-                CheckBufferSize();
+                //CheckBufferSize();
 
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
@@ -249,14 +249,16 @@ namespace METAbolt
             {
                 if (text == null) return;
 
-                //rtb.SelectionColor = Color.DarkGray;
+                rtb.Select(rtb.TextLength, 0);
+
+                rtb.SelectionColor = Color.DarkGray;
                 ////rtb.SelectionCharOffset = 6;
-                //rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 2, rtb.SelectionFont.Style);
+                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 1, rtb.SelectionFont.Style);
                 rtb.SelectionCharOffset = 10;
-                ////rtb.AppendText(text);
+                rtb.AppendText(text);
                 
-                rtb.AppendTextAsRtf(text, new Font(rtb.SelectionFont.Name, textfontsize - 2), RtfColor.Gray, RtfColor.White);
-                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
+                //rtb.AppendTextAsRtf(text, new Font(rtb.SelectionFont.Name, textfontsize - 2), RtfColor.Gray, RtfColor.White);
+                rtb.SelectionFont = new Font(config.CurrentConfig.TextFont, config.CurrentConfig.TextFontSize, fontst);
                 //rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
                 //rtb.SelectionColor = Color.Black;
                 rtb.SelectionCharOffset = 0;
@@ -307,7 +309,10 @@ namespace METAbolt
                     }
                 }
 
-                rtb.AppendText(text);
+                //rtb.Text += Environment.NewLine;
+
+                rtb.AppendText(text + Environment.NewLine);
+
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
 
                 //rtb.AppendTextAsRtf(text, new Font(textfont, textfontsize, fontst));
@@ -348,8 +353,27 @@ namespace METAbolt
                     }
                 }
 
-                rtb.AppendText(text + Environment.NewLine);
+                //rtb.ReadOnly = false;
+                //int index = rtb.SelectionStart;
+                //int line = rtb.GetLineFromCharIndex(index);
+                //int lines = rtb.Lines.Length;
+
+                //if (line < lines)
+                //{
+                //    rtb.Text += text + Environment.NewLine;
+                //}
+                //else
+                //{
+                //    rtb.AppendText(text + Environment.NewLine);
+                //}
+                //rtb.ReadOnly = true;
+
+                //rtb.Text += Environment.NewLine;
+
                 //rtb.AppendTextAsRtf(text, new Font(textfont, textfontsize, fontst));
+
+                rtb.AppendText(text + Environment.NewLine);
+
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
 
                 CheckBufferSize();
