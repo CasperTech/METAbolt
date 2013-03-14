@@ -126,6 +126,7 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.chkDisableRadar = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -212,6 +213,7 @@ namespace METAbolt
             // 
             this.tabPage1.AccessibleName = "Options tab";
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.chkDisableRadar);
             this.tabPage1.Controls.Add(this.checkBox13);
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.comboBox1);
@@ -357,13 +359,13 @@ namespace METAbolt
             // 
             // chkFriends
             // 
-            this.chkFriends.AccessibleName = "Disable frienda online/offline";
+            this.chkFriends.AccessibleName = "Disable friends online/offline";
             this.chkFriends.AutoSize = true;
             this.chkFriends.Location = new System.Drawing.Point(8, 149);
             this.chkFriends.Name = "chkFriends";
-            this.chkFriends.Size = new System.Drawing.Size(222, 17);
+            this.chkFriends.Size = new System.Drawing.Size(161, 17);
             this.chkFriends.TabIndex = 2;
-            this.chkFriends.Text = "Disable friends online/offline notifications";
+            this.chkFriends.Text = "Disable friends online/offline";
             this.chkFriends.UseVisualStyleBackColor = true;
             // 
             // chkTray
@@ -1323,6 +1325,17 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
+            // chkDisableRadar
+            // 
+            this.chkDisableRadar.AccessibleName = "Disable icon option";
+            this.chkDisableRadar.AutoSize = true;
+            this.chkDisableRadar.Location = new System.Drawing.Point(203, 149);
+            this.chkDisableRadar.Name = "chkDisableRadar";
+            this.chkDisableRadar.Size = new System.Drawing.Size(124, 17);
+            this.chkDisableRadar.TabIndex = 67;
+            this.chkDisableRadar.Text = "Disable avatar radar";
+            this.chkDisableRadar.UseVisualStyleBackColor = true;
+            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1473,6 +1486,7 @@ namespace METAbolt
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox chkDisableRadar;
 
     }
 }

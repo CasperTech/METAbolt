@@ -531,6 +531,8 @@ namespace METAbolt
                 }
                 else
                 {
+                    if (this.instance.EList == null) return;
+
                     if (!pluginsloaded)
                     {
                         plugintimer += Convert.ToInt32(statusTimer.Interval);

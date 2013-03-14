@@ -308,6 +308,12 @@ namespace METAbolt
                     int i = 0;
                     Rectangle rect = new Rectangle();
 
+
+                    if (myPos.Z < 0.1f)
+                    {
+                        myPos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
+                    }
+
                     client.Network.CurrentSim.AvatarPositions.ForEach(
                         delegate(KeyValuePair<UUID, Vector3> pos)
                         {
@@ -316,14 +322,19 @@ namespace METAbolt
 
                             rect = new Rectangle(x, y, 7, 7);
 
+                            Vector3 oavPos = new Vector3(0, 0, 0);
+                            oavPos.X = pos.Value.X;
+                            oavPos.Y = pos.Value.Y;
+                            oavPos.Z = pos.Value.Z;
+
                             if (pos.Key != client.Self.AgentID)
                             {
-                                if (myPos.Z - pos.Value.Z > 20)
+                                if (myPos.Z - oavPos.Z > 20)
                                 {
                                     g.FillRectangle(Brushes.DarkRed, rect);
                                     g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
                                 }
-                                else if (myPos.Z - pos.Value.Z > -11 && myPos.Z - pos.Value.Z < 11)
+                                else if (myPos.Z - oavPos.Z > -11 && myPos.Z - oavPos.Z < 11)
                                 {
                                     g.FillEllipse(Brushes.LightGreen, rect);
                                     g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
@@ -338,8 +349,7 @@ namespace METAbolt
                             i++;
                         }
                     );
-                }
-                
+                }                
 
                 // Draw self position
                 Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);

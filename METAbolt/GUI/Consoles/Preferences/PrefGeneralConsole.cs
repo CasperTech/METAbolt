@@ -150,6 +150,7 @@ namespace METAbolt
             nUD2.Value = config.CurrentConfig.ReStartTime;
             textBox4.Text = client.Settings.ASSET_CACHE_DIR;
             checkBox13.Checked = config.CurrentConfig.HideDisconnectPrompt;
+            chkDisableRadar.Checked = config.CurrentConfig.DisableRadar;
 
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)
             {
@@ -304,7 +305,8 @@ namespace METAbolt
             instance.Config.CurrentConfig.LogOffTime = Convert.ToInt32(nUD1.Value);
             instance.Config.CurrentConfig.ReStartTime = Convert.ToInt32(nUD2.Value);
             instance.Config.CurrentConfig.BandwidthThrottle = Convert.ToSingle(trackBar1.Value);
-            instance.Config.CurrentConfig.HideDisconnectPrompt = checkBox13.Checked; 
+            instance.Config.CurrentConfig.HideDisconnectPrompt = checkBox13.Checked;
+            instance.Config.CurrentConfig.DisableRadar = chkDisableRadar.Checked; 
 
             if (checkBox4.Checked)
             {

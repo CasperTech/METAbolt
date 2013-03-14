@@ -168,6 +168,7 @@ namespace METAbolt
         private string spelllang = "en_GB";
         //private bool broadcastid = true;
         private bool hidedisconnectprompt = false;
+        private bool disableradar = false;
 
         public Config()
         {
@@ -264,6 +265,7 @@ namespace METAbolt
                 config.DisableTyping = conf.Configs["General"].GetBoolean("DisableTyping", false);
                 config.AutoAcceptFriends = conf.Configs["General"].GetBoolean("AutoAcceptFriends", false);
                 //config.BroadcastID = conf.Configs["General"].GetBoolean("BroadcastID", true);
+                config.DisableRadar = conf.Configs["General"].GetBoolean("DisableRadar", false);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -440,6 +442,7 @@ namespace METAbolt
             config.Set("DisableTyping", disabletyping.ToString(CultureInfo.CurrentCulture));
             config.Set("AutoAcceptFriends", autoacceptfriends.ToString(CultureInfo.CurrentCulture));
             //config.Set("BroadcastID", broadcastid.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableRadar", disableradar.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1235,6 +1238,12 @@ namespace METAbolt
         {
             get { return hidedisconnectprompt; }
             set { hidedisconnectprompt = value; }
+        }
+
+        public bool DisableRadar
+        {
+            get { return disableradar; }
+            set { disableradar = value; }
         }
 
         //public bool BroadcastID

@@ -185,7 +185,7 @@ namespace METAbolt
             toolTip.OwnerDraw = true;
             toolTip.BackColor = Color.RoyalBlue;
             toolTip.ForeColor = Color.White;
-            toolTip.Draw += new DrawToolTipEventHandler(toolTip_Draw); 
+            toolTip.Draw += new DrawToolTipEventHandler(toolTip_Draw);
         }
 
         private void toolTip_Draw(object sender, DrawToolTipEventArgs e)
@@ -247,8 +247,8 @@ namespace METAbolt
                 return;
             }
 
-            //lock (instance.avnames)
-            //{
+            lock (instance.avnames)
+            {
                 foreach (KeyValuePair<UUID, string> av in names.Names)
                 {
                     if (!instance.avnames.ContainsKey(av.Key))
@@ -256,10 +256,7 @@ namespace METAbolt
                         instance.avnames.Add(av.Key, av.Value);
                     }
                 }
-
-            //    if (instance.avlocations.Contains(  
-            //client.Network.CurrentSim.ObjectsAvatars.
-            //}
+            }
         }
 
         private void netcom_TeleportStatusChanged(object sender, TeleportEventArgs e)
@@ -1011,7 +1008,24 @@ namespace METAbolt
                 hunspell.Dispose();
             }
 
-            //rtbChat.BackColor = instance.Config.CurrentConfig.BgColour; 
+            //rtbChat.BackColor = instance.Config.CurrentConfig.BgColour;
+
+            if (instance.Config.CurrentConfig.DisableRadar)
+            {
+                splitContainer1.SplitterDistance = splitContainer1.Width;   //513
+                panel5.Visible = false;
+                tabControl1.Visible = false;
+                toolStrip1.Visible = false;
+                client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
+            }
+            else
+            {
+                splitContainer1.SplitterDistance = 513;
+                panel5.Visible = true;
+                tabControl1.Visible = true;
+                toolStrip1.Visible = true;
+                client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
+            }
         }
 
         public void RemoveEvents()
@@ -1023,6 +1037,7 @@ namespace METAbolt
 
             //client.Objects.AvatarUpdate -= new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
             //client.Objects.KillObject -= new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
+
             client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             client.Network.SimChanged -= new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
             client.Self.MeanCollision -= new EventHandler<MeanCollisionEventArgs>(Self_Collision);
@@ -1049,7 +1064,12 @@ namespace METAbolt
 
             //client.Objects.AvatarUpdate += new EventHandler<AvatarUpdateEventArgs>(Objects_OnNewAvatar);
             //client.Objects.KillObject += new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
-            client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
+
+            if (!instance.Config.CurrentConfig.DisableRadar)
+            {
+                client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
+            }
+
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(Network_OnCurrentSimChanged);
 
             client.Self.MeanCollision += new EventHandler<MeanCollisionEventArgs>(Self_Collision);
@@ -1206,6 +1226,22 @@ namespace METAbolt
             if (e.Prim.ID == client.Self.AgentID)
             {
                 instance.State.ResetCamera();
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    if (!lvwRadar.Items.ContainsKey(client.Self.Name))
+                    {
+                        ListViewItem item = lvwRadar.Items.Add(client.Self.Name, client.Self.Name, string.Empty);
+                        item.Font = new Font(item.Font, FontStyle.Bold);
+                        item.Tag = client.Self.AgentID;
+                        item.BackColor = Color.WhiteSmoke;
+                        item.ForeColor = Color.Black;
+
+                        item.SubItems.Add(string.Empty);
+                        //item.SubItems.Add(string.Empty);
+                    }
+                }));
+
                 return;
             }
         }
@@ -1247,14 +1283,12 @@ namespace METAbolt
 
                 if (selfpos.Z < 0.1f)
                 {
-                    selfpos.Z = 1024f;
-                    //selfpos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);
+                    selfpos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
                 }
 
                 if (avpos.Z < 0.1f)
                 {
                     avpos.Z = 1024f;
-                    //avpos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);
                 }
 
                 double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos), ConverToGLobal(avpos)), MidpointRounding.ToEven);
@@ -2889,6 +2923,11 @@ namespace METAbolt
                     }
                 }
 
+                lock (instance.avnames)
+                {
+                    instance.avnames.Remove(id);
+                }
+
                 if (instance.State.IsFollowing)
                 {
                     if (id == instance.State.FollowID)
@@ -2948,6 +2987,8 @@ namespace METAbolt
 
         private void GetMap()
         {
+            if (instance.Config.CurrentConfig.DisableRadar) return;
+
             if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(delegate()
@@ -3007,6 +3048,8 @@ namespace METAbolt
             {
                 try
                 {
+                    if (instance.Config.CurrentConfig.DisableRadar) return;
+
                     if (ssim != client.Network.CurrentSim) return;
 
                     //Bitmap nbmp = new Bitmap(256, 256);
@@ -3109,6 +3152,11 @@ namespace METAbolt
 
                     //int rctr = 0;
 
+                    if (myPos.Z < 0.1f)
+                    {
+                        myPos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
+                    }
+
                     ssim.AvatarPositions.ForEach(
                     delegate(KeyValuePair<UUID, Vector3> pos)
                     {
@@ -3117,14 +3165,25 @@ namespace METAbolt
 
                         rect = new Rectangle(x, y, 7, 7);
 
+                        Vector3 oavPos = new Vector3(0, 0, 0);
+                        oavPos.X = pos.Value.X;
+                        oavPos.Y = pos.Value.Y;
+                        oavPos.Z = pos.Value.Z;
+
                         if (pos.Key != client.Self.AgentID)
                         {
-                            if (myPos.Z - pos.Value.Z > 20)
+                            if (oavPos.Z < 0.1f)
+                            {
+                                oavPos.Z = 1024f;
+                                //avpos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);
+                            }
+
+                            if (myPos.Z - oavPos.Z > 20)
                             {
                                 g.FillRectangle(Brushes.DarkRed, rect);
                                 g.DrawRectangle(new Pen(Brushes.Red, 1), rect);
                             }
-                            else if (myPos.Z - pos.Value.Z > -11 && myPos.Z - pos.Value.Z < 11)
+                            else if (myPos.Z - oavPos.Z > -11 && myPos.Z - oavPos.Z < 11)
                             {
                                 g.FillEllipse(Brushes.LightGreen, rect);
                                 g.DrawEllipse(new Pen(Brushes.Green, 1), rect);
@@ -3138,7 +3197,7 @@ namespace METAbolt
                             Point mouse = new Point(x, y);
                             string anme = string.Empty;
 
-                            instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, pos.Value));
+                            instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), anme, oavPos));
 
                             try
                             {
@@ -3166,17 +3225,6 @@ namespace METAbolt
                                         st = "*";
                                     }
                                 }
-
-                                //if (rctr == 1)
-                                //{
-                                //    rclr = Color.WhiteSmoke;
-                                //    rctr = 0;
-                                //}
-                                //else
-                                //{
-                                //    rclr = Color.White;
-                                //    rctr = 1;
-                                //}
 
                                 if (instance.avnames.ContainsKey(pos.Key))
                                 {
