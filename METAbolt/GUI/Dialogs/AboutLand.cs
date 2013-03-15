@@ -420,21 +420,23 @@ namespace METAbolt
 
                 foreach (ParcelManager.ParcelAccessEntry pe in blacklist)
                 {
-                    ListViewItem item = lvwBlackList.Items.Add(pe.AgentID.ToString());
-                    item.Tag = pe;
+                    if (pe.AgentID.ToString() != "00000000-0000-0000-0000-000000000000") {
+                    	ListViewItem item = lvwBlackList.Items.Add(pe.AgentID.ToString());
+                    	item.Tag = pe;
 
-                    if (!instance.avnames.ContainsKey(pe.AgentID))
-                    {
-                        client.Avatars.RequestAvatarName(pe.AgentID);
-                    }
-                    else
-                    {
-                        ListViewItem foundItem = lvwBlackList.FindItemWithText(pe.AgentID.ToString());
+                    	if (!instance.avnames.ContainsKey(pe.AgentID))
+                    	{
+                    	    client.Avatars.RequestAvatarName(pe.AgentID);
+                    	}
+                    	else
+                    	{
+                    	    ListViewItem foundItem = lvwBlackList.FindItemWithText(pe.AgentID.ToString());
 
-                        if (foundItem != null)
-                        {
-                            foundItem.Text = instance.avnames[pe.AgentID].ToString();
-                        }
+                     	   if (foundItem != null)
+                     	   {
+                    	        foundItem.Text = instance.avnames[pe.AgentID].ToString();
+                    	    }
+                    	}
                     }
                 }
 
