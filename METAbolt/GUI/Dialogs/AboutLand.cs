@@ -420,7 +420,8 @@ namespace METAbolt
 
                 foreach (ParcelManager.ParcelAccessEntry pe in blacklist)
                 {
-                    if (pe.AgentID.ToString() != "00000000-0000-0000-0000-000000000000") {
+                    if (pe.AgentID != UUID.Zero) 
+                    {
                     	ListViewItem item = lvwBlackList.Items.Add(pe.AgentID.ToString());
                     	item.Tag = pe;
 
