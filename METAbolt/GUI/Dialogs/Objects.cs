@@ -2670,7 +2670,7 @@ namespace METAbolt
 
             if (item == null) return;
 
-            if (instance.MuteList.Rows.Contains(item.Prim.ID.ToString()))
+            if (instance.IsAvatarMuted(item.Prim.ID))
             {
                 MessageBox.Show(item.Prim.Properties.Name + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
