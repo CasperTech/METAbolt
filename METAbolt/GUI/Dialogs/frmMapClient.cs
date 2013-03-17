@@ -303,6 +303,36 @@ namespace METAbolt
                     myPos = sim.AvatarPositions[client.Self.AgentID];
                 }
 
+                // Draw self position
+                int rg = instance.Config.CurrentConfig.RadarRange;
+
+                if (checkBox1.Checked)
+                {
+                    rg *= 2;
+
+                    Rectangle myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - rg / 2, (255 - ((int)Math.Round(myPos.Y, 0))) - rg / 2, rg + 2, rg + 2);
+                    SolidBrush semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 0, 255));
+                    g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.GammaCorrected;
+                    g.FillEllipse(semiTransBrush, myrect);
+
+                    myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
+                    g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
+                    g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
+                }
+                else
+                {
+                    Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
+                    g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
+                    g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
+                }
+
+                if (clickedx != 0 && clickedy != 0)
+                {
+                    //PlotSelected(clickedx, clickedy);
+                    Rectangle selectedrect = new Rectangle(clickedx - 2, clickedy - 2, 10, 10);
+                    g.DrawEllipse(new Pen(Brushes.Red, 2), selectedrect);
+                }
+
                 if (chkResident.Checked)
                 {
                     int i = 0;
@@ -349,21 +379,11 @@ namespace METAbolt
                             i++;
                         }
                     );
-                }                
-
-                // Draw self position
-                Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
-                g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
-                g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
-
-                if (clickedx != 0 && clickedy != 0)
-                {
-                    //PlotSelected(clickedx, clickedy);
-                    Rectangle selectedrect = new Rectangle(clickedx - 2, clickedy - 2, 10, 10);
-                    g.DrawEllipse(new Pen(Brushes.Red, 2), selectedrect);
                 }
 
                 g.DrawImage(bmp, 0, 0);
+
+                
 
                 world.Image = bmp;
 

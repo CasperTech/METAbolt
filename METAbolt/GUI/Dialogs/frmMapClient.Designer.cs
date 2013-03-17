@@ -69,6 +69,7 @@ namespace METAbolt
             this.lbxRegionSearch = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.TabCont.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuZ)).BeginInit();
@@ -101,8 +102,8 @@ namespace METAbolt
             // 
             // TabCont
             // 
-            this.TabCont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabCont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabCont.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.TabCont.Controls.Add(this.tabPage1);
             this.TabCont.Controls.Add(this.tabPage2);
@@ -116,6 +117,7 @@ namespace METAbolt
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.chkResident);
             this.tabPage1.Controls.Add(this.chkForSale);
             this.tabPage1.Controls.Add(this.button1);
@@ -143,7 +145,7 @@ namespace METAbolt
             this.chkResident.AutoSize = true;
             this.chkResident.Checked = true;
             this.chkResident.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkResident.Location = new System.Drawing.Point(101, 264);
+            this.chkResident.Location = new System.Drawing.Point(95, 264);
             this.chkResident.Name = "chkResident";
             this.chkResident.Size = new System.Drawing.Size(68, 17);
             this.chkResident.TabIndex = 1;
@@ -170,9 +172,9 @@ namespace METAbolt
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(207, 263);
+            this.button1.Location = new System.Drawing.Point(223, 263);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(54, 26);
+            this.button1.Size = new System.Drawing.Size(38, 25);
             this.button1.TabIndex = 2;
             this.button1.Text = "cl&ear";
             this.button1.UseVisualStyleBackColor = false;
@@ -576,6 +578,19 @@ namespace METAbolt
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AccessibleName = "Display residents option";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(162, 264);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(57, 17);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "Range";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // frmMapClient
             // 
             this.AccessibleDescription = "Displays the map of the current SIM";
@@ -660,6 +675,7 @@ namespace METAbolt
         private System.Windows.Forms.Label lblTeleportStatus;
         private System.Windows.Forms.Button btnTeleport;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

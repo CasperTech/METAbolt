@@ -963,7 +963,10 @@ namespace METAbolt
 
         private void Config_ConfigApplied(object sender, ConfigAppliedEventArgs e)
         {
-            ApplyConfig(e.AppliedConfig);
+            BeginInvoke(new MethodInvoker(delegate()
+                {
+                    ApplyConfig(e.AppliedConfig);
+                }));
         }
 
         private void ApplyConfig(Config config)
@@ -1031,6 +1034,10 @@ namespace METAbolt
                 //toolStrip1.Visible = true;
                 //client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             }
+
+            //label13.Text = "Range: " + instance.Config.CurrentConfig.RadarRange.ToString() + "m";
+            //label13.Refresh();
+            textBox1.Text = "Range: " + instance.Config.CurrentConfig.RadarRange.ToString() + "m"; 
         }
 
         public void RemoveEvents()
@@ -3162,6 +3169,29 @@ namespace METAbolt
                         myPos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
                     }
 
+                    // Draw self position
+                    int rg = instance.Config.CurrentConfig.RadarRange;
+
+                    if (rg < 230)
+                    {
+                        rg *= 2;
+
+                        Rectangle myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - rg / 2, (255 - ((int)Math.Round(myPos.Y, 0))) - rg / 2, rg + 2, rg + 2);
+                        SolidBrush semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 0, 255));
+                        g.CompositingQuality = CompositingQuality.GammaCorrected;
+                        g.FillEllipse(semiTransBrush, myrect);
+
+                        myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
+                        g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
+                        g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
+                    }
+                    else
+                    {
+                        Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
+                        g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
+                        g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
+                    }
+
                     ssim.AvatarPositions.ForEach(
                     delegate(KeyValuePair<UUID, Vector3> pos)
                     {
@@ -3280,20 +3310,11 @@ namespace METAbolt
                     }
                     );
 
-                    // Draw self position
-                    Rectangle myrect = new Rectangle((int)Math.Round(myPos.X, 0) - 2, 255 - ((int)Math.Round(myPos.Y, 0) - 2), 7, 7);
-                    g.FillEllipse(new SolidBrush(Color.Yellow), myrect);
-                    g.DrawEllipse(new Pen(Brushes.Red, 3), myrect);
-
                     g.DrawImage(bmp, 0, 0);
 
                     // Draw compass points
                     StringFormat strFormat = new StringFormat();
                     strFormat.Alignment = StringAlignment.Center;
-
-                    //myrect = new Rectangle((bmp.Height / 2) - 10, 0, 20, 20);
-                    //g.FillEllipse(new SolidBrush(Color.Black), myrect);
-                    //g.DrawEllipse(new Pen(Brushes.Red, 2), myrect);
 
                     g.DrawString("N", new Font("Arial", 13), Brushes.Black, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
                     g.DrawString("N", new Font("Arial", 10, FontStyle.Bold), Brushes.White, new RectangleF(0, 2, bmp.Width, bmp.Height), strFormat);
