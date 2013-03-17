@@ -169,6 +169,7 @@ namespace METAbolt
         //private bool broadcastid = true;
         private bool hidedisconnectprompt = false;
         private bool disableradar = false;
+        private bool restrictradar = false;
 
         public Config()
         {
@@ -266,6 +267,7 @@ namespace METAbolt
                 config.AutoAcceptFriends = conf.Configs["General"].GetBoolean("AutoAcceptFriends", false);
                 //config.BroadcastID = conf.Configs["General"].GetBoolean("BroadcastID", true);
                 config.DisableRadar = conf.Configs["General"].GetBoolean("DisableRadar", false);
+                config.RestrictRadar = conf.Configs["General"].GetBoolean("RestrictRadar", false);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -443,6 +445,7 @@ namespace METAbolt
             config.Set("AutoAcceptFriends", autoacceptfriends.ToString(CultureInfo.CurrentCulture));
             //config.Set("BroadcastID", broadcastid.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableRadar", disableradar.ToString(CultureInfo.CurrentCulture));
+            config.Set("RestrictRadar", restrictradar.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1244,6 +1247,12 @@ namespace METAbolt
         {
             get { return disableradar; }
             set { disableradar = value; }
+        }
+
+        public bool RestrictRadar
+        {
+            get { return restrictradar; }
+            set { restrictradar = value; }
         }
 
         //public bool BroadcastID
