@@ -3172,11 +3172,11 @@ namespace METAbolt
                     // Draw self position
                     int rg = instance.Config.CurrentConfig.RadarRange;
 
-                    if (rg < 230)
+                    if (rg < 150)
                     {
                         rg *= 2;
 
-                        Rectangle myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - rg / 2, (255 - ((int)Math.Round(myPos.Y, 0))) - rg / 2, rg + 2, rg + 2);
+                        Rectangle myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - (rg / 2), (255 - ((int)Math.Round(myPos.Y, 0))) - (rg / 2 - 4), rg + 2, rg + 2);
                         SolidBrush semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 0, 255));
                         g.CompositingQuality = CompositingQuality.GammaCorrected;
                         g.FillEllipse(semiTransBrush, myrect);
