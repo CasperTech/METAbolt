@@ -1039,6 +1039,7 @@ namespace METAbolt
             {
                 if (!tabControl1.TabPages.Contains(tabPage1))
                 {
+                    toolStrip1.Visible = true;
                     tabControl1.TabPages.Remove(tabPage3);
                     tabControl1.TabPages.Remove(tabPage4);
 
