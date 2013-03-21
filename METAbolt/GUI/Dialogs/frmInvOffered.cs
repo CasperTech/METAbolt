@@ -144,16 +144,18 @@ namespace METAbolt
         {
             client.Inventory.RemoveItem(objectID);
 
-            if (instance.MuteList.Rows.Contains(msg.FromAgentID.ToString()))
+            if (instance.IsAvatarMuted(msg.FromAgentID, MuteType.Resident) || instance.IsAvatarMuted(msg.FromAgentID, MuteType.Object))
             {
                 MessageBox.Show(msg.FromAgentName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DataRow dr = instance.MuteList.NewRow();
-            dr["uuid"] = msg.FromAgentID;
-            dr["mute_name"] = msg.FromAgentName;
-            instance.MuteList.Rows.Add(dr);
+            //DataRow dr = instance.MuteList.NewRow();
+            //dr["uuid"] = msg.FromAgentID;
+            //dr["mute_name"] = msg.FromAgentName;
+            //instance.MuteList.Rows.Add(dr);
+
+            instance.Client.Self.UpdateMuteListEntry(MuteType.Resident, msg.FromAgentID, msg.FromAgentName);
 
             MessageBox.Show(msg.FromAgentName + " is now muted.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

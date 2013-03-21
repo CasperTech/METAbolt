@@ -771,16 +771,18 @@ namespace METAbolt
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (instance.IsAvatarMuted(target))
+            if (instance.IsAvatarMuted(target, MuteType.Resident))
             {
                 MessageBox.Show(toName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DataRow dr = instance.MuteList.NewRow();
-            dr["uuid"] = target;
-            dr["mute_name"] = toName;
-            instance.MuteList.Rows.Add(dr);
+            //DataRow dr = instance.MuteList.NewRow();
+            //dr["uuid"] = target;
+            //dr["mute_name"] = toName;
+            //instance.MuteList.Rows.Add(dr);
+
+            instance.Client.Self.UpdateMuteListEntry(MuteType.Resident, target, instance.avnames[target]);
 
             MessageBox.Show(toName + " is now muted.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);      
         }

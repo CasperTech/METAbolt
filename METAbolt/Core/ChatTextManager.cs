@@ -337,7 +337,7 @@ namespace METAbolt
 
         private void netcom_ScriptDialogReceived(object sender, ScriptDialogEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.ObjectID))
+            if (instance.IsAvatarMuted(e.ObjectID, MuteType.Object))
                 return;
 
             if (string.IsNullOrEmpty(e.Message)) return;
@@ -381,7 +381,7 @@ namespace METAbolt
 
         private void netcom_ScriptQuestionReceived(object sender, ScriptQuestionEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.ItemID))
+            if (instance.IsAvatarMuted(e.ItemID, MuteType.Object))
                 return;
 
             //e.ObjectName.ToString();
@@ -507,7 +507,7 @@ namespace METAbolt
         {
             try
             {
-                if (instance.IsAvatarMuted(item.FromUUID))
+                if (instance.IsAvatarMuted(item.FromUUID, MuteType.Resident))
                     return;
             }
             catch
@@ -1361,7 +1361,7 @@ namespace METAbolt
 
         private void ProcessIncomingChat(ChatEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.OwnerID))
+            if (instance.IsAvatarMuted(e.OwnerID, MuteType.Resident))
                 return;
 
             if (string.IsNullOrEmpty(e.Message)) return;
@@ -1451,7 +1451,7 @@ namespace METAbolt
                     break;
 
                 case ChatSourceType.Object:
-                    if (instance.IsAvatarMuted(e.SourceID))
+                    if (instance.IsAvatarMuted(e.SourceID, MuteType.Object))
                            return;
 
                     // Ignore RLV commands from objects
@@ -1477,7 +1477,7 @@ namespace METAbolt
         {
             if (string.IsNullOrEmpty(e.Message)) return;
 
-            if (instance.IsAvatarMuted(e.ObjectID))
+            if (instance.IsAvatarMuted(e.ObjectID, MuteType.Object))
                 return;
 
             (new frmDialog(instance, e)).ShowDialog(instance.MainForm);

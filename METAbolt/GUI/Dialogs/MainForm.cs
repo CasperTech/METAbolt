@@ -247,6 +247,8 @@ namespace METAbolt
 
                 client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
+                client.Self.RequestMuteList();
+
                 List<UUID> avIDs = new List<UUID>();
                 avIDs.Add(parcel.OwnerID);
                 avIDs.Add(parcel.GroupID);
@@ -1578,6 +1580,7 @@ namespace METAbolt
 
         private void muteListToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            client.Self.RequestMuteList();
             (new frmMutes(instance)).Show(this);
         }
 

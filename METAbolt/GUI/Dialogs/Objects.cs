@@ -2670,16 +2670,18 @@ namespace METAbolt
 
             if (item == null) return;
 
-            if (instance.IsAvatarMuted(item.Prim.ID))
+            if (instance.IsAvatarMuted(item.Prim.ID, MuteType.Object))
             {
                 MessageBox.Show(item.Prim.Properties.Name + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DataRow dr = instance.MuteList.NewRow();
-            dr["uuid"] = item.Prim.ID;
-            dr["mute_name"] = item.Prim.Properties.Name;
-            instance.MuteList.Rows.Add(dr);
+            //DataRow dr = instance.MuteList.NewRow();
+            //dr["uuid"] = item.Prim.ID;
+            //dr["mute_name"] = item.Prim.Properties.Name;
+            //instance.MuteList.Rows.Add(dr);
+
+            instance.Client.Self.UpdateMuteListEntry(MuteType.Object, item.Prim.ID, item.Prim.Properties.Name);
 
             MessageBox.Show(item.Prim.Properties.Name + " is now muted.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

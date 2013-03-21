@@ -128,7 +128,7 @@ namespace METAbolt
 
         private void netcom_InstantMessageReceived(object sender, InstantMessageEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.IM.FromAgentID))
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident))
                 return;
 
             if (tabsconsole.tabs.ContainsKey(e.IM.FromAgentName.ToLower()))

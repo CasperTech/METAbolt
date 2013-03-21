@@ -33,29 +33,32 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PopupControl;
+using OpenMetaverse;
 
 namespace METAbolt
 {
     public partial class frmMutes : Form
     {
-        private Popup toolTip;
-        private CustomToolTip customToolTip;
+        //private Popup toolTip;
+        //private CustomToolTip customToolTip;
 
-        //private METAboltInstance instance;
+        private METAboltInstance instance;
 
         public frmMutes(METAboltInstance instance)
         {
             InitializeComponent();
 
-            //this.instance = instance;
+            this.instance = instance;
 
-            GW.DataSource = instance.MuteList;
+            //GW.DataSource = instance.MuteList;
 
-            string msg1 = "To un-mute, select the whole row by clicking the arrow on the left of the row and hit the DEL button on your keyboard";
-            toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
-            toolTip.AutoClose = false;
-            toolTip.FocusOnOpen = false;
-            toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+            //string msg1 = "To un-mute, select the whole row by clicking the arrow on the left of the row and hit the DEL button on your keyboard";
+            //toolTip = new Popup(customToolTip = new CustomToolTip(instance, msg1));
+            //toolTip.AutoClose = false;
+            //toolTip.FocusOnOpen = false;
+            //toolTip.ShowingAnimation = toolTip.HidingAnimation = PopupAnimations.Blend;
+
+            instance.Client.Self.MuteListUpdated += new EventHandler<EventArgs>(MuteListUpdated);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -67,16 +70,82 @@ namespace METAbolt
         private void frmMutes_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
+
+            lvMutes.Columns[0].Width = lvMutes.Width - 25;
+            LoadMutes();
         }
 
-        private void picHelp_MouseHover(object sender, EventArgs e)
+        private void LoadMutes()
         {
-            toolTip.Show(picHelp);
+            lvMutes.BeginUpdate();
+            lvMutes.Items.Clear();
+
+            int cnt = 0;
+
+            instance.Client.Self.MuteList.ForEach((MuteEntry entry) =>
+            {
+                string mutetype = string.Empty;
+
+                ListViewItem item = new ListViewItem(entry.Name);
+                item.Tag = entry;
+
+                if (cnt == 1)
+                {
+                    item.BackColor = Color.GhostWhite; 
+                    cnt = 0;
+                }
+
+                lvMutes.Items.Add(item);
+
+                cnt = 1;
+            }
+            );
+
+            lvMutes.EndUpdate();
         }
 
-        private void picHelp_MouseLeave(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            toolTip.Close();
+            MuteEntry entry = (MuteEntry)lvMutes.SelectedItems[0].Tag;
+
+            instance.Client.Self.RemoveMuteListEntry(entry.ID, entry.Name);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LoadMutes();
+            instance.Client.Self.RequestMuteList();
+        }
+
+        private void lvMutes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvMutes.SelectedItems.Count == 0)
+            {
+                button2.Enabled = false;
+            }
+            else
+            {
+                button2.Enabled = true;
+            }
+        }
+
+        private void frmMutes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            instance.Client.Self.MuteListUpdated += new EventHandler<EventArgs>(MuteListUpdated);
+        }
+
+        private void MuteListUpdated(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                if (IsHandleCreated)
+                {
+                    BeginInvoke(new MethodInvoker(() => MuteListUpdated(sender, e)));
+                }
+                return;
+            }
+
+            LoadMutes();
         }
     }
 }

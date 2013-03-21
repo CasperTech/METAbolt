@@ -96,7 +96,7 @@ namespace METAbolt
         private int dialogcount = 0;
         private int noticecount = 0;
         public AIMLbot.Bot myBot;
-        private DataTable mutelist = null;
+        //private DataTable mutelist = null;
         private DataTable tp = null;
         private bool detectlang = false;
         private UUID lookID = UUID.Zero; 
@@ -131,7 +131,7 @@ namespace METAbolt
 
             this.firstInstance = firstInstance;
 
-            LoadXMLFile(appdir + "\\MuteList.xml");
+            //LoadXMLFile(appdir + "\\MuteList.xml");
             LoadGiverItems(appdir + "\\METAgiverItems.xml");
 
             MakeTPTable();
@@ -181,7 +181,7 @@ namespace METAbolt
 
             this.firstInstance = firstInstance;
 
-            LoadXMLFile(appdir + "\\MuteList.xml");
+            //LoadXMLFile(appdir + "\\MuteList.xml");
             LoadGiverItems(appdir + "\\METAgiverItems.xml");
 
             MakeTPTable();
@@ -443,24 +443,35 @@ namespace METAbolt
             return (bytes / 1024f) / 1024f;
         }
 
-        public bool IsAvatarMuted(UUID avatar)
+        public bool IsAvatarMuted(UUID avatar, MuteType mtyp)
         {
-            if (avatar == UUID.Zero) return false;
+            //if (avatar == UUID.Zero) return false;
   
-            try
-            {
-                DataRow dr = mutelist.Rows.Find(avatar.ToString());
+            //try
+            //{
+            //    DataRow dr = mutelist.Rows.Find(avatar.ToString());
 
-                if (dr != null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+            //    if (dr != null)
+            //    {
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false;
+            //    }
+            //}
+            //catch { return false; }
+
+            MuteEntry mentry = client.Self.MuteList.Find(mle => mle.Type == mtyp && mle.ID == avatar);
+
+            if (mentry != null)
+            {
+                return true;
             }
-            catch { return false; }
+            else
+            {
+                return false;
+            }
         }
 
         public bool IsGiveItem(string item, UUID avid)
@@ -551,71 +562,71 @@ namespace METAbolt
             }
         }
 
-        private void LoadXMLFile(string XmlFile)
-        {
-            if (!System.IO.File.Exists(XmlFile))
-            {
-                DataTable tbl = MakeDataTable();
+        //private void LoadXMLFile(string XmlFile)
+        //{
+        //    if (!System.IO.File.Exists(XmlFile))
+        //    {
+        //        DataTable tbl = MakeDataTable();
 
-                mutelist = tbl;
-                mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
-                return;
-            }
+        //        mutelist = tbl;
+        //        mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
+        //        return;
+        //    }
  
-            DataSet dset = new DataSet();
-            FileStream fstr = null;
+        //    DataSet dset = new DataSet();
+        //    FileStream fstr = null;
 
-            try
-            {
-                fstr = new FileStream(XmlFile, FileMode.Open, FileAccess.Read);
-                dset.ReadXml(fstr);
-            }
-            catch (Exception exp)
-            {
-                Logger.Log("Load mute list: " + exp.Message, Helpers.LogLevel.Warning);
-            }
+        //    try
+        //    {
+        //        fstr = new FileStream(XmlFile, FileMode.Open, FileAccess.Read);
+        //        dset.ReadXml(fstr);
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        Logger.Log("Load mute list: " + exp.Message, Helpers.LogLevel.Warning);
+        //    }
 
-            try
-            {
-                if (dset.Tables.Count > 0)
-                {
-                    DataTable dtbl = dset.Tables[0];
+        //    try
+        //    {
+        //        if (dset.Tables.Count > 0)
+        //        {
+        //            DataTable dtbl = dset.Tables[0];
 
-                    fstr.Close();
-                    dset.Dispose();
+        //            fstr.Close();
+        //            dset.Dispose();
 
-                    mutelist = dtbl;
-                    mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
-                }
-                else
-                {
-                    fstr.Close();
-                    dset.Dispose();
+        //            mutelist = dtbl;
+        //            mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
+        //        }
+        //        else
+        //        {
+        //            fstr.Close();
+        //            dset.Dispose();
 
-                    DataTable tbl = MakeDataTable();
+        //            DataTable tbl = MakeDataTable();
 
-                    mutelist = tbl;
-                    mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
-                }
-            }
-            catch
-            {
-                ;
-            }
-        }
+        //            mutelist = tbl;
+        //            mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        ;
+        //    }
+        //}
 
-        private void SaveXMLFile(string XmlFile)
-        {
-            try
-            {
-                //int recs = mutelist.Rows.Count;  
-                mutelist.WriteXml(XmlFile);
-            }
-            catch
-            {
-                ;
-            }
-        }
+        //private void SaveXMLFile(string XmlFile)
+        //{
+        //    try
+        //    {
+        //        //int recs = mutelist.Rows.Count;  
+        //        mutelist.WriteXml(XmlFile);
+        //    }
+        //    catch
+        //    {
+        //        ;
+        //    }
+        //}
 
         private void SaveGiverItems(string XmlFile)
         {
@@ -683,27 +694,27 @@ namespace METAbolt
             }
         }
 
-        private DataTable MakeDataTable()
-        {
-            DataColumn myColumn = new DataColumn();
-            DataTable dtbl = new DataTable("list");
+        //private DataTable MakeDataTable()
+        //{
+        //    DataColumn myColumn = new DataColumn();
+        //    DataTable dtbl = new DataTable("list");
 
-            myColumn.DataType = System.Type.GetType("System.String");
-            myColumn.ColumnName = "mute_name";
-            dtbl.Columns.Add(myColumn);
+        //    myColumn.DataType = System.Type.GetType("System.String");
+        //    myColumn.ColumnName = "mute_name";
+        //    dtbl.Columns.Add(myColumn);
 
-            myColumn = new DataColumn();
-            myColumn.DataType = System.Type.GetType("System.String");
-            myColumn.ColumnName = "uuid";
-            dtbl.Columns.Add(myColumn);
-            //mutelist.Columns.Add(myColumn);
+        //    myColumn = new DataColumn();
+        //    myColumn.DataType = System.Type.GetType("System.String");
+        //    myColumn.ColumnName = "uuid";
+        //    dtbl.Columns.Add(myColumn);
+        //    //mutelist.Columns.Add(myColumn);
 
-            //dtbl.PrimaryKey = new DataColumn[] { dtbl.Columns["uuid"] };
+        //    //dtbl.PrimaryKey = new DataColumn[] { dtbl.Columns["uuid"] };
 
-            myColumn.Dispose();
+        //    myColumn.Dispose();
  
-            return dtbl;
-        }
+        //    return dtbl;
+        //}
 
         private DataTable MakeGiverDataTable()
         {
@@ -944,7 +955,7 @@ namespace METAbolt
             //    // do nothing
             //}
 
-            SaveXMLFile(appdir + "\\MuteList.xml");
+            //SaveXMLFile(appdir + "\\MuteList.xml");
             SaveGiverItems(appdir + "\\METAgiverItems.xml");
 
             client = null;
@@ -1156,11 +1167,11 @@ namespace METAbolt
             get { return myBot; }
         }
 
-        public DataTable MuteList
-        {
-            get { return mutelist; }
-            set { mutelist = value; }
-        }
+        //public DataTable MuteList
+        //{
+        //    get { return mutelist; }
+        //    set { mutelist = value; }
+        //}
 
         public DataTable TP
         {

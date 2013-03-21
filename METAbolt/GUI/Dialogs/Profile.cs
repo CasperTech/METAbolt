@@ -1094,16 +1094,18 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (instance.IsAvatarMuted(agentID))
+            if (instance.IsAvatarMuted(agentID, MuteType.Resident))
             {
                 MessageBox.Show(fullName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DataRow dr = instance.MuteList.NewRow();
-            dr["uuid"] = agentID;
-            dr["mute_name"] = fullName;
-            instance.MuteList.Rows.Add(dr);
+            //DataRow dr = instance.MuteList.NewRow();
+            //dr["uuid"] = agentID;
+            //dr["mute_name"] = fullName;
+            //instance.MuteList.Rows.Add(dr);
+
+            instance.Client.Self.UpdateMuteListEntry(MuteType.Resident, agentID, fullName);
 
             MessageBox.Show(fullName + " is now muted.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);      
         }
