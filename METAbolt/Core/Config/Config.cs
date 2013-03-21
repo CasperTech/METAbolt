@@ -170,6 +170,8 @@ namespace METAbolt
         private bool hidedisconnectprompt = false;
         private bool disableradar = false;
         private bool restrictradar = false;
+        private bool disablevoice = false;
+        private bool disablefavs = false;
 
         public Config()
         {
@@ -268,6 +270,8 @@ namespace METAbolt
                 //config.BroadcastID = conf.Configs["General"].GetBoolean("BroadcastID", true);
                 config.DisableRadar = conf.Configs["General"].GetBoolean("DisableRadar", false);
                 config.RestrictRadar = conf.Configs["General"].GetBoolean("RestrictRadar", false);
+                config.DisableVoice = conf.Configs["General"].GetBoolean("DisableVoice", false);
+                config.DisableFavs = conf.Configs["General"].GetBoolean("DisableFavs", false);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -446,6 +450,8 @@ namespace METAbolt
             //config.Set("BroadcastID", broadcastid.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableRadar", disableradar.ToString(CultureInfo.CurrentCulture));
             config.Set("RestrictRadar", restrictradar.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableVoice", disablevoice.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableFavs", disablefavs.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1255,10 +1261,16 @@ namespace METAbolt
             set { restrictradar = value; }
         }
 
-        //public bool BroadcastID
-        //{
-        //    get { return broadcastid; }
-        //    set { broadcastid = value; }
-        //}
+        public bool DisableVoice
+        {
+            get { return disablevoice; }
+            set { disablevoice = value; }
+        }
+
+        public bool DisableFavs
+        {
+            get { return disablefavs; }
+            set { disablefavs = value; }
+        }
     }
 }

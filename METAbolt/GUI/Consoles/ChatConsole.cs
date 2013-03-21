@@ -114,6 +114,10 @@ namespace METAbolt
         private string tooltiptext = string.Empty;
         private Simulator CurrentSIM;
         private Vector3 lastPos = new Vector3(0, 0, 0);
+        private TabPage tp1 = new TabPage();
+        private TabPage tp2 = new TabPage();
+        private TabPage tp3 = new TabPage();
+        private TabPage tp4 = new TabPage();
 
 
         internal class ThreadExceptionHandler
@@ -187,6 +191,11 @@ namespace METAbolt
             toolTip.BackColor = Color.RoyalBlue;
             toolTip.ForeColor = Color.White;
             toolTip.Draw += new DrawToolTipEventHandler(toolTip_Draw);
+
+            tp1 = tabPage1;
+            tp2 = tabPage2;
+            tp3 = tabPage3;
+            tp4 = tabPage4; 
         }
 
         private void toolTip_Draw(object sender, DrawToolTipEventArgs e)
@@ -1012,31 +1021,86 @@ namespace METAbolt
                 hunspell.Dispose();
             }
 
-            //rtbChat.BackColor = instance.Config.CurrentConfig.BgColour;
-
             if (instance.Config.CurrentConfig.DisableRadar)
             {
-                //splitContainer1.SplitterDistance = splitContainer1.Width;   //513
-                //panel5.Visible = false;
-                //tabControl1.Visible = false;
                 toolStrip1.Visible = false;
                 tabControl1.TabPages.Remove(tabPage1);
                 tabControl1.TabPages.Remove(tabPage2);
+
+                picCompass.Visible = false;
+                label1.Visible = false;
+                label2.Visible = false;
+                label19.Visible = false;
+                label20.Visible = false;
+
                 client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             }
             else
             {
-                //splitContainer1.SplitterDistance = 513;
-                //panel5.Visible = true;
-                //tabControl1.Visible = true;
+                if (!tabControl1.TabPages.Contains(tabPage1))
+                {
+                    tabControl1.TabPages.Remove(tabPage3);
+                    tabControl1.TabPages.Remove(tabPage4);
+
+                    tabPage1 = tp1;
+                    tabControl1.TabPages.Add(tabPage1);
+                    tabPage2 = tp2;
+                    tabControl1.TabPages.Add(tabPage2);
+
+                    picCompass.Visible = true;
+                    label1.Visible = true;
+                    label2.Visible = true;
+                    label19.Visible = true;
+                    label20.Visible = true;
+
+                    client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
+                }
+            }
+
+            if (instance.Config.CurrentConfig.DisableVoice)
+            {
+                tabControl1.TabPages.Remove(tabPage3);
+            }
+            else
+            {
+                if (!tabControl1.TabPages.Contains(tabPage3))
+                {
+                    tabControl1.TabPages.Remove(tabPage4);
+                    tabPage3 = tp3;
+                    tabControl1.TabPages.Add(tabPage3);
+                }
+            }
+
+            if (instance.Config.CurrentConfig.DisableFavs)
+            {
+                tabControl1.TabPages.Remove(tabPage4);
+            }
+            else
+            {
+                if (!tabControl1.TabPages.Contains(tabPage4))
+                {
+                    tabPage4 = tp4;
+                    tabControl1.TabPages.Add(tabPage4);
+                }
+            }
+
+            if (instance.Config.CurrentConfig.DisableRadar && instance.Config.CurrentConfig.DisableFavs && instance.Config.CurrentConfig.DisableFavs)
+            {
+                splitContainer1.SplitterDistance = splitContainer1.Width;   //513
+                panel5.Visible = false;
+                tabControl1.Visible = false;
+            }
+            else
+            {
+                splitContainer1.SplitterDistance = 513;
+                panel5.Visible = true;
+                tabControl1.Visible = true;
                 //tabControl1.TabPages.Add(tabPage1);
                 //tabControl1.TabPages.Add(tabPage2);
                 //toolStrip1.Visible = true;
                 //client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             }
 
-            //label13.Text = "Range: " + instance.Config.CurrentConfig.RadarRange.ToString() + "m";
-            //label13.Refresh();
             textBox1.Text = "Range: " + instance.Config.CurrentConfig.RadarRange.ToString() + "m"; 
         }
 
@@ -3363,7 +3427,7 @@ namespace METAbolt
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 1)
+            if (tabControl1.SelectedTab == tabPage1)
             {
                 if (!instance.LoggedIn) return;
 
@@ -3380,17 +3444,31 @@ namespace METAbolt
                 BeginInvoke((MethodInvoker)delegate { GetMap(); });
                 toolStrip1.Visible = false;
             }
-            else if (tabControl1.SelectedIndex == 2)
+            else if (tabControl1.SelectedTab == tabPage2)
             {
                 toolStrip1.Visible = false;
             }
-            else if (tabControl1.SelectedIndex == 3)
+            else if (tabControl1.SelectedTab == tabPage3)
             {
                 toolStrip1.Visible = false;
             }
             else
             {
                 toolStrip1.Visible = true;
+                List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
+
+                foreach (InventoryBase o in invroot)
+                {
+                    if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                    {
+                        if (o is InventoryFolder)
+                        {
+                            client.Inventory.RequestFolderContents(o.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+
+                            break;
+                        }
+                    }
+                }
             }
         }
         #endregion

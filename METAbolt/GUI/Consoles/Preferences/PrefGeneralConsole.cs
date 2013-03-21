@@ -67,7 +67,7 @@ namespace METAbolt
         private string textfontstyle = "Regular";
         private float textfontsize = 8.5f;
         private bool loading = true;
-        private bool restart = false;
+        //private bool restart = false;
 
         public PrefGeneralConsole(METAboltInstance instance)
         {
@@ -152,8 +152,10 @@ namespace METAbolt
             nUD2.Value = config.CurrentConfig.ReStartTime;
             textBox4.Text = client.Settings.ASSET_CACHE_DIR;
             checkBox13.Checked = config.CurrentConfig.HideDisconnectPrompt;
-            chkDisableRadar.Checked = restart = config.CurrentConfig.DisableRadar;
+            chkDisableRadar.Checked = config.CurrentConfig.DisableRadar;
             chkRestrictRadar.Checked = config.CurrentConfig.RestrictRadar;
+            chkVoice.Checked = config.CurrentConfig.DisableVoice;
+            chkFavs.Checked = config.CurrentConfig.DisableFavs;
 
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)
             {
@@ -310,7 +312,9 @@ namespace METAbolt
             instance.Config.CurrentConfig.BandwidthThrottle = Convert.ToSingle(trackBar1.Value);
             instance.Config.CurrentConfig.HideDisconnectPrompt = checkBox13.Checked;
             instance.Config.CurrentConfig.DisableRadar = chkDisableRadar.Checked;
-            instance.Config.CurrentConfig.RestrictRadar = chkRestrictRadar.Checked;   
+            instance.Config.CurrentConfig.RestrictRadar = chkRestrictRadar.Checked;
+            instance.Config.CurrentConfig.DisableVoice = chkVoice.Checked;  
+            instance.Config.CurrentConfig.DisableFavs = chkFavs.Checked;  
 
             if (checkBox4.Checked)
             {
@@ -883,16 +887,16 @@ namespace METAbolt
 
         private void chkDisableRadar_CheckedChanged(object sender, EventArgs e)
         {
-            if (loading)
-            {
-                loading = false;
-                return;
-            }
+            //if (loading)
+            //{
+            //    loading = false;
+            //    return;
+            //}
 
-            if (!chkDisableRadar.Checked && chkDisableRadar.Checked != restart)
-            {
-                MessageBox.Show("If you 'Apply' this change you will need to re-start METAbolt", "METAbolt");
-            }
+            //if (!chkDisableRadar.Checked && chkDisableRadar.Checked != restart)
+            //{
+            //    MessageBox.Show("If you 'Apply' this change you will need to re-start METAbolt", "METAbolt");
+            //}
         }
     }
 }

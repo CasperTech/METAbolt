@@ -66,7 +66,7 @@ namespace METAbolt
         public bool managerbusy = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private bool searching = false;
-        private UUID folderproc = UUID.Zero;
+        //private UUID folderproc = UUID.Zero;
         private TreeNode sellectednode = new TreeNode();
         private InventoryFolder rootFolder;
         private TreeNode rootNode;
@@ -336,21 +336,24 @@ namespace METAbolt
 
         private void Network_OnEventQueueRunning(object sender, EventQueueRunningEventArgs e)
         {
-            if (e.Simulator == client.Network.CurrentSim)
+            if (!instance.Config.CurrentConfig.DisableFavs)
             {
-                List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
-
-                foreach (InventoryBase o in invroot)
+                if (e.Simulator == client.Network.CurrentSim)
                 {
-                    if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                    List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
+
+                    foreach (InventoryBase o in invroot)
                     {
-                        if (o is InventoryFolder)
+                        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
                         {
-                            favfolder = o.UUID;
+                            if (o is InventoryFolder)
+                            {
+                                favfolder = o.UUID;
 
-                            client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+                                client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
 
-                            break;
+                                break;
+                            }
                         }
                     }
                 }
@@ -440,12 +443,12 @@ namespace METAbolt
             {
                 if (!searching)
                 {
-                    if (folderproc == e.FolderID)
-                    {
-                        //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
+                    //if (folderproc == e.FolderID)
+                    //{
+                        ////ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
                         UpdateFolder(e.FolderID);
-                        folderproc = UUID.Zero;
-                    }
+                        //folderproc = UUID.Zero;
+                    //}
                 }
             }
             catch { ; }
@@ -2006,7 +2009,7 @@ namespace METAbolt
 
                 //selectednode = e.Node;
 
-                folderproc = folder.UUID;
+                //folderproc = folder.UUID;
 
                 if (SortBy == "By Date")
                 {

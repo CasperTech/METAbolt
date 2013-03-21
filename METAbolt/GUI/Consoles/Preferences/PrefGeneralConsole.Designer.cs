@@ -62,6 +62,7 @@ namespace METAbolt
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.chkConnect4 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.chkRestrictRadar = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
@@ -127,7 +128,8 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.chkRestrictRadar = new System.Windows.Forms.CheckBox();
+            this.chkVoice = new System.Windows.Forms.CheckBox();
+            this.chkFavs = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -214,6 +216,8 @@ namespace METAbolt
             // 
             this.tabPage1.AccessibleName = "Options tab";
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.chkFavs);
+            this.tabPage1.Controls.Add(this.chkVoice);
             this.tabPage1.Controls.Add(this.chkDisableRadar);
             this.tabPage1.Controls.Add(this.checkBox13);
             this.tabPage1.Controls.Add(this.label18);
@@ -253,7 +257,7 @@ namespace METAbolt
             // 
             this.chkDisableRadar.AccessibleName = "Disable icon option";
             this.chkDisableRadar.AutoSize = true;
-            this.chkDisableRadar.Location = new System.Drawing.Point(203, 151);
+            this.chkDisableRadar.Location = new System.Drawing.Point(203, 180);
             this.chkDisableRadar.Name = "chkDisableRadar";
             this.chkDisableRadar.Size = new System.Drawing.Size(124, 17);
             this.chkDisableRadar.TabIndex = 67;
@@ -265,7 +269,7 @@ namespace METAbolt
             // 
             this.checkBox13.AccessibleName = "Disable icon option";
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(8, 169);
+            this.checkBox13.Location = new System.Drawing.Point(8, 100);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(216, 17);
             this.checkBox13.TabIndex = 66;
@@ -363,7 +367,7 @@ namespace METAbolt
             // 
             this.chkTyping.AccessibleName = "Disable typing animation";
             this.chkTyping.AutoSize = true;
-            this.chkTyping.Location = new System.Drawing.Point(8, 117);
+            this.chkTyping.Location = new System.Drawing.Point(8, 134);
             this.chkTyping.Name = "chkTyping";
             this.chkTyping.Size = new System.Drawing.Size(142, 17);
             this.chkTyping.TabIndex = 13;
@@ -374,7 +378,7 @@ namespace METAbolt
             // 
             this.chkFriends.AccessibleName = "Disable friends online/offline";
             this.chkFriends.AutoSize = true;
-            this.chkFriends.Location = new System.Drawing.Point(8, 151);
+            this.chkFriends.Location = new System.Drawing.Point(8, 168);
             this.chkFriends.Name = "chkFriends";
             this.chkFriends.Size = new System.Drawing.Size(161, 17);
             this.chkFriends.TabIndex = 2;
@@ -453,7 +457,7 @@ namespace METAbolt
             // 
             this.chkLookAt.AccessibleName = "Disable lookat option";
             this.chkLookAt.AutoSize = true;
-            this.chkLookAt.Location = new System.Drawing.Point(203, 100);
+            this.chkLookAt.Location = new System.Drawing.Point(203, 151);
             this.chkLookAt.Name = "chkLookAt";
             this.chkLookAt.Size = new System.Drawing.Size(96, 17);
             this.chkLookAt.TabIndex = 9;
@@ -464,7 +468,7 @@ namespace METAbolt
             // 
             this.chkInvites.AccessibleName = "Disable invites option";
             this.chkInvites.AutoSize = true;
-            this.chkInvites.Location = new System.Drawing.Point(8, 100);
+            this.chkInvites.Location = new System.Drawing.Point(8, 117);
             this.chkInvites.Name = "chkInvites";
             this.chkInvites.Size = new System.Drawing.Size(166, 17);
             this.chkInvites.TabIndex = 8;
@@ -509,7 +513,7 @@ namespace METAbolt
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(158, 134);
+            this.pictureBox1.Location = new System.Drawing.Point(158, 151);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
             this.pictureBox1.TabIndex = 36;
@@ -522,7 +526,7 @@ namespace METAbolt
             // 
             this.chkNotifications.AccessibleName = "Disable notifications option";
             this.chkNotifications.AutoSize = true;
-            this.chkNotifications.Location = new System.Drawing.Point(8, 134);
+            this.chkNotifications.Location = new System.Drawing.Point(8, 151);
             this.chkNotifications.Name = "chkNotifications";
             this.chkNotifications.Size = new System.Drawing.Size(144, 17);
             this.chkNotifications.TabIndex = 1;
@@ -585,6 +589,17 @@ namespace METAbolt
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Radar/Range";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // chkRestrictRadar
+            // 
+            this.chkRestrictRadar.AccessibleName = "Optimise for dial-up option";
+            this.chkRestrictRadar.AutoSize = true;
+            this.chkRestrictRadar.Location = new System.Drawing.Point(80, 61);
+            this.chkRestrictRadar.Name = "chkRestrictRadar";
+            this.chkRestrictRadar.Size = new System.Drawing.Size(180, 17);
+            this.chkRestrictRadar.TabIndex = 62;
+            this.chkRestrictRadar.Text = "Restrict chat radar to this range";
+            this.chkRestrictRadar.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -1339,16 +1354,27 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
-            // chkRestrictRadar
+            // chkVoice
             // 
-            this.chkRestrictRadar.AccessibleName = "Optimise for dial-up option";
-            this.chkRestrictRadar.AutoSize = true;
-            this.chkRestrictRadar.Location = new System.Drawing.Point(80, 61);
-            this.chkRestrictRadar.Name = "chkRestrictRadar";
-            this.chkRestrictRadar.Size = new System.Drawing.Size(180, 17);
-            this.chkRestrictRadar.TabIndex = 62;
-            this.chkRestrictRadar.Text = "Restrict chat radar to this range";
-            this.chkRestrictRadar.UseVisualStyleBackColor = true;
+            this.chkVoice.AccessibleName = "Disable icon option";
+            this.chkVoice.AutoSize = true;
+            this.chkVoice.Location = new System.Drawing.Point(203, 197);
+            this.chkVoice.Name = "chkVoice";
+            this.chkVoice.Size = new System.Drawing.Size(112, 17);
+            this.chkVoice.TabIndex = 68;
+            this.chkVoice.Text = "Disable voice chat";
+            this.chkVoice.UseVisualStyleBackColor = true;
+            // 
+            // chkFavs
+            // 
+            this.chkFavs.AccessibleName = "Disable icon option";
+            this.chkFavs.AutoSize = true;
+            this.chkFavs.Location = new System.Drawing.Point(203, 215);
+            this.chkFavs.Name = "chkFavs";
+            this.chkFavs.Size = new System.Drawing.Size(112, 17);
+            this.chkFavs.TabIndex = 69;
+            this.chkFavs.Text = "Disable favourites";
+            this.chkFavs.UseVisualStyleBackColor = true;
             // 
             // PrefGeneralConsole
             // 
@@ -1502,6 +1528,8 @@ namespace METAbolt
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox chkDisableRadar;
         private System.Windows.Forms.CheckBox chkRestrictRadar;
+        private System.Windows.Forms.CheckBox chkFavs;
+        private System.Windows.Forms.CheckBox chkVoice;
 
     }
 }
