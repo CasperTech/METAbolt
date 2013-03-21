@@ -428,7 +428,6 @@ namespace METAbolt
             this.tabMembers.Controls.Add(this.lvwAble);
             this.tabMembers.Controls.Add(this.button1);
             this.tabMembers.Controls.Add(this.cmdEject);
-            this.tabMembers.Controls.Add(this.btnInvite);
             this.tabMembers.Controls.Add(this.lstMembers2);
             this.tabMembers.Controls.Add(this.label2);
             this.tabMembers.Controls.Add(this.label1);
@@ -502,7 +501,7 @@ namespace METAbolt
             this.btnInvite.AccessibleName = "Invite a new member button";
             this.btnInvite.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnInvite.ForeColor = System.Drawing.Color.White;
-            this.btnInvite.Location = new System.Drawing.Point(129, 194);
+            this.btnInvite.Location = new System.Drawing.Point(260, 195);
             this.btnInvite.Name = "btnInvite";
             this.btnInvite.Size = new System.Drawing.Size(123, 23);
             this.btnInvite.TabIndex = 1;
@@ -574,6 +573,7 @@ namespace METAbolt
             this.tabRoles.Controls.Add(this.lvRoleMembers);
             this.tabRoles.Controls.Add(this.panel3);
             this.tabRoles.Controls.Add(this.label14);
+            this.tabRoles.Controls.Add(this.btnInvite);
             this.tabRoles.Controls.Add(this.button5);
             this.tabRoles.Controls.Add(this.lvwAbilities);
             this.tabRoles.Controls.Add(this.button4);
