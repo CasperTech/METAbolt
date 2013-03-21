@@ -1580,6 +1580,8 @@ namespace METAbolt
 
         private void muteListToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (!instance.LoggedIn) return;
+
             client.Self.RequestMuteList();
             (new frmMutes(instance)).Show(this);
         }

@@ -3432,21 +3432,22 @@ namespace METAbolt
             {
                 if (!instance.LoggedIn) return;
 
+                toolStrip1.Visible = true;
+
                 label6.Text = string.Empty;
                 label4.Text = string.Empty;
                 label5.Text = string.Empty;
                 label8.Text = string.Empty;
                 label9.Text = string.Empty;
                 label15.Text = string.Empty;
-
+            }
+            else if (tabControl1.SelectedTab == tabPage2)
+            {
                 client.Grid.RequestMapRegion(client.Network.CurrentSim.Name, GridLayerType.Objects);
 
                 //GetMap();
                 BeginInvoke((MethodInvoker)delegate { GetMap(); });
-                toolStrip1.Visible = false;
-            }
-            else if (tabControl1.SelectedTab == tabPage2)
-            {
+
                 toolStrip1.Visible = false;
             }
             else if (tabControl1.SelectedTab == tabPage3)
@@ -3455,7 +3456,7 @@ namespace METAbolt
             }
             else
             {
-                toolStrip1.Visible = true;
+                toolStrip1.Visible = false;
                 List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
 
                 foreach (InventoryBase o in invroot)
