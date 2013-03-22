@@ -1,4 +1,4 @@
-﻿//  Copyright (c) 2008-2011, www.metabolt.net
+﻿//  Copyright (c) 2008-2013, www.metabolt.net
 //  All rights reserved.
 
 //  Redistribution and use in source and binary forms, with or without modification, 
@@ -70,7 +70,7 @@ namespace METAbolt
 
                 if (split.Length > 1)
                 {
-                    lblSubheading.Text = split[0].ToString().Replace("Group", "\nGroup: ") + @split[1].ToString().Replace("\n", "");
+                    lblSubheading.Text = split[0].ToString().Replace("Group", "\nGroup: ") + @split[1].ToString().Replace("\n", " ");
                 }
                 else
                 {
