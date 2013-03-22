@@ -64,17 +64,17 @@ namespace METAbolt
                 targetName = e.IM.FromAgentName;
                 targetUUID = e.IM.FromAgentID;
                 isession = e.IM.IMSessionID;
-                string gmsg = e.IM.Message.ToString();
+                string gmsg = @e.IM.Message.ToString();
 
                 split = gmsg.Split(new Char[] { ':' });
 
                 if (split.Length > 1)
                 {
-                    lblSubheading.Text = split[0].ToString().Replace("Group", "\nGroup: ") + split[1].ToString().Replace("\n", "");
+                    lblSubheading.Text = split[0].ToString().Replace("Group", "\nGroup: ") + @split[1].ToString().Replace("\n", "");
                 }
                 else
                 {
-                    lblSubheading.Text = split[0].ToString();
+                    lblSubheading.Text = @split[0].ToString();
                 }
             }
             catch { ; }
