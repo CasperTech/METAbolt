@@ -37,6 +37,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.lvMutes = new METAbolt.FlickerFreeListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -48,7 +49,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "&OK";
+            this.button1.Text = "Clo&se";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -75,7 +76,7 @@
             // button2
             // 
             this.button2.AccessibleName = "OK button to close the window";
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.BackColor = System.Drawing.Color.ForestGreen;
             this.button2.Enabled = false;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(2, 272);
@@ -91,7 +92,7 @@
             this.button3.AccessibleName = "OK button to close the window";
             this.button3.BackColor = System.Drawing.Color.RoyalBlue;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(83, 272);
+            this.button3.Location = new System.Drawing.Point(258, 301);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 42;
@@ -131,6 +132,19 @@
             this.columnHeader3.Text = "Name";
             this.columnHeader3.Width = 175;
             // 
+            // button4
+            // 
+            this.button4.AccessibleName = "OK button to close the window";
+            this.button4.BackColor = System.Drawing.Color.Red;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(177, 301);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 44;
+            this.button4.Text = "Mute Object";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // frmMutes
             // 
             this.AccessibleName = "Mute list window";
@@ -140,6 +154,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(470, 330);
             this.ControlBox = false;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.lvMutes);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -168,5 +183,6 @@
         private System.Windows.Forms.Button button3;
         public FlickerFreeListView lvMutes;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button button4;
     }
 }

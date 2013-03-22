@@ -147,5 +147,10 @@ namespace METAbolt
 
             LoadMutes();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            (new frmObjects(instance)).Show();
+        }
     }
 }
