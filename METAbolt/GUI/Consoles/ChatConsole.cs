@@ -1364,7 +1364,7 @@ namespace METAbolt
 
                 if (selfpos.Z < 0.1f)
                 {
-                    selfpos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
+                    selfpos.Z = 1024f;
                 }
 
                 if (avpos.Z < 0.1f)
@@ -1378,30 +1378,21 @@ namespace METAbolt
                 
                 sym = "(Alt.: " + avpos.Z.ToString("#0") + "m)";
 
-                //if (avpos.Z == 1024f)
-                //{
-                //    sym = "(Alt: >" + avpos.Z.ToString("#0") + "m)";
-                //}
-                //else
-                //{
-                //    sym = "(Alt: " + avpos.Z.ToString("#0") + "m)";
-                //}
-
-                //if (selfpos.Z - avpos.Z > 20)
-                //{
-                //    sym = "<";
-                //}
-                //else if (selfpos.Z - avpos.Z > -11 && selfpos.Z - avpos.Z < 11)
-                //{
-                //    sym = "=";
-                //}
-                //else
-                //{
-                //    sym = ">";
-                //}
-
-                sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
-                // sDist = Convert.ToInt32(dist).ToString() + "m]";
+                if (clr == Color.RoyalBlue)
+                {
+                    if (avpos.Z > 1019f)
+                    {
+                        sDist = "[???m] ";
+                    }
+                    else
+                    {
+                        sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
+                    }
+                }
+                else
+                {
+                    sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
+                }
 
                 string rentry = " " + sym + state;
 
@@ -1449,7 +1440,6 @@ namespace METAbolt
                     item.ForeColor = Color.Black;  
                     
                     item.SubItems.Add(string.Empty);
-                    //item.SubItems.Add(string.Empty);
                 }
 
                 recolorListItems(lvwRadar);
@@ -3190,39 +3180,24 @@ namespace METAbolt
                     Vector3 myPos = new Vector3(0,0,0);
                     string strInfo = string.Empty;
 
-                    if (!ssim.AvatarPositions.ContainsKey(client.Self.AgentID))
+                    myPos = instance.SIMsittingPos();
+
+                    try
                     {
-                        myPos = instance.SIMsittingPos();
-                        label12.Text = ssim.SimVersion;
-                        strInfo = string.Format("Ttl Avatars: {0}", ssim.AvatarPositions.Count + 1);
+                        string[] svers = ssim.SimVersion.Split(' ');
+                        var e = from s in svers
+                                select s;
+
+                        int cnt = e.Count() - 1;
+
+                        label12.Text = svers[cnt];
                     }
-                    else
+                    catch
                     {
-                        try
-                        {
-                            myPos = ssim.AvatarPositions[client.Self.AgentID];
-
-                            try
-                            {
-                                string[] svers = ssim.SimVersion.Split(' ');
-                                var e = from s in svers
-                                        select s;
-
-                                int cnt = e.Count() - 1;
-
-                                //label12.Text = ssim.SimVersion.Remove(0, 18);
-                                label12.Text = svers[cnt]; 
-                            }
-                            catch
-                            {
-                                label12.Text = "na";
-                            }
-
-                            strInfo = string.Format("Ttl Avatars: {0}", ssim.AvatarPositions.Count);
-                        }
-                        catch { ; }
+                        label12.Text = "na";
                     }
 
+                    strInfo = string.Format("Ttl Avatars: {0}", ssim.AvatarPositions.Count);
                     label6.Text = strInfo;
 
                     int i = 0;
@@ -3231,7 +3206,7 @@ namespace METAbolt
 
                     if (myPos.Z < 0.1f)
                     {
-                        myPos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
+                        myPos.Z = 1024f;
                     }
 
                     // Draw self position
@@ -3268,10 +3243,44 @@ namespace METAbolt
                         {
                             bool restrict = false;
 
+                            if (!instance.avnames.ContainsKey(pos.Key))
+                            {
+                                client.Avatars.RequestAvatarName(pos.Key);
+                            }
+
                             Vector3 oavPos = new Vector3(0, 0, 0);
                             oavPos.X = pos.Value.X;
                             oavPos.Y = pos.Value.Y;
                             oavPos.Z = pos.Value.Z;
+
+                            if (oavPos.Z < 0.1f)
+                            {
+                                oavPos.Z = 1024f;
+                            }
+
+                            Avatar fav = new Avatar();
+                            fav = ssim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
+
+                            string st = string.Empty;
+
+                            if (fav != null)
+                            {
+                                oavPos = fav.Position;
+                                uint sobj = fav.ParentID;
+
+                                if (sobj != 0)
+                                {
+                                    st = "*";
+
+                                    Primitive prim;
+                                    client.Network.CurrentSim.ObjectsPrimitives.TryGetValue(sobj, out prim);
+
+                                    if (prim != null)
+                                    {
+                                        oavPos = prim.Position + oavPos;
+                                    }
+                                }
+                            }
 
                             if (instance.Config.CurrentConfig.RestrictRadar)
                             {
@@ -3297,16 +3306,10 @@ namespace METAbolt
 
                             if (!restrict)
                             {
-                                int x = (int)pos.Value.X - 2;
-                                int y = 255 - (int)pos.Value.Y - 2;
+                                int x = (int)oavPos.X - 2;
+                                int y = 255 - (int)oavPos.Y - 2;
 
                                 rect = new Rectangle(x, y, 7, 7);
-
-                                if (oavPos.Z < 0.1f)
-                                {
-                                    //oavPos.Z = 1024f;
-                                    oavPos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);
-                                }
 
                                 if (myPos.Z - oavPos.Z > 20)
                                 {
@@ -3325,36 +3328,19 @@ namespace METAbolt
                                 }
 
                                 Point mouse = new Point(x, y);
-                                //string anme = string.Empty;
 
                                 instance.avlocations.Add(new METAboltInstance.AvLocation(mouse, rect.Size, pos.Key.ToString(), string.Empty, oavPos));
 
                                 try
                                 {
-                                    //if (instance.avtags.ContainsKey(pos.Key))
-                                    //{
-                                    //    anme = instance.avtags[pos.Key];
-                                    //}
-
-                                    Color aclr = Color.Black;
-
-                                    Avatar fav = new Avatar();
-                                    fav = ssim.ObjectsAvatars.Find((Avatar av) => { return av.ID == pos.Key; });
-                                    string st = string.Empty;
+                                    Color aclr = Color.Black;                                    
 
                                     if (fav == null)
                                     {
                                         aclr = Color.RoyalBlue;
-                                        //client.Self.Movement.Camera.LookAt(pos.Value + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, pos.Value);
-                                        //client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5, 0, 0) * client.Self.Movement.BodyRotation, client.Self.SimPosition);
                                     }
                                     else
                                     {
-                                        if (fav.ParentID != 0)
-                                        {
-                                            st = "*";
-                                        }
-
                                         if (!instance.avtags.ContainsKey(fav.ID))
                                         {
                                             instance.avtags.Add(fav.ID, fav.GroupName);
@@ -3364,13 +3350,12 @@ namespace METAbolt
                                     if (instance.avnames.ContainsKey(pos.Key))
                                     {
                                         string name = instance.avnames[pos.Key];
-                                        BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, pos.Value, aclr, st });
+                                        BeginInvoke(new OnAddSIMAvatar(AddSIMAvatar), new object[] { name, pos.Key, oavPos, aclr, st });
                                     }
                                 }
                                 catch (Exception ex)
                                 {
                                     Logger.Log("UpdateMiniMap: " + ex.Message, Helpers.LogLevel.Warning);
-                                    //reporter.Show(ex);
                                 }
                             }
                         }
