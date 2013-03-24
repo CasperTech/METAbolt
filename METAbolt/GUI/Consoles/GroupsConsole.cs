@@ -128,8 +128,6 @@ namespace METAbolt
             {
                 lstGroups.Items.Clear();
 
-                lstGroups.Items.Add("_None");
-
                 foreach (Group group in this.instance.State.Groups.Values)
                 {
                     lstGroups.Items.Add(group);
@@ -148,6 +146,9 @@ namespace METAbolt
                 }
 
                 lstGroups.Sorted = true;
+
+                //lstGroups.Items.Add("_None");
+                lstGroups.Items.Insert(0, "_None"); 
 
                 if (lstGroups.Items.Count > 0)
                 {
