@@ -85,8 +85,6 @@ namespace METAbolt
 
             Disposed += new EventHandler(AboutLand_Disposed);
 
-            this.parcel = this.instance.MainForm.parcel;
-
             client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
             client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
             client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
@@ -95,7 +93,15 @@ namespace METAbolt
 
             client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
-            PopData();
+            if (this.instance.MainForm.parcel != null)
+            {
+                this.parcel = this.instance.MainForm.parcel;
+                PopData();
+            }
+            else
+            {
+                MessageBox.Show("Could not retreive current parcel details from SL. Try again later.", "METAbolt");  
+            }
         }
 
         private void SetExceptionReporter()
@@ -258,6 +264,8 @@ namespace METAbolt
             try
             {
                 formloading = true;
+
+                if (parcel == null) return;
 
                 lblTraffic.Text = this.instance.MainForm.dwell;
 

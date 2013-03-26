@@ -142,7 +142,8 @@ namespace METAbolt
             }
             catch
             {
-                tBar1.Value = tBar1.Maximum;  
+                tBar1.Value = tBar1.Maximum;
+                MessageBox.Show("Your radar setting was greater than the maximum allowed.\nIt has been changed to " + tBar1.Maximum.ToString(), "METAbolt"); 
             }
 
             textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
