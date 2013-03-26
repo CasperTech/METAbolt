@@ -91,11 +91,12 @@ namespace METAbolt
             client.Parcels.ParcelObjectOwnersReply += new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
             client.Parcels.ParcelAccessListReply += new EventHandler<ParcelAccessListReplyEventArgs>(Parcels_ParcelAccessListReply);
 
-            client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
-
             if (this.instance.MainForm.parcel != null)
             {
                 this.parcel = this.instance.MainForm.parcel;
+
+                client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
+
                 PopData();
             }
             else
