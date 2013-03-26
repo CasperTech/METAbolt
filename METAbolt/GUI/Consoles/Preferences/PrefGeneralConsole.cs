@@ -135,7 +135,16 @@ namespace METAbolt
             chkNotifications.Checked = config.CurrentConfig.DisableNotifications;
             chkFriends.Checked = config.CurrentConfig.DisableFriendsNotifications; 
             chkAutoSit.Checked = config.CurrentConfig.AutoSit;
-            tBar1.Value = config.CurrentConfig.RadarRange;
+
+            try
+            {
+                tBar1.Value = config.CurrentConfig.RadarRange;
+            }
+            catch
+            {
+                tBar1.Value = tBar1.Maximum;  
+            }
+
             textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
 
             tbar2.Maximum = tBar1.Value;
