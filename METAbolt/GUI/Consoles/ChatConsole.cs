@@ -1382,7 +1382,8 @@ namespace METAbolt
                 {
                     if (avpos.Z > 1019f)
                     {
-                        sDist = "[???m] ";
+                        //sDist = "[???m] ";
+                        sDist = ">[" + Convert.ToInt32(dist).ToString() + "m] ";
                     }
                     else
                     {
