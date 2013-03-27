@@ -280,14 +280,31 @@ namespace METAbolt
             {
                 char[] delimiters = new char[] { '-' };
                 string[] words = track.Split(delimiters);
-                currentartist = words[0].Trim();
-                currenttrack = words[1].Trim();
+
+                if (words.Length > 2)
+                {
+                    currentartist = @words[0].Trim() + "-" + @words[1].Trim();
+                    currenttrack = @words[2].Trim();
+                }
+                else
+                {
+                    currentartist = @words[0].Trim();
+                    currenttrack = @words[1].Trim();
+                }
 
                 if (currenttrack.Contains("("))
                 {
                     // get them out
                     int pos = currenttrack.IndexOf("(");
                     currenttrack = currenttrack.Substring(0, pos).Trim();
+                }
+
+                if (currentartist.ToLower().Contains("feat"))
+                {
+                    // get them out
+                    int pos = currentartist.ToLower().IndexOf("feat",0);
+                    currentartist = currentartist.Substring(0, pos).Trim();
+                    //currentartist = currentartist.Substring(0, pos).Trim();
                 }
 
                 if (currentlyrics == currenttrack)
@@ -451,8 +468,27 @@ namespace METAbolt
 
         private void getAlbumArt(bool reload)
         {
-            label2.Text = currenttrack;
-            label3.Text = currentartist;
+            //if (currenttrack.Contains("&"))
+            //{
+            //    label2.Text = currenttrack.Replace("&", "&&");
+            //}
+            //else
+            //{
+            //    label2.Text = @currenttrack;
+            //}
+
+            //if (currentartist.Contains("&"))
+            //{
+            //    label3.Text = currentartist.Replace("&", "&&");
+            //}
+            //else
+            //{
+            //    label3.Text = @currentartist;
+            //}
+
+            label2.Text = @currenttrack.Replace("&", "&&");
+            label3.Text = @currentartist.Replace("&", "&&");
+            
             dets = string.Empty;
 
             pictureBox1.Image = METAbolt.Properties.Resources.not_found;

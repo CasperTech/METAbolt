@@ -3191,8 +3191,15 @@ namespace METAbolt
 
                         int cnt = e.Count() - 1;
 
-                        label3.Text = svers[3] + " " + svers[2];
-                        label12.Text = svers[cnt];
+                        try
+                        {
+                            label3.Text = svers[0] + " " + svers[1] + " " + svers[2] + " " + svers[3];
+                            label12.Text = svers[cnt];
+                        }
+                        catch
+                        {
+                            ;
+                        }
                     }
                     catch
                     {

@@ -957,10 +957,6 @@ namespace METAbolt
                     //It needs to know we're the host!
                     extOn.Instance.Host = this;
 
-                    // Populate the plugins menu
-                    //ToolStrip ts = new ToolStrip();
-                    //ts = toolStrip1;
-
                     ToolStripDropDownItem mitem;   // = tsPlugins.OwnerItem as ToolStripDropDownItem;
                     mitem = tsPlugins;
 
@@ -990,18 +986,7 @@ namespace METAbolt
 
                 this.instance.EList = elist;
 
-                //if (manager.Extensions.Count > 0)
-                //{
-                //    tsPlugins.Visible = true;
-                //}
-
                 tsPlugins.Visible = true;
-
-                //// Add the favourites toolstrip
-                //ToolStrip tsFavourites = new ToolStrip();
-                //tsFavourites.BackColor = Color.WhiteSmoke; 
-                //tsFavourites.Visible = true;
-                //toolStripContainer1.TopToolStripPanel.Controls.Add(tsFavourites); 
             }
         }
 
