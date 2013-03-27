@@ -46,7 +46,7 @@ namespace METAbolt
         private METAboltInstance instance;
         private GridClient client;
         //private SLNetCom netcom;
-        private bool parcelowner = false;
+        //private bool parcelowner = false;
         //private bool detsloading = true;
         //private bool detschanged = false;
         private Parcel parcel;
@@ -54,6 +54,7 @@ namespace METAbolt
         private List<ParcelManager.ParcelAccessEntry> blacklist;
         //private List<ParcelManager.ParcelAccessEntry> whitelist;
         //private Group parcelgroup;
+        private UUID grpID = UUID.Zero;  
 
         private ExceptionReporter reporter = new ExceptionReporter();
 
@@ -142,50 +143,22 @@ namespace METAbolt
             {
                 this.BeginInvoke(new MethodInvoker(delegate()
                 {
-                    //GroupMember mem = new GroupMember();
-                    //mem = e.Members[client.Self.AgentID];
+                    grpID = e.GroupID;
 
-                    //GroupMemberData memberData = new GroupMemberData();
-                    //memberData.ID = mem.ID;
-                    //memberData.Powers = (ulong)mem.Powers;
-
-
-                    //if (((mem.Powers & GroupPowers.FindPlaces) != 0) && ((mem.Powers & GroupPowers.LandChangeIdentity) != 0))
-                    //if ((memberData.Powers & GroupPowers.FindPlaces) != 0) 
-                    //{
-                        SetOwnerProperties();
-                    //}
+                    SetOwnerProperties();
                 }));
 
-                return;
+                //return;
             }
-            else
-            {
-                parcelowner = false;
-            }
-
-            //Dictionary<UUID, GroupMember> Members = new Dictionary<UUID, GroupMember>();
-            //SafeDictionary<UUID, GroupMemberData> MemberData = new SafeDictionary<UUID, GroupMemberData>();
-
-            //foreach (GroupMember member in Members.Values)
-            //{
-            //    GroupMemberData memberData = new GroupMemberData();
-            //    memberData.ID = member.ID;
-            //    MemberData[member.ID] = memberData;
-
-            //    // Add this ID to the name request batch
-            //    if (!instance.avnames.ContainsKey(member.ID))
-            //    {
-            //        requestids.Add(member.ID);
-            //    }
-            //    else
-            //    {
-            //        Names[member.ID] = instance.avnames[member.ID];
-            //        UpdateNames();
-            //    }
-            //}
 
             client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+        }
+
+        private bool HasGroupPower(GroupPowers power, UUID groupID)
+        {
+            if (!instance.State.Groups.ContainsKey(groupID)) return false;
+
+            return (instance.State.Groups[groupID].Powers & power) != 0;
         }
 
         private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs ea)
@@ -215,33 +188,68 @@ namespace METAbolt
                 return;
             }
 
-            parcelowner = true;
-            txtParceldesc.ReadOnly = false;
-            txtParcelname.ReadOnly = false;
-            txtPrimreturn.ReadOnly = false;
-            txtMusic.ReadOnly = false;
-            button1.Visible = true;
-            txtMusic.PasswordChar = char.Parse("\0"); ;
+            bool hasauth = false;
+
+            if (grpID != UUID.Zero)
+            {
+                if (HasGroupPower(GroupPowers.LandChangeIdentity, grpID))
+                {
+                    hasauth = true;
+                }
+                else
+                {
+                    hasauth = false;
+                }
+            }
+
+            //parcelowner = true;
+
+            if (parcel.OwnerID == client.Self.AgentID || hasauth)
+            {
+                txtParceldesc.ReadOnly = false;
+                txtParcelname.ReadOnly = false;
+                txtPrimreturn.ReadOnly = false;
+                txtMusic.ReadOnly = false;
+                button1.Visible = true;
+                txtMusic.PasswordChar = char.Parse("\0");
+                hasauth = false;
+            }
 
             //Populate prim owners
             //callback = new ParcelManager.ParcelPrimOwners ParcelObjectOwnersListReplyCallback(Parcel_ObjectOwners);
             //client.Parcels.OnPrimOwnersListReply += callback;
 
-            cbcreater.Enabled = true;
-            cbcreateg.Enabled = true;
-            cbplace.Enabled = true;
-            cbmature.Enabled = true;
-            cbscriptsr.Enabled = true;
-            cbsafe.Enabled = true;
-            cbscriptsg.Enabled = true;
-            cbentryg.Enabled = true;
-            cbentryr.Enabled = true;
-            cbfly.Enabled = true;
-            cblandmark.Enabled = true;
-            cbTerrain.Enabled = true;
-            cbpush.Enabled = true;
+            if (grpID != UUID.Zero)
+            {
+                if (HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    hasauth = true;
+                }
+                else
+                {
+                    hasauth = false;
+                }
+            }
 
-            lvwPrimOwners.Visible = true;
+            if (parcel.OwnerID == client.Self.AgentID || hasauth)
+            {
+                cbcreater.Enabled = true;
+                cbcreateg.Enabled = true;
+                cbplace.Enabled = true;
+                cbmature.Enabled = true;
+                cbscriptsr.Enabled = true;
+                cbsafe.Enabled = true;
+                cbscriptsg.Enabled = true;
+                cbentryg.Enabled = true;
+                cbentryr.Enabled = true;
+                cbfly.Enabled = true;
+                cblandmark.Enabled = true;
+                cbTerrain.Enabled = true;
+                cbpush.Enabled = true;
+
+                lvwPrimOwners.Visible = true;
+                hasauth = false;
+            }
         }
 
         private void PopData()
@@ -276,7 +284,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    parcelowner = false;
+                    //parcelowner = false;
                     txtParceldesc.ReadOnly = true;
                     txtParcelname.ReadOnly = true;
                     txtPrimreturn.ReadOnly = true;
@@ -421,6 +429,22 @@ namespace METAbolt
 
         private void Parcels_ParcelAccessListReply(object sender, ParcelAccessListReplyEventArgs e)
         {
+            bool hasauth = false;
+
+            if (grpID != UUID.Zero)
+            {
+                if (HasGroupPower(GroupPowers.LandManageBanned, grpID))
+                {
+                    hasauth = true;
+                }
+                else
+                {
+                    hasauth = false;
+                }
+            }
+
+            if (parcel.OwnerID != client.Self.AgentID && !hasauth) return;
+
             BeginInvoke(new MethodInvoker(delegate()
             {
                 blacklist = e.AccessList;
@@ -614,7 +638,15 @@ namespace METAbolt
 
         private void txtParceldesc_Leave(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandChangeIdentity, grpID))
+                {
+                    return;
+                }
+            }
 
             UpdateDesc();
         }
@@ -631,7 +663,15 @@ namespace METAbolt
 
         private void txtParcelname_Leave(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandChangeIdentity, grpID))
+                {
+                    return;
+                }
+            }
 
             UpdatePName();
         }
@@ -718,7 +758,15 @@ namespace METAbolt
 
         private void cbTerrain_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -736,7 +784,15 @@ namespace METAbolt
 
         private void cblandmark_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -764,7 +820,15 @@ namespace METAbolt
 
         private void cbfly_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -782,7 +846,15 @@ namespace METAbolt
 
         private void cbcreater_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -800,7 +872,15 @@ namespace METAbolt
 
         private void cbcreateg_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -818,7 +898,15 @@ namespace METAbolt
 
         private void cbentryr_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -836,7 +924,15 @@ namespace METAbolt
 
         private void cbentryg_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -855,7 +951,15 @@ namespace METAbolt
 
         private void cbscriptsr_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -873,7 +977,15 @@ namespace METAbolt
 
         private void cbscriptsg_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -891,7 +1003,15 @@ namespace METAbolt
 
         private void cbsafe_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -909,7 +1029,15 @@ namespace METAbolt
 
         private void cbpush_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -927,7 +1055,15 @@ namespace METAbolt
 
         private void cbplace_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -945,7 +1081,15 @@ namespace METAbolt
 
         private void cbmature_CheckedChanged(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 
@@ -963,7 +1107,15 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!parcelowner) return;
+            //if (!parcelowner) return;
+
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
 
             if (formloading) return;
 

@@ -93,6 +93,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPrimBonus = new System.Windows.Forms.Label();
             this.tabGenral = new System.Windows.Forms.TabPage();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblLocalID = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.btnBuy = new System.Windows.Forms.Button();
@@ -114,28 +116,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabObjects.SuspendLayout();
             this.tabGenral.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Access tab";
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.chkPublic);
             this.tabPage2.Controls.Add(this.label28);
-            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.listView1);
             this.tabPage2.Controls.Add(this.label27);
             this.tabPage2.Controls.Add(this.button2);
@@ -159,6 +159,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "Export";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Visible = false;
             // 
             // button4
             // 
@@ -181,22 +182,24 @@
             this.chkPublic.Checked = true;
             this.chkPublic.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPublic.Enabled = false;
-            this.chkPublic.Location = new System.Drawing.Point(8, 16);
+            this.chkPublic.Location = new System.Drawing.Point(89, 295);
             this.chkPublic.Name = "chkPublic";
             this.chkPublic.Size = new System.Drawing.Size(121, 17);
             this.chkPublic.TabIndex = 0;
             this.chkPublic.Text = "Allow Public Access";
             this.chkPublic.UseVisualStyleBackColor = true;
+            this.chkPublic.Visible = false;
             this.chkPublic.CheckedChanged += new System.EventHandler(this.chkPublic_CheckedChanged);
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(5, 46);
+            this.label28.Location = new System.Drawing.Point(5, 13);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(94, 13);
             this.label28.TabIndex = 21;
             this.label28.Text = "Allowed Residents";
+            this.label28.Visible = false;
             // 
             // button3
             // 
@@ -210,24 +213,26 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "Remove";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // listView1
             // 
             this.listView1.AccessibleName = "Allowed residents list";
             this.listView1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listView1.Location = new System.Drawing.Point(8, 62);
+            this.listView1.Location = new System.Drawing.Point(8, 29);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(199, 227);
+            this.listView1.Size = new System.Drawing.Size(199, 260);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.Visible = false;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(227, 46);
+            this.label27.Location = new System.Drawing.Point(227, 13);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(94, 13);
             this.label27.TabIndex = 18;
@@ -245,15 +250,16 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Remove";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // lvwBlackList
             // 
             this.lvwBlackList.AccessibleName = "Banned residents list";
             this.lvwBlackList.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwBlackList.Location = new System.Drawing.Point(230, 62);
+            this.lvwBlackList.Location = new System.Drawing.Point(230, 29);
             this.lvwBlackList.Name = "lvwBlackList";
-            this.lvwBlackList.Size = new System.Drawing.Size(199, 227);
+            this.lvwBlackList.Size = new System.Drawing.Size(199, 260);
             this.lvwBlackList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwBlackList.TabIndex = 1;
             this.lvwBlackList.UseCompatibleStateImageBehavior = false;
@@ -935,6 +941,31 @@
             this.tabGenral.Text = "General";
             this.tabGenral.Click += new System.EventHandler(this.tabGenral_Click);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Image = global::METAbolt.Properties.Resources.Information;
+            this.pictureBox3.Location = new System.Drawing.Point(72, 127);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(14, 14);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Image = global::METAbolt.Properties.Resources.profile;
+            this.pictureBox2.Location = new System.Drawing.Point(72, 110);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(14, 14);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 19;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // lblLocalID
             // 
             this.lblLocalID.AccessibleDescription = "Totall traffic for the land";
@@ -1170,31 +1201,6 @@
             this.tabControl1.Size = new System.Drawing.Size(445, 355);
             this.tabControl1.TabIndex = 0;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Image = global::METAbolt.Properties.Resources.Information;
-            this.pictureBox3.Location = new System.Drawing.Point(72, 127);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(14, 14);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 20;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Image = global::METAbolt.Properties.Resources.profile;
-            this.pictureBox2.Location = new System.Drawing.Point(72, 110);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(14, 14);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 19;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
             // frmAboutLand
             // 
             this.AccessibleDescription = "ABout Land window displays information about the land your avatar is on";
@@ -1226,9 +1232,9 @@
             this.tabObjects.PerformLayout();
             this.tabGenral.ResumeLayout(false);
             this.tabGenral.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
