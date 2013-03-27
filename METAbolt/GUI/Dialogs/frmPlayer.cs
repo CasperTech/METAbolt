@@ -89,18 +89,18 @@ namespace METAbolt
             robj.radiourl = "http://160.79.128.30:7712";
             Stations.Add(robj);
 
-            robj = new RadioObj();
-            robj.genre = "80s";
-            robj.radioname = "Club .977";
-            robj.radiourl = "http://205.188.215.229:8004";
-            Stations.Add(robj);
+            //robj = new RadioObj();
+            //robj.genre = "80s";
+            //robj.radioname = "Club .977";
+            //robj.radiourl = "http://205.188.215.229:8004";
+            //Stations.Add(robj);
 
 
-            robj = new RadioObj();
-            robj.genre = "Hitz";
-            robj.radioname = "Club .977";
-            robj.radiourl = "http://205.188.215.230:8002";
-            Stations.Add(robj);
+            //robj = new RadioObj();
+            //robj.genre = "Hitz";
+            //robj.radioname = "Club .977";
+            //robj.radiourl = "http://205.188.215.230:8002";
+            //Stations.Add(robj);
 
             robj = new RadioObj();
             robj.genre = "Hitz";
