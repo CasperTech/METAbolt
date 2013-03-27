@@ -217,6 +217,7 @@ namespace METAbolt
             Client.Groups.GroupLeaveReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupLeft);
             Client.Groups.GroupRoleDataReply += new EventHandler<GroupRolesDataReplyEventArgs>(Groups_OnGroupRoleDataReply);
             Client.Groups.GroupRoleMembersReply += new EventHandler<GroupRolesMembersReplyEventArgs>(Groups_OnGroupRoleMembersReply);
+            Client.Groups.GroupMemberEjected += new EventHandler<GroupOperationEventArgs>(Groups_GroupMemberEjected);
         }
 
         private void GetDets()
@@ -235,6 +236,21 @@ namespace METAbolt
             form_dispose(); 
         }
 
+        private void Groups_GroupMemberEjected(object sender, GroupOperationEventArgs e)
+        {
+            if (e.GroupID != grpid) return;
+
+            if (e.Success)
+            {
+                groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
+                instance.TabConsole.DisplayChatScreen("Group member ejected.");
+            }
+            else
+            {
+                instance.TabConsole.DisplayChatScreen("Failed to eject group member.");
+            }
+        }
+
         private void form_dispose()
         {
             Client.Groups.GroupProfile -= new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
@@ -245,6 +261,7 @@ namespace METAbolt
             Client.Groups.GroupLeaveReply -= new EventHandler<GroupOperationEventArgs>(Groups_OnGroupLeft);
             Client.Groups.GroupRoleDataReply -= new EventHandler<GroupRolesDataReplyEventArgs>(Groups_OnGroupRoleDataReply);
             Client.Groups.GroupRoleMembersReply -= new EventHandler<GroupRolesMembersReplyEventArgs>(Groups_OnGroupRoleMembersReply);
+            Client.Groups.GroupMemberEjected += new EventHandler<GroupOperationEventArgs>(Groups_GroupMemberEjected);
 
             netcom.InstantMessageReceived -= new EventHandler<InstantMessageEventArgs>(netcom_InstantMessageReceived);
 
@@ -502,8 +519,7 @@ namespace METAbolt
             if (grpid != e.Group.ID) return;  
 
             this.Group = e.Group; 
-            Group profile = e.Group;
-            Profile = profile;
+            Profile = e.Group;
 
             if (this.Group.InsigniaID != null && this.Group.InsigniaID != UUID.Zero)
                 Client.Assets.RequestImage(this.Group.InsigniaID, ImageType.Normal,

@@ -78,6 +78,7 @@ namespace METAbolt
 
             Client.Groups.GroupJoinedReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupStateChanged);
             Client.Groups.GroupLeaveReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupStateChanged);
+            Client.Groups.GroupMemberEjected += new EventHandler<GroupOperationEventArgs>(Groups_GroupMemberEjected);
 
             Disposed += new EventHandler(GroupsConsole_Disposed);
         }
@@ -109,7 +110,12 @@ namespace METAbolt
             Client.Groups.CurrentGroups -= new EventHandler<CurrentGroupsEventArgs>(Groups_OnCurrentGroups);
             Client.Groups.GroupJoinedReply -= new EventHandler<GroupOperationEventArgs>(Groups_OnGroupStateChanged);
             Client.Groups.GroupLeaveReply -= new EventHandler<GroupOperationEventArgs>(Groups_OnGroupStateChanged);
+            Client.Groups.GroupMemberEjected -= new EventHandler<GroupOperationEventArgs>(Groups_GroupMemberEjected);
+        }
 
+        private void Groups_GroupMemberEjected(object sender, GroupOperationEventArgs e)
+        {
+            Client.Groups.RequestCurrentGroups();
         }
 
         private void UpdateGroups()
