@@ -116,13 +116,13 @@ namespace METAbolt
             this.lvwRadar = new METAbolt.FlickerFreeListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.world = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -149,7 +149,6 @@ namespace METAbolt
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -1185,7 +1184,6 @@ namespace METAbolt
             this.tabPage2.Controls.Add(this.progressBar1);
             this.tabPage2.Controls.Add(this.panel6);
             this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label5);
@@ -1201,6 +1199,17 @@ namespace METAbolt
             this.tabPage2.TabIndex = 1;
             this.tabPage2.ToolTipText = "Mini Map";
             this.tabPage2.SizeChanged += new System.EventHandler(this.tabPage2_SizeChanged);
+            // 
+            // label3
+            // 
+            this.label3.AccessibleDescription = "The Linden server version of the current SIM";
+            this.label3.AccessibleName = "Sim version";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 44;
+            this.label3.Text = "version";
             // 
             // progressBar7
             // 
@@ -1279,22 +1288,12 @@ namespace METAbolt
             this.label15.TabIndex = 30;
             this.label15.Text = "label15";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Gray;
-            this.label13.Location = new System.Drawing.Point(3, 31);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(67, 13);
-            this.label13.TabIndex = 22;
-            this.label13.Text = "SIM version:";
-            // 
             // label12
             // 
             this.label12.AccessibleDescription = "The Linden server version of the current SIM";
             this.label12.AccessibleName = "Sim version";
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 44);
+            this.label12.Location = new System.Drawing.Point(11, 46);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(42, 13);
             this.label12.TabIndex = 23;
@@ -1612,17 +1611,6 @@ namespace METAbolt
             this.tsdefault.Text = "[ No favourites found ]";
             this.tsdefault.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
-            // 
-            this.label3.AccessibleDescription = "The Linden server version of the current SIM";
-            this.label3.AccessibleName = "Sim version";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(76, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 44;
-            this.label3.Text = "version";
-            // 
             // ChatConsole
             // 
             this.AccessibleDescription = "Chat window for entering and siplaying public chat";
@@ -1703,7 +1691,6 @@ namespace METAbolt
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox world;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label5;
