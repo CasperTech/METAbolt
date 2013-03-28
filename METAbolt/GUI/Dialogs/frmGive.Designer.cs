@@ -79,6 +79,7 @@
             this.lvwFindFriends.Location = new System.Drawing.Point(17, 126);
             this.lvwFindFriends.Name = "lvwFindFriends";
             this.lvwFindFriends.Size = new System.Drawing.Size(205, 185);
+            this.lvwFindFriends.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwFindFriends.TabIndex = 2;
             this.lvwFindFriends.UseCompatibleStateImageBehavior = false;
             this.lvwFindFriends.View = System.Windows.Forms.View.Details;
@@ -98,6 +99,7 @@
             this.lvwSelected.Location = new System.Drawing.Point(255, 126);
             this.lvwSelected.Name = "lvwSelected";
             this.lvwSelected.Size = new System.Drawing.Size(205, 185);
+            this.lvwSelected.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwSelected.TabIndex = 7;
             this.lvwSelected.UseCompatibleStateImageBehavior = false;
             this.lvwSelected.View = System.Windows.Forms.View.Details;

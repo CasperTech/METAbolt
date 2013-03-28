@@ -70,11 +70,11 @@ namespace METAbolt
 
                 if (split.Length > 1)
                 {
-                    lblSubheading.Text = split[0].ToString().Replace("Group", "\nGroup: ") + @split[1].ToString().Replace("\n", " ");
+                    textBox1.Text = @split[0].ToString().Replace("Group", "\r\n\r\nGroup: ") + @split[1].ToString().Replace("\n", " ");
                 }
                 else
                 {
-                    lblSubheading.Text = @split[0].ToString();
+                    textBox1.Text = @split[0].ToString();
                 }
             }
             catch { ; }

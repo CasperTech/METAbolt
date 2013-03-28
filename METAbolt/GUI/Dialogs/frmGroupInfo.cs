@@ -555,7 +555,11 @@ namespace METAbolt
                 if (Profile.GroupMembershipCount < 5001)
                 {
                     groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
-                    label10.Text = "Too many to list";
+                    label10.Text = "Loading...";
+                }
+                else
+                {
+                    label10.Text = "Too many members to list";
                 }
 
                 UpdateProfile();
