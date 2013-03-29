@@ -113,8 +113,6 @@ namespace METAbolt
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
@@ -149,6 +147,8 @@ namespace METAbolt
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -666,11 +666,11 @@ namespace METAbolt
             this.button8.BackgroundImage = global::METAbolt.Properties.Resources.a_left;
             this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button8.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Location = new System.Drawing.Point(-1, 25);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(29, 29);
+            this.button8.Size = new System.Drawing.Size(25, 25);
             this.button8.TabIndex = 43;
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
@@ -684,11 +684,11 @@ namespace METAbolt
             this.button6.BackgroundImage = global::METAbolt.Properties.Resources.a_right;
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Location = new System.Drawing.Point(61, 25);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(29, 29);
+            this.button6.Size = new System.Drawing.Size(25, 25);
             this.button6.TabIndex = 42;
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -811,7 +811,7 @@ namespace METAbolt
             this.button7.BackgroundImage = global::METAbolt.Properties.Resources.Wing;
             this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button7.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(32, 75);
@@ -829,11 +829,11 @@ namespace METAbolt
             this.button5.BackgroundImage = global::METAbolt.Properties.Resources.a_up;
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Location = new System.Drawing.Point(29, 8);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(29, 29);
+            this.button5.Size = new System.Drawing.Size(25, 25);
             this.button5.TabIndex = 11;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -850,7 +850,7 @@ namespace METAbolt
             this.button2.BackgroundImage = global::METAbolt.Properties.Resources.turnleft;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(1, 72);
             this.button2.Name = "button2";
@@ -867,11 +867,11 @@ namespace METAbolt
             this.button4.BackgroundImage = global::METAbolt.Properties.Resources.a_down;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(29, 42);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(29, 29);
+            this.button4.Size = new System.Drawing.Size(25, 25);
             this.button4.TabIndex = 13;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -888,7 +888,7 @@ namespace METAbolt
             this.button3.BackgroundImage = global::METAbolt.Properties.Resources.turnright;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(57, 72);
             this.button3.Name = "button3";
@@ -1153,43 +1153,6 @@ namespace METAbolt
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(177, 14);
             this.textBox1.TabIndex = 20;
-            // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-    "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.AllowColumnReorder = true;
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.White;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.Details;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
-            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "[Dist.] Av. Name";
-            this.columnHeader1.Width = 175;
             // 
             // tabPage2
             // 
@@ -1644,6 +1607,43 @@ namespace METAbolt
             this.tsdefault.Size = new System.Drawing.Size(107, 12);
             this.tsdefault.Text = "[ No favourites found ]";
             this.tsdefault.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+    "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.AllowColumnReorder = true;
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.Details;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
+            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "[Dist.] Av. Name";
+            this.columnHeader1.Width = 175;
             // 
             // ChatConsole
             // 
