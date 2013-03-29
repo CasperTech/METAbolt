@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAboutLand));
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.chkPublic = new System.Windows.Forms.CheckBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.label27 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -147,6 +147,21 @@
             this.tabPage2.Text = "Access";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // button3
+            // 
+            this.button3.AccessibleName = "Remove selected allowed resident";
+            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button3.Enabled = false;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(132, 295);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Remove";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button5
             // 
             this.button5.AccessibleName = "Export allowed residents list";
@@ -164,8 +179,11 @@
             // button4
             // 
             this.button4.AccessibleName = "Export banned residents list";
-            this.button4.BackColor = System.Drawing.Color.SlateGray;
+            this.button4.BackColor = System.Drawing.Color.DimGray;
             this.button4.Enabled = false;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(230, 295);
             this.button4.Name = "button4";
@@ -201,21 +219,6 @@
             this.label28.Text = "Allowed Residents";
             this.label28.Visible = false;
             // 
-            // button3
-            // 
-            this.button3.AccessibleName = "Remove selected allowed resident";
-            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button3.Enabled = false;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(132, 295);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Remove";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // listView1
             // 
             this.listView1.AccessibleName = "Allowed residents list";
@@ -241,8 +244,11 @@
             // button2
             // 
             this.button2.AccessibleName = "Remove selected banned resident";
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
             this.button2.Enabled = false;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(354, 295);
             this.button2.Name = "button2";
@@ -257,6 +263,7 @@
             // 
             this.lvwBlackList.AccessibleName = "Banned residents list";
             this.lvwBlackList.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwBlackList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwBlackList.Location = new System.Drawing.Point(230, 29);
             this.lvwBlackList.Name = "lvwBlackList";
             this.lvwBlackList.Size = new System.Drawing.Size(199, 260);
@@ -283,7 +290,10 @@
             // button1
             // 
             this.button1.AccessibleName = "Save music URL";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(338, 88);
             this.button1.Name = "button1";
@@ -297,6 +307,7 @@
             // 
             this.txtMusic.AccessibleName = "Music URL";
             this.txtMusic.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtMusic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMusic.Location = new System.Drawing.Point(25, 62);
             this.txtMusic.Name = "txtMusic";
             this.txtMusic.Size = new System.Drawing.Size(388, 20);
@@ -351,6 +362,7 @@
             // comboBox2
             // 
             this.comboBox2.Enabled = false;
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(98, 301);
             this.comboBox2.Name = "comboBox2";
@@ -451,9 +463,13 @@
             this.cbpush.AccessibleName = "Pushing";
             this.cbpush.AutoSize = true;
             this.cbpush.Enabled = false;
+            this.cbpush.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbpush.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbpush.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbpush.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbpush.Location = new System.Drawing.Point(189, 108);
             this.cbpush.Name = "cbpush";
-            this.cbpush.Size = new System.Drawing.Size(103, 17);
+            this.cbpush.Size = new System.Drawing.Size(100, 17);
             this.cbpush.TabIndex = 10;
             this.cbpush.Text = "Restrict Pushing";
             this.cbpush.UseVisualStyleBackColor = true;
@@ -464,9 +480,13 @@
             this.cbmature.AccessibleName = "Mature content";
             this.cbmature.AutoSize = true;
             this.cbmature.Enabled = false;
+            this.cbmature.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbmature.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbmature.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbmature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbmature.Location = new System.Drawing.Point(24, 154);
             this.cbmature.Name = "cbmature";
-            this.cbmature.Size = new System.Drawing.Size(99, 17);
+            this.cbmature.Size = new System.Drawing.Size(96, 17);
             this.cbmature.TabIndex = 12;
             this.cbmature.Text = "Mature Content";
             this.cbmature.UseVisualStyleBackColor = true;
@@ -477,9 +497,13 @@
             this.cbplace.AccessibleName = "Show in place search";
             this.cbplace.AutoSize = true;
             this.cbplace.Enabled = false;
+            this.cbplace.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbplace.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbplace.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbplace.Location = new System.Drawing.Point(24, 131);
             this.cbplace.Name = "cbplace";
-            this.cbplace.Size = new System.Drawing.Size(225, 17);
+            this.cbplace.Size = new System.Drawing.Size(222, 17);
             this.cbplace.TabIndex = 11;
             this.cbplace.Text = "Show Place in Search (L$30/week) under";
             this.cbplace.UseVisualStyleBackColor = true;
@@ -491,9 +515,13 @@
             this.cbsafe.AccessibleName = "Safe";
             this.cbsafe.AutoSize = true;
             this.cbsafe.Enabled = false;
+            this.cbsafe.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbsafe.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbsafe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbsafe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbsafe.Location = new System.Drawing.Point(24, 108);
             this.cbsafe.Name = "cbsafe";
-            this.cbsafe.Size = new System.Drawing.Size(110, 17);
+            this.cbsafe.Size = new System.Drawing.Size(107, 17);
             this.cbsafe.TabIndex = 9;
             this.cbsafe.Text = "Safe (no damage)";
             this.cbsafe.UseVisualStyleBackColor = true;
@@ -516,9 +544,13 @@
             this.cbscriptsg.Checked = true;
             this.cbscriptsg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbscriptsg.Enabled = false;
+            this.cbscriptsg.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbscriptsg.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbscriptsg.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbscriptsg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbscriptsg.Location = new System.Drawing.Point(337, 72);
             this.cbscriptsg.Name = "cbscriptsg";
-            this.cbscriptsg.Size = new System.Drawing.Size(55, 17);
+            this.cbscriptsg.Size = new System.Drawing.Size(52, 17);
             this.cbscriptsg.TabIndex = 8;
             this.cbscriptsg.Text = "Group";
             this.cbscriptsg.UseVisualStyleBackColor = true;
@@ -532,9 +564,13 @@
             this.cbentryg.Checked = true;
             this.cbentryg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbentryg.Enabled = false;
+            this.cbentryg.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbentryg.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbentryg.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbentryg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbentryg.Location = new System.Drawing.Point(337, 48);
             this.cbentryg.Name = "cbentryg";
-            this.cbentryg.Size = new System.Drawing.Size(55, 17);
+            this.cbentryg.Size = new System.Drawing.Size(52, 17);
             this.cbentryg.TabIndex = 6;
             this.cbentryg.Text = "Group";
             this.cbentryg.UseVisualStyleBackColor = true;
@@ -548,9 +584,13 @@
             this.cbcreateg.Checked = true;
             this.cbcreateg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbcreateg.Enabled = false;
+            this.cbcreateg.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbcreateg.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbcreateg.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbcreateg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbcreateg.Location = new System.Drawing.Point(337, 24);
             this.cbcreateg.Name = "cbcreateg";
-            this.cbcreateg.Size = new System.Drawing.Size(55, 17);
+            this.cbcreateg.Size = new System.Drawing.Size(52, 17);
             this.cbcreateg.TabIndex = 4;
             this.cbcreateg.Text = "Group";
             this.cbcreateg.UseVisualStyleBackColor = true;
@@ -564,9 +604,13 @@
             this.cbscriptsr.Checked = true;
             this.cbscriptsr.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbscriptsr.Enabled = false;
+            this.cbscriptsr.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbscriptsr.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbscriptsr.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbscriptsr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbscriptsr.Location = new System.Drawing.Point(244, 72);
             this.cbscriptsr.Name = "cbscriptsr";
-            this.cbscriptsr.Size = new System.Drawing.Size(87, 17);
+            this.cbscriptsr.Size = new System.Drawing.Size(84, 17);
             this.cbscriptsr.TabIndex = 7;
             this.cbscriptsr.Text = "All Residents";
             this.cbscriptsr.UseVisualStyleBackColor = true;
@@ -580,9 +624,13 @@
             this.cbentryr.Checked = true;
             this.cbentryr.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbentryr.Enabled = false;
+            this.cbentryr.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbentryr.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbentryr.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbentryr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbentryr.Location = new System.Drawing.Point(244, 48);
             this.cbentryr.Name = "cbentryr";
-            this.cbentryr.Size = new System.Drawing.Size(87, 17);
+            this.cbentryr.Size = new System.Drawing.Size(84, 17);
             this.cbentryr.TabIndex = 5;
             this.cbentryr.Text = "All Residents";
             this.cbentryr.UseVisualStyleBackColor = true;
@@ -596,9 +644,13 @@
             this.cbcreater.Checked = true;
             this.cbcreater.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbcreater.Enabled = false;
+            this.cbcreater.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbcreater.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbcreater.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbcreater.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbcreater.Location = new System.Drawing.Point(244, 24);
             this.cbcreater.Name = "cbcreater";
-            this.cbcreater.Size = new System.Drawing.Size(87, 17);
+            this.cbcreater.Size = new System.Drawing.Size(84, 17);
             this.cbcreater.TabIndex = 3;
             this.cbcreater.Text = "All Residents";
             this.cbcreater.UseVisualStyleBackColor = true;
@@ -612,9 +664,13 @@
             this.cbfly.Checked = true;
             this.cbfly.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbfly.Enabled = false;
+            this.cbfly.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbfly.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbfly.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbfly.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbfly.Location = new System.Drawing.Point(24, 72);
             this.cbfly.Name = "cbfly";
-            this.cbfly.Size = new System.Drawing.Size(39, 17);
+            this.cbfly.Size = new System.Drawing.Size(36, 17);
             this.cbfly.TabIndex = 2;
             this.cbfly.Text = "Fly";
             this.cbfly.UseVisualStyleBackColor = true;
@@ -628,9 +684,13 @@
             this.cblandmark.Checked = true;
             this.cblandmark.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cblandmark.Enabled = false;
+            this.cblandmark.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cblandmark.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cblandmark.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cblandmark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cblandmark.Location = new System.Drawing.Point(24, 48);
             this.cblandmark.Name = "cblandmark";
-            this.cblandmark.Size = new System.Drawing.Size(112, 17);
+            this.cblandmark.Size = new System.Drawing.Size(109, 17);
             this.cblandmark.TabIndex = 1;
             this.cblandmark.Text = "Create Landmarks";
             this.cblandmark.UseVisualStyleBackColor = true;
@@ -644,9 +704,13 @@
             this.cbTerrain.Checked = true;
             this.cbTerrain.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTerrain.Enabled = false;
+            this.cbTerrain.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbTerrain.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbTerrain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbTerrain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbTerrain.Location = new System.Drawing.Point(24, 24);
             this.cbTerrain.Name = "cbTerrain";
-            this.cbTerrain.Size = new System.Drawing.Size(80, 17);
+            this.cbTerrain.Size = new System.Drawing.Size(77, 17);
             this.cbTerrain.TabIndex = 0;
             this.cbTerrain.Text = "Edit Terrain";
             this.cbTerrain.UseVisualStyleBackColor = true;
@@ -697,8 +761,11 @@
             this.btnReturn.AccessibleDescription = "Return all the prims of the selected avatar";
             this.btnReturn.AccessibleName = "Return prims";
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReturn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnReturn.BackColor = System.Drawing.Color.DimGray;
             this.btnReturn.Enabled = false;
+            this.btnReturn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnReturn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.ForeColor = System.Drawing.Color.White;
             this.btnReturn.Location = new System.Drawing.Point(384, 295);
             this.btnReturn.Name = "btnReturn";
@@ -713,6 +780,7 @@
             this.lvwPrimOwners.AccessibleDescription = "List of avatars and the number of prims they have on the land";
             this.lvwPrimOwners.AccessibleName = "Avat list";
             this.lvwPrimOwners.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwPrimOwners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwPrimOwners.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdAvatar,
             this.chdPrims});
@@ -742,6 +810,7 @@
             // 
             this.txtPrimreturn.AccessibleDescription = "The number of minutes at which non resident prims will be returned";
             this.txtPrimreturn.AccessibleName = "Auto return setting";
+            this.txtPrimreturn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrimreturn.Location = new System.Drawing.Point(295, 164);
             this.txtPrimreturn.Name = "txtPrimreturn";
             this.txtPrimreturn.ReadOnly = true;
@@ -990,11 +1059,14 @@
             // btnBuy
             // 
             this.btnBuy.AccessibleName = "Buy Parcel";
-            this.btnBuy.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnBuy.BackColor = System.Drawing.Color.DimGray;
+            this.btnBuy.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnBuy.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnBuy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuy.ForeColor = System.Drawing.Color.White;
             this.btnBuy.Location = new System.Drawing.Point(73, 174);
             this.btnBuy.Name = "btnBuy";
-            this.btnBuy.Size = new System.Drawing.Size(44, 23);
+            this.btnBuy.Size = new System.Drawing.Size(60, 23);
             this.btnBuy.TabIndex = 2;
             this.btnBuy.Text = "&Buy";
             this.btnBuy.UseVisualStyleBackColor = false;
@@ -1003,7 +1075,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(353, 295);
             this.btnClose.Name = "btnClose";
@@ -1144,6 +1219,7 @@
             this.txtParceldesc.AccessibleDescription = "Description for the land";
             this.txtParceldesc.AccessibleName = "Description";
             this.txtParceldesc.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtParceldesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtParceldesc.Location = new System.Drawing.Point(72, 36);
             this.txtParceldesc.Multiline = true;
             this.txtParceldesc.Name = "txtParceldesc";
@@ -1158,6 +1234,7 @@
             this.txtParcelname.AccessibleDescription = "Name of the land";
             this.txtParcelname.AccessibleName = "Name";
             this.txtParcelname.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtParcelname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtParcelname.Location = new System.Drawing.Point(72, 10);
             this.txtParcelname.Name = "txtParcelname";
             this.txtParcelname.ReadOnly = true;

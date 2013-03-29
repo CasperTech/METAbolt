@@ -64,6 +64,9 @@
             // button2
             // 
             this.button2.AccessibleName = "Un-chose selected plugin button";
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(179, 99);
             this.button2.Name = "button2";
@@ -76,6 +79,9 @@
             // button1
             // 
             this.button1.AccessibleName = "Chose selected plugin button";
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(179, 72);
             this.button1.Name = "button1";
@@ -116,41 +122,53 @@
             // 
             this.listBox2.AccessibleName = "Chosen plugins listbox";
             this.listBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(208, 70);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(149, 147);
+            this.listBox2.Size = new System.Drawing.Size(149, 145);
             this.listBox2.TabIndex = 13;
             // 
             // listBox1
             // 
             this.listBox1.AccessibleName = "Available plugins lixtbox";
             this.listBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(22, 70);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(149, 147);
+            this.listBox1.Size = new System.Drawing.Size(149, 145);
             this.listBox1.TabIndex = 9;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(208, 467);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 14;
             this.button3.Text = "Apply";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.DimGray;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(296, 467);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 15;
             this.button4.Text = "Close";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // groupBox5
@@ -173,9 +191,13 @@
             // 
             this.chkLSL.AccessibleName = "Disable icon option";
             this.chkLSL.AutoSize = true;
+            this.chkLSL.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkLSL.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkLSL.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkLSL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkLSL.Location = new System.Drawing.Point(79, 115);
             this.chkLSL.Name = "chkLSL";
-            this.chkLSL.Size = new System.Drawing.Size(251, 17);
+            this.chkLSL.Size = new System.Drawing.Size(248, 17);
             this.chkLSL.TabIndex = 64;
             this.chkLSL.Text = "Display LSL commands on MB_LSLAPI window";
             this.chkLSL.UseVisualStyleBackColor = true;
@@ -186,9 +208,13 @@
     " and object";
             this.checkBox12.AccessibleName = "Enforce LSL security";
             this.checkBox12.AutoSize = true;
+            this.checkBox12.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox12.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox12.Location = new System.Drawing.Point(79, 95);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(254, 17);
+            this.checkBox12.Size = new System.Drawing.Size(251, 17);
             this.checkBox12.TabIndex = 63;
             this.checkBox12.Text = "Limit LSL commands to above avatar and object";
             this.checkBox12.UseVisualStyleBackColor = true;
@@ -205,6 +231,7 @@
             // 
             this.txtMObject.AccessibleName = "UUID textbox";
             this.txtMObject.BackColor = System.Drawing.Color.White;
+            this.txtMObject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMObject.Location = new System.Drawing.Point(79, 57);
             this.txtMObject.Name = "txtMObject";
             this.txtMObject.Size = new System.Drawing.Size(227, 20);
@@ -222,6 +249,7 @@
             // 
             this.txtMavatar.AccessibleName = "UUID textbox";
             this.txtMavatar.BackColor = System.Drawing.Color.White;
+            this.txtMavatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMavatar.Location = new System.Drawing.Point(79, 31);
             this.txtMavatar.Name = "txtMavatar";
             this.txtMavatar.Size = new System.Drawing.Size(227, 20);
@@ -246,12 +274,17 @@
             // 
             // button5
             // 
+            this.button5.BackColor = System.Drawing.Color.DimGray;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(22, 467);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(98, 23);
             this.button5.TabIndex = 19;
             this.button5.Text = "Extensions Folder";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // frmPluginManager

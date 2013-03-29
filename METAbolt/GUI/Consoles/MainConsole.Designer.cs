@@ -66,7 +66,9 @@ namespace METAbolt
     "me and password details";
             this.btnLogin.AccessibleName = "Login button";
             this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogin.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnLogin.BackColor = System.Drawing.Color.DimGray;
+            this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(3, 438);
             this.btnLogin.Name = "btnLogin";
@@ -185,8 +187,10 @@ namespace METAbolt
             this.txtFirstName.AccessibleDescription = "Enter your SL login first name";
             this.txtFirstName.AccessibleName = "First Name";
             this.txtFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFirstName.Location = new System.Drawing.Point(6, 16);
             this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.txtFirstName.Size = new System.Drawing.Size(174, 21);
             this.txtFirstName.TabIndex = 1;
             this.txtFirstName.Click += new System.EventHandler(this.txtFirstName_Click);
@@ -196,6 +200,7 @@ namespace METAbolt
             // 
             this.cboUserList.AccessibleDescription = "Select user name from the list of user names you have used";
             this.cboUserList.AccessibleName = "SL user name list";
+            this.cboUserList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboUserList.FormattingEnabled = true;
             this.cboUserList.Location = new System.Drawing.Point(6, 16);
             this.cboUserList.Name = "cboUserList";
@@ -209,9 +214,13 @@ namespace METAbolt
     "start METAbolt";
             this.chkCmd.AccessibleName = "Create BAT file";
             this.chkCmd.AutoSize = true;
+            this.chkCmd.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkCmd.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkCmd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkCmd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkCmd.Location = new System.Drawing.Point(424, 44);
             this.chkCmd.Name = "chkCmd";
-            this.chkCmd.Size = new System.Drawing.Size(113, 17);
+            this.chkCmd.Size = new System.Drawing.Size(110, 17);
             this.chkCmd.TabIndex = 6;
             this.chkCmd.Text = "Create av BAT file";
             this.chkCmd.UseVisualStyleBackColor = true;
@@ -221,9 +230,13 @@ namespace METAbolt
             this.chkPWD.AccessibleDescription = "Option to remember your password next time you start METAbolt";
             this.chkPWD.AccessibleName = "Remember password";
             this.chkPWD.AutoSize = true;
+            this.chkPWD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkPWD.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkPWD.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkPWD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkPWD.Location = new System.Drawing.Point(275, 45);
             this.chkPWD.Name = "chkPWD";
-            this.chkPWD.Size = new System.Drawing.Size(143, 17);
+            this.chkPWD.Size = new System.Drawing.Size(140, 17);
             this.chkPWD.TabIndex = 5;
             this.chkPWD.Text = "Remember my password";
             this.chkPWD.UseVisualStyleBackColor = true;
@@ -243,6 +256,7 @@ namespace METAbolt
             this.txtCustomLoginUri.AccessibleDescription = "Enter the URI of the \"other\" Grid you wish to login to";
             this.txtCustomLoginUri.AccessibleName = "URI";
             this.txtCustomLoginUri.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtCustomLoginUri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCustomLoginUri.Enabled = false;
             this.txtCustomLoginUri.Location = new System.Drawing.Point(326, 70);
             this.txtCustomLoginUri.Name = "txtCustomLoginUri";
@@ -255,6 +269,7 @@ namespace METAbolt
             this.cbxGrid.AccessibleName = "Grid list";
             this.cbxGrid.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cbxGrid.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxGrid.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxGrid.FormattingEnabled = true;
             this.cbxGrid.Items.AddRange(new object[] {
             "SL Main Grid (Agni)",
@@ -299,6 +314,7 @@ namespace METAbolt
             this.txtLastName.AccessibleDescription = "Enter your SL login last name";
             this.txtLastName.AccessibleName = "Last name";
             this.txtLastName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLastName.Location = new System.Drawing.Point(203, 16);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(164, 21);
@@ -321,6 +337,7 @@ namespace METAbolt
             this.txtPassword.AccessibleDescription = "Ebter your SL password";
             this.txtPassword.AccessibleName = "Password";
             this.txtPassword.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Location = new System.Drawing.Point(373, 16);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(177, 21);
@@ -334,6 +351,7 @@ namespace METAbolt
             this.cbxLocation.AccessibleDescription = "Select the location you wish to login to";
             this.cbxLocation.AccessibleName = "Location dropbox";
             this.cbxLocation.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxLocation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxLocation.FormattingEnabled = true;
             this.cbxLocation.Items.AddRange(new object[] {
             "My Home",

@@ -55,8 +55,8 @@ namespace METAbolt
             // proActivity
             // 
             this.proActivity.AccessibleName = "Download progress bar";
-            this.proActivity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.proActivity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.proActivity.Location = new System.Drawing.Point(3, 16);
             this.proActivity.MarqueeAnimationSpeed = 50;
             this.proActivity.Name = "proActivity";
@@ -67,9 +67,9 @@ namespace METAbolt
             // pbxImage
             // 
             this.pbxImage.AccessibleName = "Image display";
-            this.pbxImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbxImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pbxImage.Location = new System.Drawing.Point(23, 48);
             this.pbxImage.Name = "pbxImage";
             this.pbxImage.Size = new System.Drawing.Size(261, 226);
@@ -81,8 +81,8 @@ namespace METAbolt
             // pnlStatus
             // 
             this.pnlStatus.AccessibleName = "Download status panel";
-            this.pnlStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlStatus.Controls.Add(this.lblStatus);
             this.pnlStatus.Controls.Add(this.proActivity);
             this.pnlStatus.Location = new System.Drawing.Point(4, 5);
@@ -94,8 +94,8 @@ namespace METAbolt
             // pnlOptions
             // 
             this.pnlOptions.AccessibleName = "Image options panel";
-            this.pnlOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOptions.Controls.Add(this.btnView);
             this.pnlOptions.Controls.Add(this.label1);
             this.pnlOptions.Controls.Add(this.btnSave);
@@ -108,7 +108,10 @@ namespace METAbolt
             // btnView
             // 
             this.btnView.AccessibleName = "View image button";
-            this.btnView.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnView.BackColor = System.Drawing.Color.DimGray;
+            this.btnView.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnView.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
             this.btnView.Location = new System.Drawing.Point(112, 16);
             this.btnView.Name = "btnView";
@@ -131,8 +134,11 @@ namespace METAbolt
             // btnSave
             // 
             this.btnSave.AccessibleName = "Save button";
-            this.btnSave.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSave.BackColor = System.Drawing.Color.DimGray;
             this.btnSave.Enabled = false;
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(3, 16);
             this.btnSave.Name = "btnSave";
@@ -144,7 +150,7 @@ namespace METAbolt
             // sfdImage
             // 
             this.sfdImage.Filter = "Bitmap (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg|Portable Network Graphics (*.png)|*.png|A" +
-                "ll files (*.*)|*.*";
+    "ll files (*.*)|*.*";
             this.sfdImage.Title = "Save Image";
             // 
             // InventoryImageConsole

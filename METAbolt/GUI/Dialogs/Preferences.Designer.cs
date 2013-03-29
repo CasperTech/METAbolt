@@ -54,8 +54,8 @@ namespace METAbolt
             // pnlPanes
             // 
             this.pnlPanes.AllowDrop = true;
-            this.pnlPanes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlPanes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlPanes.Location = new System.Drawing.Point(146, 12);
             this.pnlPanes.Name = "pnlPanes";
             this.pnlPanes.Size = new System.Drawing.Size(344, 309);
@@ -66,7 +66,10 @@ namespace METAbolt
             // 
             this.btnOK.AccessibleName = "OK and close window button";
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnOK.BackColor = System.Drawing.Color.DimGray;
+            this.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.ForeColor = System.Drawing.Color.White;
             this.btnOK.Location = new System.Drawing.Point(255, 332);
             this.btnOK.Name = "btnOK";
@@ -80,7 +83,10 @@ namespace METAbolt
             // 
             this.btnCancel.AccessibleName = "Cancel and close window button";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancel.BackColor = System.Drawing.Color.DimGray;
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(336, 332);
             this.btnCancel.Name = "btnCancel";
@@ -94,7 +100,10 @@ namespace METAbolt
             // 
             this.btnApply.AccessibleName = "Apply changes button";
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApply.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnApply.BackColor = System.Drawing.Color.DimGray;
+            this.btnApply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.ForeColor = System.Drawing.Color.White;
             this.btnApply.Location = new System.Drawing.Point(417, 332);
             this.btnApply.Name = "btnApply";

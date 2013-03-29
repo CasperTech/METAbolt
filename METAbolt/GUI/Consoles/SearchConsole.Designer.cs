@@ -121,9 +121,9 @@ namespace METAbolt
             // 
             // pnlFindPeople
             // 
-            this.pnlFindPeople.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFindPeople.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFindPeople.Location = new System.Drawing.Point(93, 33);
             this.pnlFindPeople.Name = "pnlFindPeople";
             this.pnlFindPeople.Size = new System.Drawing.Size(441, 306);
@@ -141,9 +141,10 @@ namespace METAbolt
             // 
             // txtPersonName
             // 
-            this.txtPersonName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPersonName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPersonName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtPersonName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPersonName.Location = new System.Drawing.Point(93, 6);
             this.txtPersonName.Name = "txtPersonName";
             this.txtPersonName.Size = new System.Drawing.Size(360, 21);
@@ -155,8 +156,11 @@ namespace METAbolt
             // btnFind
             // 
             this.btnFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFind.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFind.BackColor = System.Drawing.Color.SeaGreen;
             this.btnFind.Enabled = false;
+            this.btnFind.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFind.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFind.ForeColor = System.Drawing.Color.White;
             this.btnFind.Location = new System.Drawing.Point(459, 4);
             this.btnFind.Name = "btnFind";
@@ -168,8 +172,11 @@ namespace METAbolt
             // 
             // btnNewIM
             // 
-            this.btnNewIM.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNewIM.BackColor = System.Drawing.Color.DimGray;
             this.btnNewIM.Enabled = false;
+            this.btnNewIM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnNewIM.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnNewIM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewIM.ForeColor = System.Drawing.Color.White;
             this.btnNewIM.Location = new System.Drawing.Point(6, 33);
             this.btnNewIM.Name = "btnNewIM";
@@ -192,8 +199,11 @@ namespace METAbolt
             // btnPrevious
             // 
             this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevious.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPrevious.BackColor = System.Drawing.Color.DimGray;
             this.btnPrevious.Enabled = false;
+            this.btnPrevious.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.ForeColor = System.Drawing.Color.White;
             this.btnPrevious.Location = new System.Drawing.Point(378, 345);
             this.btnPrevious.Name = "btnPrevious";
@@ -206,8 +216,11 @@ namespace METAbolt
             // btnNext
             // 
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNext.BackColor = System.Drawing.Color.DimGray;
             this.btnNext.Enabled = false;
+            this.btnNext.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.ForeColor = System.Drawing.Color.White;
             this.btnNext.Location = new System.Drawing.Point(459, 345);
             this.btnNext.Name = "btnNext";
@@ -219,8 +232,11 @@ namespace METAbolt
             // 
             // btnProfile
             // 
-            this.btnProfile.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnProfile.BackColor = System.Drawing.Color.DimGray;
             this.btnProfile.Enabled = false;
+            this.btnProfile.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnProfile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProfile.ForeColor = System.Drawing.Color.White;
             this.btnProfile.Location = new System.Drawing.Point(6, 62);
             this.btnProfile.Name = "btnProfile";
@@ -293,9 +309,9 @@ namespace METAbolt
             // 
             // pnlFindEvents
             // 
-            this.pnlFindEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFindEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFindEvents.Location = new System.Drawing.Point(9, 34);
             this.pnlFindEvents.Name = "pnlFindEvents";
             this.pnlFindEvents.Size = new System.Drawing.Size(525, 306);
@@ -305,8 +321,11 @@ namespace METAbolt
             // btnNextEvents
             // 
             this.btnNextEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextEvents.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNextEvents.BackColor = System.Drawing.Color.DimGray;
             this.btnNextEvents.Enabled = false;
+            this.btnNextEvents.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnNextEvents.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnNextEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextEvents.ForeColor = System.Drawing.Color.White;
             this.btnNextEvents.Location = new System.Drawing.Point(459, 346);
             this.btnNextEvents.Name = "btnNextEvents";
@@ -318,9 +337,10 @@ namespace METAbolt
             // 
             // txtEvents
             // 
-            this.txtEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEvents.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEvents.Location = new System.Drawing.Point(43, 7);
             this.txtEvents.Name = "txtEvents";
             this.txtEvents.Size = new System.Drawing.Size(413, 21);
@@ -332,8 +352,11 @@ namespace METAbolt
             // btnPrevEvents
             // 
             this.btnPrevEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevEvents.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPrevEvents.BackColor = System.Drawing.Color.DimGray;
             this.btnPrevEvents.Enabled = false;
+            this.btnPrevEvents.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPrevEvents.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPrevEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevEvents.ForeColor = System.Drawing.Color.White;
             this.btnPrevEvents.Location = new System.Drawing.Point(378, 346);
             this.btnPrevEvents.Name = "btnPrevEvents";
@@ -345,8 +368,11 @@ namespace METAbolt
             // btnFindEvents
             // 
             this.btnFindEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFindEvents.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFindEvents.BackColor = System.Drawing.Color.SeaGreen;
             this.btnFindEvents.Enabled = false;
+            this.btnFindEvents.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFindEvents.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFindEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFindEvents.ForeColor = System.Drawing.Color.White;
             this.btnFindEvents.Location = new System.Drawing.Point(462, 5);
             this.btnFindEvents.Name = "btnFindEvents";
@@ -393,9 +419,9 @@ namespace METAbolt
             // 
             // pnlFindPlaces
             // 
-            this.pnlFindPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFindPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFindPlaces.Location = new System.Drawing.Point(8, 34);
             this.pnlFindPlaces.Name = "pnlFindPlaces";
             this.pnlFindPlaces.Size = new System.Drawing.Size(525, 306);
@@ -405,8 +431,11 @@ namespace METAbolt
             // btnNextPlaces
             // 
             this.btnNextPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextPlaces.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNextPlaces.BackColor = System.Drawing.Color.DimGray;
             this.btnNextPlaces.Enabled = false;
+            this.btnNextPlaces.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnNextPlaces.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnNextPlaces.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextPlaces.ForeColor = System.Drawing.Color.White;
             this.btnNextPlaces.Location = new System.Drawing.Point(458, 346);
             this.btnNextPlaces.Name = "btnNextPlaces";
@@ -418,9 +447,10 @@ namespace METAbolt
             // 
             // txtPlaces
             // 
-            this.txtPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPlaces.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtPlaces.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPlaces.Location = new System.Drawing.Point(42, 7);
             this.txtPlaces.Name = "txtPlaces";
             this.txtPlaces.Size = new System.Drawing.Size(409, 21);
@@ -432,8 +462,11 @@ namespace METAbolt
             // btnPrevPlaces
             // 
             this.btnPrevPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevPlaces.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPrevPlaces.BackColor = System.Drawing.Color.DimGray;
             this.btnPrevPlaces.Enabled = false;
+            this.btnPrevPlaces.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPrevPlaces.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPrevPlaces.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevPlaces.ForeColor = System.Drawing.Color.White;
             this.btnPrevPlaces.Location = new System.Drawing.Point(377, 346);
             this.btnPrevPlaces.Name = "btnPrevPlaces";
@@ -446,8 +479,11 @@ namespace METAbolt
             // btnFindPlaces
             // 
             this.btnFindPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFindPlaces.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFindPlaces.BackColor = System.Drawing.Color.SeaGreen;
             this.btnFindPlaces.Enabled = false;
+            this.btnFindPlaces.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFindPlaces.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFindPlaces.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFindPlaces.ForeColor = System.Drawing.Color.White;
             this.btnFindPlaces.Location = new System.Drawing.Point(457, 6);
             this.btnFindPlaces.Name = "btnFindPlaces";
@@ -490,8 +526,11 @@ namespace METAbolt
             // 
             // button10
             // 
-            this.button10.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button10.BackColor = System.Drawing.Color.Red;
             this.button10.Enabled = false;
+            this.button10.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.ForeColor = System.Drawing.Color.White;
             this.button10.Location = new System.Drawing.Point(6, 138);
             this.button10.Name = "button10";
@@ -503,8 +542,11 @@ namespace METAbolt
             // 
             // btnFriend
             // 
-            this.btnFriend.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFriend.BackColor = System.Drawing.Color.DimGray;
             this.btnFriend.Enabled = false;
+            this.btnFriend.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFriend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFriend.ForeColor = System.Drawing.Color.White;
             this.btnFriend.Location = new System.Drawing.Point(6, 91);
             this.btnFriend.Name = "btnFriend";
@@ -534,8 +576,11 @@ namespace METAbolt
             // 
             // cmdInfo
             // 
-            this.cmdInfo.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdInfo.BackColor = System.Drawing.Color.DimGray;
             this.cmdInfo.Enabled = false;
+            this.cmdInfo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdInfo.ForeColor = System.Drawing.Color.White;
             this.cmdInfo.Location = new System.Drawing.Point(6, 63);
             this.cmdInfo.Name = "cmdInfo";
@@ -556,9 +601,9 @@ namespace METAbolt
             // 
             // pnlFindGroups
             // 
-            this.pnlFindGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFindGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFindGroups.Location = new System.Drawing.Point(93, 34);
             this.pnlFindGroups.Name = "pnlFindGroups";
             this.pnlFindGroups.Size = new System.Drawing.Size(441, 306);
@@ -567,8 +612,11 @@ namespace METAbolt
             // btnNextGroups
             // 
             this.btnNextGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextGroups.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNextGroups.BackColor = System.Drawing.Color.DimGray;
             this.btnNextGroups.Enabled = false;
+            this.btnNextGroups.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnNextGroups.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnNextGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextGroups.ForeColor = System.Drawing.Color.White;
             this.btnNextGroups.Location = new System.Drawing.Point(459, 346);
             this.btnNextGroups.Name = "btnNextGroups";
@@ -580,9 +628,10 @@ namespace METAbolt
             // 
             // txtGroups
             // 
-            this.txtGroups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGroups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGroups.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtGroups.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroups.Location = new System.Drawing.Point(93, 7);
             this.txtGroups.Name = "txtGroups";
             this.txtGroups.Size = new System.Drawing.Size(360, 21);
@@ -594,8 +643,11 @@ namespace METAbolt
             // btnPrevGroups
             // 
             this.btnPrevGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevGroups.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPrevGroups.BackColor = System.Drawing.Color.DimGray;
             this.btnPrevGroups.Enabled = false;
+            this.btnPrevGroups.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPrevGroups.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPrevGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevGroups.ForeColor = System.Drawing.Color.White;
             this.btnPrevGroups.Location = new System.Drawing.Point(378, 346);
             this.btnPrevGroups.Name = "btnPrevGroups";
@@ -608,8 +660,11 @@ namespace METAbolt
             // btnFindGroups
             // 
             this.btnFindGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFindGroups.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFindGroups.BackColor = System.Drawing.Color.SeaGreen;
             this.btnFindGroups.Enabled = false;
+            this.btnFindGroups.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFindGroups.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFindGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFindGroups.ForeColor = System.Drawing.Color.White;
             this.btnFindGroups.Location = new System.Drawing.Point(459, 5);
             this.btnFindGroups.Name = "btnFindGroups";
@@ -631,8 +686,11 @@ namespace METAbolt
             // 
             // btnJoin
             // 
-            this.btnJoin.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnJoin.BackColor = System.Drawing.Color.DarkOrange;
             this.btnJoin.Enabled = false;
+            this.btnJoin.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnJoin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnJoin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoin.ForeColor = System.Drawing.Color.White;
             this.btnJoin.Location = new System.Drawing.Point(6, 34);
             this.btnJoin.Name = "btnJoin";
@@ -666,9 +724,13 @@ namespace METAbolt
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
+            this.checkBox3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox3.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3.Location = new System.Drawing.Point(383, 11);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(51, 17);
+            this.checkBox3.Size = new System.Drawing.Size(48, 17);
             this.checkBox3.TabIndex = 26;
             this.checkBox3.Text = "Adult";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -678,9 +740,13 @@ namespace METAbolt
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2.Location = new System.Drawing.Point(325, 11);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(60, 17);
+            this.checkBox2.Size = new System.Drawing.Size(57, 17);
             this.checkBox2.TabIndex = 25;
             this.checkBox2.Text = "Mature";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -690,15 +756,20 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(287, 11);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(39, 17);
+            this.checkBox1.Size = new System.Drawing.Size(36, 17);
             this.checkBox1.TabIndex = 24;
             this.checkBox1.Text = "PG";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // cboPrice
             // 
+            this.cboPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboPrice.FormattingEnabled = true;
             this.cboPrice.Location = new System.Drawing.Point(199, 8);
             this.cboPrice.Name = "cboPrice";
@@ -707,6 +778,7 @@ namespace METAbolt
             // 
             // cboArea
             // 
+            this.cboArea.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboArea.FormattingEnabled = true;
             this.cboArea.Location = new System.Drawing.Point(114, 8);
             this.cboArea.Name = "cboArea";
@@ -715,6 +787,7 @@ namespace METAbolt
             // 
             // cboCategory
             // 
+            this.cboCategory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(9, 8);
             this.cboCategory.Name = "cboCategory";
@@ -723,9 +796,9 @@ namespace METAbolt
             // 
             // pnlFindLand
             // 
-            this.pnlFindLand.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFindLand.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFindLand.Location = new System.Drawing.Point(9, 34);
             this.pnlFindLand.Name = "pnlFindLand";
             this.pnlFindLand.Size = new System.Drawing.Size(525, 306);
@@ -734,8 +807,11 @@ namespace METAbolt
             // btnNextLand
             // 
             this.btnNextLand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextLand.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNextLand.BackColor = System.Drawing.Color.DimGray;
             this.btnNextLand.Enabled = false;
+            this.btnNextLand.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnNextLand.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnNextLand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextLand.ForeColor = System.Drawing.Color.White;
             this.btnNextLand.Location = new System.Drawing.Point(459, 346);
             this.btnNextLand.Name = "btnNextLand";
@@ -747,8 +823,8 @@ namespace METAbolt
             // 
             // txtLand
             // 
-            this.txtLand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLand.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtLand.Location = new System.Drawing.Point(236, 343);
             this.txtLand.Name = "txtLand";
@@ -759,8 +835,11 @@ namespace METAbolt
             // btnPrevLand
             // 
             this.btnPrevLand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevLand.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPrevLand.BackColor = System.Drawing.Color.DimGray;
             this.btnPrevLand.Enabled = false;
+            this.btnPrevLand.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPrevLand.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPrevLand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevLand.ForeColor = System.Drawing.Color.White;
             this.btnPrevLand.Location = new System.Drawing.Point(378, 346);
             this.btnPrevLand.Name = "btnPrevLand";
@@ -773,7 +852,10 @@ namespace METAbolt
             // btnFindLand
             // 
             this.btnFindLand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFindLand.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFindLand.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnFindLand.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFindLand.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFindLand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFindLand.ForeColor = System.Drawing.Color.White;
             this.btnFindLand.Location = new System.Drawing.Point(458, 6);
             this.btnFindLand.Name = "btnFindLand";
@@ -824,9 +906,9 @@ namespace METAbolt
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Location = new System.Drawing.Point(93, 33);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(441, 306);
@@ -845,8 +927,8 @@ namespace METAbolt
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(93, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(360, 20);
@@ -905,9 +987,9 @@ namespace METAbolt
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Location = new System.Drawing.Point(9, 34);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(525, 306);
@@ -926,8 +1008,8 @@ namespace METAbolt
             // 
             // textBox2
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Location = new System.Drawing.Point(43, 7);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(413, 20);
@@ -1012,9 +1094,9 @@ namespace METAbolt
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Location = new System.Drawing.Point(93, 33);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(441, 306);
@@ -1033,8 +1115,8 @@ namespace METAbolt
             // 
             // textBox3
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Location = new System.Drawing.Point(93, 6);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(360, 20);

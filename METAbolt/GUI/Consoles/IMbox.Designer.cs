@@ -48,9 +48,10 @@
             // 
             this.lbxIMs.AccessibleDescription = "List of unviewed IM sessions";
             this.lbxIMs.AccessibleName = "IM List";
-            this.lbxIMs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbxIMs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lbxIMs.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxIMs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxIMs.ForeColor = System.Drawing.Color.Red;
             this.lbxIMs.IntegralHeight = false;
             this.lbxIMs.Location = new System.Drawing.Point(9, 0);
@@ -182,8 +183,11 @@
             this.btnView.AccessibleDescription = "View selected IM session";
             this.btnView.AccessibleName = "View IM";
             this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnView.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnView.BackColor = System.Drawing.Color.DimGray;
             this.btnView.Enabled = false;
+            this.btnView.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnView.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
             this.btnView.Location = new System.Drawing.Point(182, 369);
             this.btnView.Name = "btnView";

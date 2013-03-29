@@ -88,6 +88,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbIMText.AutoWordSelection = true;
             this.rtbIMText.BackColor = System.Drawing.Color.White;
+            this.rtbIMText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbIMText.DetectUrls = true;
             this.rtbIMText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbIMText.HideSelection = false;
@@ -204,8 +205,11 @@
             this.btnSend.AccessibleDescription = "Send your IM";
             this.btnSend.AccessibleName = "Send";
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSend.BackColor = System.Drawing.Color.DimGray;
             this.btnSend.Enabled = false;
+            this.btnSend.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSend.ForeColor = System.Drawing.Color.White;
             this.btnSend.Location = new System.Drawing.Point(422, 306);
             this.btnSend.Name = "btnSend";
@@ -255,6 +259,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwList.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwList.GridLines = true;
             this.lvwList.Location = new System.Drawing.Point(4, 3);
             this.lvwList.MultiSelect = false;

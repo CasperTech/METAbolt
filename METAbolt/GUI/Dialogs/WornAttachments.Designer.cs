@@ -50,8 +50,11 @@
             // 
             this.btnTouch.AccessibleDescription = "Touch or click the selected object";
             this.btnTouch.AccessibleName = "Touch or Click button";
-            this.btnTouch.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnTouch.BackColor = System.Drawing.Color.DimGray;
             this.btnTouch.Enabled = false;
+            this.btnTouch.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnTouch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTouch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTouch.ForeColor = System.Drawing.Color.White;
             this.btnTouch.Location = new System.Drawing.Point(283, 439);
             this.btnTouch.Name = "btnTouch";
@@ -64,7 +67,10 @@
             // btnClose
             // 
             this.btnClose.AccessibleName = "Close this window button";
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(366, 439);
             this.btnClose.Name = "btnClose";
@@ -78,6 +84,7 @@
             // 
             this.lbxPrims.AccessibleName = "Current woen attachments listbox";
             this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxPrims.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxPrims.FormattingEnabled = true;
             this.lbxPrims.HorizontalScrollbar = true;
@@ -97,6 +104,7 @@
             this.lbxPrimGroup.AccessibleDescription = "List of child objects of the selected attachment";
             this.lbxPrimGroup.AccessibleName = "Linked objects listbox";
             this.lbxPrimGroup.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxPrimGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxPrimGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxPrimGroup.FormattingEnabled = true;
             this.lbxPrimGroup.HorizontalScrollbar = true;
@@ -124,6 +132,7 @@
             this.label1.AccessibleName = "Total number of attachments textbox";
             this.label1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Location = new System.Drawing.Point(292, 210);
             this.label1.Name = "label1";
             this.label1.ReadOnly = true;
@@ -136,6 +145,7 @@
             this.label2.AccessibleName = "Total child objects textbox";
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Location = new System.Drawing.Point(3, 441);
             this.label2.Name = "label2";
             this.label2.ReadOnly = true;
@@ -162,8 +172,11 @@
             // button2
             // 
             this.button2.AccessibleName = "3D view button";
-            this.button2.BackColor = System.Drawing.Color.DarkGreen;
+            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
             this.button2.Enabled = false;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(221, 439);
             this.button2.Name = "button2";
@@ -189,6 +202,7 @@
             this.txtUUID.AccessibleName = "Total number of attachments textbox";
             this.txtUUID.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.txtUUID.BackColor = System.Drawing.SystemColors.Control;
+            this.txtUUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUUID.Location = new System.Drawing.Point(36, 210);
             this.txtUUID.Name = "txtUUID";
             this.txtUUID.ReadOnly = true;
@@ -218,6 +232,7 @@
             this.txtPoint.AccessibleName = "Total number of attachments textbox";
             this.txtPoint.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.txtPoint.BackColor = System.Drawing.SystemColors.Control;
+            this.txtPoint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPoint.Location = new System.Drawing.Point(101, 242);
             this.txtPoint.Name = "txtPoint";
             this.txtPoint.ReadOnly = true;

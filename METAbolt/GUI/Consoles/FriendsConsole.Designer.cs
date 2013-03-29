@@ -62,9 +62,10 @@ namespace METAbolt
             // 
             // lbxFriends
             // 
-            this.lbxFriends.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbxFriends.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lbxFriends.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxFriends.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxFriends.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxFriends.IntegralHeight = false;
             this.lbxFriends.ItemHeight = 20;
@@ -90,8 +91,11 @@ namespace METAbolt
             // 
             // btnIM
             // 
-            this.btnIM.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnIM.BackColor = System.Drawing.Color.DimGray;
             this.btnIM.Enabled = false;
+            this.btnIM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnIM.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnIM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIM.ForeColor = System.Drawing.Color.White;
             this.btnIM.Location = new System.Drawing.Point(6, 47);
             this.btnIM.Name = "btnIM";
@@ -103,8 +107,11 @@ namespace METAbolt
             // 
             // btnProfile
             // 
-            this.btnProfile.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnProfile.BackColor = System.Drawing.Color.DimGray;
             this.btnProfile.Enabled = false;
+            this.btnProfile.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnProfile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProfile.ForeColor = System.Drawing.Color.White;
             this.btnProfile.Location = new System.Drawing.Point(70, 47);
             this.btnProfile.Name = "btnProfile";
@@ -116,8 +123,8 @@ namespace METAbolt
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.btnRemove);
             this.groupBox1.Controls.Add(this.btnPay);
@@ -133,8 +140,11 @@ namespace METAbolt
             // 
             // btnRemove
             // 
-            this.btnRemove.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnRemove.BackColor = System.Drawing.Color.DimGray;
             this.btnRemove.Enabled = false;
+            this.btnRemove.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnRemove.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.ForeColor = System.Drawing.Color.White;
             this.btnRemove.Location = new System.Drawing.Point(333, 47);
             this.btnRemove.Name = "btnRemove";
@@ -146,8 +156,11 @@ namespace METAbolt
             // 
             // btnPay
             // 
-            this.btnPay.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPay.BackColor = System.Drawing.Color.DimGray;
             this.btnPay.Enabled = false;
+            this.btnPay.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.ForeColor = System.Drawing.Color.White;
             this.btnPay.Location = new System.Drawing.Point(269, 47);
             this.btnPay.Name = "btnPay";
@@ -159,8 +172,11 @@ namespace METAbolt
             // 
             // btnOfferTeleport
             // 
-            this.btnOfferTeleport.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnOfferTeleport.BackColor = System.Drawing.Color.DimGray;
             this.btnOfferTeleport.Enabled = false;
+            this.btnOfferTeleport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnOfferTeleport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnOfferTeleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOfferTeleport.ForeColor = System.Drawing.Color.White;
             this.btnOfferTeleport.Location = new System.Drawing.Point(151, 47);
             this.btnOfferTeleport.Name = "btnOfferTeleport";
@@ -185,9 +201,13 @@ namespace METAbolt
             this.chkSeeMeOnline.AutoSize = true;
             this.chkSeeMeOnline.BackColor = System.Drawing.Color.Transparent;
             this.chkSeeMeOnline.Enabled = false;
+            this.chkSeeMeOnline.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkSeeMeOnline.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSeeMeOnline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSeeMeOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSeeMeOnline.Location = new System.Drawing.Point(218, 117);
             this.chkSeeMeOnline.Name = "chkSeeMeOnline";
-            this.chkSeeMeOnline.Size = new System.Drawing.Size(125, 17);
+            this.chkSeeMeOnline.Size = new System.Drawing.Size(122, 17);
             this.chkSeeMeOnline.TabIndex = 6;
             this.chkSeeMeOnline.Text = "See my online status";
             this.chkSeeMeOnline.UseVisualStyleBackColor = false;
@@ -198,9 +218,13 @@ namespace METAbolt
             this.chkSeeMeOnMap.AutoSize = true;
             this.chkSeeMeOnMap.BackColor = System.Drawing.Color.Transparent;
             this.chkSeeMeOnMap.Enabled = false;
+            this.chkSeeMeOnMap.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkSeeMeOnMap.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSeeMeOnMap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSeeMeOnMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSeeMeOnMap.Location = new System.Drawing.Point(349, 117);
             this.chkSeeMeOnMap.Name = "chkSeeMeOnMap";
-            this.chkSeeMeOnMap.Size = new System.Drawing.Size(118, 17);
+            this.chkSeeMeOnMap.Size = new System.Drawing.Size(115, 17);
             this.chkSeeMeOnMap.TabIndex = 7;
             this.chkSeeMeOnMap.Text = "See me on the map";
             this.chkSeeMeOnMap.UseVisualStyleBackColor = false;
@@ -211,9 +235,13 @@ namespace METAbolt
             this.chkModifyMyObjects.AutoSize = true;
             this.chkModifyMyObjects.BackColor = System.Drawing.Color.Transparent;
             this.chkModifyMyObjects.Enabled = false;
+            this.chkModifyMyObjects.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkModifyMyObjects.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkModifyMyObjects.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkModifyMyObjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkModifyMyObjects.Location = new System.Drawing.Point(484, 117);
             this.chkModifyMyObjects.Name = "chkModifyMyObjects";
-            this.chkModifyMyObjects.Size = new System.Drawing.Size(113, 17);
+            this.chkModifyMyObjects.Size = new System.Drawing.Size(110, 17);
             this.chkModifyMyObjects.TabIndex = 8;
             this.chkModifyMyObjects.Text = "Modify my objects";
             this.chkModifyMyObjects.UseVisualStyleBackColor = false;
@@ -221,8 +249,8 @@ namespace METAbolt
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -271,6 +299,7 @@ namespace METAbolt
             this.textBox2.AccessibleName = "Drop inventory item box";
             this.textBox2.AllowDrop = true;
             this.textBox2.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.ForeColor = System.Drawing.Color.DimGray;
             this.textBox2.Location = new System.Drawing.Point(252, 105);
             this.textBox2.Name = "textBox2";
@@ -309,16 +338,22 @@ namespace METAbolt
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(176, 120);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Create";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // txtGroup
             // 
+            this.txtGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroup.Location = new System.Drawing.Point(42, 83);
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(209, 21);
@@ -337,6 +372,7 @@ namespace METAbolt
             // 
             this.cbofgroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbofgroups.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbofgroups.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbofgroups.FormattingEnabled = true;
             this.cbofgroups.Location = new System.Drawing.Point(4, 438);
             this.cbofgroups.Name = "cbofgroups";
@@ -358,8 +394,11 @@ namespace METAbolt
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
             this.button2.Enabled = false;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(218, 153);
             this.button2.Name = "button2";

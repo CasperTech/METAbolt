@@ -601,7 +601,7 @@ namespace METAbolt
             // mnuDollar
             // 
             this.mnuDollar.Name = "mnuDollar";
-            this.mnuDollar.Size = new System.Drawing.Size(152, 22);
+            this.mnuDollar.Size = new System.Drawing.Size(138, 22);
             this.mnuDollar.Text = "Donate US $";
             this.mnuDollar.Click += new System.EventHandler(this.mnuDollar_Click);
             // 
@@ -609,7 +609,7 @@ namespace METAbolt
             // 
             this.mnuDonate.Enabled = false;
             this.mnuDonate.Name = "mnuDonate";
-            this.mnuDonate.Size = new System.Drawing.Size(152, 22);
+            this.mnuDonate.Size = new System.Drawing.Size(138, 22);
             this.mnuDonate.Text = "Donate L$";
             this.mnuDonate.Click += new System.EventHandler(this.mnuDonate_Click);
             // 

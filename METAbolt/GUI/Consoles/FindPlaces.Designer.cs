@@ -46,9 +46,10 @@
             // 
             // lvwFindPlaces
             // 
-            this.lvwFindPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lvwFindPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lvwFindPlaces.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwFindPlaces.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwFindPlaces.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdTime});
@@ -129,8 +130,11 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(360, 361);
             this.button1.Name = "button1";
@@ -142,7 +146,8 @@
             // 
             // txtName
             // 
-            this.txtName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtName.BackColor = System.Drawing.Color.White;
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtName.Location = new System.Drawing.Point(360, 42);
             this.txtName.Name = "txtName";
@@ -153,7 +158,8 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDescription.BackColor = System.Drawing.Color.White;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Location = new System.Drawing.Point(360, 87);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -164,7 +170,8 @@
             // 
             // txtInformation
             // 
-            this.txtInformation.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtInformation.BackColor = System.Drawing.Color.White;
+            this.txtInformation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtInformation.Location = new System.Drawing.Point(360, 278);
             this.txtInformation.Name = "txtInformation";
@@ -174,7 +181,8 @@
             // 
             // txtLocation
             // 
-            this.txtLocation.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtLocation.BackColor = System.Drawing.Color.White;
+            this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtLocation.Location = new System.Drawing.Point(359, 325);
             this.txtLocation.Name = "txtLocation";

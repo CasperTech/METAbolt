@@ -79,7 +79,10 @@
             // button5
             // 
             this.button5.AccessibleName = "Close this window button";
-            this.button5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button5.BackColor = System.Drawing.Color.DimGray;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(337, 265);
             this.button5.Name = "button5";
@@ -108,6 +111,7 @@
             // 
             this.rtbBody.AccessibleName = "Notice body textbox";
             this.rtbBody.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.rtbBody.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbBody.Location = new System.Drawing.Point(108, 97);
             this.rtbBody.Name = "rtbBody";
             this.rtbBody.ReadOnly = true;
@@ -151,7 +155,10 @@
             // 
             this.button1.AccessibleDescription = "to open the attachment";
             this.button1.AccessibleName = "Open button";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(228, 4);
             this.button1.Name = "button1";

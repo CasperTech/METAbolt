@@ -34,6 +34,8 @@ namespace METAbolt
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkFavs = new System.Windows.Forms.CheckBox();
+            this.chkVoice = new System.Windows.Forms.CheckBox();
             this.chkDisableRadar = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -128,8 +130,6 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.chkVoice = new System.Windows.Forms.CheckBox();
-            this.chkFavs = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -253,13 +253,47 @@ namespace METAbolt
             this.tabPage1.Text = "Options";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // chkFavs
+            // 
+            this.chkFavs.AccessibleName = "Disable icon option";
+            this.chkFavs.AutoSize = true;
+            this.chkFavs.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkFavs.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkFavs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkFavs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkFavs.Location = new System.Drawing.Point(203, 215);
+            this.chkFavs.Name = "chkFavs";
+            this.chkFavs.Size = new System.Drawing.Size(109, 17);
+            this.chkFavs.TabIndex = 69;
+            this.chkFavs.Text = "Disable favourites";
+            this.chkFavs.UseVisualStyleBackColor = true;
+            // 
+            // chkVoice
+            // 
+            this.chkVoice.AccessibleName = "Disable icon option";
+            this.chkVoice.AutoSize = true;
+            this.chkVoice.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkVoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkVoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkVoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkVoice.Location = new System.Drawing.Point(203, 197);
+            this.chkVoice.Name = "chkVoice";
+            this.chkVoice.Size = new System.Drawing.Size(109, 17);
+            this.chkVoice.TabIndex = 68;
+            this.chkVoice.Text = "Disable voice chat";
+            this.chkVoice.UseVisualStyleBackColor = true;
+            // 
             // chkDisableRadar
             // 
             this.chkDisableRadar.AccessibleName = "Disable icon option";
             this.chkDisableRadar.AutoSize = true;
+            this.chkDisableRadar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkDisableRadar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkDisableRadar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkDisableRadar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkDisableRadar.Location = new System.Drawing.Point(203, 180);
             this.chkDisableRadar.Name = "chkDisableRadar";
-            this.chkDisableRadar.Size = new System.Drawing.Size(124, 17);
+            this.chkDisableRadar.Size = new System.Drawing.Size(121, 17);
             this.chkDisableRadar.TabIndex = 67;
             this.chkDisableRadar.Text = "Disable avatar radar";
             this.chkDisableRadar.UseVisualStyleBackColor = true;
@@ -269,9 +303,13 @@ namespace METAbolt
             // 
             this.checkBox13.AccessibleName = "Disable icon option";
             this.checkBox13.AutoSize = true;
+            this.checkBox13.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox13.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox13.Location = new System.Drawing.Point(8, 100);
             this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(216, 17);
+            this.checkBox13.Size = new System.Drawing.Size(213, 17);
             this.checkBox13.TabIndex = 66;
             this.checkBox13.Text = "Disable \'Network Disconnected\' prompts";
             this.checkBox13.UseVisualStyleBackColor = true;
@@ -288,6 +326,7 @@ namespace METAbolt
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Ask",
@@ -302,9 +341,13 @@ namespace METAbolt
             // 
             this.chkLSL.AccessibleName = "Disable icon option";
             this.chkLSL.AutoSize = true;
+            this.chkLSL.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkLSL.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkLSL.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkLSL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkLSL.Location = new System.Drawing.Point(8, 215);
             this.chkLSL.Name = "chkLSL";
-            this.chkLSL.Size = new System.Drawing.Size(132, 17);
+            this.chkLSL.Size = new System.Drawing.Size(129, 17);
             this.chkLSL.TabIndex = 63;
             this.chkLSL.Text = "Display LSL commands";
             this.chkLSL.UseVisualStyleBackColor = true;
@@ -322,6 +365,7 @@ namespace METAbolt
             // 
             this.nUD2.AccessibleName = "Auto logout interval setting";
             this.nUD2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nUD2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nUD2.Location = new System.Drawing.Point(249, 245);
             this.nUD2.Maximum = new decimal(new int[] {
             2880,
@@ -356,9 +400,13 @@ namespace METAbolt
             // 
             this.chkAutoFriend.AccessibleName = "Auto accept received friendship offers";
             this.chkAutoFriend.AutoSize = true;
+            this.chkAutoFriend.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkAutoFriend.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAutoFriend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAutoFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkAutoFriend.Location = new System.Drawing.Point(8, 75);
             this.chkAutoFriend.Name = "chkAutoFriend";
-            this.chkAutoFriend.Size = new System.Drawing.Size(166, 17);
+            this.chkAutoFriend.Size = new System.Drawing.Size(163, 17);
             this.chkAutoFriend.TabIndex = 59;
             this.chkAutoFriend.Text = "Auto accept friendship offers";
             this.chkAutoFriend.UseVisualStyleBackColor = true;
@@ -367,9 +415,13 @@ namespace METAbolt
             // 
             this.chkTyping.AccessibleName = "Disable typing animation";
             this.chkTyping.AutoSize = true;
+            this.chkTyping.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkTyping.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkTyping.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkTyping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkTyping.Location = new System.Drawing.Point(8, 134);
             this.chkTyping.Name = "chkTyping";
-            this.chkTyping.Size = new System.Drawing.Size(142, 17);
+            this.chkTyping.Size = new System.Drawing.Size(139, 17);
             this.chkTyping.TabIndex = 13;
             this.chkTyping.Text = "Disable typing animation";
             this.chkTyping.UseVisualStyleBackColor = true;
@@ -378,9 +430,13 @@ namespace METAbolt
             // 
             this.chkFriends.AccessibleName = "Disable friends online/offline";
             this.chkFriends.AutoSize = true;
+            this.chkFriends.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkFriends.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkFriends.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkFriends.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkFriends.Location = new System.Drawing.Point(8, 168);
             this.chkFriends.Name = "chkFriends";
-            this.chkFriends.Size = new System.Drawing.Size(161, 17);
+            this.chkFriends.Size = new System.Drawing.Size(158, 17);
             this.chkFriends.TabIndex = 2;
             this.chkFriends.Text = "Disable friends online/offline";
             this.chkFriends.UseVisualStyleBackColor = true;
@@ -389,9 +445,13 @@ namespace METAbolt
             // 
             this.chkTray.AccessibleName = "Disable icon option";
             this.chkTray.AutoSize = true;
+            this.chkTray.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkTray.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkTray.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkTray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkTray.Location = new System.Drawing.Point(203, 134);
             this.chkTray.Name = "chkTray";
-            this.chkTray.Size = new System.Drawing.Size(105, 17);
+            this.chkTray.Size = new System.Drawing.Size(102, 17);
             this.chkTray.TabIndex = 3;
             this.chkTray.Text = "Disable tray icon";
             this.chkTray.UseVisualStyleBackColor = true;
@@ -401,9 +461,13 @@ namespace METAbolt
             // 
             this.chkMinimised.AccessibleName = "Start minimised option";
             this.chkMinimised.AutoSize = true;
+            this.chkMinimised.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkMinimised.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkMinimised.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkMinimised.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkMinimised.Location = new System.Drawing.Point(182, 28);
             this.chkMinimised.Name = "chkMinimised";
-            this.chkMinimised.Size = new System.Drawing.Size(146, 17);
+            this.chkMinimised.Size = new System.Drawing.Size(143, 17);
             this.chkMinimised.TabIndex = 5;
             this.chkMinimised.Text = "Start METAbolt minimised";
             this.chkMinimised.UseVisualStyleBackColor = true;
@@ -421,6 +485,7 @@ namespace METAbolt
             // 
             this.nUD1.AccessibleName = "Auto logout interval setting";
             this.nUD1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nUD1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nUD1.Location = new System.Drawing.Point(85, 245);
             this.nUD1.Maximum = new decimal(new int[] {
             2880,
@@ -446,9 +511,13 @@ namespace METAbolt
             // 
             this.checkBox2.AccessibleName = "Disable auto restarts option";
             this.checkBox2.AutoSize = true;
+            this.checkBox2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2.Location = new System.Drawing.Point(203, 117);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(125, 17);
+            this.checkBox2.Size = new System.Drawing.Size(122, 17);
             this.checkBox2.TabIndex = 10;
             this.checkBox2.Text = "Disable auto re-start";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -457,9 +526,13 @@ namespace METAbolt
             // 
             this.chkLookAt.AccessibleName = "Disable lookat option";
             this.chkLookAt.AutoSize = true;
+            this.chkLookAt.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkLookAt.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkLookAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkLookAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkLookAt.Location = new System.Drawing.Point(203, 151);
             this.chkLookAt.Name = "chkLookAt";
-            this.chkLookAt.Size = new System.Drawing.Size(96, 17);
+            this.chkLookAt.Size = new System.Drawing.Size(93, 17);
             this.chkLookAt.TabIndex = 9;
             this.chkLookAt.Text = "Disable LookAt";
             this.chkLookAt.UseVisualStyleBackColor = true;
@@ -468,9 +541,13 @@ namespace METAbolt
             // 
             this.chkInvites.AccessibleName = "Disable invites option";
             this.chkInvites.AutoSize = true;
+            this.chkInvites.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkInvites.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkInvites.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkInvites.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkInvites.Location = new System.Drawing.Point(8, 117);
             this.chkInvites.Name = "chkInvites";
-            this.chkInvites.Size = new System.Drawing.Size(166, 17);
+            this.chkInvites.Size = new System.Drawing.Size(163, 17);
             this.chkInvites.TabIndex = 8;
             this.chkInvites.Text = "Disable inbound group invites";
             this.chkInvites.UseVisualStyleBackColor = true;
@@ -479,9 +556,13 @@ namespace METAbolt
             // 
             this.chkHide.AccessibleName = "Hide when minimised option";
             this.chkHide.AutoSize = true;
+            this.chkHide.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkHide.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkHide.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkHide.Location = new System.Drawing.Point(8, 28);
             this.chkHide.Name = "chkHide";
-            this.chkHide.Size = new System.Drawing.Size(172, 17);
+            this.chkHide.Size = new System.Drawing.Size(169, 17);
             this.chkHide.TabIndex = 4;
             this.chkHide.Text = "Hide METAbolt when minimised";
             this.chkHide.UseVisualStyleBackColor = true;
@@ -503,9 +584,13 @@ namespace METAbolt
             // 
             this.chkAutoSit.AccessibleName = "Enable auto-sit option";
             this.chkAutoSit.AutoSize = true;
+            this.chkAutoSit.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkAutoSit.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAutoSit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAutoSit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkAutoSit.Location = new System.Drawing.Point(8, 197);
             this.chkAutoSit.Name = "chkAutoSit";
-            this.chkAutoSit.Size = new System.Drawing.Size(151, 17);
+            this.chkAutoSit.Size = new System.Drawing.Size(148, 17);
             this.chkAutoSit.TabIndex = 12;
             this.chkAutoSit.Text = "Enable Auto Sit upon login";
             this.chkAutoSit.UseVisualStyleBackColor = true;
@@ -526,9 +611,13 @@ namespace METAbolt
             // 
             this.chkNotifications.AccessibleName = "Disable notifications option";
             this.chkNotifications.AutoSize = true;
+            this.chkNotifications.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkNotifications.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkNotifications.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkNotifications.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkNotifications.Location = new System.Drawing.Point(8, 151);
             this.chkNotifications.Name = "chkNotifications";
-            this.chkNotifications.Size = new System.Drawing.Size(144, 17);
+            this.chkNotifications.Size = new System.Drawing.Size(141, 17);
             this.chkNotifications.TabIndex = 1;
             this.chkNotifications.Text = "Disable tray notifications";
             this.chkNotifications.UseVisualStyleBackColor = true;
@@ -560,9 +649,13 @@ namespace METAbolt
             // 
             this.chkConnect4.AccessibleName = "connect to multiple SIMs option";
             this.chkConnect4.AutoSize = true;
+            this.chkConnect4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkConnect4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkConnect4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkConnect4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkConnect4.Location = new System.Drawing.Point(8, 6);
             this.chkConnect4.Name = "chkConnect4";
-            this.chkConnect4.Size = new System.Drawing.Size(144, 17);
+            this.chkConnect4.Size = new System.Drawing.Size(141, 17);
             this.chkConnect4.TabIndex = 0;
             this.chkConnect4.Text = "Connect to multiple SIMs";
             this.chkConnect4.UseVisualStyleBackColor = true;
@@ -594,9 +687,13 @@ namespace METAbolt
             // 
             this.chkRestrictRadar.AccessibleName = "Optimise for dial-up option";
             this.chkRestrictRadar.AutoSize = true;
+            this.chkRestrictRadar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkRestrictRadar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkRestrictRadar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkRestrictRadar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkRestrictRadar.Location = new System.Drawing.Point(80, 61);
             this.chkRestrictRadar.Name = "chkRestrictRadar";
-            this.chkRestrictRadar.Size = new System.Drawing.Size(180, 17);
+            this.chkRestrictRadar.Size = new System.Drawing.Size(177, 17);
             this.chkRestrictRadar.TabIndex = 62;
             this.chkRestrictRadar.Text = "Restrict chat radar to this range";
             this.chkRestrictRadar.UseVisualStyleBackColor = true;
@@ -642,9 +739,13 @@ namespace METAbolt
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
+            this.radioButton1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.radioButton1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton1.Location = new System.Drawing.Point(19, 32);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(108, 17);
+            this.radioButton1.Size = new System.Drawing.Size(107, 17);
             this.radioButton1.TabIndex = 59;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Use auto-throttle";
@@ -654,9 +755,13 @@ namespace METAbolt
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
+            this.radioButton2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.radioButton2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton2.Location = new System.Drawing.Point(19, 55);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(80, 17);
+            this.radioButton2.Size = new System.Drawing.Size(79, 17);
             this.radioButton2.TabIndex = 60;
             this.radioButton2.Text = "Set throttle";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -666,9 +771,12 @@ namespace METAbolt
             // 
             this.checkBox3.AccessibleName = "Optimise for dial-up option";
             this.checkBox3.AutoSize = true;
+            this.checkBox3.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3.Location = new System.Drawing.Point(8, 246);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(161, 17);
+            this.checkBox3.Size = new System.Drawing.Size(158, 17);
             this.checkBox3.TabIndex = 58;
             this.checkBox3.Text = "Optimise settings for Dial-up";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -677,6 +785,7 @@ namespace METAbolt
             // textBox2
             // 
             this.textBox2.AccessibleName = "Object select range numeric display textbox";
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(275, 89);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -734,6 +843,7 @@ namespace METAbolt
             // textBox1
             // 
             this.textBox1.AccessibleName = "Radar range numeric display textbox";
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(275, 31);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -796,6 +906,7 @@ namespace METAbolt
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(22, 78);
             this.textBox4.Name = "textBox4";
@@ -805,7 +916,10 @@ namespace METAbolt
             // button2
             // 
             this.button2.AccessibleName = "Clear cache button";
-            this.button2.BackColor = System.Drawing.Color.Green;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(250, 105);
@@ -820,7 +934,10 @@ namespace METAbolt
             // 
             this.button3.AccessibleDescription = "View the locaion/folder in Microsoft Explorer";
             this.button3.AccessibleName = "View button";
-            this.button3.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(174, 105);
@@ -890,9 +1007,12 @@ namespace METAbolt
     " and object";
             this.checkBox12.AccessibleName = "Enforce LSL security";
             this.checkBox12.AutoSize = true;
+            this.checkBox12.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox12.Location = new System.Drawing.Point(79, 147);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(171, 17);
+            this.checkBox12.Size = new System.Drawing.Size(168, 17);
             this.checkBox12.TabIndex = 63;
             this.checkBox12.Text = "Enforce LSL command security";
             this.checkBox12.UseVisualStyleBackColor = true;
@@ -910,9 +1030,12 @@ namespace METAbolt
             this.chkAutoTransfer.AccessibleDescription = "Transfers received funds to master avatar as and when they are received";
             this.chkAutoTransfer.AccessibleName = "Transfer funds option";
             this.chkAutoTransfer.AutoSize = true;
+            this.chkAutoTransfer.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAutoTransfer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAutoTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkAutoTransfer.Location = new System.Drawing.Point(79, 58);
             this.chkAutoTransfer.Name = "chkAutoTransfer";
-            this.chkAutoTransfer.Size = new System.Drawing.Size(222, 17);
+            this.chkAutoTransfer.Size = new System.Drawing.Size(219, 17);
             this.chkAutoTransfer.TabIndex = 1;
             this.chkAutoTransfer.Text = "Transfer all received L$ to Master avatar";
             this.chkAutoTransfer.UseVisualStyleBackColor = true;
@@ -921,6 +1044,7 @@ namespace METAbolt
             // 
             this.txtMObject.AccessibleName = "UUID textbox";
             this.txtMObject.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtMObject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMObject.Location = new System.Drawing.Point(79, 94);
             this.txtMObject.Name = "txtMObject";
             this.txtMObject.Size = new System.Drawing.Size(227, 21);
@@ -938,6 +1062,7 @@ namespace METAbolt
             // 
             this.txtMavatar.AccessibleName = "UUID textbox";
             this.txtMavatar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtMavatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMavatar.Location = new System.Drawing.Point(79, 31);
             this.txtMavatar.Name = "txtMavatar";
             this.txtMavatar.Size = new System.Drawing.Size(227, 21);
@@ -984,6 +1109,7 @@ namespace METAbolt
             // 
             this.textBox3.AccessibleName = "METAbolt password textbox";
             this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Location = new System.Drawing.Point(24, 38);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(175, 21);
@@ -1005,13 +1131,18 @@ namespace METAbolt
             // 
             this.button1.AccessibleDescription = "Generates a new random safe password";
             this.button1.AccessibleName = "Reset textbox";
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(205, 38);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(41, 21);
             this.button1.TabIndex = 1;
             this.button1.Text = "reset";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkBox1
@@ -1019,9 +1150,12 @@ namespace METAbolt
             this.checkBox1.AccessibleDescription = "Gives a random present with each invite";
             this.checkBox1.AccessibleName = "Give present option";
             this.checkBox1.AutoSize = true;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(35, 62);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(211, 17);
+            this.checkBox1.Size = new System.Drawing.Size(208, 17);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Give a present when invite is accepted";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -1069,18 +1203,24 @@ namespace METAbolt
             // button5
             // 
             this.button5.AccessibleName = "Change header font button";
+            this.button5.BackColor = System.Drawing.Color.DimGray;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(210, 61);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(61, 23);
             this.button5.TabIndex = 3;
             this.button5.Text = "Change";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox7
             // 
             this.textBox7.AccessibleName = "Header font textbox";
             this.textBox7.BackColor = System.Drawing.Color.Lavender;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.textBox7.Location = new System.Drawing.Point(122, 61);
@@ -1092,18 +1232,24 @@ namespace METAbolt
             // button4
             // 
             this.button4.AccessibleName = "Change header colour button";
+            this.button4.BackColor = System.Drawing.Color.DimGray;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(210, 31);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(61, 23);
             this.button4.TabIndex = 0;
             this.button4.Text = "Change";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox6
             // 
             this.textBox6.AccessibleName = "Header colour display";
             this.textBox6.BackColor = System.Drawing.Color.Lavender;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(172, 33);
             this.textBox6.Name = "textBox6";
@@ -1152,6 +1298,7 @@ namespace METAbolt
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.Color.White;
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Enabled = false;
             this.textBox9.Location = new System.Drawing.Point(197, 107);
             this.textBox9.Name = "textBox9";
@@ -1205,18 +1352,24 @@ namespace METAbolt
             // button6
             // 
             this.button6.AccessibleName = "Change font button";
+            this.button6.BackColor = System.Drawing.Color.DimGray;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(235, 34);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(61, 23);
             this.button6.TabIndex = 1;
             this.button6.Text = "Change";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBox8
             // 
             this.textBox8.AccessibleName = "Font size textbox";
             this.textBox8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.textBox8.Location = new System.Drawing.Point(147, 37);
@@ -1238,9 +1391,12 @@ namespace METAbolt
             // 
             this.checkBox4.AccessibleName = "Use modern layout option";
             this.checkBox4.AutoSize = true;
+            this.checkBox4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4.Location = new System.Drawing.Point(25, 92);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(231, 17);
+            this.checkBox4.Size = new System.Drawing.Size(228, 17);
             this.checkBox4.TabIndex = 2;
             this.checkBox4.Text = "Use \'modern\' layout in chat and IM screens";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -1268,9 +1424,13 @@ namespace METAbolt
             // 
             this.checkBox5.AccessibleName = "Payment received option";
             this.checkBox5.AutoSize = true;
+            this.checkBox5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox5.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox5.Location = new System.Drawing.Point(58, 200);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(220, 17);
+            this.checkBox5.Size = new System.Drawing.Size(217, 17);
             this.checkBox5.TabIndex = 13;
             this.checkBox5.Text = "Play sound when payments are received";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1279,9 +1439,13 @@ namespace METAbolt
             // 
             this.checkBox11.AccessibleName = "Inventory item received option";
             this.checkBox11.AutoSize = true;
+            this.checkBox11.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox11.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox11.Location = new System.Drawing.Point(58, 177);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(227, 17);
+            this.checkBox11.Size = new System.Drawing.Size(224, 17);
             this.checkBox11.TabIndex = 12;
             this.checkBox11.Text = "Play sound when Inventory Item received";
             this.checkBox11.UseVisualStyleBackColor = true;
@@ -1290,9 +1454,13 @@ namespace METAbolt
             // 
             this.checkBox10.AccessibleName = "Group notice received option";
             this.checkBox10.AutoSize = true;
+            this.checkBox10.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox10.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox10.Location = new System.Drawing.Point(58, 154);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(216, 17);
+            this.checkBox10.Size = new System.Drawing.Size(213, 17);
             this.checkBox10.TabIndex = 11;
             this.checkBox10.Text = "Play sound when Group Notice received";
             this.checkBox10.UseVisualStyleBackColor = true;
@@ -1301,9 +1469,13 @@ namespace METAbolt
             // 
             this.checkBox9.AccessibleName = "Group IM received option";
             this.checkBox9.AutoSize = true;
+            this.checkBox9.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox9.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox9.Location = new System.Drawing.Point(58, 131);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(198, 17);
+            this.checkBox9.Size = new System.Drawing.Size(195, 17);
             this.checkBox9.TabIndex = 10;
             this.checkBox9.Text = "Play sound when Group IM received";
             this.checkBox9.UseVisualStyleBackColor = true;
@@ -1312,9 +1484,13 @@ namespace METAbolt
             // 
             this.checkBox8.AccessibleName = "IM received option";
             this.checkBox8.AutoSize = true;
+            this.checkBox8.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox8.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox8.Location = new System.Drawing.Point(58, 108);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(169, 17);
+            this.checkBox8.Size = new System.Drawing.Size(166, 17);
             this.checkBox8.TabIndex = 9;
             this.checkBox8.Text = "Play sound when IM Received";
             this.checkBox8.UseVisualStyleBackColor = true;
@@ -1323,9 +1499,13 @@ namespace METAbolt
             // 
             this.checkBox7.AccessibleName = "Friends offline option";
             this.checkBox7.AutoSize = true;
+            this.checkBox7.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox7.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox7.Location = new System.Drawing.Point(58, 85);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(173, 17);
+            this.checkBox7.Size = new System.Drawing.Size(170, 17);
             this.checkBox7.TabIndex = 8;
             this.checkBox7.Text = "Play sound when Friend offline";
             this.checkBox7.UseVisualStyleBackColor = true;
@@ -1334,9 +1514,13 @@ namespace METAbolt
             // 
             this.checkBox6.AccessibleName = "Friends online option";
             this.checkBox6.AutoSize = true;
+            this.checkBox6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox6.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox6.Location = new System.Drawing.Point(58, 62);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(171, 17);
+            this.checkBox6.Size = new System.Drawing.Size(168, 17);
             this.checkBox6.TabIndex = 7;
             this.checkBox6.Text = "Play sound when Friend online";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -1353,28 +1537,6 @@ namespace METAbolt
             this.fontDialog1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
-            // 
-            // chkVoice
-            // 
-            this.chkVoice.AccessibleName = "Disable icon option";
-            this.chkVoice.AutoSize = true;
-            this.chkVoice.Location = new System.Drawing.Point(203, 197);
-            this.chkVoice.Name = "chkVoice";
-            this.chkVoice.Size = new System.Drawing.Size(112, 17);
-            this.chkVoice.TabIndex = 68;
-            this.chkVoice.Text = "Disable voice chat";
-            this.chkVoice.UseVisualStyleBackColor = true;
-            // 
-            // chkFavs
-            // 
-            this.chkFavs.AccessibleName = "Disable icon option";
-            this.chkFavs.AutoSize = true;
-            this.chkFavs.Location = new System.Drawing.Point(203, 215);
-            this.chkFavs.Name = "chkFavs";
-            this.chkFavs.Size = new System.Drawing.Size(112, 17);
-            this.chkFavs.TabIndex = 69;
-            this.chkFavs.Text = "Disable favourites";
-            this.chkFavs.UseVisualStyleBackColor = true;
             // 
             // PrefGeneralConsole
             // 

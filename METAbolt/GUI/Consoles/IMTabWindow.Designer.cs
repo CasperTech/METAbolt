@@ -54,10 +54,10 @@ namespace METAbolt
             this.rtbIMText_Ex.BackColor = System.Drawing.Color.White;
             this.rtbIMText_Ex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbIMText_Ex.HideSelection = false;
-            this.rtbIMText_Ex.Location = new System.Drawing.Point(3, 240);
+            this.rtbIMText_Ex.Location = new System.Drawing.Point(3, 28);
             this.rtbIMText_Ex.Name = "rtbIMText_Ex";
             this.rtbIMText_Ex.ReadOnly = true;
-            this.rtbIMText_Ex.Size = new System.Drawing.Size(138, 58);
+            this.rtbIMText_Ex.Size = new System.Drawing.Size(494, 270);
             this.rtbIMText_Ex.TabIndex = 3;
             this.rtbIMText_Ex.Text = "";
             this.rtbIMText_Ex.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbIMText_LinkClicked_1);
@@ -85,8 +85,11 @@ namespace METAbolt
             this.btnSend.AccessibleDescription = "Send the IM you have typed";
             this.btnSend.AccessibleName = "Send";
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSend.BackColor = System.Drawing.Color.DimGray;
             this.btnSend.Enabled = false;
+            this.btnSend.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSend.ForeColor = System.Drawing.Color.White;
             this.btnSend.Location = new System.Drawing.Point(422, 304);
             this.btnSend.Name = "btnSend";
@@ -197,6 +200,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbIMText.AutoWordSelection = true;
             this.rtbIMText.BackColor = System.Drawing.Color.White;
+            this.rtbIMText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbIMText.DetectUrls = true;
             this.rtbIMText.Font = new System.Drawing.Font("Tahoma", 8.5F);
             this.rtbIMText.HideSelection = false;

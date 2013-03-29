@@ -220,7 +220,10 @@
             // 
             this.btnClose.AccessibleName = "Close this window button";
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(587, 14);
             this.btnClose.Name = "btnClose";

@@ -89,6 +89,7 @@
             // 
             this.textBox4.AccessibleName = "Port textbox";
             this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Location = new System.Drawing.Point(70, 79);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(71, 20);
@@ -117,6 +118,7 @@
             // 
             this.textBox3.AccessibleName = "Password textbox";
             this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Location = new System.Drawing.Point(131, 146);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(201, 20);
@@ -126,6 +128,7 @@
             // 
             this.textBox2.AccessibleName = "Username textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(131, 121);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(201, 20);
@@ -153,6 +156,7 @@
             // 
             this.textBox1.AccessibleName = "URI textbox";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(70, 35);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(262, 20);
@@ -171,9 +175,13 @@
             // 
             this.checkBox1.AccessibleName = "Use web proxy option";
             this.checkBox1.AutoSize = true;
+            this.checkBox1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(9, 35);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(100, 17);
+            this.checkBox1.Size = new System.Drawing.Size(97, 17);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Use Web Proxy";
             this.checkBox1.UseVisualStyleBackColor = true;

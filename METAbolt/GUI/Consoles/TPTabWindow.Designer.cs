@@ -42,7 +42,7 @@ namespace METAbolt
             // lblSubheading
             // 
             this.lblSubheading.AutoSize = true;
-            this.lblSubheading.Location = new System.Drawing.Point(3, 25);
+            this.lblSubheading.Location = new System.Drawing.Point(3, 60);
             this.lblSubheading.Name = "lblSubheading";
             this.lblSubheading.Size = new System.Drawing.Size(225, 13);
             this.lblSubheading.TabIndex = 1;
@@ -52,13 +52,14 @@ namespace METAbolt
             // 
             this.rtbOfferMessage.AccessibleDescription = "The message of the teleport lure";
             this.rtbOfferMessage.AccessibleName = "Message";
-            this.rtbOfferMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbOfferMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbOfferMessage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rtbOfferMessage.Location = new System.Drawing.Point(3, 41);
+            this.rtbOfferMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbOfferMessage.Location = new System.Drawing.Point(3, 98);
             this.rtbOfferMessage.Name = "rtbOfferMessage";
             this.rtbOfferMessage.ReadOnly = true;
-            this.rtbOfferMessage.Size = new System.Drawing.Size(534, 64);
+            this.rtbOfferMessage.Size = new System.Drawing.Size(534, 110);
             this.rtbOfferMessage.TabIndex = 0;
             this.rtbOfferMessage.Text = "";
             this.rtbOfferMessage.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbOfferMessage_LinkClicked);
@@ -68,9 +69,12 @@ namespace METAbolt
             this.btnAccept.AccessibleDescription = "Accept the teleport lure";
             this.btnAccept.AccessibleName = "Accept";
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAccept.BackColor = System.Drawing.Color.DimGray;
+            this.btnAccept.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnAccept.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccept.ForeColor = System.Drawing.Color.White;
-            this.btnAccept.Location = new System.Drawing.Point(381, 111);
+            this.btnAccept.Location = new System.Drawing.Point(381, 214);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
             this.btnAccept.TabIndex = 1;
@@ -83,9 +87,12 @@ namespace METAbolt
             this.btnDecline.AccessibleDescription = "Decline the teleport lure";
             this.btnDecline.AccessibleName = "Decline";
             this.btnDecline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDecline.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnDecline.BackColor = System.Drawing.Color.DimGray;
+            this.btnDecline.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnDecline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnDecline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecline.ForeColor = System.Drawing.Color.White;
-            this.btnDecline.Location = new System.Drawing.Point(462, 111);
+            this.btnDecline.Location = new System.Drawing.Point(462, 214);
             this.btnDecline.Name = "btnDecline";
             this.btnDecline.Size = new System.Drawing.Size(75, 23);
             this.btnDecline.TabIndex = 2;

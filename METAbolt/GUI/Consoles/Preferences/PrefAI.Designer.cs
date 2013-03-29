@@ -74,9 +74,13 @@
             // 
             this.chkAI.AccessibleName = "Enable METAbrain option";
             this.chkAI.AutoSize = true;
+            this.chkAI.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkAI.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkAI.Location = new System.Drawing.Point(12, 28);
             this.chkAI.Name = "chkAI";
-            this.chkAI.Size = new System.Drawing.Size(134, 17);
+            this.chkAI.Size = new System.Drawing.Size(131, 17);
             this.chkAI.TabIndex = 0;
             this.chkAI.Text = "Enable METAbrain (AI)";
             this.chkAI.UseVisualStyleBackColor = true;
@@ -143,38 +147,51 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(137, 160);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(132, 23);
             this.button3.TabIndex = 6;
             this.button3.Text = "View AIML libraries";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(137, 135);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 23);
             this.button2.TabIndex = 5;
             this.button2.Text = "View configurations files";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(9, 135);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 23);
             this.button1.TabIndex = 4;
             this.button1.Text = "Edit AI settings";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
             this.textBox1.AccessibleName = "Reply message textbox";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(30, 40);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -187,9 +204,13 @@
             // 
             this.chkReply.AccessibleName = "Reply option";
             this.chkReply.AutoSize = true;
+            this.chkReply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkReply.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkReply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkReply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkReply.Location = new System.Drawing.Point(9, 12);
             this.chkReply.Name = "chkReply";
-            this.chkReply.Size = new System.Drawing.Size(245, 17);
+            this.chkReply.Size = new System.Drawing.Size(242, 17);
             this.chkReply.TabIndex = 2;
             this.chkReply.Text = "Reply with below when an answer is not found";
             this.chkReply.UseVisualStyleBackColor = true;
@@ -199,9 +220,13 @@
             this.checkBox2.AccessibleName = "Enable multilingual AI";
             this.checkBox2.AutoSize = true;
             this.checkBox2.Enabled = false;
+            this.checkBox2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2.Location = new System.Drawing.Point(37, 57);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(129, 17);
+            this.checkBox2.Size = new System.Drawing.Size(126, 17);
             this.checkBox2.TabIndex = 20;
             this.checkBox2.Text = "Enable multi-lingual AI";
             this.checkBox2.UseVisualStyleBackColor = true;

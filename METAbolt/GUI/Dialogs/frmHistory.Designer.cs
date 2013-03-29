@@ -69,6 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwList.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwList.ForeColor = System.Drawing.Color.Gray;
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
@@ -102,6 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbIMText.BackColor = System.Drawing.Color.White;
+            this.rtbIMText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbIMText.DetectUrls = true;
             this.rtbIMText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbIMText.ForeColor = System.Drawing.Color.Gray;
@@ -121,9 +123,12 @@
             this.btnClose.AccessibleDescription = "Send your IM";
             this.btnClose.AccessibleName = "Send";
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(472, 377);
+            this.btnClose.Location = new System.Drawing.Point(479, 377);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 19;

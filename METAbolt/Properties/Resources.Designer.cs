@@ -83,6 +83,46 @@ namespace METAbolt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap a_down {
+            get {
+                object obj = ResourceManager.GetObject("a_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap a_left {
+            get {
+                object obj = ResourceManager.GetObject("a_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap a_right {
+            get {
+                object obj = ResourceManager.GetObject("a_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap a_up {
+            get {
+                object obj = ResourceManager.GetObject("a_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap acchist {
             get {
                 object obj = ResourceManager.GetObject("acchist", resourceCulture);
@@ -1614,6 +1654,16 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap window_edit {
             get {
                 object obj = ResourceManager.GetObject("window_edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wings {
+            get {
+                object obj = ResourceManager.GetObject("wings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

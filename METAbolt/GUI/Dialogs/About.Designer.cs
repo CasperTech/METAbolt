@@ -55,7 +55,10 @@ namespace METAbolt
             // 
             this.btnClose.AccessibleDescription = "Close butto nto close this window";
             this.btnClose.AccessibleName = "Close";
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(344, 307);
             this.btnClose.Name = "btnClose";
@@ -164,6 +167,7 @@ namespace METAbolt
             this.txtDir.AccessibleDescription = "The folder in which METAbolt is installed";
             this.txtDir.AccessibleName = "Application folder";
             this.txtDir.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDir.Location = new System.Drawing.Point(66, 253);
             this.txtDir.Name = "txtDir";
             this.txtDir.ReadOnly = true;
@@ -185,7 +189,10 @@ namespace METAbolt
             // 
             this.button1.AccessibleDescription = "Open the METAbolt folder in Microsoft Explorer";
             this.button1.AccessibleName = "Open application folder";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(382, 251);
@@ -228,7 +235,10 @@ namespace METAbolt
             // 
             this.button2.AccessibleDescription = "Open the METAbolt user data folder in Microsoft Explorer";
             this.button2.AccessibleName = "Open data folder";
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(382, 278);
@@ -244,6 +254,7 @@ namespace METAbolt
             this.textBox1.AccessibleDescription = "The folder in which METAbolt user data is kept";
             this.textBox1.AccessibleName = "Data folder";
             this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(66, 279);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;

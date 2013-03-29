@@ -33,6 +33,7 @@ namespace METAbolt
             this.btnClose = new System.Windows.Forms.Button();
             this.TabCont = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chkResident = new System.Windows.Forms.CheckBox();
             this.chkForSale = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -69,7 +70,6 @@ namespace METAbolt
             this.lbxRegionSearch = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.TabCont.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuZ)).BeginInit();
@@ -90,9 +90,12 @@ namespace METAbolt
             // 
             this.btnClose.AccessibleName = "Close this window button";
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(198, 441);
+            this.btnClose.Location = new System.Drawing.Point(200, 441);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 8;
@@ -110,17 +113,17 @@ namespace METAbolt
             this.TabCont.Location = new System.Drawing.Point(2, 5);
             this.TabCont.Name = "TabCont";
             this.TabCont.SelectedIndex = 0;
-            this.TabCont.Size = new System.Drawing.Size(275, 434);
+            this.TabCont.Size = new System.Drawing.Size(277, 434);
             this.TabCont.TabIndex = 2;
             this.TabCont.SelectedIndexChanged += new System.EventHandler(this.TabCont_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.chkResident);
             this.tabPage1.Controls.Add(this.chkForSale);
-            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
@@ -136,8 +139,23 @@ namespace METAbolt
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(267, 405);
+            this.tabPage1.Size = new System.Drawing.Size(269, 405);
             this.tabPage1.TabIndex = 0;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AccessibleName = "Display residents option";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox1.Location = new System.Drawing.Point(162, 264);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(55, 17);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "Range";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // chkResident
             // 
@@ -145,9 +163,11 @@ namespace METAbolt
             this.chkResident.AutoSize = true;
             this.chkResident.Checked = true;
             this.chkResident.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkResident.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.chkResident.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.chkResident.Location = new System.Drawing.Point(95, 264);
             this.chkResident.Name = "chkResident";
-            this.chkResident.Size = new System.Drawing.Size(68, 17);
+            this.chkResident.Size = new System.Drawing.Size(66, 17);
             this.chkResident.TabIndex = 1;
             this.chkResident.Text = "Resident";
             this.chkResident.UseVisualStyleBackColor = true;
@@ -156,9 +176,11 @@ namespace METAbolt
             // 
             this.chkForSale.AccessibleName = "Land for sale option";
             this.chkForSale.AutoSize = true;
+            this.chkForSale.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.chkForSale.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.chkForSale.Location = new System.Drawing.Point(6, 264);
             this.chkForSale.Name = "chkForSale";
-            this.chkForSale.Size = new System.Drawing.Size(89, 17);
+            this.chkForSale.Size = new System.Drawing.Size(87, 17);
             this.chkForSale.TabIndex = 0;
             this.chkForSale.Text = "Land for Sale";
             this.chkForSale.UseVisualStyleBackColor = true;
@@ -167,16 +189,19 @@ namespace METAbolt
             // button1
             // 
             this.button1.AccessibleName = "Clear marker from map option";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Enabled = false;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(223, 263);
+            this.button1.Location = new System.Drawing.Point(214, 261);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 25);
+            this.button1.Size = new System.Drawing.Size(48, 28);
             this.button1.TabIndex = 2;
             this.button1.Text = "cl&ear";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -184,6 +209,7 @@ namespace METAbolt
             // 
             this.label2.AccessibleName = "SLurl of selected position textbox";
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.ForeColor = System.Drawing.Color.Gray;
             this.label2.Location = new System.Drawing.Point(6, 331);
             this.label2.Name = "label2";
@@ -205,7 +231,7 @@ namespace METAbolt
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(133, 375);
+            this.label5.Location = new System.Drawing.Point(130, 381);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(13, 13);
             this.label5.TabIndex = 10;
@@ -214,7 +240,7 @@ namespace METAbolt
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 375);
+            this.label4.Location = new System.Drawing.Point(70, 381);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(13, 13);
             this.label4.TabIndex = 9;
@@ -223,7 +249,7 @@ namespace METAbolt
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 375);
+            this.label3.Location = new System.Drawing.Point(9, 381);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 13);
             this.label3.TabIndex = 8;
@@ -233,9 +259,12 @@ namespace METAbolt
             // 
             this.cmdTP.AccessibleDescription = "Teleports the avatar to the selected position";
             this.cmdTP.AccessibleName = "Teleport button";
-            this.cmdTP.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdTP.BackColor = System.Drawing.Color.DimGray;
+            this.cmdTP.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdTP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdTP.ForeColor = System.Drawing.Color.White;
-            this.cmdTP.Location = new System.Drawing.Point(204, 370);
+            this.cmdTP.Location = new System.Drawing.Point(201, 376);
             this.cmdTP.Name = "cmdTP";
             this.cmdTP.Size = new System.Drawing.Size(61, 23);
             this.cmdTP.TabIndex = 7;
@@ -247,7 +276,8 @@ namespace METAbolt
             // 
             this.nuZ.AccessibleName = "Z coordinate setting";
             this.nuZ.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nuZ.Location = new System.Drawing.Point(150, 371);
+            this.nuZ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nuZ.Location = new System.Drawing.Point(147, 377);
             this.nuZ.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -262,7 +292,8 @@ namespace METAbolt
             // 
             this.nuY.AccessibleName = "Y coordinate setting";
             this.nuY.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nuY.Location = new System.Drawing.Point(90, 371);
+            this.nuY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nuY.Location = new System.Drawing.Point(87, 377);
             this.nuY.Maximum = new decimal(new int[] {
             256,
             0,
@@ -278,7 +309,8 @@ namespace METAbolt
             // 
             this.nuX.AccessibleName = "X coordinate setting";
             this.nuX.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nuX.Location = new System.Drawing.Point(30, 371);
+            this.nuX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nuX.Location = new System.Drawing.Point(27, 377);
             this.nuX.Maximum = new decimal(new int[] {
             256,
             0,
@@ -293,7 +325,7 @@ namespace METAbolt
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 355);
+            this.label1.Location = new System.Drawing.Point(9, 361);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 2;
@@ -302,7 +334,7 @@ namespace METAbolt
             // lblSimData
             // 
             this.lblSimData.AutoSize = true;
-            this.lblSimData.Location = new System.Drawing.Point(6, 298);
+            this.lblSimData.Location = new System.Drawing.Point(6, 302);
             this.lblSimData.Name = "lblSimData";
             this.lblSimData.Size = new System.Drawing.Size(0, 13);
             this.lblSimData.TabIndex = 1;
@@ -332,15 +364,16 @@ namespace METAbolt
             this.tabPage2.Controls.Add(this.lbxRegionSearch);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(267, 405);
+            this.tabPage2.Size = new System.Drawing.Size(269, 405);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Search";
             // 
             // button2
             // 
             this.button2.AccessibleName = "Clear marker from map option";
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(513, 268);
@@ -354,8 +387,10 @@ namespace METAbolt
             // btnTeleport
             // 
             this.btnTeleport.AccessibleName = "Teleport button";
-            this.btnTeleport.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnTeleport.BackColor = System.Drawing.Color.DimGray;
             this.btnTeleport.Enabled = false;
+            this.btnTeleport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnTeleport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTeleport.ForeColor = System.Drawing.Color.White;
             this.btnTeleport.Location = new System.Drawing.Point(492, 363);
             this.btnTeleport.Name = "btnTeleport";
@@ -421,6 +456,7 @@ namespace METAbolt
             // 
             this.txtRegion.AccessibleName = "Found or selected SIM name textbox";
             this.txtRegion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtRegion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRegion.Location = new System.Drawing.Point(6, 42);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(163, 21);
@@ -431,6 +467,7 @@ namespace METAbolt
             // 
             this.nudX1.AccessibleName = "X coordinate setting";
             this.nudX1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nudX1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudX1.Location = new System.Drawing.Point(8, 91);
             this.nudX1.Maximum = new decimal(new int[] {
             256,
@@ -459,6 +496,7 @@ namespace METAbolt
             // 
             this.nudY1.AccessibleName = "Y coordinate setting";
             this.nudY1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nudY1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudY1.Location = new System.Drawing.Point(62, 91);
             this.nudY1.Maximum = new decimal(new int[] {
             256,
@@ -487,6 +525,7 @@ namespace METAbolt
             // 
             this.nudZ1.AccessibleName = "Z coordinate setting";
             this.nudZ1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nudZ1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudZ1.Location = new System.Drawing.Point(116, 91);
             this.nudZ1.Maximum = new decimal(new int[] {
             9999,
@@ -536,6 +575,7 @@ namespace METAbolt
             this.txtSearchFor.AccessibleDescription = "Enter the name of the SIM you are searchign for";
             this.txtSearchFor.AccessibleName = "Search textbox";
             this.txtSearchFor.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSearchFor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchFor.Location = new System.Drawing.Point(5, 12);
             this.txtSearchFor.Name = "txtSearchFor";
             this.txtSearchFor.Size = new System.Drawing.Size(235, 21);
@@ -549,6 +589,7 @@ namespace METAbolt
             this.lbxRegionSearch.AccessibleDescription = "Select the SIM you need";
             this.lbxRegionSearch.AccessibleName = "Found SIMs listbox";
             this.lbxRegionSearch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxRegionSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxRegionSearch.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxRegionSearch.FormattingEnabled = true;
             this.lbxRegionSearch.IntegralHeight = false;
@@ -578,19 +619,6 @@ namespace METAbolt
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AccessibleName = "Display residents option";
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(162, 264);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(57, 17);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "Range";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // frmMapClient
             // 
             this.AccessibleDescription = "Displays the map of the current SIM";
@@ -599,7 +627,7 @@ namespace METAbolt
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(283, 469);
+            this.ClientSize = new System.Drawing.Size(285, 469);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.TabCont);
             this.Controls.Add(this.btnClose);

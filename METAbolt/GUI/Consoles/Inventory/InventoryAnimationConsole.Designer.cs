@@ -35,7 +35,10 @@
             // btnAnimate
             // 
             this.btnAnimate.AccessibleName = "Animate button";
-            this.btnAnimate.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAnimate.BackColor = System.Drawing.Color.DimGray;
+            this.btnAnimate.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnAnimate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnAnimate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnimate.ForeColor = System.Drawing.Color.White;
             this.btnAnimate.Location = new System.Drawing.Point(10, 12);
             this.btnAnimate.Name = "btnAnimate";
@@ -48,7 +51,10 @@
             // btnStop
             // 
             this.btnStop.AccessibleName = "Stop animation button";
-            this.btnStop.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnStop.BackColor = System.Drawing.Color.DimGray;
+            this.btnStop.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnStop.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.ForeColor = System.Drawing.Color.White;
             this.btnStop.Location = new System.Drawing.Point(91, 12);
             this.btnStop.Name = "btnStop";

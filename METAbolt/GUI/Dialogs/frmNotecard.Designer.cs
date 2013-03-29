@@ -65,7 +65,10 @@ namespace METAbolt
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(571, 479);
             this.btnClose.Name = "btnClose";
@@ -328,6 +331,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbNotecard.BackColor = System.Drawing.Color.White;
+            this.rtbNotecard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbNotecard.Location = new System.Drawing.Point(0, 28);
             this.rtbNotecard.Name = "rtbNotecard";
             this.rtbNotecard.Size = new System.Drawing.Size(658, 445);

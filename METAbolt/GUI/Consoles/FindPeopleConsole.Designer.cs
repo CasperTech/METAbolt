@@ -38,6 +38,7 @@ namespace METAbolt
             // lvwFindPeople
             // 
             this.lvwFindPeople.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwFindPeople.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwFindPeople.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdOnline});

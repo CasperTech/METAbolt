@@ -51,10 +51,11 @@
             // 
             // lvwFindLand
             // 
-            this.lvwFindLand.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwFindLand.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwFindLand.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwFindLand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwFindLand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdTime,
@@ -146,8 +147,11 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(34, 354);
             this.button1.Name = "button1";
@@ -159,7 +163,8 @@
             // 
             // txtName
             // 
-            this.txtName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtName.BackColor = System.Drawing.Color.White;
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtName.Location = new System.Drawing.Point(34, 40);
             this.txtName.Name = "txtName";
@@ -170,7 +175,8 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDescription.BackColor = System.Drawing.Color.White;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Location = new System.Drawing.Point(34, 87);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -181,7 +187,8 @@
             // 
             // txtInformation
             // 
-            this.txtInformation.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtInformation.BackColor = System.Drawing.Color.White;
+            this.txtInformation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtInformation.Location = new System.Drawing.Point(34, 276);
             this.txtInformation.Name = "txtInformation";
@@ -191,7 +198,8 @@
             // 
             // txtLocation
             // 
-            this.txtLocation.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtLocation.BackColor = System.Drawing.Color.White;
+            this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtLocation.Location = new System.Drawing.Point(34, 318);
             this.txtLocation.Name = "txtLocation";
@@ -221,9 +229,13 @@
             // 
             this.chkMature.AutoSize = true;
             this.chkMature.Enabled = false;
+            this.chkMature.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkMature.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkMature.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkMature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkMature.Location = new System.Drawing.Point(227, 3);
             this.chkMature.Name = "chkMature";
-            this.chkMature.Size = new System.Drawing.Size(59, 17);
+            this.chkMature.Size = new System.Drawing.Size(56, 17);
             this.chkMature.TabIndex = 48;
             this.chkMature.Text = "Mature";
             this.chkMature.UseVisualStyleBackColor = true;

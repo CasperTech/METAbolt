@@ -45,7 +45,10 @@ namespace METAbolt
             // btnEditScript
             // 
             this.btnEditScript.AccessibleName = "View button";
-            this.btnEditScript.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnEditScript.BackColor = System.Drawing.Color.DimGray;
+            this.btnEditScript.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnEditScript.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnEditScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditScript.ForeColor = System.Drawing.Color.White;
             this.btnEditScript.Location = new System.Drawing.Point(3, 28);
             this.btnEditScript.Name = "btnEditScript";

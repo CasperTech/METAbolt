@@ -1484,6 +1484,10 @@
     <None Include="Resources\attachment.png" />
     <None Include="Resources\ban.png" />
     <None Include="Resources\bing_logo_small.png" />
+    <None Include="Resources\a_down.png" />
+    <None Include="Resources\a_left.png" />
+    <None Include="Resources\a_right.png" />
+    <None Include="Resources\a_up.png" />
     <Content Include="Resources\build.png" />
     <None Include="Resources\Closed_Folder.png" />
     <None Include="Resources\ChairAnn.png" />
@@ -1605,8 +1609,6 @@
     <None Include="Resources\texture.png" />
     <None Include="Resources\speaker.png" />
     <None Include="Resources\top-hat.png" />
-    <None Include="Resources\turnleft.png" />
-    <None Include="Resources\turnright.png" />
     <None Include="Resources\uncomment_i.png" />
     <None Include="Resources\undo_i.png" />
     <None Include="Resources\smoke_bg.png" />
@@ -1614,6 +1616,8 @@
     <None Include="Resources\turnto_i.png" />
     <None Include="Resources\spelling-bee.png" />
     <None Include="Resources\spell-checker.png" />
+    <None Include="Resources\turnleft.png" />
+    <None Include="Resources\turnright.png" />
     <Content Include="Resources\up.png" />
     <None Include="Resources\Url_History_16.png" />
     <None Include="Resources\window_edit.png" />
@@ -1621,6 +1625,7 @@
     <None Include="Resources\wait18trans.gif" />
     <None Include="Resources\wait30trans.gif" />
     <None Include="Resources\Wikia_Logo.png" />
+    <None Include="Resources\wings.png" />
     <Content Include="Resources\wmp.png" />
     <None Include="Resources\world.png" />
     <None Include="SciLexer.dll">

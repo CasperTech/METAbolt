@@ -59,7 +59,6 @@ namespace METAbolt
             this.lvwAble = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
             this.cmdEject = new System.Windows.Forms.Button();
-            this.btnInvite = new System.Windows.Forms.Button();
             this.lstMembers2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -78,6 +77,7 @@ namespace METAbolt
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.btnInvite = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.lvwAbilities = new System.Windows.Forms.ListView();
             this.button4 = new System.Windows.Forms.Button();
@@ -170,7 +170,10 @@ namespace METAbolt
             // button6
             // 
             this.button6.AccessibleName = "Join this group button";
-            this.button6.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button6.BackColor = System.Drawing.Color.DimGray;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(10, 201);
             this.button6.Name = "button6";
@@ -230,9 +233,13 @@ namespace METAbolt
             // 
             this.chkListInProfile.AccessibleName = "Receive group notices option";
             this.chkListInProfile.AutoSize = true;
+            this.chkListInProfile.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkListInProfile.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkListInProfile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkListInProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkListInProfile.Location = new System.Drawing.Point(250, 64);
             this.chkListInProfile.Name = "chkListInProfile";
-            this.chkListInProfile.Size = new System.Drawing.Size(113, 17);
+            this.chkListInProfile.Size = new System.Drawing.Size(110, 17);
             this.chkListInProfile.TabIndex = 7;
             this.chkListInProfile.Text = "Show in my profile";
             this.chkListInProfile.UseVisualStyleBackColor = true;
@@ -242,9 +249,13 @@ namespace METAbolt
             // 
             this.chkMature.AccessibleName = "Mature publish option";
             this.chkMature.AutoSize = true;
+            this.chkMature.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkMature.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkMature.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkMature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkMature.Location = new System.Drawing.Point(16, 90);
             this.chkMature.Name = "chkMature";
-            this.chkMature.Size = new System.Drawing.Size(96, 17);
+            this.chkMature.Size = new System.Drawing.Size(93, 17);
             this.chkMature.TabIndex = 1;
             this.chkMature.Text = "Mature publish";
             this.chkMature.UseVisualStyleBackColor = true;
@@ -254,6 +265,7 @@ namespace METAbolt
             // 
             this.numFee.AccessibleName = "Enrollment fee text box";
             this.numFee.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numFee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numFee.Enabled = false;
             this.numFee.Location = new System.Drawing.Point(155, 65);
             this.numFee.Maximum = new decimal(new int[] {
@@ -270,9 +282,13 @@ namespace METAbolt
             // 
             this.chkGroupNotices.AccessibleName = "Receive group notices option";
             this.chkGroupNotices.AutoSize = true;
+            this.chkGroupNotices.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkGroupNotices.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkGroupNotices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkGroupNotices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkGroupNotices.Location = new System.Drawing.Point(250, 87);
             this.chkGroupNotices.Name = "chkGroupNotices";
-            this.chkGroupNotices.Size = new System.Drawing.Size(134, 17);
+            this.chkGroupNotices.Size = new System.Drawing.Size(131, 17);
             this.chkGroupNotices.TabIndex = 6;
             this.chkGroupNotices.Text = "Receive Group Notices";
             this.chkGroupNotices.UseVisualStyleBackColor = true;
@@ -282,9 +298,13 @@ namespace METAbolt
             // 
             this.chkFee.AccessibleName = "Enrollment fee option";
             this.chkFee.AutoSize = true;
+            this.chkFee.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkFee.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkFee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkFee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkFee.Location = new System.Drawing.Point(36, 67);
             this.chkFee.Name = "chkFee";
-            this.chkFee.Size = new System.Drawing.Size(115, 17);
+            this.chkFee.Size = new System.Drawing.Size(112, 17);
             this.chkFee.TabIndex = 4;
             this.chkFee.Text = "Enrollment Fee: L$";
             this.chkFee.UseVisualStyleBackColor = true;
@@ -294,9 +314,13 @@ namespace METAbolt
             // 
             this.chkOpenEnrollment.AccessibleName = "Open enrollment option";
             this.chkOpenEnrollment.AutoSize = true;
+            this.chkOpenEnrollment.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkOpenEnrollment.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkOpenEnrollment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkOpenEnrollment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkOpenEnrollment.Location = new System.Drawing.Point(16, 44);
             this.chkOpenEnrollment.Name = "chkOpenEnrollment";
-            this.chkOpenEnrollment.Size = new System.Drawing.Size(105, 17);
+            this.chkOpenEnrollment.Size = new System.Drawing.Size(102, 17);
             this.chkOpenEnrollment.TabIndex = 3;
             this.chkOpenEnrollment.Text = "Open Enrollment";
             this.chkOpenEnrollment.UseVisualStyleBackColor = true;
@@ -306,9 +330,13 @@ namespace METAbolt
             // 
             this.chkPublish.AccessibleName = "Publish on the web option";
             this.chkPublish.AutoSize = true;
+            this.chkPublish.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkPublish.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkPublish.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkPublish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkPublish.Location = new System.Drawing.Point(16, 21);
             this.chkPublish.Name = "chkPublish";
-            this.chkPublish.Size = new System.Drawing.Size(116, 17);
+            this.chkPublish.Size = new System.Drawing.Size(113, 17);
             this.chkPublish.TabIndex = 2;
             this.chkPublish.Text = "Publish on the web";
             this.chkPublish.UseVisualStyleBackColor = true;
@@ -318,6 +346,7 @@ namespace METAbolt
             // 
             this.lstMembers.AccessibleName = "List of group members";
             this.lstMembers.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lstMembers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMembers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colTitle,
@@ -356,6 +385,7 @@ namespace METAbolt
             // 
             this.txtCharter.AccessibleName = "Group description";
             this.txtCharter.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtCharter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCharter.Location = new System.Drawing.Point(146, 64);
             this.txtCharter.Multiline = true;
             this.txtCharter.Name = "txtCharter";
@@ -442,6 +472,7 @@ namespace METAbolt
             // 
             this.lvAssignedRoles.AccessibleName = "Allowed abilities listbox";
             this.lvAssignedRoles.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvAssignedRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvAssignedRoles.CheckBoxes = true;
             this.lvAssignedRoles.FullRowSelect = true;
             this.lvAssignedRoles.Location = new System.Drawing.Point(6, 241);
@@ -458,6 +489,7 @@ namespace METAbolt
             // 
             this.lvwAble.AccessibleName = "Allowed abilities listbox";
             this.lvwAble.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwAble.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwAble.FullRowSelect = true;
             this.lvwAble.Location = new System.Drawing.Point(159, 241);
             this.lvwAble.Name = "lvwAble";
@@ -470,8 +502,11 @@ namespace METAbolt
             // button1
             // 
             this.button1.AccessibleName = "Export the list of members";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(8, 194);
             this.button1.Name = "button1";
@@ -484,8 +519,11 @@ namespace METAbolt
             // cmdEject
             // 
             this.cmdEject.AccessibleName = "Eject the selected member button";
-            this.cmdEject.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdEject.BackColor = System.Drawing.Color.DimGray;
             this.cmdEject.Enabled = false;
+            this.cmdEject.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdEject.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdEject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdEject.ForeColor = System.Drawing.Color.White;
             this.cmdEject.Location = new System.Drawing.Point(258, 194);
             this.cmdEject.Name = "cmdEject";
@@ -495,24 +533,11 @@ namespace METAbolt
             this.cmdEject.UseVisualStyleBackColor = false;
             this.cmdEject.Click += new System.EventHandler(this.cmdEject_Click);
             // 
-            // btnInvite
-            // 
-            this.btnInvite.AccessibleDescription = "Invites a new member to the selected role";
-            this.btnInvite.AccessibleName = "Invite a new member button";
-            this.btnInvite.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnInvite.ForeColor = System.Drawing.Color.White;
-            this.btnInvite.Location = new System.Drawing.Point(260, 195);
-            this.btnInvite.Name = "btnInvite";
-            this.btnInvite.Size = new System.Drawing.Size(123, 23);
-            this.btnInvite.TabIndex = 1;
-            this.btnInvite.Text = "&Invite New Member";
-            this.btnInvite.UseVisualStyleBackColor = false;
-            this.btnInvite.Click += new System.EventHandler(this.btnInvite_Click);
-            // 
             // lstMembers2
             // 
             this.lstMembers2.AccessibleName = "List of group members to select from";
             this.lstMembers2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lstMembers2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMembers2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -599,6 +624,7 @@ namespace METAbolt
             // lvRoleMembers
             // 
             this.lvRoleMembers.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvRoleMembers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvRoleMembers.Location = new System.Drawing.Point(12, 239);
             this.lvRoleMembers.Name = "lvRoleMembers";
             this.lvRoleMembers.Size = new System.Drawing.Size(145, 107);
@@ -624,6 +650,7 @@ namespace METAbolt
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Location = new System.Drawing.Point(157, 20);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
@@ -632,7 +659,10 @@ namespace METAbolt
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button7.BackColor = System.Drawing.Color.DimGray;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(301, 62);
             this.button7.Name = "button7";
@@ -654,6 +684,7 @@ namespace METAbolt
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox8.Location = new System.Drawing.Point(6, 59);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(145, 21);
@@ -671,6 +702,7 @@ namespace METAbolt
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox7.Location = new System.Drawing.Point(6, 20);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(145, 21);
@@ -694,9 +726,29 @@ namespace METAbolt
             this.label14.TabIndex = 7;
             this.label14.Text = "Allowed Abilities:";
             // 
+            // btnInvite
+            // 
+            this.btnInvite.AccessibleDescription = "Invites a new member to the selected role";
+            this.btnInvite.AccessibleName = "Invite a new member button";
+            this.btnInvite.BackColor = System.Drawing.Color.DimGray;
+            this.btnInvite.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnInvite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnInvite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInvite.ForeColor = System.Drawing.Color.White;
+            this.btnInvite.Location = new System.Drawing.Point(260, 195);
+            this.btnInvite.Name = "btnInvite";
+            this.btnInvite.Size = new System.Drawing.Size(123, 23);
+            this.btnInvite.TabIndex = 1;
+            this.btnInvite.Text = "&Invite New Member";
+            this.btnInvite.UseVisualStyleBackColor = false;
+            this.btnInvite.Click += new System.EventHandler(this.btnInvite_Click);
+            // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button5.BackColor = System.Drawing.Color.DimGray;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(110, 195);
             this.button5.Name = "button5";
@@ -710,6 +762,7 @@ namespace METAbolt
             // lvwAbilities
             // 
             this.lvwAbilities.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwAbilities.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwAbilities.CheckBoxes = true;
             this.lvwAbilities.Location = new System.Drawing.Point(163, 239);
             this.lvwAbilities.Name = "lvwAbilities";
@@ -720,7 +773,10 @@ namespace METAbolt
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button4.BackColor = System.Drawing.Color.DimGray;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(6, 195);
             this.button4.Name = "button4";
@@ -743,6 +799,7 @@ namespace METAbolt
             // textBox3
             // 
             this.textBox3.AccessibleName = "Currently selected role textbox";
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Location = new System.Drawing.Point(83, 6);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -755,6 +812,7 @@ namespace METAbolt
             // 
             this.lstRoles.AccessibleName = "Roles listbox to select a role from";
             this.lstRoles.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lstRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstRoles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader10,
             this.columnHeader11});
@@ -809,9 +867,9 @@ namespace METAbolt
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Location = new System.Drawing.Point(2, 270);
+            this.panel2.Location = new System.Drawing.Point(3, 188);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(404, 270);
+            this.panel2.Size = new System.Drawing.Size(404, 290);
             this.panel2.TabIndex = 4;
             this.panel2.Visible = false;
             // 
@@ -820,8 +878,9 @@ namespace METAbolt
             this.textBox6.AccessibleDescription = "Drag and drop any inventory item in here to attach to the notice";
             this.textBox6.AllowDrop = true;
             this.textBox6.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.ForeColor = System.Drawing.Color.DarkGray;
-            this.textBox6.Location = new System.Drawing.Point(63, 224);
+            this.textBox6.Location = new System.Drawing.Point(62, 236);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(201, 21);
@@ -835,7 +894,7 @@ namespace METAbolt
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 227);
+            this.label9.Location = new System.Drawing.Point(3, 239);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 29;
@@ -843,10 +902,12 @@ namespace METAbolt
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
             this.button2.Enabled = false;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(326, 244);
+            this.button2.Location = new System.Drawing.Point(325, 259);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -858,6 +919,7 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Subject textbox for the new notice";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(63, 35);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(339, 21);
@@ -893,17 +955,21 @@ namespace METAbolt
             // 
             this.textBox4.AccessibleName = "Message textbox for the new notice";
             this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Location = new System.Drawing.Point(62, 61);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(340, 157);
+            this.textBox4.Size = new System.Drawing.Size(340, 169);
             this.textBox4.TabIndex = 1;
             // 
             // button3
             // 
             this.button3.AccessibleName = "Create a new notice button";
-            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(3, 159);
             this.button3.Name = "button3";
@@ -926,7 +992,10 @@ namespace METAbolt
             // cmdRefreshNotices
             // 
             this.cmdRefreshNotices.AccessibleName = "Refresh notices list button";
-            this.cmdRefreshNotices.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdRefreshNotices.BackColor = System.Drawing.Color.DimGray;
+            this.cmdRefreshNotices.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdRefreshNotices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdRefreshNotices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdRefreshNotices.ForeColor = System.Drawing.Color.White;
             this.cmdRefreshNotices.Location = new System.Drawing.Point(313, 159);
             this.cmdRefreshNotices.Name = "cmdRefreshNotices";
@@ -941,6 +1010,7 @@ namespace METAbolt
             this.lstNotices.AccessibleDescription = "Displays all the notices";
             this.lstNotices.AccessibleName = "Notices listbox";
             this.lstNotices.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lstNotices.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstNotices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5,
@@ -1020,6 +1090,7 @@ namespace METAbolt
             // textBox5
             // 
             this.textBox5.AccessibleName = "Contents of the selected notice";
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox5.Location = new System.Drawing.Point(3, 25);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
@@ -1031,7 +1102,10 @@ namespace METAbolt
             // cmdApply
             // 
             this.cmdApply.AccessibleName = "Apply changes button";
-            this.cmdApply.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdApply.BackColor = System.Drawing.Color.DimGray;
+            this.cmdApply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdApply.ForeColor = System.Drawing.Color.White;
             this.cmdApply.Location = new System.Drawing.Point(348, 520);
             this.cmdApply.Name = "cmdApply";
@@ -1044,7 +1118,10 @@ namespace METAbolt
             // cmdCancel
             // 
             this.cmdCancel.AccessibleName = "Cancel button";
-            this.cmdCancel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdCancel.BackColor = System.Drawing.Color.DimGray;
+            this.cmdCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdCancel.ForeColor = System.Drawing.Color.White;
             this.cmdCancel.Location = new System.Drawing.Point(267, 520);
             this.cmdCancel.Name = "cmdCancel";
@@ -1057,7 +1134,10 @@ namespace METAbolt
             // cmdOK
             // 
             this.cmdOK.AccessibleName = "OK button";
-            this.cmdOK.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdOK.BackColor = System.Drawing.Color.DimGray;
+            this.cmdOK.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdOK.ForeColor = System.Drawing.Color.White;
             this.cmdOK.Location = new System.Drawing.Point(186, 520);
             this.cmdOK.Name = "cmdOK";
@@ -1070,7 +1150,10 @@ namespace METAbolt
             // cmdRefresh
             // 
             this.cmdRefresh.AccessibleName = "Refresh all information from server button";
-            this.cmdRefresh.BackColor = System.Drawing.Color.RoyalBlue;
+            this.cmdRefresh.BackColor = System.Drawing.Color.DimGray;
+            this.cmdRefresh.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cmdRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.cmdRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdRefresh.ForeColor = System.Drawing.Color.White;
             this.cmdRefresh.Location = new System.Drawing.Point(6, 520);
             this.cmdRefresh.Name = "cmdRefresh";

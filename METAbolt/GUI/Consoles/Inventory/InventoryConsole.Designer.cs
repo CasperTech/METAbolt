@@ -171,6 +171,7 @@ namespace METAbolt
             this.treeView1.AccessibleName = "Inventory list";
             this.treeView1.AllowDrop = true;
             this.treeView1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.treeView1.ContextMenuStrip = this.smM1;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.ImageIndex = 0;
@@ -217,7 +218,7 @@ namespace METAbolt
             this.toolStripSeparator3,
             this.refreshToolStripMenuItem});
             this.smM1.Name = "smM1";
-            this.smM1.Size = new System.Drawing.Size(160, 364);
+            this.smM1.Size = new System.Drawing.Size(160, 342);
             this.smM1.Opening += new System.ComponentModel.CancelEventHandler(this.smM1_Opening);
             // 
             // newFolderToolStripMenuItem
@@ -350,21 +351,21 @@ namespace METAbolt
             // defaultToolStripMenuItem
             // 
             this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
-            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.defaultToolStripMenuItem.Text = "Default";
             this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
             // 
             // chestToolStripMenuItem
             // 
             this.chestToolStripMenuItem.Name = "chestToolStripMenuItem";
-            this.chestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chestToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.chestToolStripMenuItem.Text = "Chest";
             this.chestToolStripMenuItem.Click += new System.EventHandler(this.chestToolStripMenuItem_Click);
             // 
             // chinToolStripMenuItem
             // 
             this.chinToolStripMenuItem.Name = "chinToolStripMenuItem";
-            this.chinToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chinToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.chinToolStripMenuItem.Text = "Chin";
             this.chinToolStripMenuItem.Click += new System.EventHandler(this.chinToolStripMenuItem_Click);
             // 
@@ -383,7 +384,7 @@ namespace METAbolt
             this.upperArmToolStripMenuItem,
             this.upperLegToolStripMenuItem});
             this.leftEarToolStripMenuItem.Name = "leftEarToolStripMenuItem";
-            this.leftEarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.leftEarToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.leftEarToolStripMenuItem.Text = "Left";
             // 
             // earToolStripMenuItem
@@ -466,28 +467,28 @@ namespace METAbolt
             // mouthToolStripMenuItem
             // 
             this.mouthToolStripMenuItem.Name = "mouthToolStripMenuItem";
-            this.mouthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mouthToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.mouthToolStripMenuItem.Text = "Mouth";
             this.mouthToolStripMenuItem.Click += new System.EventHandler(this.mouthToolStripMenuItem_Click);
             // 
             // neckToolStripMenuItem
             // 
             this.neckToolStripMenuItem.Name = "neckToolStripMenuItem";
-            this.neckToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.neckToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.neckToolStripMenuItem.Text = "Neck";
             this.neckToolStripMenuItem.Click += new System.EventHandler(this.neckToolStripMenuItem_Click);
             // 
             // noseToolStripMenuItem
             // 
             this.noseToolStripMenuItem.Name = "noseToolStripMenuItem";
-            this.noseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.noseToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.noseToolStripMenuItem.Text = "Nose";
             this.noseToolStripMenuItem.Click += new System.EventHandler(this.noseToolStripMenuItem_Click);
             // 
             // pelvisToolStripMenuItem
             // 
             this.pelvisToolStripMenuItem.Name = "pelvisToolStripMenuItem";
-            this.pelvisToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pelvisToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.pelvisToolStripMenuItem.Text = "Pelvis";
             this.pelvisToolStripMenuItem.Click += new System.EventHandler(this.pelvisToolStripMenuItem_Click);
             // 
@@ -506,7 +507,7 @@ namespace METAbolt
             this.upperArmToolStripMenuItem1,
             this.upperLegToolStripMenuItem1});
             this.rightEarToolStripMenuItem.Name = "rightEarToolStripMenuItem";
-            this.rightEarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rightEarToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.rightEarToolStripMenuItem.Text = "Right";
             // 
             // earToolStripMenuItem1
@@ -589,21 +590,21 @@ namespace METAbolt
             // skullToolStripMenuItem
             // 
             this.skullToolStripMenuItem.Name = "skullToolStripMenuItem";
-            this.skullToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.skullToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.skullToolStripMenuItem.Text = "Skull";
             this.skullToolStripMenuItem.Click += new System.EventHandler(this.skullToolStripMenuItem_Click);
             // 
             // spineToolStripMenuItem
             // 
             this.spineToolStripMenuItem.Name = "spineToolStripMenuItem";
-            this.spineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.spineToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.spineToolStripMenuItem.Text = "Spine";
             this.spineToolStripMenuItem.Click += new System.EventHandler(this.spineToolStripMenuItem_Click);
             // 
             // stomachToolStripMenuItem
             // 
             this.stomachToolStripMenuItem.Name = "stomachToolStripMenuItem";
-            this.stomachToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stomachToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.stomachToolStripMenuItem.Text = "Stomach";
             this.stomachToolStripMenuItem.Click += new System.EventHandler(this.stomachToolStripMenuItem_Click);
             // 
@@ -651,6 +652,9 @@ namespace METAbolt
             // 
             this.button1.AccessibleName = "Clear button";
             this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::METAbolt.Properties.Resources.delete_16;
             this.button1.Location = new System.Drawing.Point(290, 4);
             this.button1.Name = "button1";
@@ -663,6 +667,9 @@ namespace METAbolt
             // 
             this.button7.AccessibleName = "Search button";
             this.button7.Enabled = false;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Image = global::METAbolt.Properties.Resources.Search_16;
             this.button7.Location = new System.Drawing.Point(257, 4);
             this.button7.Name = "button7";
@@ -675,6 +682,7 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Search textbox";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(248, 21);
@@ -955,6 +963,7 @@ namespace METAbolt
             // 
             // textBox3
             // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.ForeColor = System.Drawing.Color.DimGray;
             this.textBox3.Location = new System.Drawing.Point(18, 48);
             this.textBox3.Name = "textBox3";
@@ -981,8 +990,11 @@ namespace METAbolt
             // button2
             // 
             this.button2.AccessibleName = "Wear selected folder button";
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
             this.button2.Enabled = false;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(155, 251);
             this.button2.Name = "button2";
@@ -995,7 +1007,10 @@ namespace METAbolt
             // button5
             // 
             this.button5.AccessibleName = "Close Changer button";
-            this.button5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button5.BackColor = System.Drawing.Color.DimGray;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(236, 401);
             this.button5.Name = "button5";
@@ -1008,8 +1023,11 @@ namespace METAbolt
             // button3
             // 
             this.button3.AccessibleName = "Remove selected folder from list button";
-            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button3.BackColor = System.Drawing.Color.DimGray;
             this.button3.Enabled = false;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(18, 251);
             this.button3.Name = "button3";
@@ -1032,17 +1050,21 @@ namespace METAbolt
             // 
             this.listBox1.AccessibleName = "List of added folders listbox";
             this.listBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(18, 98);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(226, 147);
+            this.listBox1.Size = new System.Drawing.Size(226, 145);
             this.listBox1.TabIndex = 2;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button4
             // 
             this.button4.AccessibleName = "Start change timer button";
-            this.button4.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button4.BackColor = System.Drawing.Color.DimGray;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(18, 401);
             this.button4.Name = "button4";
@@ -1084,7 +1106,10 @@ namespace METAbolt
             // button6
             // 
             this.button6.AccessibleName = "Add inventory folder button";
-            this.button6.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button6.BackColor = System.Drawing.Color.DimGray;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(250, 24);
             this.button6.Name = "button6";
@@ -1107,6 +1132,7 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Inventory folder textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.ForeColor = System.Drawing.Color.DimGray;
             this.textBox2.Location = new System.Drawing.Point(18, 26);
             this.textBox2.Name = "textBox2";

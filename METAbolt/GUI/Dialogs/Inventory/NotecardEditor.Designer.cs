@@ -81,8 +81,11 @@ namespace METAbolt
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
             this.btnClose.Enabled = false;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(571, 479);
             this.btnClose.Name = "btnClose";
@@ -95,8 +98,11 @@ namespace METAbolt
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSave.BackColor = System.Drawing.Color.DimGray;
             this.btnSave.Enabled = false;
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(490, 479);
             this.btnSave.Name = "btnSave";

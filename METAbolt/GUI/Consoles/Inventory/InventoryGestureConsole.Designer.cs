@@ -36,7 +36,10 @@
             // btnGesture
             // 
             this.btnGesture.AccessibleName = "Play button";
-            this.btnGesture.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnGesture.BackColor = System.Drawing.Color.DimGray;
+            this.btnGesture.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnGesture.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnGesture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGesture.ForeColor = System.Drawing.Color.White;
             this.btnGesture.Location = new System.Drawing.Point(18, 17);
             this.btnGesture.Name = "btnGesture";
@@ -49,7 +52,10 @@
             // button1
             // 
             this.button1.AccessibleName = "Play button";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(110, 17);
             this.button1.Name = "button1";
@@ -63,7 +69,10 @@
             // button2
             // 
             this.button2.AccessibleName = "Play button";
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(191, 17);
             this.button2.Name = "button2";

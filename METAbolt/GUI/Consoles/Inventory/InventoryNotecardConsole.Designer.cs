@@ -45,7 +45,9 @@ namespace METAbolt
             // btnEditNotecard
             // 
             this.btnEditNotecard.AccessibleName = "View button";
-            this.btnEditNotecard.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnEditNotecard.BackColor = System.Drawing.Color.DimGray;
+            this.btnEditNotecard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnEditNotecard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditNotecard.ForeColor = System.Drawing.Color.White;
             this.btnEditNotecard.Location = new System.Drawing.Point(3, 28);
             this.btnEditNotecard.Name = "btnEditNotecard";

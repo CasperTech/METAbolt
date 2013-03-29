@@ -42,20 +42,22 @@
             // 
             this.listBox1.AccessibleName = "Available plugins lixtbox";
             this.listBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(3, 104);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(149, 147);
+            this.listBox1.Size = new System.Drawing.Size(149, 145);
             this.listBox1.TabIndex = 2;
             // 
             // listBox2
             // 
             this.listBox2.AccessibleName = "Chosen plugins listbox";
             this.listBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(189, 104);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(149, 147);
+            this.listBox2.Size = new System.Drawing.Size(149, 145);
             this.listBox2.TabIndex = 5;
             // 
             // label1
@@ -88,6 +90,9 @@
             // button1
             // 
             this.button1.AccessibleName = "Chose selected plugin button";
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(160, 106);
             this.button1.Name = "button1";
@@ -100,6 +105,9 @@
             // button2
             // 
             this.button2.AccessibleName = "Un-chose selected plugin button";
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(160, 133);
             this.button2.Name = "button2";

@@ -38,6 +38,7 @@
             // lvwFindGroups
             // 
             this.lvwFindGroups.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwFindGroups.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwFindGroups.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdGroupName,
             this.chdDescription});

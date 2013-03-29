@@ -161,7 +161,10 @@ namespace METAbolt
             // button1
             // 
             this.button1.AccessibleName = "3D view button";
-            this.button1.BackColor = System.Drawing.Color.DarkGreen;
+            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(177, 79);
             this.button1.Name = "button1";
@@ -174,12 +177,15 @@ namespace METAbolt
             // btnReturn
             // 
             this.btnReturn.AccessibleName = "Sit on button";
-            this.btnReturn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnReturn.BackColor = System.Drawing.Color.DimGray;
             this.btnReturn.Enabled = false;
+            this.btnReturn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnReturn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.ForeColor = System.Drawing.Color.White;
             this.btnReturn.Location = new System.Drawing.Point(6, 50);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(52, 23);
+            this.btnReturn.Size = new System.Drawing.Size(56, 23);
             this.btnReturn.TabIndex = 3;
             this.btnReturn.Text = "&Return";
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -188,11 +194,14 @@ namespace METAbolt
             // button5
             // 
             this.button5.AccessibleName = "Mute button";
-            this.button5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button5.BackColor = System.Drawing.Color.Red;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(64, 79);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(49, 23);
+            this.button5.Size = new System.Drawing.Size(55, 23);
             this.button5.TabIndex = 8;
             this.button5.Text = "M&ute";
             this.button5.UseVisualStyleBackColor = false;
@@ -203,10 +212,13 @@ namespace METAbolt
             this.btnTake.AccessibleName = "Take button";
             this.btnTake.BackColor = System.Drawing.Color.DimGray;
             this.btnTake.Enabled = false;
+            this.btnTake.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnTake.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTake.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTake.ForeColor = System.Drawing.Color.White;
-            this.btnTake.Location = new System.Drawing.Point(160, 20);
+            this.btnTake.Location = new System.Drawing.Point(177, 20);
             this.btnTake.Name = "btnTake";
-            this.btnTake.Size = new System.Drawing.Size(73, 23);
+            this.btnTake.Size = new System.Drawing.Size(56, 23);
             this.btnTake.TabIndex = 2;
             this.btnTake.Text = "Ta&ke";
             this.btnTake.UseVisualStyleBackColor = false;
@@ -216,10 +228,13 @@ namespace METAbolt
             // 
             this.btnPointAt.AccessibleName = "Point at button";
             this.btnPointAt.BackColor = System.Drawing.Color.DimGray;
+            this.btnPointAt.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPointAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPointAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPointAt.ForeColor = System.Drawing.Color.White;
             this.btnPointAt.Location = new System.Drawing.Point(6, 20);
             this.btnPointAt.Name = "btnPointAt";
-            this.btnPointAt.Size = new System.Drawing.Size(73, 23);
+            this.btnPointAt.Size = new System.Drawing.Size(93, 23);
             this.btnPointAt.TabIndex = 0;
             this.btnPointAt.Text = "Po&int At";
             this.btnPointAt.UseVisualStyleBackColor = false;
@@ -228,7 +243,10 @@ namespace METAbolt
             // button2
             // 
             this.button2.AccessibleName = "Turn to button";
-            this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(177, 50);
             this.button2.Name = "button2";
@@ -241,7 +259,10 @@ namespace METAbolt
             // btnWalk1
             // 
             this.btnWalk1.AccessibleName = "Walk to button";
-            this.btnWalk1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnWalk1.BackColor = System.Drawing.Color.DimGray;
+            this.btnWalk1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnWalk1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnWalk1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWalk1.ForeColor = System.Drawing.Color.White;
             this.btnWalk1.Location = new System.Drawing.Point(119, 50);
             this.btnWalk1.Name = "btnWalk1";
@@ -254,7 +275,10 @@ namespace METAbolt
             // btnLocation
             // 
             this.btnLocation.AccessibleName = "Location button";
-            this.btnLocation.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnLocation.BackColor = System.Drawing.Color.DimGray;
+            this.btnLocation.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnLocation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocation.ForeColor = System.Drawing.Color.White;
             this.btnLocation.Location = new System.Drawing.Point(120, 79);
             this.btnLocation.Name = "btnLocation";
@@ -268,10 +292,13 @@ namespace METAbolt
             // 
             this.btnTouch.AccessibleName = "Touch click button";
             this.btnTouch.BackColor = System.Drawing.Color.DimGray;
+            this.btnTouch.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnTouch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTouch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTouch.ForeColor = System.Drawing.Color.White;
-            this.btnTouch.Location = new System.Drawing.Point(83, 20);
+            this.btnTouch.Location = new System.Drawing.Point(102, 20);
             this.btnTouch.Name = "btnTouch";
-            this.btnTouch.Size = new System.Drawing.Size(73, 23);
+            this.btnTouch.Size = new System.Drawing.Size(74, 23);
             this.btnTouch.TabIndex = 1;
             this.btnTouch.Text = "T&ouch/Click";
             this.btnTouch.UseVisualStyleBackColor = false;
@@ -280,11 +307,14 @@ namespace METAbolt
             // btnSitOn
             // 
             this.btnSitOn.AccessibleName = "Sit on button";
-            this.btnSitOn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSitOn.BackColor = System.Drawing.Color.DimGray;
+            this.btnSitOn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSitOn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnSitOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSitOn.ForeColor = System.Drawing.Color.White;
             this.btnSitOn.Location = new System.Drawing.Point(64, 50);
             this.btnSitOn.Name = "btnSitOn";
-            this.btnSitOn.Size = new System.Drawing.Size(49, 23);
+            this.btnSitOn.Size = new System.Drawing.Size(54, 23);
             this.btnSitOn.TabIndex = 4;
             this.btnSitOn.Text = "&Sit";
             this.btnSitOn.UseVisualStyleBackColor = false;
@@ -293,7 +323,10 @@ namespace METAbolt
             // btnPay
             // 
             this.btnPay.AccessibleName = "Pay button";
-            this.btnPay.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPay.BackColor = System.Drawing.Color.DimGray;
+            this.btnPay.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.ForeColor = System.Drawing.Color.White;
             this.btnPay.Location = new System.Drawing.Point(6, 79);
             this.btnPay.Name = "btnPay";
@@ -317,7 +350,10 @@ namespace METAbolt
             // 
             this.btnClose.AccessibleName = "Close this window button";
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(529, 548);
             this.btnClose.Name = "btnClose";
@@ -340,8 +376,11 @@ namespace METAbolt
             // 
             this.btnTP.AccessibleName = "Teleport button";
             this.btnTP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTP.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnTP.BackColor = System.Drawing.Color.DimGray;
             this.btnTP.Enabled = false;
+            this.btnTP.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnTP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTP.ForeColor = System.Drawing.Color.White;
             this.btnTP.Location = new System.Drawing.Point(390, 548);
             this.btnTP.Name = "btnTP";
@@ -399,6 +438,7 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Hover text textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(72, 44);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -455,6 +495,7 @@ namespace METAbolt
             // 
             this.txtCreator.AccessibleName = "Owner name textbox";
             this.txtCreator.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtCreator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCreator.Location = new System.Drawing.Point(54, 162);
             this.txtCreator.Multiline = true;
             this.txtCreator.Name = "txtCreator";
@@ -490,6 +531,7 @@ namespace METAbolt
             // 
             this.lblUUID.AccessibleName = "Object UUID textbox";
             this.lblUUID.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblUUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblUUID.Location = new System.Drawing.Point(9, 237);
             this.lblUUID.Multiline = true;
             this.lblUUID.Name = "lblUUID";
@@ -501,6 +543,7 @@ namespace METAbolt
             // 
             this.label9.AccessibleName = "Owner name textbox";
             this.label9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label9.Location = new System.Drawing.Point(54, 191);
             this.label9.Multiline = true;
             this.label9.Name = "label9";
@@ -524,6 +567,7 @@ namespace METAbolt
             // 
             this.label15.AccessibleName = "Description textbox";
             this.label15.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label15.Location = new System.Drawing.Point(72, 68);
             this.label15.Multiline = true;
             this.label15.Name = "label15";
@@ -536,6 +580,7 @@ namespace METAbolt
             // 
             this.label11.AccessibleName = "Hover text textbox";
             this.label11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.Location = new System.Drawing.Point(72, 19);
             this.label11.Multiline = true;
             this.label11.Name = "label11";
@@ -561,9 +606,13 @@ namespace METAbolt
             this.checkBox4.AccessibleName = "Owner perms Resell option";
             this.checkBox4.AutoSize = true;
             this.checkBox4.Enabled = false;
+            this.checkBox4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4.Location = new System.Drawing.Point(189, 308);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(48, 17);
+            this.checkBox4.Size = new System.Drawing.Size(45, 17);
             this.checkBox4.TabIndex = 10;
             this.checkBox4.Text = "Tran";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -573,9 +622,13 @@ namespace METAbolt
             this.checkBox5.AccessibleName = "Owner perms Copy option";
             this.checkBox5.AutoSize = true;
             this.checkBox5.Enabled = false;
+            this.checkBox5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox5.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox5.Location = new System.Drawing.Point(143, 308);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(51, 17);
+            this.checkBox5.Size = new System.Drawing.Size(48, 17);
             this.checkBox5.TabIndex = 9;
             this.checkBox5.Text = "Copy";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -586,9 +639,13 @@ namespace METAbolt
             this.checkBox6.AccessibleName = "Owner perms Modify option";
             this.checkBox6.AutoSize = true;
             this.checkBox6.Enabled = false;
+            this.checkBox6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox6.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox6.Location = new System.Drawing.Point(102, 308);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(46, 17);
+            this.checkBox6.Size = new System.Drawing.Size(43, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mod";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -687,9 +744,13 @@ namespace METAbolt
             // 
             this.checkBox3.AccessibleName = "Next owner Resell option";
             this.checkBox3.AutoSize = true;
+            this.checkBox3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox3.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3.Location = new System.Drawing.Point(189, 329);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(48, 17);
+            this.checkBox3.Size = new System.Drawing.Size(45, 17);
             this.checkBox3.TabIndex = 13;
             this.checkBox3.Text = "Tran";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -699,9 +760,13 @@ namespace METAbolt
             // 
             this.checkBox2.AccessibleName = "Next owner Copy option";
             this.checkBox2.AutoSize = true;
+            this.checkBox2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2.Location = new System.Drawing.Point(143, 329);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(51, 17);
+            this.checkBox2.Size = new System.Drawing.Size(48, 17);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Copy";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -711,9 +776,13 @@ namespace METAbolt
             // 
             this.checkBox1.AccessibleName = "Next owner modify option";
             this.checkBox1.AutoSize = true;
+            this.checkBox1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(102, 329);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(46, 17);
+            this.checkBox1.Size = new System.Drawing.Size(43, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Mod";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -788,6 +857,7 @@ namespace METAbolt
             this.lbxChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxChildren.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxChildren.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxChildren.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxChildren.FormattingEnabled = true;
             this.lbxChildren.IntegralHeight = false;
@@ -806,7 +876,10 @@ namespace METAbolt
             this.button3.AccessibleDescription = "to touch or click on a child object selected from the above list";
             this.button3.AccessibleName = "Touch or Click button";
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(6, 548);
             this.button3.Name = "button3";
@@ -863,9 +936,13 @@ namespace METAbolt
             this.radioButton2.AccessibleName = "Sort by distance option";
             this.radioButton2.AutoSize = true;
             this.radioButton2.Checked = true;
+            this.radioButton2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.radioButton2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton2.Location = new System.Drawing.Point(114, 41);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(66, 17);
+            this.radioButton2.Size = new System.Drawing.Size(65, 17);
             this.radioButton2.TabIndex = 3;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Distance";
@@ -876,9 +953,13 @@ namespace METAbolt
             // 
             this.radioButton1.AccessibleName = "Sort by name option";
             this.radioButton1.AutoSize = true;
+            this.radioButton1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.radioButton1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton1.Location = new System.Drawing.Point(56, 41);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(52, 17);
+            this.radioButton1.Size = new System.Drawing.Size(51, 17);
             this.radioButton1.TabIndex = 2;
             this.radioButton1.Text = "Name";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -897,8 +978,11 @@ namespace METAbolt
             // 
             this.btnClear.AccessibleName = "Clear/Search button";
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnClear.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnClear.BackColor = System.Drawing.Color.SeaGreen;
             this.btnClear.Enabled = false;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Location = new System.Drawing.Point(310, 15);
             this.btnClear.Name = "btnClear";
@@ -913,6 +997,7 @@ namespace METAbolt
             this.txtSearch.AccessibleName = "Search box";
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Enabled = false;
             this.txtSearch.Location = new System.Drawing.Point(7, 16);
             this.txtSearch.Name = "txtSearch";
@@ -943,7 +1028,10 @@ namespace METAbolt
             this.button4.AccessibleDescription = "refreshes all information for the selected display type";
             this.button4.AccessibleName = "Refresh button";
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button4.BackColor = System.Drawing.Color.DimGray;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(108, 38);
             this.button4.Name = "button4";
@@ -966,6 +1054,7 @@ namespace METAbolt
             // 
             this.numericUpDown1.AccessibleName = "Range setting";
             this.numericUpDown1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numericUpDown1.Increment = new decimal(new int[] {
             5,
             0,
@@ -996,6 +1085,7 @@ namespace METAbolt
             // 
             this.cboDisplay.AccessibleName = "Dsiplay type selection dropbox";
             this.cboDisplay.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboDisplay.FormattingEnabled = true;
             this.cboDisplay.Items.AddRange(new object[] {
             "ALL objects",
@@ -1018,8 +1108,11 @@ namespace METAbolt
             // 
             this.btnTask.AccessibleName = "Display contents button for child objects";
             this.btnTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTask.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnTask.BackColor = System.Drawing.Color.DimGray;
             this.btnTask.Enabled = false;
+            this.btnTask.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnTask.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTask.Font = new System.Drawing.Font("Tahoma", 6.25F);
             this.btnTask.ForeColor = System.Drawing.Color.White;
             this.btnTask.Location = new System.Drawing.Point(263, 426);
@@ -1118,6 +1211,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxPrims.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxPrims.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxPrims.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxPrims.ForeColor = System.Drawing.Color.Black;
             this.lbxPrims.FormattingEnabled = true;
@@ -1140,6 +1234,7 @@ namespace METAbolt
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox1.Location = new System.Drawing.Point(6, 510);
             this.textBox1.Name = "textBox1";
@@ -1157,7 +1252,10 @@ namespace METAbolt
             this.button7.AccessibleDescription = "to sit on a child object selected from the list above";
             this.button7.AccessibleName = "Sit on button";
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button7.BackColor = System.Drawing.Color.DimGray;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(308, 548);
             this.button7.Name = "button7";
@@ -1173,8 +1271,11 @@ namespace METAbolt
             this.button6.AccessibleDescription = "Displays the content of the selected object";
             this.button6.AccessibleName = "Show contents button";
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button6.BackColor = System.Drawing.Color.DimGray;
             this.button6.Enabled = false;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Tahoma", 6.25F);
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(264, 328);
@@ -1192,6 +1293,7 @@ namespace METAbolt
             this.lbxTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxTask.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxTask.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxTask.ContextMenuStrip = this.mnuTask;
             this.lbxTask.FullRowSelect = true;
             this.lbxTask.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;

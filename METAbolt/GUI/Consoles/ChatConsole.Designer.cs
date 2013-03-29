@@ -57,7 +57,6 @@ namespace METAbolt
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.picMap = new System.Windows.Forms.PictureBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -113,10 +112,9 @@ namespace METAbolt
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
+            this.picMap = new System.Windows.Forms.PictureBox();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -149,10 +147,11 @@ namespace METAbolt
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -163,6 +162,7 @@ namespace METAbolt
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.world)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -181,7 +181,7 @@ namespace METAbolt
             this.cbxInput.AccessibleName = "Chat input box";
             this.cbxInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxInput.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxInput.BackColor = System.Drawing.Color.White;
             this.cbxInput.Enabled = false;
             this.cbxInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxInput.FormattingEnabled = true;
@@ -435,19 +435,6 @@ namespace METAbolt
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
             // 
-            // picMap
-            // 
-            this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
-            this.picMap.Location = new System.Drawing.Point(158, 44);
-            this.picMap.Name = "picMap";
-            this.picMap.Size = new System.Drawing.Size(15, 15);
-            this.picMap.TabIndex = 43;
-            this.picMap.TabStop = false;
-            this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
-            this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
-            this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
-            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
@@ -546,9 +533,12 @@ namespace METAbolt
             // 
             this.checkBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(431, 6);
+            this.checkBox2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox2.Location = new System.Drawing.Point(433, 6);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(82, 17);
+            this.checkBox2.Size = new System.Drawing.Size(80, 17);
             this.checkBox2.TabIndex = 3;
             this.checkBox2.Text = "Match word";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -557,9 +547,11 @@ namespace METAbolt
             // 
             this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(346, 6);
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox1.Location = new System.Drawing.Point(348, 6);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.Size = new System.Drawing.Size(78, 17);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Match case";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -567,7 +559,9 @@ namespace METAbolt
             // button9
             // 
             this.button9.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button9.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button9.BackColor = System.Drawing.Color.DimGray;
+            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.ForeColor = System.Drawing.Color.White;
             this.button9.Location = new System.Drawing.Point(261, 3);
@@ -581,6 +575,7 @@ namespace METAbolt
             // tsFindText
             // 
             this.tsFindText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tsFindText.BackColor = System.Drawing.Color.White;
             this.tsFindText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tsFindText.Location = new System.Drawing.Point(5, 4);
             this.tsFindText.Name = "tsFindText";
@@ -655,11 +650,12 @@ namespace METAbolt
             this.button8.AccessibleDescription = "Walk forward";
             this.button8.AccessibleName = "Motion forward";
             this.button8.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImage = global::METAbolt.Properties.Resources.a_left;
             this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button8.Location = new System.Drawing.Point(1, 25);
+            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Location = new System.Drawing.Point(-1, 25);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(29, 29);
             this.button8.TabIndex = 43;
@@ -672,11 +668,12 @@ namespace METAbolt
             this.button6.AccessibleDescription = "Walk forward";
             this.button6.AccessibleName = "Motion forward";
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImage = global::METAbolt.Properties.Resources.a_right;
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button6.Location = new System.Drawing.Point(57, 25);
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(61, 25);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(29, 29);
             this.button6.TabIndex = 42;
@@ -701,7 +698,7 @@ namespace METAbolt
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.SlateGray;
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label20.Location = new System.Drawing.Point(114, 46);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(18, 13);
@@ -713,7 +710,7 @@ namespace METAbolt
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.SlateGray;
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label19.Location = new System.Drawing.Point(157, 89);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(14, 13);
@@ -725,7 +722,7 @@ namespace METAbolt
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.SlateGray;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(195, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
@@ -737,7 +734,7 @@ namespace METAbolt
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(157, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 13);
@@ -797,11 +794,14 @@ namespace METAbolt
             this.button7.AccessibleDescription = "Fly up and hover. Hovers your avatar at 10 meters";
             this.button7.AccessibleName = "Motion hover";
             this.button7.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button7.BackColor = System.Drawing.Color.Red;
-            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
+            this.button7.BackColor = System.Drawing.Color.White;
+            this.button7.BackgroundImage = global::METAbolt.Properties.Resources.wings;
             this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(32, 72);
+            this.button7.Location = new System.Drawing.Point(32, 78);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(23, 23);
             this.button7.TabIndex = 17;
@@ -813,11 +813,12 @@ namespace METAbolt
             this.button5.AccessibleDescription = "Walk forward";
             this.button5.AccessibleName = "Motion forward";
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImage = global::METAbolt.Properties.Resources.a_up;
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button5.Location = new System.Drawing.Point(29, 10);
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(29, 8);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(29, 29);
             this.button5.TabIndex = 11;
@@ -833,11 +834,12 @@ namespace METAbolt
             this.button2.AccessibleDescription = "Walk to the left";
             this.button2.AccessibleName = "Motion left";
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImage = global::METAbolt.Properties.Resources.turnleft;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(1, 66);
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(1, 72);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(29, 29);
             this.button2.TabIndex = 14;
@@ -849,11 +851,12 @@ namespace METAbolt
             this.button4.AccessibleDescription = "Walk back";
             this.button4.AccessibleName = "Motion back";
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImage = global::METAbolt.Properties.Resources.a_down;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button4.Location = new System.Drawing.Point(29, 39);
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(29, 42);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(29, 29);
             this.button4.TabIndex = 13;
@@ -869,11 +872,12 @@ namespace METAbolt
             this.button3.AccessibleDescription = "Walk to the right";
             this.button3.AccessibleName = "Motion right";
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImage = global::METAbolt.Properties.Resources.turnright;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.button3.Location = new System.Drawing.Point(57, 66);
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(57, 72);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(29, 29);
             this.button3.TabIndex = 12;
@@ -1137,43 +1141,6 @@ namespace METAbolt
             this.textBox1.Size = new System.Drawing.Size(177, 14);
             this.textBox1.TabIndex = 20;
             // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-    "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.AllowColumnReorder = true;
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.White;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.Details;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
-            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "[Dist.] Av. Name";
-            this.columnHeader1.Width = 175;
-            // 
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Mini map and SIM statistics";
@@ -1211,9 +1178,23 @@ namespace METAbolt
             this.label3.TabIndex = 44;
             this.label3.Text = "version";
             // 
+            // picMap
+            // 
+            this.picMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
+            this.picMap.Location = new System.Drawing.Point(158, 44);
+            this.picMap.Name = "picMap";
+            this.picMap.Size = new System.Drawing.Size(15, 15);
+            this.picMap.TabIndex = 43;
+            this.picMap.TabStop = false;
+            this.toolTip1.SetToolTip(this.picMap, "Click for help to enable voice");
+            this.picMap.MouseLeave += new System.EventHandler(this.picMap_MouseLeave);
+            this.picMap.MouseHover += new System.EventHandler(this.picMap_MouseHover);
+            // 
             // progressBar7
             // 
             this.progressBar7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.progressBar7.ForeColor = System.Drawing.Color.Gray;
             this.progressBar7.Location = new System.Drawing.Point(32, 257);
             this.progressBar7.MarqueeAnimationSpeed = 45;
             this.progressBar7.Maximum = 45;
@@ -1226,11 +1207,13 @@ namespace METAbolt
             // progressBar1
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.progressBar1.ForeColor = System.Drawing.Color.Gray;
             this.progressBar1.Location = new System.Drawing.Point(32, 285);
             this.progressBar1.Maximum = 10;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(118, 11);
             this.progressBar1.Step = 1;
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 31;
             // 
             // panel6
@@ -1437,9 +1420,13 @@ namespace METAbolt
             this.checkBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox5.AutoSize = true;
+            this.checkBox5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox5.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox5.Location = new System.Drawing.Point(71, 277);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(69, 17);
+            this.checkBox5.Size = new System.Drawing.Size(66, 17);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "Voice ON";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -1462,9 +1449,13 @@ namespace METAbolt
             this.checkBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox4.AutoSize = true;
             this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(94, 159);
+            this.checkBox4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox4.Location = new System.Drawing.Point(133, 159);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(50, 17);
+            this.checkBox4.Size = new System.Drawing.Size(47, 17);
             this.checkBox4.TabIndex = 9;
             this.checkBox4.Text = "Mute";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -1477,9 +1468,13 @@ namespace METAbolt
             this.checkBox3.Checked = true;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox3.Enabled = false;
-            this.checkBox3.Location = new System.Drawing.Point(94, 107);
+            this.checkBox3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox3.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox3.Location = new System.Drawing.Point(133, 107);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(50, 17);
+            this.checkBox3.Size = new System.Drawing.Size(47, 17);
             this.checkBox3.TabIndex = 8;
             this.checkBox3.Text = "Mute";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -1554,6 +1549,7 @@ namespace METAbolt
             this.cboRender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboRender.Enabled = false;
+            this.cboRender.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboRender.FormattingEnabled = true;
             this.cboRender.Location = new System.Drawing.Point(8, 77);
             this.cboRender.Name = "cboRender";
@@ -1566,6 +1562,7 @@ namespace METAbolt
             this.cboCapture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCapture.Enabled = false;
+            this.cboCapture.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboCapture.FormattingEnabled = true;
             this.cboCapture.Location = new System.Drawing.Point(8, 35);
             this.cboCapture.Name = "cboCapture";
@@ -1611,6 +1608,43 @@ namespace METAbolt
             this.tsdefault.Text = "[ No favourites found ]";
             this.tsdefault.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+    "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.AllowColumnReorder = true;
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.Details;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
+            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "[Dist.] Av. Name";
+            this.columnHeader1.Width = 175;
+            // 
             // ChatConsole
             // 
             this.AccessibleDescription = "Chat window for entering and siplaying public chat";
@@ -1629,7 +1663,6 @@ namespace METAbolt
             this.toolStrip2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -1646,6 +1679,7 @@ namespace METAbolt
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.world)).EndInit();
             this.tabPage3.ResumeLayout(false);

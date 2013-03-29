@@ -659,5 +659,10 @@ namespace METAbolt
             // Perform the sort with these new sort options.
             lvwSelected.Sort();
         }
+
+        private void lvwFindFriends_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+
+        }
     }
 }

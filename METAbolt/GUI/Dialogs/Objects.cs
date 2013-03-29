@@ -303,12 +303,22 @@ namespace METAbolt
 
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-                textBrush = new SolidBrush(Color.FromKnownColor(KnownColor.HighlightText));
+                //textBrush = new SolidBrush(Color.FromKnownColor(KnownColor.HighlightText));
+                textBrush = new SolidBrush(Color.White);
                 dBrush = new SolidBrush(Color.Yellow);
+
+                //e = new DrawItemEventArgs(e.Graphics,
+                //                  e.Font,
+                //                  e.Bounds,
+                //                  e.Index,
+                //                  e.State ^ DrawItemState.Selected,
+                //                  e.ForeColor,
+                //                  Color.DimGray);//Choose the color
+                //e.DrawBackground();
             }
             else
             {
-                textBrush = new SolidBrush(Color.FromKnownColor(KnownColor.ControlText));
+                textBrush = new SolidBrush(Color.Black);
                 dBrush = new SolidBrush(Color.RoyalBlue);
             }
 

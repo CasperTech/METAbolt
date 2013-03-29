@@ -69,9 +69,13 @@ namespace METAbolt
             // 
             this.chkIMTimestamps.AccessibleName = "IM timestamp option";
             this.chkIMTimestamps.AutoSize = true;
+            this.chkIMTimestamps.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkIMTimestamps.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkIMTimestamps.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkIMTimestamps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkIMTimestamps.Location = new System.Drawing.Point(6, 32);
             this.chkIMTimestamps.Name = "chkIMTimestamps";
-            this.chkIMTimestamps.Size = new System.Drawing.Size(145, 17);
+            this.chkIMTimestamps.Size = new System.Drawing.Size(143, 17);
             this.chkIMTimestamps.TabIndex = 1;
             this.chkIMTimestamps.Text = "Enable timestamps in IMs";
             this.chkIMTimestamps.UseVisualStyleBackColor = true;
@@ -97,9 +101,13 @@ namespace METAbolt
             // 
             this.chkGroupNotices.AccessibleName = "Group notices option";
             this.chkGroupNotices.AutoSize = true;
+            this.chkGroupNotices.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkGroupNotices.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkGroupNotices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkGroupNotices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkGroupNotices.Location = new System.Drawing.Point(6, 92);
             this.chkGroupNotices.Name = "chkGroupNotices";
-            this.chkGroupNotices.Size = new System.Drawing.Size(132, 17);
+            this.chkGroupNotices.Size = new System.Drawing.Size(127, 17);
             this.chkGroupNotices.TabIndex = 5;
             this.chkGroupNotices.Text = "Disable Group Notices";
             this.chkGroupNotices.UseVisualStyleBackColor = true;
@@ -108,9 +116,13 @@ namespace METAbolt
             // 
             this.chkGIMs.AccessibleName = "Group IMs option";
             this.chkGIMs.AutoSize = true;
+            this.chkGIMs.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkGIMs.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkGIMs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkGIMs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkGIMs.Location = new System.Drawing.Point(6, 77);
             this.chkGIMs.Name = "chkGIMs";
-            this.chkGIMs.Size = new System.Drawing.Size(113, 17);
+            this.chkGIMs.Size = new System.Drawing.Size(109, 17);
             this.chkGIMs.TabIndex = 4;
             this.chkGIMs.Text = "Disable Group IMs";
             this.chkGIMs.UseVisualStyleBackColor = true;
@@ -120,6 +132,10 @@ namespace METAbolt
             // 
             this.chkSound.AccessibleName = "Play sound option";
             this.chkSound.AutoSize = true;
+            this.chkSound.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkSound.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSound.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSound.Location = new System.Drawing.Point(6, 62);
             this.chkSound.Name = "chkSound";
             this.chkSound.Size = new System.Drawing.Size(182, 17);
@@ -131,9 +147,13 @@ namespace METAbolt
             // 
             this.chkSLT.AccessibleName = "Use SLT option";
             this.chkSLT.AutoSize = true;
+            this.chkSLT.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkSLT.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSLT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSLT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSLT.Location = new System.Drawing.Point(6, 47);
             this.chkSLT.Name = "chkSLT";
-            this.chkSLT.Size = new System.Drawing.Size(134, 17);
+            this.chkSLT.Size = new System.Drawing.Size(129, 17);
             this.chkSLT.TabIndex = 2;
             this.chkSLT.Text = "Use SLT in timestamps";
             this.chkSLT.UseVisualStyleBackColor = true;
@@ -143,9 +163,13 @@ namespace METAbolt
             // 
             this.chkChatTimestamps.AccessibleName = "Chat timestamp option";
             this.chkChatTimestamps.AutoSize = true;
+            this.chkChatTimestamps.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkChatTimestamps.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkChatTimestamps.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkChatTimestamps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkChatTimestamps.Location = new System.Drawing.Point(6, 17);
             this.chkChatTimestamps.Name = "chkChatTimestamps";
-            this.chkChatTimestamps.Size = new System.Drawing.Size(149, 17);
+            this.chkChatTimestamps.Size = new System.Drawing.Size(147, 17);
             this.chkChatTimestamps.TabIndex = 0;
             this.chkChatTimestamps.Text = "Enable timestamps in chat";
             this.chkChatTimestamps.UseVisualStyleBackColor = true;
@@ -176,9 +200,13 @@ namespace METAbolt
             // 
             this.chkSmileys.AccessibleName = "Smileys option";
             this.chkSmileys.AutoSize = true;
+            this.chkSmileys.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkSmileys.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSmileys.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkSmileys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSmileys.Location = new System.Drawing.Point(6, 19);
             this.chkSmileys.Name = "chkSmileys";
-            this.chkSmileys.Size = new System.Drawing.Size(97, 17);
+            this.chkSmileys.Size = new System.Drawing.Size(94, 17);
             this.chkSmileys.TabIndex = 0;
             this.chkSmileys.Text = "Disable smileys";
             this.chkSmileys.UseVisualStyleBackColor = true;
@@ -203,6 +231,7 @@ namespace METAbolt
             this.nud.AccessibleDescription = "Select the number of lines";
             this.nud.AccessibleName = "Interval setting";
             this.nud.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nud.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nud.Location = new System.Drawing.Point(70, 20);
             this.nud.Maximum = new decimal(new int[] {
             5000,
@@ -259,6 +288,7 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Response message textbox";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(31, 20);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -266,8 +296,8 @@ namespace METAbolt
             this.textBox1.Size = new System.Drawing.Size(298, 56);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "The Resident you messaged is in \'busy mode\' which means they have requested not t" +
-                "o be disturbed.  Your message will still be shown in their IM panel for later vi" +
-                "ewing.";
+    "o be disturbed.  Your message will still be shown in their IM panel for later vi" +
+    "ewing.";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // groupBox5
@@ -289,29 +319,40 @@ namespace METAbolt
             // button2
             // 
             this.button2.AccessibleName = "View log files in Microsoft Explorer button";
-            this.button2.Location = new System.Drawing.Point(283, 62);
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(283, 64);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 23);
+            this.button2.Size = new System.Drawing.Size(50, 21);
             this.button2.TabIndex = 4;
             this.button2.Text = "View";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
             this.button1.AccessibleName = "Change the log folder path button";
-            this.button1.Location = new System.Drawing.Point(223, 62);
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(223, 64);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 23);
+            this.button1.Size = new System.Drawing.Size(54, 21);
             this.button1.TabIndex = 3;
             this.button1.Text = "Change";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtDir
             // 
             this.txtDir.AccessibleName = "Patch to log folder textbox";
             this.txtDir.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDir.Location = new System.Drawing.Point(45, 64);
             this.txtDir.Name = "txtDir";
             this.txtDir.Size = new System.Drawing.Size(176, 21);
@@ -330,9 +371,13 @@ namespace METAbolt
             // 
             this.chkChat.AccessibleName = "Use log for chat option";
             this.chkChat.AutoSize = true;
+            this.chkChat.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkChat.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkChat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkChat.Location = new System.Drawing.Point(11, 44);
             this.chkChat.Name = "chkChat";
-            this.chkChat.Size = new System.Drawing.Size(221, 17);
+            this.chkChat.Size = new System.Drawing.Size(219, 17);
             this.chkChat.TabIndex = 1;
             this.chkChat.Text = "Save a log of Local Chat on my computer";
             this.chkChat.UseVisualStyleBackColor = true;
@@ -343,9 +388,13 @@ namespace METAbolt
             this.chkIMs.AutoSize = true;
             this.chkIMs.Checked = true;
             this.chkIMs.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIMs.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkIMs.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkIMs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkIMs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkIMs.Location = new System.Drawing.Point(11, 21);
             this.chkIMs.Name = "chkIMs";
-            this.chkIMs.Size = new System.Drawing.Size(187, 17);
+            this.chkIMs.Size = new System.Drawing.Size(186, 17);
             this.chkIMs.TabIndex = 0;
             this.chkIMs.Text = "Save a log of IMs on my computer";
             this.chkIMs.UseVisualStyleBackColor = true;
@@ -365,6 +414,7 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Initial message textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(31, 20);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";

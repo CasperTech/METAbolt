@@ -58,8 +58,11 @@ namespace METAbolt
             // 
             // btnExit
             // 
-            this.btnExit.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnExit.BackColor = System.Drawing.Color.DimGray;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Location = new System.Drawing.Point(357, 123);
             this.btnExit.Name = "btnExit";
@@ -84,6 +87,9 @@ namespace METAbolt
             // 
             this.button1.BackColor = System.Drawing.Color.Red;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(259, 123);
             this.button1.Name = "button1";

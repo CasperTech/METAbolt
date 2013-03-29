@@ -104,7 +104,10 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(352, 563);
             this.button1.Name = "button1";
@@ -589,11 +592,12 @@
             // 
             // lbIssues
             // 
+            this.lbIssues.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbIssues.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbIssues.FormattingEnabled = true;
             this.lbIssues.Location = new System.Drawing.Point(44, 474);
             this.lbIssues.Name = "lbIssues";
-            this.lbIssues.Size = new System.Drawing.Size(383, 82);
+            this.lbIssues.Size = new System.Drawing.Size(383, 80);
             this.lbIssues.TabIndex = 65;
             // 
             // label42

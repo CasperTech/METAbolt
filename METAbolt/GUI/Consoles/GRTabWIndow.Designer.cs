@@ -42,7 +42,10 @@
             this.btnDecline.AccessibleDescription = "Decline the group invitation";
             this.btnDecline.AccessibleName = "Decline";
             this.btnDecline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDecline.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnDecline.BackColor = System.Drawing.Color.DimGray;
+            this.btnDecline.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnDecline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnDecline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecline.ForeColor = System.Drawing.Color.White;
             this.btnDecline.Location = new System.Drawing.Point(405, 267);
             this.btnDecline.Name = "btnDecline";
@@ -57,7 +60,10 @@
             this.btnAccept.AccessibleDescription = "Accept the group invitation";
             this.btnAccept.AccessibleName = "Accept";
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAccept.BackColor = System.Drawing.Color.DimGray;
+            this.btnAccept.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnAccept.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccept.ForeColor = System.Drawing.Color.White;
             this.btnAccept.Location = new System.Drawing.Point(324, 267);
             this.btnAccept.Name = "btnAccept";
@@ -90,6 +96,7 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(88, 100);
             this.textBox1.Multiline = true;

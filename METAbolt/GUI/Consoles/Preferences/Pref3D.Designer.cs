@@ -51,9 +51,13 @@
             this.chkAI.AccessibleDescription = "Disables mipmaps for 3D on older graphics cards";
             this.chkAI.AccessibleName = "Disable Mipmaps";
             this.chkAI.AutoSize = true;
+            this.chkAI.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkAI.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkAI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkAI.Location = new System.Drawing.Point(59, 71);
             this.chkAI.Name = "chkAI";
-            this.chkAI.Size = new System.Drawing.Size(106, 17);
+            this.chkAI.Size = new System.Drawing.Size(103, 17);
             this.chkAI.TabIndex = 0;
             this.chkAI.Text = "Disable Mipmaps";
             this.chkAI.UseVisualStyleBackColor = true;

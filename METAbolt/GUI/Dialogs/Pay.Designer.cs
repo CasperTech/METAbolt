@@ -65,6 +65,7 @@ namespace METAbolt
             // nudAmount
             // 
             this.nudAmount.AccessibleName = "Amount to be paid control";
+            this.nudAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudAmount.Location = new System.Drawing.Point(38, 25);
             this.nudAmount.Maximum = new decimal(new int[] {
             999999999,
@@ -79,7 +80,10 @@ namespace METAbolt
             // btnCancel
             // 
             this.btnCancel.AccessibleName = "Cancel and close window button";
-            this.btnCancel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancel.BackColor = System.Drawing.Color.DimGray;
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(76, 161);
             this.btnCancel.Name = "btnCancel";
@@ -92,7 +96,10 @@ namespace METAbolt
             // btnPay
             // 
             this.btnPay.AccessibleName = "Pay and close window button";
-            this.btnPay.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPay.BackColor = System.Drawing.Color.DimGray;
+            this.btnPay.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.ForeColor = System.Drawing.Color.White;
             this.btnPay.Location = new System.Drawing.Point(157, 161);
             this.btnPay.Name = "btnPay";
@@ -106,6 +113,7 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Subject for the payment (optional) textbox";
             this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(12, 125);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(220, 21);
@@ -135,6 +143,7 @@ namespace METAbolt
             // 
             this.txtPerson.AccessibleName = "resident to be paid textbox";
             this.txtPerson.BackColor = System.Drawing.Color.White;
+            this.txtPerson.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPerson.Location = new System.Drawing.Point(12, 80);
             this.txtPerson.Name = "txtPerson";
             this.txtPerson.ReadOnly = true;

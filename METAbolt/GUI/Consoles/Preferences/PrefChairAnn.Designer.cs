@@ -77,6 +77,7 @@
             // 
             this.textBox9.AccessibleName = "Advert textbox";
             this.textBox9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Enabled = false;
             this.textBox9.Location = new System.Drawing.Point(105, 108);
             this.textBox9.Name = "textBox9";
@@ -96,9 +97,12 @@
             // 
             this.checkBox2.AccessibleName = "Chat option";
             this.checkBox2.AutoSize = true;
+            this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2.Location = new System.Drawing.Point(204, 85);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(128, 17);
+            this.checkBox2.Size = new System.Drawing.Size(125, 17);
             this.checkBox2.TabIndex = 3;
             this.checkBox2.Text = "Chat Announcements";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -119,6 +123,7 @@
             // 
             this.textBox2.AccessibleName = "Interval textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(105, 83);
             this.textBox2.Name = "textBox2";
@@ -129,6 +134,7 @@
             // 
             this.textBox1.AccessibleName = "Announcer UUID textbox";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(105, 60);
             this.textBox1.Name = "textBox1";
@@ -157,9 +163,12 @@
             // 
             this.checkBox1.AccessibleName = "Enable option";
             this.checkBox1.AutoSize = true;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(15, 29);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(139, 17);
+            this.checkBox1.Size = new System.Drawing.Size(136, 17);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Enable Announcements";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -169,6 +178,7 @@
             // 
             this.textBox3.AccessibleName = "group UUID 1";
             this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(111, 141);
             this.textBox3.Name = "textBox3";
@@ -199,6 +209,7 @@
             // 
             this.textBox4.AccessibleName = "group UUID 2";
             this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(111, 167);
             this.textBox4.Name = "textBox4";
@@ -219,6 +230,7 @@
             // 
             this.textBox5.AccessibleName = "group UUID 3";
             this.textBox5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox5.Enabled = false;
             this.textBox5.Location = new System.Drawing.Point(111, 193);
             this.textBox5.Name = "textBox5";
@@ -239,6 +251,7 @@
             // 
             this.textBox6.AccessibleName = "group UUID 4";
             this.textBox6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(111, 219);
             this.textBox6.Name = "textBox6";
@@ -259,6 +272,7 @@
             // 
             this.textBox7.AccessibleName = "group UUID 5";
             this.textBox7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox7.Enabled = false;
             this.textBox7.Location = new System.Drawing.Point(111, 245);
             this.textBox7.Name = "textBox7";
@@ -279,6 +293,7 @@
             // 
             this.textBox8.AccessibleName = "group UUID 6";
             this.textBox8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox8.Enabled = false;
             this.textBox8.Location = new System.Drawing.Point(111, 271);
             this.textBox8.Name = "textBox8";

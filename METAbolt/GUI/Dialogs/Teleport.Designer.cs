@@ -72,6 +72,7 @@ namespace METAbolt
             this.txtSearchFor.AccessibleDescription = "Enter the name of the SIM you are searchign for";
             this.txtSearchFor.AccessibleName = "Search textbox";
             this.txtSearchFor.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSearchFor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchFor.Location = new System.Drawing.Point(79, 12);
             this.txtSearchFor.Name = "txtSearchFor";
             this.txtSearchFor.Size = new System.Drawing.Size(219, 21);
@@ -83,8 +84,11 @@ namespace METAbolt
             // btnFind
             // 
             this.btnFind.AccessibleName = "Search button";
-            this.btnFind.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFind.BackColor = System.Drawing.Color.SeaGreen;
             this.btnFind.Enabled = false;
+            this.btnFind.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFind.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFind.ForeColor = System.Drawing.Color.White;
             this.btnFind.Location = new System.Drawing.Point(304, 10);
             this.btnFind.Name = "btnFind";
@@ -107,6 +111,7 @@ namespace METAbolt
             // 
             this.txtRegion.AccessibleName = "Found or selected SIM name textbox";
             this.txtRegion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtRegion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRegion.Location = new System.Drawing.Point(6, 25);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(156, 21);
@@ -117,6 +122,7 @@ namespace METAbolt
             // 
             this.nudX.AccessibleName = "X coordinate setting";
             this.nudX.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nudX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudX.Location = new System.Drawing.Point(6, 65);
             this.nudX.Maximum = new decimal(new int[] {
             256,
@@ -145,6 +151,7 @@ namespace METAbolt
             // 
             this.nudY.AccessibleName = "Y coordinate setting";
             this.nudY.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nudY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudY.Location = new System.Drawing.Point(60, 65);
             this.nudY.Maximum = new decimal(new int[] {
             256,
@@ -164,6 +171,7 @@ namespace METAbolt
             // 
             this.nudZ.AccessibleName = "Z coordinate setting";
             this.nudZ.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nudZ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudZ.Location = new System.Drawing.Point(114, 65);
             this.nudZ.Maximum = new decimal(new int[] {
             9999,
@@ -195,8 +203,11 @@ namespace METAbolt
             // btnTeleport
             // 
             this.btnTeleport.AccessibleName = "Teleport button";
-            this.btnTeleport.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnTeleport.BackColor = System.Drawing.Color.DimGray;
             this.btnTeleport.Enabled = false;
+            this.btnTeleport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnTeleport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTeleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeleport.ForeColor = System.Drawing.Color.White;
             this.btnTeleport.Location = new System.Drawing.Point(382, 325);
             this.btnTeleport.Name = "btnTeleport";
@@ -209,7 +220,10 @@ namespace METAbolt
             // btnCancel
             // 
             this.btnCancel.AccessibleName = "Cancel and close window button";
-            this.btnCancel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancel.BackColor = System.Drawing.Color.DimGray;
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(382, 354);
             this.btnCancel.Name = "btnCancel";
@@ -224,6 +238,7 @@ namespace METAbolt
             this.lbxRegionSearch.AccessibleDescription = "Select the SIM you need";
             this.lbxRegionSearch.AccessibleName = "Found SIMs listbox";
             this.lbxRegionSearch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbxRegionSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxRegionSearch.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbxRegionSearch.FormattingEnabled = true;
             this.lbxRegionSearch.IntegralHeight = false;
@@ -309,8 +324,11 @@ namespace METAbolt
             // button1
             // 
             this.button1.AccessibleName = "Teleport button";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(382, 246);
             this.button1.Name = "button1";

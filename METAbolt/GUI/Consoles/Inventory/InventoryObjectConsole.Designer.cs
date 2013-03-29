@@ -46,7 +46,10 @@ namespace METAbolt
             // btnRezObject
             // 
             this.btnRezObject.AccessibleName = "Rez button";
-            this.btnRezObject.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnRezObject.BackColor = System.Drawing.Color.DimGray;
+            this.btnRezObject.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnRezObject.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnRezObject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRezObject.ForeColor = System.Drawing.Color.White;
             this.btnRezObject.Location = new System.Drawing.Point(3, 28);
             this.btnRezObject.Name = "btnRezObject";
@@ -59,7 +62,10 @@ namespace METAbolt
             // button1
             // 
             this.button1.AccessibleName = "Touch button";
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(117, 28);
             this.button1.Name = "button1";
