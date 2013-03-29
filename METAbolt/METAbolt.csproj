@@ -1626,6 +1626,7 @@
     <None Include="Resources\wait30trans.gif" />
     <None Include="Resources\Wikia_Logo.png" />
     <None Include="Resources\wings.png" />
+    <None Include="Resources\wing.png" />
     <Content Include="Resources\wmp.png" />
     <None Include="Resources\world.png" />
     <None Include="SciLexer.dll">

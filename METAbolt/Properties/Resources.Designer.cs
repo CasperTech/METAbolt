@@ -1661,9 +1661,9 @@ namespace METAbolt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap wings {
+        internal static System.Drawing.Bitmap Wing {
             get {
-                object obj = ResourceManager.GetObject("wings", resourceCulture);
+                object obj = ResourceManager.GetObject("Wing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
