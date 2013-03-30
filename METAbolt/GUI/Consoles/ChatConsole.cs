@@ -118,6 +118,7 @@ namespace METAbolt
         private TabPage tp2 = new TabPage();
         private TabPage tp3 = new TabPage();
         private TabPage tp4 = new TabPage();
+        private Form tpf;
 
 
         internal class ThreadExceptionHandler
@@ -280,10 +281,57 @@ namespace METAbolt
                     case TeleportStatus.Start:
                         break;
                     case TeleportStatus.Progress:
+                        //BeginInvoke(new MethodInvoker(delegate()
+                        //{
+                        //    //if (e.Message.ToLower() == "sending_landmark" || e.Message.ToLower() == "sending_home")
+                        //    //{
+                        //    Form tpfp = frmTPdialogue.ActiveForm;
+
+                        //    if (tpfp == null)
+                        //    {
+                        //        tpf = new frmTPdialogue(instance);
+                        //        tpf.Show();
+                        //    }
+                        //    //}
+                        //}));
+
+                        if (e.Message.ToLower() == "resolving")
+                        {
+                            if (tpf == null)
+                            {
+                                tpf = new frmTPdialogue(instance);
+                                tpf.Show();
+                            }
+                            else
+                            {
+                                tpf.Dispose();
+
+                                tpf = new frmTPdialogue(instance);
+                                tpf.Show();
+                            }
+                        }
+
                         break;
 
                     case TeleportStatus.Failed:
                         //MessageBox.Show(e.Message, "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        //BeginInvoke(new MethodInvoker(delegate()
+                        //{
+                        //    if (tpf != null)
+                        //    {
+                        //        tpf.Close();
+                        //        tpf.Dispose();
+                        //        tpf = frmTPdialogue.ActiveForm;
+
+                        //        if (tpf != null)
+                        //        {
+                        //            tpf.Close();
+                        //            tpf.Dispose();
+                        //        }
+                        //    }
+                        //}));
+
                         break;
 
                     case TeleportStatus.Finished:
@@ -297,6 +345,23 @@ namespace METAbolt
                             sitTimer.Enabled = true;
                             sitTimer.Start();
                         }
+
+                        //BeginInvoke(new MethodInvoker(delegate()
+                        //{
+                        //    if (tpf != null)
+                        //    {
+                        //        tpf.Close();
+                        //        tpf.Dispose();
+                        //        tpf = frmTPdialogue.ActiveForm;
+
+                        //        if (tpf != null)
+                        //        {
+                        //            tpf.Close();
+                        //            tpf.Dispose();
+                        //        }
+                        //    }
+                        //}));
+
                         break;
                 }
             }
@@ -4532,14 +4597,16 @@ namespace METAbolt
                 return;
             }
 
-            if (client.Self.Teleport(landmark))
-            {
-                MessageBox.Show("Teleport Succesful", "Teleport");
-            }
-            else
-            {
-                MessageBox.Show("Teleport Failed", "Teleport");
-            }
+            client.Self.Teleport(landmark);
+
+            //if (client.Self.Teleport(landmark))
+            //{
+            //    MessageBox.Show("Teleport Succesful", "Teleport");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Teleport Failed", "Teleport");
+            //}
         }
 
         private void rtbChat_Click(object sender, EventArgs e)

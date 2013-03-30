@@ -1828,15 +1828,17 @@ namespace METAbolt
                     MessageBox.Show("Invalid TP LLUID", "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                if (client.Self.Teleport(landmark))
-                //if (client.Self.Teleport(item.AssetUUID))
-                {
-                    MessageBox.Show("Teleport successful", "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Teleport failed", "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                client.Self.Teleport(landmark);
+
+                //if (client.Self.Teleport(landmark))
+                ////if (client.Self.Teleport(item.AssetUUID))
+                //{
+                //    MessageBox.Show("Teleport successful", "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Teleport failed", "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
             }
         }
 

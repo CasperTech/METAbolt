@@ -1209,7 +1209,6 @@ namespace METAbolt
             this.tsFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsFlag.Name = "tsFlag";
             this.tsFlag.Size = new System.Drawing.Size(23, 22);
-            this.tsFlag.Text = "toolStripButton1";
             // 
             // tsTime
             // 
