@@ -72,7 +72,6 @@ namespace METAbolt
             this.txtSearchFor.AccessibleDescription = "Enter the name of the SIM you are searchign for";
             this.txtSearchFor.AccessibleName = "Search textbox";
             this.txtSearchFor.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtSearchFor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchFor.Location = new System.Drawing.Point(79, 12);
             this.txtSearchFor.Name = "txtSearchFor";
             this.txtSearchFor.Size = new System.Drawing.Size(219, 21);
@@ -111,7 +110,6 @@ namespace METAbolt
             // 
             this.txtRegion.AccessibleName = "Found or selected SIM name textbox";
             this.txtRegion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtRegion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRegion.Location = new System.Drawing.Point(6, 25);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(156, 21);

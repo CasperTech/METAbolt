@@ -263,7 +263,6 @@
             // 
             this.lvwBlackList.AccessibleName = "Banned residents list";
             this.lvwBlackList.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwBlackList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwBlackList.Location = new System.Drawing.Point(230, 29);
             this.lvwBlackList.Name = "lvwBlackList";
             this.lvwBlackList.Size = new System.Drawing.Size(199, 260);
@@ -307,7 +306,6 @@
             // 
             this.txtMusic.AccessibleName = "Music URL";
             this.txtMusic.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMusic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMusic.Location = new System.Drawing.Point(25, 62);
             this.txtMusic.Name = "txtMusic";
             this.txtMusic.Size = new System.Drawing.Size(388, 20);
@@ -810,11 +808,11 @@
             // 
             this.txtPrimreturn.AccessibleDescription = "The number of minutes at which non resident prims will be returned";
             this.txtPrimreturn.AccessibleName = "Auto return setting";
-            this.txtPrimreturn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPrimreturn.Location = new System.Drawing.Point(295, 164);
+            this.txtPrimreturn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPrimreturn.Location = new System.Drawing.Point(295, 168);
             this.txtPrimreturn.Name = "txtPrimreturn";
             this.txtPrimreturn.ReadOnly = true;
-            this.txtPrimreturn.Size = new System.Drawing.Size(61, 20);
+            this.txtPrimreturn.Size = new System.Drawing.Size(61, 13);
             this.txtPrimreturn.TabIndex = 7;
             this.txtPrimreturn.Text = "0";
             // 
@@ -1219,7 +1217,6 @@
             this.txtParceldesc.AccessibleDescription = "Description for the land";
             this.txtParceldesc.AccessibleName = "Description";
             this.txtParceldesc.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtParceldesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtParceldesc.Location = new System.Drawing.Point(72, 36);
             this.txtParceldesc.Multiline = true;
             this.txtParceldesc.Name = "txtParceldesc";
@@ -1234,7 +1231,6 @@
             this.txtParcelname.AccessibleDescription = "Name of the land";
             this.txtParcelname.AccessibleName = "Name";
             this.txtParcelname.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtParcelname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtParcelname.Location = new System.Drawing.Point(72, 10);
             this.txtParcelname.Name = "txtParcelname";
             this.txtParcelname.ReadOnly = true;

@@ -353,7 +353,6 @@ namespace METAbolt
             // 
             // txtGroup
             // 
-            this.txtGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroup.Location = new System.Drawing.Point(42, 83);
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(209, 21);

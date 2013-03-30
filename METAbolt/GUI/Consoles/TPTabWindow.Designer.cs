@@ -42,6 +42,7 @@ namespace METAbolt
             // lblSubheading
             // 
             this.lblSubheading.AutoSize = true;
+            this.lblSubheading.BackColor = System.Drawing.Color.Transparent;
             this.lblSubheading.Location = new System.Drawing.Point(3, 60);
             this.lblSubheading.Name = "lblSubheading";
             this.lblSubheading.Size = new System.Drawing.Size(225, 13);
@@ -55,11 +56,11 @@ namespace METAbolt
             this.rtbOfferMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbOfferMessage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rtbOfferMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbOfferMessage.Location = new System.Drawing.Point(3, 98);
+            this.rtbOfferMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbOfferMessage.Location = new System.Drawing.Point(3, 76);
             this.rtbOfferMessage.Name = "rtbOfferMessage";
             this.rtbOfferMessage.ReadOnly = true;
-            this.rtbOfferMessage.Size = new System.Drawing.Size(534, 110);
+            this.rtbOfferMessage.Size = new System.Drawing.Size(534, 132);
             this.rtbOfferMessage.TabIndex = 0;
             this.rtbOfferMessage.Text = "";
             this.rtbOfferMessage.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbOfferMessage_LinkClicked);

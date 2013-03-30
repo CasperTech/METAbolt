@@ -167,11 +167,11 @@ namespace METAbolt
             this.txtDir.AccessibleDescription = "The folder in which METAbolt is installed";
             this.txtDir.AccessibleName = "Application folder";
             this.txtDir.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDir.Location = new System.Drawing.Point(66, 253);
+            this.txtDir.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDir.Location = new System.Drawing.Point(66, 257);
             this.txtDir.Name = "txtDir";
             this.txtDir.ReadOnly = true;
-            this.txtDir.Size = new System.Drawing.Size(310, 21);
+            this.txtDir.Size = new System.Drawing.Size(310, 14);
             this.txtDir.TabIndex = 6;
             this.txtDir.WordWrap = false;
             // 
@@ -253,12 +253,12 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleDescription = "The folder in which METAbolt user data is kept";
             this.textBox1.AccessibleName = "Data folder";
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(66, 279);
+            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(66, 283);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(310, 21);
+            this.textBox1.Size = new System.Drawing.Size(310, 14);
             this.textBox1.TabIndex = 23;
             this.textBox1.WordWrap = false;
             // 

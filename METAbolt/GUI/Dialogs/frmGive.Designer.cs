@@ -297,7 +297,6 @@
             // 
             this.textBox1.AccessibleName = "Enter avatar name to find";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.DimGray;
             this.textBox1.Location = new System.Drawing.Point(5, 14);
             this.textBox1.Name = "textBox1";
@@ -324,12 +323,12 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.Color.White;
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(454, 252);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Friends";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // label2
             // 

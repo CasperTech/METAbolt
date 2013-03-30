@@ -187,7 +187,6 @@ namespace METAbolt
             this.txtFirstName.AccessibleDescription = "Enter your SL login first name";
             this.txtFirstName.AccessibleName = "First Name";
             this.txtFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFirstName.Location = new System.Drawing.Point(6, 16);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -256,7 +255,6 @@ namespace METAbolt
             this.txtCustomLoginUri.AccessibleDescription = "Enter the URI of the \"other\" Grid you wish to login to";
             this.txtCustomLoginUri.AccessibleName = "URI";
             this.txtCustomLoginUri.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtCustomLoginUri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCustomLoginUri.Enabled = false;
             this.txtCustomLoginUri.Location = new System.Drawing.Point(326, 70);
             this.txtCustomLoginUri.Name = "txtCustomLoginUri";
@@ -314,7 +312,6 @@ namespace METAbolt
             this.txtLastName.AccessibleDescription = "Enter your SL login last name";
             this.txtLastName.AccessibleName = "Last name";
             this.txtLastName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLastName.Location = new System.Drawing.Point(203, 16);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(164, 21);
@@ -337,7 +334,6 @@ namespace METAbolt
             this.txtPassword.AccessibleDescription = "Ebter your SL password";
             this.txtPassword.AccessibleName = "Password";
             this.txtPassword.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Location = new System.Drawing.Point(373, 16);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(177, 21);

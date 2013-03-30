@@ -1418,6 +1418,10 @@ namespace METAbolt
                 tabs.Add(name.ToLower(), tab);
             }
 
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
+
             return tab;
         }
 

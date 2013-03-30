@@ -132,7 +132,6 @@
             this.label1.AccessibleName = "Total number of attachments textbox";
             this.label1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Location = new System.Drawing.Point(292, 210);
             this.label1.Name = "label1";
             this.label1.ReadOnly = true;
@@ -145,7 +144,6 @@
             this.label2.AccessibleName = "Total child objects textbox";
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Location = new System.Drawing.Point(3, 441);
             this.label2.Name = "label2";
             this.label2.ReadOnly = true;
@@ -202,7 +200,6 @@
             this.txtUUID.AccessibleName = "Total number of attachments textbox";
             this.txtUUID.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.txtUUID.BackColor = System.Drawing.SystemColors.Control;
-            this.txtUUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUUID.Location = new System.Drawing.Point(36, 210);
             this.txtUUID.Name = "txtUUID";
             this.txtUUID.ReadOnly = true;
@@ -232,7 +229,6 @@
             this.txtPoint.AccessibleName = "Total number of attachments textbox";
             this.txtPoint.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.txtPoint.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPoint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPoint.Location = new System.Drawing.Point(101, 242);
             this.txtPoint.Name = "txtPoint";
             this.txtPoint.ReadOnly = true;

@@ -173,7 +173,6 @@
             // textBox1
             // 
             this.textBox1.AccessibleName = "The folder to backup the files to";
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.Gray;
             this.textBox1.Location = new System.Drawing.Point(12, 74);
             this.textBox1.Name = "textBox1";
@@ -330,7 +329,6 @@
             // textBox2
             // 
             this.textBox2.AccessibleName = "Folder to restore from";
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.ForeColor = System.Drawing.Color.Gray;
             this.textBox2.Location = new System.Drawing.Point(12, 22);
             this.textBox2.Name = "textBox2";

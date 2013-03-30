@@ -231,7 +231,6 @@ namespace METAbolt
             this.nud.AccessibleDescription = "Select the number of lines";
             this.nud.AccessibleName = "Interval setting";
             this.nud.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nud.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nud.Location = new System.Drawing.Point(70, 20);
             this.nud.Maximum = new decimal(new int[] {
             5000,
@@ -288,7 +287,6 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Response message textbox";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(31, 20);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -352,7 +350,6 @@ namespace METAbolt
             // 
             this.txtDir.AccessibleName = "Patch to log folder textbox";
             this.txtDir.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDir.Location = new System.Drawing.Point(45, 64);
             this.txtDir.Name = "txtDir";
             this.txtDir.Size = new System.Drawing.Size(176, 21);
@@ -414,7 +411,6 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Initial message textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(31, 20);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";

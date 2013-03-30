@@ -206,7 +206,6 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Name of the founder";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(10, 40);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -346,7 +345,6 @@ namespace METAbolt
             // 
             this.lstMembers.AccessibleName = "List of group members";
             this.lstMembers.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lstMembers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMembers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colTitle,
@@ -385,7 +383,6 @@ namespace METAbolt
             // 
             this.txtCharter.AccessibleName = "Group description";
             this.txtCharter.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtCharter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCharter.Location = new System.Drawing.Point(146, 64);
             this.txtCharter.Multiline = true;
             this.txtCharter.Name = "txtCharter";
@@ -417,7 +414,6 @@ namespace METAbolt
             // picInsignia
             // 
             this.picInsignia.AccessibleName = "Group Image";
-            this.picInsignia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picInsignia.Location = new System.Drawing.Point(10, 64);
             this.picInsignia.Name = "picInsignia";
             this.picInsignia.Size = new System.Drawing.Size(130, 130);
@@ -472,7 +468,6 @@ namespace METAbolt
             // 
             this.lvAssignedRoles.AccessibleName = "Allowed abilities listbox";
             this.lvAssignedRoles.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvAssignedRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvAssignedRoles.CheckBoxes = true;
             this.lvAssignedRoles.FullRowSelect = true;
             this.lvAssignedRoles.Location = new System.Drawing.Point(6, 241);
@@ -489,7 +484,6 @@ namespace METAbolt
             // 
             this.lvwAble.AccessibleName = "Allowed abilities listbox";
             this.lvwAble.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwAble.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwAble.FullRowSelect = true;
             this.lvwAble.Location = new System.Drawing.Point(159, 241);
             this.lvwAble.Name = "lvwAble";
@@ -537,7 +531,6 @@ namespace METAbolt
             // 
             this.lstMembers2.AccessibleName = "List of group members to select from";
             this.lstMembers2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lstMembers2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMembers2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -624,7 +617,6 @@ namespace METAbolt
             // lvRoleMembers
             // 
             this.lvRoleMembers.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvRoleMembers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvRoleMembers.Location = new System.Drawing.Point(12, 239);
             this.lvRoleMembers.Name = "lvRoleMembers";
             this.lvRoleMembers.Size = new System.Drawing.Size(145, 107);
@@ -650,7 +642,6 @@ namespace METAbolt
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Location = new System.Drawing.Point(157, 20);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
@@ -684,7 +675,6 @@ namespace METAbolt
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox8.Location = new System.Drawing.Point(6, 59);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(145, 21);
@@ -702,7 +692,6 @@ namespace METAbolt
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox7.Location = new System.Drawing.Point(6, 20);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(145, 21);
@@ -762,7 +751,6 @@ namespace METAbolt
             // lvwAbilities
             // 
             this.lvwAbilities.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwAbilities.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwAbilities.CheckBoxes = true;
             this.lvwAbilities.Location = new System.Drawing.Point(163, 239);
             this.lvwAbilities.Name = "lvwAbilities";
@@ -799,7 +787,6 @@ namespace METAbolt
             // textBox3
             // 
             this.textBox3.AccessibleName = "Currently selected role textbox";
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Location = new System.Drawing.Point(83, 6);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -812,7 +799,6 @@ namespace METAbolt
             // 
             this.lstRoles.AccessibleName = "Roles listbox to select a role from";
             this.lstRoles.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lstRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstRoles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader10,
             this.columnHeader11});
@@ -867,7 +853,7 @@ namespace METAbolt
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Location = new System.Drawing.Point(3, 188);
+            this.panel2.Location = new System.Drawing.Point(3, 185);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(404, 290);
             this.panel2.TabIndex = 4;
@@ -880,7 +866,7 @@ namespace METAbolt
             this.textBox6.BackColor = System.Drawing.SystemColors.Info;
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.ForeColor = System.Drawing.Color.DarkGray;
-            this.textBox6.Location = new System.Drawing.Point(62, 236);
+            this.textBox6.Location = new System.Drawing.Point(62, 239);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(201, 21);
@@ -894,7 +880,7 @@ namespace METAbolt
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 239);
+            this.label9.Location = new System.Drawing.Point(3, 242);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 29;
@@ -919,8 +905,7 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Subject textbox for the new notice";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(63, 35);
+            this.textBox1.Location = new System.Drawing.Point(63, 34);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(339, 21);
             this.textBox1.TabIndex = 0;
@@ -955,8 +940,7 @@ namespace METAbolt
             // 
             this.textBox4.AccessibleName = "Message textbox for the new notice";
             this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(62, 61);
+            this.textBox4.Location = new System.Drawing.Point(62, 64);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1010,7 +994,6 @@ namespace METAbolt
             this.lstNotices.AccessibleDescription = "Displays all the notices";
             this.lstNotices.AccessibleName = "Notices listbox";
             this.lstNotices.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lstNotices.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstNotices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5,
@@ -1090,7 +1073,6 @@ namespace METAbolt
             // textBox5
             // 
             this.textBox5.AccessibleName = "Contents of the selected notice";
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox5.Location = new System.Drawing.Point(3, 25);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";

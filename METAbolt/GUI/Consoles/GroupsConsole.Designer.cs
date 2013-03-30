@@ -172,7 +172,6 @@
             this.textBox1.AccessibleDescription = "Name of the new group to be created";
             this.textBox1.AccessibleName = "Group Name";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(25, 43);
             this.textBox1.MaxLength = 35;
             this.textBox1.Name = "textBox1";
@@ -194,7 +193,6 @@
             this.textBox2.AccessibleName = "Charter";
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(37, 120);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -259,7 +257,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(108, 21);
+            this.panel1.Location = new System.Drawing.Point(98, 21);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 398);
             this.panel1.TabIndex = 7;
@@ -308,7 +306,6 @@
             this.label5.AccessibleDescription = "The UUID of the selected group";
             this.label5.AccessibleName = "UUID";
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.Location = new System.Drawing.Point(111, 53);
             this.label5.Name = "label5";
             this.label5.ReadOnly = true;

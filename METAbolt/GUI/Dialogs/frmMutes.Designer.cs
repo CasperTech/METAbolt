@@ -119,7 +119,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvMutes.BackColor = System.Drawing.Color.White;
-            this.lvMutes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvMutes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3});
             this.lvMutes.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

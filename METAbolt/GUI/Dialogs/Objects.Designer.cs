@@ -438,7 +438,6 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Hover text textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(72, 44);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -495,7 +494,6 @@ namespace METAbolt
             // 
             this.txtCreator.AccessibleName = "Owner name textbox";
             this.txtCreator.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtCreator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCreator.Location = new System.Drawing.Point(54, 162);
             this.txtCreator.Multiline = true;
             this.txtCreator.Name = "txtCreator";
@@ -531,7 +529,6 @@ namespace METAbolt
             // 
             this.lblUUID.AccessibleName = "Object UUID textbox";
             this.lblUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblUUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblUUID.Location = new System.Drawing.Point(9, 237);
             this.lblUUID.Multiline = true;
             this.lblUUID.Name = "lblUUID";
@@ -543,7 +540,6 @@ namespace METAbolt
             // 
             this.label9.AccessibleName = "Owner name textbox";
             this.label9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label9.Location = new System.Drawing.Point(54, 191);
             this.label9.Multiline = true;
             this.label9.Name = "label9";
@@ -567,7 +563,6 @@ namespace METAbolt
             // 
             this.label15.AccessibleName = "Description textbox";
             this.label15.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label15.Location = new System.Drawing.Point(72, 68);
             this.label15.Multiline = true;
             this.label15.Name = "label15";
@@ -580,7 +575,6 @@ namespace METAbolt
             // 
             this.label11.AccessibleName = "Hover text textbox";
             this.label11.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.Location = new System.Drawing.Point(72, 19);
             this.label11.Multiline = true;
             this.label11.Name = "label11";
@@ -997,7 +991,6 @@ namespace METAbolt
             this.txtSearch.AccessibleName = "Search box";
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Enabled = false;
             this.txtSearch.Location = new System.Drawing.Point(7, 16);
             this.txtSearch.Name = "txtSearch";
@@ -1234,7 +1227,6 @@ namespace METAbolt
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox1.Location = new System.Drawing.Point(6, 510);
             this.textBox1.Name = "textBox1";
@@ -1293,7 +1285,6 @@ namespace METAbolt
             this.lbxTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxTask.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxTask.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbxTask.ContextMenuStrip = this.mnuTask;
             this.lbxTask.FullRowSelect = true;
             this.lbxTask.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;

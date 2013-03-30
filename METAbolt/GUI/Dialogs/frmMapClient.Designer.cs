@@ -33,10 +33,10 @@ namespace METAbolt
             this.btnClose = new System.Windows.Forms.Button();
             this.TabCont = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chkResident = new System.Windows.Forms.CheckBox();
             this.chkForSale = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -95,7 +95,7 @@ namespace METAbolt
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(200, 441);
+            this.btnClose.Location = new System.Drawing.Point(198, 441);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 8;
@@ -113,7 +113,7 @@ namespace METAbolt
             this.TabCont.Location = new System.Drawing.Point(2, 5);
             this.TabCont.Name = "TabCont";
             this.TabCont.SelectedIndex = 0;
-            this.TabCont.Size = new System.Drawing.Size(277, 434);
+            this.TabCont.Size = new System.Drawing.Size(275, 434);
             this.TabCont.TabIndex = 2;
             this.TabCont.SelectedIndexChanged += new System.EventHandler(this.TabCont_SelectedIndexChanged);
             // 
@@ -139,8 +139,27 @@ namespace METAbolt
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(269, 405);
+            this.tabPage1.Size = new System.Drawing.Size(267, 405);
             this.tabPage1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.AccessibleName = "Clear marker from map option";
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(214, 261);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(48, 28);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "cl&ear";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // checkBox1
             // 
@@ -186,30 +205,10 @@ namespace METAbolt
             this.chkForSale.UseVisualStyleBackColor = true;
             this.chkForSale.CheckedChanged += new System.EventHandler(this.chkForSale_CheckedChanged);
             // 
-            // button1
-            // 
-            this.button1.AccessibleName = "Clear marker from map option";
-            this.button1.BackColor = System.Drawing.Color.DimGray;
-            this.button1.Enabled = false;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(214, 261);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 28);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "cl&ear";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // label2
             // 
             this.label2.AccessibleName = "SLurl of selected position textbox";
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.ForeColor = System.Drawing.Color.Gray;
             this.label2.Location = new System.Drawing.Point(6, 331);
             this.label2.Name = "label2";
@@ -364,7 +363,7 @@ namespace METAbolt
             this.tabPage2.Controls.Add(this.lbxRegionSearch);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(269, 405);
+            this.tabPage2.Size = new System.Drawing.Size(267, 405);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Search";
             // 
@@ -456,7 +455,6 @@ namespace METAbolt
             // 
             this.txtRegion.AccessibleName = "Found or selected SIM name textbox";
             this.txtRegion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtRegion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRegion.Location = new System.Drawing.Point(6, 42);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(163, 21);
@@ -575,7 +573,6 @@ namespace METAbolt
             this.txtSearchFor.AccessibleDescription = "Enter the name of the SIM you are searchign for";
             this.txtSearchFor.AccessibleName = "Search textbox";
             this.txtSearchFor.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtSearchFor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchFor.Location = new System.Drawing.Point(5, 12);
             this.txtSearchFor.Name = "txtSearchFor";
             this.txtSearchFor.Size = new System.Drawing.Size(235, 21);
@@ -627,7 +624,7 @@ namespace METAbolt
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(285, 469);
+            this.ClientSize = new System.Drawing.Size(283, 469);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.TabCont);
             this.Controls.Add(this.btnClose);

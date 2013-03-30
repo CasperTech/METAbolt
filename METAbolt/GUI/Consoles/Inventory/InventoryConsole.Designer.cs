@@ -682,7 +682,6 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Search textbox";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(248, 21);
@@ -963,7 +962,6 @@ namespace METAbolt
             // 
             // textBox3
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.ForeColor = System.Drawing.Color.DimGray;
             this.textBox3.Location = new System.Drawing.Point(18, 48);
             this.textBox3.Name = "textBox3";
@@ -1132,7 +1130,6 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Inventory folder textbox";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.ForeColor = System.Drawing.Color.DimGray;
             this.textBox2.Location = new System.Drawing.Point(18, 26);
             this.textBox2.Name = "textBox2";

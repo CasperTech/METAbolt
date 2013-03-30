@@ -58,7 +58,6 @@
             this.lvwFindEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lvwFindEvents.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwFindEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwFindEvents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chdName,
             this.chdTime});
@@ -168,7 +167,6 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(324, 160);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -212,7 +210,6 @@
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.textBox2.Location = new System.Drawing.Point(426, 3);
             this.textBox2.Name = "textBox2";
@@ -223,7 +220,6 @@
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.textBox3.Location = new System.Drawing.Point(426, 23);
             this.textBox3.Name = "textBox3";
@@ -234,7 +230,6 @@
             // textBox5
             // 
             this.textBox5.BackColor = System.Drawing.Color.White;
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.textBox5.Location = new System.Drawing.Point(426, 43);
             this.textBox5.Name = "textBox5";
@@ -245,7 +240,6 @@
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.Color.White;
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.textBox6.Location = new System.Drawing.Point(426, 63);
             this.textBox6.Name = "textBox6";
@@ -256,7 +250,6 @@
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.Color.White;
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.textBox7.Location = new System.Drawing.Point(426, 83);
             this.textBox7.Name = "textBox7";
@@ -267,7 +260,6 @@
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.White;
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.textBox8.Location = new System.Drawing.Point(426, 103);
             this.textBox8.Name = "textBox8";
@@ -278,7 +270,6 @@
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.Color.White;
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.textBox9.Location = new System.Drawing.Point(426, 123);
             this.textBox9.Name = "textBox9";

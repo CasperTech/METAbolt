@@ -75,7 +75,6 @@
             this.textBox1.AccessibleDescription = "Enter the word or phrase you want to search for";
             this.textBox1.AccessibleName = "Search text box";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(297, 51);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(303, 20);

@@ -147,7 +147,6 @@
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.Color.White;
-            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtName.Location = new System.Drawing.Point(360, 42);
             this.txtName.Name = "txtName";
@@ -159,7 +158,6 @@
             // txtDescription
             // 
             this.txtDescription.BackColor = System.Drawing.Color.White;
-            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Location = new System.Drawing.Point(360, 87);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -171,7 +169,6 @@
             // txtInformation
             // 
             this.txtInformation.BackColor = System.Drawing.Color.White;
-            this.txtInformation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtInformation.Location = new System.Drawing.Point(360, 278);
             this.txtInformation.Name = "txtInformation";
@@ -182,7 +179,6 @@
             // txtLocation
             // 
             this.txtLocation.BackColor = System.Drawing.Color.White;
-            this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.txtLocation.Location = new System.Drawing.Point(359, 325);
             this.txtLocation.Name = "txtLocation";

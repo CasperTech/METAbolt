@@ -190,9 +190,9 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(293, 272);
+            this.button1.Location = new System.Drawing.Point(293, 269);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 20);
+            this.button1.Size = new System.Drawing.Size(58, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Clear";
             this.button1.UseVisualStyleBackColor = false;
@@ -316,7 +316,6 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(50, 17);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(289, 20);

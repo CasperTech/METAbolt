@@ -785,11 +785,11 @@ namespace METAbolt
             // textBox2
             // 
             this.textBox2.AccessibleName = "Object select range numeric display textbox";
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Location = new System.Drawing.Point(275, 89);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(33, 21);
+            this.textBox2.Size = new System.Drawing.Size(33, 14);
             this.textBox2.TabIndex = 56;
             this.textBox2.Text = "20";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -843,11 +843,11 @@ namespace METAbolt
             // textBox1
             // 
             this.textBox1.AccessibleName = "Radar range numeric display textbox";
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Location = new System.Drawing.Point(275, 31);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(32, 21);
+            this.textBox1.Size = new System.Drawing.Size(32, 14);
             this.textBox1.TabIndex = 52;
             this.textBox1.Text = "40";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -906,7 +906,6 @@ namespace METAbolt
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(22, 78);
             this.textBox4.Name = "textBox4";
@@ -1044,7 +1043,6 @@ namespace METAbolt
             // 
             this.txtMObject.AccessibleName = "UUID textbox";
             this.txtMObject.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMObject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMObject.Location = new System.Drawing.Point(79, 94);
             this.txtMObject.Name = "txtMObject";
             this.txtMObject.Size = new System.Drawing.Size(227, 21);
@@ -1062,7 +1060,6 @@ namespace METAbolt
             // 
             this.txtMavatar.AccessibleName = "UUID textbox";
             this.txtMavatar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMavatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMavatar.Location = new System.Drawing.Point(79, 31);
             this.txtMavatar.Name = "txtMavatar";
             this.txtMavatar.Size = new System.Drawing.Size(227, 21);
@@ -1109,7 +1106,6 @@ namespace METAbolt
             // 
             this.textBox3.AccessibleName = "METAbolt password textbox";
             this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Location = new System.Drawing.Point(24, 38);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(175, 21);
@@ -1220,7 +1216,6 @@ namespace METAbolt
             // 
             this.textBox7.AccessibleName = "Header font textbox";
             this.textBox7.BackColor = System.Drawing.Color.Lavender;
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.textBox7.Location = new System.Drawing.Point(122, 61);
@@ -1249,7 +1244,6 @@ namespace METAbolt
             // 
             this.textBox6.AccessibleName = "Header colour display";
             this.textBox6.BackColor = System.Drawing.Color.Lavender;
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(172, 33);
             this.textBox6.Name = "textBox6";
@@ -1298,7 +1292,6 @@ namespace METAbolt
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.Color.White;
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Enabled = false;
             this.textBox9.Location = new System.Drawing.Point(197, 107);
             this.textBox9.Name = "textBox9";
@@ -1369,7 +1362,6 @@ namespace METAbolt
             // 
             this.textBox8.AccessibleName = "Font size textbox";
             this.textBox8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.textBox8.Location = new System.Drawing.Point(147, 37);

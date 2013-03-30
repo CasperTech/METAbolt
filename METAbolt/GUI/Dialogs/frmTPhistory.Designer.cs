@@ -48,6 +48,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(2, 3);
             this.dataGridView1.MultiSelect = false;
@@ -80,7 +81,6 @@
             // 
             this.textBox1.AccessibleName = "Parcel of the selected history entry";
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(66, 253);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -91,7 +91,6 @@
             // 
             this.textBox2.AccessibleName = "SLurl of the selected history entry";
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(66, 279);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;

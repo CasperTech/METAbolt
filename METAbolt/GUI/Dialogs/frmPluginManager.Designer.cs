@@ -230,8 +230,7 @@
             // txtMObject
             // 
             this.txtMObject.AccessibleName = "UUID textbox";
-            this.txtMObject.BackColor = System.Drawing.Color.White;
-            this.txtMObject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMObject.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtMObject.Location = new System.Drawing.Point(79, 57);
             this.txtMObject.Name = "txtMObject";
             this.txtMObject.Size = new System.Drawing.Size(227, 20);
@@ -248,8 +247,7 @@
             // txtMavatar
             // 
             this.txtMavatar.AccessibleName = "UUID textbox";
-            this.txtMavatar.BackColor = System.Drawing.Color.White;
-            this.txtMavatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMavatar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtMavatar.Location = new System.Drawing.Point(79, 31);
             this.txtMavatar.Name = "txtMavatar";
             this.txtMavatar.Size = new System.Drawing.Size(227, 20);
@@ -257,7 +255,7 @@
             // 
             // label5
             // 
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label5.Location = new System.Drawing.Point(19, 236);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(338, 68);

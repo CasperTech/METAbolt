@@ -37,6 +37,7 @@ using ExceptionReporting;
 using System.Threading;
 using System.Timers;
 using System.Globalization;
+using System.Runtime.InteropServices; 
 
 
 namespace METAbolt

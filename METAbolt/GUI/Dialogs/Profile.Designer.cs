@@ -130,7 +130,7 @@ namespace METAbolt
             this.tabProfile.Controls.Add(this.tpgPicks);
             this.tabProfile.Controls.Add(this.tpgFirstLife);
             this.tabProfile.Controls.Add(this.tabPage1);
-            this.tabProfile.Location = new System.Drawing.Point(12, 4);
+            this.tabProfile.Location = new System.Drawing.Point(12, 3);
             this.tabProfile.Name = "tabProfile";
             this.tabProfile.SelectedIndex = 0;
             this.tabProfile.Size = new System.Drawing.Size(468, 500);
@@ -190,7 +190,7 @@ namespace METAbolt
             this.gbDisplayName.Controls.Add(this.label16);
             this.gbDisplayName.Controls.Add(this.textBox3);
             this.gbDisplayName.Controls.Add(this.textBox2);
-            this.gbDisplayName.Location = new System.Drawing.Point(7, 33);
+            this.gbDisplayName.Location = new System.Drawing.Point(6, 35);
             this.gbDisplayName.Name = "gbDisplayName";
             this.gbDisplayName.Size = new System.Drawing.Size(447, 432);
             this.gbDisplayName.TabIndex = 56;
@@ -274,7 +274,6 @@ namespace METAbolt
             this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Location = new System.Drawing.Point(84, 191);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(265, 21);
@@ -286,7 +285,6 @@ namespace METAbolt
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(84, 124);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(265, 21);
@@ -315,7 +313,6 @@ namespace METAbolt
             this.txtDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDisplayName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDisplayName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDisplayName.Location = new System.Drawing.Point(90, 6);
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.ReadOnly = true;
@@ -355,8 +352,7 @@ namespace METAbolt
             this.txtTag.AccessibleName = "Worn tag textbox";
             this.txtTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTag.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTag.Location = new System.Drawing.Point(50, 223);
+            this.txtTag.Location = new System.Drawing.Point(50, 224);
             this.txtTag.Name = "txtTag";
             this.txtTag.ReadOnly = true;
             this.txtTag.Size = new System.Drawing.Size(164, 21);
@@ -386,8 +382,7 @@ namespace METAbolt
             // 
             this.lvGroups.AccessibleName = "Groups listbox";
             this.lvGroups.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvGroups.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lvGroups.Location = new System.Drawing.Point(50, 250);
+            this.lvGroups.Location = new System.Drawing.Point(50, 251);
             this.lvGroups.MultiSelect = false;
             this.lvGroups.Name = "lvGroups";
             this.lvGroups.Size = new System.Drawing.Size(403, 83);
@@ -448,8 +443,7 @@ namespace METAbolt
             this.txtUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtUUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUUID.Location = new System.Drawing.Point(50, 58);
+            this.txtUUID.Location = new System.Drawing.Point(50, 59);
             this.txtUUID.Name = "txtUUID";
             this.txtUUID.ReadOnly = true;
             this.txtUUID.Size = new System.Drawing.Size(404, 21);
@@ -471,8 +465,7 @@ namespace METAbolt
             this.txtOnline.AccessibleName = "Status textbox";
             this.txtOnline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOnline.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtOnline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOnline.Location = new System.Drawing.Point(269, 84);
+            this.txtOnline.Location = new System.Drawing.Point(269, 85);
             this.txtOnline.Name = "txtOnline";
             this.txtOnline.ReadOnly = true;
             this.txtOnline.Size = new System.Drawing.Size(185, 21);
@@ -537,8 +530,8 @@ namespace METAbolt
             this.rtbAccountInfo.AccessibleName = "Information textbox";
             this.rtbAccountInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbAccountInfo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rtbAccountInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbAccountInfo.Location = new System.Drawing.Point(269, 138);
+            this.rtbAccountInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbAccountInfo.Location = new System.Drawing.Point(269, 139);
             this.rtbAccountInfo.Name = "rtbAccountInfo";
             this.rtbAccountInfo.ReadOnly = true;
             this.rtbAccountInfo.Size = new System.Drawing.Size(185, 79);
@@ -552,8 +545,8 @@ namespace METAbolt
             this.rtbAbout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbAbout.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rtbAbout.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbAbout.Location = new System.Drawing.Point(50, 339);
+            this.rtbAbout.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbAbout.Location = new System.Drawing.Point(50, 340);
             this.rtbAbout.Name = "rtbAbout";
             this.rtbAbout.ReadOnly = true;
             this.rtbAbout.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -569,8 +562,7 @@ namespace METAbolt
             this.txtPartner.AccessibleName = "Partner textbox";
             this.txtPartner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPartner.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPartner.Location = new System.Drawing.Point(269, 223);
+            this.txtPartner.Location = new System.Drawing.Point(269, 224);
             this.txtPartner.Name = "txtPartner";
             this.txtPartner.ReadOnly = true;
             this.txtPartner.Size = new System.Drawing.Size(185, 21);
@@ -614,8 +606,7 @@ namespace METAbolt
             this.txtBornOn.AccessibleName = "Born textbox";
             this.txtBornOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBornOn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtBornOn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBornOn.Location = new System.Drawing.Point(269, 111);
+            this.txtBornOn.Location = new System.Drawing.Point(269, 112);
             this.txtBornOn.Name = "txtBornOn";
             this.txtBornOn.ReadOnly = true;
             this.txtBornOn.Size = new System.Drawing.Size(185, 21);
@@ -628,8 +619,7 @@ namespace METAbolt
             this.txtFullName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFullName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFullName.Location = new System.Drawing.Point(50, 33);
+            this.txtFullName.Location = new System.Drawing.Point(50, 34);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.ReadOnly = true;
             this.txtFullName.Size = new System.Drawing.Size(404, 21);
@@ -741,7 +731,6 @@ namespace METAbolt
             this.txtWebURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtWebURL.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtWebURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtWebURL.Location = new System.Drawing.Point(42, 6);
             this.txtWebURL.Name = "txtWebURL";
             this.txtWebURL.ReadOnly = true;
@@ -860,7 +849,6 @@ namespace METAbolt
             // pictureBox1
             // 
             this.pictureBox1.AccessibleName = "Pick image display";
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(161, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(296, 185);
@@ -888,7 +876,6 @@ namespace METAbolt
             // txtSlurl
             // 
             this.txtSlurl.AccessibleName = "SL URL textbox";
-            this.txtSlurl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSlurl.Location = new System.Drawing.Point(161, 397);
             this.txtSlurl.Name = "txtSlurl";
             this.txtSlurl.ReadOnly = true;
@@ -898,7 +885,6 @@ namespace METAbolt
             // txtDescription
             // 
             this.txtDescription.AccessibleName = "Description of pick textbox";
-            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Location = new System.Drawing.Point(161, 240);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -910,7 +896,6 @@ namespace METAbolt
             // txtTitle
             // 
             this.txtTitle.AccessibleName = "Name of pick textbox";
-            this.txtTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTitle.Location = new System.Drawing.Point(161, 213);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ReadOnly = true;
@@ -924,7 +909,6 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwPicks.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwPicks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwPicks.FullRowSelect = true;
             this.lvwPicks.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwPicks.HideSelection = false;
@@ -974,7 +958,7 @@ namespace METAbolt
             this.rtbAboutFL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbAboutFL.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rtbAboutFL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbAboutFL.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbAboutFL.Location = new System.Drawing.Point(6, 207);
             this.rtbAboutFL.Name = "rtbAboutFL";
             this.rtbAboutFL.ReadOnly = true;
@@ -1010,7 +994,6 @@ namespace METAbolt
             this.picFLImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.picFLImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picFLImage.Location = new System.Drawing.Point(6, 22);
             this.picFLImage.Name = "picFLImage";
             this.picFLImage.Size = new System.Drawing.Size(196, 166);
@@ -1024,6 +1007,7 @@ namespace METAbolt
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabPage1.Controls.Add(this.rtbNotes);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
@@ -1041,7 +1025,6 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbNotes.AutoWordSelection = true;
             this.rtbNotes.BackColor = System.Drawing.Color.White;
-            this.rtbNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbNotes.DetectUrls = true;
             this.rtbNotes.Font = new System.Drawing.Font("Tahoma", 8.5F);
             this.rtbNotes.HideSelection = false;
@@ -1050,7 +1033,7 @@ namespace METAbolt
             this.rtbNotes.Name = "rtbNotes";
             this.rtbNotes.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
             this.rtbNotes.ShowSelectionMargin = true;
-            this.rtbNotes.Size = new System.Drawing.Size(454, 436);
+            this.rtbNotes.Size = new System.Drawing.Size(450, 432);
             this.rtbNotes.TabIndex = 17;
             this.rtbNotes.Text = "";
             this.rtbNotes.TextColor = Khendys.Controls.RtfColor.Black;
@@ -1064,7 +1047,7 @@ namespace METAbolt
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(3, 445);
+            this.button6.Location = new System.Drawing.Point(-1, 441);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 16;

@@ -144,7 +144,6 @@ namespace METAbolt
             this.txtPersonName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPersonName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtPersonName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPersonName.Location = new System.Drawing.Point(93, 6);
             this.txtPersonName.Name = "txtPersonName";
             this.txtPersonName.Size = new System.Drawing.Size(360, 21);
@@ -340,7 +339,6 @@ namespace METAbolt
             this.txtEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEvents.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEvents.Location = new System.Drawing.Point(43, 7);
             this.txtEvents.Name = "txtEvents";
             this.txtEvents.Size = new System.Drawing.Size(413, 21);
@@ -450,7 +448,6 @@ namespace METAbolt
             this.txtPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPlaces.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtPlaces.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPlaces.Location = new System.Drawing.Point(42, 7);
             this.txtPlaces.Name = "txtPlaces";
             this.txtPlaces.Size = new System.Drawing.Size(409, 21);
@@ -631,7 +628,6 @@ namespace METAbolt
             this.txtGroups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGroups.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtGroups.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroups.Location = new System.Drawing.Point(93, 7);
             this.txtGroups.Name = "txtGroups";
             this.txtGroups.Size = new System.Drawing.Size(360, 21);
@@ -769,6 +765,7 @@ namespace METAbolt
             // 
             // cboPrice
             // 
+            this.cboPrice.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cboPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboPrice.FormattingEnabled = true;
             this.cboPrice.Location = new System.Drawing.Point(199, 8);
@@ -778,6 +775,7 @@ namespace METAbolt
             // 
             // cboArea
             // 
+            this.cboArea.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cboArea.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboArea.FormattingEnabled = true;
             this.cboArea.Location = new System.Drawing.Point(114, 8);
@@ -787,6 +785,7 @@ namespace METAbolt
             // 
             // cboCategory
             // 
+            this.cboCategory.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cboCategory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(9, 8);

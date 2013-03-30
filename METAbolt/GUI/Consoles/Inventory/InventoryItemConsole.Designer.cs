@@ -73,7 +73,6 @@ namespace METAbolt
             this.txtItemOwner.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemOwner.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemOwner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemOwner.Location = new System.Drawing.Point(73, 165);
             this.txtItemOwner.Name = "txtItemOwner";
             this.txtItemOwner.ReadOnly = true;
@@ -97,7 +96,6 @@ namespace METAbolt
             this.txtItemDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemDescription.Location = new System.Drawing.Point(73, 114);
             this.txtItemDescription.Name = "txtItemDescription";
             this.txtItemDescription.ReadOnly = true;
@@ -122,7 +120,6 @@ namespace METAbolt
             this.txtItemCreator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemCreator.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemCreator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemCreator.Location = new System.Drawing.Point(73, 139);
             this.txtItemCreator.Name = "txtItemCreator";
             this.txtItemCreator.ReadOnly = true;
@@ -136,7 +133,6 @@ namespace METAbolt
             this.txtItemName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemName.Location = new System.Drawing.Point(73, 39);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.ReadOnly = true;
@@ -168,7 +164,6 @@ namespace METAbolt
             this.txtUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtUUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUUID.Location = new System.Drawing.Point(73, 64);
             this.txtUUID.Name = "txtUUID";
             this.txtUUID.ReadOnly = true;
@@ -368,7 +363,6 @@ namespace METAbolt
             this.txtItemUUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtItemUUID.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtItemUUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemUUID.Location = new System.Drawing.Point(73, 89);
             this.txtItemUUID.Name = "txtItemUUID";
             this.txtItemUUID.ReadOnly = true;
