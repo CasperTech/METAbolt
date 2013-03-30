@@ -24,6 +24,8 @@ namespace METAbolt
             netcom = this.instance.Netcom;
 
             netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+
+            InitializeStatusTimer();
         }
 
         private void netcom_TeleportStatusChanged(object sender, TeleportEventArgs e)
@@ -50,12 +52,31 @@ namespace METAbolt
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            this.Dispose(); 
+            try
+            {
+                this.Dispose();
+            }
+            catch
+            {
+                this.Close();
+            }
+        }
+
+        private void InitializeStatusTimer()
+        {
+            timer1.Enabled = true;
+            timer1.Interval = 15000;
+            timer1.Start();
         }
 
         private void frmTPdialogue_FormClosing(object sender, FormClosingEventArgs e)
         {
             netcom.TeleportStatusChanged -= new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
