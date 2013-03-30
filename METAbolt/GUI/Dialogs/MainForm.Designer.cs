@@ -34,16 +34,17 @@ namespace METAbolt
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tlblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblMoneyBalance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tlblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblRegionInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tlblParcel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb6 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tlblParcel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnMETAbolt = new System.Windows.Forms.ToolStripDropDownButton();
@@ -146,7 +147,6 @@ namespace METAbolt
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
-            this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -157,35 +157,24 @@ namespace METAbolt
             this.statusStrip1.AccessibleName = "Information strip";
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tlblLoginName,
             this.tlblMoneyBalance,
+            this.tlblLoginName,
             this.tlblRegionInfo,
+            this.toolStripStatusLabel1,
+            this.tlblParcel,
             this.tb1,
             this.tb2,
             this.tb3,
             this.tb4,
             this.tb5,
-            this.tb6,
-            this.tlblParcel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 0);
+            this.tb6});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 25);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.statusStrip1.Size = new System.Drawing.Size(720, 24);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tlblLoginName
-            // 
-            this.tlblLoginName.AccessibleDescription = "Displays the name of your avatar when online";
-            this.tlblLoginName.AccessibleName = "Avatar name or status";
-            this.tlblLoginName.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.tlblLoginName.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.tlblLoginName.ForeColor = System.Drawing.Color.Red;
-            this.tlblLoginName.Name = "tlblLoginName";
-            this.tlblLoginName.Size = new System.Drawing.Size(47, 19);
-            this.tlblLoginName.Text = "Offline";
-            this.tlblLoginName.Click += new System.EventHandler(this.tlblLoginName_Click);
-            this.tlblLoginName.MouseEnter += new System.EventHandler(this.tlblLoginName_MouseEnter);
             // 
             // tlblMoneyBalance
             // 
@@ -193,25 +182,84 @@ namespace METAbolt
             this.tlblMoneyBalance.AccessibleName = "Money";
             this.tlblMoneyBalance.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.tlblMoneyBalance.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.tlblMoneyBalance.ForeColor = System.Drawing.Color.DarkGreen;
+            this.tlblMoneyBalance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.tlblMoneyBalance.ForeColor = System.Drawing.Color.SeaGreen;
+            this.tlblMoneyBalance.IsLink = true;
+            this.tlblMoneyBalance.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.tlblMoneyBalance.LinkColor = System.Drawing.Color.SeaGreen;
             this.tlblMoneyBalance.Name = "tlblMoneyBalance";
-            this.tlblMoneyBalance.Size = new System.Drawing.Size(29, 19);
+            this.tlblMoneyBalance.Size = new System.Drawing.Size(31, 19);
             this.tlblMoneyBalance.Text = "L$0";
             this.tlblMoneyBalance.Click += new System.EventHandler(this.tlblMoneyBalance_Click);
             this.tlblMoneyBalance.MouseEnter += new System.EventHandler(this.tlblMoneyBalance_MouseEnter);
+            // 
+            // tlblLoginName
+            // 
+            this.tlblLoginName.AccessibleDescription = "Displays the name of your avatar when online";
+            this.tlblLoginName.AccessibleName = "Avatar name or status";
+            this.tlblLoginName.AutoSize = false;
+            this.tlblLoginName.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.tlblLoginName.ForeColor = System.Drawing.Color.White;
+            this.tlblLoginName.Image = global::METAbolt.Properties.Resources.Home_Black;
+            this.tlblLoginName.IsLink = true;
+            this.tlblLoginName.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.tlblLoginName.Name = "tlblLoginName";
+            this.tlblLoginName.Size = new System.Drawing.Size(20, 19);
+            this.tlblLoginName.Click += new System.EventHandler(this.tlblLoginName_Click);
+            this.tlblLoginName.MouseEnter += new System.EventHandler(this.tlblLoginName_MouseEnter);
+            this.tlblLoginName.MouseLeave += new System.EventHandler(this.tlblLoginName_MouseLeave);
+            this.tlblLoginName.MouseHover += new System.EventHandler(this.tlblLoginName_MouseHover);
             // 
             // tlblRegionInfo
             // 
             this.tlblRegionInfo.AccessibleDescription = "Displays the name of the SIM you are in and the coordinates of your avatar\'s loca" +
     "tion";
             this.tlblRegionInfo.AccessibleName = "SIM name and coordinates";
-            this.tlblRegionInfo.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.tlblRegionInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.tlblRegionInfo.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.tlblRegionInfo.IsLink = true;
+            this.tlblRegionInfo.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.tlblRegionInfo.LinkColor = System.Drawing.Color.RoyalBlue;
             this.tlblRegionInfo.Name = "tlblRegionInfo";
             this.tlblRegionInfo.Size = new System.Drawing.Size(67, 19);
             this.tlblRegionInfo.Text = "No Region";
             this.tlblRegionInfo.Click += new System.EventHandler(this.tlblRegionInfo_Click);
             this.tlblRegionInfo.MouseEnter += new System.EventHandler(this.tlblRegionInfo_MouseEnter);
+            this.tlblRegionInfo.MouseLeave += new System.EventHandler(this.tlblRegionInfo_MouseLeave);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.AutoSize = false;
+            this.toolStripStatusLabel1.Image = global::METAbolt.Properties.Resources.get_info;
+            this.toolStripStatusLabel1.IsLink = true;
+            this.toolStripStatusLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(20, 19);
+            this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
+            this.toolStripStatusLabel1.MouseEnter += new System.EventHandler(this.toolStripStatusLabel1_MouseEnter);
+            this.toolStripStatusLabel1.MouseLeave += new System.EventHandler(this.toolStripStatusLabel1_MouseLeave);
+            this.toolStripStatusLabel1.MouseHover += new System.EventHandler(this.toolStripStatusLabel1_MouseHover);
+            // 
+            // tlblParcel
+            // 
+            this.tlblParcel.AccessibleDescription = "The name of the parcel you are on";
+            this.tlblParcel.AccessibleName = "Parcel name";
+            this.tlblParcel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.tlblParcel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.tlblParcel.ForeColor = System.Drawing.Color.Navy;
+            this.tlblParcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlblParcel.IsLink = true;
+            this.tlblParcel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.tlblParcel.LinkColor = System.Drawing.Color.RoyalBlue;
+            this.tlblParcel.Name = "tlblParcel";
+            this.tlblParcel.Size = new System.Drawing.Size(567, 19);
+            this.tlblParcel.Spring = true;
+            this.tlblParcel.Text = "No Parcel";
+            this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlblParcel.ToolTipText = "Parcel name. Click me for About Land";
+            this.tlblParcel.Click += new System.EventHandler(this.tlblParcel_Click);
+            this.tlblParcel.MouseEnter += new System.EventHandler(this.tlblParcel_MouseEnter);
+            this.tlblParcel.MouseLeave += new System.EventHandler(this.tlblParcel_MouseLeave);
             // 
             // tb1
             // 
@@ -275,29 +323,11 @@ namespace METAbolt
             this.tb6.Visible = false;
             this.tb6.MouseEnter += new System.EventHandler(this.tb6_MouseEnter);
             // 
-            // tlblParcel
-            // 
-            this.tlblParcel.AccessibleDescription = "The name of the parcel you are on";
-            this.tlblParcel.AccessibleName = "Parcel name";
-            this.tlblParcel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.tlblParcel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.tlblParcel.ForeColor = System.Drawing.Color.Navy;
-            this.tlblParcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlblParcel.Name = "tlblParcel";
-            this.tlblParcel.Size = new System.Drawing.Size(562, 19);
-            this.tlblParcel.Spring = true;
-            this.tlblParcel.Text = "No Parcel";
-            this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlblParcel.ToolTipText = "Parcel name. Click me for About Land";
-            this.tlblParcel.Click += new System.EventHandler(this.tlblParcel_Click);
-            this.tlblParcel.MouseEnter += new System.EventHandler(this.tlblParcel_MouseEnter);
-            // 
             // toolStripContainer1
             // 
             // 
             // toolStripContainer1.BottomToolStripPanel
             // 
-            this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this.statusStrip1);
             this.toolStripContainer1.BottomToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // toolStripContainer1.ContentPanel
@@ -323,6 +353,7 @@ namespace METAbolt
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.statusStrip1);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // toolStrip1
@@ -1220,8 +1251,6 @@ namespace METAbolt
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
@@ -1346,6 +1375,7 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripButton tsFlag;
         private System.Windows.Forms.ToolStripLabel tsTime;
         private System.Windows.Forms.ToolStripLabel tsTimeOut;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

@@ -768,7 +768,7 @@ namespace METAbolt
 
             if (netcom.IsLoggedIn)
             {
-                tlblLoginName.Text = netcom.LoginOptions.FullName;
+                //tlblLoginName.Text = netcom.LoginOptions.FullName;
                 tlblMoneyBalance.Text = "L$" + client.Self.Balance.ToString();
 
                 tlblRegionInfo.Text =
@@ -779,7 +779,7 @@ namespace METAbolt
             }
             else
             {
-                tlblLoginName.Text = "Offline";
+                //tlblLoginName.Text = "Offline";
                 tlblMoneyBalance.Text = "L$0";
                 tlblRegionInfo.Text = "No Region";
                 tlblParcel.Text = "No Parcel";
@@ -1211,17 +1211,19 @@ namespace METAbolt
 
         private void tlblParcel_MouseEnter(object sender, EventArgs e)
         {
+            tlblParcel.BackColor = Color.LightSteelBlue;
             toolTip1.SetToolTip(statusStrip1, "Parcel Name");
         }
 
         private void tlblRegionInfo_MouseEnter(object sender, EventArgs e)
         {
+            tlblRegionInfo.BackColor = Color.LightSteelBlue;
             toolTip1.SetToolTip(statusStrip1, "SIM Name");
         }
 
         private void tlblMoneyBalance_Click(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Process.Start(@"https://secondlife.com/my/account/history.php?lang=en");
         }
 
         private void tlblMoneyBalance_MouseEnter(object sender, EventArgs e)
@@ -1231,12 +1233,16 @@ namespace METAbolt
 
         private void tlblLoginName_Click(object sender, EventArgs e)
         {
-
+            if (netcom.IsLoggedIn)
+            {
+                client.Self.GoHome();
+            }
         }
 
         private void tlblLoginName_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.SetToolTip(statusStrip1, "Avatar Name");
+            tlblLoginName.BackColor = Color.LightSteelBlue; 
+            toolTip1.SetToolTip(statusStrip1, "Go Home");
         }
 
         private void landMonitorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1662,7 +1668,10 @@ namespace METAbolt
 
         private void tlblRegionInfo_Click(object sender, EventArgs e)
         {
-
+            if (netcom.IsLoggedIn)
+            {
+                (new frmMapClient(instance)).Show();
+            }
         }
 
         private void reloadAIMLLibrariesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2038,6 +2047,47 @@ namespace METAbolt
             //        }
             //    }
             //}
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+            tlblParcel.PerformClick(); 
+        }
+
+        private void toolStripStatusLabel1_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.BackColor = Color.LightSteelBlue;
+            toolTip1.SetToolTip(statusStrip1, "About Land");
+        }
+
+        private void tlblLoginName_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripStatusLabel1_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tlblLoginName_MouseLeave(object sender, EventArgs e)
+        {
+            tlblLoginName.BackColor = Color.White;
+        }
+
+        private void toolStripStatusLabel1_MouseLeave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.BackColor = Color.White;
+        }
+
+        private void tlblRegionInfo_MouseLeave(object sender, EventArgs e)
+        {
+            tlblRegionInfo.BackColor = Color.White;
+        }
+
+        private void tlblParcel_MouseLeave(object sender, EventArgs e)
+        {
+            tlblParcel.BackColor = Color.White;
         }
 
         //private void FavsToolStripMenuItem_Click(object sender, EventArgs e)

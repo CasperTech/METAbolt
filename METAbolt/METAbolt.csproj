@@ -1527,6 +1527,7 @@
     <None Include="Resources\freeze.png" />
     <None Include="Resources\friend.png" />
     <None Include="Resources\Google_Translate.png" />
+    <None Include="Resources\get_info.png" />
     <Content Include="Resources\goto.gif" />
     <None Include="Resources\Help_and_Support.png" />
     <None Include="Resources\Internet.png" />
@@ -1546,6 +1547,7 @@
     <None Include="Resources\goto.png" />
     <None Include="Resources\Information.png" />
     <None Include="Resources\lastfm.png" />
+    <None Include="Resources\Home_Black.png" />
     <Content Include="Resources\logo_watermark.png" />
     <None Include="Resources\METAbolt_icon.png" />
     <None Include="Resources\My_Documents.png" />

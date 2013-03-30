@@ -728,6 +728,16 @@ namespace METAbolt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap get_info {
+            get {
+                object obj = ResourceManager.GetObject("get_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Google_small {
             get {
                 object obj = ResourceManager.GetObject("Google_small", resourceCulture);
@@ -839,6 +849,16 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap home {
             get {
                 object obj = ResourceManager.GetObject("home", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Home_Black {
+            get {
+                object obj = ResourceManager.GetObject("Home_Black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
