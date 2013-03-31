@@ -70,6 +70,8 @@ namespace METAbolt
             this.lbxRegionSearch = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.TabCont.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuZ)).BeginInit();
@@ -120,6 +122,7 @@ namespace METAbolt
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.chkResident);
@@ -154,7 +157,7 @@ namespace METAbolt
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(214, 261);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 28);
+            this.button1.Size = new System.Drawing.Size(48, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "cl&ear";
             this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -213,7 +216,7 @@ namespace METAbolt
             this.label2.AccessibleName = "SLurl of selected position textbox";
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(6, 331);
+            this.label2.Location = new System.Drawing.Point(6, 316);
             this.label2.Name = "label2";
             this.label2.ReadOnly = true;
             this.label2.Size = new System.Drawing.Size(256, 21);
@@ -336,7 +339,7 @@ namespace METAbolt
             // lblSimData
             // 
             this.lblSimData.AutoSize = true;
-            this.lblSimData.Location = new System.Drawing.Point(6, 302);
+            this.lblSimData.Location = new System.Drawing.Point(6, 292);
             this.lblSimData.Name = "lblSimData";
             this.lblSimData.Size = new System.Drawing.Size(0, 13);
             this.lblSimData.TabIndex = 1;
@@ -356,6 +359,7 @@ namespace METAbolt
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.btnTeleport);
             this.tabPage2.Controls.Add(this.pnlTeleporting);
@@ -366,7 +370,7 @@ namespace METAbolt
             this.tabPage2.Controls.Add(this.lbxRegionSearch);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(416, 405);
+            this.tabPage2.Size = new System.Drawing.Size(838, 405);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Search";
             // 
@@ -380,7 +384,7 @@ namespace METAbolt
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(495, 268);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(72, 26);
+            this.button2.Size = new System.Drawing.Size(72, 23);
             this.button2.TabIndex = 19;
             this.button2.Text = "cl&ear";
             this.button2.UseVisualStyleBackColor = false;
@@ -395,7 +399,7 @@ namespace METAbolt
             this.btnTeleport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnTeleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeleport.ForeColor = System.Drawing.Color.White;
-            this.btnTeleport.Location = new System.Drawing.Point(495, 368);
+            this.btnTeleport.Location = new System.Drawing.Point(495, 374);
             this.btnTeleport.Name = "btnTeleport";
             this.btnTeleport.Size = new System.Drawing.Size(72, 23);
             this.btnTeleport.TabIndex = 18;
@@ -441,15 +445,15 @@ namespace METAbolt
             this.pnlTeleportOptions.Controls.Add(this.label10);
             this.pnlTeleportOptions.Controls.Add(this.nudZ1);
             this.pnlTeleportOptions.Controls.Add(this.label11);
-            this.pnlTeleportOptions.Location = new System.Drawing.Point(311, 272);
+            this.pnlTeleportOptions.Location = new System.Drawing.Point(311, 305);
             this.pnlTeleportOptions.Name = "pnlTeleportOptions";
-            this.pnlTeleportOptions.Size = new System.Drawing.Size(172, 119);
+            this.pnlTeleportOptions.Size = new System.Drawing.Size(172, 98);
             this.pnlTeleportOptions.TabIndex = 7;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 26);
+            this.label8.Location = new System.Drawing.Point(3, 5);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 4;
@@ -459,7 +463,7 @@ namespace METAbolt
             // 
             this.txtRegion.AccessibleName = "Found or selected SIM name textbox";
             this.txtRegion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtRegion.Location = new System.Drawing.Point(6, 42);
+            this.txtRegion.Location = new System.Drawing.Point(6, 21);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(163, 21);
             this.txtRegion.TabIndex = 0;
@@ -470,7 +474,7 @@ namespace METAbolt
             this.nudX1.AccessibleName = "X coordinate setting";
             this.nudX1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.nudX1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudX1.Location = new System.Drawing.Point(8, 91);
+            this.nudX1.Location = new System.Drawing.Point(8, 70);
             this.nudX1.Maximum = new decimal(new int[] {
             256,
             0,
@@ -488,7 +492,7 @@ namespace METAbolt
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 75);
+            this.label9.Location = new System.Drawing.Point(5, 54);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(13, 13);
             this.label9.TabIndex = 7;
@@ -499,7 +503,7 @@ namespace METAbolt
             this.nudY1.AccessibleName = "Y coordinate setting";
             this.nudY1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.nudY1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudY1.Location = new System.Drawing.Point(62, 91);
+            this.nudY1.Location = new System.Drawing.Point(62, 70);
             this.nudY1.Maximum = new decimal(new int[] {
             256,
             0,
@@ -517,7 +521,7 @@ namespace METAbolt
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(113, 75);
+            this.label10.Location = new System.Drawing.Point(113, 54);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(13, 13);
             this.label10.TabIndex = 11;
@@ -528,7 +532,7 @@ namespace METAbolt
             this.nudZ1.AccessibleName = "Z coordinate setting";
             this.nudZ1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.nudZ1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudZ1.Location = new System.Drawing.Point(116, 91);
+            this.nudZ1.Location = new System.Drawing.Point(116, 70);
             this.nudZ1.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -541,7 +545,7 @@ namespace METAbolt
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(59, 75);
+            this.label11.Location = new System.Drawing.Point(59, 54);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(13, 13);
             this.label11.TabIndex = 10;
@@ -621,6 +625,43 @@ namespace METAbolt
             // 
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
+            // 
+            // button3
+            // 
+            this.button3.AccessibleName = "Clear marker from map option";
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(162, 341);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 23);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "View in browser";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.AccessibleName = "Clear marker from map option";
+            this.button4.BackColor = System.Drawing.Color.DimGray;
+            this.button4.Enabled = false;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(311, 268);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 23);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "View in browser";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // frmMapClient
             // 
@@ -707,6 +748,8 @@ namespace METAbolt
         private System.Windows.Forms.Button btnTeleport;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

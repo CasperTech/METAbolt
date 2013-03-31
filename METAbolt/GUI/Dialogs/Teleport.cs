@@ -480,9 +480,21 @@ namespace METAbolt
         {
             if (!string.IsNullOrEmpty(txtRegion.Text))
             {
-                string surl = "http://slurl.com/secondlife/" + txtRegion.Text + "/" + nudX.Value.ToString() + "/" + nudY.Value.ToString() + "/" + nudZ.Value.ToString();
+                string surl = "http://slurl.com/secondlife/" + txtRegion.Text.Trim() + "/" + nudX.Value.ToString() + "/" + nudY.Value.ToString() + "/" + nudZ.Value.ToString();
                 System.Diagnostics.Process.Start(@surl);
             }
+        }
+
+        private void lbxRegionSearch_Click(object sender, EventArgs e)
+        {
+            if (lbxRegionSearch.SelectedItem == null) return;
+            RegionSearchResultItem item = (RegionSearchResultItem)lbxRegionSearch.SelectedItem;
+
+            selregion = item.Region;
+            txtRegion.Text = item.Region.Name;
+            nudX.Value = 128;
+            nudY.Value = 128;
+            nudZ.Value = 0;
         }
     }
 }

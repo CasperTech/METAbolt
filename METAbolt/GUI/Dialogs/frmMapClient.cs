@@ -970,8 +970,15 @@ namespace METAbolt
         {
             try
             {
-                if (lbxRegionSearch.SelectedItem == null) return;
+                if (lbxRegionSearch.SelectedItem == null)
+                {
+                    button4.Enabled = false;
+                    return;
+                }
+
                 RegionSearchResultItem item = (RegionSearchResultItem)lbxRegionSearch.SelectedItem;
+
+                button4.Enabled = true; 
 
                 selregion = item.Region;
                 txtRegion.Text = item.Region.Name;
@@ -980,7 +987,8 @@ namespace METAbolt
                 nudZ1.Value = 0;
 
                 orgmap = item.MapImage;
-                pictureBox2.Image = selectedmap = item.MapImage;
+                selectedmap = item.MapImage;
+                //pictureBox2.Image = selectedmap;
 
                 Bitmap bmp = new Bitmap(selectedmap, 256, 256);
 
@@ -1017,14 +1025,17 @@ namespace METAbolt
             nudY1.Value = (decimal)py;
             nudZ1.Value = (decimal)10;
 
-            //Bitmap map = (Bitmap)pictureBox2.Image;
+            //Bitmap map = (Bitmap)selectedmap;   // pictureBox2.Image;
             //Graphics g = Graphics.FromImage(map);
 
-            //Rectangle selectedrect = new Rectangle(e.X - 2, e.Y - 2, 10, 10);
-            //g.DrawEllipse(new Pen(Brushes.Red, 2), selectedrect);
-            //pictureBox2.Image = map;
+            Bitmap map = new Bitmap(selectedmap, 256, 256);
+            Graphics g = Graphics.FromImage(map);
 
-            //g.Dispose();
+            Rectangle selectedrect = new Rectangle(e.X - 2, e.Y - 2, 10, 10);
+            g.DrawEllipse(new Pen(Brushes.Red, 2), selectedrect);
+            pictureBox2.Image = map;
+
+            g.Dispose();
 
             button2.Visible = true;
         }
@@ -1036,6 +1047,7 @@ namespace METAbolt
             nudZ1.Value = 0;
 
             pictureBox2.Image = orgmap;
+            button2.Enabled = false;
         }
 
         private void nuX_Scroll(object sender, ScrollEventArgs e)
@@ -1066,6 +1078,24 @@ namespace METAbolt
             clickedy = (int)nuY.Value;
             PlotSelected(clickedx, clickedy);
             button1.Enabled = true; 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(label2.Text))
+            {
+                System.Diagnostics.Process.Start(@label2.Text);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSearchFor.Text))
+            {
+                RegionSearchResultItem item = (RegionSearchResultItem)lbxRegionSearch.SelectedItem;
+                string surl = "http://slurl.com/secondlife/" + item.Region.Name.Trim() + "/" + nudX1.Value.ToString() + "/" + nudY1.Value.ToString() + "/" + nudZ1.Value.ToString();
+                System.Diagnostics.Process.Start(@surl);
+            }
         }
     }
 }

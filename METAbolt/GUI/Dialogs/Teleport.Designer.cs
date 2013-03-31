@@ -245,6 +245,7 @@ namespace METAbolt
             this.lbxRegionSearch.Name = "lbxRegionSearch";
             this.lbxRegionSearch.Size = new System.Drawing.Size(364, 337);
             this.lbxRegionSearch.TabIndex = 2;
+            this.lbxRegionSearch.Click += new System.EventHandler(this.lbxRegionSearch_Click);
             this.lbxRegionSearch.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lbxRegionSearch_DrawItem);
             this.lbxRegionSearch.DoubleClick += new System.EventHandler(this.lbxRegionSearch_DoubleClick);
             // 
@@ -252,7 +253,7 @@ namespace METAbolt
             // 
             this.pnlTeleporting.Controls.Add(this.proTeleporting);
             this.pnlTeleporting.Controls.Add(this.lblTeleportStatus);
-            this.pnlTeleporting.Location = new System.Drawing.Point(382, 278);
+            this.pnlTeleporting.Location = new System.Drawing.Point(382, 248);
             this.pnlTeleporting.Name = "pnlTeleporting";
             this.pnlTeleporting.Size = new System.Drawing.Size(172, 41);
             this.pnlTeleporting.TabIndex = 16;
@@ -328,7 +329,7 @@ namespace METAbolt
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(382, 246);
+            this.button1.Location = new System.Drawing.Point(382, 296);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(172, 23);
             this.button1.TabIndex = 17;
