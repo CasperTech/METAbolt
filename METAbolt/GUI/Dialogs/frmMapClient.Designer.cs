@@ -95,7 +95,7 @@ namespace METAbolt
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(198, 441);
+            this.btnClose.Location = new System.Drawing.Point(199, 443);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 8;
@@ -113,7 +113,7 @@ namespace METAbolt
             this.TabCont.Location = new System.Drawing.Point(2, 5);
             this.TabCont.Name = "TabCont";
             this.TabCont.SelectedIndex = 0;
-            this.TabCont.Size = new System.Drawing.Size(275, 434);
+            this.TabCont.Size = new System.Drawing.Size(276, 434);
             this.TabCont.TabIndex = 2;
             this.TabCont.SelectedIndexChanged += new System.EventHandler(this.TabCont_SelectedIndexChanged);
             // 
@@ -139,7 +139,7 @@ namespace METAbolt
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(267, 405);
+            this.tabPage1.Size = new System.Drawing.Size(268, 405);
             this.tabPage1.TabIndex = 0;
             // 
             // button1
@@ -167,11 +167,12 @@ namespace METAbolt
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(162, 264);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(55, 17);
+            this.checkBox1.Size = new System.Drawing.Size(54, 17);
             this.checkBox1.TabIndex = 12;
             this.checkBox1.Text = "Range";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -182,11 +183,12 @@ namespace METAbolt
             this.chkResident.AutoSize = true;
             this.chkResident.Checked = true;
             this.chkResident.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkResident.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.chkResident.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chkResident.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkResident.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkResident.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkResident.Location = new System.Drawing.Point(95, 264);
             this.chkResident.Name = "chkResident";
-            this.chkResident.Size = new System.Drawing.Size(66, 17);
+            this.chkResident.Size = new System.Drawing.Size(65, 17);
             this.chkResident.TabIndex = 1;
             this.chkResident.Text = "Resident";
             this.chkResident.UseVisualStyleBackColor = true;
@@ -195,11 +197,12 @@ namespace METAbolt
             // 
             this.chkForSale.AccessibleName = "Land for sale option";
             this.chkForSale.AutoSize = true;
-            this.chkForSale.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.chkForSale.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chkForSale.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkForSale.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkForSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkForSale.Location = new System.Drawing.Point(6, 264);
             this.chkForSale.Name = "chkForSale";
-            this.chkForSale.Size = new System.Drawing.Size(87, 17);
+            this.chkForSale.Size = new System.Drawing.Size(86, 17);
             this.chkForSale.TabIndex = 0;
             this.chkForSale.Text = "Land for Sale";
             this.chkForSale.UseVisualStyleBackColor = true;
@@ -363,7 +366,7 @@ namespace METAbolt
             this.tabPage2.Controls.Add(this.lbxRegionSearch);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(267, 405);
+            this.tabPage2.Size = new System.Drawing.Size(416, 405);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Search";
             // 
@@ -371,16 +374,17 @@ namespace METAbolt
             // 
             this.button2.AccessibleName = "Clear marker from map option";
             this.button2.BackColor = System.Drawing.Color.DimGray;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(513, 268);
+            this.button2.Location = new System.Drawing.Point(495, 268);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(54, 26);
+            this.button2.Size = new System.Drawing.Size(72, 26);
             this.button2.TabIndex = 19;
             this.button2.Text = "cl&ear";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnTeleport
@@ -388,10 +392,10 @@ namespace METAbolt
             this.btnTeleport.AccessibleName = "Teleport button";
             this.btnTeleport.BackColor = System.Drawing.Color.DimGray;
             this.btnTeleport.Enabled = false;
-            this.btnTeleport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnTeleport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTeleport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTeleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeleport.ForeColor = System.Drawing.Color.White;
-            this.btnTeleport.Location = new System.Drawing.Point(492, 363);
+            this.btnTeleport.Location = new System.Drawing.Point(495, 368);
             this.btnTeleport.Name = "btnTeleport";
             this.btnTeleport.Size = new System.Drawing.Size(72, 23);
             this.btnTeleport.TabIndex = 18;
@@ -557,8 +561,10 @@ namespace METAbolt
             // btnFind
             // 
             this.btnFind.AccessibleName = "Search button";
-            this.btnFind.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnFind.BackColor = System.Drawing.Color.SeaGreen;
             this.btnFind.Enabled = false;
+            this.btnFind.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFind.ForeColor = System.Drawing.Color.White;
             this.btnFind.Location = new System.Drawing.Point(246, 10);
             this.btnFind.Name = "btnFind";
@@ -624,7 +630,7 @@ namespace METAbolt
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(283, 469);
+            this.ClientSize = new System.Drawing.Size(284, 469);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.TabCont);
             this.Controls.Add(this.btnClose);

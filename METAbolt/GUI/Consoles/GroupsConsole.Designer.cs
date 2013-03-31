@@ -48,8 +48,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.gbQuickInfo = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.picBusy = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.gbQuickInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBusy)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdInfo
@@ -63,7 +71,7 @@
             this.cmdInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.cmdInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdInfo.ForeColor = System.Drawing.Color.White;
-            this.cmdInfo.Location = new System.Drawing.Point(243, 388);
+            this.cmdInfo.Location = new System.Drawing.Point(311, 388);
             this.cmdInfo.Name = "cmdInfo";
             this.cmdInfo.Size = new System.Drawing.Size(43, 23);
             this.cmdInfo.TabIndex = 3;
@@ -82,7 +90,7 @@
             this.cmdActivate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.cmdActivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdActivate.ForeColor = System.Drawing.Color.White;
-            this.cmdActivate.Location = new System.Drawing.Point(167, 388);
+            this.cmdActivate.Location = new System.Drawing.Point(235, 388);
             this.cmdActivate.Name = "cmdActivate";
             this.cmdActivate.Size = new System.Drawing.Size(70, 23);
             this.cmdActivate.TabIndex = 2;
@@ -101,7 +109,7 @@
             this.cmdIM.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.cmdIM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdIM.ForeColor = System.Drawing.Color.White;
-            this.cmdIM.Location = new System.Drawing.Point(108, 388);
+            this.cmdIM.Location = new System.Drawing.Point(176, 388);
             this.cmdIM.Name = "cmdIM";
             this.cmdIM.Size = new System.Drawing.Size(53, 23);
             this.cmdIM.TabIndex = 1;
@@ -120,7 +128,7 @@
             this.cmdLeave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.cmdLeave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdLeave.ForeColor = System.Drawing.Color.White;
-            this.cmdLeave.Location = new System.Drawing.Point(292, 388);
+            this.cmdLeave.Location = new System.Drawing.Point(360, 388);
             this.cmdLeave.Name = "cmdLeave";
             this.cmdLeave.Size = new System.Drawing.Size(54, 23);
             this.cmdLeave.TabIndex = 4;
@@ -135,7 +143,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(108, 21);
+            this.label1.Location = new System.Drawing.Point(176, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 15;
@@ -150,7 +158,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(412, 388);
+            this.button1.Location = new System.Drawing.Point(480, 388);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 23);
             this.button1.TabIndex = 5;
@@ -257,7 +265,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(98, 21);
+            this.panel1.Location = new System.Drawing.Point(176, 20);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 398);
             this.panel1.TabIndex = 7;
@@ -284,7 +292,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.lstGroups);
-            this.panel2.Location = new System.Drawing.Point(110, 79);
+            this.panel2.Location = new System.Drawing.Point(178, 79);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(384, 301);
             this.panel2.TabIndex = 19;
@@ -296,7 +304,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(108, 37);
+            this.label6.Location = new System.Drawing.Point(176, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 21;
@@ -306,7 +314,7 @@
             this.label5.AccessibleDescription = "The UUID of the selected group";
             this.label5.AccessibleName = "UUID";
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.Location = new System.Drawing.Point(111, 53);
+            this.label5.Location = new System.Drawing.Point(179, 53);
             this.label5.Name = "label5";
             this.label5.ReadOnly = true;
             this.label5.Size = new System.Drawing.Size(381, 20);
@@ -323,13 +331,79 @@
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(352, 388);
+            this.button4.Location = new System.Drawing.Point(420, 388);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(54, 23);
             this.button4.TabIndex = 22;
             this.button4.Text = "Invite";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // gbQuickInfo
+            // 
+            this.gbQuickInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbQuickInfo.Controls.Add(this.picBusy);
+            this.gbQuickInfo.Controls.Add(this.label10);
+            this.gbQuickInfo.Controls.Add(this.label9);
+            this.gbQuickInfo.Controls.Add(this.label8);
+            this.gbQuickInfo.Controls.Add(this.label7);
+            this.gbQuickInfo.Location = new System.Drawing.Point(3, 244);
+            this.gbQuickInfo.Name = "gbQuickInfo";
+            this.gbQuickInfo.Size = new System.Drawing.Size(180, 136);
+            this.gbQuickInfo.TabIndex = 23;
+            this.gbQuickInfo.TabStop = false;
+            this.gbQuickInfo.Text = "Quick Info";
+            this.gbQuickInfo.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.DimGray;
+            this.label7.Location = new System.Drawing.Point(18, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "label7";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.DimGray;
+            this.label8.Location = new System.Drawing.Point(18, 54);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "label8";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.DimGray;
+            this.label9.Location = new System.Drawing.Point(18, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "label9";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.DimGray;
+            this.label10.Location = new System.Drawing.Point(18, 98);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "label10";
+            // 
+            // picBusy
+            // 
+            this.picBusy.Image = global::METAbolt.Properties.Resources.wait18trans;
+            this.picBusy.Location = new System.Drawing.Point(160, 10);
+            this.picBusy.Name = "picBusy";
+            this.picBusy.Size = new System.Drawing.Size(16, 16);
+            this.picBusy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBusy.TabIndex = 43;
+            this.picBusy.TabStop = false;
             // 
             // GroupsConsole
             // 
@@ -339,6 +413,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Controls.Add(this.gbQuickInfo);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label5);
@@ -352,11 +427,14 @@
             this.Controls.Add(this.panel2);
             this.DoubleBuffered = true;
             this.Name = "GroupsConsole";
-            this.Size = new System.Drawing.Size(567, 439);
+            this.Size = new System.Drawing.Size(702, 439);
             this.Load += new System.EventHandler(this.GroupsConsole_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.gbQuickInfo.ResumeLayout(false);
+            this.gbQuickInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBusy)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,5 +461,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox label5;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox gbQuickInfo;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox picBusy;
     }
 }

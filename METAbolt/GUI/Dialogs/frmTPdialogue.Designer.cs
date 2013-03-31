@@ -46,7 +46,7 @@
             // 
             this.pictureBox1.Image = global::METAbolt.Properties.Resources.tp;
             this.pictureBox1.InitialImage = global::METAbolt.Properties.Resources.tp;
-            this.pictureBox1.Location = new System.Drawing.Point(28, 36);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 29);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(40, 40);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -56,11 +56,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(94, 44);
+            this.label1.Location = new System.Drawing.Point(94, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 24);
+            this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Teleporting...";
             // 
@@ -69,7 +69,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = global::METAbolt.Properties.Resources.delete_16;
-            this.pictureBox3.Location = new System.Drawing.Point(428, 3);
+            this.pictureBox3.Location = new System.Drawing.Point(292, 3);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(16, 16);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -86,7 +86,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(446, 113);
+            this.ClientSize = new System.Drawing.Size(310, 98);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label1);

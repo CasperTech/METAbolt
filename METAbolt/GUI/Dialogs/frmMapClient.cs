@@ -656,6 +656,7 @@ namespace METAbolt
             if (TabCont.SelectedIndex == 0)
             {
                 this.Width = 289;
+                button2.Visible = false;
                 return;
             }
 
@@ -1024,6 +1025,8 @@ namespace METAbolt
             //pictureBox2.Image = map;
 
             //g.Dispose();
+
+            button2.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)

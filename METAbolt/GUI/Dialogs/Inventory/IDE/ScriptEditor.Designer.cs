@@ -1074,9 +1074,12 @@ namespace METAbolt
             // 
             this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 7);
+            this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox2.Location = new System.Drawing.Point(9, 7);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(65, 17);
+            this.checkBox2.Size = new System.Drawing.Size(62, 17);
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Running";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -1086,9 +1089,12 @@ namespace METAbolt
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(75, 7);
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox1.Location = new System.Drawing.Point(78, 7);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(52, 17);
+            this.checkBox1.Size = new System.Drawing.Size(49, 17);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Mono";
             this.checkBox1.UseVisualStyleBackColor = true;

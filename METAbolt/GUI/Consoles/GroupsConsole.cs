@@ -152,9 +152,10 @@ namespace METAbolt
                 }
 
                 lstGroups.Sorted = true;
+                lstGroups.Sorted = false;
 
                 //lstGroups.Items.Add("None");
-                lstGroups.Items.Insert(0, "          '_ METAbolt None"); 
+                lstGroups.Items.Insert(0, "None"); 
 
                 if (lstGroups.Items.Count > 0)
                 {
@@ -180,13 +181,19 @@ namespace METAbolt
         {
             if (lstGroups.SelectedIndex >= 0)
             {
-                if ((string)lstGroups.Items[lstGroups.SelectedIndex].ToString() != "          '_ METAbolt None")
+                if ((string)lstGroups.Items[lstGroups.SelectedIndex].ToString() != "None")
                 {
+                    picBusy.Visible = true;
+                    Client.Groups.GroupProfile += new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
+                    Group selgrp = (Group)lstGroups.Items[lstGroups.SelectedIndex];
+                    Client.Groups.RequestGroupProfile(selgrp.ID);
+
                     cmdActivate.Enabled = cmdInfo.Enabled = cmdIM.Enabled = button4.Enabled = cmdLeave.Enabled = true;
                     label5.Text = "Group UUID: " + ((Group)lstGroups.Items[lstGroups.SelectedIndex]).ID.ToString();
                 }
                 else
                 {
+                    gbQuickInfo.Visible = false;
                     cmdActivate.Enabled = true;
                     cmdInfo.Enabled = button4.Enabled = cmdIM.Enabled = cmdLeave.Enabled = false;
                     label5.Text = string.Empty;
@@ -194,9 +201,27 @@ namespace METAbolt
             }
             else
             {
+                gbQuickInfo.Visible = false;
                 cmdActivate.Enabled = cmdInfo.Enabled = cmdIM.Enabled = button4.Enabled = cmdLeave.Enabled = false;
                 label5.Text = string.Empty;
             }
+        }
+
+        private void GroupProfileHandler(object sender, GroupProfileEventArgs e)
+        {
+            Client.Groups.GroupProfile -= new EventHandler<GroupProfileEventArgs>(GroupProfileHandler);
+
+            Group selgrp = e.Group;
+
+            this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    picBusy.Visible = false;
+                    gbQuickInfo.Visible = true;
+                    label7.Text = "Ttl members: " + selgrp.GroupMembershipCount.ToString();
+                    label8.Text = "Ttl roles: " + selgrp.GroupRolesCount.ToString();
+                    label9.Text = "Joining fee: L$" + selgrp.MembershipFee.ToString();
+                    label10.Text = "Open enrolment: " + selgrp.OpenEnrollment.ToString();
+                }));
         }
 
 
@@ -231,9 +256,9 @@ namespace METAbolt
 
         private void cmdInfo_Click_1(object sender, EventArgs e)
         {
-            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "          '_ METAbolt None")
+            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "None")
             {
-                if (lstGroups.Items[lstGroups.SelectedIndex].ToString()  != "          '_ METAbolt None")
+                if (lstGroups.Items[lstGroups.SelectedIndex].ToString()  != "None")
                 {
                     Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
 
@@ -250,7 +275,7 @@ namespace METAbolt
         {
             if (lstGroups.SelectedIndex >= 0)
             {
-                if (lstGroups.Items[lstGroups.SelectedIndex].ToString() == "          '_ METAbolt None")
+                if (lstGroups.Items[lstGroups.SelectedIndex].ToString() == "None")
                 {
                     Client.Groups.ActivateGroup(UUID.Zero);
                 }
@@ -266,7 +291,7 @@ namespace METAbolt
 
         private void cmdLeave_Click(object sender, EventArgs e)
         {
-            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "          '_ METAbolt None")
+            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "None")
             {
                 Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
 
@@ -294,9 +319,9 @@ namespace METAbolt
 
         private void cmdCreate_Click(object sender, EventArgs e)
         {
-            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "          '_ METAbolt None")
+            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "None")
             {
-                if (lstGroups.Items[lstGroups.SelectedIndex].ToString() != "          '_ METAbolt None")
+                if (lstGroups.Items[lstGroups.SelectedIndex].ToString() != "None")
                 {
                     Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
 
@@ -342,7 +367,7 @@ namespace METAbolt
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "          '_ METAbolt None")
+            if (lstGroups.SelectedIndex >= 0 && lstGroups.Items[lstGroups.SelectedIndex].ToString() != "None")
             {
                 Group group = (Group)lstGroups.Items[lstGroups.SelectedIndex];
 

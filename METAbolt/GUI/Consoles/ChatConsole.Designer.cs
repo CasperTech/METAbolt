@@ -185,7 +185,7 @@ namespace METAbolt
             this.cbxInput.Enabled = false;
             this.cbxInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxInput.FormattingEnabled = true;
-            this.cbxInput.Location = new System.Drawing.Point(3, 9);
+            this.cbxInput.Location = new System.Drawing.Point(3, 7);
             this.cbxInput.Name = "cbxInput";
             this.cbxInput.Size = new System.Drawing.Size(508, 21);
             this.cbxInput.TabIndex = 0;
@@ -284,26 +284,26 @@ namespace METAbolt
             // sayToolStripMenuItem
             // 
             this.sayToolStripMenuItem.Name = "sayToolStripMenuItem";
-            this.sayToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.sayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sayToolStripMenuItem.Text = "Say";
             this.sayToolStripMenuItem.Click += new System.EventHandler(this.sayToolStripMenuItem_Click);
             // 
             // toolStripSeparator20
             // 
             this.toolStripSeparator20.Name = "toolStripSeparator20";
-            this.toolStripSeparator20.Size = new System.Drawing.Size(114, 6);
+            this.toolStripSeparator20.Size = new System.Drawing.Size(149, 6);
             // 
             // shoutToolStripMenuItem
             // 
             this.shoutToolStripMenuItem.Name = "shoutToolStripMenuItem";
-            this.shoutToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.shoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.shoutToolStripMenuItem.Text = "Shout";
             this.shoutToolStripMenuItem.Click += new System.EventHandler(this.shoutToolStripMenuItem_Click);
             // 
             // whisperToolStripMenuItem
             // 
             this.whisperToolStripMenuItem.Name = "whisperToolStripMenuItem";
-            this.whisperToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.whisperToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.whisperToolStripMenuItem.Text = "Whisper";
             this.whisperToolStripMenuItem.Click += new System.EventHandler(this.whisperToolStripMenuItem_Click);
             // 

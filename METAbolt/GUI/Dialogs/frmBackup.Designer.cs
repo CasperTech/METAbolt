@@ -237,10 +237,11 @@
             this.checkBox2.AccessibleName = "Option box 2";
             this.checkBox2.AutoSize = true;
             this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
-            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2.Location = new System.Drawing.Point(12, 217);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(183, 17);
+            this.checkBox2.Size = new System.Drawing.Size(182, 17);
             this.checkBox2.TabIndex = 7;
             this.checkBox2.Text = "Create a new BAT file on desktop";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -250,10 +251,11 @@
             this.checkBox1.AccessibleName = "Option box 1";
             this.checkBox1.AutoSize = true;
             this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
-            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(12, 201);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(278, 17);
+            this.checkBox1.Size = new System.Drawing.Size(277, 17);
             this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "Create desktop shortcuts for existing BAT file/s above";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -264,7 +266,7 @@
             this.button5.BackColor = System.Drawing.Color.DimGray;
             this.button5.Enabled = false;
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(354, 143);
             this.button5.Name = "button5";
@@ -301,7 +303,7 @@
             this.button6.BackColor = System.Drawing.Color.DimGray;
             this.button6.Enabled = false;
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(354, 114);
             this.button6.Name = "button6";
@@ -316,7 +318,7 @@
             this.button7.AccessibleName = "Select the folder to restore from";
             this.button7.BackColor = System.Drawing.Color.DimGray;
             this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(354, 20);
             this.button7.Name = "button7";

@@ -1025,6 +1025,7 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbNotes.AutoWordSelection = true;
             this.rtbNotes.BackColor = System.Drawing.Color.White;
+            this.rtbNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbNotes.DetectUrls = true;
             this.rtbNotes.Font = new System.Drawing.Font("Tahoma", 8.5F);
             this.rtbNotes.HideSelection = false;
@@ -1071,7 +1072,6 @@ namespace METAbolt
             this.textBox1.AllowDrop = true;
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox1.Location = new System.Drawing.Point(74, 509);
             this.textBox1.Name = "textBox1";

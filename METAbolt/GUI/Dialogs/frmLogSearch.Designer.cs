@@ -192,12 +192,12 @@
             this.checkBox1.AccessibleDescription = "Open files using Mcrosoft Notepad";
             this.checkBox1.AccessibleName = "Use Microsoft Notepad option";
             this.checkBox1.AutoSize = true;
-            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(498, 9);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(106, 17);
+            this.checkBox1.Size = new System.Drawing.Size(105, 17);
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "Use MS Notepad";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -236,9 +236,9 @@
             this.radioButton3.AccessibleName = "Select all option";
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
-            this.radioButton3.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSkyBlue;
-            this.radioButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.radioButton3.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton3.Location = new System.Drawing.Point(111, 15);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(35, 17);
@@ -252,9 +252,9 @@
             // 
             this.radioButton2.AccessibleName = "Select Chat only option";
             this.radioButton2.AutoSize = true;
-            this.radioButton2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSkyBlue;
-            this.radioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.radioButton2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton2.Location = new System.Drawing.Point(58, 15);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(46, 17);
@@ -267,9 +267,9 @@
             // 
             this.radioButton1.AccessibleName = "Select IMs only option";
             this.radioButton1.AutoSize = true;
-            this.radioButton1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSkyBlue;
-            this.radioButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.radioButton1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton1.Location = new System.Drawing.Point(10, 15);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(41, 17);
