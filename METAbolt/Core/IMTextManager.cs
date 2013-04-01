@@ -197,6 +197,7 @@ namespace METAbolt
         {
             showTimestamps = e.AppliedConfig.IMTimestamps;
             //ReprintAllText();
+            classiclayout = this.instance.Config.CurrentConfig.ClassicChatLayout;
 
             //tName = e.AppliedConfig.TweeterName;
             //tPwd = e.AppliedConfig.TweeterPwd;
@@ -470,7 +471,7 @@ namespace METAbolt
                         ;
                     }
 
-                    textPrinter.PrintText(timestamp.ToString("[HH:mm] "));
+                    textPrinter.PrintClassicTextDate(timestamp.ToString("[HH:mm] "));
                 }
 
                 try
@@ -501,11 +502,11 @@ namespace METAbolt
                             textPrinter.PrintLink(fromName, avid + "&" + fromName);
                         }
 
-                        textPrinter.PrintText(": ");
+                        textPrinter.PrintClassicTextDate(": ");
                     }
                     else
                     {
-                        textPrinter.PrintText(fromName + ": ");
+                        textPrinter.PrintClassicTextDate(fromName + ": ");
                     }
                 }
             }
