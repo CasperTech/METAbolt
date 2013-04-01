@@ -246,6 +246,7 @@ namespace METAbolt
                 cblandmark.Enabled = true;
                 cbTerrain.Enabled = true;
                 cbpush.Enabled = true;
+                cbVoice.Enabled = true; 
 
                 lvwPrimOwners.Visible = true;
                 hasauth = false;
@@ -305,6 +306,7 @@ namespace METAbolt
                     cblandmark.Enabled = false;
                     cbTerrain.Enabled = false;
                     cbpush.Enabled = false;
+                    cbVoice.Enabled = false; 
 
                     //lvwPrimOwners.Clear();
                     //lvwPrimOwners.Enabled = false;
@@ -409,6 +411,9 @@ namespace METAbolt
 
                 if (this.instance.MainForm.AboutlandRestrictPush) cbpush.Checked = true;
                 else cbpush.Checked = false;
+
+                if (this.instance.AllowVoice) cbVoice.Checked = true;
+                else cbVoice.Checked = false;
 
                 formloading = false;
             }
@@ -1274,6 +1279,30 @@ namespace METAbolt
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             (new frmGroupInfo(parcel.GroupID, instance)).Show();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grpID != UUID.Zero)
+            {
+                if (!HasGroupPower(GroupPowers.LandOptions, grpID))
+                {
+                    return;
+                }
+            }
+
+            if (formloading) return;
+
+            if (cbVoice.Checked)
+            {
+                this.parcel.Flags |= ParcelFlags.AllowVoiceChat;
+            }
+            else
+            {
+                this.parcel.Flags &= ~ParcelFlags.AllowVoiceChat;
+            }
+
+            this.parcel.Update(client.Network.CurrentSim, false);
         }
     }
 }

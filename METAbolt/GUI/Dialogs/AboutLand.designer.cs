@@ -116,6 +116,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.cbVoice = new System.Windows.Forms.CheckBox();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabOptions.SuspendLayout();
@@ -325,6 +326,7 @@
             // 
             this.tabOptions.AccessibleName = "Options tab";
             this.tabOptions.BackColor = System.Drawing.Color.White;
+            this.tabOptions.Controls.Add(this.cbVoice);
             this.tabOptions.Controls.Add(this.comboBox2);
             this.tabOptions.Controls.Add(this.label24);
             this.tabOptions.Controls.Add(this.label23);
@@ -1274,6 +1276,23 @@
             this.tabControl1.Size = new System.Drawing.Size(445, 355);
             this.tabControl1.TabIndex = 0;
             // 
+            // cbVoice
+            // 
+            this.cbVoice.AccessibleName = "Mature content";
+            this.cbVoice.AutoSize = true;
+            this.cbVoice.Enabled = false;
+            this.cbVoice.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbVoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbVoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbVoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbVoice.Location = new System.Drawing.Point(189, 154);
+            this.cbVoice.Name = "cbVoice";
+            this.cbVoice.Size = new System.Drawing.Size(86, 17);
+            this.cbVoice.TabIndex = 24;
+            this.cbVoice.Text = "Enable Voice";
+            this.cbVoice.UseVisualStyleBackColor = true;
+            this.cbVoice.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // frmAboutLand
             // 
             this.AccessibleDescription = "ABout Land window displays information about the land your avatar is on";
@@ -1401,5 +1420,6 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.CheckBox cbVoice;
     }
 }

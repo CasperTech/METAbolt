@@ -1497,7 +1497,6 @@
     <None Include="Resources\a_left.png" />
     <None Include="Resources\a_right.png" />
     <None Include="Resources\a_up.png" />
-    <Content Include="Resources\build.png" />
     <None Include="Resources\Closed_Folder.png" />
     <None Include="Resources\ChairAnn.png" />
     <None Include="Resources\chat.png" />
@@ -1514,6 +1513,7 @@
     <None Include="Resources\c_se.png" />
     <None Include="Resources\c_sw.png" />
     <None Include="Resources\c_w.png" />
+    <None Include="Resources\build.png" />
     <Content Include="Resources\damage.png" />
     <None Include="Resources\debug.png" />
     <None Include="Resources\donate2.png" />
@@ -1537,6 +1537,7 @@
     <None Include="Resources\friend.png" />
     <None Include="Resources\Google_Translate.png" />
     <None Include="Resources\get_info.png" />
+    <None Include="Resources\for_sale.png" />
     <Content Include="Resources\goto.gif" />
     <None Include="Resources\Help_and_Support.png" />
     <None Include="Resources\Internet.png" />
@@ -1583,6 +1584,10 @@
     <None Include="Resources\profile.png" />
     <None Include="Resources\lyrics.gif" />
     <None Include="Resources\lyrics.png" />
+    <None Include="Resources\no_voice.png" />
+    <None Include="Resources\no_scripts.png" />
+    <None Include="Resources\no_push.png" />
+    <None Include="Resources\no_fly.png" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />
@@ -1594,6 +1599,7 @@
     <None Include="Resources\remove_format_i.png" />
     <None Include="Resources\save_i.png" />
     <None Include="Resources\save_sl.png" />
+    <None Include="Resources\safe.png" />
     <Content Include="Resources\script.png" />
     <None Include="Resources\Search.png" />
     <None Include="Resources\Set_Program_Access_and_Defaults.png" />

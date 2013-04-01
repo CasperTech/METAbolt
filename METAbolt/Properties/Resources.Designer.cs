@@ -353,6 +353,16 @@ namespace METAbolt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap build {
+            get {
+                object obj = ResourceManager.GetObject("build", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap c_e {
             get {
                 object obj = ResourceManager.GetObject("c_e", resourceCulture);
@@ -683,6 +693,16 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap follow_new {
             get {
                 object obj = ResourceManager.GetObject("follow_new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap for_sale {
+            get {
+                object obj = ResourceManager.GetObject("for_sale", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1083,6 +1103,46 @@ namespace METAbolt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap no_fly {
+            get {
+                object obj = ResourceManager.GetObject("no_fly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_push {
+            get {
+                object obj = ResourceManager.GetObject("no_push", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_scripts {
+            get {
+                object obj = ResourceManager.GetObject("no_scripts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_voice {
+            get {
+                object obj = ResourceManager.GetObject("no_voice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap not_found {
             get {
                 object obj = ResourceManager.GetObject("not_found", resourceCulture);
@@ -1254,6 +1314,16 @@ namespace METAbolt.Properties {
         internal static System.Drawing.Bitmap remove_format_i {
             get {
                 object obj = ResourceManager.GetObject("remove_format_i", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap safe {
+            get {
+                object obj = ResourceManager.GetObject("safe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

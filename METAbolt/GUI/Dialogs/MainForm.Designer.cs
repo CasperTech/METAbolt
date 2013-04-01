@@ -45,6 +45,7 @@ namespace METAbolt
             this.tb4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tb7 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnMETAbolt = new System.Windows.Forms.ToolStripDropDownButton();
@@ -167,7 +168,8 @@ namespace METAbolt
             this.tb3,
             this.tb4,
             this.tb5,
-            this.tb6});
+            this.tb6,
+            this.tb7});
             this.statusStrip1.Location = new System.Drawing.Point(0, 25);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -265,7 +267,8 @@ namespace METAbolt
             // 
             this.tb1.AccessibleDescription = "You cannot fly on this parcel";
             this.tb1.AccessibleName = "No fly";
-            this.tb1.Image = ((System.Drawing.Image)(resources.GetObject("tb1.Image")));
+            this.tb1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb1.Image = global::METAbolt.Properties.Resources.no_fly;
             this.tb1.Name = "tb1";
             this.tb1.Size = new System.Drawing.Size(16, 19);
             this.tb1.ToolTipText = "No Fly";
@@ -276,7 +279,8 @@ namespace METAbolt
             // tb2
             // 
             this.tb2.AccessibleName = "Building not allowed on current parcel";
-            this.tb2.Image = ((System.Drawing.Image)(resources.GetObject("tb2.Image")));
+            this.tb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb2.Image = global::METAbolt.Properties.Resources.build;
             this.tb2.Name = "tb2";
             this.tb2.Size = new System.Drawing.Size(16, 19);
             this.tb2.ToolTipText = "No Build";
@@ -286,7 +290,8 @@ namespace METAbolt
             // tb3
             // 
             this.tb3.AccessibleName = "Scripts not allowed on current parcel";
-            this.tb3.Image = ((System.Drawing.Image)(resources.GetObject("tb3.Image")));
+            this.tb3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb3.Image = global::METAbolt.Properties.Resources.no_scripts;
             this.tb3.Name = "tb3";
             this.tb3.Size = new System.Drawing.Size(16, 19);
             this.tb3.ToolTipText = "No Scripts";
@@ -296,7 +301,8 @@ namespace METAbolt
             // tb4
             // 
             this.tb4.AccessibleName = "Push not allowed on current parcel";
-            this.tb4.Image = ((System.Drawing.Image)(resources.GetObject("tb4.Image")));
+            this.tb4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb4.Image = global::METAbolt.Properties.Resources.no_push;
             this.tb4.Name = "tb4";
             this.tb4.Size = new System.Drawing.Size(16, 19);
             this.tb4.ToolTipText = "No Push";
@@ -306,7 +312,8 @@ namespace METAbolt
             // tb5
             // 
             this.tb5.AccessibleName = "Damage not allowed on current parcel";
-            this.tb5.Image = ((System.Drawing.Image)(resources.GetObject("tb5.Image")));
+            this.tb5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb5.Image = global::METAbolt.Properties.Resources.safe;
             this.tb5.Name = "tb5";
             this.tb5.Size = new System.Drawing.Size(16, 19);
             this.tb5.ToolTipText = "Safe";
@@ -316,12 +323,24 @@ namespace METAbolt
             // tb6
             // 
             this.tb6.AccessibleName = "This parcel is for sale";
-            this.tb6.Image = ((System.Drawing.Image)(resources.GetObject("tb6.Image")));
+            this.tb6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb6.Image = global::METAbolt.Properties.Resources.for_sale;
             this.tb6.Name = "tb6";
             this.tb6.Size = new System.Drawing.Size(16, 19);
             this.tb6.ToolTipText = "For Sale";
             this.tb6.Visible = false;
             this.tb6.MouseEnter += new System.EventHandler(this.tb6_MouseEnter);
+            // 
+            // tb7
+            // 
+            this.tb7.AccessibleName = "Voice disabled";
+            this.tb7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb7.Image = global::METAbolt.Properties.Resources.no_voice;
+            this.tb7.Name = "tb7";
+            this.tb7.Size = new System.Drawing.Size(16, 19);
+            this.tb7.ToolTipText = "Voice disabled";
+            this.tb7.Visible = false;
+            this.tb7.MouseEnter += new System.EventHandler(this.tb7_MouseEnter);
             // 
             // toolStripContainer1
             // 
@@ -1375,6 +1394,7 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripLabel tsTime;
         private System.Windows.Forms.ToolStripLabel tsTimeOut;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel tb7;
     }
 }
 

@@ -262,6 +262,7 @@ namespace METAbolt
                 tb4.Visible = false;
                 tb5.Visible = false;
                 tb6.Visible = false;
+                tb7.Visible = false;
 
                 //set them to false incase of parcel chance
                 Aboutlandforsale = false;
@@ -346,8 +347,12 @@ namespace METAbolt
                 }
                 if ((parcel.Flags & ParcelFlags.AllowVoiceChat) != ParcelFlags.AllowVoiceChat)
                 {
-                    //tb1.Visible = true;
+                    tb7.Visible = true;
                     instance.AllowVoice = false;
+                }
+                else
+                {
+                    instance.AllowVoice = true;
                 }
 
                 // Log tp/lm location into history
@@ -795,6 +800,7 @@ namespace METAbolt
                 tb4.Visible = false;
                 tb5.Visible = false;
                 tb6.Visible = false;
+                tb7.Visible = false;
             }
         }
 
@@ -2093,6 +2099,11 @@ namespace METAbolt
         private void tlblParcel_MouseLeave(object sender, EventArgs e)
         {
             tlblParcel.BackColor = Color.White;
+        }
+
+        private void tb7_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(statusStrip1, "Voice disabled");
         }
 
         //private void FavsToolStripMenuItem_Click(object sender, EventArgs e)
