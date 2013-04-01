@@ -344,6 +344,11 @@ namespace METAbolt
                 {
                     AllowTerraform = true;
                 }
+                if ((parcel.Flags & ParcelFlags.AllowVoiceChat) != ParcelFlags.AllowVoiceChat)
+                {
+                    //tb1.Visible = true;
+                    instance.AllowVoice = false;
+                }
 
                 // Log tp/lm location into history
                 DateTime timestamp = DateTime.Now;

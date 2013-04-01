@@ -435,6 +435,17 @@ namespace METAbolt
             }
             catch { ; }
 
+            checkBox5.Enabled = instance.AllowVoice;
+
+            if (checkBox5.Enabled)
+            {
+                label18.Text = "Check 'Voice ON' box below. Then on 'Session start' unmute MIC to talk";
+            }
+            else
+            {
+                label18.Text = "Voice is disabled on this parcel";
+            }
+
             client.Appearance.AppearanceSet -= new EventHandler<AppearanceSetEventArgs>(Appearance_OnAppearanceSet);
         }
 

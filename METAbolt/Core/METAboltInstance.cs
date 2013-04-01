@@ -111,7 +111,8 @@ namespace METAbolt
         private bool readims = false;
         public InventoryConsole insconsole;
         private string afffile = string.Empty;
-        private string dicfile = string.Empty;  
+        private string dicfile = string.Empty;
+        private bool allowvoice = true;
 
         internal class ThreadExceptionHandler
         {
@@ -1231,6 +1232,12 @@ namespace METAbolt
         {
             get { return dicfile; }
             set { dicfile = value; }
+        }
+
+        public bool AllowVoice
+        {
+            get { return allowvoice; }
+            set { allowvoice = value; }
         }
     }
 }
