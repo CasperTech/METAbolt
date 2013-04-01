@@ -39,6 +39,7 @@ namespace METAbolt
         void PrintLinkHeader(string text, string link);
         void PrintLinkHeader(string text, string uuid, string link);
         void PrintLink(string text, string link);
+        void PrintClassicTextDate(string text);
         //void PrintLine();
         void ClearText();
 

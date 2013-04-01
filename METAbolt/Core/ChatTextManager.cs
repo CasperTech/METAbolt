@@ -192,6 +192,8 @@ namespace METAbolt
         {
             showTimestamps = e.AppliedConfig.ChatTimestamps;
 
+            classiclayout = this.instance.Config.CurrentConfig.ClassicChatLayout;
+
             //TEnabled = e.AppliedConfig.EnableTweeter;
             //tName = e.AppliedConfig.TweeterName;
             //tPwd = e.AppliedConfig.TweeterPwd;
@@ -848,7 +850,8 @@ namespace METAbolt
             if (classiclayout)
             {
                 textPrinter.SetSelectionForeColor(Color.Gray);
-                textPrinter.PrintText(prefix);
+                textPrinter.PrintClassicTextDate(prefix);
+                //textPrinter.PrintDate(prefix);
             }
             else
             {
@@ -1177,7 +1180,7 @@ namespace METAbolt
                     //    dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
                     //}
 
-                    textPrinter.PrintText(dte.ToString("[HH:mm] "));
+                    textPrinter.PrintClassicTextDate(dte.ToString("[HH:mm] "));
                 }
 
                 try

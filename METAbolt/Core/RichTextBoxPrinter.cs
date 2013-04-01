@@ -325,6 +325,50 @@ namespace METAbolt
             }
         }
 
+        public void PrintClassicTextDate(string text)
+        {
+            if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintClassicTextDate(text); });
+            else
+            {
+                // bkcolour = config.CurrentConfig.HeaderBackColour;
+
+                if (text == null) return;
+
+                //rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
+                ////rtb.SelectionBackColor = rtb.BackColor = bgcolour;
+
+                if (text.Contains("secondlife:///"))
+                {
+                    if (!text.Contains("http://secondlife:///"))
+                    {
+                        text = text.Replace("secondlife:///", "http://secondlife:///");
+                    }
+                }
+
+                if (text.Contains("secondlife://"))
+                {
+                    if (!text.Contains("http://secondlife://"))
+                    {
+                        text = text.Replace("secondlife://", "http://secondlife:///");
+                    }
+                }
+
+                //rtb.Text += Environment.NewLine;
+
+                rtb.AppendText(text);
+
+                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
+
+                //rtb.AppendTextAsRtf(text, new Font(textfont, textfontsize, fontst));
+
+                CheckBufferSize();
+
+                int _findex = rtb.Text.Length - text.Length; // To be SAFE this has to be done after 'append' like this due to the buffer or we will get index out of range error when trying to replace
+
+                PutSmiley(_findex);
+            }
+        }
+
         public void PrintTextLine(string text)
         {
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintTextLine(text); });
