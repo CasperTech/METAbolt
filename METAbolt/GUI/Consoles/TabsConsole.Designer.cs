@@ -130,7 +130,7 @@ namespace METAbolt
             this.tmnuMergeWith,
             this.toolStripMenuItem1,
             this.tmnuDetachTab});
-            this.tbtnTabOptions.Image = global::METAbolt.Properties.Resources.computer_16;
+            this.tbtnTabOptions.Image = global::METAbolt.Properties.Resources.m_icon;
             this.tbtnTabOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnTabOptions.Name = "tbtnTabOptions";
             this.tbtnTabOptions.Size = new System.Drawing.Size(29, 22);
@@ -139,22 +139,22 @@ namespace METAbolt
             // tmnuMergeWith
             // 
             this.tmnuMergeWith.AccessibleName = "Merge menu option";
-            this.tmnuMergeWith.Image = global::METAbolt.Properties.Resources.paste_16;
+            this.tmnuMergeWith.Image = global::METAbolt.Properties.Resources.m_merge;
             this.tmnuMergeWith.Name = "tmnuMergeWith";
-            this.tmnuMergeWith.Size = new System.Drawing.Size(136, 22);
+            this.tmnuMergeWith.Size = new System.Drawing.Size(152, 22);
             this.tmnuMergeWith.Text = "Merge With";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // tmnuDetachTab
             // 
             this.tmnuDetachTab.AccessibleName = "Detach menu option";
-            this.tmnuDetachTab.Image = global::METAbolt.Properties.Resources.copy_16;
+            this.tmnuDetachTab.Image = global::METAbolt.Properties.Resources.m_detach;
             this.tmnuDetachTab.Name = "tmnuDetachTab";
-            this.tmnuDetachTab.Size = new System.Drawing.Size(136, 22);
+            this.tmnuDetachTab.Size = new System.Drawing.Size(152, 22);
             this.tmnuDetachTab.Text = "Detach Tab";
             this.tmnuDetachTab.Click += new System.EventHandler(this.tmnuDetachTab_Click);
             // 

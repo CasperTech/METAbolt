@@ -1274,6 +1274,9 @@ namespace METAbolt
             ToolStripItem item = new ToolStripSeparator();
 
             tstTabs.Items.Add(item);
+
+            ToolStripItem item1 = new ToolStripSeparator();
+            tstTabs.Items.Add(item1);
         }
 
         private void InitializeGroupsTab()

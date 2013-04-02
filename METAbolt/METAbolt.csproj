@@ -1588,6 +1588,9 @@
     <None Include="Resources\no_scripts.png" />
     <None Include="Resources\no_push.png" />
     <None Include="Resources\no_fly.png" />
+    <None Include="Resources\m_detach.png" />
+    <None Include="Resources\m_icon.png" />
+    <None Include="Resources\m_merge.png" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />
