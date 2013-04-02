@@ -226,26 +226,29 @@ namespace METAbolt
 
             try
             {
-                if (parceln == null) return; 
+                //if (parceln == null) return; 
 
-                if (currentparcelid != 0)
-                {
-                    if (currentparcelid != parceln.LocalID)
-                    {
-                        currentparcelid = parceln.LocalID;
-                        this.parcel = parceln;
-                    }
-                }
-                else
-                {
-                    currentparcelid = parceln.LocalID;
-                    this.parcel = parceln;
-                }
+                //if (currentparcelid != 0)
+                //{
+                //    if (currentparcelid != parceln.LocalID)
+                //    {
+                //        currentparcelid = parceln.LocalID;
+                //        this.parcel = parceln;
+                //    }
+                //}
+                //else
+                //{
+                //    currentparcelid = parceln.LocalID;
+                //    this.parcel = parceln;
+                //}
+
+                currentparcelid = parceln.LocalID;
+                this.parcel = parceln;
 
                 this.instance.Config.CurrentConfig.pURL = @parcel.MusicURL;
                 tlblParcel.Text = parcel.Name.ToString();
 
-                client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
+               // client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
                 client.Self.RequestMuteList();
 
@@ -1193,31 +1196,37 @@ namespace METAbolt
         private void tb1_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(statusStrip1, "No Fly");
+            tb1.BackColor = Color.LightSteelBlue;  
         }
 
         private void tb2_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(statusStrip1, "No Build");
+            tb2.BackColor = Color.LightSteelBlue;
         }
 
         private void tb3_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(statusStrip1, "No Script");
+            tb3.BackColor = Color.LightSteelBlue;
         }
 
         private void tb4_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(statusStrip1, "No Push");
+            tb4.BackColor = Color.LightSteelBlue;
         }
 
         private void tb5_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(statusStrip1, "Safe");
+            tb5.BackColor = Color.LightSteelBlue;
         }
 
         private void tb6_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(statusStrip1, "For Sale");
+            tb6.BackColor = Color.LightSteelBlue;
         }
 
         private void tlblParcel_MouseEnter(object sender, EventArgs e)
@@ -2104,6 +2113,47 @@ namespace METAbolt
         private void tb7_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(statusStrip1, "Voice disabled");
+            tb7.BackColor = Color.LightSteelBlue;
+        }
+
+        private void tb2_MouseLeave(object sender, EventArgs e)
+        {
+            tb2.BackColor = Color.White;
+        }
+
+        private void tb1_MouseLeave(object sender, EventArgs e)
+        {
+            tb1.BackColor = Color.White;
+        }
+
+        private void tb3_MouseLeave(object sender, EventArgs e)
+        {
+            tb3.BackColor = Color.White;
+        }
+
+        private void tb4_MouseLeave(object sender, EventArgs e)
+        {
+            tb4.BackColor = Color.White;
+        }
+
+        private void tb5_Click(object sender, EventArgs e)
+        {
+            //tb5.BackColor = Color.White;
+        }
+
+        private void tb5_MouseLeave(object sender, EventArgs e)
+        {
+            tb5.BackColor = Color.White;
+        }
+
+        private void tb6_MouseLeave(object sender, EventArgs e)
+        {
+            tb6.BackColor = Color.White;
+        }
+
+        private void tb7_MouseLeave(object sender, EventArgs e)
+        {
+            tb7.BackColor = Color.White;
         }
 
         //private void FavsToolStripMenuItem_Click(object sender, EventArgs e)

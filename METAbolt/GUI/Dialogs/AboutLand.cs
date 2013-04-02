@@ -98,10 +98,11 @@ namespace METAbolt
 
                 client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
-                PopData();
+                //PopData();
             }
             else
             {
+                PopData();
                 MessageBox.Show("Could not retreive current parcel details from SL. Try again later.", "METAbolt");  
             }
         }
@@ -131,13 +132,17 @@ namespace METAbolt
         private void AboutLand_Disposed(object sender, EventArgs e)
         {
             //client.Parcels.ParcelDwellReply -= new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
-            client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
-            client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
-            client.Parcels.ParcelObjectOwnersReply -= new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
+            //client.Avatars.UUIDNameReply -= new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
+            //client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+            //client.Parcels.ParcelObjectOwnersReply -= new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
         }
 
         private void GroupMembersHandler(object sender, GroupMembersReplyEventArgs e)
         {
+            if (e.GroupID != parcel.GroupID) return;
+
+            client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+ 
             // do the stuff here
             if (e.Members.ContainsKey(client.Self.AgentID))
             {
@@ -150,8 +155,6 @@ namespace METAbolt
 
                 //return;
             }
-
-            client.Groups.GroupMembersReply -= new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
         }
 
         private bool HasGroupPower(GroupPowers power, UUID groupID)
@@ -165,9 +168,14 @@ namespace METAbolt
         {
             try
             {
+                if (ea.LocalID != parcel.LocalID) return;
+
+                client.Parcels.ParcelDwellReply -= new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
+
                 BeginInvoke(new MethodInvoker(delegate()
                 {
                     PopData();
+                    lblTraffic.Text = ea.Dwell.ToString();
                 }));
             }
             catch
@@ -277,7 +285,7 @@ namespace METAbolt
 
                 if (parcel == null) return;
 
-                lblTraffic.Text = this.instance.MainForm.dwell;
+                //lblTraffic.Text = this.instance.MainForm.dwell;
 
                 if (parcel.OwnerID == client.Self.AgentID)
                 {
@@ -324,6 +332,9 @@ namespace METAbolt
                     pictureBox2.Enabled = false;
 
                     client.Groups.RequestGroupMembers(parcel.GroupID);
+
+                    client.Groups.GroupNamesReply += new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
+                    client.Groups.RequestGroupName(parcel.GroupID);
                 }
                 else
                 {
@@ -332,13 +343,13 @@ namespace METAbolt
                     pictureBox2.Enabled = true;
                 }
 
-                if (parcel.GroupID != UUID.Zero)
-                {
-                    client.Groups.GroupNamesReply += new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
-                    txtGroupOwner.Text = parcel.GroupID.ToString();
-                    client.Groups.RequestGroupMembers(parcel.GroupID);
-                    client.Groups.RequestGroupName(parcel.GroupID);
-                }
+                //if (parcel.GroupID != UUID.Zero)
+                //{
+                //    client.Groups.GroupNamesReply += new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
+                //    //txtGroupOwner.Text = parcel.GroupID.ToString();
+                //    client.Groups.RequestGroupMembers(parcel.GroupID);
+                //    client.Groups.RequestGroupName(parcel.GroupID);
+                //}
 
                 txtClaimDate.Text = parcel.ClaimDate.ToString(CultureInfo.CurrentCulture);
                 txtArea.Text = parcel.Area.ToString(CultureInfo.CurrentCulture) + "sq. m.";
@@ -428,8 +439,12 @@ namespace METAbolt
             if (!e.GroupNames.ContainsKey(parcel.GroupID)) return;
 
             client.Groups.GroupNamesReply -= new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
-            txtGroupOwner.Text = e.GroupNames[parcel.GroupID];
-            pictureBox3.Visible = true;
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                txtGroupOwner.Text = e.GroupNames[parcel.GroupID];
+                pictureBox3.Visible = true;
+            }));
         }
 
         private void Parcels_ParcelAccessListReply(object sender, ParcelAccessListReplyEventArgs e)

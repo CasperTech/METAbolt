@@ -500,6 +500,8 @@ namespace METAbolt
 
         private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs e)
         {
+            if (this.instance.MainForm.parcel.LocalID != e.LocalID) return; 
+
             BeginInvoke(new MethodInvoker(delegate()
             {
                 UpdateMedia();

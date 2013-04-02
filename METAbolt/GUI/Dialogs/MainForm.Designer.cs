@@ -200,13 +200,13 @@ namespace METAbolt
             this.tlblLoginName.AccessibleDescription = "Displays the name of your avatar when online";
             this.tlblLoginName.AccessibleName = "Avatar name or status";
             this.tlblLoginName.AutoSize = false;
-            this.tlblLoginName.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.tlblLoginName.ForeColor = System.Drawing.Color.White;
             this.tlblLoginName.Image = global::METAbolt.Properties.Resources.Home_Black;
             this.tlblLoginName.IsLink = true;
             this.tlblLoginName.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.tlblLoginName.Margin = new System.Windows.Forms.Padding(0);
             this.tlblLoginName.Name = "tlblLoginName";
-            this.tlblLoginName.Size = new System.Drawing.Size(20, 19);
+            this.tlblLoginName.Size = new System.Drawing.Size(20, 24);
             this.tlblLoginName.Click += new System.EventHandler(this.tlblLoginName_Click);
             this.tlblLoginName.MouseEnter += new System.EventHandler(this.tlblLoginName_MouseEnter);
             this.tlblLoginName.MouseLeave += new System.EventHandler(this.tlblLoginName_MouseLeave);
@@ -235,8 +235,9 @@ namespace METAbolt
             this.toolStripStatusLabel1.Image = global::METAbolt.Properties.Resources.get_info;
             this.toolStripStatusLabel1.IsLink = true;
             this.toolStripStatusLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(20, 19);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(20, 24);
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             this.toolStripStatusLabel1.MouseEnter += new System.EventHandler(this.toolStripStatusLabel1_MouseEnter);
             this.toolStripStatusLabel1.MouseLeave += new System.EventHandler(this.toolStripStatusLabel1_MouseLeave);
@@ -254,7 +255,7 @@ namespace METAbolt
             this.tlblParcel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.tlblParcel.LinkColor = System.Drawing.Color.RoyalBlue;
             this.tlblParcel.Name = "tlblParcel";
-            this.tlblParcel.Size = new System.Drawing.Size(567, 19);
+            this.tlblParcel.Size = new System.Drawing.Size(424, 19);
             this.tlblParcel.Spring = true;
             this.tlblParcel.Text = "No Parcel";
             this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -267,80 +268,107 @@ namespace METAbolt
             // 
             this.tb1.AccessibleDescription = "You cannot fly on this parcel";
             this.tb1.AccessibleName = "No fly";
-            this.tb1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb1.AutoSize = false;
             this.tb1.Image = global::METAbolt.Properties.Resources.no_fly;
+            this.tb1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tb1.Margin = new System.Windows.Forms.Padding(1);
             this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(16, 19);
+            this.tb1.Size = new System.Drawing.Size(18, 22);
             this.tb1.ToolTipText = "No Fly";
             this.tb1.Visible = false;
             this.tb1.Click += new System.EventHandler(this.tb1_Click);
             this.tb1.MouseEnter += new System.EventHandler(this.tb1_MouseEnter);
+            this.tb1.MouseLeave += new System.EventHandler(this.tb1_MouseLeave);
             // 
             // tb2
             // 
             this.tb2.AccessibleName = "Building not allowed on current parcel";
-            this.tb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb2.AutoSize = false;
+            this.tb2.BackColor = System.Drawing.Color.DarkRed;
             this.tb2.Image = global::METAbolt.Properties.Resources.build;
+            this.tb2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tb2.Margin = new System.Windows.Forms.Padding(0);
             this.tb2.Name = "tb2";
-            this.tb2.Size = new System.Drawing.Size(16, 19);
+            this.tb2.Size = new System.Drawing.Size(18, 24);
             this.tb2.ToolTipText = "No Build";
             this.tb2.Visible = false;
             this.tb2.MouseEnter += new System.EventHandler(this.tb2_MouseEnter);
+            this.tb2.MouseLeave += new System.EventHandler(this.tb2_MouseLeave);
             // 
             // tb3
             // 
             this.tb3.AccessibleName = "Scripts not allowed on current parcel";
-            this.tb3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb3.AutoSize = false;
             this.tb3.Image = global::METAbolt.Properties.Resources.no_scripts;
+            this.tb3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tb3.Margin = new System.Windows.Forms.Padding(1);
             this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(16, 19);
+            this.tb3.Size = new System.Drawing.Size(18, 22);
             this.tb3.ToolTipText = "No Scripts";
             this.tb3.Visible = false;
             this.tb3.MouseEnter += new System.EventHandler(this.tb3_MouseEnter);
+            this.tb3.MouseLeave += new System.EventHandler(this.tb3_MouseLeave);
             // 
             // tb4
             // 
             this.tb4.AccessibleName = "Push not allowed on current parcel";
+            this.tb4.AutoSize = false;
             this.tb4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tb4.Image = global::METAbolt.Properties.Resources.no_push;
+            this.tb4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tb4.Margin = new System.Windows.Forms.Padding(1);
             this.tb4.Name = "tb4";
-            this.tb4.Size = new System.Drawing.Size(16, 19);
+            this.tb4.Size = new System.Drawing.Size(18, 22);
             this.tb4.ToolTipText = "No Push";
             this.tb4.Visible = false;
             this.tb4.MouseEnter += new System.EventHandler(this.tb4_MouseEnter);
+            this.tb4.MouseLeave += new System.EventHandler(this.tb4_MouseLeave);
             // 
             // tb5
             // 
             this.tb5.AccessibleName = "Damage not allowed on current parcel";
+            this.tb5.AutoSize = false;
             this.tb5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tb5.Image = global::METAbolt.Properties.Resources.safe;
+            this.tb5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tb5.Margin = new System.Windows.Forms.Padding(1);
             this.tb5.Name = "tb5";
-            this.tb5.Size = new System.Drawing.Size(16, 19);
+            this.tb5.Size = new System.Drawing.Size(18, 22);
             this.tb5.ToolTipText = "Safe";
             this.tb5.Visible = false;
+            this.tb5.Click += new System.EventHandler(this.tb5_Click);
             this.tb5.MouseEnter += new System.EventHandler(this.tb5_MouseEnter);
+            this.tb5.MouseLeave += new System.EventHandler(this.tb5_MouseLeave);
             // 
             // tb6
             // 
             this.tb6.AccessibleName = "This parcel is for sale";
+            this.tb6.AutoSize = false;
             this.tb6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tb6.Image = global::METAbolt.Properties.Resources.for_sale;
+            this.tb6.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tb6.Margin = new System.Windows.Forms.Padding(1);
             this.tb6.Name = "tb6";
-            this.tb6.Size = new System.Drawing.Size(16, 19);
+            this.tb6.Size = new System.Drawing.Size(18, 22);
             this.tb6.ToolTipText = "For Sale";
             this.tb6.Visible = false;
             this.tb6.MouseEnter += new System.EventHandler(this.tb6_MouseEnter);
+            this.tb6.MouseLeave += new System.EventHandler(this.tb6_MouseLeave);
             // 
             // tb7
             // 
             this.tb7.AccessibleName = "Voice disabled";
+            this.tb7.AutoSize = false;
             this.tb7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tb7.Image = global::METAbolt.Properties.Resources.no_voice;
+            this.tb7.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tb7.Margin = new System.Windows.Forms.Padding(1);
             this.tb7.Name = "tb7";
-            this.tb7.Size = new System.Drawing.Size(16, 19);
+            this.tb7.Size = new System.Drawing.Size(18, 22);
             this.tb7.ToolTipText = "Voice disabled";
             this.tb7.Visible = false;
             this.tb7.MouseEnter += new System.EventHandler(this.tb7_MouseEnter);
+            this.tb7.MouseLeave += new System.EventHandler(this.tb7_MouseLeave);
             // 
             // toolStripContainer1
             // 
