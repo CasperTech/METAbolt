@@ -4222,6 +4222,13 @@ namespace METAbolt
 
             if (checkBox5.Checked)
             {
+                if (!instance.AllowVoice)
+                {
+                    label18.Text = "Voice is disabled on this parcel";
+                    
+                    return;
+                }
+
                 try
                 {
                     vgate = new VoiceGateway(client);
@@ -4239,6 +4246,13 @@ namespace METAbolt
             }
             else
             {
+                if (!instance.AllowVoice)
+                {
+                    label18.Text = "Voice is disabled on this parcel";
+
+                    return;
+                }
+
                 try
                 {
                     vgate.MicMute = true;
