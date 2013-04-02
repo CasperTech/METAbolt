@@ -1591,6 +1591,9 @@
     <None Include="Resources\m_detach.png" />
     <None Include="Resources\m_icon.png" />
     <None Include="Resources\m_merge.png" />
+    <None Include="Resources\media_player.png" />
+    <None Include="Resources\music.png" />
+    <None Include="Resources\movie.png" />
     <Content Include="Resources\push.png" />
     <None Include="Resources\Scheduled_Tasks.png" />
     <None Include="Resources\Scheduled_Tasks_16.png" />
