@@ -1189,6 +1189,10 @@ namespace METAbolt
             tab.AllowMerge = false;
 
             mainConsole.RegisterTab(tab);
+
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
         }
 
         private void InitializeChatTab()
@@ -1213,6 +1217,9 @@ namespace METAbolt
             tab.AllowClose = false;
             tab.AllowDetach = false;
 
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
         }
 
         private void InitializeFriendsTab()
@@ -1236,6 +1243,10 @@ namespace METAbolt
             METAboltTab tab = AddTab("friends", "Friends", friendsConsole);
             tab.AllowClose = false;
             tab.AllowDetach = true;
+
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
         }
 
         private void InitializeIMboxTab()
@@ -1259,6 +1270,10 @@ namespace METAbolt
             METAboltTab tab = AddTab("imbox", "IMbox", imboxConsole);
             tab.AllowClose = false;
             tab.AllowDetach = true;
+
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
         }
 
         private void InitializeGroupsTab()
@@ -1290,6 +1305,10 @@ namespace METAbolt
                 //Logger.Log("Group tab error: " + ex.Message, Helpers.LogLevel.Error);
                 reporter.Show(ex);
             }
+
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
         }
 
         private void InitializeSearchTab()
@@ -1313,6 +1332,10 @@ namespace METAbolt
             METAboltTab tab = AddTab("search", "Search", searchConsole);
             tab.AllowClose = false;
             tab.AllowDetach = false;
+
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
         }
 
         private void InitializeInventoryTab()
@@ -1337,6 +1360,10 @@ namespace METAbolt
             METAboltTab tab = AddTab("inventory", "Inventory", invConsole);
             tab.AllowClose = false;
             tab.AllowDetach = true;
+
+            ToolStripItem item = new ToolStripSeparator();
+
+            tstTabs.Items.Add(item);
         }
 
         private void DisposeFriendsTab()
@@ -1418,9 +1445,9 @@ namespace METAbolt
                 tabs.Add(name.ToLower(), tab);
             }
 
-            ToolStripItem item = new ToolStripSeparator();
+            //ToolStripItem item = new ToolStripSeparator();
 
-            tstTabs.Items.Add(item);
+            //tstTabs.Items.Add(item);
 
             return tab;
         }

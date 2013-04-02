@@ -281,33 +281,19 @@ namespace METAbolt
                     case TeleportStatus.Start:
                         break;
                     case TeleportStatus.Progress:
-                        //BeginInvoke(new MethodInvoker(delegate()
-                        //{
-                        //    //if (e.Message.ToLower() == "sending_landmark" || e.Message.ToLower() == "sending_home")
-                        //    //{
-                        //    Form tpfp = frmTPdialogue.ActiveForm;
-
-                        //    if (tpfp == null)
-                        //    {
-                        //        tpf = new frmTPdialogue(instance);
-                        //        tpf.Show();
-                        //    }
-                        //    //}
-                        //}));
-
                         if (e.Message.ToLower() == "resolving")
                         {
                             if (tpf == null)
                             {
                                 tpf = new frmTPdialogue(instance);
-                                tpf.Show();
+                                tpf.ShowDialog(instance.MainForm);
                             }
                             else
                             {
                                 tpf.Dispose();
 
                                 tpf = new frmTPdialogue(instance);
-                                tpf.Show();
+                                tpf.ShowDialog(instance.MainForm);
                             }
                         }
 
@@ -316,21 +302,18 @@ namespace METAbolt
                     case TeleportStatus.Failed:
                         //MessageBox.Show(e.Message, "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                        //BeginInvoke(new MethodInvoker(delegate()
-                        //{
-                        //    if (tpf != null)
-                        //    {
-                        //        tpf.Close();
-                        //        tpf.Dispose();
-                        //        tpf = frmTPdialogue.ActiveForm;
+                        if (tpf == null)
+                        {
+                            tpf = new frmTPdialogue(instance, "Teleport Failed");
+                            tpf.ShowDialog(instance.MainForm);
+                        }
+                        else
+                        {
+                            tpf.Dispose();
 
-                        //        if (tpf != null)
-                        //        {
-                        //            tpf.Close();
-                        //            tpf.Dispose();
-                        //        }
-                        //    }
-                        //}));
+                            tpf = new frmTPdialogue(instance, "Teleport Failed");
+                            tpf.ShowDialog(instance.MainForm);
+                        }
 
                         break;
 
@@ -346,21 +329,18 @@ namespace METAbolt
                             sitTimer.Start();
                         }
 
-                        //BeginInvoke(new MethodInvoker(delegate()
-                        //{
-                        //    if (tpf != null)
-                        //    {
-                        //        tpf.Close();
-                        //        tpf.Dispose();
-                        //        tpf = frmTPdialogue.ActiveForm;
+                        if (tpf == null)
+                        {
+                            tpf = new frmTPdialogue(instance, "Teleport Succeded");
+                            tpf.ShowDialog(instance.MainForm);
+                        }
+                        else
+                        {
+                            tpf.Dispose();
 
-                        //        if (tpf != null)
-                        //        {
-                        //            tpf.Close();
-                        //            tpf.Dispose();
-                        //        }
-                        //    }
-                        //}));
+                            tpf = new frmTPdialogue(instance, "Teleport Succeded");
+                            tpf.ShowDialog(instance.MainForm);
+                        }
 
                         break;
                 }

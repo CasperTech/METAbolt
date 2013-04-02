@@ -28,6 +28,20 @@ namespace METAbolt
             InitializeStatusTimer();
         }
 
+        public frmTPdialogue(METAboltInstance instance, string msg)
+        {
+            InitializeComponent();
+
+            this.instance = instance;
+            netcom = this.instance.Netcom;
+
+            //netcom.TeleportStatusChanged += new EventHandler<TeleportEventArgs>(netcom_TeleportStatusChanged);
+
+            label1.Text = msg;
+
+            InitializeStatusTimer();
+        }
+
         private void netcom_TeleportStatusChanged(object sender, TeleportEventArgs e)
         {
             switch (e.Status)
@@ -65,7 +79,7 @@ namespace METAbolt
         private void InitializeStatusTimer()
         {
             timer1.Enabled = true;
-            timer1.Interval = 5000;
+            timer1.Interval = 3000;
             timer1.Start();
         }
 
