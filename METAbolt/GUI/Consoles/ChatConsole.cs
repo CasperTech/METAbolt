@@ -4568,11 +4568,11 @@ namespace METAbolt
                         string iname = item.Name;
                         string desc = item.Description;
 
-                        int twh = tabPage4.Width; 
+                        //int twh = tabPage4.Width; 
 
                         if (iname.Length > 48)
                         {
-                            iname = iname.Substring(0, twh - 5) + "...";
+                            iname = iname.Substring(0, 48) + "...";
                         }
 
                         ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
