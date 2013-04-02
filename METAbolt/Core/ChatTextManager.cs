@@ -1194,7 +1194,7 @@ namespace METAbolt
                     }
                     else
                     {
-                        textPrinter.PrintText(item.FromName);
+                        textPrinter.PrintClassicTextDate(item.FromName);
                     }
                 }
                 catch (Exception ex)
