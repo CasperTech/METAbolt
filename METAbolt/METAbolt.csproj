@@ -1641,6 +1641,7 @@
     <None Include="Resources\spell-checker.png" />
     <None Include="Resources\turnleft.png" />
     <None Include="Resources\turnright.png" />
+    <None Include="Resources\tp_bg.png" />
     <Content Include="Resources\up.png" />
     <None Include="Resources\Url_History_16.png" />
     <None Include="Resources\window_edit.png" />

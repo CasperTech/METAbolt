@@ -85,6 +85,7 @@ namespace METAbolt
         private int newsize = 140;
         //private bool listnerdisposed = true;
         private System.Timers.Timer sitTimer;
+        //private System.Timers.Timer tpTimer;
         private bool showing = false;
         private UUID avuuid = UUID.Zero;
         private string avname = string.Empty;
@@ -196,7 +197,9 @@ namespace METAbolt
             tp1 = tabPage1;
             tp2 = tabPage2;
             tp3 = tabPage3;
-            tp4 = tabPage4; 
+            tp4 = tabPage4;
+
+            //pTP.BackColor = Color.FromArgb(170, 64, 64, 64);  //Color.FromArgb(25, Color.DimGray);
         }
 
         private void toolTip_Draw(object sender, DrawToolTipEventArgs e)
@@ -279,41 +282,61 @@ namespace METAbolt
                 switch (e.Status)
                 {
                     case TeleportStatus.Start:
+                        pTP.Visible = true;
+                        label13.Text = "Teleporting";
+
                         break;
                     case TeleportStatus.Progress:
-                        if (e.Message.ToLower() == "resolving")
+                        BeginInvoke(new MethodInvoker(delegate()
                         {
-                            if (tpf == null)
-                            {
-                                tpf = new frmTPdialogue(instance);
-                                tpf.ShowDialog(instance.MainForm);
-                            }
-                            else
-                            {
-                                tpf.Dispose();
+                            pTP.Visible = true;
+                            label13.Text = e.Message;
+                            //label13.Refresh(); 
+                        }));
 
-                                tpf = new frmTPdialogue(instance);
-                                tpf.ShowDialog(instance.MainForm);
-                            }
-                        }
+
+                        //if (e.Message.ToLower() == "resolving")
+                        //{
+                        //    if (tpf == null)
+                        //    {
+                        //        tpf = new frmTPdialogue(instance);
+                        //        tpf.ShowDialog(instance.MainForm);
+                        //    }
+                        //    else
+                        //    {
+                        //        tpf.Dispose();
+
+                        //        tpf = new frmTPdialogue(instance);
+                        //        tpf.ShowDialog(instance.MainForm);
+                        //    }
+                        //}
 
                         break;
 
                     case TeleportStatus.Failed:
                         //MessageBox.Show(e.Message, "Teleport", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                        if (tpf == null)
-                        {
-                            tpf = new frmTPdialogue(instance, "Teleport Failed");
-                            tpf.ShowDialog(instance.MainForm);
-                        }
-                        else
-                        {
-                            tpf.Dispose();
+                        //if (tpf == null)
+                        //{
+                        //    tpf = new frmTPdialogue(instance, "Teleport Failed");
+                        //    tpf.ShowDialog(instance.MainForm);
+                        //}
+                        //else
+                        //{
+                        //    tpf.Dispose();
 
-                            tpf = new frmTPdialogue(instance, "Teleport Failed");
-                            tpf.ShowDialog(instance.MainForm);
-                        }
+                        //    tpf = new frmTPdialogue(instance, "Teleport Failed");
+                        //    tpf.ShowDialog(instance.MainForm);
+                        //}
+
+                        BeginInvoke(new MethodInvoker(delegate()
+                        {
+                            label13.Text = "Teleport Failed";
+                            pTP.Visible = true;
+
+                            TPtimer.Enabled = true;
+                            TPtimer.Start();  
+                        }));
 
                         break;
 
@@ -329,18 +352,27 @@ namespace METAbolt
                             sitTimer.Start();
                         }
 
-                        if (tpf == null)
-                        {
-                            tpf = new frmTPdialogue(instance, "Teleport Succeded");
-                            tpf.ShowDialog(instance.MainForm);
-                        }
-                        else
-                        {
-                            tpf.Dispose();
+                        //if (tpf == null)
+                        //{
+                        //    tpf = new frmTPdialogue(instance, "Teleport Succeded");
+                        //    tpf.ShowDialog(instance.MainForm);
+                        //}
+                        //else
+                        //{
+                        //    tpf.Dispose();
 
-                            tpf = new frmTPdialogue(instance, "Teleport Succeded");
-                            tpf.ShowDialog(instance.MainForm);
-                        }
+                        //    tpf = new frmTPdialogue(instance, "Teleport Succeded");
+                        //    tpf.ShowDialog(instance.MainForm);
+                        //}
+
+                        BeginInvoke(new MethodInvoker(delegate()
+                        {
+                            label13.Text = "Teleport Succeded";
+                            pTP.Visible = true;
+
+                            TPtimer.Enabled = true;
+                            TPtimer.Start(); 
+                        }));
 
                         break;
                 }
@@ -350,6 +382,31 @@ namespace METAbolt
                 reporter.Show(ex);
             }
         }
+
+        //void StartTPTimer()
+        //{
+        //    tpTimer = new System.Timers.Timer();
+        //    tpTimer.Interval = 3000;
+        //    tpTimer.Elapsed += new ElapsedEventHandler(OnTimedTPEvent);
+        //    tpTimer.Enabled = true;
+        //    tpTimer.Start();
+        //}
+
+        //private void OnTimedTPEvent(object sender, ElapsedEventArgs e)
+        //{
+        //    pTP.Visible = false;
+        //    label13.Text = "Teleporting..."; 
+        //    StopTPTimer();
+        //}
+
+        //void StopTPTimer()
+        //{
+        //    tpTimer.Stop();
+        //    tpTimer.Enabled = false;
+            
+        //    tpTimer.Elapsed -= new ElapsedEventHandler(OnTimedTPEvent);
+        //    //tpTimer.Dispose();
+        //}
 
         void ChatConsole_Disposed(object sender, EventArgs e)
         {
@@ -480,7 +537,10 @@ namespace METAbolt
 
         private void Parcels_OnParcelDwell(object sender, ParcelDwellReplyEventArgs e)
         {
-            if (this.instance.MainForm.parcel.LocalID != e.LocalID) return; 
+            if (this.instance.MainForm.parcel != null)
+            {
+                if (this.instance.MainForm.parcel.LocalID != e.LocalID) return;
+            }
 
             BeginInvoke(new MethodInvoker(delegate()
             {
@@ -4694,6 +4754,33 @@ namespace METAbolt
             sz.Width = newsize;
 
             panel6.Size = sz;
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            label13.Text = "Teleporting...";
+
+            TPtimer.Stop();
+            TPtimer.Enabled = false;
+
+            pTP.Visible = false; 
+        }
+
+        private void TPtimer_Tick(object sender, EventArgs e)
+        {
+            pTP.Visible = false;
+            label13.Text = "Teleporting...";
+
+            TPtimer.Stop();
+            TPtimer.Enabled = false;
+        }
+
+        private void rtbChat_SizeChanged(object sender, EventArgs e)
+        {
+            pTP.Location = new Point(
+            rtbChat.Width / 2 - pTP.Size.Width / 2,
+            rtbChat.Height / 2 - pTP.Size.Height / 2);
+            pTP.Anchor = AnchorStyles.None;
         }
 
         //private void lvwRadar_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)

@@ -67,6 +67,10 @@ namespace METAbolt
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pTP = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -149,6 +153,7 @@ namespace METAbolt
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
+            this.TPtimer = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -156,6 +161,9 @@ namespace METAbolt
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pTP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompass)).BeginInit();
@@ -514,6 +522,7 @@ namespace METAbolt
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel1.Controls.Add(this.pTP);
             this.splitContainer1.Panel1.Controls.Add(this.panel7);
             this.splitContainer1.Panel1.Controls.Add(this.rtbChat);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
@@ -527,6 +536,59 @@ namespace METAbolt
             this.splitContainer1.Size = new System.Drawing.Size(729, 443);
             this.splitContainer1.SplitterDistance = 513;
             this.splitContainer1.TabIndex = 7;
+            // 
+            // pTP
+            // 
+            this.pTP.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pTP.BackColor = System.Drawing.Color.DimGray;
+            this.pTP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pTP.Controls.Add(this.pictureBox4);
+            this.pTP.Controls.Add(this.label13);
+            this.pTP.Controls.Add(this.pictureBox1);
+            this.pTP.Location = new System.Drawing.Point(91, 178);
+            this.pTP.MaximumSize = new System.Drawing.Size(332, 78);
+            this.pTP.MinimumSize = new System.Drawing.Size(332, 78);
+            this.pTP.Name = "pTP";
+            this.pTP.Size = new System.Drawing.Size(332, 78);
+            this.pTP.TabIndex = 20;
+            this.pTP.Visible = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Image = global::METAbolt.Properties.Resources.delete_16;
+            this.pictureBox4.Location = new System.Drawing.Point(313, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.TabIndex = 46;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(93, 31);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(100, 20);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Teleporting...";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::METAbolt.Properties.Resources.tp;
+            this.pictureBox1.InitialImage = global::METAbolt.Properties.Resources.tp;
+            this.pictureBox1.Location = new System.Drawing.Point(22, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // panel7
             // 
@@ -623,6 +685,7 @@ namespace METAbolt
             this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
             this.rtbChat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbChat_LinkClicked);
             this.rtbChat.Click += new System.EventHandler(this.rtbChat_Click);
+            this.rtbChat.SizeChanged += new System.EventHandler(this.rtbChat_SizeChanged);
             this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
             this.rtbChat.Enter += new System.EventHandler(this.rtbChat_Enter);
             this.rtbChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbChat_KeyDown);
@@ -1648,6 +1711,11 @@ namespace METAbolt
             this.tsdefault.Text = "[ No favourites found ]";
             this.tsdefault.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // TPtimer
+            // 
+            this.TPtimer.Interval = 3000;
+            this.TPtimer.Tick += new System.EventHandler(this.TPtimer_Tick);
+            // 
             // ChatConsole
             // 
             this.AccessibleDescription = "Chat window for entering and siplaying public chat";
@@ -1671,6 +1739,10 @@ namespace METAbolt
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
+            this.pTP.ResumeLayout(false);
+            this.pTP.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -1822,5 +1894,10 @@ namespace METAbolt
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel pTP;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Timer TPtimer;
     }
 }
