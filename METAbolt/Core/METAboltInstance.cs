@@ -895,7 +895,9 @@ namespace METAbolt
 
             client.Self.Movement.Camera.Far = (float)config.CurrentConfig.RadarRange;
             client.Self.Movement.AutoResetControls = false;
-            client.Self.Movement.UpdateInterval = 250;
+            client.Self.Movement.UpdateInterval = 250; 
+            
+            client.Settings.HTTP_INVENTORY = true;  
 
             // This is for backward compatibility
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)

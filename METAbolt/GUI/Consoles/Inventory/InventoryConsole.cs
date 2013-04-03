@@ -1460,7 +1460,13 @@ namespace METAbolt
                 }
 
                 client.Appearance.ReplaceOutfit(items);
-                client.Appearance.RequestSetAppearance(true);
+
+                ThreadPool.QueueUserWorkItem(sync =>
+                {
+                    Thread.Sleep(2000);
+                    client.Appearance.RequestSetAppearance(true);
+                });
+                //client.Appearance.RequestSetAppearance(true);
 
                 Logger.Log("Outfit changer: Starting to change outfit to '" + clth + "'", Helpers.LogLevel.Info);
                 label5.Text = "Currently wearing folder : " + clth;
@@ -1706,7 +1712,12 @@ namespace METAbolt
                 }
 
                 client.Appearance.ReplaceOutfit(items);
-                client.Appearance.RequestSetAppearance(true);
+
+                ThreadPool.QueueUserWorkItem(sync =>
+                {
+                    Thread.Sleep(2000);
+                    client.Appearance.RequestSetAppearance(true);
+                });
 
                 Logger.Log("Outfit changer: Starting to change outfit to '" + clth + "'", Helpers.LogLevel.Info);
                 label5.Text = "Currently wearing folder : " + clth;
@@ -1899,7 +1910,13 @@ namespace METAbolt
             }
 
             client.Appearance.ReplaceOutfit(clothing);
-            client.Appearance.RequestSetAppearance(true);
+
+            ThreadPool.QueueUserWorkItem(sync =>
+            {
+                Thread.Sleep(2000);
+                client.Appearance.RequestSetAppearance(true);
+            });
+            //client.Appearance.RequestSetAppearance(true);
         }
 
         private void smM1_Opening(object sender, CancelEventArgs e)
@@ -2113,7 +2130,13 @@ namespace METAbolt
                 }
 
                 client.Appearance.ReplaceOutfit(items);
-                client.Appearance.RequestSetAppearance(true);
+
+                ThreadPool.QueueUserWorkItem(sync =>
+                {
+                    Thread.Sleep(2000);
+                    client.Appearance.RequestSetAppearance(true);
+                });
+                //client.Appearance.RequestSetAppearance(true);
                 instance.TabConsole.DisplayChatScreen("Wearing the contents of folder " + folder.Name);
             }
             else
@@ -2124,6 +2147,12 @@ namespace METAbolt
                 {
                     managerbusy = client.Appearance.ManagerBusy;
                     client.Appearance.AddToOutfit(item);
+
+                    ThreadPool.QueueUserWorkItem(sync =>
+                    {
+                        Thread.Sleep(2000);
+                        client.Appearance.RequestSetAppearance(true);
+                    });
                     //client.Appearance.Attach(item, AttachmentPoint.Default, false);
                 }
                 else if (item.AssetType == AssetType.Object)
