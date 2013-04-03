@@ -57,7 +57,7 @@ namespace METAbolt
 
         private void ProcessEventArgs(InstantMessageEventArgs e)
         {
-            string[] split;
+            //string[] split;
 
             try
             {
