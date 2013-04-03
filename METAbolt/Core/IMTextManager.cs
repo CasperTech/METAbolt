@@ -300,7 +300,7 @@ namespace METAbolt
         private void ProcessIncomingIM(InstantMessageEventArgs e)
         {
             // Check to see if avatar is muted
-            if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident))
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName))
                 return;
 
             string iuid = this.instance.Config.CurrentConfig.IgnoreUID;

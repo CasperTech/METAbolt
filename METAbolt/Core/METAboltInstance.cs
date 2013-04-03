@@ -444,7 +444,7 @@ namespace METAbolt
             return (bytes / 1024f) / 1024f;
         }
 
-        public bool IsAvatarMuted(UUID avatar, MuteType mtyp)
+        public bool IsAvatarMuted(UUID avatar, string name)
         {
             //if (avatar == UUID.Zero) return false;
   
@@ -463,9 +463,12 @@ namespace METAbolt
             //}
             //catch { return false; }
 
-            MuteEntry mentry = client.Self.MuteList.Find(mle => mle.Type == mtyp && mle.ID == avatar);
+            //MuteEntry mentry = client.Self.MuteList.Find(mle => mle.Type == mtyp && mle.ID == avatar);
 
-            if (mentry != null)
+            if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.Object && mle.ID == avatar) // id 
+                || (mle.Type == MuteType.ByName && mle.Name == name) // avatar/object name
+                || (mle.Type == MuteType.Resident && mle.ID == avatar) // avatar
+                ))
             {
                 return true;
             }
@@ -473,6 +476,15 @@ namespace METAbolt
             {
                 return false;
             }
+
+            //if (mentry != null)
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
         }
 
         public bool IsGiveItem(string item, UUID avid)

@@ -147,7 +147,7 @@ namespace METAbolt
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (instance.IsAvatarMuted(ed.ObjectID, MuteType.Object))
+            if (instance.IsAvatarMuted(ed.ObjectID, ed.ObjectName))
             {
                 MessageBox.Show(ed.ObjectName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;

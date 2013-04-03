@@ -524,7 +524,7 @@ namespace METAbolt
                     HandleIM(e);
                     break;
                 case InstantMessageDialog.MessageFromObject:
-                    if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Object)) return;
+                    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
                     if (instance.State.IsBusy) return;
                     DisplayOnChat(e);
                     
@@ -553,12 +553,12 @@ namespace METAbolt
                     break;
 
                 case InstantMessageDialog.RequestTeleport:
-                    if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident)) return;
+                    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
                     HandleTP(e);
                     break;
 
                 case InstantMessageDialog.FriendshipOffered:
-                    if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident)) return;
+                    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
                     HandleFriendship(e);
                     break;
 
@@ -581,7 +581,7 @@ namespace METAbolt
                     break;
 
                 case InstantMessageDialog.GroupInvitation:
-                    if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident)) return;
+                    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
                     HandleGroupInvite(e);
                     break;
 
@@ -594,7 +594,7 @@ namespace METAbolt
                     break;
 
                 case InstantMessageDialog.GroupNotice:
-                    if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident)) return;
+                    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
                     HandleGroupNoticeReceived(e);
                     break;
 
@@ -607,7 +607,7 @@ namespace METAbolt
                     break;
 
                 case InstantMessageDialog.MessageBox:
-                    if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Object)) return;
+                    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
                     HandleMessageBox(e);
                     break;
             }
@@ -917,7 +917,7 @@ namespace METAbolt
                 //    agentname.Replace(" ", ".");  
                 //}
 
-                if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident)) return;
+                if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
 
                 if (TabExists(e.IM.FromAgentName))
                 {
@@ -1017,11 +1017,11 @@ namespace METAbolt
 
         private void HandleInventory(InstantMessageEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Resident))
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName))
                 return;
 
-            if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Object))
-                return;
+            //if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Object))
+            //    return;
 
             //if (instance.State.IsBusy)
             //{

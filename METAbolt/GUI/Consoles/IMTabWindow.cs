@@ -771,7 +771,7 @@ namespace METAbolt
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (instance.IsAvatarMuted(target, MuteType.Resident))
+            if (instance.IsAvatarMuted(target, toName))
             {
                 MessageBox.Show(toName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;

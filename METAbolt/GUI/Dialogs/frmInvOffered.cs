@@ -144,7 +144,7 @@ namespace METAbolt
         {
             client.Inventory.RemoveItem(objectID);
 
-            if (instance.IsAvatarMuted(msg.FromAgentID, MuteType.Resident) || instance.IsAvatarMuted(msg.FromAgentID, MuteType.Object))
+            if (instance.IsAvatarMuted(msg.FromAgentID, msg.FromAgentName))
             {
                 MessageBox.Show(msg.FromAgentName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
