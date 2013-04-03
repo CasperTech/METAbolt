@@ -1388,9 +1388,9 @@ namespace METAbolt
             this.checkBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4.Location = new System.Drawing.Point(25, 92);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(228, 17);
+            this.checkBox4.Size = new System.Drawing.Size(251, 17);
             this.checkBox4.TabIndex = 2;
-            this.checkBox4.Text = "Use \'modern\' layout in chat and IM screens";
+            this.checkBox4.Text = "Use \'modern\' text layout in chat and IM screens";
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
