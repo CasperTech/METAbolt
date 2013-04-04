@@ -320,6 +320,7 @@ namespace METAbolt
             AppearanceSet = true;
 
             //CheckAttachments();
+            client.Appearance.RequestAgentWearables();  
 
             try
             {
@@ -1369,6 +1370,8 @@ namespace METAbolt
                         folder = (InventoryFolder)node.Parent.Tag;
                     }
                 }
+
+                //client.Inventory.RequestFolderContents(folder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
 
                 UpdateFolder(folder.UUID);
             }

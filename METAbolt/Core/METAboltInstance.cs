@@ -803,7 +803,7 @@ namespace METAbolt
             dtbl.Dispose(); 
         }
 
-        private void SetSettings()
+        public void SetSettings()
         {
             // Timeouts and Intervals
 
@@ -820,7 +820,7 @@ namespace METAbolt
             //client.Settings.RESEND_TIMEOUT = 8 * 1000;   //4 * 1000;
             /// <summary>Milliseconds to wait for a simulator info request through
             /// the grid interface</summary>
-            client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
+            //client.Settings.MAP_REQUEST_TIMEOUT = 60 * 1000;  //5 * 1000;
             client.Settings.MAX_CONCURRENT_TEXTURE_DOWNLOADS = 20;
             client.Settings.USE_INTERPOLATION_TIMER = false;
 
@@ -828,7 +828,7 @@ namespace METAbolt
 
             /// <summary>Maximum number of queued ACKs to be sent before SendAcks()
             /// is forced</summary>
-            client.Settings.MAX_PENDING_ACKS = 1;
+            //client.Settings.MAX_PENDING_ACKS = 1;
             /// <summary>Maximum number of ACKs to append to a packet</summary>
             //client.Settings.MAX_APPENDED_ACKS = 10;
             /// <summary>Network stats queue length (seconds)</summary>
@@ -855,19 +855,13 @@ namespace METAbolt
 
             //client.Settings.USE_LLSD_LOGIN = true;
 
-            client.Settings.SEND_AGENT_APPEARANCE = true;
+            //client.Settings.SEND_AGENT_APPEARANCE = true;
             //client.Settings.CLIENT_IDENTIFICATION_TAG = 
 
             //client.Settings.STORE_LAND_PATCHES = true;
             /// <summary>Enable/disable sending periodic camera updates</summary>
             client.Settings.SEND_AGENT_UPDATES = true;
-            /// <summary>Enable/disable libsecondlife automatically setting the
-            /// bandwidth throttle after connecting to each simulator</summary>
-            /// <remarks>The default libsecondlife throttle uses the equivalent of
-            /// the maximum bandwidth setting in the official client. If you do not
-            /// set a throttle your connection will by default be throttled well
-            /// below the minimum values and you may experience connection problems</remarks>
-            client.Settings.SEND_AGENT_THROTTLE = true;
+            
             /// <summary>Enable/disable the sending of pings to monitor lag and 
             /// packet loss</summary>
             client.Settings.SEND_PINGS = true;
@@ -921,7 +915,7 @@ namespace METAbolt
             client.Self.Movement.AutoResetControls = false;
             client.Self.Movement.UpdateInterval = 250;
 
-            client.Settings.HTTP_INVENTORY = client.Settings.USE_HTTP_TEXTURES = !config.CurrentConfig.DisableHTTPinv;   // false;
+            //client.Settings.HTTP_INVENTORY = !config.CurrentConfig.DisableHTTPinv;   // false;
 
             // This is for backward compatibility
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)
@@ -937,6 +931,14 @@ namespace METAbolt
             }
             else
             {
+                /// <summary>Enable/disable libsecondlife automatically setting the
+                /// bandwidth throttle after connecting to each simulator</summary>
+                /// <remarks>The default libsecondlife throttle uses the equivalent of
+                /// the maximum bandwidth setting in the official client. If you do not
+                /// set a throttle your connection will by default be throttled well
+                /// below the minimum values and you may experience connection problems</remarks>
+                client.Settings.SEND_AGENT_THROTTLE = true;
+
                 client.Throttle.Cloud = 0.0f;
                 client.Throttle.Land = 0.0f;
                 client.Throttle.Wind = 0.0f;

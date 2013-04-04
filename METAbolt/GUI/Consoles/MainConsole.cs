@@ -756,6 +756,9 @@ namespace METAbolt
 
                 btnLogin.Enabled = false;
 
+                client.Settings.HTTP_INVENTORY = !instance.Config.CurrentConfig.DisableHTTPinv;
+                //instance.SetSettings();  
+
                 netcom.Login();
                 DoBrowser();
             }
