@@ -77,7 +77,7 @@ namespace METAbolt
                 //    textBox1.Text = @split[0].ToString();
                 //}
 
-                textBox1.Text = @e.IM.Message.Replace("\n", "\r\n");
+                textBox1.Text = @e.IM.Message.Replace("\n", "\r\n").Replace("Group:", "\r\n\r\nGroup: ");
             }
             catch { ; }
         }

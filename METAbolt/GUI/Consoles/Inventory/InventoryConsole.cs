@@ -2147,6 +2147,10 @@ namespace METAbolt
                 {
                     managerbusy = client.Appearance.ManagerBusy;
                     client.Appearance.AddToOutfit(item);
+                    //List<InventoryItem> items = new List<InventoryItem>();
+                    //items.Add((InventoryItem)item);
+
+                    //client.Appearance.ReplaceOutfit(items);
 
                     ThreadPool.QueueUserWorkItem(sync =>
                     {
@@ -2203,7 +2207,13 @@ namespace METAbolt
                 }
             }
 
-            WearTakeoff(false, selectednode); 
+            WearTakeoff(false, selectednode);
+
+            ThreadPool.QueueUserWorkItem(sync =>
+                {
+                    Thread.Sleep(2000);
+                    client.Appearance.RequestSetAppearance(true);
+                });
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
