@@ -3337,22 +3337,26 @@ namespace METAbolt
                     }
 
                     // Draw self position
-                    int rg = instance.Config.CurrentConfig.RadarRange;
 
-                    Rectangle myrect;
-
-                    if (rg < 150)
+                    if (!instance.Config.CurrentConfig.DisableRadarImageMiniMap)
                     {
-                        rg *= 2;
+                        int rg = instance.Config.CurrentConfig.RadarRange;
 
-                        myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - (rg / 2), (255 - ((int)Math.Round(myPos.Y, 0))) - (rg / 2 - 4), rg + 2, rg + 2);
-                        SolidBrush semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 0, 255));
-                        g.CompositingQuality = CompositingQuality.GammaCorrected;
-                        g.FillEllipse(semiTransBrush, myrect);
+                        Rectangle myrect;
 
-                        myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - (rg / 4), (255 - ((int)Math.Round(myPos.Y, 0))) - (rg / 4 - 4), rg / 2 + 2, rg / 2 + 2);
-                        //semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 245, 225));
-                        g.DrawEllipse(new Pen(Color.Blue, 1), myrect);
+                        if (rg < 150)
+                        {
+                            rg *= 2;
+
+                            myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - (rg / 2), (255 - ((int)Math.Round(myPos.Y, 0))) - (rg / 2 - 4), rg + 2, rg + 2);
+                            SolidBrush semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 0, 255));
+                            g.CompositingQuality = CompositingQuality.GammaCorrected;
+                            g.FillEllipse(semiTransBrush, myrect);
+
+                            myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - (rg / 4), (255 - ((int)Math.Round(myPos.Y, 0))) - (rg / 4 - 4), rg / 2 + 2, rg / 2 + 2);
+                            //semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 245, 225));
+                            g.DrawEllipse(new Pen(Color.Blue, 1), myrect);
+                        }
                     }
 
                     ssim.AvatarPositions.ForEach(

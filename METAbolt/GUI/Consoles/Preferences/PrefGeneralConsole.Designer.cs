@@ -131,6 +131,7 @@ namespace METAbolt
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.cbHHTPInv = new System.Windows.Forms.CheckBox();
+            this.chkRadarMiniMap = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -666,6 +667,7 @@ namespace METAbolt
             // 
             this.tabPage4.AccessibleName = "Radar tab";
             this.tabPage4.BackColor = System.Drawing.Color.White;
+            this.tabPage4.Controls.Add(this.chkRadarMiniMap);
             this.tabPage4.Controls.Add(this.chkRestrictRadar);
             this.tabPage4.Controls.Add(this.groupBox4);
             this.tabPage4.Controls.Add(this.checkBox3);
@@ -705,16 +707,16 @@ namespace METAbolt
             this.groupBox4.Controls.Add(this.trackBar1);
             this.groupBox4.Controls.Add(this.radioButton1);
             this.groupBox4.Controls.Add(this.radioButton2);
-            this.groupBox4.Location = new System.Drawing.Point(10, 135);
+            this.groupBox4.Location = new System.Drawing.Point(10, 148);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(318, 103);
+            this.groupBox4.Size = new System.Drawing.Size(318, 90);
             this.groupBox4.TabIndex = 61;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Throttle (bandwidth) setting in kbps";
             // 
             // label19
             // 
-            this.label19.Location = new System.Drawing.Point(203, 86);
+            this.label19.Location = new System.Drawing.Point(203, 72);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(100, 14);
             this.label19.TabIndex = 62;
@@ -725,7 +727,7 @@ namespace METAbolt
             this.trackBar1.AutoSize = false;
             this.trackBar1.Enabled = false;
             this.trackBar1.LargeChange = 10;
-            this.trackBar1.Location = new System.Drawing.Point(133, 54);
+            this.trackBar1.Location = new System.Drawing.Point(133, 43);
             this.trackBar1.Maximum = 500;
             this.trackBar1.Minimum = 10;
             this.trackBar1.Name = "trackBar1";
@@ -744,7 +746,7 @@ namespace METAbolt
             this.radioButton1.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.radioButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton1.Location = new System.Drawing.Point(19, 32);
+            this.radioButton1.Location = new System.Drawing.Point(19, 21);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(107, 17);
             this.radioButton1.TabIndex = 59;
@@ -760,7 +762,7 @@ namespace METAbolt
             this.radioButton2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.radioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton2.Location = new System.Drawing.Point(19, 55);
+            this.radioButton2.Location = new System.Drawing.Point(19, 44);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(79, 17);
             this.radioButton2.TabIndex = 60;
@@ -787,7 +789,7 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Object select range numeric display textbox";
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(275, 89);
+            this.textBox2.Location = new System.Drawing.Point(275, 103);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(33, 14);
@@ -800,7 +802,7 @@ namespace METAbolt
             this.tbar2.AccessibleName = "Object select range trackbar";
             this.tbar2.AutoSize = false;
             this.tbar2.BackColor = System.Drawing.Color.White;
-            this.tbar2.Location = new System.Drawing.Point(124, 87);
+            this.tbar2.Location = new System.Drawing.Point(124, 101);
             this.tbar2.Maximum = 512;
             this.tbar2.Minimum = 5;
             this.tbar2.Name = "tbar2";
@@ -814,7 +816,7 @@ namespace METAbolt
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(314, 92);
+            this.pictureBox5.Location = new System.Drawing.Point(314, 106);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(15, 15);
             this.pictureBox5.TabIndex = 57;
@@ -824,7 +826,7 @@ namespace METAbolt
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(26, 89);
+            this.label5.Location = new System.Drawing.Point(26, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(110, 23);
             this.label5.TabIndex = 55;
@@ -1547,6 +1549,21 @@ namespace METAbolt
             this.cbHHTPInv.Text = "Disable HTTP Inventory (re-start required)";
             this.cbHHTPInv.UseVisualStyleBackColor = true;
             // 
+            // chkRadarMiniMap
+            // 
+            this.chkRadarMiniMap.AccessibleName = "Optimise for dial-up option";
+            this.chkRadarMiniMap.AutoSize = true;
+            this.chkRadarMiniMap.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkRadarMiniMap.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkRadarMiniMap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkRadarMiniMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkRadarMiniMap.Location = new System.Drawing.Point(80, 78);
+            this.chkRadarMiniMap.Name = "chkRadarMiniMap";
+            this.chkRadarMiniMap.Size = new System.Drawing.Size(213, 17);
+            this.chkRadarMiniMap.TabIndex = 63;
+            this.chkRadarMiniMap.Text = "Disable radar range display on mini-map";
+            this.chkRadarMiniMap.UseVisualStyleBackColor = true;
+            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1702,6 +1719,7 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox chkFavs;
         private System.Windows.Forms.CheckBox chkVoice;
         private System.Windows.Forms.CheckBox cbHHTPInv;
+        private System.Windows.Forms.CheckBox chkRadarMiniMap;
 
     }
 }
