@@ -1127,7 +1127,7 @@ namespace METAbolt
             try
             {
                 //client.Appearance.RequestCachedBakes();
-                client.Appearance.RequestSetAppearance(false);  
+                client.Appearance.RequestSetAppearance(true);  
                 //client.Appearance.SetPreviousAppearance(false);
             }
             catch (Exception exp)

@@ -345,7 +345,7 @@ namespace METAbolt
 
                     if (myPos.Z < 0.1f)
                     {
-                        myPos.Z = Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
+                        myPos.Z = 1020f;   // Convert.ToSingle(client.Self.GlobalPosition.Z);    //1024f;
                     }
 
                     client.Network.CurrentSim.AvatarPositions.ForEach(

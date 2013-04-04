@@ -3337,12 +3337,11 @@ namespace METAbolt
                     }
 
                     // Draw self position
+                    Rectangle myrect;
 
                     if (!instance.Config.CurrentConfig.DisableRadarImageMiniMap)
                     {
                         int rg = instance.Config.CurrentConfig.RadarRange;
-
-                        Rectangle myrect;
 
                         if (rg < 150)
                         {

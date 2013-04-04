@@ -75,6 +75,7 @@ namespace METAbolt
         private UUID favfolder = UUID.Zero;
         private Dictionary<UUID, InventoryItem> inventoryitems = new Dictionary<UUID, InventoryItem>();
         private bool AppearanceSet = false;
+        //private TreeViewWalker treeViewWalker;
 
         internal class ThreadExceptionHandler
         {
@@ -109,7 +110,9 @@ namespace METAbolt
             InitializeTree();
             GetRoot();
 
-            instance.insconsole = this; 
+            instance.insconsole = this;
+
+            //TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
         }
 
         private void SetExceptionReporter()
@@ -320,18 +323,18 @@ namespace METAbolt
 
             try
             {
-                RefreshInventory();
+                //RefreshInventory();
 
                 List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favfolder);
                 instance.MainForm.UpdateFavourites(foundfolders);
             }
             catch { ; }
 
-            //if (managerbusy)
-            //{
-            //    managerbusy = false;
-            //    client.Appearance.RequestSetAppearance(true);
-            //}
+            if (managerbusy)
+            {
+                managerbusy = false;
+                client.Appearance.RequestSetAppearance(true);
+            }
         }
 
         private void Network_OnEventQueueRunning(object sender, EventQueueRunningEventArgs e)
@@ -1903,12 +1906,14 @@ namespace METAbolt
 
             foreach (InventoryItem item in contents)
             {
-                if (item.InventoryType == InventoryType.Wearable || item.InventoryType == InventoryType.Attachment || item.InventoryType == InventoryType.Object)
+                //if (item.InventoryType == InventoryType.Wearable || item.InventoryType == InventoryType.Attachment || item.InventoryType == InventoryType.Object)
+                if (item is InventoryItem)
                 {
                     clothing.Add(item);
                 }
             }
 
+            managerbusy = client.Appearance.ManagerBusy;
             client.Appearance.ReplaceOutfit(clothing);
 
             ThreadPool.QueueUserWorkItem(sync =>
@@ -2087,6 +2092,8 @@ namespace METAbolt
                 e.Node.ForeColor = Color.Red;
                 e.Node.Expand();
             }
+
+            //treeViewWalker.ProcessNode -= new ProcessNodeEventHandler(treeViewWalker_ProcessNode_HighlightMatchingNodes);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -2129,6 +2136,7 @@ namespace METAbolt
                         items.Add((InventoryItem)item);
                 }
 
+                managerbusy = client.Appearance.ManagerBusy;
                 client.Appearance.ReplaceOutfit(items);
 
                 ThreadPool.QueueUserWorkItem(sync =>
@@ -2146,7 +2154,7 @@ namespace METAbolt
                 if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
                 {
                     managerbusy = client.Appearance.ManagerBusy;
-                    client.Appearance.AddToOutfit(item);
+                    client.Appearance.AddToOutfit(item, true);
                     //List<InventoryItem> items = new List<InventoryItem>();
                     //items.Add((InventoryItem)item);
 

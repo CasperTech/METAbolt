@@ -96,21 +96,28 @@ namespace METAbolt
             TreeNode nodeX = (TreeNode)x;
             TreeNode nodeY = (TreeNode)y;
 
-            InventoryBase ibX = (InventoryBase)nodeX.Tag;
-            InventoryBase ibY = (InventoryBase)nodeY.Tag;
-
-            if (currentMethod == null)
-            {
-                currentMethod = sortMethods[currentMethodName];
-            }
-
             try
             {
-                return currentMethod.CompareNodes(ibX, ibY, nodeX, nodeY);
+                InventoryBase ibX = (InventoryBase)nodeX.Tag;
+                InventoryBase ibY = (InventoryBase)nodeY.Tag;
+
+                if (currentMethod == null)
+                {
+                    currentMethod = sortMethods[currentMethodName];
+                }
+
+                try
+                {
+                    return currentMethod.CompareNodes(ibX, ibY, nodeX, nodeY);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log("Inventory error", Helpers.LogLevel.Error, ex);
+                    return 0;
+                }
             }
-            catch (Exception ex)
+            catch 
             {
-                Logger.Log("Inventory error", Helpers.LogLevel.Error, ex);  
                 return 0;
             }
         }
