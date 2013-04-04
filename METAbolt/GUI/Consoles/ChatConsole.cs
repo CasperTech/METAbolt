@@ -1482,12 +1482,12 @@ namespace METAbolt
 
                 if (selfpos.Z < 0.1f)
                 {
-                    selfpos.Z = 1024f;
+                    selfpos.Z = 1020f;
                 }
 
                 if (avpos.Z < 0.1f)
                 {
-                    avpos.Z = 1024f;
+                    avpos.Z = 1020f;
                 }
 
                 double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos), ConverToGLobal(avpos)), MidpointRounding.ToEven);
@@ -1498,7 +1498,7 @@ namespace METAbolt
 
                 if (clr == Color.RoyalBlue)
                 {
-                    if (avpos.Z > 1019f)
+                    if (avpos.Z == 1020f)
                     {
                         //sDist = "[???m] ";
                         sDist = ">[" + Convert.ToInt32(dist).ToString() + "m] ";
@@ -3333,7 +3333,7 @@ namespace METAbolt
 
                     if (myPos.Z < 0.1f)
                     {
-                        myPos.Z = 1024f;
+                        myPos.Z = 1020f;
                     }
 
                     // Draw self position
@@ -3377,7 +3377,7 @@ namespace METAbolt
 
                             if (oavPos.Z < 0.1f)
                             {
-                                oavPos.Z = 1024f;
+                                oavPos.Z = 1020f;
                             }
 
                             Avatar fav = new Avatar();

@@ -487,6 +487,18 @@ namespace METAbolt
             //}
         }
 
+        public bool IsObjectMuted(UUID avatar, string name)
+        {
+            if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.Object && mle.ID == avatar)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool IsGiveItem(string item, UUID avid)
         {
             if (string.IsNullOrEmpty(item)) return false;
@@ -903,13 +915,13 @@ namespace METAbolt
             //client.Settings.ASSET_CACHE_DIR = Application.StartupPath + System.IO.Path.DirectorySeparatorChar + "cache";
             client.Settings.ASSET_CACHE_DIR = appdir + System.IO.Path.DirectorySeparatorChar + client.Self.Name + System.IO.Path.DirectorySeparatorChar + "cache";
             //client.Settings.ASSET_CACHE_MAX_SIZE = (1024 * 1024 * 1024) / 4;  //250MB
-            client.Assets.Cache.AutoPruneEnabled = false; 
+            client.Assets.Cache.AutoPruneEnabled = false;
 
             client.Self.Movement.Camera.Far = (float)config.CurrentConfig.RadarRange;
             client.Self.Movement.AutoResetControls = false;
             client.Self.Movement.UpdateInterval = 250;
 
-            client.Settings.HTTP_INVENTORY = !config.CurrentConfig.DisableHTTPinv;   // false;
+            client.Settings.HTTP_INVENTORY = client.Settings.USE_HTTP_TEXTURES = !config.CurrentConfig.DisableHTTPinv;   // false;
 
             // This is for backward compatibility
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)

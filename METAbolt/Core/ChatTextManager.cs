@@ -339,7 +339,7 @@ namespace METAbolt
 
         private void netcom_ScriptDialogReceived(object sender, ScriptDialogEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.ObjectID, e.ObjectName))
+            if (instance.IsObjectMuted(e.ObjectID, e.ObjectName))
                 return;
 
             if (string.IsNullOrEmpty(e.Message)) return;
@@ -383,7 +383,7 @@ namespace METAbolt
 
         private void netcom_ScriptQuestionReceived(object sender, ScriptQuestionEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.ItemID, e.ObjectName))
+            if (instance.IsObjectMuted(e.ItemID, e.ObjectName))
                 return;
 
             //e.ObjectName.ToString();
@@ -1454,7 +1454,7 @@ namespace METAbolt
                     break;
 
                 case ChatSourceType.Object:
-                    if (instance.IsAvatarMuted(e.SourceID, e.FromName))
+                    if (instance.IsObjectMuted(e.SourceID, e.FromName))
                            return;
 
                     // Ignore RLV commands from objects
@@ -1480,7 +1480,7 @@ namespace METAbolt
         {
             if (string.IsNullOrEmpty(e.Message)) return;
 
-            if (instance.IsAvatarMuted(e.ObjectID, e.ObjectName))
+            if (instance.IsObjectMuted(e.ObjectID, e.ObjectName))
                 return;
 
             (new frmDialog(instance, e)).ShowDialog(instance.MainForm);

@@ -144,18 +144,31 @@ namespace METAbolt
         {
             client.Inventory.RemoveItem(objectID);
 
-            if (instance.IsAvatarMuted(msg.FromAgentID, msg.FromAgentName))
-            {
-                MessageBox.Show(msg.FromAgentName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
             //DataRow dr = instance.MuteList.NewRow();
             //dr["uuid"] = msg.FromAgentID;
             //dr["mute_name"] = msg.FromAgentName;
             //instance.MuteList.Rows.Add(dr);
 
-            instance.Client.Self.UpdateMuteListEntry(MuteType.Resident, msg.FromAgentID, msg.FromAgentName);
+            if (diag == InstantMessageDialog.TaskInventoryOffered)
+            {
+                if (instance.IsObjectMuted(msg.FromAgentID, msg.FromAgentName))
+                {
+                    MessageBox.Show(msg.FromAgentName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                instance.Client.Self.UpdateMuteListEntry(MuteType.Object, msg.FromAgentID, msg.FromAgentName);
+            }
+            else
+            {
+                if (instance.IsAvatarMuted(msg.FromAgentID, msg.FromAgentName))
+                {
+                    MessageBox.Show(msg.FromAgentName + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                instance.Client.Self.UpdateMuteListEntry(MuteType.Resident, msg.FromAgentID, msg.FromAgentName);
+            }
 
             MessageBox.Show(msg.FromAgentName + " is now muted.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

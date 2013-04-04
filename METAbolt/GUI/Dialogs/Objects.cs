@@ -2681,7 +2681,7 @@ namespace METAbolt
 
             if (item == null) return;
 
-            if (instance.IsAvatarMuted(item.Prim.ID, item.Prim.Properties.Name))
+            if (instance.IsObjectMuted(item.Prim.ID, item.Prim.Properties.Name))
             {
                 MessageBox.Show(item.Prim.Properties.Name + " is already in your mute list.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
