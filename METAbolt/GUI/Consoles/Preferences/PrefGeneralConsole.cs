@@ -166,6 +166,7 @@ namespace METAbolt
             chkRestrictRadar.Checked = config.CurrentConfig.RestrictRadar;
             chkVoice.Checked = config.CurrentConfig.DisableVoice;
             chkFavs.Checked = config.CurrentConfig.DisableFavs;
+            cbHHTPInv.Checked = config.CurrentConfig.DisableHTTPinv; 
 
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)
             {
@@ -324,7 +325,8 @@ namespace METAbolt
             instance.Config.CurrentConfig.DisableRadar = chkDisableRadar.Checked;
             instance.Config.CurrentConfig.RestrictRadar = chkRestrictRadar.Checked;
             instance.Config.CurrentConfig.DisableVoice = chkVoice.Checked;  
-            instance.Config.CurrentConfig.DisableFavs = chkFavs.Checked;  
+            instance.Config.CurrentConfig.DisableFavs = chkFavs.Checked;
+            instance.Config.CurrentConfig.DisableHTTPinv = cbHHTPInv.Checked;
 
             if (checkBox4.Checked)
             {

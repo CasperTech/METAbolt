@@ -172,6 +172,7 @@ namespace METAbolt
         private bool restrictradar = false;
         private bool disablevoice = false;
         private bool disablefavs = false;
+        private bool disablehttpinv = true;
 
         public Config()
         {
@@ -272,6 +273,7 @@ namespace METAbolt
                 config.RestrictRadar = conf.Configs["General"].GetBoolean("RestrictRadar", false);
                 config.DisableVoice = conf.Configs["General"].GetBoolean("DisableVoice", false);
                 config.DisableFavs = conf.Configs["General"].GetBoolean("DisableFavs", false);
+                config.DisableHTTPinv = conf.Configs["General"].GetBoolean("DisableHTTPinv", true);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -452,6 +454,7 @@ namespace METAbolt
             config.Set("RestrictRadar", restrictradar.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableVoice", disablevoice.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableFavs", disablefavs.ToString(CultureInfo.CurrentCulture));
+            config.Set("DisableHTTPinv", disablehttpinv.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1271,6 +1274,12 @@ namespace METAbolt
         {
             get { return disablefavs; }
             set { disablefavs = value; }
+        }
+
+        public bool DisableHTTPinv
+        {
+            get { return disablehttpinv; }
+            set { disablehttpinv = value; }
         }
     }
 }

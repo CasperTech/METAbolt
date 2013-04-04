@@ -909,7 +909,7 @@ namespace METAbolt
             client.Self.Movement.AutoResetControls = false;
             client.Self.Movement.UpdateInterval = 250; 
             
-            client.Settings.HTTP_INVENTORY = true;  
+            client.Settings.HTTP_INVENTORY = false;  
 
             // This is for backward compatibility
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)

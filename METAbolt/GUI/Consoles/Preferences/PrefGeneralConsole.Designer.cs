@@ -130,6 +130,7 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.cbHHTPInv = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -883,6 +884,7 @@ namespace METAbolt
             this.tabPage2.AccessibleDescription = "Displays the folder the cache is stored in";
             this.tabPage2.AccessibleName = "Cache location textbox";
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.cbHHTPInv);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.textBox4);
             this.tabPage2.Controls.Add(this.button2);
@@ -1530,6 +1532,21 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
+            // cbHHTPInv
+            // 
+            this.cbHHTPInv.AccessibleName = "Disable icon option";
+            this.cbHHTPInv.AutoSize = true;
+            this.cbHHTPInv.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbHHTPInv.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbHHTPInv.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbHHTPInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbHHTPInv.Location = new System.Drawing.Point(22, 160);
+            this.cbHHTPInv.Name = "cbHHTPInv";
+            this.cbHHTPInv.Size = new System.Drawing.Size(227, 17);
+            this.cbHHTPInv.TabIndex = 64;
+            this.cbHHTPInv.Text = "Disable HTTP Inventory (re-start required)";
+            this.cbHHTPInv.UseVisualStyleBackColor = true;
+            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1684,6 +1701,7 @@ namespace METAbolt
         private System.Windows.Forms.CheckBox chkRestrictRadar;
         private System.Windows.Forms.CheckBox chkFavs;
         private System.Windows.Forms.CheckBox chkVoice;
+        private System.Windows.Forms.CheckBox cbHHTPInv;
 
     }
 }
