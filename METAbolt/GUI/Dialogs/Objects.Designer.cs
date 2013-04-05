@@ -185,7 +185,7 @@ namespace METAbolt
             this.btnReturn.ForeColor = System.Drawing.Color.White;
             this.btnReturn.Location = new System.Drawing.Point(6, 50);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(56, 23);
+            this.btnReturn.Size = new System.Drawing.Size(61, 23);
             this.btnReturn.TabIndex = 3;
             this.btnReturn.Text = "&Return";
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -199,9 +199,9 @@ namespace METAbolt
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(64, 79);
+            this.button5.Location = new System.Drawing.Point(68, 79);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(55, 23);
+            this.button5.Size = new System.Drawing.Size(45, 23);
             this.button5.TabIndex = 8;
             this.button5.Text = "M&ute";
             this.button5.UseVisualStyleBackColor = false;
@@ -264,9 +264,9 @@ namespace METAbolt
             this.btnWalk1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnWalk1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWalk1.ForeColor = System.Drawing.Color.White;
-            this.btnWalk1.Location = new System.Drawing.Point(119, 50);
+            this.btnWalk1.Location = new System.Drawing.Point(114, 50);
             this.btnWalk1.Name = "btnWalk1";
-            this.btnWalk1.Size = new System.Drawing.Size(57, 23);
+            this.btnWalk1.Size = new System.Drawing.Size(62, 23);
             this.btnWalk1.TabIndex = 5;
             this.btnWalk1.Text = "&Walk to";
             this.btnWalk1.UseVisualStyleBackColor = false;
@@ -280,9 +280,9 @@ namespace METAbolt
             this.btnLocation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocation.ForeColor = System.Drawing.Color.White;
-            this.btnLocation.Location = new System.Drawing.Point(120, 79);
+            this.btnLocation.Location = new System.Drawing.Point(114, 79);
             this.btnLocation.Name = "btnLocation";
-            this.btnLocation.Size = new System.Drawing.Size(56, 23);
+            this.btnLocation.Size = new System.Drawing.Size(62, 23);
             this.btnLocation.TabIndex = 9;
             this.btnLocation.Text = "&Location";
             this.btnLocation.UseVisualStyleBackColor = false;
@@ -296,9 +296,9 @@ namespace METAbolt
             this.btnTouch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnTouch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTouch.ForeColor = System.Drawing.Color.White;
-            this.btnTouch.Location = new System.Drawing.Point(102, 20);
+            this.btnTouch.Location = new System.Drawing.Point(100, 20);
             this.btnTouch.Name = "btnTouch";
-            this.btnTouch.Size = new System.Drawing.Size(74, 23);
+            this.btnTouch.Size = new System.Drawing.Size(76, 23);
             this.btnTouch.TabIndex = 1;
             this.btnTouch.Text = "T&ouch/Click";
             this.btnTouch.UseVisualStyleBackColor = false;
@@ -312,9 +312,9 @@ namespace METAbolt
             this.btnSitOn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnSitOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSitOn.ForeColor = System.Drawing.Color.White;
-            this.btnSitOn.Location = new System.Drawing.Point(64, 50);
+            this.btnSitOn.Location = new System.Drawing.Point(68, 50);
             this.btnSitOn.Name = "btnSitOn";
-            this.btnSitOn.Size = new System.Drawing.Size(54, 23);
+            this.btnSitOn.Size = new System.Drawing.Size(45, 23);
             this.btnSitOn.TabIndex = 4;
             this.btnSitOn.Text = "&Sit";
             this.btnSitOn.UseVisualStyleBackColor = false;
@@ -330,7 +330,7 @@ namespace METAbolt
             this.btnPay.ForeColor = System.Drawing.Color.White;
             this.btnPay.Location = new System.Drawing.Point(6, 79);
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(56, 23);
+            this.btnPay.Size = new System.Drawing.Size(61, 23);
             this.btnPay.TabIndex = 7;
             this.btnPay.Text = "&Pay/Buy";
             this.btnPay.UseVisualStyleBackColor = false;
