@@ -389,7 +389,9 @@ namespace METAbolt
 
             if (group)
             {
-                filename = "IM-" + timestamp.Date.ToString() + "-" + client.Self.FirstName + " " + client.Self.LastName + "-GROUP-" + groupname + ".txt";
+                string cleangrpname = instance.RemoveReservedCharacters(groupname);
+
+                filename = "IM-" + timestamp.Date.ToString() + "-" + client.Self.FirstName + " " + client.Self.LastName + "-GROUP-" + cleangrpname + ".txt";
             }
             else
             {

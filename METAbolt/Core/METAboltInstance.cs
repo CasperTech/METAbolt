@@ -963,6 +963,17 @@ namespace METAbolt
             //}
         }
 
+        public string RemoveReservedCharacters(string strValue)
+        {
+            char[] ReservedChars = { '/', ':', '*', '?', '"', '<', '>', '|', '.', ',', '!', ';', '\\', '\'' };
+
+            foreach (char strChar in ReservedChars)
+            {
+                strValue = strValue.Replace(strChar.ToString(), "");
+            }
+            return strValue;
+        }
+
         private void InitializeConfig()
         {
             netcom.LoginOptions.FirstName = config.CurrentConfig.FirstName;
