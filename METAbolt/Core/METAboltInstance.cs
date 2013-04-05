@@ -1023,16 +1023,16 @@ namespace METAbolt
 
         public Vector3 SIMsittingPos()
         {
-            //Vector3 ppos = new Vector3();
-            //ppos = client.Self.SimPosition;
+            Vector3 ppos = new Vector3();
+            ppos = client.Self.SimPosition;
 
-            //if (state.IsSitting)
-            //{
-            //    if (state.SitPrim != null)
-            //    {
-            //        ppos = state.SitPrim.Position + client.Self.RelativePosition;
-            //    }
-            //}
+            if (state.IsSitting)
+            {
+                if (state.SitPrim != null)
+                {
+                    ppos = State.SittingPos + client.Self.SimPosition;
+                }
+            }
 
             try
             {
@@ -1040,7 +1040,7 @@ namespace METAbolt
             }
             catch {
 
-                Vector3 ppos = new Vector3(0, 0, 0);
+                ppos = new Vector3(0, 0, 0);
                 return ppos;
             }
         }

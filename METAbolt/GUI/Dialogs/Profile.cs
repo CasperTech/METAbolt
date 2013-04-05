@@ -1356,7 +1356,7 @@ namespace METAbolt
         private void button8_Click(object sender, EventArgs e)
         {
             UUID pick = UUID.Random();
-            UUID pid = client.Parcels.RequestRemoteParcelID(client.Self.SimPosition, client.Network.CurrentSim.Handle, client.Network.CurrentSim.ID);
+            UUID pid = client.Parcels.RequestRemoteParcelID(instance.SIMsittingPos(), client.Network.CurrentSim.Handle, client.Network.CurrentSim.ID);
 
             client.Self.PickInfoUpdate(pick, false, pid, this.instance.MainForm.parcel.Name, client.Self.GlobalPosition, this.instance.MainForm.parcel.SnapshotID, this.instance.MainForm.parcel.Desc);
             client.Avatars.RequestAvatarPicks(agentID);
@@ -1365,7 +1365,7 @@ namespace METAbolt
         private void button11_Click(object sender, EventArgs e)
         {
             UUID pick = (UUID)lvwPicks.SelectedItems[0].Tag;
-            UUID pid = client.Parcels.RequestRemoteParcelID(client.Self.SimPosition, client.Network.CurrentSim.Handle, client.Network.CurrentSim.ID);
+            UUID pid = client.Parcels.RequestRemoteParcelID(instance.SIMsittingPos(), client.Network.CurrentSim.Handle, client.Network.CurrentSim.ID);
 
             client.Self.PickInfoUpdate(pick, false, pid, txtTitle.Text.Trim(), client.Self.GlobalPosition, this.instance.MainForm.parcel.SnapshotID, txtDescription.Text.Trim());
             client.Avatars.RequestAvatarPicks(agentID);

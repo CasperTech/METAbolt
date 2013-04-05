@@ -506,7 +506,7 @@ namespace METAbolt
             try
             {
                 Vector3 apos = new Vector3(Vector3.Zero);
-                apos = client.Self.SimPosition;
+                apos = instance.SIMsittingPos();
 
                 float f1 = 64.0f * (apos.Y / 256.0f);
                 float f2 = 64.0f * (apos.X / 256.0f);
@@ -733,7 +733,7 @@ namespace METAbolt
             Logger.Log("AUTOSIT: Searching for sit object", Helpers.LogLevel.Info);
 
             Vector3 location = new Vector3(Vector3.Zero); 
-            location = client.Self.SimPosition;
+            location = instance.SIMsittingPos();
             float radius = 21;
 
             // *** find all objects in radius ***
@@ -1478,7 +1478,7 @@ namespace METAbolt
             try
             {
                 Vector3 selfpos = new Vector3(Vector3.Zero); 
-                selfpos = client.Self.SimPosition;
+                selfpos = instance.SIMsittingPos();
 
                 if (selfpos.Z < 0.1f)
                 {

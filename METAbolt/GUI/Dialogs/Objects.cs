@@ -751,7 +751,7 @@ namespace METAbolt
                 lock (listItems)
                 {
                     Vector3 location = new Vector3(Vector3.Zero); 
-                    location = client.Self.SimPosition;
+                    location = instance.SIMsittingPos();
 
                 client.Network.CurrentSim.ObjectsPrimitives.ForEach(
                 new Action<Primitive>(

@@ -86,6 +86,7 @@ namespace METAbolt
         private UUID crouchAnimationID = new UUID(Animations.CROUCH.ToString());
         //private Primitive sitprim = null;
         private UUID sitprim = UUID.Zero;
+        private Vector3 sitpos = new Vector3(0, 0, 0);
         private UUID requestedsitprim = UUID.Zero;
         //private ManualResetEvent PrimEvent = new ManualResetEvent(false);
         private bool groundsitting = false;
@@ -183,7 +184,7 @@ namespace METAbolt
 
         public void ResetCamera()
         {
-            client.Self.Movement.Camera.LookAt(client.Self.SimPosition + new Vector3(-5,0,0)  * client.Self.Movement.BodyRotation, client.Self.SimPosition);
+            client.Self.Movement.Camera.LookAt(instance.SIMsittingPos() + new Vector3(-5,0,0)  * client.Self.Movement.BodyRotation, instance.SIMsittingPos());
         }
 
         private void Self_TeleportProgress(object sender, TeleportEventArgs e)
@@ -506,6 +507,7 @@ namespace METAbolt
             {
                 this.sitting = true;
                 sitprim = e.ObjectID;
+                sitpos = e.SitPosition;
                 //instance.TabConsole.DisplayChatScreen("Auto-sitting on object " + requestedsitprim.ToString());
             }
             else
@@ -922,6 +924,12 @@ namespace METAbolt
         {
             get { return foldercvd; }
             set { foldercvd = value; }
+        }
+
+        public Vector3 SittingPos
+        {
+            get { return sitpos; }
+            set { sitpos = value; }
         }
     }
 }
