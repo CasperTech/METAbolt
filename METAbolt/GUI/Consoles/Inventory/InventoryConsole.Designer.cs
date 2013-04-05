@@ -347,25 +347,26 @@ namespace METAbolt
             this.attachToToolStripMenuItem.Name = "attachToToolStripMenuItem";
             this.attachToToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.attachToToolStripMenuItem.Text = "Attach to...";
+            this.attachToToolStripMenuItem.Click += new System.EventHandler(this.attachToToolStripMenuItem_Click);
             // 
             // defaultToolStripMenuItem
             // 
             this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
-            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.defaultToolStripMenuItem.Text = "Default";
             this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
             // 
             // chestToolStripMenuItem
             // 
             this.chestToolStripMenuItem.Name = "chestToolStripMenuItem";
-            this.chestToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.chestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chestToolStripMenuItem.Text = "Chest";
             this.chestToolStripMenuItem.Click += new System.EventHandler(this.chestToolStripMenuItem_Click);
             // 
             // chinToolStripMenuItem
             // 
             this.chinToolStripMenuItem.Name = "chinToolStripMenuItem";
-            this.chinToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.chinToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chinToolStripMenuItem.Text = "Chin";
             this.chinToolStripMenuItem.Click += new System.EventHandler(this.chinToolStripMenuItem_Click);
             // 
@@ -384,7 +385,7 @@ namespace METAbolt
             this.upperArmToolStripMenuItem,
             this.upperLegToolStripMenuItem});
             this.leftEarToolStripMenuItem.Name = "leftEarToolStripMenuItem";
-            this.leftEarToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.leftEarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.leftEarToolStripMenuItem.Text = "Left";
             // 
             // earToolStripMenuItem
@@ -467,28 +468,28 @@ namespace METAbolt
             // mouthToolStripMenuItem
             // 
             this.mouthToolStripMenuItem.Name = "mouthToolStripMenuItem";
-            this.mouthToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.mouthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mouthToolStripMenuItem.Text = "Mouth";
             this.mouthToolStripMenuItem.Click += new System.EventHandler(this.mouthToolStripMenuItem_Click);
             // 
             // neckToolStripMenuItem
             // 
             this.neckToolStripMenuItem.Name = "neckToolStripMenuItem";
-            this.neckToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.neckToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.neckToolStripMenuItem.Text = "Neck";
             this.neckToolStripMenuItem.Click += new System.EventHandler(this.neckToolStripMenuItem_Click);
             // 
             // noseToolStripMenuItem
             // 
             this.noseToolStripMenuItem.Name = "noseToolStripMenuItem";
-            this.noseToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.noseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.noseToolStripMenuItem.Text = "Nose";
             this.noseToolStripMenuItem.Click += new System.EventHandler(this.noseToolStripMenuItem_Click);
             // 
             // pelvisToolStripMenuItem
             // 
             this.pelvisToolStripMenuItem.Name = "pelvisToolStripMenuItem";
-            this.pelvisToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.pelvisToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pelvisToolStripMenuItem.Text = "Pelvis";
             this.pelvisToolStripMenuItem.Click += new System.EventHandler(this.pelvisToolStripMenuItem_Click);
             // 
@@ -507,7 +508,7 @@ namespace METAbolt
             this.upperArmToolStripMenuItem1,
             this.upperLegToolStripMenuItem1});
             this.rightEarToolStripMenuItem.Name = "rightEarToolStripMenuItem";
-            this.rightEarToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.rightEarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rightEarToolStripMenuItem.Text = "Right";
             // 
             // earToolStripMenuItem1
@@ -590,21 +591,21 @@ namespace METAbolt
             // skullToolStripMenuItem
             // 
             this.skullToolStripMenuItem.Name = "skullToolStripMenuItem";
-            this.skullToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.skullToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.skullToolStripMenuItem.Text = "Skull";
             this.skullToolStripMenuItem.Click += new System.EventHandler(this.skullToolStripMenuItem_Click);
             // 
             // spineToolStripMenuItem
             // 
             this.spineToolStripMenuItem.Name = "spineToolStripMenuItem";
-            this.spineToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.spineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.spineToolStripMenuItem.Text = "Spine";
             this.spineToolStripMenuItem.Click += new System.EventHandler(this.spineToolStripMenuItem_Click);
             // 
             // stomachToolStripMenuItem
             // 
             this.stomachToolStripMenuItem.Name = "stomachToolStripMenuItem";
-            this.stomachToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.stomachToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stomachToolStripMenuItem.Text = "Stomach";
             this.stomachToolStripMenuItem.Click += new System.EventHandler(this.stomachToolStripMenuItem_Click);
             // 

@@ -937,7 +937,7 @@ namespace METAbolt
                 /// the maximum bandwidth setting in the official client. If you do not
                 /// set a throttle your connection will by default be throttled well
                 /// below the minimum values and you may experience connection problems</remarks>
-                client.Settings.SEND_AGENT_THROTTLE = true;
+                client.Settings.SEND_AGENT_THROTTLE = false;
 
                 client.Throttle.Cloud = 0.0f;
                 client.Throttle.Land = 0.0f;
