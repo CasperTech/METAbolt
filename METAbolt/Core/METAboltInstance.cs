@@ -965,12 +965,15 @@ namespace METAbolt
 
         public string RemoveReservedCharacters(string strValue)
         {
-            char[] ReservedChars = { '/', ':', '*', '?', '"', '<', '>', '|', '.', ',', '!', ';', '\\', '\'' };
+            //char[] ReservedChars = { '/', ':', '*', '?', '"', '<', '>', '|', '.', ',', '!', ';', '\\', '\'' };
 
-            foreach (char strChar in ReservedChars)
+            char[] invalidFileChars = Path.GetInvalidFileNameChars();
+
+            foreach (char strChar in invalidFileChars)
             {
                 strValue = strValue.Replace(strChar.ToString(), "");
             }
+
             return strValue;
         }
 
