@@ -2227,7 +2227,7 @@ namespace METAbolt
                     {
                         foreach (InventoryItem link in cofcontents)
                         {
-                            InventoryItem wItem = AInventoryItem(link);
+                            var wItem = AInventoryItem(link);
 
                             if (link.AssetUUID == item.UUID)
                             {
@@ -2461,26 +2461,36 @@ namespace METAbolt
 
                     remclothing.Add(item.UUID);
 
-                    InventoryItem wItem = AInventoryItem(item);
-                    InventoryWearable ci = (InventoryWearable)wItem;
+                    InventoryItem wItem;
+                    //InventoryWearable ci;
 
                     try
                     {
-                        client.Inventory.Remove(remclothing, null);
+                        wItem = AInventoryItem(item);
+                        //ci = (InventoryWearable)wItem.;
 
-                        if (ci.AssetType == AssetType.Object)
+                        try
                         {
-                            client.Appearance.Detach(item.AssetUUID);
+                            client.Inventory.Remove(remclothing, null);
+
+                            if (wItem.AssetType == AssetType.Object)
+                            {
+                                client.Appearance.Detach(item.AssetUUID);
+                            }
+                            else
+                            {
+                                client.Appearance.RemoveFromOutfit(wItem);
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            client.Appearance.RemoveFromOutfit(wItem);
+                            string exp = ex.Message;
                         }
                     }
                     catch (Exception ex)
                     {
-                        string exp = ex.Message;
-                    }
+                        string exp = ex.Message; 
+                    }                    
                 }
             }
 
