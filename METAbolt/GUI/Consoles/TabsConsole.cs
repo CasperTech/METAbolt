@@ -507,8 +507,8 @@ namespace METAbolt
                         else if (e.IM.IMSessionID == UUID.Zero)
                         {
                             // Region message
-                            String msg = "Region message from " + e.IM.FromAgentName + "\n\n";
-                            msg += e.IM.Message;
+                            String msg = "Region message from " + e.IM.FromAgentName + Environment.NewLine + Environment.NewLine;
+                            msg += @e.IM.Message;
 
                             //MessageBox.Show(msg, "METAbolt");
 
@@ -784,7 +784,7 @@ namespace METAbolt
             if (instance.State.IsBusy) return;
 
             //string ttl = "METAbolt";
-            string body = e.IM.Message;
+            string body = @e.IM.Message;
             //TrayNotifiy(ttl, body);
 
             (new frmMBmsg(instance, body)).Show(this);

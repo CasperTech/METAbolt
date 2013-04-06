@@ -45,7 +45,7 @@ namespace METAbolt
             this.btnExit.Location = new System.Drawing.Point(357, 219);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(92, 23);
-            this.btnExit.TabIndex = 2;
+            this.btnExit.TabIndex = 0;
             this.btnExit.Text = "OK";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -54,23 +54,24 @@ namespace METAbolt
             // 
             this.txtMsg.BackColor = System.Drawing.Color.DimGray;
             this.txtMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMsg.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMsg.ForeColor = System.Drawing.Color.White;
             this.txtMsg.Location = new System.Drawing.Point(12, 12);
             this.txtMsg.Margin = new System.Windows.Forms.Padding(5);
             this.txtMsg.Multiline = true;
             this.txtMsg.Name = "txtMsg";
-            this.txtMsg.ReadOnly = true;
             this.txtMsg.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.txtMsg.Size = new System.Drawing.Size(437, 197);
-            this.txtMsg.TabIndex = 3;
+            this.txtMsg.TabIndex = 1;
             // 
             // timer1
             // 
-            this.timer1.Interval = 3000;
+            this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMBmsg
             // 
+            this.AcceptButton = this.btnExit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;

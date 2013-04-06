@@ -781,42 +781,57 @@ namespace METAbolt
 
                     if (member.ID == Client.Self.AgentID)
                     {
-                        cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
-                        button6.Enabled = false;
-
-                        button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
-                        button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
-
-                        //try
-                        //{
-                        //    chkListInProfile.Checked = instance.State.Groups[Profile.ID].ListInProfile;
-                        //    chkGroupNotices.Checked = instance.State.Groups[Profile.ID].AcceptNotices;
-                        //}
-                        //catch { ; }
-
-                        if (instance.State.Groups.ContainsKey(Profile.ID))
+                        if (Client.Self.AgentID == member.ID && member.IsOwner)
                         {
-                            if ((member.Powers & GroupPowers.ChangeIdentity) != 0)
-                            {
-                                txtCharter.Enabled = true;
-                            }
+                            cmdEject.Enabled = ejectpower = true;
+                            button6.Enabled = true;
 
-                            if ((member.Powers & GroupPowers.ChangeOptions) != 0)
-                            {
-                                chkPublish.Enabled = true;
-                                chkOpenEnrollment.Enabled = true;
-                                chkFee.Enabled = true;
-                                numFee.Enabled = true;
-                                chkMature.Enabled = true;
-                            }
+                            button4.Visible = true;
+                            button5.Visible = true;
+
+                            txtCharter.Enabled = true;
+
+                            chkPublish.Enabled = true;
+                            chkOpenEnrollment.Enabled = true;
+                            chkFee.Enabled = true;
+                            numFee.Enabled = true;
+                            chkMature.Enabled = true;
 
                             chkListInProfile.Enabled = true;
                             chkGroupNotices.Enabled = true;
                         }
                         else
                         {
-                            chkListInProfile.Enabled = false;
-                            chkGroupNotices.Enabled = false;
+                            cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
+                            button6.Enabled = false;
+
+                            button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
+                            button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
+
+                            if (instance.State.Groups.ContainsKey(Profile.ID))
+                            {
+                                if ((member.Powers & GroupPowers.ChangeIdentity) != 0)
+                                {
+                                    txtCharter.Enabled = true;
+                                }
+
+                                if ((member.Powers & GroupPowers.ChangeOptions) != 0)
+                                {
+                                    chkPublish.Enabled = true;
+                                    chkOpenEnrollment.Enabled = true;
+                                    chkFee.Enabled = true;
+                                    numFee.Enabled = true;
+                                    chkMature.Enabled = true;
+                                }
+
+                                chkListInProfile.Enabled = true;
+                                chkGroupNotices.Enabled = true;
+                            }
+                            else
+                            {
+                                chkListInProfile.Enabled = false;
+                                chkGroupNotices.Enabled = false;
+                            }
                         }
                     }
 

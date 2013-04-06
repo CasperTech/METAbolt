@@ -45,7 +45,7 @@ namespace METAbolt
 
             this.instance = instance;
 
-            txtMsg.Text = msg;
+            txtMsg.Text = @msg;
 
             this.Text += "   " + "[ " + instance.Client.Self.Name + " ]";
 
