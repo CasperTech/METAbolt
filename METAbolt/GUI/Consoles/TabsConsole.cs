@@ -510,7 +510,9 @@ namespace METAbolt
                             String msg = "Region message from " + e.IM.FromAgentName + "\n\n";
                             msg += e.IM.Message;
 
-                            MessageBox.Show(msg, "METAbolt");
+                            //MessageBox.Show(msg, "METAbolt");
+
+                            (new frmMBmsg(instance, msg)).Show(this);
                         }
                         else
                         {
@@ -781,9 +783,11 @@ namespace METAbolt
         {
             if (instance.State.IsBusy) return;
 
-            string ttl = "METAbolt";
+            //string ttl = "METAbolt";
             string body = e.IM.Message;
-            TrayNotifiy(ttl, body);
+            //TrayNotifiy(ttl, body);
+
+            (new frmMBmsg(instance, body)).Show(this);
         }
 
         private void HandleIM(InstantMessageEventArgs e)

@@ -584,7 +584,7 @@ namespace METAbolt
                 if (!showing)
                 {
                     UUID akey = (UUID)CurrentLoc.LocationName;
-                    string apstn = "\nCoords.: " + CurrentLoc.Position.X.ToString() + "/" + CurrentLoc.Position.Y.ToString() + "/" + CurrentLoc.Position.Z.ToString();
+                    string apstn = "\nCoords.: " + Math.Round(CurrentLoc.Position.X).ToString() + "/" + Math.Round(CurrentLoc.Position.Y).ToString() + "/" + Math.Round(CurrentLoc.Position.Z).ToString();
 
                     world.Cursor = Cursors.Hand;
                     string anme = string.Empty;

@@ -414,6 +414,12 @@
     <Compile Include="GUI\Consoles\Preferences\PrefSpelling.Designer.cs">
       <DependentUpon>PrefSpelling.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Dialogs\frmMBmsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialogs\frmMBmsg.Designer.cs">
+      <DependentUpon>frmMBmsg.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dialogs\frmGive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -838,6 +844,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Consoles\Preferences\PrefSpelling.resx">
       <DependentUpon>PrefSpelling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialogs\frmMBmsg.resx">
+      <DependentUpon>frmMBmsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialogs\frmGive.resx">
       <DependentUpon>frmGive.cs</DependentUpon>
