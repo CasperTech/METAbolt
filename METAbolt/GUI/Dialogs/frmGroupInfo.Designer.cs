@@ -62,7 +62,7 @@ namespace METAbolt
             this.lstMembers2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LastLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabRoles = new System.Windows.Forms.TabPage();
@@ -534,7 +534,7 @@ namespace METAbolt
             this.lstMembers2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.LastLogin});
             this.lstMembers2.FullRowSelect = true;
             this.lstMembers2.Location = new System.Drawing.Point(6, 6);
             this.lstMembers2.MultiSelect = false;
@@ -560,10 +560,10 @@ namespace METAbolt
             this.columnHeader2.Text = "Donated Tier";
             this.columnHeader2.Width = 119;
             // 
-            // columnHeader3
+            // LastLogin
             // 
-            this.columnHeader3.Text = "Last Login";
-            this.columnHeader3.Width = 96;
+            this.LastLogin.Text = "Last Login";
+            this.LastLogin.Width = 96;
             // 
             // label2
             // 
@@ -1236,7 +1236,7 @@ namespace METAbolt
         private System.Windows.Forms.ListView lstMembers2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader LastLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdEject;
