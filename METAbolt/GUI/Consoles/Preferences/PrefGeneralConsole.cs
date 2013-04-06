@@ -193,7 +193,10 @@ namespace METAbolt
 
             SetBarValue();
 
-            comboBox1.SelectedIndex = 0; 
+            comboBox1.SelectedIndex = 0;
+            cbApp.SelectedIndex = 0;
+            cbLand.SelectedIndex = 0;
+            cbFn.SelectedIndex = 0;
 
             if (config.CurrentConfig.ClassicChatLayout)
             {
@@ -285,6 +288,10 @@ namespace METAbolt
             {
                 comboBox1.SelectedIndex = 2;
             }
+
+            cbApp.SelectedItem = config.CurrentConfig.AppMenuPos;
+            cbLand.SelectedItem = config.CurrentConfig.LandMenuPos;
+            cbFn.SelectedItem = config.CurrentConfig.FnMenuPos;
         }
 
         #region IPreferencePane Members
@@ -370,6 +377,10 @@ namespace METAbolt
             config.CurrentConfig.EnforceLSLsecurity = checkBox12.Checked;
             config.CurrentConfig.DisplayLSLcommands = chkLSL.Checked;
             //config.CurrentConfig.BroadcastID = cbTag.Checked;
+
+            config.CurrentConfig.AppMenuPos = cbApp.Text;
+            config.CurrentConfig.LandMenuPos = cbLand.Text;
+            config.CurrentConfig.FnMenuPos = cbFn.Text;
 
             if (comboBox1.SelectedIndex == 0)
             {

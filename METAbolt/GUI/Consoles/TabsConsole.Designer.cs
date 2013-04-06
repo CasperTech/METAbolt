@@ -141,20 +141,20 @@ namespace METAbolt
             this.tmnuMergeWith.AccessibleName = "Merge menu option";
             this.tmnuMergeWith.Image = global::METAbolt.Properties.Resources.m_merge;
             this.tmnuMergeWith.Name = "tmnuMergeWith";
-            this.tmnuMergeWith.Size = new System.Drawing.Size(152, 22);
+            this.tmnuMergeWith.Size = new System.Drawing.Size(136, 22);
             this.tmnuMergeWith.Text = "Merge With";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 6);
             // 
             // tmnuDetachTab
             // 
             this.tmnuDetachTab.AccessibleName = "Detach menu option";
             this.tmnuDetachTab.Image = global::METAbolt.Properties.Resources.m_detach;
             this.tmnuDetachTab.Name = "tmnuDetachTab";
-            this.tmnuDetachTab.Size = new System.Drawing.Size(152, 22);
+            this.tmnuDetachTab.Size = new System.Drawing.Size(136, 22);
             this.tmnuDetachTab.Text = "Detach Tab";
             this.tmnuDetachTab.Click += new System.EventHandler(this.tmnuDetachTab_Click);
             // 

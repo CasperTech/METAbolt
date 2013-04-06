@@ -506,6 +506,69 @@ namespace METAbolt
                     }
                 }
             }
+
+            // Menu positions
+            Control control;
+            bool topofscreen = false;
+
+            switch (instance.Config.CurrentConfig.AppMenuPos)
+            {
+                case "Top":
+                    control = toolStripContainer1.TopToolStripPanel;
+                    topofscreen = true;
+                    break;
+
+                case "Bottom":
+                    control = toolStripContainer1.BottomToolStripPanel;
+                    break;
+
+                case "Left":
+                    control = toolStripContainer1.LeftToolStripPanel;
+                    break;
+
+                case "Right":
+                    control = toolStripContainer1.RightToolStripPanel;
+                    break;
+
+                default:
+                    control = toolStripContainer1.TopToolStripPanel;
+                    break;
+            }
+
+            toolStrip1.Parent = control;
+
+            if (topofscreen) toolStrip1.Location = new Point(0, 0);
+            topofscreen = false;
+            
+
+            switch (instance.Config.CurrentConfig.LandMenuPos)
+            {
+                case "Top":
+                    control = toolStripContainer1.TopToolStripPanel;
+                    topofscreen = true;
+                    break;
+
+                case "Bottom":
+                    control = toolStripContainer1.BottomToolStripPanel;
+                    break;
+
+                case "Left":
+                    control = toolStripContainer1.LeftToolStripPanel;
+                    break;
+
+                case "Right":
+                    control = toolStripContainer1.RightToolStripPanel;
+                    break;
+
+                default:
+                    control = toolStripContainer1.TopToolStripPanel;
+                    break;
+            }
+
+            statusStrip1.Parent = control;
+
+            if (topofscreen) statusStrip1.Location = new Point(0, 25);
+            topofscreen = false;
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)

@@ -141,6 +141,39 @@ namespace METAbolt
             {
                 notifyIcon1.Visible = true;
             }
+
+            // Menu positions
+
+            Control control;
+
+            bool topofscreen = false;
+
+            switch (instance.Config.CurrentConfig.FnMenuPos)
+            {
+                case "Top":
+                    control = toolStripContainer1.TopToolStripPanel;
+                    topofscreen = true;
+                    break;
+
+                case "Bottom":
+                    control = toolStripContainer1.BottomToolStripPanel;
+                    break;
+
+                case "Left":
+                    control = toolStripContainer1.LeftToolStripPanel;
+                    break;
+
+                case "Right":
+                    control = toolStripContainer1.RightToolStripPanel;
+                    break;
+
+                default:
+                    control = toolStripContainer1.TopToolStripPanel;
+                    break;
+            }
+
+            tstTabs.Parent = control;
+            topofscreen = false;
         }
 
         private void AddNetcomEvents()

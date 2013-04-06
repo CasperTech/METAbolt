@@ -174,6 +174,9 @@ namespace METAbolt
         private bool disablefavs = false;
         private bool disablehttpinv = true;
         private bool disableradarminimap = false;
+        private string appmenupos = "Top";
+        private string landmenupos = "Top";
+        private string fnmenupos = "Top";
 
         public Config()
         {
@@ -276,6 +279,9 @@ namespace METAbolt
                 config.DisableFavs = conf.Configs["General"].GetBoolean("DisableFavs", false);
                 config.DisableHTTPinv = conf.Configs["General"].GetBoolean("DisableHTTPinv", true);
                 config.DisableRadarImageMiniMap = conf.Configs["General"].GetBoolean("DisableRadarImageMiniMap", false);
+                config.AppMenuPos = conf.Configs["General"].GetString("AppMenuPos", "Top");
+                config.LandMenuPos = conf.Configs["General"].GetString("LandMenuPos", "Top");
+                config.FnMenuPos = conf.Configs["General"].GetString("FnMenuPos", "Top");
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -458,6 +464,9 @@ namespace METAbolt
             config.Set("DisableFavs", disablefavs.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableHTTPinv", disablehttpinv.ToString(CultureInfo.CurrentCulture));
             config.Set("DisableRadarImageMiniMap", disableradarminimap.ToString(CultureInfo.CurrentCulture));
+            config.Set("AppMenuPos", appmenupos.ToString(CultureInfo.CurrentCulture));
+            config.Set("LandMenuPos", landmenupos.ToString(CultureInfo.CurrentCulture));
+            config.Set("FnMenuPos", fnmenupos.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1289,6 +1298,24 @@ namespace METAbolt
         {
             get { return disableradarminimap; }
             set { disableradarminimap = value; }
+        }
+
+        public string AppMenuPos
+        {
+            get { return appmenupos; }
+            set { appmenupos = value; }
+        }
+
+        public string LandMenuPos
+        {
+            get { return landmenupos; }
+            set { landmenupos = value; }
+        }
+
+        public string FnMenuPos
+        {
+            get { return fnmenupos; }
+            set { fnmenupos = value; }
         }
     }
 }

@@ -255,7 +255,7 @@ namespace METAbolt
             this.tlblParcel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.tlblParcel.LinkColor = System.Drawing.Color.RoyalBlue;
             this.tlblParcel.Name = "tlblParcel";
-            this.tlblParcel.Size = new System.Drawing.Size(424, 19);
+            this.tlblParcel.Size = new System.Drawing.Size(567, 19);
             this.tlblParcel.Spring = true;
             this.tlblParcel.Text = "No Parcel";
             this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -380,7 +380,7 @@ namespace METAbolt
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(720, 540);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(695, 490);
             this.toolStripContainer1.ContentPanel.Load += new System.EventHandler(this.toolStripContainer1_ContentPanel_Load);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
@@ -399,8 +399,8 @@ namespace METAbolt
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.statusStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // toolStrip1
