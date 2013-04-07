@@ -163,7 +163,11 @@ namespace METAbolt
 
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    label1.Visible = false;
+                    try
+                    {
+                        label1.Visible = false;
+                    }
+                    catch { ; }
                 }));
             }
             else
@@ -171,7 +175,11 @@ namespace METAbolt
                 //BeginInvoke(new MethodInvoker(Group_JoinError));
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    label1.Text = "Failed to join the requested group chat";
+                    try
+                    {
+                        label1.Text = "Failed to join the requested group chat";
+                    }
+                    catch { ; }
                 }));
             }
         }
