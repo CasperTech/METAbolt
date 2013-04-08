@@ -2232,6 +2232,8 @@ namespace METAbolt
 
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
+            if (!netcom.IsLoggedIn) return;
+            
             string file = parcel.Name;
 
             if (file.Length > 32)

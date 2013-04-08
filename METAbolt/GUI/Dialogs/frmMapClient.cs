@@ -657,7 +657,7 @@ namespace METAbolt
         {
             if (TabCont.SelectedIndex == 0)
             {
-                this.Width = 289;
+                this.Width = 300;
                 button2.Visible = false;
                 return;
             }
