@@ -548,9 +548,6 @@
   <data name="pref2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pref2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="paste_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paste_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -659,5 +656,11 @@
   </data>
   <data name="safe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\safe.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Favorites_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorites_black.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

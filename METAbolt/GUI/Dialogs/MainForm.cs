@@ -2219,6 +2219,57 @@ namespace METAbolt
             tb7.BackColor = Color.White;
         }
 
+        private void toolStripStatusLabel2_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.BackColor = Color.LightSteelBlue;
+            toolTip1.SetToolTip(statusStrip1, "Favourite this parcel");
+        }
+
+        private void toolStripStatusLabel2_MouseLeave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.BackColor = Color.White;
+        }
+
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+            string file = parcel.Name;
+
+            if (file.Length > 32)
+            {
+                file = file.Substring(0, 32);
+            }
+
+            string pos = instance.SIMsittingPos().X.ToString() + ", " + instance.SIMsittingPos().Y.ToString() + ", " + instance.SIMsittingPos().Z.ToString();
+
+            string desc = file + ", " + client.Network.CurrentSim.Name + " (" + pos + ")";
+
+            client.Inventory.RequestCreateItem(instance.FavsFolder,
+                    file, desc, AssetType.Landmark, UUID.Random(), InventoryType.Landmark, PermissionMask.All,
+                    delegate(bool success, InventoryItem item)
+                    {
+                        if (!success)
+                        {
+                            MessageBox.Show("Favourite could not be created", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        else
+                        {
+                            List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
+
+                            foreach (InventoryBase o in invroot)
+                            {
+                                if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                                {
+                                    if (o is InventoryFolder)
+                                    {
+                                        client.Inventory.RequestFolderContents(o.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                );
+        }
+
         //private void FavsToolStripMenuItem_Click(object sender, EventArgs e)
         //{
         //    string cbtn = sender.ToString();

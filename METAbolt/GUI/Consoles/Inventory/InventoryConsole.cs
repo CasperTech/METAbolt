@@ -355,11 +355,21 @@ namespace METAbolt
                         {
                             if (o is InventoryFolder)
                             {
-                                favfolder = o.UUID;
+                                favfolder = instance.FavsFolder = o.UUID;
 
                                 client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
 
                                 break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                        {
+                            if (o is InventoryFolder)
+                            {
+                                favfolder = instance.FavsFolder = o.UUID;
                             }
                         }
                     }

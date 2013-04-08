@@ -1525,6 +1525,7 @@
     <None Include="Resources\Favorites.png" />
     <None Include="Resources\Entire_Network_16.png" />
     <None Include="Resources\find_i.png" />
+    <None Include="Resources\Favorites_black.png" />
     <Content Include="Resources\fly.png" />
     <None Include="Resources\fly1.png" />
     <Content Include="Resources\follow_new.gif" />

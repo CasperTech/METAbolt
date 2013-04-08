@@ -38,6 +38,7 @@ namespace METAbolt
             this.tlblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblRegionInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblParcel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -162,6 +163,7 @@ namespace METAbolt
             this.tlblLoginName,
             this.tlblRegionInfo,
             this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
             this.tlblParcel,
             this.tb1,
             this.tb2,
@@ -243,6 +245,19 @@ namespace METAbolt
             this.toolStripStatusLabel1.MouseLeave += new System.EventHandler(this.toolStripStatusLabel1_MouseLeave);
             this.toolStripStatusLabel1.MouseHover += new System.EventHandler(this.toolStripStatusLabel1_MouseHover);
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.AutoSize = false;
+            this.toolStripStatusLabel2.Image = global::METAbolt.Properties.Resources.Favorites_black;
+            this.toolStripStatusLabel2.IsLink = true;
+            this.toolStripStatusLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 24);
+            this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
+            this.toolStripStatusLabel2.MouseEnter += new System.EventHandler(this.toolStripStatusLabel2_MouseEnter);
+            this.toolStripStatusLabel2.MouseLeave += new System.EventHandler(this.toolStripStatusLabel2_MouseLeave);
+            // 
             // tlblParcel
             // 
             this.tlblParcel.AccessibleDescription = "The name of the parcel you are on";
@@ -255,7 +270,7 @@ namespace METAbolt
             this.tlblParcel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.tlblParcel.LinkColor = System.Drawing.Color.RoyalBlue;
             this.tlblParcel.Name = "tlblParcel";
-            this.tlblParcel.Size = new System.Drawing.Size(567, 19);
+            this.tlblParcel.Size = new System.Drawing.Size(378, 19);
             this.tlblParcel.Spring = true;
             this.tlblParcel.Text = "No Parcel";
             this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -380,7 +395,7 @@ namespace METAbolt
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(695, 490);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(720, 540);
             this.toolStripContainer1.ContentPanel.Load += new System.EventHandler(this.toolStripContainer1_ContentPanel_Load);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
@@ -399,8 +414,8 @@ namespace METAbolt
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.statusStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.statusStrip1);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // toolStrip1
@@ -1423,6 +1438,7 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripLabel tsTimeOut;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel tb7;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 

@@ -113,6 +113,7 @@ namespace METAbolt
         private string afffile = string.Empty;
         private string dicfile = string.Empty;
         private bool allowvoice = true;
+        private UUID favsfolder = UUID.Zero; 
 
         internal class ThreadExceptionHandler
         {
@@ -1280,6 +1281,12 @@ namespace METAbolt
         {
             get { return allowvoice; }
             set { allowvoice = value; }
+        }
+
+        public UUID FavsFolder
+        {
+            get { return favsfolder; }
+            set { favsfolder = value; }
         }
     }
 }
