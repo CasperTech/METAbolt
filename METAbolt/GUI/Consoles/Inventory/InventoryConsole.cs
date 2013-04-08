@@ -985,7 +985,21 @@ namespace METAbolt
 
                 if (io is InventoryObject || io is InventoryAttachment)
                 {
-                    if (io.ParentUUID != CoF.UUID)
+                    try
+                    {
+                        if (gotCoF)
+                        {
+                            if (io.ParentUUID != CoF.UUID)
+                            {
+                                attachToToolStripMenuItem.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            attachToToolStripMenuItem.Visible = true;
+                        }
+                    }
+                    catch
                     {
                         attachToToolStripMenuItem.Visible = true;
                     }
