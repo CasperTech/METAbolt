@@ -294,14 +294,16 @@ namespace METAbolt
                 Vector3 myPos = new Vector3();
 
                 // Rollback change from 9.2.1
-                if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
-                {
-                    myPos = instance.SIMsittingPos();
-                }
-                else
-                {
-                    myPos = sim.AvatarPositions[client.Self.AgentID];
-                }
+                //if (!sim.AvatarPositions.ContainsKey(client.Self.AgentID))
+                //{
+                //    myPos = instance.SIMsittingPos();
+                //}
+                //else
+                //{
+                //    myPos = sim.AvatarPositions[client.Self.AgentID];
+                //}
+
+                myPos = instance.SIMsittingPos();
 
                 // Draw self position
                 int rg = instance.Config.CurrentConfig.RadarRange;
@@ -360,6 +362,11 @@ namespace METAbolt
                             oavPos.X = pos.Value.X;
                             oavPos.Y = pos.Value.Y;
                             oavPos.Z = pos.Value.Z;
+
+                            if (oavPos.Z < 0.1f)
+                            {
+                                oavPos.Z = 1020f;
+                            }
 
                             if (pos.Key != client.Self.AgentID)
                             {

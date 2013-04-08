@@ -207,7 +207,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDialog";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.85D;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dialog";
