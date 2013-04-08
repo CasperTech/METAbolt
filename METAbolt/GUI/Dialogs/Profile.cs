@@ -536,8 +536,12 @@ namespace METAbolt
                     }
                 }
 
-                if (fullName.EndsWith("Linden", StringComparison.CurrentCulture)) rtbAccountInfo.AppendText("Linden Lab Employee\n");
-                else rtbAccountInfo.AppendText("Resident\n");
+                try
+                {
+                    if (fullName.EndsWith("Linden", StringComparison.CurrentCulture)) rtbAccountInfo.AppendText("Linden Lab Employee\n");
+                    else rtbAccountInfo.AppendText("Resident\n");
+                }
+                catch { ; }
 
                 if (properties.Identified && !properties.Transacted) rtbAccountInfo.AppendText("Payment Info On File\n");
                 else if (properties.Transacted) rtbAccountInfo.AppendText("Payment Info Used\n");
