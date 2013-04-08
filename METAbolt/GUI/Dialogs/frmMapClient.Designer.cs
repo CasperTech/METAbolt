@@ -33,6 +33,7 @@ namespace METAbolt
             this.btnClose = new System.Windows.Forms.Button();
             this.TabCont = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chkResident = new System.Windows.Forms.CheckBox();
@@ -50,6 +51,7 @@ namespace METAbolt
             this.lblSimData = new System.Windows.Forms.Label();
             this.world = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnTeleport = new System.Windows.Forms.Button();
             this.pnlTeleporting = new System.Windows.Forms.Panel();
@@ -70,8 +72,6 @@ namespace METAbolt
             this.lbxRegionSearch = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.TabCont.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuZ)).BeginInit();
@@ -107,7 +107,8 @@ namespace METAbolt
             // 
             // TabCont
             // 
-            this.TabCont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TabCont.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabCont.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.TabCont.Controls.Add(this.tabPage1);
@@ -145,9 +146,29 @@ namespace METAbolt
             this.tabPage1.Size = new System.Drawing.Size(268, 405);
             this.tabPage1.TabIndex = 0;
             // 
+            // button3
+            // 
+            this.button3.AccessibleName = "Clear marker from map option";
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(162, 341);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 23);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "View in browser";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button1
             // 
             this.button1.AccessibleName = "Clear marker from map option";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Enabled = false;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -167,6 +188,7 @@ namespace METAbolt
             // checkBox1
             // 
             this.checkBox1.AccessibleName = "Display residents option";
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -183,6 +205,7 @@ namespace METAbolt
             // chkResident
             // 
             this.chkResident.AccessibleName = "Display residents option";
+            this.chkResident.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkResident.AutoSize = true;
             this.chkResident.Checked = true;
             this.chkResident.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -199,6 +222,7 @@ namespace METAbolt
             // chkForSale
             // 
             this.chkForSale.AccessibleName = "Land for sale option";
+            this.chkForSale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkForSale.AutoSize = true;
             this.chkForSale.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkForSale.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
@@ -214,6 +238,7 @@ namespace METAbolt
             // label2
             // 
             this.label2.AccessibleName = "SLurl of selected position textbox";
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label2.ForeColor = System.Drawing.Color.Gray;
             this.label2.Location = new System.Drawing.Point(6, 316);
@@ -235,6 +260,7 @@ namespace METAbolt
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(130, 381);
             this.label5.Name = "label5";
@@ -244,6 +270,7 @@ namespace METAbolt
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(70, 381);
             this.label4.Name = "label4";
@@ -253,6 +280,7 @@ namespace METAbolt
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 381);
             this.label3.Name = "label3";
@@ -264,6 +292,7 @@ namespace METAbolt
             // 
             this.cmdTP.AccessibleDescription = "Teleports the avatar to the selected position";
             this.cmdTP.AccessibleName = "Teleport button";
+            this.cmdTP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdTP.BackColor = System.Drawing.Color.DimGray;
             this.cmdTP.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.cmdTP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -280,6 +309,7 @@ namespace METAbolt
             // nuZ
             // 
             this.nuZ.AccessibleName = "Z coordinate setting";
+            this.nuZ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nuZ.BackColor = System.Drawing.Color.WhiteSmoke;
             this.nuZ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nuZ.Location = new System.Drawing.Point(147, 377);
@@ -296,6 +326,7 @@ namespace METAbolt
             // nuY
             // 
             this.nuY.AccessibleName = "Y coordinate setting";
+            this.nuY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nuY.BackColor = System.Drawing.Color.WhiteSmoke;
             this.nuY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nuY.Location = new System.Drawing.Point(87, 377);
@@ -313,6 +344,7 @@ namespace METAbolt
             // nuX
             // 
             this.nuX.AccessibleName = "X coordinate setting";
+            this.nuX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nuX.BackColor = System.Drawing.Color.WhiteSmoke;
             this.nuX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nuX.Location = new System.Drawing.Point(27, 377);
@@ -329,6 +361,7 @@ namespace METAbolt
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 361);
             this.label1.Name = "label1";
@@ -338,6 +371,7 @@ namespace METAbolt
             // 
             // lblSimData
             // 
+            this.lblSimData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSimData.AutoSize = true;
             this.lblSimData.Location = new System.Drawing.Point(6, 292);
             this.lblSimData.Name = "lblSimData";
@@ -347,9 +381,13 @@ namespace METAbolt
             // world
             // 
             this.world.AccessibleName = "Map image";
+            this.world.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.world.Location = new System.Drawing.Point(6, 6);
             this.world.Name = "world";
             this.world.Size = new System.Drawing.Size(256, 256);
+            this.world.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.world.TabIndex = 0;
             this.world.TabStop = false;
             this.world.Click += new System.EventHandler(this.world_Click);
@@ -370,9 +408,28 @@ namespace METAbolt
             this.tabPage2.Controls.Add(this.lbxRegionSearch);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(838, 405);
+            this.tabPage2.Size = new System.Drawing.Size(268, 405);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Search";
+            // 
+            // button4
+            // 
+            this.button4.AccessibleName = "Clear marker from map option";
+            this.button4.BackColor = System.Drawing.Color.DimGray;
+            this.button4.Enabled = false;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(311, 268);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 23);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "View in browser";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button2
             // 
@@ -611,8 +668,9 @@ namespace METAbolt
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = global::METAbolt.Properties.Resources.Help_and_Support_16;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 445);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 447);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
             this.pictureBox1.TabIndex = 6;
@@ -625,43 +683,6 @@ namespace METAbolt
             // 
             this.toolTip1.AutomaticDelay = 250;
             this.toolTip1.IsBalloon = true;
-            // 
-            // button3
-            // 
-            this.button3.AccessibleName = "Clear marker from map option";
-            this.button3.BackColor = System.Drawing.Color.DimGray;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(162, 341);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "View in browser";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.AccessibleName = "Clear marker from map option";
-            this.button4.BackColor = System.Drawing.Color.DimGray;
-            this.button4.Enabled = false;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(311, 268);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 23);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "View in browser";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // frmMapClient
             // 
@@ -676,10 +697,10 @@ namespace METAbolt
             this.Controls.Add(this.TabCont);
             this.Controls.Add(this.btnClose);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmMapClient";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "METAbolt Map";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMapClient_FormClosing);
             this.Load += new System.EventHandler(this.frmMapClient_Load);

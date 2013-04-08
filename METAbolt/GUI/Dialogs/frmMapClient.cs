@@ -437,6 +437,8 @@ namespace METAbolt
 
             chkForSale.Checked = true;
             chkForSale.Checked = false;
+
+            checkBox1.Checked = !instance.Config.CurrentConfig.DisableRadarImageMiniMap;
         }
 
         private void button1_Click(object sender, EventArgs e)
