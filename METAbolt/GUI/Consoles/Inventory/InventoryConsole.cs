@@ -228,8 +228,9 @@ namespace METAbolt
                     }
                 }
 
-                //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
+                client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                 UpdateFolder(fldr);
+                client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
             }
             catch { ; }
         }
@@ -255,8 +256,12 @@ namespace METAbolt
                 }
             }
 
+
             //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
+
+            client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
             UpdateFolder(fldr);
+            client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
 
         }
 
@@ -476,8 +481,10 @@ namespace METAbolt
                     //if (folderproc == e.FolderID)
                     //{
                         ////ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
-                    
+
+                        client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                         UpdateFolder(e.FolderID);
+                        client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                         //folderproc = UUID.Zero;
                     //}
                 }
@@ -548,6 +555,8 @@ namespace METAbolt
                     List<InventoryBase> invroot = client.Inventory.Store.GetContents(favfolder);
                     instance.MainForm.UpdateFavourites(invroot);
                 }
+
+                treeView1.Sort();  
             }
         }
 
