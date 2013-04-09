@@ -539,6 +539,7 @@ namespace METAbolt
                 try
                 {
                     TreeViewWalker treeViewWalker = new TreeViewWalker(treeView1);
+
                     treeViewWalker.LoadInventory(instance, folderID);
 
                     if (selectednode != null)
