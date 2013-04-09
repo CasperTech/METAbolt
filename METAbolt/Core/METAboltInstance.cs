@@ -838,8 +838,7 @@ namespace METAbolt
 
             // Configuration options (mostly booleans)
 
-            // Enable stats
-            client.Settings.TRACK_UTILIZATION = true;
+            
 
             /// <summary>Enable to process packets synchronously, where all of the
             /// callbacks for each packet must return before the next packet is
@@ -862,10 +861,19 @@ namespace METAbolt
             //client.Settings.STORE_LAND_PATCHES = true;
             /// <summary>Enable/disable sending periodic camera updates</summary>
             client.Settings.SEND_AGENT_UPDATES = true;
-            
+
+            // Enable stats
+            //client.Settings.TRACK_UTILIZATION = false;
             /// <summary>Enable/disable the sending of pings to monitor lag and 
             /// packet loss</summary>
-            client.Settings.SEND_PINGS = true;
+            //client.Settings.SEND_PINGS = false;
+            /// <summary>Whether to decode sim stats</summary>
+            //client.Settings.ENABLE_SIMSTATS = false;
+
+            /// <summary>Whether to establish connections to HTTP capabilities
+            /// servers for simulators</summary>
+            //client.Settings.ENABLE_CAPS = true;
+
             //client.Settings.LOG_RESENDS = false;
             /// <summary>Should we connect to multiple sims? This will allow
             /// viewing in to neighboring simulators and sim crossings
@@ -880,11 +888,7 @@ namespace METAbolt
             /// <summary>If true, when a cached object check is received from the
             /// server the full object info will automatically be requested</summary>
             client.Settings.ALWAYS_REQUEST_OBJECTS = true;
-            /// <summary>Whether to establish connections to HTTP capabilities
-            /// servers for simulators</summary>
-            //client.Settings.ENABLE_CAPS = true;
-            /// <summary>Whether to decode sim stats</summary>
-            client.Settings.ENABLE_SIMSTATS = true;
+
             /// <summary>The capabilities servers are currently designed to
             /// periodically return a 502 error which signals for the client to
             /// re-establish a connection. Set this to true to log those 502 errors</summary>

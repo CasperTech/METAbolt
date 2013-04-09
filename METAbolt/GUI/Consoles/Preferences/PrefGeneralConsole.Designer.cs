@@ -140,6 +140,10 @@ namespace METAbolt
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -315,7 +319,7 @@ namespace METAbolt
             this.checkBox13.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox13.Location = new System.Drawing.Point(11, 104);
+            this.checkBox13.Location = new System.Drawing.Point(11, 70);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(213, 17);
             this.checkBox13.TabIndex = 66;
@@ -635,7 +639,7 @@ namespace METAbolt
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.DarkGray;
-            this.label2.Location = new System.Drawing.Point(158, 83);
+            this.label2.Location = new System.Drawing.Point(158, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 13);
             this.label2.TabIndex = 34;
@@ -645,7 +649,7 @@ namespace METAbolt
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(318, 83);
+            this.pictureBox3.Location = new System.Drawing.Point(318, 49);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(15, 15);
             this.pictureBox3.TabIndex = 33;
@@ -662,7 +666,7 @@ namespace METAbolt
             this.chkConnect4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkConnect4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkConnect4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkConnect4.Location = new System.Drawing.Point(11, 81);
+            this.chkConnect4.Location = new System.Drawing.Point(11, 47);
             this.chkConnect4.Name = "chkConnect4";
             this.chkConnect4.Size = new System.Drawing.Size(141, 17);
             this.chkConnect4.TabIndex = 0;
@@ -701,7 +705,7 @@ namespace METAbolt
             this.chkRadarMiniMap.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkRadarMiniMap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkRadarMiniMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkRadarMiniMap.Location = new System.Drawing.Point(80, 78);
+            this.chkRadarMiniMap.Location = new System.Drawing.Point(80, 55);
             this.chkRadarMiniMap.Name = "chkRadarMiniMap";
             this.chkRadarMiniMap.Size = new System.Drawing.Size(213, 17);
             this.chkRadarMiniMap.TabIndex = 63;
@@ -716,7 +720,7 @@ namespace METAbolt
             this.chkRestrictRadar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkRestrictRadar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkRestrictRadar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkRestrictRadar.Location = new System.Drawing.Point(80, 61);
+            this.chkRestrictRadar.Location = new System.Drawing.Point(80, 38);
             this.chkRestrictRadar.Name = "chkRestrictRadar";
             this.chkRestrictRadar.Size = new System.Drawing.Size(177, 17);
             this.chkRestrictRadar.TabIndex = 62;
@@ -725,13 +729,14 @@ namespace METAbolt
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label25);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.trackBar1);
             this.groupBox4.Controls.Add(this.radioButton1);
             this.groupBox4.Controls.Add(this.radioButton2);
-            this.groupBox4.Location = new System.Drawing.Point(10, 148);
+            this.groupBox4.Location = new System.Drawing.Point(10, 127);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(318, 90);
+            this.groupBox4.Size = new System.Drawing.Size(318, 111);
             this.groupBox4.TabIndex = 61;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Throttle (bandwidth) setting in kbps";
@@ -811,7 +816,7 @@ namespace METAbolt
             // 
             this.textBox2.AccessibleName = "Object select range numeric display textbox";
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(275, 103);
+            this.textBox2.Location = new System.Drawing.Point(275, 80);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(33, 14);
@@ -824,7 +829,7 @@ namespace METAbolt
             this.tbar2.AccessibleName = "Object select range trackbar";
             this.tbar2.AutoSize = false;
             this.tbar2.BackColor = System.Drawing.Color.White;
-            this.tbar2.Location = new System.Drawing.Point(124, 101);
+            this.tbar2.Location = new System.Drawing.Point(124, 78);
             this.tbar2.Maximum = 512;
             this.tbar2.Minimum = 5;
             this.tbar2.Name = "tbar2";
@@ -838,7 +843,7 @@ namespace METAbolt
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(314, 106);
+            this.pictureBox5.Location = new System.Drawing.Point(314, 83);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(15, 15);
             this.pictureBox5.TabIndex = 57;
@@ -848,7 +853,7 @@ namespace METAbolt
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(26, 103);
+            this.label5.Location = new System.Drawing.Point(26, 80);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(110, 23);
             this.label5.TabIndex = 55;
@@ -857,7 +862,7 @@ namespace METAbolt
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(313, 34);
+            this.pictureBox4.Location = new System.Drawing.Point(313, 11);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(15, 15);
             this.pictureBox4.TabIndex = 53;
@@ -869,7 +874,7 @@ namespace METAbolt
             // 
             this.textBox1.AccessibleName = "Radar range numeric display textbox";
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(275, 31);
+            this.textBox1.Location = new System.Drawing.Point(275, 8);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(32, 14);
@@ -879,7 +884,7 @@ namespace METAbolt
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(7, 32);
+            this.label3.Location = new System.Drawing.Point(7, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 23);
             this.label3.TabIndex = 51;
@@ -891,7 +896,7 @@ namespace METAbolt
             this.tBar1.AutoSize = false;
             this.tBar1.BackColor = System.Drawing.Color.White;
             this.tBar1.LargeChange = 10;
-            this.tBar1.Location = new System.Drawing.Point(73, 30);
+            this.tBar1.Location = new System.Drawing.Point(73, 7);
             this.tBar1.Maximum = 1024;
             this.tBar1.Minimum = 5;
             this.tBar1.Name = "tBar1";
@@ -927,7 +932,7 @@ namespace METAbolt
             this.cbHHTPInv.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.cbHHTPInv.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.cbHHTPInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbHHTPInv.Location = new System.Drawing.Point(11, 182);
+            this.cbHHTPInv.Location = new System.Drawing.Point(11, 192);
             this.cbHHTPInv.Name = "cbHHTPInv";
             this.cbHHTPInv.Size = new System.Drawing.Size(136, 17);
             this.cbHHTPInv.TabIndex = 64;
@@ -1637,6 +1642,9 @@ namespace METAbolt
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.White;
+            this.tabPage7.Controls.Add(this.label26);
+            this.tabPage7.Controls.Add(this.label24);
+            this.tabPage7.Controls.Add(this.label23);
             this.tabPage7.Controls.Add(this.label16);
             this.tabPage7.Controls.Add(this.checkBox14);
             this.tabPage7.Controls.Add(this.cbHHTPInv);
@@ -1658,7 +1666,7 @@ namespace METAbolt
             this.checkBox14.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox14.Location = new System.Drawing.Point(11, 159);
+            this.checkBox14.Location = new System.Drawing.Point(11, 141);
             this.checkBox14.Name = "checkBox14";
             this.checkBox14.Size = new System.Drawing.Size(95, 17);
             this.checkBox14.TabIndex = 67;
@@ -1669,11 +1677,51 @@ namespace METAbolt
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.DarkGray;
-            this.label16.Location = new System.Drawing.Point(158, 184);
+            this.label16.Location = new System.Drawing.Point(158, 194);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(142, 13);
             this.label16.TabIndex = 68;
             this.label16.Text = "(requires METAbolt re-start)";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.Color.DarkGray;
+            this.label23.Location = new System.Drawing.Point(158, 143);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(142, 13);
+            this.label23.TabIndex = 69;
+            this.label23.Text = "(requires METAbolt re-start)";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.ForeColor = System.Drawing.Color.DarkGray;
+            this.label24.Location = new System.Drawing.Point(35, 207);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(265, 13);
+            this.label24.TabIndex = 70;
+            this.label24.Text = "(To be set at both Global and Avatar (if exists) levels)";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.DarkGray;
+            this.label25.Location = new System.Drawing.Point(29, 95);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(265, 13);
+            this.label25.TabIndex = 71;
+            this.label25.Text = "(To be set at both Global and Avatar (if exists) levels)";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.DarkGray;
+            this.label26.Location = new System.Drawing.Point(35, 156);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(265, 13);
+            this.label26.TabIndex = 71;
+            this.label26.Text = "(To be set at both Global and Avatar (if exists) levels)";
             // 
             // PrefGeneralConsole
             // 
@@ -1842,6 +1890,10 @@ namespace METAbolt
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.CheckBox checkBox14;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label26;
 
     }
 }
