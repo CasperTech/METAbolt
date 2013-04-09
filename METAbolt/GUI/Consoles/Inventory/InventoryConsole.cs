@@ -1,4 +1,4 @@
-//  Copyright (c) 2008 - 2010, www.metabolt.net
+//  Copyright (c) 2008 - 2013, www.metabolt.net
 //  All rights reserved.
 
 //  Redistribution and use in source and binary forms, with or without modification, 
@@ -1970,6 +1970,8 @@ namespace METAbolt
 
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
 
+            selectednode = treeView1.SelectedNode;
+
             List<InventoryBase> contents = client.Inventory.Store.GetContents(io.UUID);
             List<InventoryItem> clothing = new List<InventoryItem>();
 
@@ -2165,6 +2167,9 @@ namespace METAbolt
             {
                 e.Node.ImageKey = "OpenFolder";
             }
+
+            selectednode = e.Node;
+            treeView1.SelectedNode = selectednode;
         }
 
         private void treeView1_AfterCollapse(object sender, TreeViewEventArgs e)
@@ -2310,6 +2315,8 @@ namespace METAbolt
             {
                 InventoryItem item = (InventoryItem)io;
 
+                selectednode = treeView1.SelectedNode;
+
                 if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
                 {
                     //List<InventoryBase> contents = client.Inventory.Store.GetContents(folder.UUID);
@@ -2422,6 +2429,8 @@ namespace METAbolt
         {
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
             InventoryItem item = (InventoryItem)io;
+
+            selectednode = treeView1.SelectedNode;
 
             if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
             {
