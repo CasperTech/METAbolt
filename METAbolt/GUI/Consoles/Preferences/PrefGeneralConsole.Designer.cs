@@ -104,6 +104,12 @@ namespace METAbolt
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.cbFn = new System.Windows.Forms.ComboBox();
+            this.cbLand = new System.Windows.Forms.ComboBox();
+            this.cbApp = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -131,12 +137,9 @@ namespace METAbolt
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cbApp = new System.Windows.Forms.ComboBox();
-            this.cbLand = new System.Windows.Forms.ComboBox();
-            this.cbFn = new System.Windows.Forms.ComboBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -162,6 +165,7 @@ namespace METAbolt
             this.tabPage5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // rdoSystemStyle
@@ -209,8 +213,9 @@ namespace METAbolt
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -226,7 +231,6 @@ namespace METAbolt
             this.tabPage1.Controls.Add(this.chkFavs);
             this.tabPage1.Controls.Add(this.chkVoice);
             this.tabPage1.Controls.Add(this.chkDisableRadar);
-            this.tabPage1.Controls.Add(this.checkBox13);
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.chkLSL);
@@ -249,9 +253,6 @@ namespace METAbolt
             this.tabPage1.Controls.Add(this.chkAutoSit);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.chkNotifications);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.pictureBox3);
-            this.tabPage1.Controls.Add(this.chkConnect4);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -268,7 +269,7 @@ namespace METAbolt
             this.chkFavs.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFavs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFavs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkFavs.Location = new System.Drawing.Point(203, 215);
+            this.chkFavs.Location = new System.Drawing.Point(203, 208);
             this.chkFavs.Name = "chkFavs";
             this.chkFavs.Size = new System.Drawing.Size(109, 17);
             this.chkFavs.TabIndex = 69;
@@ -283,7 +284,7 @@ namespace METAbolt
             this.chkVoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkVoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkVoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkVoice.Location = new System.Drawing.Point(203, 197);
+            this.chkVoice.Location = new System.Drawing.Point(203, 190);
             this.chkVoice.Name = "chkVoice";
             this.chkVoice.Size = new System.Drawing.Size(109, 17);
             this.chkVoice.TabIndex = 68;
@@ -298,7 +299,7 @@ namespace METAbolt
             this.chkDisableRadar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkDisableRadar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkDisableRadar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisableRadar.Location = new System.Drawing.Point(203, 180);
+            this.chkDisableRadar.Location = new System.Drawing.Point(203, 173);
             this.chkDisableRadar.Name = "chkDisableRadar";
             this.chkDisableRadar.Size = new System.Drawing.Size(121, 17);
             this.chkDisableRadar.TabIndex = 67;
@@ -314,7 +315,7 @@ namespace METAbolt
             this.checkBox13.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox13.Location = new System.Drawing.Point(8, 100);
+            this.checkBox13.Location = new System.Drawing.Point(11, 104);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(213, 17);
             this.checkBox13.TabIndex = 66;
@@ -324,7 +325,7 @@ namespace METAbolt
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(5, 54);
+            this.label18.Location = new System.Drawing.Point(5, 45);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(135, 13);
             this.label18.TabIndex = 65;
@@ -339,7 +340,7 @@ namespace METAbolt
             "Ask",
             "Auto decline",
             "Auto accept"});
-            this.comboBox1.Location = new System.Drawing.Point(143, 51);
+            this.comboBox1.Location = new System.Drawing.Point(143, 42);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 64;
@@ -352,7 +353,7 @@ namespace METAbolt
             this.chkLSL.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLSL.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLSL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkLSL.Location = new System.Drawing.Point(8, 215);
+            this.chkLSL.Location = new System.Drawing.Point(8, 208);
             this.chkLSL.Name = "chkLSL";
             this.chkLSL.Size = new System.Drawing.Size(129, 17);
             this.chkLSL.TabIndex = 63;
@@ -411,7 +412,7 @@ namespace METAbolt
             this.chkAutoFriend.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoFriend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkAutoFriend.Location = new System.Drawing.Point(8, 75);
+            this.chkAutoFriend.Location = new System.Drawing.Point(8, 66);
             this.chkAutoFriend.Name = "chkAutoFriend";
             this.chkAutoFriend.Size = new System.Drawing.Size(163, 17);
             this.chkAutoFriend.TabIndex = 59;
@@ -426,7 +427,7 @@ namespace METAbolt
             this.chkTyping.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTyping.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTyping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkTyping.Location = new System.Drawing.Point(8, 134);
+            this.chkTyping.Location = new System.Drawing.Point(8, 116);
             this.chkTyping.Name = "chkTyping";
             this.chkTyping.Size = new System.Drawing.Size(139, 17);
             this.chkTyping.TabIndex = 13;
@@ -441,7 +442,7 @@ namespace METAbolt
             this.chkFriends.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFriends.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFriends.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkFriends.Location = new System.Drawing.Point(8, 168);
+            this.chkFriends.Location = new System.Drawing.Point(8, 150);
             this.chkFriends.Name = "chkFriends";
             this.chkFriends.Size = new System.Drawing.Size(158, 17);
             this.chkFriends.TabIndex = 2;
@@ -456,7 +457,7 @@ namespace METAbolt
             this.chkTray.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTray.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkTray.Location = new System.Drawing.Point(203, 134);
+            this.chkTray.Location = new System.Drawing.Point(203, 116);
             this.chkTray.Name = "chkTray";
             this.chkTray.Size = new System.Drawing.Size(102, 17);
             this.chkTray.TabIndex = 3;
@@ -472,7 +473,7 @@ namespace METAbolt
             this.chkMinimised.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkMinimised.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkMinimised.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkMinimised.Location = new System.Drawing.Point(182, 28);
+            this.chkMinimised.Location = new System.Drawing.Point(182, 17);
             this.chkMinimised.Name = "chkMinimised";
             this.chkMinimised.Size = new System.Drawing.Size(143, 17);
             this.chkMinimised.TabIndex = 5;
@@ -522,7 +523,7 @@ namespace METAbolt
             this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox2.Location = new System.Drawing.Point(203, 117);
+            this.checkBox2.Location = new System.Drawing.Point(203, 99);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(122, 17);
             this.checkBox2.TabIndex = 10;
@@ -537,7 +538,7 @@ namespace METAbolt
             this.chkLookAt.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLookAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLookAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkLookAt.Location = new System.Drawing.Point(203, 151);
+            this.chkLookAt.Location = new System.Drawing.Point(203, 133);
             this.chkLookAt.Name = "chkLookAt";
             this.chkLookAt.Size = new System.Drawing.Size(93, 17);
             this.chkLookAt.TabIndex = 9;
@@ -552,7 +553,7 @@ namespace METAbolt
             this.chkInvites.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkInvites.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkInvites.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkInvites.Location = new System.Drawing.Point(8, 117);
+            this.chkInvites.Location = new System.Drawing.Point(8, 99);
             this.chkInvites.Name = "chkInvites";
             this.chkInvites.Size = new System.Drawing.Size(163, 17);
             this.chkInvites.TabIndex = 8;
@@ -567,7 +568,7 @@ namespace METAbolt
             this.chkHide.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkHide.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkHide.Location = new System.Drawing.Point(8, 28);
+            this.chkHide.Location = new System.Drawing.Point(8, 17);
             this.chkHide.Name = "chkHide";
             this.chkHide.Size = new System.Drawing.Size(169, 17);
             this.chkHide.TabIndex = 4;
@@ -578,7 +579,7 @@ namespace METAbolt
             // picAutoSit
             // 
             this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
-            this.picAutoSit.Location = new System.Drawing.Point(159, 197);
+            this.picAutoSit.Location = new System.Drawing.Point(159, 190);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
             this.picAutoSit.TabIndex = 38;
@@ -595,7 +596,7 @@ namespace METAbolt
             this.chkAutoSit.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoSit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoSit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkAutoSit.Location = new System.Drawing.Point(8, 197);
+            this.chkAutoSit.Location = new System.Drawing.Point(8, 190);
             this.chkAutoSit.Name = "chkAutoSit";
             this.chkAutoSit.Size = new System.Drawing.Size(148, 17);
             this.chkAutoSit.TabIndex = 12;
@@ -605,7 +606,7 @@ namespace METAbolt
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(158, 151);
+            this.pictureBox1.Location = new System.Drawing.Point(158, 133);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
             this.pictureBox1.TabIndex = 36;
@@ -622,7 +623,7 @@ namespace METAbolt
             this.chkNotifications.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkNotifications.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkNotifications.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkNotifications.Location = new System.Drawing.Point(8, 151);
+            this.chkNotifications.Location = new System.Drawing.Point(8, 133);
             this.chkNotifications.Name = "chkNotifications";
             this.chkNotifications.Size = new System.Drawing.Size(141, 17);
             this.chkNotifications.TabIndex = 1;
@@ -634,16 +635,17 @@ namespace METAbolt
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.DarkGray;
-            this.label2.Location = new System.Drawing.Point(158, 7);
+            this.label2.Location = new System.Drawing.Point(158, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 13);
             this.label2.TabIndex = 34;
             this.label2.Text = "(requires METAbolt re-start)";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(313, 5);
+            this.pictureBox3.Location = new System.Drawing.Point(318, 83);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(15, 15);
             this.pictureBox3.TabIndex = 33;
@@ -660,7 +662,7 @@ namespace METAbolt
             this.chkConnect4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkConnect4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkConnect4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkConnect4.Location = new System.Drawing.Point(8, 6);
+            this.chkConnect4.Location = new System.Drawing.Point(11, 81);
             this.chkConnect4.Name = "chkConnect4";
             this.chkConnect4.Size = new System.Drawing.Size(141, 17);
             this.chkConnect4.TabIndex = 0;
@@ -906,7 +908,6 @@ namespace METAbolt
             this.tabPage2.AccessibleDescription = "Displays the folder the cache is stored in";
             this.tabPage2.AccessibleName = "Cache location textbox";
             this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Controls.Add(this.cbHHTPInv);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.textBox4);
             this.tabPage2.Controls.Add(this.button2);
@@ -926,11 +927,11 @@ namespace METAbolt
             this.cbHHTPInv.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.cbHHTPInv.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.cbHHTPInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbHHTPInv.Location = new System.Drawing.Point(22, 160);
+            this.cbHHTPInv.Location = new System.Drawing.Point(11, 182);
             this.cbHHTPInv.Name = "cbHHTPInv";
-            this.cbHHTPInv.Size = new System.Drawing.Size(227, 17);
+            this.cbHHTPInv.Size = new System.Drawing.Size(136, 17);
             this.cbHHTPInv.TabIndex = 64;
-            this.cbHHTPInv.Text = "Disable HTTP Inventory (re-start required)";
+            this.cbHHTPInv.Text = "Disable HTTP Inventory";
             this.cbHHTPInv.UseVisualStyleBackColor = true;
             // 
             // label6
@@ -962,7 +963,7 @@ namespace METAbolt
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(250, 105);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 21);
+            this.button2.Size = new System.Drawing.Size(65, 30);
             this.button2.TabIndex = 2;
             this.button2.Text = "clear cache";
             this.button2.UseVisualStyleBackColor = false;
@@ -980,7 +981,7 @@ namespace METAbolt
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(174, 105);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 21);
+            this.button3.Size = new System.Drawing.Size(65, 30);
             this.button3.TabIndex = 1;
             this.button3.Text = "view cache";
             this.button3.UseVisualStyleBackColor = false;
@@ -990,7 +991,6 @@ namespace METAbolt
             // 
             this.tabPage3.AccessibleName = "Security tab";
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.txtAdRemove);
             this.tabPage3.Controls.Add(this.groupBox5);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
@@ -1005,7 +1005,7 @@ namespace METAbolt
             this.txtAdRemove.AccessibleDescription = "Enter Ad removal license key into here";
             this.txtAdRemove.AccessibleName = "License key textbox";
             this.txtAdRemove.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtAdRemove.Location = new System.Drawing.Point(321, 254);
+            this.txtAdRemove.Location = new System.Drawing.Point(322, 306);
             this.txtAdRemove.Name = "txtAdRemove";
             this.txtAdRemove.Size = new System.Drawing.Size(19, 21);
             this.txtAdRemove.TabIndex = 0;
@@ -1222,6 +1222,78 @@ namespace METAbolt
             this.tabPage5.Size = new System.Drawing.Size(336, 271);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Layout";
+            // 
+            // cbFn
+            // 
+            this.cbFn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbFn.FormattingEnabled = true;
+            this.cbFn.Items.AddRange(new object[] {
+            "Top",
+            "Bottom",
+            "Left",
+            "Right"});
+            this.cbFn.Location = new System.Drawing.Point(163, 56);
+            this.cbFn.Name = "cbFn";
+            this.cbFn.Size = new System.Drawing.Size(100, 21);
+            this.cbFn.TabIndex = 67;
+            // 
+            // cbLand
+            // 
+            this.cbLand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLand.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbLand.FormattingEnabled = true;
+            this.cbLand.Items.AddRange(new object[] {
+            "Top",
+            "Bottom",
+            "Left",
+            "Right"});
+            this.cbLand.Location = new System.Drawing.Point(163, 38);
+            this.cbLand.Name = "cbLand";
+            this.cbLand.Size = new System.Drawing.Size(100, 21);
+            this.cbLand.TabIndex = 66;
+            // 
+            // cbApp
+            // 
+            this.cbApp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbApp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbApp.FormattingEnabled = true;
+            this.cbApp.Items.AddRange(new object[] {
+            "Top",
+            "Bottom",
+            "Left",
+            "Right"});
+            this.cbApp.Location = new System.Drawing.Point(163, 20);
+            this.cbApp.Name = "cbApp";
+            this.cbApp.Size = new System.Drawing.Size(100, 21);
+            this.cbApp.TabIndex = 65;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(27, 59);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(121, 13);
+            this.label22.TabIndex = 44;
+            this.label22.Text = "Function menu position:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(27, 41);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(125, 13);
+            this.label21.TabIndex = 43;
+            this.label21.Text = "Land/SIM menu position:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(26, 23);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(132, 13);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Application menu position:";
             // 
             // groupBox3
             // 
@@ -1562,88 +1634,58 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
-            // label20
+            // tabPage7
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(26, 23);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(132, 13);
-            this.label20.TabIndex = 42;
-            this.label20.Text = "Application menu position:";
+            this.tabPage7.BackColor = System.Drawing.Color.White;
+            this.tabPage7.Controls.Add(this.label16);
+            this.tabPage7.Controls.Add(this.checkBox14);
+            this.tabPage7.Controls.Add(this.cbHHTPInv);
+            this.tabPage7.Controls.Add(this.chkConnect4);
+            this.tabPage7.Controls.Add(this.label2);
+            this.tabPage7.Controls.Add(this.checkBox13);
+            this.tabPage7.Controls.Add(this.pictureBox3);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(336, 271);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Network";
             // 
-            // label21
+            // checkBox14
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(27, 41);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(125, 13);
-            this.label21.TabIndex = 43;
-            this.label21.Text = "Land/SIM menu position:";
+            this.checkBox14.AccessibleName = "Disable icon option";
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox14.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox14.Location = new System.Drawing.Point(11, 159);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(95, 17);
+            this.checkBox14.TabIndex = 67;
+            this.checkBox14.Text = "Use LLSD Login";
+            this.checkBox14.UseVisualStyleBackColor = true;
             // 
-            // label22
+            // label16
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(27, 59);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(121, 13);
-            this.label22.TabIndex = 44;
-            this.label22.Text = "Function menu position:";
-            // 
-            // cbApp
-            // 
-            this.cbApp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbApp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbApp.FormattingEnabled = true;
-            this.cbApp.Items.AddRange(new object[] {
-            "Top",
-            "Bottom",
-            "Left",
-            "Right"});
-            this.cbApp.Location = new System.Drawing.Point(163, 20);
-            this.cbApp.Name = "cbApp";
-            this.cbApp.Size = new System.Drawing.Size(100, 21);
-            this.cbApp.TabIndex = 65;
-            // 
-            // cbLand
-            // 
-            this.cbLand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLand.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbLand.FormattingEnabled = true;
-            this.cbLand.Items.AddRange(new object[] {
-            "Top",
-            "Bottom",
-            "Left",
-            "Right"});
-            this.cbLand.Location = new System.Drawing.Point(163, 38);
-            this.cbLand.Name = "cbLand";
-            this.cbLand.Size = new System.Drawing.Size(100, 21);
-            this.cbLand.TabIndex = 66;
-            // 
-            // cbFn
-            // 
-            this.cbFn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbFn.FormattingEnabled = true;
-            this.cbFn.Items.AddRange(new object[] {
-            "Top",
-            "Bottom",
-            "Left",
-            "Right"});
-            this.cbFn.Location = new System.Drawing.Point(163, 56);
-            this.cbFn.Name = "cbFn";
-            this.cbFn.Size = new System.Drawing.Size(100, 21);
-            this.cbFn.TabIndex = 67;
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.DarkGray;
+            this.label16.Location = new System.Drawing.Point(158, 184);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(142, 13);
+            this.label16.TabIndex = 68;
+            this.label16.Text = "(requires METAbolt re-start)";
             // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.txtAdRemove);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PrefGeneralConsole";
-            this.Size = new System.Drawing.Size(344, 313);
+            this.Size = new System.Drawing.Size(344, 312);
             this.Load += new System.EventHandler(this.PrefGeneralConsole_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1667,7 +1709,6 @@ namespace METAbolt
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -1681,7 +1722,10 @@ namespace METAbolt
             this.groupBox3.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1795,6 +1839,9 @@ namespace METAbolt
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.Label label16;
 
     }
 }

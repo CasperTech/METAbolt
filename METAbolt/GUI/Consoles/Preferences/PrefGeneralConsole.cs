@@ -923,5 +923,10 @@ namespace METAbolt
             //    MessageBox.Show("If you 'Apply' this change you will need to re-start METAbolt", "METAbolt");
             //}
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
