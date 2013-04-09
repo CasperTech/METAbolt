@@ -163,8 +163,8 @@ namespace METAbolt
             this.tlblLoginName,
             this.tlblRegionInfo,
             this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2,
             this.tlblParcel,
+            this.toolStripStatusLabel2,
             this.tb1,
             this.tb2,
             this.tb3,
@@ -248,6 +248,7 @@ namespace METAbolt
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.AutoSize = false;
+            this.toolStripStatusLabel2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripStatusLabel2.Image = global::METAbolt.Properties.Resources.Favorites_black;
             this.toolStripStatusLabel2.IsLink = true;
             this.toolStripStatusLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
@@ -262,7 +263,6 @@ namespace METAbolt
             // 
             this.tlblParcel.AccessibleDescription = "The name of the parcel you are on";
             this.tlblParcel.AccessibleName = "Parcel name";
-            this.tlblParcel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.tlblParcel.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.tlblParcel.ForeColor = System.Drawing.Color.Navy;
             this.tlblParcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,7 +270,7 @@ namespace METAbolt
             this.tlblParcel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.tlblParcel.LinkColor = System.Drawing.Color.RoyalBlue;
             this.tlblParcel.Name = "tlblParcel";
-            this.tlblParcel.Size = new System.Drawing.Size(378, 19);
+            this.tlblParcel.Size = new System.Drawing.Size(547, 19);
             this.tlblParcel.Spring = true;
             this.tlblParcel.Text = "No Parcel";
             this.tlblParcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
