@@ -178,5 +178,15 @@ namespace METAbolt
             instance.Client.Self.ReplyToScriptDialog(ed.Channel, 0, txtMessage.Text, ed.ObjectID);
             CleanUp();
         }
+
+        private void frmDialog_MouseEnter(object sender, EventArgs e)
+        {
+            this.Opacity = 100;
+        }
+
+        private void frmDialog_MouseLeave(object sender, EventArgs e)
+        {
+            this.Opacity = 85;
+        }
     }
 }

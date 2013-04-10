@@ -82,5 +82,15 @@ namespace METAbolt
             instance.ReadIMs = true; 
             this.Close(); 
         }
+
+        private void frmDisconnected_MouseEnter(object sender, EventArgs e)
+        {
+            this.Opacity = 100;
+        }
+
+        private void frmDisconnected_MouseLeave(object sender, EventArgs e)
+        {
+            this.Opacity = 85;
+        }
     }
 }

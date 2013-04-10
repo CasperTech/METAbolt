@@ -79,5 +79,15 @@ namespace METAbolt
             timer1.Stop();
             this.Close(); 
         }
+
+        private void frmMBmsg_MouseEnter(object sender, EventArgs e)
+        {
+            this.Opacity = 100;
+        }
+
+        private void frmMBmsg_MouseLeave(object sender, EventArgs e)
+        {
+            this.Opacity = 85;
+        }
     }
 }

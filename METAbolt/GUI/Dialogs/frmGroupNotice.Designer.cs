@@ -60,6 +60,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(269, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 25);
@@ -69,6 +70,7 @@
             // label2
             // 
             this.label2.AccessibleName = "sent by label";
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(108, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(284, 23);
@@ -95,9 +97,10 @@
             // rtbTitle
             // 
             this.rtbTitle.AccessibleName = "Notice subject label";
-            this.rtbTitle.BackColor = System.Drawing.Color.White;
-            this.rtbTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rtbTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbTitle.ForeColor = System.Drawing.Color.White;
             this.rtbTitle.Location = new System.Drawing.Point(108, 57);
             this.rtbTitle.Name = "rtbTitle";
             this.rtbTitle.ReadOnly = true;
@@ -110,8 +113,9 @@
             // rtbBody
             // 
             this.rtbBody.AccessibleName = "Notice body textbox";
-            this.rtbBody.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.rtbBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtbBody.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbBody.ForeColor = System.Drawing.Color.White;
             this.rtbBody.Location = new System.Drawing.Point(108, 97);
             this.rtbBody.Name = "rtbBody";
             this.rtbBody.ReadOnly = true;
@@ -133,6 +137,7 @@
             // label3
             // 
             this.label3.AccessibleName = "Notice attachment name label";
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(25, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(197, 18);
@@ -171,6 +176,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(46, 237);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
@@ -188,7 +194,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(404, 291);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
@@ -198,16 +204,19 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picInsignia);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmGroupNotice";
+            this.Opacity = 0.85D;
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group Notice";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGroupNotice_FormClosing);
             this.Load += new System.EventHandler(this.frmGroupNotice_Load);
+            this.MouseEnter += new System.EventHandler(this.frmGroupNotice_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.frmGroupNotice_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.picInsignia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

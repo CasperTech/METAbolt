@@ -212,6 +212,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dialog";
             this.Load += new System.EventHandler(this.Dialog_Load);
+            this.MouseEnter += new System.EventHandler(this.frmDialog_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.frmDialog_MouseLeave);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);

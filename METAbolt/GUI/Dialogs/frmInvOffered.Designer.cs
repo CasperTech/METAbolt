@@ -139,6 +139,8 @@
             this.Text = "Inventory Item Received";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmInvOffered_Load);
+            this.MouseEnter += new System.EventHandler(this.frmInvOffered_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.frmInvOffered_MouseLeave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

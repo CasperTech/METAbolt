@@ -291,5 +291,15 @@ namespace METAbolt
         {
             this.Close();
         }
+
+        private void frmGroupNotice_MouseEnter(object sender, EventArgs e)
+        {
+            this.Opacity = 100;
+        }
+
+        private void frmGroupNotice_MouseLeave(object sender, EventArgs e)
+        {
+            this.Opacity = 85;
+        }
     }
 }

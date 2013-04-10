@@ -124,6 +124,8 @@ namespace METAbolt
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDisconnected_FormClosing);
             this.Load += new System.EventHandler(this.frmDisconnected_Load);
+            this.MouseEnter += new System.EventHandler(this.frmDisconnected_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.frmDisconnected_MouseLeave);
             this.ResumeLayout(false);
             this.PerformLayout();
 
