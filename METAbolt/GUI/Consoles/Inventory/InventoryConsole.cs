@@ -2956,7 +2956,7 @@ namespace METAbolt
 
             style |= NativeWinAPI.WS_EX_COMPOSITE;
 
-            NativeWinAPI.SetWindowLong(this.Handle, NativeWinAPI.GWL_EXSTYLE, style);
+            NativeWinAPI.SetWindowLong(this.Handle, NativeWinAPI.GWL_EXSTYLE, Convert.ToInt64(style));
         }
     }
 
@@ -2969,6 +2969,6 @@ namespace METAbolt
        internal static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("user32")]
-       internal static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+       internal static extern int SetWindowLong(IntPtr hWnd, int nIndex, long dwNewLong);
     }
 }
