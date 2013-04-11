@@ -347,13 +347,25 @@ namespace METAbolt
 
         private void Network_OnEventQueueRunning(object sender, EventQueueRunningEventArgs e)
         {
-            
             if (e.Simulator == client.Network.CurrentSim)
             {
                 List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
 
                 foreach (InventoryBase o in invroot)
                 {
+                    if (o.Name.ToLower() == "current outfit")
+                    {
+                        if (!gotCoF)
+                        {
+                            if (o is InventoryFolder)
+                            {
+                                client.Inventory.RequestFolderContents(o.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+                                CoF = (InventoryFolder)o;
+                                gotCoF = true;
+                            }
+                        }
+                    }
+
                     if (!instance.Config.CurrentConfig.DisableFavs)
                     {
                         if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
@@ -362,9 +374,7 @@ namespace METAbolt
                             {
                                 favfolder = instance.FavsFolder = o.UUID;
 
-                                client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
-
-                                break;
+                                client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate);;
                             }
                         }
                     }
@@ -375,19 +385,6 @@ namespace METAbolt
                             if (o is InventoryFolder)
                             {
                                 favfolder = instance.FavsFolder = o.UUID;
-                            }
-                        }
-                    }
-
-                    if (o.Name.ToLower() == "current outfit")
-                    {
-                        if (!gotCoF)
-                        {
-                            gotCoF = true;
-                            if (o is InventoryFolder)
-                            {
-                                client.Inventory.RequestFolderContents(o.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
-                                CoF = (InventoryFolder)o;
                             }
                         }
                     }
@@ -2029,23 +2026,48 @@ namespace METAbolt
 
             if (io is InventoryFolder)
             {
-                InventoryFolder folder = (InventoryFolder)io;
-
-                if (io.UUID == CoF.UUID)
+                if (gotCoF == true)
                 {
-                    takeOffToolStripMenuItem.Visible = false;
-                    wearToolStripMenuItem.Visible = false;
-                    replaceOutfitToolStripMenuItem.Visible = false;
-                    attachToToolStripMenuItem.Visible = false;
+                    InventoryFolder folder = (InventoryFolder)io;
+
+                    if (io.UUID == CoF.UUID)
+                    {
+                        takeOffToolStripMenuItem.Visible = false;
+                        wearToolStripMenuItem.Visible = false;
+                        replaceOutfitToolStripMenuItem.Visible = false;
+                        attachToToolStripMenuItem.Visible = false;
+                    }
                 }
             }
             else
             {
-                if (io.ParentUUID == CoF.UUID)
+                if (gotCoF == true)
                 {
-                    takeOffToolStripMenuItem.Visible = true;
-                    wearToolStripMenuItem.Visible = false;
-                    attachToToolStripMenuItem.Visible = false;
+                    if (io.ParentUUID == CoF.UUID)
+                    {
+                        takeOffToolStripMenuItem.Visible = true;
+                        wearToolStripMenuItem.Visible = false;
+                        attachToToolStripMenuItem.Visible = false;
+                    }
+                    else
+                    {
+                        if (sitem.ToLower().Contains("worn"))
+                        {
+                            takeOffToolStripMenuItem.Visible = true;
+                            wearToolStripMenuItem.Visible = false;
+                        }
+                        else
+                        {
+                            takeOffToolStripMenuItem.Visible = false;
+
+                            //InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
+                            if (io is InventoryWearable || io is InventoryObject || io is InventoryAttachment)
+                            {
+                                wearToolStripMenuItem.Visible = true;
+                            }
+                        }
+                    }
                 }
                 else
                 {

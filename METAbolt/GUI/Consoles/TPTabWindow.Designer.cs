@@ -43,7 +43,7 @@ namespace METAbolt
             // 
             this.lblSubheading.AutoSize = true;
             this.lblSubheading.BackColor = System.Drawing.Color.Transparent;
-            this.lblSubheading.Location = new System.Drawing.Point(3, 60);
+            this.lblSubheading.Location = new System.Drawing.Point(20, 64);
             this.lblSubheading.Name = "lblSubheading";
             this.lblSubheading.Size = new System.Drawing.Size(225, 13);
             this.lblSubheading.TabIndex = 1;
@@ -57,12 +57,12 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbOfferMessage.BackColor = System.Drawing.Color.WhiteSmoke;
             this.rtbOfferMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbOfferMessage.Location = new System.Drawing.Point(3, 76);
+            this.rtbOfferMessage.Location = new System.Drawing.Point(23, 97);
             this.rtbOfferMessage.Name = "rtbOfferMessage";
             this.rtbOfferMessage.ReadOnly = true;
-            this.rtbOfferMessage.Size = new System.Drawing.Size(534, 132);
+            this.rtbOfferMessage.Size = new System.Drawing.Size(493, 132);
             this.rtbOfferMessage.TabIndex = 0;
-            this.rtbOfferMessage.Text = "";
+            this.rtbOfferMessage.Text = "dsfsdf";
             this.rtbOfferMessage.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbOfferMessage_LinkClicked);
             // 
             // btnAccept
@@ -75,7 +75,7 @@ namespace METAbolt
             this.btnAccept.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccept.ForeColor = System.Drawing.Color.White;
-            this.btnAccept.Location = new System.Drawing.Point(381, 214);
+            this.btnAccept.Location = new System.Drawing.Point(360, 235);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
             this.btnAccept.TabIndex = 1;
@@ -93,7 +93,7 @@ namespace METAbolt
             this.btnDecline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnDecline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecline.ForeColor = System.Drawing.Color.White;
-            this.btnDecline.Location = new System.Drawing.Point(462, 214);
+            this.btnDecline.Location = new System.Drawing.Point(441, 235);
             this.btnDecline.Name = "btnDecline";
             this.btnDecline.Size = new System.Drawing.Size(75, 23);
             this.btnDecline.TabIndex = 2;
