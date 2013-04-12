@@ -626,6 +626,8 @@ namespace METAbolt
         {
             client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
 
+            TreeNode node = treeView1.SelectedNode;
+
             if (!string.IsNullOrEmpty(treeSorter.CurrentSortName))
                 ((ToolStripMenuItem)tbtnSort.DropDown.Items[treeSorter.CurrentSortName]).Checked = false;
 
@@ -637,6 +639,8 @@ namespace METAbolt
             treeView1.EndUpdate();
 
             item.Checked = true;
+
+            treeView1.SelectedNode = node;
 
             client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
         }
@@ -1433,12 +1437,16 @@ namespace METAbolt
                     else if (node.Tag is InventoryItem)
                     {
                         folder = (InventoryFolder)node.Parent.Tag;
+                        node = node.Parent;
                     }
                 }
 
                 //client.Inventory.RequestFolderContents(folder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
 
                 UpdateFolder(folder.UUID);
+                treeView1.SelectedNode = node;
+                treeView1.HideSelection = false;
+                treeView1.SelectedNode.EnsureVisible();
             }
         }
 
@@ -1492,11 +1500,15 @@ namespace METAbolt
             if (this.InvokeRequired) this.BeginInvoke((MethodInvoker)delegate { SortInventory(); });
             else
             {
+                TreeNode node = treeView1.SelectedNode;
+
                 try
                 {
                     treeView1.Sort();
                 }
                 catch { ; }
+
+                treeView1.SelectedNode = node;
             }
         }
 
@@ -2193,7 +2205,10 @@ namespace METAbolt
             }
 
             selectednode = e.Node;
+            
+            treeView1.HideSelection = false;
             treeView1.SelectedNode = selectednode;
+            treeView1.SelectedNode.EnsureVisible();
         }
 
         private void treeView1_AfterCollapse(object sender, TreeViewEventArgs e)
