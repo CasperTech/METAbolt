@@ -1435,54 +1435,69 @@ namespace METAbolt
 
         private void launchSLViewerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // The following line was borrowed from Kitten Lulu's SLRun1CPU
-            // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
-            String SecondLifeExe = GetSecondLifeExe();
+            try
+            {
+                // The following line was borrowed from Kitten Lulu's SLRun1CPU
+                // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
+                String SecondLifeExe = GetSecondLifeExe();
 
-            if (string.IsNullOrEmpty(SecondLifeExe))
-                return;
+                if (string.IsNullOrEmpty(SecondLifeExe))
+                    return;
 
-            Process thisProcess = new Process();
-            thisProcess.StartInfo.FileName = SecondLifeExe;
-            thisProcess.StartInfo.UseShellExecute = false;
-            thisProcess.StartInfo.RedirectStandardInput = true;
-            thisProcess.Start();  
+                Process thisProcess = new Process();
+                thisProcess.StartInfo.FileName = SecondLifeExe;
+                thisProcess.StartInfo.UseShellExecute = false;
+                thisProcess.StartInfo.RedirectStandardInput = true;
+                thisProcess.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops something went wrong!\n\n" + ex.Message, "METAbolt");
+            }
         }
 
         private String GetSecondLifeExe()
         {
-            // This routine was borrowed from Kitten Lulu's SLRun1CPU
-            // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
-
-            RegistryKey SecondLifeReg = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Linden Research, Inc.\\SecondLifeViewer2");
-
-            if (SecondLifeReg == null)
+            try
             {
-                SecondLifeReg = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Linden Research, Inc.\\SecondLifeViewer2");
+                // This routine was borrowed from Kitten Lulu's SLRun1CPU
+                // http://kittenlulu.wordpress.com/2006/11/08/secondlife-on-multi-core-systems/
+
+                RegistryKey SecondLifeReg = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Linden Research, Inc.\\SecondLifeViewer2");
 
                 if (SecondLifeReg == null)
                 {
-                    SecondLifeReg = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Linden Research, Inc.\\SecondLife");
+                    SecondLifeReg = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Linden Research, Inc.\\SecondLifeViewer2");
 
                     if (SecondLifeReg == null)
                     {
-                        MessageBox.Show("The Secondlife viewer is not installed", "METAbolt");
-                        return string.Empty;
+                        SecondLifeReg = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Linden Research, Inc.\\SecondLife");
+
+                        if (SecondLifeReg == null)
+                        {
+                            MessageBox.Show("The Secondlife viewer is not installed", "METAbolt");
+                            return string.Empty;
+                        }
                     }
                 }
-            }
 
-            Object path = SecondLifeReg.GetValue("");
-            Object exeName = SecondLifeReg.GetValue("Exe");
+                Object path = SecondLifeReg.GetValue("");
+                Object exeName = SecondLifeReg.GetValue("Exe");
 
-            if ((path != null) && (exeName != null))
-            {
-                return (String)path + "\\" + (String)exeName;
+                if ((path != null) && (exeName != null))
+                {
+                    return (String)path + "\\" + (String)exeName;
+                }
+                else
+                {
+                    MessageBox.Show("The Secondlife viewer is not installed", "METAbolt");
+                    return string.Empty;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("The Secondlife viewer is not installed", "METAbolt");
-                return string.Empty;  
+                MessageBox.Show("Oops something went wrong!\n\n" + ex.Message,"METAbolt");
+                return string.Empty;
             }
         }
 
