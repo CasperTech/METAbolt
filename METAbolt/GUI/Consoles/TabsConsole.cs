@@ -535,17 +535,25 @@ namespace METAbolt
                         else if (e.IM.FromAgentID == UUID.Zero)
                         {
                             // Marketplace Received item notification
-                            MessageBox.Show(e.IM.Message, "METAbolt");
+                            //MessageBox.Show(e.IM.Message, "METAbolt");
+                            (new frmMBmsg(instance, e.IM.Message)).ShowDialog(this);
                         }
                         else if (e.IM.IMSessionID == UUID.Zero)
                         {
-                            // Region message
-                            String msg = "Region message from " + e.IM.FromAgentName + Environment.NewLine + Environment.NewLine;
-                            msg += @e.IM.Message;
+                            if (e.IM.RegionID != UUID.Zero)
+                            {
+                                // Region message
+                                String msg = "Region message from " + e.IM.FromAgentName + Environment.NewLine + Environment.NewLine;
+                                msg += @e.IM.Message;
 
-                            //MessageBox.Show(msg, "METAbolt");
+                                //MessageBox.Show(msg, "METAbolt");
 
-                            (new frmMBmsg(instance, msg)).Show(this);
+                                (new frmMBmsg(instance, msg)).ShowDialog(this);
+                            }
+                            else
+                            {
+                                HandleIM(e);
+                            }
                         }
                         else
                         {

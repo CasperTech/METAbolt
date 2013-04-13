@@ -873,20 +873,22 @@ namespace METAbolt
                         }
                         else
                         {
-                            cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
+                            //cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
+                            cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject, grpid);
+
                             button6.Enabled = false;
 
-                            button4.Visible = ((member.Powers & GroupPowers.CreateRole) != 0);
-                            button5.Visible = ((member.Powers & GroupPowers.DeleteRole) != 0);
+                            button4.Visible = HasGroupPower(GroupPowers.CreateRole, grpid);   // ((member.Powers & GroupPowers.CreateRole) != 0);
+                            button5.Visible = HasGroupPower(GroupPowers.DeleteRole, grpid);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
 
                             if (instance.State.Groups.ContainsKey(Profile.ID))
                             {
-                                if ((member.Powers & GroupPowers.ChangeIdentity) != 0)
+                                if (HasGroupPower(GroupPowers.ChangeIdentity, grpid))   //(member.Powers & GroupPowers.ChangeIdentity) != 0)
                                 {
                                     txtCharter.Enabled = true;
                                 }
 
-                                if ((member.Powers & GroupPowers.ChangeOptions) != 0)
+                                if (HasGroupPower(GroupPowers.ChangeOptions, grpid))   //(member.Powers & GroupPowers.ChangeOptions) != 0)
                                 {
                                     chkPublish.Enabled = true;
                                     chkOpenEnrollment.Enabled = true;
@@ -971,6 +973,13 @@ namespace METAbolt
                     Client.Avatars.RequestAvatarNames(requestids);
                 }
             }
+        }
+
+        private bool HasGroupPower(GroupPowers power, UUID groupID)
+        {
+            if (!instance.State.Groups.ContainsKey(groupID)) return false;
+
+            return (instance.State.Groups[groupID].Powers & power) != 0;
         }
 
         private void GroupTitlesHandler(object sender, GroupTitlesReplyEventArgs e)
