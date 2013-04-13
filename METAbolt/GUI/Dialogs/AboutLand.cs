@@ -338,6 +338,15 @@ namespace METAbolt
                 }
                 else
                 {
+                    if (parcel.GroupID != UUID.Zero)
+                    {
+                        txtGroupOwner.Text = this.instance.MainForm.AboutlandGroupidname; //For some reason on this new code it shows (???)(???) :-/ TODO: fix me
+                        //pictureBox2.Enabled = false;
+
+                        client.Groups.GroupNamesReply += new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
+                        client.Groups.RequestGroupName(parcel.GroupID);
+                    }
+
                     txtOwnerid.Text = this.instance.MainForm.AboutlandOwneridname;
                     txtGroupOwner.Text = "";   //this.instance.MainForm.AboutlandOwneridname;
                     pictureBox2.Enabled = true;
