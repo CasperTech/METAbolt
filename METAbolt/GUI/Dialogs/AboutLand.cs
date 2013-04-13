@@ -87,7 +87,7 @@ namespace METAbolt
             Disposed += new EventHandler(AboutLand_Disposed);
 
             client.Parcels.ParcelDwellReply += new EventHandler<ParcelDwellReplyEventArgs>(Parcels_OnParcelDwell);
-            client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+            //client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
             client.Avatars.UUIDNameReply += new EventHandler<UUIDNameReplyEventArgs>(Avatars_OnAvatarNames);
             client.Parcels.ParcelObjectOwnersReply += new EventHandler<ParcelObjectOwnersReplyEventArgs>(Parcel_ObjectOwners);
             client.Parcels.ParcelAccessListReply += new EventHandler<ParcelAccessListReplyEventArgs>(Parcels_ParcelAccessListReply);
@@ -149,6 +149,7 @@ namespace METAbolt
                 this.BeginInvoke(new MethodInvoker(delegate()
                 {
                     grpID = e.GroupID;
+                    RequestParcelDets();
 
                     SetOwnerProperties();
                 }));
@@ -331,6 +332,7 @@ namespace METAbolt
                     txtGroupOwner.Text = this.instance.MainForm.AboutlandGroupidname; //For some reason on this new code it shows (???)(???) :-/ TODO: fix me
                     pictureBox2.Enabled = false;
 
+                    client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
                     client.Groups.RequestGroupMembers(parcel.GroupID);
 
                     client.Groups.GroupNamesReply += new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
@@ -341,7 +343,9 @@ namespace METAbolt
                     if (parcel.GroupID != UUID.Zero)
                     {
                         txtGroupOwner.Text = this.instance.MainForm.AboutlandGroupidname; //For some reason on this new code it shows (???)(???) :-/ TODO: fix me
-                        //pictureBox2.Enabled = false;
+
+                        client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
+                        client.Groups.RequestGroupMembers(parcel.GroupID);
 
                         client.Groups.GroupNamesReply += new EventHandler<GroupNamesEventArgs>(Groups_GroupNamesReply);
                         client.Groups.RequestGroupName(parcel.GroupID);
@@ -458,21 +462,21 @@ namespace METAbolt
 
         private void Parcels_ParcelAccessListReply(object sender, ParcelAccessListReplyEventArgs e)
         {
-            bool hasauth = false;
+            //bool hasauth = false;
 
-            if (grpID != UUID.Zero)
-            {
-                if (HasGroupPower(GroupPowers.LandManageBanned, grpID))
-                {
-                    hasauth = true;
-                }
-                else
-                {
-                    hasauth = false;
-                }
-            }
+            //if (grpID != UUID.Zero)
+            //{
+            //    if (HasGroupPower(GroupPowers.LandManageBanned, grpID))
+            //    {
+            //        hasauth = true;
+            //    }
+            //    else
+            //    {
+            //        hasauth = false;
+            //    }
+            //}
 
-            if (parcel.OwnerID != client.Self.AgentID && !hasauth) return;
+            //if (parcel.OwnerID != client.Self.AgentID && !hasauth) return;
 
             BeginInvoke(new MethodInvoker(delegate()
             {
@@ -1290,6 +1294,11 @@ namespace METAbolt
         }
 
         private void frmAboutLand_Shown(object sender, EventArgs e)
+        {
+            RequestParcelDets();
+        }
+
+        private void RequestParcelDets()
         {
             client.Parcels.RequestObjectOwners(client.Network.CurrentSim, parcel.LocalID);
             client.Parcels.RequestParcelAccessList(client.Network.CurrentSim, parcel.LocalID, AccessList.Ban, 1);
