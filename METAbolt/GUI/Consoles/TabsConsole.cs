@@ -828,7 +828,7 @@ namespace METAbolt
             string body = @e.IM.Message;
             //TrayNotifiy(ttl, body);
 
-            (new frmMBmsg(instance, body)).Show(this);
+            (new frmMBmsg(instance, body)).ShowDialog(this);
         }
 
         private void HandleIM(InstantMessageEventArgs e)

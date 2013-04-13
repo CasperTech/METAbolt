@@ -880,6 +880,7 @@ namespace METAbolt
 
                             button4.Visible = HasGroupPower(GroupPowers.CreateRole, grpid);   // ((member.Powers & GroupPowers.CreateRole) != 0);
                             button5.Visible = HasGroupPower(GroupPowers.DeleteRole, grpid);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
+                            button3.Visible = HasGroupPower(GroupPowers.SendNotices, grpid);
 
                             if (instance.State.Groups.ContainsKey(Profile.ID))
                             {
