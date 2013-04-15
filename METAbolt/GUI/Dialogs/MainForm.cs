@@ -250,8 +250,6 @@ namespace METAbolt
 
                // client.Parcels.RequestDwell(client.Network.CurrentSim, parcel.LocalID);
 
-                client.Self.RequestMuteList();
-
                 List<UUID> avIDs = new List<UUID>();
                 avIDs.Add(parcel.OwnerID);
                 avIDs.Add(parcel.GroupID);
@@ -697,6 +695,8 @@ namespace METAbolt
             {
                 this.WindowState = FormWindowState.Minimized;
             }
+
+            client.Self.RequestMuteList();
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)

@@ -113,7 +113,7 @@ namespace METAbolt
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LoadMutes();
+            //LoadMutes();
             instance.Client.Self.RequestMuteList();
         }
 
@@ -131,7 +131,7 @@ namespace METAbolt
 
         private void frmMutes_FormClosing(object sender, FormClosingEventArgs e)
         {
-            instance.Client.Self.MuteListUpdated += new EventHandler<EventArgs>(MuteListUpdated);
+            instance.Client.Self.MuteListUpdated -= new EventHandler<EventArgs>(MuteListUpdated);
         }
 
         private void MuteListUpdated(object sender, EventArgs e)
