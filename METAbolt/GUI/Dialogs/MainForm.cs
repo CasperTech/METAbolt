@@ -1091,7 +1091,7 @@ namespace METAbolt
 
             if (mitem.Text.ToLower() == "plugin manager")
             {
-                (new frmPluginManager(instance)).Show();
+                (new frmPluginManager(instance)).ShowDialog(this);
                 return;
             }
 
