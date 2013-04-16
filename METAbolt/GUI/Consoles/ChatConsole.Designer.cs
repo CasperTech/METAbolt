@@ -117,8 +117,6 @@ namespace METAbolt
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
@@ -154,6 +152,8 @@ namespace METAbolt
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
             this.TPtimer = new System.Windows.Forms.Timer(this.components);
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -1218,43 +1218,6 @@ namespace METAbolt
             this.textBox1.Size = new System.Drawing.Size(177, 14);
             this.textBox1.TabIndex = 20;
             // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-    "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.AllowColumnReorder = true;
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.White;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.Details;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
-            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "[Dist.] Av. Name";
-            this.columnHeader1.Width = 175;
-            // 
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Mini map and SIM statistics";
@@ -1286,9 +1249,10 @@ namespace METAbolt
             this.label3.AccessibleDescription = "The Linden server version of the current SIM";
             this.label3.AccessibleName = "Sim version";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 31);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(31, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.Size = new System.Drawing.Size(38, 12);
             this.label3.TabIndex = 44;
             this.label3.Text = "version";
             // 
@@ -1296,11 +1260,11 @@ namespace METAbolt
             // 
             this.progressBar7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.progressBar7.ForeColor = System.Drawing.Color.Gray;
-            this.progressBar7.Location = new System.Drawing.Point(32, 257);
+            this.progressBar7.Location = new System.Drawing.Point(97, 270);
             this.progressBar7.MarqueeAnimationSpeed = 45;
             this.progressBar7.Maximum = 45;
             this.progressBar7.Name = "progressBar7";
-            this.progressBar7.Size = new System.Drawing.Size(118, 11);
+            this.progressBar7.Size = new System.Drawing.Size(76, 11);
             this.progressBar7.Step = 1;
             this.progressBar7.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar7.TabIndex = 29;
@@ -1309,10 +1273,10 @@ namespace METAbolt
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.progressBar1.ForeColor = System.Drawing.Color.Gray;
-            this.progressBar1.Location = new System.Drawing.Point(32, 285);
+            this.progressBar1.Location = new System.Drawing.Point(97, 287);
             this.progressBar1.Maximum = 10;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(118, 11);
+            this.progressBar1.Size = new System.Drawing.Size(76, 11);
             this.progressBar1.Step = 1;
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 31;
@@ -1366,7 +1330,7 @@ namespace METAbolt
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.Green;
-            this.label15.Location = new System.Drawing.Point(13, 271);
+            this.label15.Location = new System.Drawing.Point(12, 285);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(41, 13);
             this.label15.TabIndex = 30;
@@ -1377,9 +1341,10 @@ namespace METAbolt
             this.label12.AccessibleDescription = "The Linden server version of the current SIM";
             this.label12.AccessibleName = "Sim version";
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 46);
+            this.label12.Font = new System.Drawing.Font("Tahoma", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(31, 29);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(42, 13);
+            this.label12.Size = new System.Drawing.Size(38, 12);
             this.label12.TabIndex = 23;
             this.label12.Text = "version";
             // 
@@ -1390,7 +1355,7 @@ namespace METAbolt
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Green;
-            this.label9.Location = new System.Drawing.Point(13, 241);
+            this.label9.Location = new System.Drawing.Point(12, 268);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 28;
@@ -1402,7 +1367,7 @@ namespace METAbolt
             this.label5.AccessibleName = "Scripted objects";
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 221);
+            this.label5.Location = new System.Drawing.Point(13, 238);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 27;
@@ -1414,7 +1379,7 @@ namespace METAbolt
             this.label4.AccessibleName = "Objects";
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 207);
+            this.label4.Location = new System.Drawing.Point(13, 224);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 26;
@@ -1425,7 +1390,7 @@ namespace METAbolt
             this.label8.AccessibleDescription = "The name of the current SIM";
             this.label8.AccessibleName = "SIM name";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 16);
+            this.label8.Location = new System.Drawing.Point(31, 3);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(33, 13);
             this.label8.TabIndex = 21;
@@ -1448,7 +1413,7 @@ namespace METAbolt
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label6.Location = new System.Drawing.Point(9, 189);
+            this.label6.Location = new System.Drawing.Point(12, 202);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 25;
@@ -1715,6 +1680,43 @@ namespace METAbolt
             // 
             this.TPtimer.Interval = 3000;
             this.TPtimer.Tick += new System.EventHandler(this.TPtimer_Tick);
+            // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+    "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.AllowColumnReorder = true;
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.Details;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
+            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "[Dist.] Av. Name";
+            this.columnHeader1.Width = 175;
             // 
             // ChatConsole
             // 

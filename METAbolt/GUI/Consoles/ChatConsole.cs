@@ -1150,11 +1150,15 @@ namespace METAbolt
                 label2.Visible = false;
                 label19.Visible = false;
                 label20.Visible = false;
+                //tBar1.Visible = false;
 
                 client.Grid.CoarseLocationUpdate -= new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             }
             else
             {
+                //tBar1.Visible = true;
+                //tBar1.Value = instance.Config.CurrentConfig.RadarRange;
+
                 if (!tabControl1.TabPages.Contains(tabPage1))
                 {
                     toolStrip1.Visible = true;
@@ -3281,7 +3285,7 @@ namespace METAbolt
 
                         progressBar7.Value = csim.Stats.FPS;
 
-                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString();
+                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString("0.00");
 
                         if ((int)(csim.Stats.Dilation * 10) > progressBar1.Maximum)
                         {
