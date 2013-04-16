@@ -286,6 +286,7 @@
     <Compile Include="Core\Config\FileConfig.cs" />
     <Compile Include="Core\Config\FileINI.cs" />
     <Compile Include="Core\ListItems\NumericStringComparer.cs" />
+    <Compile Include="Core\ListItems\NumericStringComparerDateGroups.cs" />
     <Compile Include="Core\ListItems\RadarSorter.cs" />
     <Compile Include="Core\ChatBufferItem.cs" />
     <Compile Include="Core\Components\RichTextBoxFR.cs">

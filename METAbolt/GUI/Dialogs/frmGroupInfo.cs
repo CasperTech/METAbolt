@@ -73,6 +73,7 @@ namespace METAbolt
         //private GroupMemberData currentmember = new GroupMemberData();
         private bool checkignore = false;
         private NumericStringComparer lvwColumnSorter;
+        private NumericStringComparerDateGroups lvwDateColumnSorter;
         private AssetType assettype;
         private UUID assetfolder = UUID.Zero;
         private string filename = string.Empty;
@@ -108,9 +109,12 @@ namespace METAbolt
             AddGEvents();
 
             lvwColumnSorter = new NumericStringComparer();
-            lstMembers.ListViewItemSorter = lvwColumnSorter;
-            lstMembers2.ListViewItemSorter = lvwColumnSorter;
-            lstNotices.ListViewItemSorter = lvwColumnSorter;
+            lvwDateColumnSorter = new NumericStringComparerDateGroups();
+
+            lstMembers.ListViewItemSorter = lvwDateColumnSorter;
+            lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
+            lstNotices.ListViewItemSorter = lvwDateColumnSorter;
+            //lstRoles.ListViewItemSorter = lvwColumnSorter;
 
             GetDets();
         }
@@ -136,9 +140,11 @@ namespace METAbolt
             AddGEvents();
 
             lvwColumnSorter = new NumericStringComparer();
-            lstMembers.ListViewItemSorter = lvwColumnSorter;
-            lstMembers2.ListViewItemSorter = lvwColumnSorter;
-            lstNotices.ListViewItemSorter = lvwColumnSorter;
+            lvwDateColumnSorter = new NumericStringComparerDateGroups();
+
+            lstMembers.ListViewItemSorter = lvwDateColumnSorter;
+            lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
+            lstNotices.ListViewItemSorter = lvwDateColumnSorter;
 
             Client.Groups.RequestGroupProfile(group.GroupID);
             //groupmembers = Client.Groups.RequestGroupMembers(group.GroupID);
@@ -169,9 +175,11 @@ namespace METAbolt
             AddGEvents();
 
             lvwColumnSorter = new NumericStringComparer();
-            lstMembers.ListViewItemSorter = lvwColumnSorter;
-            lstMembers2.ListViewItemSorter = lvwColumnSorter;
-            lstNotices.ListViewItemSorter = lvwColumnSorter;
+            lvwDateColumnSorter = new NumericStringComparerDateGroups();
+
+            lstMembers.ListViewItemSorter = lvwDateColumnSorter;
+            lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
+            lstNotices.ListViewItemSorter = lvwDateColumnSorter;
 
             Client.Groups.RequestGroupProfile(groupid);
             //groupmembers = Client.Groups.RequestGroupMembers(groupid);
@@ -1540,23 +1548,23 @@ namespace METAbolt
         private void lstMembers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == lvwColumnSorter.SortColumn)
+            if (e.Column == lvwDateColumnSorter.SortColumn)
             {
                 // Reverse the current sort direction for this column.
-                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                if (lvwDateColumnSorter.Order == SortOrder.Ascending)
                 {
-                    lvwColumnSorter.Order = SortOrder.Descending;
+                    lvwDateColumnSorter.Order = SortOrder.Descending;
                 }
                 else
                 {
-                    lvwColumnSorter.Order = SortOrder.Ascending;
+                    lvwDateColumnSorter.Order = SortOrder.Ascending;
                 }
             }
             else
             {
                 // Set the column number that is to be sorted; default to ascending.
-                lvwColumnSorter.SortColumn = e.Column;
-                lvwColumnSorter.Order = SortOrder.Ascending;
+                lvwDateColumnSorter.SortColumn = e.Column;
+                lvwDateColumnSorter.Order = SortOrder.Ascending;
             }
 
             // Perform the sort with these new sort options.
@@ -1566,23 +1574,23 @@ namespace METAbolt
         private void lstMembers2_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == lvwColumnSorter.SortColumn)
+            if (e.Column == lvwDateColumnSorter.SortColumn)
             {
                 // Reverse the current sort direction for this column.
-                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                if (lvwDateColumnSorter.Order == SortOrder.Ascending)
                 {
-                    lvwColumnSorter.Order = SortOrder.Descending;
+                    lvwDateColumnSorter.Order = SortOrder.Descending;
                 }
                 else
                 {
-                    lvwColumnSorter.Order = SortOrder.Ascending;
+                    lvwDateColumnSorter.Order = SortOrder.Ascending;
                 }
             }
             else
             {
                 // Set the column number that is to be sorted; default to ascending.
-                lvwColumnSorter.SortColumn = e.Column;
-                lvwColumnSorter.Order = SortOrder.Ascending;
+                lvwDateColumnSorter.SortColumn = e.Column;
+                lvwDateColumnSorter.Order = SortOrder.Ascending;
             }
 
             // Perform the sort with these new sort options.
@@ -1592,23 +1600,23 @@ namespace METAbolt
         private void lstNotices_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == lvwColumnSorter.SortColumn)
+            if (e.Column == lvwDateColumnSorter.SortColumn)
             {
                 // Reverse the current sort direction for this column.
-                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                if (lvwDateColumnSorter.Order == SortOrder.Ascending)
                 {
-                    lvwColumnSorter.Order = SortOrder.Descending;
+                    lvwDateColumnSorter.Order = SortOrder.Descending;
                 }
                 else
                 {
-                    lvwColumnSorter.Order = SortOrder.Ascending;
+                    lvwDateColumnSorter.Order = SortOrder.Ascending;
                 }
             }
             else
             {
                 // Set the column number that is to be sorted; default to ascending.
-                lvwColumnSorter.SortColumn = e.Column;
-                lvwColumnSorter.Order = SortOrder.Ascending;
+                lvwDateColumnSorter.SortColumn = e.Column;
+                lvwDateColumnSorter.Order = SortOrder.Ascending;
             }
 
             // Perform the sort with these new sort options.

@@ -27,22 +27,22 @@ using System.Text;
 using System.Collections;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Security;
+using System.Security; 
 
 namespace METAbolt
 {
     [SuppressUnmanagedCodeSecurity]
-    internal static class SafeNativeMethods
+    internal static class SafeNativeDateMethods
     {
         [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
         public static extern int StrCmpLogicalW(string psz1, string psz2);
-    }
+    } 
 
     /// <summary>
     /// This class is an implementation of the 'IComparer' interface.
     /// This will only work on Windows platforms.
     /// </summary>
-    public class NumericStringComparer : IComparer
+    public class NumericStringComparerDateGroups : IComparer
     {
         /// <summary>
         /// Specifies the column to be sorted
@@ -60,7 +60,7 @@ namespace METAbolt
         /// <summary>
         /// Class constructor.  Initializes various elements
         /// </summary>
-        public NumericStringComparer()
+        public NumericStringComparerDateGroups()
         {
             // Initialize the column to '0'
             ColumnToSort = 0;
@@ -96,10 +96,28 @@ namespace METAbolt
             if (a == null) return -1;
             if (b == null) return 1;
 
+            string[] d1;
+            string[] d2;
+
+            if (a.Contains("/"))
+            {
+                d1 = a.Split('/');
+                a = d1[2] + d1[1] + d1[0];
+            }
+
+            if (b.Contains("/"))
+            {
+                d2 = b.Split('/');
+                b = d2[2] + d2[1] + d2[0];
+            }
+
+            //a = a.Replace("/", "").Trim() + "abc";
+            //b = b.Replace("/", "").Trim() + "abc";
+
             try
             {
                 // Compare the two items
-                compareResult = SafeNativeMethods.StrCmpLogicalW(a, b);
+                compareResult = SafeNativeDateMethods.StrCmpLogicalW(a, b);
 
                 // Calculate correct return value based on object comparison
                 if (OrderOfSort == SortOrder.Ascending)
@@ -120,6 +138,21 @@ namespace METAbolt
             }
             catch { return 0; }
         }
+
+        //public bool IsDate(string strDate)
+        //{
+        //    //string strDate = obj.ToString();
+
+        //    try
+        //    {
+        //        DateTime dt;
+        //        return DateTime.TryParse(strDate, out dt);
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /// <summary>
         /// Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
