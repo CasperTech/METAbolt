@@ -931,6 +931,8 @@ namespace METAbolt
         {
             tbtnNew.Enabled = tbtnSort.Enabled = tbtnOrganize.Enabled = (treeView1.SelectedNode != null);
 
+            if (e.Node.Tag == "empty") return;
+
             if (e.Node.Tag is InventoryFolder)
             {
                 //tmnuRename.Enabled = false;
@@ -1190,6 +1192,8 @@ namespace METAbolt
         private void tmnuRename_Click(object sender, EventArgs e)
         {
             if (treeView1.SelectedNode == null) return;
+
+            if (treeView1.SelectedNode.Tag == "empty") return;
 
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
 
@@ -1906,6 +1910,8 @@ namespace METAbolt
         private void treeView1_DoubleClick(object sender, EventArgs e)
         {
             if (treeView1.SelectedNode == null) return;
+
+            if (treeView1.SelectedNode.Tag == "empty") return;
 
             if (treeView1.SelectedNode.Tag is InventoryItem)
             {
