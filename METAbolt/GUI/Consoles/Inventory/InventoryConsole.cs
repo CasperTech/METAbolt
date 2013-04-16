@@ -931,7 +931,7 @@ namespace METAbolt
         {
             tbtnNew.Enabled = tbtnSort.Enabled = tbtnOrganize.Enabled = (treeView1.SelectedNode != null);
 
-            if (e.Node.Tag == "empty") return;
+            if (e.Node.Tag.ToString() == "empty") return;
 
             if (e.Node.Tag is InventoryFolder)
             {
@@ -1193,7 +1193,7 @@ namespace METAbolt
         {
             if (treeView1.SelectedNode == null) return;
 
-            if (treeView1.SelectedNode.Tag == "empty") return;
+            if (treeView1.SelectedNode.Tag.ToString() == "empty") return;
 
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
 
@@ -1911,7 +1911,7 @@ namespace METAbolt
         {
             if (treeView1.SelectedNode == null) return;
 
-            if (treeView1.SelectedNode.Tag == "empty") return;
+            if (treeView1.SelectedNode.Tag.ToString() == "empty") return;
 
             if (treeView1.SelectedNode.Tag is InventoryItem)
             {
@@ -2038,7 +2038,17 @@ namespace METAbolt
 
         private void smM1_Opening(object sender, CancelEventArgs e)
         {
-            if (treeView1.SelectedNode == null) return;
+            if (treeView1.SelectedNode == null)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            if (treeView1.SelectedNode.Tag.ToString() == "empty")
+            {
+                e.Cancel = true;
+                return;
+            }
 
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
             string sitem = treeView1.SelectedNode.Text;
