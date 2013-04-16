@@ -697,6 +697,7 @@ namespace METAbolt
             }
 
             client.Self.RequestMuteList();
+            client.Self.Movement.Camera.Far = (float)instance.Config.CurrentConfig.RadarRange;
         }
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)

@@ -916,7 +916,6 @@ namespace METAbolt
             //client.Settings.ASSET_CACHE_MAX_SIZE = (1024 * 1024 * 1024) / 4;  //250MB
             client.Assets.Cache.AutoPruneEnabled = false;
 
-            client.Self.Movement.Camera.Far = (float)config.CurrentConfig.RadarRange;
             client.Self.Movement.AutoResetControls = false;
             client.Self.Movement.UpdateInterval = 250;
 
