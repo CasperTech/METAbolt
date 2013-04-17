@@ -177,6 +177,7 @@ namespace METAbolt
         private string appmenupos = "Top";
         private string landmenupos = "Top";
         private string fnmenupos = "Top";
+        private bool usellsd = false;
 
         public Config()
         {
@@ -282,6 +283,7 @@ namespace METAbolt
                 config.AppMenuPos = conf.Configs["General"].GetString("AppMenuPos", "Top");
                 config.LandMenuPos = conf.Configs["General"].GetString("LandMenuPos", "Top");
                 config.FnMenuPos = conf.Configs["General"].GetString("FnMenuPos", "Top");
+                config.UseLLSD = conf.Configs["General"].GetBoolean("UseLLSD", false);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -467,6 +469,7 @@ namespace METAbolt
             config.Set("AppMenuPos", appmenupos.ToString(CultureInfo.CurrentCulture));
             config.Set("LandMenuPos", landmenupos.ToString(CultureInfo.CurrentCulture));
             config.Set("FnMenuPos", fnmenupos.ToString(CultureInfo.CurrentCulture));
+            config.Set("UseLLSD", usellsd.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1316,6 +1319,12 @@ namespace METAbolt
         {
             get { return fnmenupos; }
             set { fnmenupos = value; }
+        }
+
+        public bool UseLLSD
+        {
+            get { return usellsd; }
+            set { usellsd = value; }
         }
     }
 }

@@ -37,7 +37,6 @@ namespace METAbolt
             this.chkFavs = new System.Windows.Forms.CheckBox();
             this.chkVoice = new System.Windows.Forms.CheckBox();
             this.chkDisableRadar = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.chkLSL = new System.Windows.Forms.CheckBox();
@@ -60,13 +59,11 @@ namespace METAbolt
             this.chkAutoSit = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkNotifications = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.chkConnect4 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.chkRadarMiniMap = new System.Windows.Forms.CheckBox();
             this.chkRestrictRadar = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -80,14 +77,18 @@ namespace METAbolt
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tBar1 = new System.Windows.Forms.TrackBar();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbLLSD = new System.Windows.Forms.CheckBox();
             this.cbHHTPInv = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.chkConnect4 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtAdRemove = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
@@ -103,6 +104,11 @@ namespace METAbolt
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.cbFn = new System.Windows.Forms.ComboBox();
             this.cbLand = new System.Windows.Forms.ComboBox();
@@ -135,15 +141,9 @@ namespace METAbolt
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.txtAdRemove = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -151,7 +151,6 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.nUD1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -159,17 +158,18 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBar1)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // rdoSystemStyle
@@ -310,21 +310,6 @@ namespace METAbolt
             this.chkDisableRadar.Text = "Disable avatar radar";
             this.chkDisableRadar.UseVisualStyleBackColor = true;
             this.chkDisableRadar.CheckedChanged += new System.EventHandler(this.chkDisableRadar_CheckedChanged);
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.AccessibleName = "Disable icon option";
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.checkBox13.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
-            this.checkBox13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
-            this.checkBox13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox13.Location = new System.Drawing.Point(11, 70);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(213, 17);
-            this.checkBox13.TabIndex = 66;
-            this.checkBox13.Text = "Disable \'Network Disconnected\' prompts";
-            this.checkBox13.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
@@ -635,45 +620,6 @@ namespace METAbolt
             this.chkNotifications.UseVisualStyleBackColor = true;
             this.chkNotifications.CheckedChanged += new System.EventHandler(this.chkNotifications_CheckedChanged);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.DarkGray;
-            this.label2.Location = new System.Drawing.Point(158, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 13);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "(requires METAbolt re-start)";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(318, 49);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox3.TabIndex = 33;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click_1);
-            this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
-            this.pictureBox3.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
-            // 
-            // chkConnect4
-            // 
-            this.chkConnect4.AccessibleName = "connect to multiple SIMs option";
-            this.chkConnect4.AutoSize = true;
-            this.chkConnect4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.chkConnect4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
-            this.chkConnect4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
-            this.chkConnect4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkConnect4.Location = new System.Drawing.Point(11, 47);
-            this.chkConnect4.Name = "chkConnect4";
-            this.chkConnect4.Size = new System.Drawing.Size(141, 17);
-            this.chkConnect4.TabIndex = 0;
-            this.chkConnect4.Text = "Connect to multiple SIMs";
-            this.chkConnect4.UseVisualStyleBackColor = true;
-            this.chkConnect4.CheckedChanged += new System.EventHandler(this.chkConnect4_CheckedChanged);
-            // 
             // tabPage4
             // 
             this.tabPage4.AccessibleName = "Radar tab";
@@ -740,6 +686,16 @@ namespace METAbolt
             this.groupBox4.TabIndex = 61;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Throttle (bandwidth) setting in kbps";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.DarkGray;
+            this.label25.Location = new System.Drawing.Point(29, 95);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(265, 13);
+            this.label25.TabIndex = 71;
+            this.label25.Text = "(To be set at both Global and Avatar (if exists) levels)";
             // 
             // label19
             // 
@@ -908,21 +864,79 @@ namespace METAbolt
             this.tBar1.Scroll += new System.EventHandler(this.tBar1_Scroll);
             this.tBar1.ValueChanged += new System.EventHandler(this.tBar1_ValueChanged);
             // 
-            // tabPage2
+            // tabPage7
             // 
-            this.tabPage2.AccessibleDescription = "Displays the folder the cache is stored in";
-            this.tabPage2.AccessibleName = "Cache location textbox";
-            this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(336, 271);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Cache";
+            this.tabPage7.BackColor = System.Drawing.Color.White;
+            this.tabPage7.Controls.Add(this.label26);
+            this.tabPage7.Controls.Add(this.label24);
+            this.tabPage7.Controls.Add(this.label23);
+            this.tabPage7.Controls.Add(this.label16);
+            this.tabPage7.Controls.Add(this.cbLLSD);
+            this.tabPage7.Controls.Add(this.cbHHTPInv);
+            this.tabPage7.Controls.Add(this.chkConnect4);
+            this.tabPage7.Controls.Add(this.label2);
+            this.tabPage7.Controls.Add(this.checkBox13);
+            this.tabPage7.Controls.Add(this.pictureBox3);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(336, 271);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Network";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.DarkGray;
+            this.label26.Location = new System.Drawing.Point(35, 156);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(265, 13);
+            this.label26.TabIndex = 71;
+            this.label26.Text = "(To be set at both Global and Avatar (if exists) levels)";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.ForeColor = System.Drawing.Color.DarkGray;
+            this.label24.Location = new System.Drawing.Point(35, 207);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(265, 13);
+            this.label24.TabIndex = 70;
+            this.label24.Text = "(To be set at both Global and Avatar (if exists) levels)";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.Color.DarkGray;
+            this.label23.Location = new System.Drawing.Point(158, 143);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(142, 13);
+            this.label23.TabIndex = 69;
+            this.label23.Text = "(requires METAbolt re-start)";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.DarkGray;
+            this.label16.Location = new System.Drawing.Point(158, 194);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(142, 13);
+            this.label16.TabIndex = 68;
+            this.label16.Text = "(requires METAbolt re-start)";
+            // 
+            // cbLLSD
+            // 
+            this.cbLLSD.AccessibleName = "Disable icon option";
+            this.cbLLSD.AutoSize = true;
+            this.cbLLSD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbLLSD.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbLLSD.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbLLSD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbLLSD.Location = new System.Drawing.Point(11, 141);
+            this.cbLLSD.Name = "cbLLSD";
+            this.cbLLSD.Size = new System.Drawing.Size(95, 17);
+            this.cbLLSD.TabIndex = 67;
+            this.cbLLSD.Text = "Use LLSD Login";
+            this.cbLLSD.UseVisualStyleBackColor = true;
             // 
             // cbHHTPInv
             // 
@@ -939,58 +953,59 @@ namespace METAbolt
             this.cbHHTPInv.Text = "Disable HTTP Inventory";
             this.cbHHTPInv.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // chkConnect4
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 54);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 13);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "Cache location:";
+            this.chkConnect4.AccessibleName = "connect to multiple SIMs option";
+            this.chkConnect4.AutoSize = true;
+            this.chkConnect4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.chkConnect4.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkConnect4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.chkConnect4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkConnect4.Location = new System.Drawing.Point(11, 47);
+            this.chkConnect4.Name = "chkConnect4";
+            this.chkConnect4.Size = new System.Drawing.Size(141, 17);
+            this.chkConnect4.TabIndex = 0;
+            this.chkConnect4.Text = "Connect to multiple SIMs";
+            this.chkConnect4.UseVisualStyleBackColor = true;
+            this.chkConnect4.CheckedChanged += new System.EventHandler(this.chkConnect4_CheckedChanged);
             // 
-            // textBox4
+            // label2
             // 
-            this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(22, 78);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(293, 21);
-            this.textBox4.TabIndex = 0;
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.DarkGray;
+            this.label2.Location = new System.Drawing.Point(158, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(142, 13);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "(requires METAbolt re-start)";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // button2
+            // checkBox13
             // 
-            this.button2.AccessibleName = "Clear cache button";
-            this.button2.BackColor = System.Drawing.Color.DimGray;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(250, 105);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 30);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "clear cache";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.checkBox13.AccessibleName = "Disable icon option";
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.checkBox13.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.checkBox13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox13.Location = new System.Drawing.Point(11, 70);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(213, 17);
+            this.checkBox13.TabIndex = 66;
+            this.checkBox13.Text = "Disable \'Network Disconnected\' prompts";
+            this.checkBox13.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // pictureBox3
             // 
-            this.button3.AccessibleDescription = "View the locaion/folder in Microsoft Explorer";
-            this.button3.AccessibleName = "View button";
-            this.button3.BackColor = System.Drawing.Color.DimGray;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(174, 105);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 30);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "view cache";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(318, 49);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox3.TabIndex = 33;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click_1);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
+            this.pictureBox3.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
             // 
             // tabPage3
             // 
@@ -1004,17 +1019,6 @@ namespace METAbolt
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Security/L$";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
-            // 
-            // txtAdRemove
-            // 
-            this.txtAdRemove.AccessibleDescription = "Enter Ad removal license key into here";
-            this.txtAdRemove.AccessibleName = "License key textbox";
-            this.txtAdRemove.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtAdRemove.Location = new System.Drawing.Point(322, 306);
-            this.txtAdRemove.Name = "txtAdRemove";
-            this.txtAdRemove.Size = new System.Drawing.Size(19, 21);
-            this.txtAdRemove.TabIndex = 0;
-            this.txtAdRemove.Visible = false;
             // 
             // groupBox5
             // 
@@ -1200,6 +1204,75 @@ namespace METAbolt
             this.checkBox1.Text = "Give a present when invite is accepted";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.AccessibleDescription = "Displays the folder the cache is stored in";
+            this.tabPage2.AccessibleName = "Cache location textbox";
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(336, 271);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Cache";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 54);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "Cache location:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox4.Enabled = false;
+            this.textBox4.Location = new System.Drawing.Point(22, 78);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(293, 21);
+            this.textBox4.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.AccessibleName = "Clear cache button";
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(250, 105);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(65, 30);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "clear cache";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.AccessibleDescription = "View the locaion/folder in Microsoft Explorer";
+            this.button3.AccessibleName = "View button";
+            this.button3.BackColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(174, 105);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(65, 30);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "view cache";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // tabPage5
             // 
@@ -1626,6 +1699,17 @@ namespace METAbolt
             this.checkBox6.Text = "Play sound when Friend online";
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
+            // txtAdRemove
+            // 
+            this.txtAdRemove.AccessibleDescription = "Enter Ad removal license key into here";
+            this.txtAdRemove.AccessibleName = "License key textbox";
+            this.txtAdRemove.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtAdRemove.Location = new System.Drawing.Point(322, 306);
+            this.txtAdRemove.Name = "txtAdRemove";
+            this.txtAdRemove.Size = new System.Drawing.Size(19, 21);
+            this.txtAdRemove.TabIndex = 0;
+            this.txtAdRemove.Visible = false;
+            // 
             // colorDialog1
             // 
             this.colorDialog1.Color = System.Drawing.Color.Lavender;
@@ -1638,90 +1722,6 @@ namespace METAbolt
             this.fontDialog1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.BackColor = System.Drawing.Color.White;
-            this.tabPage7.Controls.Add(this.label26);
-            this.tabPage7.Controls.Add(this.label24);
-            this.tabPage7.Controls.Add(this.label23);
-            this.tabPage7.Controls.Add(this.label16);
-            this.tabPage7.Controls.Add(this.checkBox14);
-            this.tabPage7.Controls.Add(this.cbHHTPInv);
-            this.tabPage7.Controls.Add(this.chkConnect4);
-            this.tabPage7.Controls.Add(this.label2);
-            this.tabPage7.Controls.Add(this.checkBox13);
-            this.tabPage7.Controls.Add(this.pictureBox3);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(336, 271);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Network";
-            // 
-            // checkBox14
-            // 
-            this.checkBox14.AccessibleName = "Disable icon option";
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.checkBox14.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
-            this.checkBox14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
-            this.checkBox14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox14.Location = new System.Drawing.Point(11, 141);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(95, 17);
-            this.checkBox14.TabIndex = 67;
-            this.checkBox14.Text = "Use LLSD Login";
-            this.checkBox14.UseVisualStyleBackColor = true;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.DarkGray;
-            this.label16.Location = new System.Drawing.Point(158, 194);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(142, 13);
-            this.label16.TabIndex = 68;
-            this.label16.Text = "(requires METAbolt re-start)";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.ForeColor = System.Drawing.Color.DarkGray;
-            this.label23.Location = new System.Drawing.Point(158, 143);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(142, 13);
-            this.label23.TabIndex = 69;
-            this.label23.Text = "(requires METAbolt re-start)";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.ForeColor = System.Drawing.Color.DarkGray;
-            this.label24.Location = new System.Drawing.Point(35, 207);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(265, 13);
-            this.label24.TabIndex = 70;
-            this.label24.Text = "(To be set at both Global and Avatar (if exists) levels)";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.ForeColor = System.Drawing.Color.DarkGray;
-            this.label25.Location = new System.Drawing.Point(29, 95);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(265, 13);
-            this.label25.TabIndex = 71;
-            this.label25.Text = "(To be set at both Global and Avatar (if exists) levels)";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.DarkGray;
-            this.label26.Location = new System.Drawing.Point(35, 156);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(265, 13);
-            this.label26.TabIndex = 71;
-            this.label26.Text = "(To be set at both Global and Avatar (if exists) levels)";
             // 
             // PrefGeneralConsole
             // 
@@ -1744,7 +1744,6 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.nUD1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1754,8 +1753,9 @@ namespace METAbolt
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBar1)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -1764,14 +1764,14 @@ namespace METAbolt
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1888,7 +1888,7 @@ namespace METAbolt
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox cbLLSD;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;

@@ -168,6 +168,7 @@ namespace METAbolt
             chkFavs.Checked = config.CurrentConfig.DisableFavs;
             cbHHTPInv.Checked = config.CurrentConfig.DisableHTTPinv;
             chkRadarMiniMap.Checked = config.CurrentConfig.DisableRadarImageMiniMap;
+            cbLLSD.Checked = config.CurrentConfig.UseLLSD;
 
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)
             {
@@ -336,6 +337,7 @@ namespace METAbolt
             instance.Config.CurrentConfig.DisableFavs = chkFavs.Checked;
             instance.Config.CurrentConfig.DisableHTTPinv = cbHHTPInv.Checked;
             instance.Config.CurrentConfig.DisableRadarImageMiniMap = chkRadarMiniMap.Checked;
+            instance.Config.CurrentConfig.UseLLSD = cbLLSD.Checked;
 
             if (checkBox4.Checked)
             {

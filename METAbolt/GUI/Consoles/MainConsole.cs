@@ -757,6 +757,7 @@ namespace METAbolt
                 btnLogin.Enabled = false;
 
                 client.Settings.HTTP_INVENTORY = !instance.Config.CurrentConfig.DisableHTTPinv;
+                client.Settings.USE_LLSD_LOGIN = instance.Config.CurrentConfig.UseLLSD;
                 //instance.SetSettings();  
 
                 netcom.Login();
