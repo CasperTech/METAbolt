@@ -38,8 +38,8 @@ namespace METAbolt
             this.tlblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblRegionInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlblParcel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb3 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -157,6 +157,7 @@ namespace METAbolt
             // statusStrip1
             // 
             this.statusStrip1.AccessibleName = "Information strip";
+            this.statusStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tlblMoneyBalance,
@@ -245,20 +246,6 @@ namespace METAbolt
             this.toolStripStatusLabel1.MouseLeave += new System.EventHandler(this.toolStripStatusLabel1_MouseLeave);
             this.toolStripStatusLabel1.MouseHover += new System.EventHandler(this.toolStripStatusLabel1_MouseHover);
             // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.AutoSize = false;
-            this.toolStripStatusLabel2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.toolStripStatusLabel2.Image = global::METAbolt.Properties.Resources.Favorites_black;
-            this.toolStripStatusLabel2.IsLink = true;
-            this.toolStripStatusLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 24);
-            this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
-            this.toolStripStatusLabel2.MouseEnter += new System.EventHandler(this.toolStripStatusLabel2_MouseEnter);
-            this.toolStripStatusLabel2.MouseLeave += new System.EventHandler(this.toolStripStatusLabel2_MouseLeave);
-            // 
             // tlblParcel
             // 
             this.tlblParcel.AccessibleDescription = "The name of the parcel you are on";
@@ -278,6 +265,20 @@ namespace METAbolt
             this.tlblParcel.Click += new System.EventHandler(this.tlblParcel_Click);
             this.tlblParcel.MouseEnter += new System.EventHandler(this.tlblParcel_MouseEnter);
             this.tlblParcel.MouseLeave += new System.EventHandler(this.tlblParcel_MouseLeave);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.AutoSize = false;
+            this.toolStripStatusLabel2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabel2.Image = global::METAbolt.Properties.Resources.Favorites_black;
+            this.toolStripStatusLabel2.IsLink = true;
+            this.toolStripStatusLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 24);
+            this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
+            this.toolStripStatusLabel2.MouseEnter += new System.EventHandler(this.toolStripStatusLabel2_MouseEnter);
+            this.toolStripStatusLabel2.MouseLeave += new System.EventHandler(this.toolStripStatusLabel2_MouseLeave);
             // 
             // tb1
             // 
@@ -422,7 +423,7 @@ namespace METAbolt
             // 
             this.toolStrip1.AccessibleName = "Main METAbolt menu";
             this.toolStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.BackColor = System.Drawing.Color.Gainsboro;
             this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
