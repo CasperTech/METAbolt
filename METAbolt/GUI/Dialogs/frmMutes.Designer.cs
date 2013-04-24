@@ -43,6 +43,7 @@
             // button1
             // 
             this.button1.AccessibleName = "OK button to close the window";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -79,6 +80,7 @@
             // button2
             // 
             this.button2.AccessibleName = "OK button to close the window";
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.BackColor = System.Drawing.Color.ForestGreen;
             this.button2.Enabled = false;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -96,6 +98,7 @@
             // button3
             // 
             this.button3.AccessibleName = "OK button to close the window";
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.DimGray;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -143,6 +146,7 @@
             // button4
             // 
             this.button4.AccessibleName = "OK button to close the window";
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.BackColor = System.Drawing.Color.Red;
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -164,7 +168,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(470, 330);
-            this.ControlBox = false;
             this.Controls.Add(this.button4);
             this.Controls.Add(this.lvMutes);
             this.Controls.Add(this.button3);
@@ -176,6 +179,7 @@
             this.Name = "frmMutes";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mute List";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMutes_FormClosing);
             this.Load += new System.EventHandler(this.frmMutes_Load);

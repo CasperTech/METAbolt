@@ -123,6 +123,7 @@
             // 
             this.button2.AccessibleDescription = "Open the selected files";
             this.button2.AccessibleName = "Open selected files button";
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.DimGray;
             this.button2.Enabled = false;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -141,6 +142,7 @@
             // 
             this.button3.AccessibleDescription = "Open all the found files at the same time";
             this.button3.AccessibleName = "Open all button";
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.DimGray;
             this.button3.Enabled = false;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -158,6 +160,7 @@
             // button4
             // 
             this.button4.AccessibleName = "Close this window button";
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.BackColor = System.Drawing.Color.DimGray;
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -205,6 +208,7 @@
             // button5
             // 
             this.button5.AccessibleName = "View files in Mcrosoft Explorer button";
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.BackColor = System.Drawing.Color.DimGray;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -307,6 +311,7 @@
             this.MinimizeBox = false;
             this.Name = "frmLogSearch";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chat/IM Log Manager";
             this.Load += new System.EventHandler(this.frmLogSearch_Load);
             this.groupBox1.ResumeLayout(false);

@@ -81,6 +81,7 @@
             // button5
             // 
             this.button5.AccessibleName = "Close this window button";
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.BackColor = System.Drawing.Color.DimGray;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -160,6 +161,7 @@
             // 
             this.button1.AccessibleDescription = "to open the attachment";
             this.button1.AccessibleName = "Open button";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -210,6 +212,7 @@
             this.Name = "frmGroupNotice";
             this.Opacity = 0.85D;
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group Notice";

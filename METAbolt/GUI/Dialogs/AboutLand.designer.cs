@@ -45,6 +45,7 @@
             this.txtMusic = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.tabOptions = new System.Windows.Forms.TabPage();
+            this.cbVoice = new System.Windows.Forms.CheckBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -116,7 +117,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.cbVoice = new System.Windows.Forms.CheckBox();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabOptions.SuspendLayout();
@@ -358,6 +358,23 @@
             this.tabOptions.Size = new System.Drawing.Size(437, 326);
             this.tabOptions.TabIndex = 3;
             this.tabOptions.Text = "Options";
+            // 
+            // cbVoice
+            // 
+            this.cbVoice.AccessibleName = "Mature content";
+            this.cbVoice.AutoSize = true;
+            this.cbVoice.Enabled = false;
+            this.cbVoice.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cbVoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbVoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.cbVoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbVoice.Location = new System.Drawing.Point(189, 154);
+            this.cbVoice.Name = "cbVoice";
+            this.cbVoice.Size = new System.Drawing.Size(86, 17);
+            this.cbVoice.TabIndex = 24;
+            this.cbVoice.Text = "Enable Voice";
+            this.cbVoice.UseVisualStyleBackColor = true;
+            this.cbVoice.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // comboBox2
             // 
@@ -1075,6 +1092,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.DimGray;
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -1275,23 +1293,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(445, 355);
             this.tabControl1.TabIndex = 0;
-            // 
-            // cbVoice
-            // 
-            this.cbVoice.AccessibleName = "Mature content";
-            this.cbVoice.AutoSize = true;
-            this.cbVoice.Enabled = false;
-            this.cbVoice.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.cbVoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
-            this.cbVoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
-            this.cbVoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbVoice.Location = new System.Drawing.Point(189, 154);
-            this.cbVoice.Name = "cbVoice";
-            this.cbVoice.Size = new System.Drawing.Size(86, 17);
-            this.cbVoice.TabIndex = 24;
-            this.cbVoice.Text = "Enable Voice";
-            this.cbVoice.UseVisualStyleBackColor = true;
-            this.cbVoice.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // frmAboutLand
             // 

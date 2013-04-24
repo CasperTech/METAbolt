@@ -1519,12 +1519,12 @@ namespace METAbolt
 
         private void teleportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmTeleport(instance, "", 0, 0, 0)).Show();
+            (new frmTeleport(instance, "", 0, 0, 0)).Show(this);
         }
 
         private void mapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmMapClient(instance)).Show();
+            (new frmMapClient(instance)).Show(this);
         }
 
         private void objectsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1554,7 +1554,7 @@ namespace METAbolt
 
         private void tmnuBackup_Click(object sender, EventArgs e)
         {
-            (new frmBackup()).Show(); 
+            (new frmBackup()).Show(this); 
         }
 
         private void createLandmarkHereToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1630,12 +1630,12 @@ namespace METAbolt
 
         private void mETAplayerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmPlayer(instance)).Show();
+            (new frmPlayer(instance)).Show(this);
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            (new frmStats(instance)).Show();
+            (new frmStats(instance)).Show(this);
         }
 
         private void aLphToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1757,7 +1757,7 @@ namespace METAbolt
 
         private void searchLogsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmLogSearch(instance)).Show();
+            (new frmLogSearch(instance)).Show(this);
         }
 
         private void frmMain_LocationChanged(object sender, EventArgs e)
@@ -2071,7 +2071,7 @@ namespace METAbolt
 
         private void scriptManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmScriptEditor(instance)).Show();
+            (new frmScriptEditor(instance)).Show(this);
         }
 
         private void tlTools_Click(object sender, EventArgs e)

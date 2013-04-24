@@ -59,6 +59,7 @@
             // btnGive
             // 
             this.btnGive.AccessibleName = "Give the item to all chosen avatars";
+            this.btnGive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGive.BackColor = System.Drawing.Color.DimGray;
             this.btnGive.Enabled = false;
             this.btnGive.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -189,6 +190,7 @@
             // button5
             // 
             this.button5.AccessibleName = "Close this window";
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.BackColor = System.Drawing.Color.DimGray;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;

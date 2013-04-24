@@ -79,6 +79,7 @@ namespace METAbolt
             // btnCancel
             // 
             this.btnCancel.AccessibleName = "Cancel and close window button";
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.DimGray;
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -95,6 +96,7 @@ namespace METAbolt
             // btnPay
             // 
             this.btnPay.AccessibleName = "Pay and close window button";
+            this.btnPay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPay.BackColor = System.Drawing.Color.DimGray;
             this.btnPay.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnPay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -173,6 +175,7 @@ namespace METAbolt
             this.MinimizeBox = false;
             this.Name = "frmPay";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pay";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPay_FormClosing);

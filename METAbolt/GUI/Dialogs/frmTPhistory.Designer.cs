@@ -118,6 +118,7 @@
             // button1
             // 
             this.button1.AccessibleName = "Close this window button";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -134,6 +135,7 @@
             // button3
             // 
             this.button3.AccessibleName = "Clear history list button";
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.DimGray;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -201,6 +203,7 @@
             this.Name = "frmTPhistory";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Teleport history";
             this.Load += new System.EventHandler(this.frmTPhistory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

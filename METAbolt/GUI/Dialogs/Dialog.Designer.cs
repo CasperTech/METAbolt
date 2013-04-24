@@ -69,6 +69,7 @@
             // button2
             // 
             this.button2.AccessibleName = "Ignore and close this dialog";
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.DimGray;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -102,6 +103,7 @@
             // 
             this.button3.AccessibleDescription = "to avoid getting flooded by incoming dialogs";
             this.button3.AccessibleName = "Reset flood buffer";
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button3.BackColor = System.Drawing.Color.DimGray;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -119,6 +121,7 @@
             // button4
             // 
             this.button4.AccessibleName = "Mute the sending object";
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button4.BackColor = System.Drawing.Color.DimGray;
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -171,6 +174,7 @@
             // button1
             // 
             this.button1.AccessibleName = "Ignore and close this dialog";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;

@@ -461,6 +461,7 @@
             this.MaximizeBox = false;
             this.Name = "frmPlayer";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "METAplayer";
             this.Load += new System.EventHandler(this.frmPlayer_Load);
             this.ResizeEnd += new System.EventHandler(this.frmPlayer_ResizeEnd);

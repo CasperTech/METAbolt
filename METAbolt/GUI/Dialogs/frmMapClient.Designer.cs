@@ -702,7 +702,9 @@ namespace METAbolt
             this.MinimizeBox = false;
             this.Name = "frmMapClient";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "METAbolt Map";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMapClient_FormClosing);
             this.Load += new System.EventHandler(this.frmMapClient_Load);

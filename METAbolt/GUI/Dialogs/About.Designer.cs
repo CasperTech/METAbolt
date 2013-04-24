@@ -55,6 +55,7 @@ namespace METAbolt
             // 
             this.btnClose.AccessibleDescription = "Close butto nto close this window";
             this.btnClose.AccessibleName = "Close";
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.DimGray;
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -189,6 +190,7 @@ namespace METAbolt
             // 
             this.button1.AccessibleDescription = "Open the METAbolt folder in Microsoft Explorer";
             this.button1.AccessibleName = "Open application folder";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -235,6 +237,7 @@ namespace METAbolt
             // 
             this.button2.AccessibleDescription = "Open the METAbolt user data folder in Microsoft Explorer";
             this.button2.AccessibleName = "Open data folder";
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.DimGray;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;

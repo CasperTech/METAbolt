@@ -357,6 +357,7 @@ namespace METAbolt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmNotecard";
+            this.ShowInTaskbar = false;
             this.Text = "Notecard";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNotecardEditor_FormClosing);
             this.Load += new System.EventHandler(this.frmNotecardEditor_Load);

@@ -50,6 +50,7 @@
             // 
             this.btnTouch.AccessibleDescription = "Touch or click the selected object";
             this.btnTouch.AccessibleName = "Touch or Click button";
+            this.btnTouch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTouch.BackColor = System.Drawing.Color.DimGray;
             this.btnTouch.Enabled = false;
             this.btnTouch.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -67,6 +68,7 @@
             // btnClose
             // 
             this.btnClose.AccessibleName = "Close this window button";
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.DimGray;
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -170,6 +172,7 @@
             // button2
             // 
             this.button2.AccessibleName = "3D view button";
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.RoyalBlue;
             this.button2.Enabled = false;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -264,6 +267,7 @@
             this.MinimizeBox = false;
             this.Name = "WornAttachments";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Worn Attachments";

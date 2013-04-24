@@ -201,6 +201,7 @@ namespace METAbolt
             // btnTeleport
             // 
             this.btnTeleport.AccessibleName = "Teleport button";
+            this.btnTeleport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTeleport.BackColor = System.Drawing.Color.DimGray;
             this.btnTeleport.Enabled = false;
             this.btnTeleport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -218,6 +219,7 @@ namespace METAbolt
             // btnCancel
             // 
             this.btnCancel.AccessibleName = "Cancel and close window button";
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.DimGray;
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -323,6 +325,7 @@ namespace METAbolt
             // button1
             // 
             this.button1.AccessibleName = "Teleport button";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Enabled = false;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;

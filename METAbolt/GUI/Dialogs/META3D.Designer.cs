@@ -376,6 +376,7 @@
             this.Controls.Add(this.scrollPitch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "META3D";
+            this.ShowInTaskbar = false;
             this.Text = "META3D";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.META3D_FormClosing);
             this.Shown += new System.EventHandler(this.META3D_Shown);

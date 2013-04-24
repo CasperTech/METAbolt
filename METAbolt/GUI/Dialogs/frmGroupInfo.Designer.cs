@@ -1084,6 +1084,7 @@ namespace METAbolt
             // cmdApply
             // 
             this.cmdApply.AccessibleName = "Apply changes button";
+            this.cmdApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdApply.BackColor = System.Drawing.Color.DimGray;
             this.cmdApply.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.cmdApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -1100,6 +1101,7 @@ namespace METAbolt
             // cmdCancel
             // 
             this.cmdCancel.AccessibleName = "Cancel button";
+            this.cmdCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdCancel.BackColor = System.Drawing.Color.DimGray;
             this.cmdCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.cmdCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -1116,6 +1118,7 @@ namespace METAbolt
             // cmdOK
             // 
             this.cmdOK.AccessibleName = "OK button";
+            this.cmdOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdOK.BackColor = System.Drawing.Color.DimGray;
             this.cmdOK.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.cmdOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -1132,6 +1135,7 @@ namespace METAbolt
             // cmdRefresh
             // 
             this.cmdRefresh.AccessibleName = "Refresh all information from server button";
+            this.cmdRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdRefresh.BackColor = System.Drawing.Color.DimGray;
             this.cmdRefresh.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.cmdRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -1174,6 +1178,7 @@ namespace METAbolt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmGroupInfo";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group Information";

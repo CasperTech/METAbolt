@@ -2263,7 +2263,7 @@ namespace METAbolt
 
             string name = instance.avnames[av];
 
-            (new frmProfile(instance, name, av)).Show();
+            (new frmProfile(instance, name, av)).Show(this);
         }
 
         private void cbxInput_KeyDown(object sender, KeyEventArgs e)

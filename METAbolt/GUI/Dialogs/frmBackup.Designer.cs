@@ -370,6 +370,7 @@
             // button3
             // 
             this.button3.AccessibleName = "Close this window";
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.DimGray;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -405,7 +406,10 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmBackup";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "METAbolt File Backup/Restore";
             this.Load += new System.EventHandler(this.frmBackup_Load);
             this.tabControl1.ResumeLayout(false);

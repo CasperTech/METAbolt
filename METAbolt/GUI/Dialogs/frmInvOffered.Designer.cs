@@ -40,7 +40,7 @@
             // btnDecline
             // 
             this.btnDecline.AccessibleName = "Decline the offer button";
-            this.btnDecline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDecline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDecline.BackColor = System.Drawing.Color.DimGray;
             this.btnDecline.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnDecline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -57,7 +57,7 @@
             // btnAccept
             // 
             this.btnAccept.AccessibleName = "Accept the offer button";
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAccept.BackColor = System.Drawing.Color.DimGray;
             this.btnAccept.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnAccept.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -86,7 +86,7 @@
             // button1
             // 
             this.button1.AccessibleName = "Mute the sender button";
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
@@ -135,6 +135,7 @@
             this.Name = "frmInvOffered";
             this.Opacity = 0.85D;
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Inventory Item Received";
             this.TopMost = true;
