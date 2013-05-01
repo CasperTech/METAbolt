@@ -708,6 +708,7 @@ namespace METAbolt
             this.Text = "METAbolt Map";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMapClient_FormClosing);
             this.Load += new System.EventHandler(this.frmMapClient_Load);
+            this.SizeChanged += new System.EventHandler(this.frmMapClient_SizeChanged);
             this.Enter += new System.EventHandler(this.frmMapClient_Enter);
             this.TabCont.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

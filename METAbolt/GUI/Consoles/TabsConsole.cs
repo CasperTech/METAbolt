@@ -1545,6 +1545,7 @@ namespace METAbolt
             {
                 tabs.Remove(tab.Name);
             }
+
             tab = null;
         }
 

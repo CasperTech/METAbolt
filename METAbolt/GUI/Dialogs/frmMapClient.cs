@@ -334,9 +334,21 @@ namespace METAbolt
 
                 if (clickedx != 0 && clickedy != 0)
                 {
-                    //PlotSelected(clickedx, clickedy);
-                    Rectangle selectedrect = new Rectangle(clickedx - 2, clickedy - 2, 10, 10);
-                    g.DrawEllipse(new Pen(Brushes.Red, 2), selectedrect);
+                    Point mouse = new Point(clickedx, clickedy);
+
+                    METAboltInstance.AvLocation CurrentLoc = null;
+
+                    try
+                    {
+                        CurrentLoc = instance.avlocations.Find(delegate(METAboltInstance.AvLocation gck) { return gck.Rectangle.Contains(mouse) == true; });
+                    }
+                    catch { ; }
+
+                    if (CurrentLoc == null)
+                    {
+                        Rectangle selectedrect = new Rectangle(clickedx - 2, clickedy - 2, 10, 10);
+                        g.DrawEllipse(new Pen(Brushes.Red, 2), selectedrect);
+                    }
                 }
 
                 if (chkResident.Checked)
@@ -476,19 +488,22 @@ namespace METAbolt
 
         private void world_MouseUp(object sender, MouseEventArgs e)
         {
-            px = e.X;
-            py = 255 - e.Y;
+            //px = e.X;
+            //py = 255 - e.Y;
+
+            px = NormaliseSize(e.X);   // Convert.ToInt32(Math.Round(e.X * ssize));
+            py = NormaliseSize(255 - e.Y);   // Convert.ToInt32(Math.Round(e.Y * ssize));
 
             nuX.Value = (decimal)px;
             nuY.Value = (decimal)py;
             nuZ.Value = (decimal)10;
 
-            clickedx = e.X;
-            clickedy = e.Y; 
+            clickedx = NormaliseSize(e.X);
+            clickedy = NormaliseSize(e.Y); 
 
-            PlotSelected(e.X, e.Y);
+            //PlotSelected(e.X, e.Y);
 
-            Point mouse = new Point(e.X, e.Y);
+            Point mouse = new Point(clickedx, clickedy);
 
             METAboltInstance.AvLocation CurrentLoc = null;
 
@@ -504,6 +519,19 @@ namespace METAbolt
             {
                 (new frmProfile(instance, avname, avuuid)).Show();
             }
+            else
+            {
+                PlotSelected(e.X, e.Y);
+            }
+        }
+
+        private int NormaliseSize(int number)
+        {
+            decimal ssize = (decimal)256 / (decimal)tabPage1.Width;
+
+            int pos = Convert.ToInt32(Math.Round(number * ssize));
+
+            return pos;
         }
 
         private void PlotSelected(int x, int y)
@@ -578,7 +606,10 @@ namespace METAbolt
 
         private void world_MouseMove(object sender, MouseEventArgs e)
         {
-            Point mouse = new Point(e.X, e.Y);
+            int posX = NormaliseSize(e.X);   // Convert.ToInt32(Math.Round(e.X * ssize));
+            int posY = NormaliseSize(e.Y);   // Convert.ToInt32(Math.Round(e.Y * ssize));
+
+            Point mouse = new Point(posX, posY);
 
             METAboltInstance.AvLocation CurrentLoc = null;
 
@@ -1105,6 +1136,11 @@ namespace METAbolt
                 string surl = "http://slurl.com/secondlife/" + item.Region.Name.Trim() + "/" + nudX1.Value.ToString() + "/" + nudY1.Value.ToString() + "/" + nudZ1.Value.ToString();
                 System.Diagnostics.Process.Start(@surl);
             }
+        }
+
+        private void frmMapClient_SizeChanged(object sender, EventArgs e)
+        {
+            world.Height = world.Width; 
         }
     }
 }
