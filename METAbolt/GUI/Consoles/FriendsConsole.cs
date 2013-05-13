@@ -125,11 +125,11 @@ namespace METAbolt
 
         public void InitializeFriendsList()
         {
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new MethodInvoker(() => InitializeFriendsList()));
-            //    return;
-            //}
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(() => InitializeFriendsList()));
+                return;
+            }
 
             List<FriendInfo> friendslist = client.Friends.FriendList.FindAll(delegate(FriendInfo friend) { return true; });
 
