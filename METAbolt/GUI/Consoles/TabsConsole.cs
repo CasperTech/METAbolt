@@ -833,6 +833,8 @@ namespace METAbolt
 
         private void HandleIM(InstantMessageEventArgs e)
         {
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+
             if (e.IM.Dialog == InstantMessageDialog.SessionSend)
             {
                 if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
@@ -962,8 +964,6 @@ namespace METAbolt
                 //    agentname.Replace(" ", ".");  
                 //}
 
-                if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
-
                 if (TabExists(e.IM.FromAgentName))
                 {
                     METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
@@ -1062,16 +1062,16 @@ namespace METAbolt
 
         private void HandleInventory(InstantMessageEventArgs e)
         {
-            if (e.IM.Dialog == InstantMessageDialog.TaskInventoryOffered)
-            {
-                if (instance.IsObjectMuted(e.IM.FromAgentID, e.IM.FromAgentName))
-                    return;
-            }
-            else
-            {
-                if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName))
-                    return;
-            }
+            //if (e.IM.Dialog == InstantMessageDialog.TaskInventoryOffered)
+            //{
+            //    if (instance.IsObjectMuted(e.IM.FromAgentID, e.IM.FromAgentName))
+            //        return;
+            //}
+            //else
+            //{
+            //    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName))
+            //        return;
+            //}
 
             //if (instance.IsAvatarMuted(e.IM.FromAgentID, MuteType.Object))
             //    return;
@@ -1082,6 +1082,8 @@ namespace METAbolt
             //    client.Self.InstantMessage(client.Self.Name, e.IM.FromAgentID, responsemsg, e.IM.IMSessionID, InstantMessageDialog.BusyAutoResponse, InstantMessageOnline.Offline, instance.SIMsittingPos(), UUID.Zero, new byte[0]);
             //    return;
             //}
+
+            if (instance.IsObjectMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
 
             AssetType type = (AssetType)e.IM.BinaryBucket[0];
 
