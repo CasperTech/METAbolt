@@ -71,7 +71,7 @@ namespace METAbolt
         {
             this.CenterToParent();
 
-            lvMutes.Columns[0].Width = lvMutes.Width - 25;
+            lvMutes.Columns[0].Width = lvMutes.Width - 25 - 60;
             LoadMutes();
         }
 
@@ -94,6 +94,8 @@ namespace METAbolt
                     item.BackColor = Color.GhostWhite; 
                     cnt = 0;
                 }
+
+                item.SubItems.Add(entry.Type.ToString());  
 
                 lvMutes.Items.Add(item);
 

@@ -37,6 +37,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.lvMutes = new METAbolt.FlickerFreeListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -123,7 +124,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvMutes.BackColor = System.Drawing.Color.White;
             this.lvMutes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.lvMutes.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvMutes.FullRowSelect = true;
             this.lvMutes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -133,6 +135,7 @@
             this.lvMutes.MultiSelect = false;
             this.lvMutes.Name = "lvMutes";
             this.lvMutes.Size = new System.Drawing.Size(466, 264);
+            this.lvMutes.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvMutes.TabIndex = 43;
             this.lvMutes.UseCompatibleStateImageBehavior = false;
             this.lvMutes.View = System.Windows.Forms.View.Details;
@@ -141,7 +144,11 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Name";
-            this.columnHeader3.Width = 175;
+            this.columnHeader3.Width = 125;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Type";
             // 
             // button4
             // 
@@ -199,5 +206,6 @@
         public FlickerFreeListView lvMutes;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
