@@ -428,6 +428,10 @@ namespace METAbolt
                 // Grant permission
                 client.Self.ScriptQuestionReply(client.Network.CurrentSim, e.ItemID, e.TaskID, sperm);
             }
+            else
+            {
+                client.Self.ScriptQuestionReply(client.Network.CurrentSim, e.ItemID, e.TaskID, ScriptPermission.None);
+            }
         }
 
         private void netcom_LoadURLReceived(object sender, LoadUrlEventArgs e)
@@ -435,8 +439,8 @@ namespace METAbolt
             //e.Message;
             //e.ObjectName;
             //e.url;
-
-            DialogResult sret = MessageBox.Show(e.ObjectName.ToString() + ":\n\n" + e.Message, "URL offer...", MessageBoxButtons.OKCancel);
+            
+            DialogResult sret = MessageBox.Show(e.ObjectName.ToString() + " owned by " + e.OwnerID.ToString() + ":\n\n" + e.Message, "URL offer...", MessageBoxButtons.OKCancel);
 
             if (sret == DialogResult.OK)
             {
@@ -1523,7 +1527,7 @@ namespace METAbolt
 
             StreamWriter SW;
             string path = folder + filename;
-            string line = newsess + "[" + timestamp.ToShortTimeString() + "] " +msg;
+            string line = newsess + "[" + timestamp.ToShortTimeString() + "] " + msg;
 
             bool exists = false;
 
