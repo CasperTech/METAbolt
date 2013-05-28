@@ -2630,12 +2630,12 @@ namespace METAbolt
                     double y = Convert.ToDouble(split[6].ToString());
                     double z = Convert.ToDouble(split[7].ToString());
 
-                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).Show();
+                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z, false)).Show();
                 }
                 catch { ; }
 
             }
-            if (e.LinkText.StartsWith("http://maps.secondlife"))
+            else if (e.LinkText.StartsWith("http://maps.secondlife"))
             {
                 try
                 {
@@ -2648,7 +2648,7 @@ namespace METAbolt
                     double y = Convert.ToDouble(split[6].ToString());
                     double z = Convert.ToDouble(split[7].ToString());
 
-                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z)).Show();
+                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z, true)).Show();
                 }
                 catch { ; }
 

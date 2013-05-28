@@ -155,10 +155,10 @@ namespace METAbolt
                 double y = Convert.ToDouble(split[6].ToString());
                 double z = Convert.ToDouble(split[7].ToString());
 
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).Show();
+                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
 
             }
-            if (e.LinkText.StartsWith("http://maps.secondlife"))
+            else if (e.LinkText.StartsWith("http://maps.secondlife"))
             {
                 // Open up the TP form here
                 string encoded = System.Web.HttpUtility.UrlDecode(e.LinkText);
@@ -169,7 +169,7 @@ namespace METAbolt
                 double y = Convert.ToDouble(split[6].ToString());
                 double z = Convert.ToDouble(split[7].ToString());
 
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).Show();
+                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
 
             }
             else if (e.LinkText.Contains("http://mbprofile:"))

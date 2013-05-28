@@ -984,7 +984,7 @@ namespace METAbolt
 
         private void tbtnTeleport_Click(object sender, EventArgs e)
         {
-            (new frmTeleport(instance,"",0,0,0)).Show();
+            (new frmTeleport(instance,"",0,0,0,false)).Show();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -1519,7 +1519,7 @@ namespace METAbolt
 
         private void teleportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmTeleport(instance, "", 0, 0, 0)).Show(this);
+            (new frmTeleport(instance, "", 0, 0, 0, false)).Show(this);
         }
 
         private void mapToolStripMenuItem_Click(object sender, EventArgs e)

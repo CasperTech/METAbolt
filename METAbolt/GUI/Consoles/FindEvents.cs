@@ -304,7 +304,7 @@ namespace METAbolt
             //netcom.Teleport(iDets[0],
             //client.Self.Teleport(   
 
-            (new frmTeleport(instance, iDets[0].ToString(), fX, fY, fZ)).Show();
+            (new frmTeleport(instance, iDets[0].ToString(), fX, fY, fZ, false)).Show();
         }
 
         private void lvwFindEvents_ColumnClick(object sender, ColumnClickEventArgs e)

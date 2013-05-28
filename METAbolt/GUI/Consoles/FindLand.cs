@@ -309,7 +309,7 @@ namespace METAbolt
             char[] deli = " ".ToCharArray();
             string[] iDets = sLoc.Split(deli);
 
-            (new frmTeleport(instance, iDets[0].ToString(), fX, fY, fZ)).Show();   
+            (new frmTeleport(instance, iDets[0].ToString(), fX, fY, fZ, false)).Show();   
         }
     }
 }

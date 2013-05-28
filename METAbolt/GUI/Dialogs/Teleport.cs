@@ -50,7 +50,8 @@ namespace METAbolt
         //private METAxCommon.IEvents evs;
         private GridRegion selregion;
         //private int agencnt = 0;
-        //private SafeDictionary<string, int> acnt = new SafeDictionary<string,int>();  
+        //private SafeDictionary<string, int> acnt = new SafeDictionary<string,int>();
+        private bool ismaps = false;
 
         private ExceptionReporter reporter = new ExceptionReporter();
 
@@ -63,7 +64,7 @@ namespace METAbolt
             }
         }
 
-        public frmTeleport(METAboltInstance instance, string sSIM, float sX,float sY,float sZ)
+        public frmTeleport(METAboltInstance instance, string sSIM, float sX,float sY,float sZ, bool ismaps)
         {
             InitializeComponent();
 
@@ -76,6 +77,8 @@ namespace METAbolt
 
             AddNetcomEvents();
             AddClientEvents();
+
+            this.ismaps = ismaps; 
 
             if (string.IsNullOrEmpty(sSIM))
             {
@@ -480,7 +483,13 @@ namespace METAbolt
         {
             if (!string.IsNullOrEmpty(txtRegion.Text))
             {
-                string surl = "http://slurl.com/secondlife/" + txtRegion.Text.Trim() + "/" + nudX.Value.ToString() + "/" + nudY.Value.ToString() + "/" + nudZ.Value.ToString();
+                string mapurl = "http://slurl.com/secondlife/";
+
+                if (ismaps)
+                {
+                    mapurl = "http://maps.secondlife.com/secondlife/";
+                }
+                string surl = mapurl + txtRegion.Text.Trim() + "/" + nudX.Value.ToString() + "/" + nudY.Value.ToString() + "/" + nudZ.Value.ToString();
                 System.Diagnostics.Process.Start(@surl);
             }
         }

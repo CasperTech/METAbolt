@@ -601,11 +601,11 @@ namespace METAbolt
                 double y = Convert.ToDouble(split[6].ToString());
                 double z = Convert.ToDouble(split[7].ToString());
 
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).Show();
+                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
                 clickedurl = string.Empty;
                 return;
             }
-            if (clickedurl.StartsWith("http://maps.secondlife"))
+            else if (clickedurl.StartsWith("http://maps.secondlife"))
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
@@ -614,7 +614,7 @@ namespace METAbolt
                 double y = Convert.ToDouble(split[6].ToString());
                 double z = Convert.ToDouble(split[7].ToString());
 
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z)).Show();
+                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
                 clickedurl = string.Empty;
                 return;
             }
