@@ -236,7 +236,7 @@ namespace METAbolt
         { 
             if (!e.Update.Avatar) return;
 
-            if (e.Prim.LocalID == client.Self.LocalID) ResetCamera();
+            //if (e.Prim.LocalID == client.Self.LocalID) ResetCamera();
 
             //if (!following && !goingto) return;
             if (!following) return;
@@ -250,6 +250,8 @@ namespace METAbolt
                 Logger.Log("Follow/GoTo cancelled. Could not find the target avatar on the SIM.", Helpers.LogLevel.Warning);
                 return;
             }
+
+            if (av.Name != followName) return;
 
             Vector3 pos = new Vector3(Vector3.Zero); ;
 
@@ -311,22 +313,22 @@ namespace METAbolt
             //    return;
             //}
 
-            if (av.Name == followName)
+            //if (av.Name == followName)
+            //{
+            client.Self.Movement.TurnToward(av.Position);
+
+            if (dist > followDistance)
             {
-                client.Self.Movement.TurnToward(av.Position);
+                client.Self.AutoPilotCancel();
+                ulong followRegionX = e.Simulator.Handle >> 32;
+                ulong followRegionY = e.Simulator.Handle & (ulong)0xFFFFFFFF;
+                ulong xTarget = (ulong)pos.X + followRegionX;
+                ulong yTarget = (ulong)pos.Y + followRegionY;
+                float zTarget = pos.Z - 1f;
 
-                if (dist > followDistance)
-                {
-                    client.Self.AutoPilotCancel();
-                    ulong followRegionX = e.Simulator.Handle >> 32;
-                    ulong followRegionY = e.Simulator.Handle & (ulong)0xFFFFFFFF;
-                    ulong xTarget = (ulong)pos.X + followRegionX;
-                    ulong yTarget = (ulong)pos.Y + followRegionY;
-                    float zTarget = pos.Z - 1f;
-
-                    client.Self.AutoPilot(xTarget, yTarget, zTarget);
-                }
+                client.Self.AutoPilot(xTarget, yTarget, zTarget);
             }
+            //}
         }
 
         private void InitializeAgentUpdateTimer()
