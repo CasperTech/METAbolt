@@ -414,6 +414,11 @@ namespace METAbolt
                     sperm = ScriptPermission.TriggerAnimation;
                     smsg = "Wants permission to TRIGGER ANIMATION.";
                     break;
+
+                case ScriptPermission.Teleport:
+                    sperm = ScriptPermission.Teleport;
+                    smsg = "Wants permission to TELEPORT.";
+                    break;
             }
 
             DialogResult sret = MessageBox.Show(e.ObjectName.ToString() + " owned by " + e.ObjectOwnerName + ":\n\n" + smsg, "Script permission...", MessageBoxButtons.OKCancel);
