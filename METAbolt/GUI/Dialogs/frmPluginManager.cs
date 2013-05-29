@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using METAxCommon;
 using System.Diagnostics;
+using OpenMetaverse;
 
 namespace METAbolt
 {
@@ -163,6 +164,16 @@ namespace METAbolt
         private void button5_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Extensions\\");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            txtMavatar.Text = UUID.Zero.ToString();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            txtMObject.Text = UUID.Zero.ToString();
         }
     }
 }
