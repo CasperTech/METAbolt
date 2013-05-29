@@ -522,9 +522,9 @@ namespace METAbolt
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel1.Controls.Add(this.rtbChat);
             this.splitContainer1.Panel1.Controls.Add(this.pTP);
             this.splitContainer1.Panel1.Controls.Add(this.panel7);
-            this.splitContainer1.Panel1.Controls.Add(this.rtbChat);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
@@ -672,7 +672,6 @@ namespace METAbolt
             this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbChat.DetectUrls = true;
             this.rtbChat.Font = new System.Drawing.Font("Tahoma", 8.5F);
-            this.rtbChat.HideSelection = false;
             this.rtbChat.HiglightColor = Khendys.Controls.RtfColor.Gray;
             this.rtbChat.Location = new System.Drawing.Point(3, 3);
             this.rtbChat.Name = "rtbChat";

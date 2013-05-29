@@ -59,10 +59,10 @@ namespace METAbolt
         //private int _findex = 0;
         //private Color bgcolour = Color.White;
 
-        //[DllImport("user32.dll")]
-        //public static extern IntPtr SendMessage(IntPtr window, int message, int wparam, int lparam);
-        //const int WM_VSCROLL = 0x115;
-        //const int SB_BOTTOM = 7;
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern IntPtr SendMessage(IntPtr window, int message, int wparam, int lparam);
+        const int WM_VSCROLL = 0x115;
+        const int SB_BOTTOM = 7;
 
         //[System.Runtime.InteropServices.DllImport("user32.dll")]
         //static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, Int32 wParam, Int32 lParam);
@@ -139,19 +139,19 @@ namespace METAbolt
 
         #region ITextPrinter Members
 
-        //public void ScrollToBottom()
-        //{
-        //    SendMessage(rtb.Handle, WM_VSCROLL, SB_BOTTOM, 0);
-        //}
+        public void ScrollToBottom()
+        {
+            SendMessage(rtb.Handle, WM_VSCROLL, SB_BOTTOM, 0);
+        }
 
         void AppendNStext(string text)
         {
             //bool focused = rtb.Focused;
             ////backup initial selection
-            //int selection = rtb.SelectionStart;
+            int selection = rtb.SelectionStart;
             //int length = rtb.SelectionLength;
             ////allow autoscroll if selection is at end of text
-            //bool autoscroll = (selection == rtb.Text.Length);
+            bool autoscroll = (selection == rtb.Text.Length);
 
             //if (!autoscroll)
             //{
@@ -161,7 +161,18 @@ namespace METAbolt
             //    SendMessage(rtb.Handle, EM_HIDESELECTION, 1, 0);
             //}
 
+            //if (focused)
+            //{
+            //    //rtb.HideSelection = true;
+            //}
+            //else
+            //{
+            //    //rtb.HideSelection = false;
+            //}
+
             rtb.AppendText(text);
+
+            if (autoscroll) ScrollToBottom();
 
             //if (!autoscroll)
             //{
