@@ -51,7 +51,7 @@ using OpenMetaverse.Utilities;
 using OpenMetaverse.Voice;
 using PopupControl;
 using NHunspell;
-//using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 
 
 namespace METAbolt
@@ -119,7 +119,7 @@ namespace METAbolt
         private TabPage tp2 = new TabPage();
         private TabPage tp3 = new TabPage();
         private TabPage tp4 = new TabPage();
-        private Form tpf;
+        //private Form tpf;
 
 
         internal class ThreadExceptionHandler
@@ -130,6 +130,19 @@ namespace METAbolt
                 reporter.Show(e.Exception);
             }
         }
+
+        //private const UInt32 SB_TOP = 0x6;
+        //private const UInt32 WM_VSCROLL = 0x115;
+
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //[DllImport("user32.dll", SetLastError = true)]
+        //private static extern bool PostMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+
+        //private void HandleRichTextBoxAdjustScroll(Object sender,
+        //    EventArgs e)
+        //{
+        //    PostMessage(rtbChat.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
+        //}
 
         public ChatConsole(METAboltInstance instance)
         {
@@ -200,6 +213,9 @@ namespace METAbolt
             tp4 = tabPage4;
 
             //pTP.BackColor = Color.FromArgb(170, 64, 64, 64);  //Color.FromArgb(25, Color.DimGray);
+
+            //rtbChat.VScroll += HandleRichTextBoxAdjustScroll;
+            //rtbChat.TextChanged += HandleRichTextBoxAdjustScroll;
         }
 
         private void toolTip_Draw(object sender, DrawToolTipEventArgs e)
@@ -4683,28 +4699,39 @@ namespace METAbolt
             //}
         }
 
+        //[DllImport("user32.dll")]
+        //static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, Int32 wParam, Int32 lParam);
+
+        //const int WM_USER = 0x400;
+        //const int EM_HIDESELECTION = WM_USER + 63;
+        //int cpos = 0;
+
         private void rtbChat_Click(object sender, EventArgs e)
         {
             //rtbChat.HideSelection = true;
             //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 1, 0);
             //cpos = rtbChat.SelectionStart;
 
-            //LockWindow(this.Handle);
+            ////LockWindow(this.Handle);
+            ////rtbChat.SuspendLayout();  
         }
 
         private void rtbChat_Leave(object sender, EventArgs e)
         {
-            //rtbChat.HideSelection = false;
+            ////rtbChat.HideSelection = false;
 
             //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 0, 0);
 
-            //LockWindow(IntPtr.Zero);
+            //rtbChat.SelectionStart = cpos;
+            //cpos = 0;
+            ////LockWindow(IntPtr.Zero);
         }
 
         private void rtbChat_Enter(object sender, EventArgs e)
         {
-            //rtbChat.HideSelection = true;
+            ////rtbChat.HideSelection = true;
             //SendMessage(rtbChat.Handle, EM_HIDESELECTION, 1, 0);
+            //cpos = rtbChat.SelectionStart;
         }
 
         private void world_DoubleClick(object sender, EventArgs e)

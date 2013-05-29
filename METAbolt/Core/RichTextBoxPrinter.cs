@@ -59,6 +59,15 @@ namespace METAbolt
         //private int _findex = 0;
         //private Color bgcolour = Color.White;
 
+        //[DllImport("user32.dll")]
+        //public static extern IntPtr SendMessage(IntPtr window, int message, int wparam, int lparam);
+        //const int WM_VSCROLL = 0x115;
+        //const int SB_BOTTOM = 7;
+
+        //[System.Runtime.InteropServices.DllImport("user32.dll")]
+        //static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, Int32 wParam, Int32 lParam);
+        //const int WM_USER = 0x400;
+        //const int EM_HIDESELECTION = WM_USER + 63;
 
         public RichTextBoxPrinter(METAboltInstance instance, ExRichTextBox textBox)
         {
@@ -130,6 +139,42 @@ namespace METAbolt
 
         #region ITextPrinter Members
 
+        //public void ScrollToBottom()
+        //{
+        //    SendMessage(rtb.Handle, WM_VSCROLL, SB_BOTTOM, 0);
+        //}
+
+        void AppendNStext(string text)
+        {
+            //bool focused = rtb.Focused;
+            ////backup initial selection
+            //int selection = rtb.SelectionStart;
+            //int length = rtb.SelectionLength;
+            ////allow autoscroll if selection is at end of text
+            //bool autoscroll = (selection == rtb.Text.Length);
+
+            //if (!autoscroll)
+            //{
+            //    //shift focus from RichTextBox to some other control
+            //    if (focused) rtb.Parent.Focus();
+            //    //hide selection
+            //    SendMessage(rtb.Handle, EM_HIDESELECTION, 1, 0);
+            //}
+
+            rtb.AppendText(text);
+
+            //if (!autoscroll)
+            //{
+            //    //restore initial selection
+            //    rtb.SelectionStart = selection;
+            //    rtb.SelectionLength = length;
+            //    //unhide selection
+            //    SendMessage(rtb.Handle, EM_HIDESELECTION, 0, 0);
+            //    //restore focus to RichTextBox
+            //    if (focused) rtb.Focus();
+            //}
+        }
+
         public void PrintHeader(string text)
         {
             if (this.rtb.InvokeRequired) this.rtb.BeginInvoke((MethodInvoker)delegate { PrintHeader(text); });
@@ -142,7 +187,7 @@ namespace METAbolt
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionColor = Color.Black;
 
-                rtb.AppendText(Environment.NewLine + " " + text);   // + Environment.NewLine);
+                AppendNStext(Environment.NewLine + " " + text);   // + Environment.NewLine);
 
                 //CheckBufferSize();
 
@@ -156,7 +201,7 @@ namespace METAbolt
 
                 //int line = rtb.GetLineFromCharIndex(cpos);
 
-                rtb.AppendText(buff + Environment.NewLine);
+                AppendNStext(buff + Environment.NewLine);
 
                 CheckBufferSize();
             }
@@ -169,7 +214,7 @@ namespace METAbolt
             {
                 if (text == null) return;
 
-                rtb.AppendText(Environment.NewLine);
+                AppendNStext(Environment.NewLine);
 
                 //CheckBufferSize();
 
@@ -201,7 +246,7 @@ namespace METAbolt
 
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
-                rtb.AppendText(buff);
+                AppendNStext(buff);
 
                 CheckBufferSize();
             }
@@ -217,7 +262,7 @@ namespace METAbolt
                 rtb.SelectionFont = new Font(headerfont, headerfontsize, fontsy);
 
                 rtb.SelectionBackColor = Color.White;
-                rtb.AppendText(Environment.NewLine);
+                AppendNStext(Environment.NewLine);
 
                 //CheckBufferSize();
 
@@ -255,7 +300,7 @@ namespace METAbolt
                 ////rtb.SelectionCharOffset = 6;
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 1, rtb.SelectionFont.Style);
                 rtb.SelectionCharOffset = 10;
-                rtb.AppendText(text);
+                AppendNStext(text);
                 
                 //rtb.AppendTextAsRtf(text, new Font(rtb.SelectionFont.Name, textfontsize - 2), RtfColor.Gray, RtfColor.White);
                 rtb.SelectionFont = new Font(config.CurrentConfig.TextFont, config.CurrentConfig.TextFontSize, fontst);
@@ -311,7 +356,7 @@ namespace METAbolt
 
                 //rtb.Text += Environment.NewLine;
 
-                rtb.AppendText(text + Environment.NewLine);
+                AppendNStext(text + Environment.NewLine);
 
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
 
@@ -355,7 +400,7 @@ namespace METAbolt
 
                 //rtb.Text += Environment.NewLine;
 
-                rtb.AppendText(text);
+                AppendNStext(text);
 
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
 
@@ -416,7 +461,7 @@ namespace METAbolt
 
                 //rtb.AppendTextAsRtf(text, new Font(textfont, textfontsize, fontst));
 
-                rtb.AppendText(text + Environment.NewLine);
+                AppendNStext(text + Environment.NewLine);
 
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize, rtb.SelectionFont.Style);
 

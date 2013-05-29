@@ -237,9 +237,10 @@
             // 
             this.txtMObject.AccessibleName = "UUID textbox";
             this.txtMObject.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMObject.Location = new System.Drawing.Point(79, 57);
+            this.txtMObject.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMObject.Location = new System.Drawing.Point(77, 57);
             this.txtMObject.Name = "txtMObject";
-            this.txtMObject.Size = new System.Drawing.Size(208, 20);
+            this.txtMObject.Size = new System.Drawing.Size(208, 19);
             this.txtMObject.TabIndex = 61;
             // 
             // label7
@@ -254,9 +255,10 @@
             // 
             this.txtMavatar.AccessibleName = "UUID textbox";
             this.txtMavatar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtMavatar.Location = new System.Drawing.Point(79, 31);
+            this.txtMavatar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMavatar.Location = new System.Drawing.Point(77, 31);
             this.txtMavatar.Name = "txtMavatar";
-            this.txtMavatar.Size = new System.Drawing.Size(208, 20);
+            this.txtMavatar.Size = new System.Drawing.Size(208, 19);
             this.txtMavatar.TabIndex = 0;
             // 
             // label5
@@ -295,7 +297,7 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(293, 28);
+            this.button6.Location = new System.Drawing.Point(290, 28);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(42, 25);
             this.button6.TabIndex = 65;
@@ -306,7 +308,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(293, 54);
+            this.button7.Location = new System.Drawing.Point(290, 54);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(42, 25);
             this.button7.TabIndex = 66;
