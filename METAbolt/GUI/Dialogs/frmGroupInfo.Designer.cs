@@ -107,7 +107,6 @@ namespace METAbolt
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.cmdApply = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -115,6 +114,7 @@ namespace METAbolt
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox5 = new Khendys.Controls.ExRichTextBox();
             this.tabs.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.grpPreferences.SuspendLayout();
@@ -853,7 +853,7 @@ namespace METAbolt
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Location = new System.Drawing.Point(3, 185);
+            this.panel2.Location = new System.Drawing.Point(4, 186);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(404, 290);
             this.panel2.TabIndex = 4;
@@ -1039,9 +1039,9 @@ namespace METAbolt
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.textBox5);
             this.panel1.Location = new System.Drawing.Point(2, 208);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(407, 270);
@@ -1069,17 +1069,6 @@ namespace METAbolt
             this.label7.TabIndex = 25;
             this.label7.Text = "To send a new notice, click the \"Create New Notice\" button above.";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // textBox5
-            // 
-            this.textBox5.AccessibleName = "Contents of the selected notice";
-            this.textBox5.Location = new System.Drawing.Point(3, 25);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox5.Size = new System.Drawing.Size(400, 237);
-            this.textBox5.TabIndex = 24;
             // 
             // cmdApply
             // 
@@ -1159,6 +1148,30 @@ namespace METAbolt
             this.columnHeader8.Text = "";
             this.columnHeader8.Width = 167;
             // 
+            // textBox5
+            // 
+            this.textBox5.AccessibleDescription = "Displays inbound and the responses you have typed";
+            this.textBox5.AccessibleName = "IM box";
+            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox5.AutoWordSelection = true;
+            this.textBox5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox5.DetectUrls = true;
+            this.textBox5.Font = new System.Drawing.Font("Tahoma", 8.5F);
+            this.textBox5.HideSelection = false;
+            this.textBox5.HiglightColor = Khendys.Controls.RtfColor.Gray;
+            this.textBox5.Location = new System.Drawing.Point(3, 23);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.ShowSelectionMargin = true;
+            this.textBox5.Size = new System.Drawing.Size(398, 244);
+            this.textBox5.TabIndex = 27;
+            this.textBox5.Text = "";
+            this.textBox5.TextColor = Khendys.Controls.RtfColor.Black;
+            this.textBox5.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.textBox5_LinkClicked);
+            // 
             // frmGroupInfo
             // 
             this.AccessibleName = "Group information window";
@@ -1204,7 +1217,6 @@ namespace METAbolt
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -1289,7 +1301,6 @@ namespace METAbolt
         public System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.CheckBox chkListInProfile;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label15;
@@ -1297,6 +1308,7 @@ namespace METAbolt
         private System.Windows.Forms.ListView lvAssignedRoles;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private Khendys.Controls.ExRichTextBox textBox5;
 
     }
 }
