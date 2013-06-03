@@ -34,13 +34,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.rtbTitle = new System.Windows.Forms.RichTextBox();
-            this.rtbBody = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.rtbBody = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picInsignia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -111,20 +111,6 @@
             this.rtbTitle.Text = "";
             this.rtbTitle.WordWrap = false;
             // 
-            // rtbBody
-            // 
-            this.rtbBody.AccessibleName = "Notice body textbox";
-            this.rtbBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rtbBody.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbBody.ForeColor = System.Drawing.Color.White;
-            this.rtbBody.Location = new System.Drawing.Point(108, 97);
-            this.rtbBody.Name = "rtbBody";
-            this.rtbBody.ReadOnly = true;
-            this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtbBody.Size = new System.Drawing.Size(284, 123);
-            this.rtbBody.TabIndex = 2;
-            this.rtbBody.Text = "";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.AccessibleName = "Notice icon";
@@ -190,6 +176,21 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // rtbBody
+            // 
+            this.rtbBody.AccessibleName = "Notice body textbox";
+            this.rtbBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rtbBody.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbBody.ForeColor = System.Drawing.Color.White;
+            this.rtbBody.Location = new System.Drawing.Point(108, 97);
+            this.rtbBody.Name = "rtbBody";
+            this.rtbBody.ReadOnly = true;
+            this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.rtbBody.Size = new System.Drawing.Size(284, 123);
+            this.rtbBody.TabIndex = 2;
+            this.rtbBody.Text = "";
+            this.rtbBody.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbBody_LinkClicked);
+            // 
             // frmGroupNotice
             // 
             this.AccessibleName = "Group notice window";
@@ -235,12 +236,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.RichTextBox rtbTitle;
-        private System.Windows.Forms.RichTextBox rtbBody;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.RichTextBox rtbBody;
     }
 }

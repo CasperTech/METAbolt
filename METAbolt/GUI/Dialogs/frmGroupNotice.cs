@@ -37,7 +37,8 @@ using OpenMetaverse;
 using OpenMetaverse.Imaging;
 using OpenMetaverse.Assets;
 using OpenMetaverse.StructuredData;
-using System.Media; 
+using System.Media;
+using System.Web;
 
 namespace METAbolt
 {
@@ -300,6 +301,89 @@ namespace METAbolt
         private void frmGroupNotice_MouseLeave(object sender, EventArgs e)
         {
             this.Opacity = 85;
+        }
+
+        private void rtbBody_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            if (e.LinkText.StartsWith("http://slurl."))
+            {
+                try
+                {
+                    // Open up the TP form here
+                    string encoded = HttpUtility.UrlDecode(e.LinkText);
+                    string[] split = encoded.Split(new Char[] { '/' });
+                    //string[] split = e.LinkText.Split(new Char[] { '/' });
+                    string sim = split[4].ToString();
+                    double x = Convert.ToDouble(split[5].ToString());
+                    double y = Convert.ToDouble(split[6].ToString());
+                    double z = Convert.ToDouble(split[7].ToString());
+
+                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
+                }
+                catch { ; }
+
+            }
+            else if (e.LinkText.StartsWith("http://maps.secondlife"))
+            {
+                try
+                {
+                    // Open up the TP form here
+                    string encoded = HttpUtility.UrlDecode(e.LinkText);
+                    string[] split = encoded.Split(new Char[] { '/' });
+                    //string[] split = e.LinkText.Split(new Char[] { '/' });
+                    string sim = split[4].ToString();
+                    double x = Convert.ToDouble(split[5].ToString());
+                    double y = Convert.ToDouble(split[6].ToString());
+                    double z = Convert.ToDouble(split[7].ToString());
+
+                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
+                }
+                catch { ; }
+
+            }
+            else if (e.LinkText.Contains("http://mbprofile:"))
+            {
+                try
+                {
+                    string encoded = HttpUtility.UrlDecode(e.LinkText);
+                    string[] split = encoded.Split(new Char[] { '/' });
+                    //string[] split = e.LinkText.Split(new Char[] { '#' });
+                    string aavname = split[0].ToString();
+                    string[] avnamesplit = aavname.Split(new Char[] { '#' });
+                    aavname = avnamesplit[0].ToString();
+
+                    split = e.LinkText.Split(new Char[] { ':' });
+                    string elink = split[2].ToString();
+                    split = elink.Split(new Char[] { '&' });
+
+                    UUID avid = (UUID)split[0].ToString();
+
+                    (new frmProfile(instance, aavname, avid)).Show();
+                }
+                catch { ; }
+            }
+            else if (e.LinkText.Contains("http://secondlife:///"))
+            {
+                // Open up the Group Info form here
+                string encoded = HttpUtility.UrlDecode(e.LinkText);
+                string[] split = encoded.Split(new Char[] { '/' });
+                //string[] split = e.LinkText.Split(new Char[] { '/' });
+                UUID uuid = (UUID)split[7].ToString();
+
+                if (uuid != UUID.Zero && split[6].ToString().ToLower() == "group")
+                {
+                    frmGroupInfo frm = new frmGroupInfo(uuid, instance);
+                    frm.Show();
+                }
+            }
+            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
+            {
+                System.Diagnostics.Process.Start(e.LinkText);
+            }
+            else
+            {
+                System.Diagnostics.Process.Start("http://" + e.LinkText);
+            }
         }
     }
 }
