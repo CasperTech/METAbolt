@@ -64,7 +64,7 @@
             this.label1.Location = new System.Drawing.Point(269, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 25);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Group Notice";
             // 
             // label2
@@ -74,7 +74,7 @@
             this.label2.Location = new System.Drawing.Point(108, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(284, 23);
-            this.label2.TabIndex = 0;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Sent by";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -90,7 +90,7 @@
             this.button5.Location = new System.Drawing.Point(337, 265);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(53, 23);
-            this.button5.TabIndex = 6;
+            this.button5.TabIndex = 3;
             this.button5.Text = "&Close";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -107,7 +107,7 @@
             this.rtbTitle.ReadOnly = true;
             this.rtbTitle.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.rtbTitle.Size = new System.Drawing.Size(284, 38);
-            this.rtbTitle.TabIndex = 1;
+            this.rtbTitle.TabIndex = 4;
             this.rtbTitle.Text = "";
             this.rtbTitle.WordWrap = false;
             // 
@@ -128,7 +128,7 @@
             this.label3.Location = new System.Drawing.Point(25, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(197, 18);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 1;
             this.label3.Text = "label3";
             // 
             // panel1
@@ -156,7 +156,7 @@
             this.button1.Location = new System.Drawing.Point(228, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(53, 23);
-            this.button1.TabIndex = 5;
+            this.button1.TabIndex = 2;
             this.button1.Text = "&Open";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -179,15 +179,15 @@
             // rtbBody
             // 
             this.rtbBody.AccessibleName = "Notice body textbox";
-            this.rtbBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rtbBody.BackColor = System.Drawing.Color.Gainsboro;
             this.rtbBody.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbBody.ForeColor = System.Drawing.Color.White;
+            this.rtbBody.ForeColor = System.Drawing.Color.Black;
             this.rtbBody.Location = new System.Drawing.Point(108, 97);
             this.rtbBody.Name = "rtbBody";
             this.rtbBody.ReadOnly = true;
             this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.rtbBody.Size = new System.Drawing.Size(284, 123);
-            this.rtbBody.TabIndex = 2;
+            this.rtbBody.TabIndex = 0;
             this.rtbBody.Text = "";
             this.rtbBody.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbBody_LinkClicked);
             // 

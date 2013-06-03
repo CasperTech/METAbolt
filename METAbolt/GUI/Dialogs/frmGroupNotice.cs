@@ -199,7 +199,10 @@ namespace METAbolt
             Font nFont = new Font("Microsoft Sans Serif", 10, bold);
             rtbTitle.Select(start, otext.Length);
             rtbTitle.SelectionFont = nFont;
-            nFont.Dispose(); 
+
+            nFont.Dispose();
+
+            rtbTitle.Select(0, 0);
         }
 
         void Assets_OnImageReceived(TextureRequestState image, AssetTexture texture)

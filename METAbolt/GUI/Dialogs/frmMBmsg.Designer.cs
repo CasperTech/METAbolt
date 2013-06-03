@@ -53,10 +53,10 @@ namespace METAbolt
             // 
             // txtMsg
             // 
-            this.txtMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtMsg.BackColor = System.Drawing.Color.Gainsboro;
             this.txtMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMsg.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMsg.ForeColor = System.Drawing.Color.White;
+            this.txtMsg.ForeColor = System.Drawing.Color.Black;
             this.txtMsg.Location = new System.Drawing.Point(12, 12);
             this.txtMsg.Margin = new System.Windows.Forms.Padding(5);
             this.txtMsg.Multiline = true;
@@ -77,11 +77,10 @@ namespace METAbolt
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(461, 250);
-            this.ControlBox = false;
             this.Controls.Add(this.txtMsg);
             this.Controls.Add(this.btnExit);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMBmsg";

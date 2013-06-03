@@ -88,8 +88,8 @@
             this.txtMessage.AcceptsReturn = true;
             this.txtMessage.AcceptsTab = true;
             this.txtMessage.AccessibleName = "Dialog information";
-            this.txtMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtMessage.ForeColor = System.Drawing.Color.White;
+            this.txtMessage.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtMessage.ForeColor = System.Drawing.Color.Black;
             this.txtMessage.Location = new System.Drawing.Point(12, 44);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
@@ -196,9 +196,8 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(397, 313);
-            this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.toolStripContainer1);
@@ -207,7 +206,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.lblTitle);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDialog";
