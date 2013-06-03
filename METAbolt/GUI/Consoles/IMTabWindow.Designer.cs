@@ -43,6 +43,7 @@ namespace METAbolt
             this.cmenu_Emoticons = new System.Windows.Forms.ContextMenu();
             this.tbar_SendMessage = new System.Windows.Forms.ToolBar();
             this.tbBtn_Emoticons = new System.Windows.Forms.ToolBarButton();
+            this.tsbLocation = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +106,7 @@ namespace METAbolt
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbtnProfile,
+            this.tsbLocation,
             this.toolStripButton2,
             this.tsbSave,
             this.tsbClear,
@@ -243,6 +245,16 @@ namespace METAbolt
             this.tbBtn_Emoticons.Text = "{E}";
             this.tbBtn_Emoticons.ToolTipText = "Insert an emoticon";
             // 
+            // tsbLocation
+            // 
+            this.tsbLocation.Enabled = false;
+            this.tsbLocation.Image = global::METAbolt.Properties.Resources.world;
+            this.tsbLocation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbLocation.Name = "tsbLocation";
+            this.tsbLocation.Size = new System.Drawing.Size(73, 22);
+            this.tsbLocation.Text = "Location";
+            this.tsbLocation.Click += new System.EventHandler(this.tsbLocation_Click);
+            // 
             // IMTabWindow
             // 
             this.AccessibleName = "Private IM window";
@@ -282,5 +294,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripButton tsbTyping;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton tsbLocation;
     }
 }

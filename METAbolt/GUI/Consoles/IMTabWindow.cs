@@ -62,6 +62,7 @@ namespace METAbolt
         private string dicfile = string.Empty;
         private string dic = string.Empty;
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+        private string avloc = string.Empty;  
 
 
         internal class ThreadExceptionHandler
@@ -107,6 +108,8 @@ namespace METAbolt
             {
                 toolStripButton2.Enabled = true; 
             }
+
+            tbtnProfile.ToolTipText = toName + "'s Profile";
         }
 
         private void SetExceptionReporter()
@@ -332,6 +335,14 @@ namespace METAbolt
             {
                 tsbTyping.Visible = false;
             }
+
+            string avsim = e.Simulator.Name;
+            Vector3 avloccords = e.IM.Position;
+
+            avloc = "http://slurl.com/secondlife/" + avsim + "/" + (avloccords.X - 1).ToString() + "/" + avloccords.Y.ToString() + "/" + avloccords.Z.ToString();
+
+            tsbLocation.Enabled = true;
+            tsbLocation.ToolTipText = e.IM.FromAgentName + "'s Location";
         }
 
         private void Config_ConfigApplied(object sender, ConfigAppliedEventArgs e)
@@ -839,6 +850,24 @@ namespace METAbolt
         {
             frmHistory frm = new frmHistory(instance, toName, false);
             frm.Show();
+        }
+
+        private void tsbLocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Open up the TP form here
+                string encoded = HttpUtility.UrlDecode(avloc);
+                string[] split = encoded.Split(new Char[] { '/' });
+                //string[] split = e.LinkText.Split(new Char[] { '/' });
+                string sim = split[4].ToString();
+                double x = Convert.ToDouble(split[5].ToString());
+                double y = Convert.ToDouble(split[6].ToString());
+                double z = Convert.ToDouble(split[7].ToString());
+
+                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
+            }
+            catch { ; }
         }
     }
 }
