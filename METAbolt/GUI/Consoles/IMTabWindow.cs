@@ -62,7 +62,7 @@ namespace METAbolt
         private string dicfile = string.Empty;
         private string dic = string.Empty;
         private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
-        private string avloc = string.Empty;  
+        private string avloc = string.Empty;
 
 
         internal class ThreadExceptionHandler

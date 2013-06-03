@@ -199,11 +199,11 @@
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(397, 313);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.cboReply);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

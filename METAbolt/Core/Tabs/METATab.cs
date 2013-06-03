@@ -129,8 +129,8 @@ namespace METAbolt
 
             if (detached)
             {
-                if (!owner.Focused)
-                    FormFlash.Flash(owner);
+                //if (!owner.Focused)
+                //    FormFlash.Flash(owner);
             }
             else
             {
