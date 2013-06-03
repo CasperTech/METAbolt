@@ -848,7 +848,7 @@ namespace METAbolt
                     if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
                     {
                         METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower()];
-                        if (!tab.Selected) tab.PartialHighlight();
+                        //if (!tab.Selected) tab.Highlight();
                         return;
                     }
                     else

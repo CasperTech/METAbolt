@@ -88,7 +88,7 @@ namespace METAbolt
             control.Visible = true;
             control.BringToFront();
 
-            if (!partialHighlighted) Unhighlight();
+            //if (!partialHighlighted) Unhighlight();
             button.Checked = true;
             selected = true;
             selectedtab = this.name;
@@ -109,6 +109,8 @@ namespace METAbolt
 
         public void PartialHighlight()
         {
+            if (selected) return;
+
             if (detached)
             {
                 //do nothing?!
