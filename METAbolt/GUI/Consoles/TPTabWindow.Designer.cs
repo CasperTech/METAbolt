@@ -62,7 +62,7 @@ namespace METAbolt
             this.rtbOfferMessage.ReadOnly = true;
             this.rtbOfferMessage.Size = new System.Drawing.Size(493, 132);
             this.rtbOfferMessage.TabIndex = 0;
-            this.rtbOfferMessage.Text = "dsfsdf";
+            this.rtbOfferMessage.Text = "";
             this.rtbOfferMessage.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbOfferMessage_LinkClicked);
             // 
             // btnAccept
