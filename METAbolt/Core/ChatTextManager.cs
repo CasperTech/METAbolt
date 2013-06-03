@@ -1525,7 +1525,6 @@ namespace METAbolt
             //filename = filename.Replace(" ", "_");
             filename = filename.Replace(":", "-");
 
-            StreamWriter SW;
             string path = folder + filename;
             string line = newsess + "[" + timestamp.ToShortTimeString() + "] " + msg;
 
@@ -1534,7 +1533,7 @@ namespace METAbolt
             // Check if the file exists
             try
             {
-                exists = File.Exists(path);
+                exists = File.Exists(@path);
             }
             catch
             {
@@ -1543,28 +1542,34 @@ namespace METAbolt
 
             if (exists)
             {
+                //StreamWriter swFromFileStreamUTF8Buffer = new StreamWriter(fs, System.Text.Encoding.UTF8, 512);
+                StreamWriter SW = File.AppendText(@path);
+
+                //long theTrueFileSize = SW.BaseStream.Length;
+
                 try
                 {
-                    SW = File.AppendText(path);
-                    SW.WriteLine(line);
+                    SW.WriteLine(@line);
                     SW.Dispose();
                 }
                 catch
                 {
-                    ;
+                    SW.Dispose(); ;
                 }
             }
             else
             {
+                StreamWriter SW = File.CreateText(@path);
+
                 try
                 {
-                    SW = File.CreateText(path);
-                    SW.WriteLine(line);
+                    SW.WriteLine(@line);
                     SW.Dispose();
                 }
                 catch (Exception ex)
                 {
                     string exp = ex.Message;
+                    SW.Dispose();
                 }
             }
         }

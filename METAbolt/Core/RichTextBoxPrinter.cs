@@ -146,44 +146,46 @@ namespace METAbolt
 
         void AppendNStext(string text)
         {
-            //bool focused = rtb.Focused;
-            ////backup initial selection
-            int selection = rtb.SelectionStart;
-            //int length = rtb.SelectionLength;
-            ////allow autoscroll if selection is at end of text
-            bool autoscroll = (selection == rtb.Text.Length);
+            ////bool focused = rtb.Focused;
+            //////backup initial selection
+            //int selection = rtb.SelectionStart;
+            ////int length = rtb.SelectionLength;
+            //////allow autoscroll if selection is at end of text
+            //bool autoscroll = (selection == rtb.Text.Length);
 
-            //if (!autoscroll)
-            //{
-            //    //shift focus from RichTextBox to some other control
-            //    if (focused) rtb.Parent.Focus();
-            //    //hide selection
-            //    SendMessage(rtb.Handle, EM_HIDESELECTION, 1, 0);
-            //}
+            ////if (!autoscroll)
+            ////{
+            ////    //shift focus from RichTextBox to some other control
+            ////    if (focused) rtb.Parent.Focus();
+            ////    //hide selection
+            ////    SendMessage(rtb.Handle, EM_HIDESELECTION, 1, 0);
+            ////}
 
-            //if (focused)
-            //{
-            //    //rtb.HideSelection = true;
-            //}
-            //else
-            //{
-            //    //rtb.HideSelection = false;
-            //}
+            ////if (focused)
+            ////{
+            ////    //rtb.HideSelection = true;
+            ////}
+            ////else
+            ////{
+            ////    //rtb.HideSelection = false;
+            ////}
+
+            //rtb.AppendText(text);
+
+            //if (autoscroll) ScrollToBottom();
+
+            ////if (!autoscroll)
+            ////{
+            ////    //restore initial selection
+            ////    rtb.SelectionStart = selection;
+            ////    rtb.SelectionLength = length;
+            ////    //unhide selection
+            ////    SendMessage(rtb.Handle, EM_HIDESELECTION, 0, 0);
+            ////    //restore focus to RichTextBox
+            ////    if (focused) rtb.Focus();
+            ////}
 
             rtb.AppendText(text);
-
-            if (autoscroll) ScrollToBottom();
-
-            //if (!autoscroll)
-            //{
-            //    //restore initial selection
-            //    rtb.SelectionStart = selection;
-            //    rtb.SelectionLength = length;
-            //    //unhide selection
-            //    SendMessage(rtb.Handle, EM_HIDESELECTION, 0, 0);
-            //    //restore focus to RichTextBox
-            //    if (focused) rtb.Focus();
-            //}
         }
 
         public void PrintHeader(string text)

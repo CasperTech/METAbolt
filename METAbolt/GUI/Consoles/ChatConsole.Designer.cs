@@ -67,6 +67,7 @@ namespace METAbolt
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.rtbChat = new Khendys.Controls.ExRichTextBox();
             this.pTP = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -76,7 +77,6 @@ namespace METAbolt
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button9 = new System.Windows.Forms.Button();
             this.tsFindText = new System.Windows.Forms.TextBox();
-            this.rtbChat = new Khendys.Controls.ExRichTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -117,6 +117,8 @@ namespace METAbolt
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
@@ -152,8 +154,6 @@ namespace METAbolt
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
             this.TPtimer = new System.Windows.Forms.Timer(this.components);
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -537,6 +537,38 @@ namespace METAbolt
             this.splitContainer1.SplitterDistance = 513;
             this.splitContainer1.TabIndex = 7;
             // 
+            // rtbChat
+            // 
+            this.rtbChat.AccessibleDescription = "Display incoming and outgoing chat";
+            this.rtbChat.AccessibleName = "Chat output window";
+            this.rtbChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbChat.AutoWordSelection = true;
+            this.rtbChat.BackColor = System.Drawing.Color.White;
+            this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbChat.DetectUrls = true;
+            this.rtbChat.Font = new System.Drawing.Font("Tahoma", 8.5F);
+            this.rtbChat.HideSelection = false;
+            this.rtbChat.HiglightColor = Khendys.Controls.RtfColor.Gray;
+            this.rtbChat.Location = new System.Drawing.Point(3, 3);
+            this.rtbChat.Name = "rtbChat";
+            this.rtbChat.ReadOnly = true;
+            this.rtbChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.rtbChat.ShowSelectionMargin = true;
+            this.rtbChat.Size = new System.Drawing.Size(512, 440);
+            this.rtbChat.TabIndex = 6;
+            this.rtbChat.Text = "";
+            this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
+            this.rtbChat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbChat_LinkClicked);
+            this.rtbChat.Click += new System.EventHandler(this.rtbChat_Click);
+            this.rtbChat.SizeChanged += new System.EventHandler(this.rtbChat_SizeChanged);
+            this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
+            this.rtbChat.Enter += new System.EventHandler(this.rtbChat_Enter);
+            this.rtbChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbChat_KeyDown);
+            this.rtbChat.Leave += new System.EventHandler(this.rtbChat_Leave);
+            this.rtbChat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rtbChat_MouseDown);
+            // 
             // pTP
             // 
             this.pTP.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -659,37 +691,6 @@ namespace METAbolt
             this.tsFindText.TabIndex = 0;
             this.tsFindText.Click += new System.EventHandler(this.tsFindText_Click);
             this.tsFindText.Enter += new System.EventHandler(this.tsFindText_Click);
-            // 
-            // rtbChat
-            // 
-            this.rtbChat.AccessibleDescription = "Display incoming and outgoing chat";
-            this.rtbChat.AccessibleName = "Chat output window";
-            this.rtbChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbChat.AutoWordSelection = true;
-            this.rtbChat.BackColor = System.Drawing.Color.White;
-            this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbChat.DetectUrls = true;
-            this.rtbChat.Font = new System.Drawing.Font("Tahoma", 8.5F);
-            this.rtbChat.HiglightColor = Khendys.Controls.RtfColor.Gray;
-            this.rtbChat.Location = new System.Drawing.Point(3, 3);
-            this.rtbChat.Name = "rtbChat";
-            this.rtbChat.ReadOnly = true;
-            this.rtbChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.rtbChat.ShowSelectionMargin = true;
-            this.rtbChat.Size = new System.Drawing.Size(512, 440);
-            this.rtbChat.TabIndex = 6;
-            this.rtbChat.Text = "";
-            this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
-            this.rtbChat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbChat_LinkClicked);
-            this.rtbChat.Click += new System.EventHandler(this.rtbChat_Click);
-            this.rtbChat.SizeChanged += new System.EventHandler(this.rtbChat_SizeChanged);
-            this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
-            this.rtbChat.Enter += new System.EventHandler(this.rtbChat_Enter);
-            this.rtbChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbChat_KeyDown);
-            this.rtbChat.Leave += new System.EventHandler(this.rtbChat_Leave);
-            this.rtbChat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rtbChat_MouseDown);
             // 
             // panel5
             // 
@@ -1217,6 +1218,43 @@ namespace METAbolt
             this.textBox1.Size = new System.Drawing.Size(177, 14);
             this.textBox1.TabIndex = 20;
             // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+    "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.AllowColumnReorder = true;
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.Details;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
+            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "[Dist.] Av. Name";
+            this.columnHeader1.Width = 175;
+            // 
             // tabPage2
             // 
             this.tabPage2.AccessibleName = "Mini map and SIM statistics";
@@ -1679,43 +1717,6 @@ namespace METAbolt
             // 
             this.TPtimer.Interval = 3000;
             this.TPtimer.Tick += new System.EventHandler(this.TPtimer_Tick);
-            // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-    "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.AllowColumnReorder = true;
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.White;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.Details;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
-            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "[Dist.] Av. Name";
-            this.columnHeader1.Width = 175;
             // 
             // ChatConsole
             // 
