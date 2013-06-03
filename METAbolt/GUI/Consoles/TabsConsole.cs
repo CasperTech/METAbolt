@@ -869,11 +869,11 @@ namespace METAbolt
                 return;
             }
 
-            if (tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
+            if (TabExists(e.IM.FromAgentName))   //if (tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
             {
                 if (!tabs[e.IM.FromAgentName.ToLower()].Selected)
                 {
-                    tabs["imbox"].PartialHighlight();
+                    tabs["imbox"].Highlight();
                 }
             }
             else
@@ -967,7 +967,7 @@ namespace METAbolt
                 if (TabExists(e.IM.FromAgentName))
                 {
                     METAboltTab tab = tabs[e.IM.FromAgentName.ToLower()];
-                    if (!tab.Selected) tab.Highlight();
+                    if (!tab.Selected) tab.PartialHighlight();
                     //Logger.Log("NonStored|ExistingAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                     return;
                 }

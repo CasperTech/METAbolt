@@ -88,9 +88,9 @@ namespace METAbolt
             control.Visible = true;
             control.BringToFront();
 
-            if (!partialHighlighted) Unhighlight();
+            //if (!partialHighlighted) Unhighlight();
 
-            //Unhighlight();
+            Unhighlight();
 
             button.Checked = true;
             selected = true;
@@ -142,12 +142,6 @@ namespace METAbolt
                 button.Image = Properties.Resources.arrow_forward_16;
                 button.ForeColor = Color.Red;
             }
-
-            //if (this.instance.Config.CurrentConfig.PlaySound)
-            //{
-                //SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.notify);
-                //simpleSound.Play();
-            //}
 
             highlighted = true;
             OnTabHighlighted(EventArgs.Empty);
