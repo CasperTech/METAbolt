@@ -76,8 +76,8 @@ namespace METAbolt
         // end Alexs
 
         // Extension manager stuff
-        ExtensionManager<IExtension, IHost> manager = new ExtensionManager<IExtension, IHost>();
-        private List<IExtension> elist;
+        private ExtensionManager<IExtension, IHost> manager = new ExtensionManager<IExtension, IHost>();
+        //private List<IExtension> elist;
         private int plugintimer = 0;
         private bool pluginsloaded = false;
         private ExceptionReporter reporter = new ExceptionReporter();
@@ -130,7 +130,7 @@ namespace METAbolt
 
             this.WindowState = FormWindowState.Normal;
 
-            elist = new List<IExtension>();
+            //elist = new List<IExtension>();
 
             //UpdateLand();
             //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Chat_KeyDown);
@@ -1027,6 +1027,8 @@ namespace METAbolt
                MessageBox.Show("Invalid files in 'Extensions' folder caused Windows errors: " + ex.Message);   
             }
 
+            //List<Extension<IExtension>> tounload = new List<Extension<IExtension>>();
+
             if (manager.Extensions.Count > 0)
             {
                 //Loop through all the extensions
@@ -1045,8 +1047,16 @@ namespace METAbolt
                     item.Click += new System.EventHandler(AnyMenuItem_Click);
                     mitem.DropDownItems.Add(item);
 
-                    elist.Add(extOn.Instance);
+                    //elist.Add(extOn.Instance);
+                    this.instance.EList.Add(extOn.Instance);
+
+                    //tounload.Add(extOn);
                 }
+
+                //foreach (Extension<IExtension> extOn in tounload)
+                //{
+                //    manager.UnloadExtension(extOn);
+                //}
 
                 ToolStripDropDownItem mmgr;
                 mmgr = tsPlugins;
@@ -1062,7 +1072,9 @@ namespace METAbolt
                 itm.Click += new System.EventHandler(AnyMenuItem_Click);
                 mmgr.DropDownItems.Add(itm);
 
-                this.instance.EList = elist;
+                //this.instance.EList = elist;
+
+                //elist.Clear(); 
 
                 tsPlugins.Visible = true;
             }
@@ -1098,9 +1110,19 @@ namespace METAbolt
 
             IExtension extInstance = (IExtension)mitem.Tag;
 
+            //Extension<IExtension> extobj = (Extension<IExtension>)mitem.Tag;
+            //IExtension extInstance = extobj.Instance; 
+
             //If we have an instance, call process!
             if (extInstance != null)
+            {
+                //if (!manager.Extensions.Contains(extobj))
+                //{
+                //    manager.LoadExtension(extobj.Filename);
+                //}
+
                 extInstance.Process(this.instance);
+            }
         }
 
         #region IHost Members

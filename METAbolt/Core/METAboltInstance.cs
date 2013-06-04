@@ -100,7 +100,7 @@ namespace METAbolt
         private DataTable tp = null;
         private bool detectlang = false;
         private UUID lookID = UUID.Zero; 
-        private List<IExtension> elist;
+        private List<IExtension> elist = new List<IExtension>();
         public SafeDictionary<UUID, string> avnames = new SafeDictionary<UUID, string>();
         public SafeDictionary<UUID, string> avtags = new SafeDictionary<UUID, string>();
         public List<AvLocation> avlocations = new List<AvLocation>();

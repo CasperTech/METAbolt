@@ -117,7 +117,8 @@ namespace METAbolt
 
             if (detached)
             {
-                //do nothing?!
+                if (!owner.Focused)
+                    FormFlash.Flash(owner);
             }
             else
             {
@@ -135,8 +136,8 @@ namespace METAbolt
 
             if (detached)
             {
-                //if (!owner.Focused)
-                //    FormFlash.Flash(owner);
+                if (!owner.Focused)
+                    FormFlash.Flash(owner);
             }
             else
             {
@@ -154,8 +155,8 @@ namespace METAbolt
 
             if (detached)
             {
-                //if (!owner.Focused)
-                //    FormFlash.Flash(owner);
+                if (!owner.Focused)
+                    FormFlash.Flash(owner);
             }
             else
             {
@@ -321,6 +322,11 @@ namespace METAbolt
         public bool Highlighted
         {
             get { return highlighted; }
+        }
+
+        public bool IMboxHighlighted
+        {
+            get { return imboxhighlighted; }
         }
 
         public bool Selected
