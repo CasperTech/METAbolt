@@ -873,12 +873,12 @@ namespace METAbolt
             {
                 if (!tabs[e.IM.FromAgentName.ToLower()].Selected)
                 {
-                    tabs["imbox"].Highlight();
+                    tabs["imbox"].PartialHighlight();
                 }
             }
             else
             {
-                tabs["imbox"].PartialHighlight();
+                tabs["imbox"].IMboxHighlight();
             }
 
             if (this.instance.MainForm.WindowState == FormWindowState.Minimized)
@@ -934,7 +934,7 @@ namespace METAbolt
                 if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
                 {
                     METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower()];
-                    if (!tab.Selected) tab.Highlight();
+                    if (!tab.Selected) tab.PartialHighlight();
                     //Logger.Log("Stored|ExistingGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                     return;
                 }

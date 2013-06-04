@@ -49,6 +49,7 @@ namespace METAbolt
 
         private bool partialHighlighted = false;
         private bool highlighted = false;
+        private bool imboxhighlighted = false;
         private bool selected = false;
         private bool detached = false;
         private bool merged = false;
@@ -88,7 +89,7 @@ namespace METAbolt
             control.Visible = true;
             control.BringToFront();
 
-            //if (!partialHighlighted) Unhighlight();
+            //if (!imboxhighlighted) Unhighlight();
 
             Unhighlight();
 
@@ -147,6 +148,25 @@ namespace METAbolt
             OnTabHighlighted(EventArgs.Empty);
         }
 
+        public void IMboxHighlight()
+        {
+            if (selected) return;
+
+            if (detached)
+            {
+                //if (!owner.Focused)
+                //    FormFlash.Flash(owner);
+            }
+            else
+            {
+                //button.Image = Properties.Resources.arrow_forward_16;
+                button.ForeColor = Color.Red;
+            }
+
+            imboxhighlighted = true;
+            OnTabHighlighted(EventArgs.Empty);
+        }
+
         public void Unhighlight()
         {
             if (detached)
@@ -159,7 +179,7 @@ namespace METAbolt
                 button.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             }
 
-            highlighted = partialHighlighted = false;
+            highlighted = partialHighlighted = imboxhighlighted = false;
             OnTabUnhighlighted(EventArgs.Empty);
         }
 
