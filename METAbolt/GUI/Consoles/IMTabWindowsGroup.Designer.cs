@@ -63,7 +63,7 @@
             this.tbar_SendMessage.Divider = false;
             this.tbar_SendMessage.Dock = System.Windows.Forms.DockStyle.None;
             this.tbar_SendMessage.DropDownArrows = true;
-            this.tbar_SendMessage.Location = new System.Drawing.Point(0, 0);
+            this.tbar_SendMessage.Location = new System.Drawing.Point(0, -3);
             this.tbar_SendMessage.Margin = new System.Windows.Forms.Padding(0);
             this.tbar_SendMessage.Name = "tbar_SendMessage";
             this.tbar_SendMessage.ShowToolTips = true;
@@ -124,7 +124,7 @@
             this.cbxInput.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cbxInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxInput.FormattingEnabled = true;
-            this.cbxInput.Location = new System.Drawing.Point(3, 308);
+            this.cbxInput.Location = new System.Drawing.Point(3, 305);
             this.cbxInput.Name = "cbxInput";
             this.cbxInput.Size = new System.Drawing.Size(372, 21);
             this.cbxInput.TabIndex = 0;
@@ -211,7 +211,7 @@
             this.btnSend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSend.ForeColor = System.Drawing.Color.White;
-            this.btnSend.Location = new System.Drawing.Point(422, 306);
+            this.btnSend.Location = new System.Drawing.Point(422, 303);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 2;
