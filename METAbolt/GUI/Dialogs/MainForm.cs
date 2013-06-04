@@ -245,6 +245,8 @@ namespace METAbolt
                 currentparcelid = parceln.LocalID;
                 this.parcel = parceln;
 
+                List<Simulator> connectedsims = client.Network.Simulators; 
+
                 this.instance.Config.CurrentConfig.pURL = @parcel.MusicURL;
                 tlblParcel.Text = parcel.Name.ToString();
 
@@ -1063,7 +1065,6 @@ namespace METAbolt
 
                 ToolStripSeparator sep = new ToolStripSeparator();
                 mmgr.DropDownItems.Add(sep);
- 
 
                 ToolStripButton itm = new ToolStripButton();
                 //itm.Tag = extOn.Instance;
@@ -1229,7 +1230,12 @@ namespace METAbolt
 
         private void setHomeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            client.Self.SetHome();
+            DialogResult res = MessageBox.Show("Are you sure you want to SET HOME to here?", "METAbolt", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
+            {
+                client.Self.SetHome();
+            }            
         }
 
         private void tPHomeToolStripMenuItem_Click(object sender, EventArgs e)
