@@ -37,7 +37,7 @@ namespace METAbolt
     public partial class frmMBmsg : Form
     {
         private METAboltInstance instance;
-        private string meg = string.Empty;
+        //private string meg = string.Empty;
 
         public frmMBmsg(METAboltInstance instance, string msg)
         {

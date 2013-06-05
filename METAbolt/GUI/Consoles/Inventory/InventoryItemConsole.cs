@@ -44,7 +44,7 @@ namespace METAbolt
         //private bool thisTP = false;
         //private Primitive rootPrim;
         private bool fLoading = true;
-        private InventoryConsole iconsole;
+        //private InventoryConsole iconsole;
         //private TreeNode inode;
 
         public InventoryItemConsole(METAboltInstance instance, InventoryItem item)
@@ -58,7 +58,7 @@ namespace METAbolt
             
             this.Disposed += new EventHandler(InventoryItemConsole_Disposed);
 
-            iconsole = new InventoryConsole(instance); 
+            //iconsole = new InventoryConsole(instance); 
 
             AddClientEvents();
             FillItemProperties();
@@ -211,6 +211,8 @@ namespace METAbolt
                     btnDetach.Text = "Detach";
                     objectConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(objectConsole);
+
+                    //objectConsole.Dispose(); 
                     break;
 
                 case InventoryType.Notecard:
@@ -218,6 +220,8 @@ namespace METAbolt
                     notecardConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(notecardConsole);
                     label11.Visible = false;
+
+                    //notecardConsole.Dispose();
                     break;
 
                 case InventoryType.LSL:
@@ -225,6 +229,8 @@ namespace METAbolt
                     scriptConsole.Dock = DockStyle.Fill;
                     pnlItemTypeProp.Controls.Add(scriptConsole);
                     label11.Visible = false;
+
+                    //scriptConsole.Dispose(); 
                     break;
                 case InventoryType.Snapshot:
                     InventoryImageConsole imageConsole = new InventoryImageConsole(instance, item);

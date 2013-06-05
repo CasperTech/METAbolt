@@ -100,6 +100,8 @@ namespace METAbolt
                     btn.Text = btns[i];
 
                     tsButtons.Items.Add(btn);
+
+                    btn.Dispose(); 
                 }
             }
 

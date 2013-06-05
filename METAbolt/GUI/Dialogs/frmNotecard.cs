@@ -29,6 +29,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -239,13 +240,13 @@ namespace METAbolt
         private void GetCurrentLine()
         {
             int linenumber = rtbNotecard.GetLineFromCharIndex(rtbNotecard.SelectionStart) + 1;
-            tsLn.Text = "Ln " + linenumber.ToString();
+            tsLn.Text = "Ln " + linenumber.ToString(CultureInfo.CurrentCulture);
         }
 
         private void GetCurrentCol()
         {
             int colnumber = rtbNotecard.SelectionStart - rtbNotecard.GetFirstCharIndexOfCurrentLine() + 1;
-            tsCol.Text = "Ln " + colnumber.ToString();
+            tsCol.Text = "Ln " + colnumber.ToString(CultureInfo.CurrentCulture);
         }
 
         private void rtbNotecard_TextChanged(object sender, EventArgs e)

@@ -546,9 +546,9 @@ namespace METAbolt
                     OpenTK.Graphics.IGraphicsContextInternal context = glControl.Context as OpenTK.Graphics.IGraphicsContextInternal;
                     MipmapsSupported = context.GetAddress("glGenerateMipmap") != IntPtr.Zero;
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string exp = ex.Message;
+                    //string exp = ex.Message;
                     MipmapsSupported = false;
                 }
 
@@ -1130,9 +1130,9 @@ namespace METAbolt
 
             double[] ModelViewMatrix = new double[16];
             double[] ProjectionMatrix = new double[16];
-            int[] Viewport = new int[4];
+            int[] Vport = new int[4];
 
-            OpenTK.Graphics.OpenGL.GL.GetInteger(OpenTK.Graphics.OpenGL.GetPName.Viewport, Viewport);
+            OpenTK.Graphics.OpenGL.GL.GetInteger(OpenTK.Graphics.OpenGL.GetPName.Viewport, Vport);
             OpenTK.Graphics.OpenGL.GL.GetDouble(OpenTK.Graphics.OpenGL.GetPName.ModelviewMatrix, ModelViewMatrix);
             OpenTK.Graphics.OpenGL.GL.GetDouble(OpenTK.Graphics.OpenGL.GetPName.ProjectionMatrix, ProjectionMatrix);
 
@@ -1140,7 +1140,7 @@ namespace METAbolt
             OpenTK.Graphics.Glu.Project(world,
                 ModelViewMatrix,
                 ProjectionMatrix,
-                Viewport,
+                Vport,
                 out screen);
 #pragma warning restore 0618
 
@@ -2187,7 +2187,7 @@ namespace METAbolt
             }
             catch (Exception ex)
             {
-                string exp = ex.Message;
+                //string exp = ex.Message;
                 reporter.Show(ex);
             }
         }

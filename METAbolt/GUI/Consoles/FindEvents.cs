@@ -33,6 +33,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 //using SLNetworkComm;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -112,11 +113,11 @@ namespace METAbolt
             if (matchedEvent.Duration > 59)
             {
                 uint dur = matchedEvent.Duration/60;
-                textBox5.Text = dur.ToString() + " hours"; 
+                textBox5.Text = dur.ToString(CultureInfo.CurrentCulture) + " hours"; 
             }
             else
             {
-                textBox5.Text = matchedEvent.Duration.ToString() + " minutes";
+                textBox5.Text = matchedEvent.Duration.ToString(CultureInfo.CurrentCulture) + " minutes";
             }
             textBox6.Text = matchedEvent.Date.ToString();
 
@@ -134,7 +135,7 @@ namespace METAbolt
             fY = locY1;
             fZ = (float)matchedEvent.GlobalPos.Z;
 
-            textBox8.Text = matchedEvent.SimName.ToString() + "/" + fX.ToString() + "/" + fY.ToString() + "/" + fZ.ToString();
+            textBox8.Text = matchedEvent.SimName.ToString(CultureInfo.CurrentCulture) + "/" + fX.ToString(CultureInfo.CurrentCulture) + "/" + fY.ToString(CultureInfo.CurrentCulture) + "/" + fZ.ToString(CultureInfo.CurrentCulture);
 
             if (matchedEvent.Cover == 0)
             {
@@ -142,7 +143,7 @@ namespace METAbolt
             }
             else
             {
-                textBox9.Text = "L$ " + matchedEvent.Cover.ToString();
+                textBox9.Text = "L$ " + matchedEvent.Cover.ToString(CultureInfo.CurrentCulture);
             }
 
             textBox1.Text = matchedEvent.Desc.ToString();
@@ -185,7 +186,7 @@ namespace METAbolt
                     }
                     else
                     {
-                        fullName += " (" + icnt.ToString() + ")";
+                        fullName += " (" + icnt.ToString(CultureInfo.CurrentCulture) + ")";
                         findEventsResults.Add(fullName, events.ID);
                     }
 

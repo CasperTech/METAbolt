@@ -10,6 +10,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace SystemMonitor
 {
@@ -138,7 +139,7 @@ namespace SystemMonitor
 			double y=0, yMax = InitialHeight;
 			for (int i=0; i<count; i++)
 			{
-				y = Convert.ToDouble(_arrayList[i]);
+                y = Convert.ToDouble(_arrayList[i], CultureInfo.CurrentCulture);
 				if (y>yMax) yMax = y;
 			}
 
@@ -177,7 +178,7 @@ namespace SystemMonitor
 					nX = xStart - 2*(count-i);
 					if (nX<=0) break;
 
-					nY = (int)(yStart-y*Convert.ToDouble(_arrayList[i]));
+                    nY = (int)(yStart - y * Convert.ToDouble(_arrayList[i], CultureInfo.CurrentCulture));
 					e.Graphics.DrawLine(pen, nX, yStart, nX, nY);
 				}
 			}
@@ -187,13 +188,13 @@ namespace SystemMonitor
 				pen = new Pen(LineColor, 1);
 
 				int nX0 = xStart - 2;
-				int nY0 = (int)(yStart-y*Convert.ToDouble(_arrayList[count-1]));
+                int nY0 = (int)(yStart - y * Convert.ToDouble(_arrayList[count - 1], CultureInfo.CurrentCulture));
 				for (int i=count-2; i>=0; i--)
 				{
 					nX = xStart - 2*(count-i);
 					if (nX<=0) break;
 
-					nY = (int)(yStart-y*Convert.ToDouble(_arrayList[i]));
+                    nY = (int)(yStart - y * Convert.ToDouble(_arrayList[i], CultureInfo.CurrentCulture));
 					e.Graphics.DrawLine(pen, nX0, nY0, nX, nY);
 
 					nX0 = nX;

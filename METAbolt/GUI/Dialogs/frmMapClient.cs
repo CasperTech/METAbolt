@@ -40,7 +40,8 @@ using OpenMetaverse.Imaging;
 using PopupControl;
 using OpenMetaverse.Assets;
 using System.Threading;
-using ExceptionReporting; 
+using ExceptionReporting;
+using System.Globalization;
 
 /* Some of this code has been borrowed from the libsecondlife GUI */
 
@@ -404,19 +405,17 @@ namespace METAbolt
                     );
                 }
 
-                g.DrawImage(bmp, 0, 0);
-
-                
+                g.DrawImage(bmp, 0, 0);                
 
                 world.Image = bmp;
 
                 strFormat.Dispose(); 
                 g.Dispose();
 
-                string strInfo = string.Format("Total Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
+                string strInfo = string.Format(CultureInfo.CurrentCulture, "Total Avatars: {0}", client.Network.CurrentSim.AvatarPositions.Count);
                 lblSimData.Text = strInfo;
 
-                strInfo = string.Format("{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
+                strInfo = string.Format(CultureInfo.CurrentCulture, "{0}/{1}/{2}/{3}", client.Network.CurrentSim.Name,
                                                                             Math.Round(myPos.X, 0),
                                                                             Math.Round(myPos.Y, 0),
                                                                             Math.Round(myPos.Z, 0));
@@ -624,7 +623,7 @@ namespace METAbolt
                 if (!showing)
                 {
                     UUID akey = (UUID)CurrentLoc.LocationName;
-                    string apstn = "\nCoords.: " + Math.Round(CurrentLoc.Position.X).ToString() + "/" + Math.Round(CurrentLoc.Position.Y).ToString() + "/" + Math.Round(CurrentLoc.Position.Z).ToString();
+                    string apstn = "\nCoords.: " + Math.Round(CurrentLoc.Position.X).ToString(CultureInfo.CurrentCulture) + "/" + Math.Round(CurrentLoc.Position.Y).ToString(CultureInfo.CurrentCulture) + "/" + Math.Round(CurrentLoc.Position.Z).ToString(CultureInfo.CurrentCulture);
 
                     world.Cursor = Cursors.Hand;
                     string anme = string.Empty;
@@ -953,7 +952,7 @@ namespace METAbolt
                     peeps = " people";
                 }
 
-                string s = System.Convert.ToString(itemToDraw.Region.Agents);
+                string s = System.Convert.ToString(itemToDraw.Region.Agents, CultureInfo.CurrentCulture);
 
                 e.Graphics.DrawString(s + peeps, e.Font, textBrush, new PointF(leftTextMargin + stringSize.Width + 6.0f, topTextMargin));
             }
@@ -1133,7 +1132,7 @@ namespace METAbolt
             if (!string.IsNullOrEmpty(txtSearchFor.Text))
             {
                 RegionSearchResultItem item = (RegionSearchResultItem)lbxRegionSearch.SelectedItem;
-                string surl = "http://slurl.com/secondlife/" + item.Region.Name.Trim() + "/" + nudX1.Value.ToString() + "/" + nudY1.Value.ToString() + "/" + nudZ1.Value.ToString();
+                string surl = "http://slurl.com/secondlife/" + item.Region.Name.Trim() + "/" + nudX1.Value.ToString(CultureInfo.CurrentCulture) + "/" + nudY1.Value.ToString(CultureInfo.CurrentCulture) + "/" + nudZ1.Value.ToString(CultureInfo.CurrentCulture);
                 System.Diagnostics.Process.Start(@surl);
             }
         }

@@ -34,6 +34,7 @@ using System.Windows.Forms;
 using OpenMetaverse;
 using OpenMetaverse.Packets;
 using PopupControl;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -87,50 +88,50 @@ namespace METAbolt
                 label22.Text = "Version: " + sim.SimVersion;
                 label23.Text = "Location: " + sim.Name;
 
-                label2.Text = "Dilation: " + sim.Stats.Dilation.ToString();
+                label2.Text = "Dilation: " + sim.Stats.Dilation.ToString(CultureInfo.CurrentCulture);
                 progressBar1.Value = (int)(sim.Stats.Dilation * 10);
 
-                label24.Text = sim.Stats.INPPS.ToString();
-                label25.Text = sim.Stats.OUTPPS.ToString();
+                label24.Text = sim.Stats.INPPS.ToString(CultureInfo.CurrentCulture);
+                label25.Text = sim.Stats.OUTPPS.ToString(CultureInfo.CurrentCulture);
 
-                label26.Text = sim.Stats.ResentPackets.ToString();
-                label27.Text = sim.Stats.ReceivedResends.ToString();
+                label26.Text = sim.Stats.ResentPackets.ToString(CultureInfo.CurrentCulture);
+                label27.Text = sim.Stats.ReceivedResends.ToString(CultureInfo.CurrentCulture);
 
-                label43.Text = sim.Stats.LastLag.ToString();
-                
-                label28.Text = client.Network.InboxCount.ToString();
+                label43.Text = sim.Stats.LastLag.ToString(CultureInfo.CurrentCulture);
 
-                label7.Text = "FPS: " + sim.Stats.FPS.ToString();
+                label28.Text = client.Network.InboxCount.ToString(CultureInfo.CurrentCulture);
+
+                label7.Text = "FPS: " + sim.Stats.FPS.ToString(CultureInfo.CurrentCulture);
                 progressBar7.Value = (int)sim.Stats.FPS;
 
-                label8.Text = "Physics FPS: " + sim.Stats.PhysicsFPS.ToString();
+                label8.Text = "Physics FPS: " + sim.Stats.PhysicsFPS.ToString(CultureInfo.CurrentCulture);
                 progressBar8.Value = (int)sim.Stats.PhysicsFPS;
 
-                label29.Text = sim.Stats.AgentUpdates.ToString();
+                label29.Text = sim.Stats.AgentUpdates.ToString(CultureInfo.CurrentCulture);
 
-                label10.Text = "Objects: " + sim.Stats.Objects.ToString();
+                label10.Text = "Objects: " + sim.Stats.Objects.ToString(CultureInfo.CurrentCulture);
                 progressBar10.Value = (int)sim.Stats.Objects;
 
-                label30.Text = sim.Stats.ScriptedObjects.ToString();
+                label30.Text = sim.Stats.ScriptedObjects.ToString(CultureInfo.CurrentCulture);
 
-                label12.Text = "Frame Time: " + sim.Stats.FrameTime.ToString();
+                label12.Text = "Frame Time: " + sim.Stats.FrameTime.ToString(CultureInfo.CurrentCulture);
                 progressBar15.Value = (int)sim.Stats.FrameTime;
 
-                label34.Text = sim.Stats.NetTime.ToString();
+                label34.Text = sim.Stats.NetTime.ToString(CultureInfo.CurrentCulture);
 
-                label35.Text = sim.Stats.ImageTime.ToString();
+                label35.Text = sim.Stats.ImageTime.ToString(CultureInfo.CurrentCulture);
 
-                label36.Text = sim.Stats.PhysicsTime.ToString();
+                label36.Text = sim.Stats.PhysicsTime.ToString(CultureInfo.CurrentCulture);
 
-                label37.Text = sim.Stats.ScriptTime.ToString();
+                label37.Text = sim.Stats.ScriptTime.ToString(CultureInfo.CurrentCulture);
 
-                label38.Text = sim.Stats.OtherTime.ToString();
+                label38.Text = sim.Stats.OtherTime.ToString(CultureInfo.CurrentCulture);
 
-                label32.Text = sim.Stats.Agents.ToString();
+                label32.Text = sim.Stats.Agents.ToString(CultureInfo.CurrentCulture);
 
-                label33.Text = sim.Stats.ChildAgents.ToString();
+                label33.Text = sim.Stats.ChildAgents.ToString(CultureInfo.CurrentCulture);
 
-                label31.Text = sim.Stats.ActiveScripts.ToString();
+                label31.Text = sim.Stats.ActiveScripts.ToString(CultureInfo.CurrentCulture);
 
                 ScorePerformance();
             }
@@ -227,8 +228,8 @@ namespace METAbolt
 
             score += CalcFT();
 
-            pbScore.Value = score; 
-            lblScore.Text = score.ToString();
+            pbScore.Value = score;
+            lblScore.Text = score.ToString(CultureInfo.CurrentCulture);
         }
 
         private int CalcFT()

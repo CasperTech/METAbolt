@@ -42,6 +42,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using OpenMetaverse.Imaging;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -85,12 +86,12 @@ namespace METAbolt
 
         private byte[] LoadImage(string fileName)
         {
-            string lowfilename = fileName.ToLower();
+            string lowfilename = fileName.ToLower(CultureInfo.CurrentCulture);
             Bitmap bitmap = null;
 
             try
             {
-                if (lowfilename.EndsWith(".jp2") || lowfilename.EndsWith(".j2c"))
+                if (lowfilename.EndsWith(".jp2", StringComparison.CurrentCultureIgnoreCase) || lowfilename.EndsWith(".j2c", StringComparison.CurrentCultureIgnoreCase))
                 {
                     Image image;
                     ManagedImage managedImage;
@@ -103,7 +104,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    if (lowfilename.EndsWith(".tga"))
+                    if (lowfilename.EndsWith(".tga", StringComparison.CurrentCultureIgnoreCase))
                         bitmap = LoadTGAClass.LoadTGA(fileName);
                     else
                         bitmap = (Bitmap)System.Drawing.Image.FromFile(fileName);

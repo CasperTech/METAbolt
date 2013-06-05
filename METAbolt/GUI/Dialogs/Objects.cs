@@ -373,7 +373,9 @@ namespace METAbolt
 
             boldFont.Dispose();
             regularFont.Dispose();
+            italicFont.Dispose(); 
             textBrush.Dispose();
+            dBrush.Dispose(); 
             boldFont = null;
             regularFont = null;
             textBrush = null;
@@ -1695,7 +1697,7 @@ namespace METAbolt
                 pBar1.Visible = true;
                 pBar1.Refresh();
 
-                label22.Text = "Local ID: " + sPr.LocalID.ToString();  
+                label22.Text = "Local ID: " + sPr.LocalID.ToString(CultureInfo.CurrentCulture);  
 
                 // Populate child items here
                 lbxChildren.BeginUpdate();

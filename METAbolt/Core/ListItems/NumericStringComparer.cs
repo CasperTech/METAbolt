@@ -55,7 +55,7 @@ namespace METAbolt
         /// <summary>
         /// Case insensitive comparer object
         /// </summary>
-        private CaseInsensitiveComparer ObjectCompare;
+        //private CaseInsensitiveComparer ObjectCompare;
 
         /// <summary>
         /// Class constructor.  Initializes various elements
@@ -69,7 +69,7 @@ namespace METAbolt
             OrderOfSort = SortOrder.Ascending;
 
             // Initialize the CaseInsensitiveComparer object
-            ObjectCompare = new CaseInsensitiveComparer();
+            //ObjectCompare = new CaseInsensitiveComparer();
         }
 
         /// <summary>

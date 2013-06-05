@@ -176,7 +176,7 @@ namespace METAbolt
                 BeginInvoke(new MethodInvoker(delegate()
                 {
                     PopData();
-                    lblTraffic.Text = ea.Dwell.ToString();
+                    lblTraffic.Text = ea.Dwell.ToString(CultureInfo.CurrentCulture);
                 }));
             }
             catch
@@ -390,7 +390,7 @@ namespace METAbolt
                 lblTraffic.Text = parcel.Dwell.ToString(CultureInfo.CurrentCulture);
                 txtMusic.Text = parcel.MusicURL;
 
-                lblLocalID.Text = parcel.LocalID.ToString();
+                lblLocalID.Text = parcel.LocalID.ToString(CultureInfo.CurrentCulture);
 
                 //pictureBox1.Image = OpenJPEGNet.OpenJPEG.DecodeToImage(parcel.Bitmap);  
 

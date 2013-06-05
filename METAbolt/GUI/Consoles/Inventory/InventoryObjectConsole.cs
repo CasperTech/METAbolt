@@ -64,9 +64,9 @@ namespace METAbolt
                 client.Inventory.RequestRezFromInventory(
                     client.Network.CurrentSim, Quaternion.Identity, rezpos, (InventoryObject)item);
             }
-            catch (Exception ex)
+            catch
             {
-                string err = ex.Message;
+                //string err = ex.Message;
             }
 
         }

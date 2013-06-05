@@ -36,7 +36,8 @@ using OpenMetaverse;
 using OpenMetaverse.Assets;
 using ScintillaNet;
 using System.IO;
-using System.Diagnostics; 
+using System.Diagnostics;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -47,7 +48,7 @@ namespace METAbolt
         private GridClient client;
         private InventoryItem item;
         //private UUID transferID;
-        private AssetScriptText receivedAsset;
+        //private AssetScriptText receivedAsset;
 
         //private UUID uploadID;
         private bool closePending = false;
@@ -60,7 +61,7 @@ namespace METAbolt
 
         //int start = 0;
         //int indexOfSearchText = 0;
-        string prevsearchtxt = string.Empty;
+        //string prevsearchtxt = string.Empty;
         private const int LINE_NUMBERS_MARGIN_WIDTH = 35;
         private UUID assetUUID = UUID.Zero;
         private UUID itemUUID = UUID.Zero;
@@ -245,8 +246,8 @@ namespace METAbolt
 
             if (ln.Text.Contains("//"))
             {
-                int lng = ln.Length;
-                int idx = ln.Text.IndexOf("//");
+                //int lng = ln.Length;
+                int idx = ln.Text.IndexOf("//", StringComparison.CurrentCultureIgnoreCase);
 
                 int cpos = rtbScript.GetColumn(rtbScript.CurrentPos);
 
@@ -262,7 +263,7 @@ namespace METAbolt
             int pos = rtbScript.NativeInterface.GetCurrentPos();
             string word = rtbScript.GetWordFromPosition(pos);
 
-            if (word == string.Empty)
+            if (String.IsNullOrEmpty(word))
                 return;
 
             if (rtbScript.AutoComplete.List.Items.Count > 0)
@@ -278,7 +279,7 @@ namespace METAbolt
             showingcalltip = true; 
 
             Line lnt = rtbScript.Lines.Current;
-            int aind = lnt.Text.IndexOf("(", 0);
+            int aind = lnt.Text.IndexOf("(", 0, StringComparison.CurrentCultureIgnoreCase);
 
             if (aind == -1)
             {
@@ -303,63 +304,63 @@ namespace METAbolt
             if (function.Length > 50)
             {
                 string lo = function.Substring(0, 50);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 function = function.Insert(ind + 1, "\n");
             }
 
             if (function.Length > 100)
             {
                 string lo = function.Substring(0, 100);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 function = function.Insert(ind + 1, "\n");
             }
 
             if (function.Length > 150)
             {
                 string lo = function.Substring(0, 150);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 function = function.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 50)
             {
                 string lo = cti.Substring(0, 50);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 100)
             {
                 string lo = cti.Substring(0, 100);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 150)
             {
                 string lo = cti.Substring(0, 150);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 200)
             {
                 string lo = cti.Substring(0, 200);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 250)
             {
                 string lo = cti.Substring(0, 250);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 300)
             {
                 string lo = cti.Substring(0, 300);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
@@ -429,10 +430,10 @@ namespace METAbolt
                     return;
                 }
 
-                receivedAsset = (AssetScriptText)asset;
+                //receivedAsset = (AssetScriptText)asset;
                 scriptContent = Utils.BytesToString(transfer.AssetData);
                 SetScriptText(scriptContent, false);
-                string adta = string.Empty; 
+                //string adta = string.Empty; 
 
                 if (istaskobj)
                 {
@@ -567,8 +568,8 @@ namespace METAbolt
                 tsbSave.Enabled = false;
                 tsSaveDisk.Enabled = false;
 
-                string file = this.item.Name;
-                string desc = this.item.Description;
+                //string file = this.item.Name;
+                //string desc = this.item.Description;
 
                 if (istaskobj)
                 {
@@ -638,7 +639,7 @@ namespace METAbolt
                         pos = pos.Trim().Replace(")", "");
                         string[] posxy = pos.Split(',');
 
-                        int posx = Convert.ToInt32(posxy[0].Trim());
+                        int posx = Convert.ToInt32(posxy[0].Trim(), CultureInfo.CurrentCulture);
                         //int posy = Convert.ToInt32(posxy[1].Trim());
 
                         //int aposx = rtbScript.PointXFromPosition(posx);
@@ -785,6 +786,8 @@ namespace METAbolt
                 //    rtbScript.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
                 //}
             }
+
+            saveFile1.Dispose(); 
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -803,7 +806,7 @@ namespace METAbolt
             //tsLn.Text = "Ln " + linenumber.ToString();
             Line ln = rtbScript.Lines.Current;
             int lnm = ln.Number + 1;
-            tsLn.Text = "Ln " + lnm.ToString();
+            tsLn.Text = "Ln " + lnm.ToString(CultureInfo.CurrentCulture);
         }
 
         private void GetCurrentCol()
@@ -812,7 +815,7 @@ namespace METAbolt
             //tsCol.Text = "Ln " + colnumber.ToString();
 
             //int colnumber = rtbScript.CurrentPos;
-            tsCol.Text = "Col " + rtbScript.GetColumn(rtbScript.CurrentPos).ToString();
+            tsCol.Text = "Col " + rtbScript.GetColumn(rtbScript.CurrentPos).ToString(CultureInfo.CurrentCulture);
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -977,7 +980,7 @@ namespace METAbolt
 
         private void contectHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tscboLanguage.SelectedItem.ToString().ToLower() == "lsl")
+            if (tscboLanguage.SelectedItem.ToString().ToLower(CultureInfo.CurrentCulture) == "lsl")
             {
                 string hword = rtbScript.GetWordFromPosition(rtbScript.CurrentPos);
                 string surl = "http://wiki.secondlife.com/wiki/" + hword;
@@ -990,8 +993,8 @@ namespace METAbolt
             string lang = string.Empty;
 
             rtbScript.AutoComplete.List = null;
-  
-            switch (tscboLanguage.SelectedItem.ToString().ToLower())
+
+            switch (tscboLanguage.SelectedItem.ToString().ToLower(CultureInfo.CurrentCulture))
             {
                 case "c#":
                     lang = "cs";
@@ -1342,7 +1345,7 @@ namespace METAbolt
             rtbScript.Modified = false;
             this.Text = filePath;   //Path.GetFileName(filePath);
 
-            string ext = Path.GetExtension(filePath).ToLower();
+            string ext = Path.GetExtension(filePath).ToLower(CultureInfo.CurrentCulture);
 
             switch (ext)
             {
@@ -1460,7 +1463,7 @@ namespace METAbolt
             int pos = rtbScript.PositionFromPoint(e.X, e.Y);
             string word = rtbScript.GetWordFromPosition(pos);
 
-            if (word == null || word == string.Empty)
+            if (String.IsNullOrEmpty(word))
             {
                 rtbScript.CallTip.Hide();
                 return;
@@ -1483,63 +1486,63 @@ namespace METAbolt
             if (function.Length > 50)
             {
                 string lo = function.Substring(0, 50);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 function = function.Insert(ind + 1, "\n");
             }
 
             if (function.Length > 100)
             {
                 string lo = function.Substring(0, 100);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 function = function.Insert(ind + 1, "\n");
             }
 
             if (function.Length > 150)
             {
                 string lo = function.Substring(0, 150);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 function = function.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 50)
             {
                 string lo = cti.Substring(0, 50);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 100)
             {
                 string lo = cti.Substring(0, 100);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 150)
             {
                 string lo = cti.Substring(0, 150);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 200)
             {
                 string lo = cti.Substring(0, 200);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 250)
             {
                 string lo = cti.Substring(0, 250);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
             if (cti.Length > 300)
             {
                 string lo = cti.Substring(0, 300);
-                int ind = lo.LastIndexOf(" ");
+                int ind = lo.LastIndexOf(" ", StringComparison.CurrentCultureIgnoreCase);
                 cti = cti.Insert(ind + 1, "\n");
             }
 
@@ -1558,7 +1561,7 @@ namespace METAbolt
             if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
             {
                 Line lnt = rtbScript.Lines.Current;
-                int aind = lnt.Text.IndexOf("(", 0);
+                int aind = lnt.Text.IndexOf("(", 0, StringComparison.CurrentCultureIgnoreCase);
 
                 if (aind == -1)
                 {

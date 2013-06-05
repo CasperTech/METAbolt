@@ -53,7 +53,7 @@ namespace METAbolt
             lang = listBox1.Items[listBox1.SelectedIndex].ToString();
 
             string[] sfile = lang.Split('.');
-            string file = lang = sfile[0];
+            //string file = lang = sfile[0];
 
             this.instance.DictionaryFile = lang + ".dic";
             this.instance.AffFile = lang + ".aff";
@@ -86,13 +86,13 @@ namespace METAbolt
         {
 
             DirectoryInfo di = new DirectoryInfo(dir);
-            FileInfo[] files = di.GetFiles();
+            //FileInfo[] files = di.GetFiles();
 
             listBox1.Items.Clear();
 
             foreach (FileInfo fi in di.GetFiles())
             {
-                string inFile = fi.FullName;
+                //string inFile = fi.FullName;
                 string finname = fi.Name;
 
                 if (fi.Extension == ".dic")

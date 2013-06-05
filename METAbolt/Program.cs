@@ -27,6 +27,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -66,7 +67,7 @@ namespace METAbolt
                 catch (Exception ex)
                 {
                     //messagebox of last resort
-                    DialogResult res = MessageBox.Show(String.Format("Message: {0}, From: {1}, Stack: {2}", ex.Message, ex.Source, ex.StackTrace), "METABolt has encountered an unrecovarable error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+                    DialogResult res = MessageBox.Show(String.Format(CultureInfo.CurrentCulture, "Message: {0}, From: {1}, Stack: {2}", ex.Message, ex.Source, ex.StackTrace), "METABolt has encountered an unrecovarable error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
                     if (res != DialogResult.Retry) { throw ex; }
                 }
             } 

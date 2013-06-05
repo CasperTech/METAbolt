@@ -44,6 +44,7 @@ using System.Xml;
 using SLNetworkComm;
 using WMPLib;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -236,7 +237,7 @@ namespace METAbolt
             {
                 IWMPMedia2 errSource = e.pMediaObject as IWMPMedia2;
                 IWMPErrorItem errorItem = errSource.Error;
-                MessageBox.Show("Error " + errorItem.errorCode.ToString("X")
+                MessageBox.Show("Error " + errorItem.errorCode.ToString("X", CultureInfo.CurrentCulture)
                                 + " in " + errSource.sourceURL);
             }
             catch (InvalidCastException)
@@ -295,14 +296,14 @@ namespace METAbolt
                 if (currenttrack.Contains("("))
                 {
                     // get them out
-                    int pos = currenttrack.IndexOf("(");
+                    int pos = currenttrack.IndexOf("(", StringComparison.CurrentCultureIgnoreCase);
                     currenttrack = currenttrack.Substring(0, pos).Trim();
                 }
 
-                if (currentartist.ToLower().Contains("feat"))
+                if (currentartist.ToLower(CultureInfo.CurrentCulture).Contains("feat"))
                 {
                     // get them out
-                    int pos = currentartist.ToLower().IndexOf("feat",0);
+                    int pos = currentartist.ToLower(CultureInfo.CurrentCulture).IndexOf("feat", 0, StringComparison.CurrentCultureIgnoreCase);
                     currentartist = currentartist.Substring(0, pos).Trim();
                     //currentartist = currentartist.Substring(0, pos).Trim();
                 }
@@ -609,7 +610,7 @@ namespace METAbolt
 
                         if ((reader.NodeType == XmlNodeType.Element & "buyLink" == reader.LocalName))
                         {
-                            if (supplier.ToLower() == "amazon mp3")
+                            if (supplier.ToLower(CultureInfo.CurrentCulture) == "amazon mp3")
                             {
                                 theArtWorkUrl = reader.ReadElementString("buyLink");
                                 break;
@@ -638,9 +639,9 @@ namespace METAbolt
                     return string.Empty;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message;
+                //string exp = ex.Message;
                 return string.Empty;
             }
         }
@@ -758,7 +759,7 @@ namespace METAbolt
         {
             string mlink = e.LinkText.Replace("http//", string.Empty);
 
-            if (!e.LinkText.StartsWith("http://"))
+            if (!e.LinkText.StartsWith("http://", StringComparison.CurrentCultureIgnoreCase))
             {
                 System.Diagnostics.Process.Start("http://" + mlink);
             }

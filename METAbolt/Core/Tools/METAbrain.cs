@@ -34,6 +34,7 @@ using System.Timers;
 using SLNetworkComm;
 using OpenMetaverse;
 using System.Collections;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -117,7 +118,7 @@ namespace METAbolt
             metaTimer.Enabled = false;
             metaTimer.Dispose();
 
-            string sanswer = answer.ProcessInput(emt.IM.Message.ToLower(), "");
+            string sanswer = answer.ProcessInput(emt.IM.Message.ToLower(CultureInfo.CurrentCulture), "");
 
             if (string.IsNullOrEmpty(sanswer))
             {
@@ -193,7 +194,7 @@ namespace METAbolt
 
                 if (reply.Length > 5)
                 {
-                    if (reply.Substring(0, 5).ToLower() == "error")
+                    if (reply.Substring(0, 5).ToLower(CultureInfo.CurrentCulture) == "error")
                     {
                         return string.Empty;
                     }

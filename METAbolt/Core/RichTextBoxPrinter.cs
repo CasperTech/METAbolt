@@ -60,7 +60,7 @@ namespace METAbolt
         //private Color bgcolour = Color.White;
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern IntPtr SendMessage(IntPtr window, int message, int wparam, int lparam);
+        private static extern IntPtr SendMessage(IntPtr window, int message, int wparam, int lparam);
         const int WM_VSCROLL = 0x115;
         const int SB_BOTTOM = 7;
 

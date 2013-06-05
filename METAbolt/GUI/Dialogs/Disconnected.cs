@@ -31,6 +31,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenMetaverse;
 using SLNetworkComm;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -67,7 +68,7 @@ namespace METAbolt
             if (instance.State.UnReadIMs > 0)
             {
                 label2.Visible = true;
-                label2.Text = "You have " + instance.State.UnReadIMs.ToString() + " unread IMs";
+                label2.Text = "You have " + instance.State.UnReadIMs.ToString(CultureInfo.CurrentCulture) + " unread IMs";
                 button1.Visible = true;
             }
             else

@@ -112,7 +112,7 @@ namespace METAbolt.FileINI
                         s = s.Trim();
 
                         // *** Check for section names ***
-                        if (s.StartsWith("[") && s.EndsWith("]"))
+                        if (s.StartsWith("[", StringComparison.CurrentCultureIgnoreCase) && s.EndsWith("]", StringComparison.CurrentCultureIgnoreCase))
                         {
                             if (s.Length > 2)
                             {

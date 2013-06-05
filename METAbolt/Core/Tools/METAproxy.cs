@@ -54,7 +54,7 @@ namespace METAbolt
             {
                 string purl = proxy_url.Trim();
 
-                if (!purl.StartsWith("http://"))
+                if (!purl.StartsWith("http://", StringComparison.CurrentCultureIgnoreCase))
                 {
                     purl = @"http://" + purl; 
                 }

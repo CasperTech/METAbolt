@@ -544,13 +544,13 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
                 {
-                    label3.Text = string.Format("Current (In): {0} KB/Sec", busedr.ToString("0.00"));
-                    label5.Text = string.Format("Current (Out): {0} KB/Sec", buseds.ToString("0.00"));
+                    label3.Text = string.Format(CultureInfo.CurrentCulture, "Current (In): {0} KB/Sec", busedr.ToString("0.00", CultureInfo.CurrentCulture));
+                    label5.Text = string.Format(CultureInfo.CurrentCulture, "Current (Out): {0} KB/Sec", buseds.ToString("0.00", CultureInfo.CurrentCulture));
 
                     float cgb = lastAmountOfBytesReceived / 1073741824;
-                    label6.Text = string.Format("Total (In): {0} GB", cgb.ToString("0.00"));
+                    label6.Text = string.Format(CultureInfo.CurrentCulture, "Total (In): {0} GB", cgb.ToString("0.00", CultureInfo.CurrentCulture));
                     cgb = lastAmountOfBytesSent / 1073741824;
-                    label7.Text = string.Format("Total (Out): {0} GB", cgb.ToString("0.00"));
+                    label7.Text = string.Format(CultureInfo.CurrentCulture, "Total (Out): {0} GB", cgb.ToString("0.00", CultureInfo.CurrentCulture));
 
                     //if (Convert.ToInt32(lastAmountOfBytesReceived) > iniheight)
                     //{
@@ -569,7 +569,7 @@ namespace METAbolt
 
                         TimeSpan ts = TimeSpan.FromSeconds(Convert.ToInt32(tcntr));
 
-                        label14.Text = Convert.ToInt32(ts.Hours).ToString("00") + ":" + Convert.ToInt32(ts.Minutes).ToString("00") + ":" + Convert.ToInt32(ts.Seconds).ToString("00");
+                        label14.Text = Convert.ToInt32(ts.Hours).ToString("00", CultureInfo.CurrentCulture) + ":" + Convert.ToInt32(ts.Minutes).ToString("00", CultureInfo.CurrentCulture) + ":" + Convert.ToInt32(ts.Seconds).ToString("00", CultureInfo.CurrentCulture);
                     }
 
                     tcntr += 1;

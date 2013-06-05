@@ -32,7 +32,7 @@ using System.Windows.Forms;
 public static class FormFlash
 {
     [DllImport("user32.dll")]
-    public static extern int FlashWindowEx(ref FLASHWINFO pfwi);
+    private static extern int FlashWindowEx(ref FLASHWINFO pfwi);
 
     /// <summary>
     /// Flashes the form's taskbar button.

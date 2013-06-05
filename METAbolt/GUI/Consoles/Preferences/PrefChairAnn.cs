@@ -33,6 +33,7 @@ using System.Text;
 using System.Windows.Forms;
 using PopupControl;
 using OpenMetaverse;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -57,7 +58,7 @@ namespace METAbolt
             toolTip1.ShowingAnimation = toolTip1.HidingAnimation = PopupAnimations.Blend;
 
             textBox1.Text = config.CurrentConfig.ChairAnnouncerUUID.ToString();
-            textBox2.Text = config.CurrentConfig.ChairAnnouncerInterval.ToString();
+            textBox2.Text = config.CurrentConfig.ChairAnnouncerInterval.ToString(CultureInfo.CurrentCulture);
 
             checkBox1.Enabled = true;
             checkBox1.Checked = config.CurrentConfig.ChairAnnouncerEnabled;

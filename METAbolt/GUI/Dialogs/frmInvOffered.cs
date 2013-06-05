@@ -36,6 +36,7 @@ using OpenMetaverse;
 using System.Media;
 using System.Threading;
 using ExceptionReporting;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -93,7 +94,7 @@ namespace METAbolt
 
             string a = "a";
 
-            if (type.ToString().ToLower().StartsWith("a") || type.ToString().ToLower().StartsWith("o") || type.ToString().ToLower().StartsWith("u"))
+            if (type.ToString().ToLower(CultureInfo.CurrentCulture).StartsWith("a", StringComparison.CurrentCultureIgnoreCase) || type.ToString().ToLower(CultureInfo.CurrentCulture).StartsWith("o", StringComparison.CurrentCultureIgnoreCase) || type.ToString().ToLower(CultureInfo.CurrentCulture).StartsWith("u", StringComparison.CurrentCultureIgnoreCase))
             {
                 a = "an";
             }
@@ -209,7 +210,7 @@ namespace METAbolt
                 {
                     timer1.Stop();
                     timer1.Enabled = false;
-                    this.Close();
+                    //this.Close();
                 }
 
                 timer1.Stop();

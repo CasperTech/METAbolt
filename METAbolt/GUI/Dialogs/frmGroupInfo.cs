@@ -73,7 +73,7 @@ namespace METAbolt
         private UUID founderid = UUID.Zero;
         //private GroupMemberData currentmember = new GroupMemberData();
         private bool checkignore = false;
-        private NumericStringComparer lvwColumnSorter;
+        //private NumericStringComparer lvwColumnSorter;
         private NumericStringComparerDateGroups lvwDateColumnSorter;
         private AssetType assettype;
         private UUID assetfolder = UUID.Zero;
@@ -109,7 +109,7 @@ namespace METAbolt
 
             AddGEvents();
 
-            lvwColumnSorter = new NumericStringComparer();
+            //lvwColumnSorter = new NumericStringComparer();
             lvwDateColumnSorter = new NumericStringComparerDateGroups();
 
             lstMembers.ListViewItemSorter = lvwDateColumnSorter;
@@ -140,7 +140,7 @@ namespace METAbolt
 
             AddGEvents();
 
-            lvwColumnSorter = new NumericStringComparer();
+            //lvwColumnSorter = new NumericStringComparer();
             lvwDateColumnSorter = new NumericStringComparerDateGroups();
 
             lstMembers.ListViewItemSorter = lvwDateColumnSorter;
@@ -175,7 +175,7 @@ namespace METAbolt
 
             AddGEvents();
 
-            lvwColumnSorter = new NumericStringComparer();
+            //lvwColumnSorter = new NumericStringComparer();
             lvwDateColumnSorter = new NumericStringComparerDateGroups();
 
             lstMembers.ListViewItemSorter = lvwDateColumnSorter;
@@ -384,11 +384,11 @@ namespace METAbolt
             }
         }
 
-        private int GetAttachment(AssetType assettype)
+        private int GetAttachment(AssetType attype)
         {
             int at = 0;
 
-            switch (assettype)
+            switch (attype)
             {
                 case AssetType.Notecard:
                     at = 0;
@@ -757,27 +757,27 @@ namespace METAbolt
                 string[] DateSplit = Date.Split(Split, StringSplitOptions.None);
                 string NewDate = "";
 
-                if (Patternvalue[0].ToLower().Contains("d") == true && Patternvalue[1].ToLower().Contains("m") == true && Patternvalue[2].ToLower().Contains("y") == true)
+                if (Patternvalue[0].ToLower(CultureInfo.CurrentCulture).Contains("d") == true && Patternvalue[1].ToLower(CultureInfo.CurrentCulture).Contains("m") == true && Patternvalue[2].ToLower(CultureInfo.CurrentCulture).Contains("y") == true)
                 {
                     NewDate = DateSplit[1] + "/" + DateSplit[0] + "/" + DateSplit[2];
                 }
-                else if (Patternvalue[0].ToLower().Contains("m") == true && Patternvalue[1].ToLower().Contains("d") == true && Patternvalue[2].ToLower().Contains("y") == true)
+                else if (Patternvalue[0].ToLower(CultureInfo.CurrentCulture).Contains("m") == true && Patternvalue[1].ToLower(CultureInfo.CurrentCulture).Contains("d") == true && Patternvalue[2].ToLower(CultureInfo.CurrentCulture).Contains("y") == true)
                 {
                     NewDate = DateSplit[0] + "/" + DateSplit[1] + "/" + DateSplit[2];
                 }
-                else if (Patternvalue[0].ToLower().Contains("y") == true && Patternvalue[1].ToLower().Contains("m") == true && Patternvalue[2].ToLower().Contains("d") == true)
+                else if (Patternvalue[0].ToLower(CultureInfo.CurrentCulture).Contains("y") == true && Patternvalue[1].ToLower(CultureInfo.CurrentCulture).Contains("m") == true && Patternvalue[2].ToLower(CultureInfo.CurrentCulture).Contains("d") == true)
                 {
                     NewDate = DateSplit[2] + "/" + DateSplit[0] + "/" + DateSplit[1];
                 }
-                else if (Patternvalue[0].ToLower().Contains("y") == true && Patternvalue[1].ToLower().Contains("d") == true && Patternvalue[2].ToLower().Contains("m") == true)
+                else if (Patternvalue[0].ToLower(CultureInfo.CurrentCulture).Contains("y") == true && Patternvalue[1].ToLower(CultureInfo.CurrentCulture).Contains("d") == true && Patternvalue[2].ToLower(CultureInfo.CurrentCulture).Contains("m") == true)
                 {
                     NewDate = DateSplit[2] + "/" + DateSplit[1] + "/" + DateSplit[0];
                 }
                 date = DateTime.Parse(NewDate, Thread.CurrentThread.CurrentCulture);
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message; 
+                //string exp = ex.Message; 
             }
             finally
             {
@@ -832,7 +832,7 @@ namespace METAbolt
 
                     string lastonlinedate = member.OnlineStatus;
 
-                    if (member.OnlineStatus.ToLower() != "online")
+                    if (member.OnlineStatus.ToLower(CultureInfo.CurrentCulture) != "online")
                     {
                         lastonlinedate = ConvertDateTime(member.OnlineStatus).ToShortDateString();
                     }
@@ -1642,7 +1642,7 @@ namespace METAbolt
         {
             if (numFee.Value > 0)
             {
-                DialogResult res = MessageBox.Show("Are you sure you want to JOIN this Group for L$" + numFee.Value.ToString() + "?", "METAbolt", MessageBoxButtons.YesNo);
+                DialogResult res = MessageBox.Show("Are you sure you want to JOIN this Group for L$" + numFee.Value.ToString(CultureInfo.CurrentCulture) + "?", "METAbolt", MessageBoxButtons.YesNo);
 
                 if (res == System.Windows.Forms.DialogResult.No)
                 {
@@ -1859,7 +1859,7 @@ namespace METAbolt
 
         private void textBox5_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText.StartsWith("http://slurl."))
+            if (e.LinkText.StartsWith("http://slurl.", StringComparison.CurrentCultureIgnoreCase))
             {
                 try
                 {
@@ -1868,9 +1868,9 @@ namespace METAbolt
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
                     string sim = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
                 }
@@ -1886,9 +1886,9 @@ namespace METAbolt
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
                     string sim = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
                 }
@@ -1924,13 +1924,13 @@ namespace METAbolt
                 //string[] split = e.LinkText.Split(new Char[] { '/' });
                 UUID uuid = (UUID)split[7].ToString();
 
-                if (uuid != UUID.Zero && split[6].ToString().ToLower() == "group")
+                if (uuid != UUID.Zero && split[6].ToString().ToLower(CultureInfo.CurrentCulture) == "group")
                 {
                     frmGroupInfo frm = new frmGroupInfo(uuid, instance);
                     frm.Show();
                 }
             }
-            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
+            else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCultureIgnoreCase) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCultureIgnoreCase) || e.LinkText.StartsWith("https://", StringComparison.CurrentCultureIgnoreCase))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
             }

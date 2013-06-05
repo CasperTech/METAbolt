@@ -84,7 +84,7 @@ namespace METAbolt
 
             instance.Client.Self.MuteList.ForEach((MuteEntry entry) =>
             {
-                string mutetype = string.Empty;
+                //string mutetype = string.Empty;
 
                 ListViewItem item = new ListViewItem(entry.Name);
                 item.Tag = entry;

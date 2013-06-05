@@ -52,7 +52,7 @@ using OpenMetaverse.Voice;
 using PopupControl;
 using NHunspell;
 using System.Runtime.InteropServices;
-
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -81,7 +81,7 @@ namespace METAbolt
         //private string clickedurl = string.Empty;
         private bool avrezzed = false;
         //private bool pasted = false;
-        private uint[] localids;
+        //private uint[] localids;
         private int newsize = 140;
         //private bool listnerdisposed = true;
         private System.Timers.Timer sitTimer;
@@ -707,7 +707,7 @@ namespace METAbolt
 
                     if (!string.IsNullOrEmpty(missing))
                     {
-                        if (missing.EndsWith(", "))
+                        if (missing.EndsWith(", ", StringComparison.CurrentCultureIgnoreCase))
                         {
                             missing = missing.Remove(missing.Length - 2);   
                         }
@@ -767,7 +767,7 @@ namespace METAbolt
                 //
             }
 
-            localids = new uint[prims.Count];
+            //localids = new uint[prims.Count];
             int i = 0;
 
             //if (listnerdisposed)
@@ -813,7 +813,7 @@ namespace METAbolt
                     if (!instance.State.IsSitting)
                     {
                         instance.State.SetSitting(true, e.Properties.ObjectID);
-                        localids = null;
+                        //localids = null;
                         //listnerdisposed = true;
 
                         Logger.Log("AUTOSIT: Found sit object and sitting", Helpers.LogLevel.Info);
@@ -921,33 +921,37 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[0].Tag = (object)"angelsmile;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.AngrySmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[1].Tag = "angry;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.Beer);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[2].Tag = "beer;";
-
-            //_menuItem.BarBreak = true;
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.BrokenHeart);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[3].Tag = "brokenheart;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.bye);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[4].Tag = "bye";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.clap);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[5].Tag = "clap;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.ConfusedSmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -955,16 +959,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[6].Tag = ":S";
 
             _menuItem.BarBreak = true;
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.cool);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[7].Tag = "cool;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.CrySmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[8].Tag = "cry;";
+            //_menuItem.Dispose();
 
             //_menuItem.BarBreak = true;
 
@@ -972,16 +979,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[9].Tag = "devil;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.duh);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[10].Tag = "duh;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.EmbarassedSmile);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[11].Tag = "embarassed;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.happy0037);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -989,16 +999,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[12].Tag = ":)";
 
             _menuItem.BarBreak = true;
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.heart);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[13].Tag = "heart;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.kiss);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[14].Tag = "muah;";
+            //_menuItem.Dispose();
 
             //_menuItem.BarBreak = true;
 
@@ -1006,16 +1019,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[15].Tag = "help ";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.liar);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[16].Tag = "liar;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.lol);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[17].Tag = "lol";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.oops);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -1023,16 +1039,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[18].Tag = "oops";
 
             _menuItem.BarBreak = true;
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.sad);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[19].Tag = ":(";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.shhh);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[20].Tag = "shhh";
+            //_menuItem.Dispose();
 
             //_menuItem.BarBreak = true;
 
@@ -1040,16 +1059,19 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[21].Tag = "sigh ";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.silenced);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[22].Tag = ":X";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.think);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[23].Tag = "thinking;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.ThumbsUp);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -1057,16 +1079,19 @@ namespace METAbolt
             cmenu_Emoticons.MenuItems[24].Tag = "thumbsup;";
 
             _menuItem.BarBreak = true;
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.whistle);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[25].Tag = "whistle;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.wink);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[26].Tag = ";)";
+            //_menuItem.Dispose();
 
             //_menuItem.BarBreak = true;
 
@@ -1074,11 +1099,13 @@ namespace METAbolt
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[27].Tag = "wow ";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.yawn);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
             cmenu_Emoticons.MenuItems.Add(_menuItem);
             cmenu_Emoticons.MenuItems[28].Tag = "yawn;";
+            //_menuItem.Dispose();
 
             _menuItem = new EmoticonMenuItem(Smileys.zzzzz);
             _menuItem.Click += new EventHandler(cmenu_Emoticons_Click);
@@ -1240,7 +1267,7 @@ namespace METAbolt
                 //client.Grid.CoarseLocationUpdate += new EventHandler<CoarseLocationUpdateEventArgs>(Grid_OnCoarseLocationUpdate);
             }
 
-            textBox1.Text = "Range: " + instance.Config.CurrentConfig.RadarRange.ToString() + "m"; 
+            textBox1.Text = "Range: " + instance.Config.CurrentConfig.RadarRange.ToString(CultureInfo.CurrentCulture) + "m"; 
         }
 
         public void RemoveEvents()
@@ -1319,15 +1346,15 @@ namespace METAbolt
                 {
                     if (e.Type == MeanCollisionType.Bump)
                     {
-                        cty = "Bumped in by: (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
+                        cty = "Bumped in by: (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
                     }
                     else if (e.Type == MeanCollisionType.LLPushObject)
                     {
-                        cty = "Pushed by: (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
+                        cty = "Pushed by: (" + e.Time.ToString(CultureInfo.CurrentCulture) + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
                     }
                     else if (e.Type == MeanCollisionType.PhysicalObjectCollide)
                     {
-                        cty = "Physical object collided (" + e.Time.ToString() + " - " + e.Magnitude.ToString() + "): ";
+                        cty = "Physical object collided (" + e.Time.ToString() + " - " + e.Magnitude.ToString(CultureInfo.CurrentCulture) + "): ";
                     }
 
                     chatManager.PrintAlertMessage(cty + e.Aggressor.ToString());
@@ -1513,24 +1540,24 @@ namespace METAbolt
                 double dist = Math.Round(Vector3d.Distance(ConverToGLobal(selfpos), ConverToGLobal(avpos)), MidpointRounding.ToEven);
 
                 string sym = string.Empty;
-                
-                sym = "(Alt.: " + avpos.Z.ToString("#0") + "m)";
+
+                sym = "(Alt.: " + avpos.Z.ToString("#0", CultureInfo.CurrentCulture) + "m)";
 
                 if (clr == Color.RoyalBlue)
                 {
                     if (avpos.Z == 1020f)
                     {
                         //sDist = "[???m] ";
-                        sDist = ">[" + Convert.ToInt32(dist).ToString() + "m] ";
+                        sDist = ">[" + Convert.ToInt32(dist).ToString(CultureInfo.CurrentCulture) + "m] ";
                     }
                     else
                     {
-                        sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
+                        sDist = "[" + Convert.ToInt32(dist).ToString(CultureInfo.CurrentCulture) + "m] ";
                     }
                 }
                 else
                 {
-                    sDist = "[" + Convert.ToInt32(dist).ToString() + "m] ";
+                    sDist = "[" + Convert.ToInt32(dist).ToString(CultureInfo.CurrentCulture) + "m] ";
                 }
 
                 string rentry = " " + sym + state;
@@ -1956,7 +1983,7 @@ namespace METAbolt
                 return;
             }
 
-            if (e.FromName.ToLower() == netcom.LoginOptions.FullName.ToLower())
+            if (e.FromName.ToLower(CultureInfo.CurrentCulture) == netcom.LoginOptions.FullName.ToLower(CultureInfo.CurrentCulture))
             {
                 return;
             }
@@ -2095,24 +2122,27 @@ namespace METAbolt
         {
             string[] inputArgs = input.Split(' ');
 
-            if (inputArgs[0].StartsWith("//")) //Chat on previously used channel
+            if (inputArgs[0].StartsWith("//", StringComparison.CurrentCultureIgnoreCase)) //Chat on previously used channel
             {
                 string message = string.Join(" ", inputArgs).Substring(2);
                 netcom.ChatOut(message, type, previousChannel);
             }
-            else if (inputArgs[0].StartsWith("/")) //Chat on specific channel
+            else if (inputArgs[0].StartsWith("/", StringComparison.CurrentCultureIgnoreCase)) //Chat on specific channel
             {
                 string message = string.Empty;
                 string number = inputArgs[0].Substring(1);
 
                 int channel = 0;
-                int.TryParse(number, out channel);
+                bool pres = int.TryParse(number, out channel);
+
+                if (!pres) channel = 0;
+
                 if (channel < 0) channel = 0;
 
                 // VidaOrenstein on METAforum fix
                 //string message = string.Join(" ", inputArgs, 1, inputArgs.GetUpperBound(0) - 1);
 
-                if (input.StartsWith("/me "))
+                if (input.StartsWith("/me ", StringComparison.CurrentCultureIgnoreCase))
                 {
                     message = input;
                 }
@@ -2194,7 +2224,7 @@ namespace METAbolt
             {
                 tbSay.Enabled = true;
 
-                if (!cbxInput.Text.StartsWith("/"))
+                if (!cbxInput.Text.StartsWith("/", StringComparison.CurrentCultureIgnoreCase))
                 {
                     if (!instance.State.IsTyping)
                         instance.State.SetTyping(true);
@@ -2519,7 +2549,7 @@ namespace METAbolt
 
             if (av == UUID.Zero || av == null) return;
 
-            string name = instance.avnames[av];
+            //string name = instance.avnames[av];
 
             Avatar sav = new Avatar();
             sav = CurrentSIM.ObjectsAvatars.Find(delegate(Avatar fa)
@@ -2633,7 +2663,7 @@ namespace METAbolt
 
         private void rtbChat_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText.StartsWith("http://slurl."))
+            if (e.LinkText.StartsWith("http://slurl.", StringComparison.CurrentCultureIgnoreCase))
             {
                 try
                 {
@@ -2642,16 +2672,16 @@ namespace METAbolt
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, simr, (float)x, (float)y, (float)z, false)).Show();
                 }
                 catch { ; }
 
             }
-            else if (e.LinkText.StartsWith("http://maps.secondlife"))
+            else if (e.LinkText.StartsWith("http://maps.secondlife", StringComparison.CurrentCultureIgnoreCase))
             {
                 try
                 {
@@ -2660,9 +2690,9 @@ namespace METAbolt
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
                     string simr = split[4].ToString();
-                    double x = Convert.ToDouble(split[5].ToString());
-                    double y = Convert.ToDouble(split[6].ToString());
-                    double z = Convert.ToDouble(split[7].ToString());
+                    double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                    double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                     (new frmTeleport(instance, simr, (float)x, (float)y, (float)z, true)).Show();
                 }
@@ -2681,7 +2711,7 @@ namespace METAbolt
                     aavname = avnamesplit[0].ToString();
 
                     split = e.LinkText.Split(new Char[] { ':' });
-                    string elink = split[2].ToString();
+                    string elink = split[2].ToString(CultureInfo.CurrentCulture);
                     split = elink.Split(new Char[] { '&' });
 
                     UUID avid = (UUID)split[0].ToString();
@@ -2697,17 +2727,17 @@ namespace METAbolt
                 string[] split = encoded.Split(new Char[] { '/' });
                 UUID uuid = (UUID)split[7].ToString();
 
-                if (uuid != UUID.Zero && split[6].ToString().ToLower() == "group")
+                if (uuid != UUID.Zero && split[6].ToString(CultureInfo.CurrentCulture).ToLower(CultureInfo.CurrentCulture) == "group")
                 {
                     frmGroupInfo frm = new frmGroupInfo(uuid, instance);
                     frm.Show();
                 }
-                else if (uuid != UUID.Zero && split[6].ToString().ToLower() == "agent")
+                else if (uuid != UUID.Zero && split[6].ToString(CultureInfo.CurrentCulture).ToLower(CultureInfo.CurrentCulture) == "agent")
                 {
                     (new frmProfile(instance, string.Empty, uuid)).Show();
                 }
             }
-            else if (e.LinkText.StartsWith("http://") || e.LinkText.StartsWith("ftp://") || e.LinkText.StartsWith("https://"))
+            else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCultureIgnoreCase) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCultureIgnoreCase) || e.LinkText.StartsWith("https://", StringComparison.CurrentCultureIgnoreCase))
             {
                 System.Diagnostics.Process.Start(e.LinkText);
             }
@@ -3284,13 +3314,13 @@ namespace METAbolt
                     {
                         //ssim = client.Network.Simulators[0];
 
-                        label4.Text = "Ttl objects: " + ssim.Stats.Objects.ToString();
-                        label5.Text = "Scripted objects: " + ssim.Stats.ScriptedObjects.ToString();
+                        label4.Text = "Ttl objects: " + ssim.Stats.Objects.ToString(CultureInfo.CurrentCulture);
+                        label5.Text = "Scripted objects: " + ssim.Stats.ScriptedObjects.ToString(CultureInfo.CurrentCulture);
                         label8.Text = client.Network.CurrentSim.Name;
 
                         Simulator csim = client.Network.CurrentSim;
 
-                        label9.Text = "FPS: " + csim.Stats.FPS.ToString();
+                        label9.Text = "FPS: " + csim.Stats.FPS.ToString(CultureInfo.CurrentCulture);
 
                         // Maximum value changes for OSDGrid compatibility V 0.9.32.0
 
@@ -3301,7 +3331,7 @@ namespace METAbolt
 
                         progressBar7.Value = csim.Stats.FPS;
 
-                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString("0.00");
+                        label15.Text = "Dilation: " + csim.Stats.Dilation.ToString("0.00", CultureInfo.CurrentCulture);
 
                         if ((int)(csim.Stats.Dilation * 10) > progressBar1.Maximum)
                         {
@@ -3344,7 +3374,7 @@ namespace METAbolt
                         label12.Text = "na";
                     }
 
-                    strInfo = string.Format("Ttl Avatars: {0}", ssim.AvatarPositions.Count);
+                    strInfo = string.Format(CultureInfo.CurrentCulture, "Ttl Avatars: {0}", ssim.AvatarPositions.Count);
                     label6.Text = strInfo;
 
                     int i = 0;
@@ -3375,6 +3405,8 @@ namespace METAbolt
                             myrect = new Rectangle(((int)Math.Round(myPos.X, 0)) - (rg / 4), (255 - ((int)Math.Round(myPos.Y, 0))) - (rg / 4 - 4), rg / 2 + 2, rg / 2 + 2);
                             //semiTransBrush = new SolidBrush(Color.FromArgb(128, 0, 245, 225));
                             g.DrawEllipse(new Pen(Color.Blue, 1), myrect);
+
+                            semiTransBrush.Dispose();
                         }
                     }
 
@@ -3592,7 +3624,7 @@ namespace METAbolt
 
                 foreach (InventoryBase o in invroot)
                 {
-                    if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                    if (o.Name.ToLower(CultureInfo.CurrentCulture) == "favorites" || o.Name.ToLower(CultureInfo.CurrentCulture) == "my favorites")
                     {
                         if (o is InventoryFolder)
                         {
@@ -3686,7 +3718,7 @@ namespace METAbolt
                 {
                     UUID akey = (UUID)CurrentLoc.LocationName;
 
-                    string apstn = "\nCoords.: " + Math.Round(CurrentLoc.Position.X).ToString() + "/" + Math.Round(CurrentLoc.Position.Y).ToString() + "/" + Math.Round(CurrentLoc.Position.Z).ToString();
+                    string apstn = "\nCoords.: " + Math.Round(CurrentLoc.Position.X).ToString(CultureInfo.CurrentCulture) + "/" + Math.Round(CurrentLoc.Position.Y).ToString(CultureInfo.CurrentCulture) + "/" + Math.Round(CurrentLoc.Position.Z).ToString(CultureInfo.CurrentCulture);
 
                     world.Cursor = Cursors.Hand;
 
@@ -4369,13 +4401,13 @@ namespace METAbolt
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             vgate.MicLevel = trackBar1.Value;
-            toolTip1.SetToolTip(trackBar1, "Volume: " + trackBar1.Value.ToString()); 
+            toolTip1.SetToolTip(trackBar1, "Volume: " + trackBar1.Value.ToString(CultureInfo.CurrentCulture)); 
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             vgate.SpkrLevel = trackBar2.Value;
-            toolTip1.SetToolTip(trackBar2, "Volume: " + trackBar2.Value.ToString());
+            toolTip1.SetToolTip(trackBar2, "Volume: " + trackBar2.Value.ToString(CultureInfo.CurrentCulture));
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -4669,6 +4701,9 @@ namespace METAbolt
                         ToolStripSeparator sep = new ToolStripSeparator();
                         tsFavs.Items.Add(sep);
                         //}
+
+                        //sep.Dispose(); 
+                        //btn.Dispose(); 
                     }
                 }
             }
@@ -4676,7 +4711,7 @@ namespace METAbolt
 
         private void FavsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string cbtn = sender.ToString();
+            //string cbtn = sender.ToString();
 
             ToolStripButton btn = (ToolStripButton)sender;
             UUID landmark = new UUID();

@@ -34,6 +34,7 @@ using OpenMetaverse;
 using System.Media;
 using ExceptionReporting;
 using System.Threading;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -275,7 +276,7 @@ namespace METAbolt
             foreach (KeyValuePair<string, Dictionary<string, string>> fr in fgrps)
             {
                 string header = fr.Key.ToString();
-                Dictionary<string, string> rec = fr.Value;
+                //Dictionary<string, string> rec = fr.Value;
 
                 Dictionary<string, string> grps;
 
@@ -597,9 +598,9 @@ namespace METAbolt
 
                 LoadFriendGroups();
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message; 
+                //string exp = ex.Message; 
             }
         }
 
@@ -615,7 +616,7 @@ namespace METAbolt
             foreach (KeyValuePair<string, Dictionary<string, string>> fr in fgrps)
             {
                 string header = fr.Key.ToString();
-                Dictionary<string, string> rec = fr.Value;
+                //Dictionary<string, string> rec = fr.Value;
 
                 cbofgroups.Items.Add(header);
                 lbGroups.Items.Add(header);   
@@ -665,7 +666,7 @@ namespace METAbolt
                 {
                     foreach (FriendInfo friend in flist)
                     {
-                        if (friend.Name.ToLower() == s.Value.ToLower())
+                        if (friend.Name.ToLower(CultureInfo.CurrentCulture) == s.Value.ToLower(CultureInfo.CurrentCulture))
                         {
                             lbxFriends.Items.Add(new FriendsListItem(friend));
                         }

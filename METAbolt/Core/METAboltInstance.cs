@@ -678,7 +678,9 @@ namespace METAbolt
                 return;
             }
 
-            DataSet dset = new DataSet();
+            DataSet dset = new DataSet(); 
+            dset.Locale = CultureInfo.CurrentCulture;
+
             FileStream fstr = null;
 
             try
@@ -697,7 +699,7 @@ namespace METAbolt
                 {
                     DataTable dtbl = dset.Tables[0];
 
-                    fstr.Close();
+                    fstr.Dispose();
                     dset.Dispose();
 
                     giveritems = dtbl;
@@ -705,7 +707,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    fstr.Close();
+                    fstr.Dispose();
                     dset.Dispose();
 
                     DataTable tbl = MakeGiverDataTable();
@@ -745,6 +747,7 @@ namespace METAbolt
         private DataTable MakeGiverDataTable()
         {
             DataTable dtbl = new DataTable("list");
+            dtbl.Locale = CultureInfo.CurrentCulture;
             DataColumn myColumn = new DataColumn();
 
             myColumn.DataType = System.Type.GetType("System.String");
@@ -774,6 +777,11 @@ namespace METAbolt
 
             dtbl.PrimaryKey = keys;
 
+            myColumn.Dispose();
+            myColumn1.Dispose();
+            myColumn2.Dispose();
+            myColumn3.Dispose();
+
             return dtbl;
         }
 
@@ -781,6 +789,7 @@ namespace METAbolt
         {
             DataColumn myColumn = new DataColumn();
             DataTable dtbl = new DataTable("history");
+            dtbl.Locale = CultureInfo.CurrentCulture; 
 
             myColumn.DataType = System.Type.GetType("System.String");
             myColumn.ColumnName = "time";
@@ -1128,7 +1137,7 @@ namespace METAbolt
                 dte = TimeZoneInfo.ConvertTime(startTime, TimeZoneInfo.Utc, tst);
             }
 
-            string prefix = dte.ToString("[HH:mm] ");
+            string prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
 
             return prefix;
         }

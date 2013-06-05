@@ -333,7 +333,7 @@ namespace METAbolt
 
         private void InitializeAgentUpdateTimer()
         {
-            agentUpdateTicker = new System.Timers.Timer(250);
+            agentUpdateTicker = new System.Timers.Timer(1000);
             agentUpdateTicker.Elapsed += new ElapsedEventHandler(agentUpdateTicker_Elapsed);
             agentUpdateTicker.Enabled = true;
         }

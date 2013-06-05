@@ -32,6 +32,7 @@ using System.Windows.Forms;
 using SLNetworkComm;
 using OpenMetaverse;
 using OpenMetaverse.Assets;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -228,15 +229,15 @@ namespace METAbolt
             {
                 text = body.Trim();
 
-                int pos = text.IndexOf("Text length", 0);
+                int pos = text.IndexOf("Text length", 0, StringComparison.CurrentCultureIgnoreCase);
                 pos += 11;
 
-                lheader = text.Substring(0, pos).ToString();
+                lheader = text.Substring(0, pos).ToString(CultureInfo.CurrentCulture);
 
                 text = text.Substring(pos).Trim();
 
                 // get the first lf
-                pos = text.IndexOf("\n", 0);
+                pos = text.IndexOf("\n", 0, StringComparison.CurrentCultureIgnoreCase);
 
                 if (pos > -1)
                 {
@@ -695,13 +696,13 @@ namespace METAbolt
         private void GetCurrentLine()
         {
             int linenumber = rtbNotecard.GetLineFromCharIndex(rtbNotecard.SelectionStart) + 1;
-            tsLn.Text = "Ln " + linenumber.ToString();
+            tsLn.Text = "Ln " + linenumber.ToString(CultureInfo.CurrentCulture);
         }
 
         private void GetCurrentCol()
         {
             int colnumber = rtbNotecard.SelectionStart - rtbNotecard.GetFirstCharIndexOfCurrentLine() + 1;
-            tsCol.Text = "Ln " + colnumber.ToString();
+            tsCol.Text = "Ln " + colnumber.ToString(CultureInfo.CurrentCulture);
         }
 
         private void rtbNotecard_TextChanged(object sender, EventArgs e)

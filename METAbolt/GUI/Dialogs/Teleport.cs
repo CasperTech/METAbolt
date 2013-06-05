@@ -36,6 +36,7 @@ using SLNetworkComm;
 using System.Net;
 using System.Diagnostics;
 using ExceptionReporting;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -415,8 +416,8 @@ namespace METAbolt
                 {
                     peeps = " people";
                 }
-                
-                string s = System.Convert.ToString(itemToDraw.Region.Agents);
+
+                string s = System.Convert.ToString(itemToDraw.Region.Agents, CultureInfo.CurrentCulture);
 
                 e.Graphics.DrawString(s + peeps, e.Font, textBrush, new PointF(leftTextMargin + stringSize.Width + 6.0f, topTextMargin));
             }
@@ -489,7 +490,7 @@ namespace METAbolt
                 {
                     mapurl = "http://maps.secondlife.com/secondlife/";
                 }
-                string surl = mapurl + txtRegion.Text.Trim() + "/" + nudX.Value.ToString() + "/" + nudY.Value.ToString() + "/" + nudZ.Value.ToString();
+                string surl = mapurl + txtRegion.Text.Trim() + "/" + nudX.Value.ToString(CultureInfo.CurrentCulture) + "/" + nudY.Value.ToString(CultureInfo.CurrentCulture) + "/" + nudZ.Value.ToString(CultureInfo.CurrentCulture);
                 System.Diagnostics.Process.Start(@surl);
             }
         }

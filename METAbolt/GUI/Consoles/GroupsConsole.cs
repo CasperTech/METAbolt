@@ -36,7 +36,8 @@ using SLNetworkComm;
 using OpenMetaverse.Packets;
 using ExceptionReporting;
 using System.Threading;
-using System.Linq;  
+using System.Linq;
+using System.Globalization;
 
 
 // Group List user control
@@ -217,10 +218,10 @@ namespace METAbolt
                 {
                     picBusy.Visible = false;
                     gbQuickInfo.Visible = true;
-                    label7.Text = "Ttl members: " + selgrp.GroupMembershipCount.ToString();
-                    label8.Text = "Ttl roles: " + selgrp.GroupRolesCount.ToString();
-                    label9.Text = "Joining fee: L$" + selgrp.MembershipFee.ToString();
-                    label10.Text = "Open enrolment: " + selgrp.OpenEnrollment.ToString();
+                    label7.Text = "Ttl members: " + selgrp.GroupMembershipCount.ToString(CultureInfo.CurrentCulture);
+                    label8.Text = "Ttl roles: " + selgrp.GroupRolesCount.ToString(CultureInfo.CurrentCulture);
+                    label9.Text = "Joining fee: L$" + selgrp.MembershipFee.ToString(CultureInfo.CurrentCulture);
+                    label10.Text = "Open enrolment: " + selgrp.OpenEnrollment.ToString(CultureInfo.CurrentCulture);
                 }));
         }
 

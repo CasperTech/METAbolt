@@ -66,7 +66,7 @@ namespace METAbolt
         private string textfont = "Tahoma";
         private string textfontstyle = "Regular";
         private float textfontsize = 8.5f;
-        private bool loading = true;
+        //private bool loading = true;
         //private bool restart = false;
 
         public PrefGeneralConsole(METAboltInstance instance)
@@ -143,7 +143,7 @@ namespace METAbolt
             catch
             {
                 tBar1.Value = config.CurrentConfig.RadarRange = tBar1.Maximum;
-                MessageBox.Show("Your radar setting was greater than the maximum allowed.\nIt has been changed to " + tBar1.Maximum.ToString(), "METAbolt"); 
+                MessageBox.Show("Your radar setting was greater than the maximum allowed.\nIt has been changed to " + tBar1.Maximum.ToString(CultureInfo.CurrentCulture), "METAbolt"); 
             }
 
             textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
@@ -181,7 +181,7 @@ namespace METAbolt
                 trackBar1.Enabled = true;
 
                 trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);
-                label19.Text = trackBar1.Value.ToString();
+                label19.Text = trackBar1.Value.ToString(CultureInfo.CurrentCulture);
             }
             else
             {
@@ -909,7 +909,7 @@ namespace METAbolt
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            label19.Text = trackBar1.Value.ToString();    
+            label19.Text = trackBar1.Value.ToString(CultureInfo.CurrentCulture);    
         }
 
         private void chkDisableRadar_CheckedChanged(object sender, EventArgs e)

@@ -31,7 +31,7 @@ namespace METAbolt
         private string dicfile = string.Empty;
         private string dic = string.Empty;
         private bool ischat = true;
-        private string tabname = string.Empty;
+        //private string tabname = string.Empty;
         private UUID target = UUID.Zero;
         private UUID session = UUID.Zero;
         private bool isgroup = false;
@@ -58,9 +58,9 @@ namespace METAbolt
                 hunspell.Load(dir + afffile, dir + dicfile);   //("en_us.aff", "en_us.dic");
                 ReadWords();
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message; 
+                //string exp = ex.Message; 
             }
 
             //words = sentence;
@@ -94,9 +94,9 @@ namespace METAbolt
                 hunspell.Load(dir + afffile, dir + dicfile);   //("en_us.aff", "en_us.dic");
                 ReadWords();
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message;
+                //string exp = ex.Message;
             }
 
             //words = sentence;

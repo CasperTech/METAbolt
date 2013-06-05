@@ -78,7 +78,6 @@ namespace METAbolt
 				
 				if (this.Items[e.Index].GetType() == typeof(ICItem))  //Is It A ImageCombo Item ¿
 				{															
-
 					ICItem ICCurrItem = (ICItem)this.Items[e.Index]; //Get Current Item
 
 					//Obtain Current Item's ForeColour
@@ -87,19 +86,21 @@ namespace METAbolt
 					//Obtain Current Item's Font
                     Font ICCurrFont = ICCurrItem.ICHighLight ? new Font(e.Font, FontStyle.Bold) : e.Font;
 
-					if (ICCurrItem.ICImageIndex != -1) //If In Actual List ( Which Needs Images )
-					{
-						//Draw Image
-						this.ICImageList.Draw(e.Graphics, e.Bounds.Left, e.Bounds.Top, ICCurrItem.ICImageIndex);
+                    if (ICCurrItem.ICImageIndex != -1) //If In Actual List ( Which Needs Images )
+                    {
+                        //Draw Image
+                        this.ICImageList.Draw(e.Graphics, e.Bounds.Left, e.Bounds.Top, ICCurrItem.ICImageIndex);
 
-						//Then, Draw Text In Specified Bounds
+                        //Then, Draw Text In Specified Bounds
                         e.Graphics.DrawString(ICCurrItem.ICText, ICCurrFont, new SolidBrush(ICCurrForeColour), e.Bounds.Left + ICImagList.ImageSize.Width, e.Bounds.Top);
-					}
-					else //No Image Needed, Index = -1
+                    }
+                    else //No Image Needed, Index = -1
+                    {
+                        //Just Draw The Indented Text
+                        e.Graphics.DrawString(ICCurrItem.ICText, ICCurrFont, new SolidBrush(ICCurrForeColour), e.Bounds.Left + ICImagList.ImageSize.Width, e.Bounds.Top);
+                    }
 
-						//Just Draw The Indented Text
-						e.Graphics.DrawString(ICCurrItem.ICText, ICCurrFont, new SolidBrush(ICCurrForeColour), e.Bounds.Left + ICImagList.ImageSize.Width, e.Bounds.Top);
-
+                    ICCurrFont.Dispose();
 				}
 				else //Not An ImageCombo Box Item
 				

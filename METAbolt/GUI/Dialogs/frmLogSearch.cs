@@ -34,6 +34,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using ExceptionReporting;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -119,7 +120,7 @@ namespace METAbolt
 
                 if (filetype != "ALL")
                 {
-                    if (finname.ToUpper().StartsWith(filetype))
+                    if (finname.ToUpper(CultureInfo.CurrentCulture).StartsWith(filetype, StringComparison.CurrentCultureIgnoreCase))
                     {
                         LogFiles.Add(inFile);
                         listBox1.Items.Add(finname);
@@ -132,7 +133,7 @@ namespace METAbolt
                 }
             }
 
-            label3.Text = "Total " + listBox1.Items.Count.ToString() + " files.";   
+            label3.Text = "Total " + listBox1.Items.Count.ToString(CultureInfo.CurrentCulture) + " files.";   
         }
 
         private static int CompareFileByDate(FileSystemInfo f1, FileSystemInfo f2)
@@ -146,10 +147,10 @@ namespace METAbolt
             string name = s_arr[s_arr.Length - 1];   
 
             StreamReader testTxt = new StreamReader(fName);
-            string allRead = testTxt.ReadToEnd().ToLower();
-            testTxt.Close();
+            string allRead = testTxt.ReadToEnd().ToLower(CultureInfo.CurrentCulture);
+            //testTxt.Close();
 
-            string regMatch = textBox1.Text.ToLower(); 
+            string regMatch = textBox1.Text.ToLower(CultureInfo.CurrentCulture); 
 
             if (Regex.IsMatch(allRead, regMatch))
             {
@@ -184,7 +185,7 @@ namespace METAbolt
                     listBox2.Items.Add(term);  
                 }
 
-                label4.Text = "Search term found in " + FoundFiles.Count.ToString() + " files:";  
+                label4.Text = "Search term found in " + FoundFiles.Count.ToString(CultureInfo.CurrentCulture) + " files:";  
                 //button2.Enabled = button3.Enabled = true;
 
                 if (FoundFiles.Count > 1)

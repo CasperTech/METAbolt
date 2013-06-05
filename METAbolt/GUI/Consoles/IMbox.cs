@@ -131,9 +131,9 @@ namespace METAbolt
             if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName))
                 return;
 
-            if (tabsconsole.tabs.ContainsKey(e.IM.FromAgentName.ToLower()))
+            if (tabsconsole.tabs.ContainsKey(e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)))
             {
-                if (tabsconsole.tabs[e.IM.FromAgentName.ToLower()].Selected)
+                if (tabsconsole.tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)].Selected)
                 {
                     return;
                 }
@@ -142,7 +142,7 @@ namespace METAbolt
             switch (e.IM.Dialog)
             {
                 case InstantMessageDialog.MessageFromAgent:
-                    if (e.IM.FromAgentName.ToLower() == "second life")
+                    if (e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture) == "second life")
                     {
                         return;
                     }
@@ -190,7 +190,7 @@ namespace METAbolt
             }
             else
             {
-                string fullName = Convert.ToString(lbxIMs.Items[s]);
+                string fullName = Convert.ToString(lbxIMs.Items[s], CultureInfo.CurrentCulture);
                 string imcount = string.Empty;
                 int cnt = 0;
 
@@ -207,11 +207,11 @@ namespace METAbolt
                         try
                         {
                             imcount = splits1[0].ToString().Trim();
-                            cnt = Convert.ToInt32(imcount) + 1;
+                            cnt = Convert.ToInt32(imcount, CultureInfo.CurrentCulture) + 1;
                         }
                         catch { cnt = 1; }
 
-                        fullName = TabAgentName + " (" + cnt.ToString() + ")";
+                        fullName = TabAgentName + " (" + cnt.ToString(CultureInfo.CurrentCulture) + ")";
 
                         lbxIMs.BeginUpdate();
                         lbxIMs.Items[s] = fullName;
@@ -242,7 +242,7 @@ namespace METAbolt
                 tabsconsole.tabs["imbox"].Unhighlight();
             }
 
-            label3.Text = lbxIMs.Items.Count.ToString();
+            label3.Text = lbxIMs.Items.Count.ToString(CultureInfo.CurrentCulture);
             instance.State.UnReadIMs = lbxIMs.Items.Count;
 
             lbxIMs.SelectedIndex = -1;

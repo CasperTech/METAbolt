@@ -100,7 +100,11 @@ namespace METAbolt
                     PingEventArgs pe = new PingEventArgs("Ping failed for an unknown reason");
                     Change(this, pe);
                 }
+
+                reply = null; 
             }
+
+            ping.Dispose();            
 
             //statistics calculations
             long averageTime = -1;

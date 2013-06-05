@@ -146,6 +146,8 @@ namespace METAbolt
                             FormFlash.Flash(instance.MainForm);
 
                             MessageBox.Show("Download complete. \n\nLook for 'METAbrain.zip' \n\nand unzip the contents into the folder \nthat's now visible in Windows Explorer.", "METAbrain");
+
+                            webClient.Dispose(); 
                         }
                         catch (Exception ex)
                         {

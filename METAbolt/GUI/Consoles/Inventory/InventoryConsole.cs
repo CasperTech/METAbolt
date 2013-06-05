@@ -39,6 +39,7 @@ using System.Threading;
 using ExceptionReporting;
 using TreeViewUtilities;
 using System.Runtime.InteropServices;
+using System.Globalization;
 
 // Some parts of this code has been adopted from OpenMetaverse.GUI
 //
@@ -75,7 +76,7 @@ namespace METAbolt
         //private bool nodecol = false;
         private UUID favfolder = UUID.Zero;
         private Dictionary<UUID, InventoryItem> inventoryitems = new Dictionary<UUID, InventoryItem>();
-        private bool AppearanceSet = false;
+        //private bool AppearanceSet = false;
         //private TreeViewWalker treeViewWalker;
         private InventoryFolder CoF;
         private bool gotCoF = false;
@@ -325,7 +326,7 @@ namespace METAbolt
                 return;
             }
 
-            AppearanceSet = true;
+            //AppearanceSet = true;
 
             //CheckAttachments();
             //client.Appearance.RequestAgentWearables();  
@@ -354,7 +355,7 @@ namespace METAbolt
 
                 foreach (InventoryBase o in invroot)
                 {
-                    if (o.Name.ToLower() == "current outfit")
+                    if (o.Name.ToLower(CultureInfo.CurrentCulture) == "current outfit")
                     {
                         if (!gotCoF)
                         {
@@ -369,7 +370,7 @@ namespace METAbolt
 
                     if (!instance.Config.CurrentConfig.DisableFavs)
                     {
-                        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                        if (o.Name.ToLower(CultureInfo.CurrentCulture) == "favorites" || o.Name.ToLower(CultureInfo.CurrentCulture) == "my favorites")
                         {
                             if (o is InventoryFolder)
                             {
@@ -381,7 +382,7 @@ namespace METAbolt
                     }
                     else
                     {
-                        if (o.Name.ToLower() == "favorites" || o.Name.ToLower() == "my favorites")
+                        if (o.Name.ToLower(CultureInfo.CurrentCulture) == "favorites" || o.Name.ToLower(CultureInfo.CurrentCulture) == "my favorites")
                         {
                             if (o is InventoryFolder)
                             {
@@ -655,7 +656,7 @@ namespace METAbolt
             {
                 panel2.Visible = false;
 
-                TreeNode node = treeView1.SelectedNode;
+                //TreeNode node = treeView1.SelectedNode;
 
                 //InventoryImageConsole.vi 
                 InventoryItemConsole console = new InventoryItemConsole(instance, (InventoryItem)io);
@@ -858,8 +859,8 @@ namespace METAbolt
 
             if (treeView1.SelectedNode == null)
             {
-                InventoryFolder rootFolder = client.Inventory.Store.RootFolder;
-                client.Inventory.CreateFolder(rootFolder.UUID, newFolderName);
+                InventoryFolder rtFolder = client.Inventory.Store.RootFolder;
+                client.Inventory.CreateFolder(rtFolder.UUID, newFolderName);
 
                 return;
             }
@@ -1054,7 +1055,7 @@ namespace METAbolt
         private void tmnuNewNotecard_Click(object sender, EventArgs e)
         {
             string newNotecardName = "New Notecard";
-            string newNotecardDescription = String.Format("{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
+            string newNotecardDescription = String.Format(CultureInfo.CurrentCulture, "{0} created with METAbolt {1}", newNotecardName, DateTime.Now); ;
             string newNotecardContent = string.Empty;
 
             //nodecol = false;
@@ -1275,13 +1276,13 @@ namespace METAbolt
             }
 
             string searchstring = textBox1.Text.Trim();
-            searchstring = searchstring.ToLower();
+            searchstring = searchstring.ToLower(CultureInfo.CurrentCulture);
             Boolean found = false;
 
             foreach (TreeNode tn in treeNode.Nodes)
             {
                 // if the text properties match, color the item
-                if (tn.Text.ToLower().Contains(searchstring))
+                if (tn.Text.ToLower(CultureInfo.CurrentCulture).Contains(searchstring))
                 {
                     tn.BackColor = Color.Yellow;
                     tn.ForeColor = Color.Red;
@@ -1640,7 +1641,7 @@ namespace METAbolt
                     sr.WriteLine(o.ToString());
                 }
 
-                sr.Close();
+                //sr.Close();
                 sr.Dispose();
             }
         }
@@ -1665,7 +1666,7 @@ namespace METAbolt
                         listBox1.Items.Add(s);
                     }
 
-                    sr.Close();
+                    //sr.Close();
                     sr.Dispose();
                 }
             }
@@ -1718,7 +1719,7 @@ namespace METAbolt
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            label4.Text = "Every " + trackBar1.Value.ToString() + " minutes";
+            label4.Text = "Every " + trackBar1.Value.ToString(CultureInfo.CurrentCulture) + " minutes";
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -1823,7 +1824,7 @@ namespace METAbolt
         private void tmnuNewScript_Click(object sender, EventArgs e)
         {
             string newScriptName = "New Script";
-            string newScriptDescription = String.Format("{0} created with METAbolt {1}", newScriptName, DateTime.Now); ;
+            string newScriptDescription = String.Format(CultureInfo.CurrentCulture, "{0} created with METAbolt {1}", newScriptName, DateTime.Now); ;
             string newScriptContent = string.Empty;
 
 
@@ -2057,7 +2058,7 @@ namespace METAbolt
             {
                 if (gotCoF == true)
                 {
-                    InventoryFolder folder = (InventoryFolder)io;
+                    //InventoryFolder folder = (InventoryFolder)io;
 
                     if (io.UUID == CoF.UUID)
                     {
@@ -2080,7 +2081,7 @@ namespace METAbolt
                     }
                     else
                     {
-                        if (sitem.ToLower().Contains("worn"))
+                        if (sitem.ToLower(CultureInfo.CurrentCulture).Contains("worn"))
                         {
                             takeOffToolStripMenuItem.Visible = true;
                             wearToolStripMenuItem.Visible = false;
@@ -2100,7 +2101,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    if (sitem.ToLower().Contains("worn"))
+                    if (sitem.ToLower(CultureInfo.CurrentCulture).Contains("worn"))
                     {
                         takeOffToolStripMenuItem.Visible = true;
                         wearToolStripMenuItem.Visible = false;
@@ -2262,7 +2263,7 @@ namespace METAbolt
 
         private void treeViewWalker_ProcessNode_HighlightMatchingNodes(object sender, ProcessNodeEventArgs e)
         {
-            if (e.Node.Text.ToLower().IndexOf(textBox1.Text.ToLower()) > -1)
+            if (e.Node.Text.ToLower(CultureInfo.CurrentCulture).IndexOf(textBox1.Text.ToLower(CultureInfo.CurrentCulture), StringComparison.CurrentCultureIgnoreCase) > -1)
             {
                 e.Node.BackColor = Color.Yellow;
                 e.Node.ForeColor = Color.Red;
@@ -2474,9 +2475,9 @@ namespace METAbolt
                     treeView1.SelectedNode.ForeColor = Color.RoyalBlue;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                string exp = ex.Message; 
+                //string exp = ex.Message; 
             }
         }
 
@@ -2507,7 +2508,7 @@ namespace METAbolt
                 }
                 catch (Exception ex)
                 {
-                    string exp = ex.Message;
+                    //string exp = ex.Message;
                 }
             }
             else
@@ -2530,9 +2531,9 @@ namespace METAbolt
                         client.Inventory.Remove(remclothing, null);
                         client.Appearance.Detach(item);
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        string exp = ex.Message;
+                        //string exp = ex.Message;
                     }
                 }
                 else if (item.AssetType == AssetType.Link)
