@@ -870,7 +870,7 @@ namespace METAbolt
                     string encoded = HttpUtility.UrlDecode(e.LinkText);
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
-                    string sim = split[4].ToString();
+                    string sim = split[4].ToString(CultureInfo.CurrentCulture);
                     double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
@@ -888,7 +888,7 @@ namespace METAbolt
                     string encoded = HttpUtility.UrlDecode(e.LinkText);
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
-                    string sim = split[4].ToString();
+                    string sim = split[4].ToString(CultureInfo.CurrentCulture);
                     double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
@@ -905,15 +905,15 @@ namespace METAbolt
                     string encoded = HttpUtility.UrlDecode(e.LinkText);
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '#' });
-                    string aavname = split[0].ToString();
+                    string aavname = split[0].ToString(CultureInfo.CurrentCulture);
                     string[] avnamesplit = aavname.Split(new Char[] { '#' });
-                    aavname = avnamesplit[0].ToString();
+                    aavname = avnamesplit[0].ToString(CultureInfo.CurrentCulture);
 
                     split = e.LinkText.Split(new Char[] { ':' });
-                    string elink = split[2].ToString();
+                    string elink = split[2].ToString(CultureInfo.CurrentCulture);
                     split = elink.Split(new Char[] { '&' });
 
-                    UUID avid = (UUID)split[0].ToString();
+                    UUID avid = (UUID)split[0].ToString(CultureInfo.CurrentCulture);
 
                     (new frmProfile(instance, aavname, avid)).Show();
                 }
@@ -925,7 +925,7 @@ namespace METAbolt
                 string encoded = HttpUtility.UrlDecode(e.LinkText);
                 string[] split = encoded.Split(new Char[] { '/' });
                 //string[] split = e.LinkText.Split(new Char[] { '/' });
-                UUID uuid = (UUID)split[7].ToString();
+                UUID uuid = (UUID)split[7].ToString(CultureInfo.CurrentCulture);
 
                 if (uuid != UUID.Zero && split[6].ToString().ToLower(CultureInfo.CurrentCulture) == "group")
                 {

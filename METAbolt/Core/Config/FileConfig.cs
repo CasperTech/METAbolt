@@ -25,6 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using METAbolt.FileINI;
+using System.Globalization;
 
 namespace METAbolt
 {
@@ -68,7 +69,7 @@ namespace METAbolt
         {
             foreach (KeyValuePair<string, Dictionary<string, string>> fr in ini.m_Sections)
             {
-                string header = fr.Key.ToString();
+                string header = fr.Key.ToString(CultureInfo.CurrentCulture);
                 Dictionary<string, string> rec = fr.Value;
 
                 string uuid = string.Empty;
@@ -76,8 +77,8 @@ namespace METAbolt
 
                 foreach (KeyValuePair<string, string> s in rec)
                 {
-                    uuid = s.Key.ToString();
-                    name = s.Value.ToString();  
+                    uuid = s.Key.ToString(CultureInfo.CurrentCulture);
+                    name = s.Value.ToString(CultureInfo.CurrentCulture);  
                 }
 
                 ini.SetValue(header, uuid, name);

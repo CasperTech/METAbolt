@@ -422,7 +422,7 @@ namespace METAbolt
                     break;
             }
 
-            DialogResult sret = MessageBox.Show(e.ObjectName.ToString() + " owned by " + e.ObjectOwnerName + ":\n\n" + smsg, "Script permission...", MessageBoxButtons.OKCancel);
+            DialogResult sret = MessageBox.Show(e.ObjectName.ToString(CultureInfo.CurrentCulture) + " owned by " + e.ObjectOwnerName + ":\n\n" + smsg, "Script permission...", MessageBoxButtons.OKCancel);
 
             if (sret == DialogResult.OK)
             {
@@ -440,13 +440,13 @@ namespace METAbolt
             //e.Message;
             //e.ObjectName;
             //e.url;
-            
-            DialogResult sret = MessageBox.Show(e.ObjectName.ToString() + " owned by " + e.OwnerID.ToString() + ":\n\n" + e.Message, "URL offer...", MessageBoxButtons.OKCancel);
+
+            DialogResult sret = MessageBox.Show(e.ObjectName.ToString(CultureInfo.CurrentCulture) + " owned by " + e.OwnerID.ToString() + ":\n\n" + e.Message, "URL offer...", MessageBoxButtons.OKCancel);
 
             if (sret == DialogResult.OK)
             {
                 //ShellExecute(this.Handle, "open", e.url.ToString(), null, null, 0);
-                System.Diagnostics.Process.Start(@e.URL.ToString());
+                System.Diagnostics.Process.Start(@e.URL.ToString(CultureInfo.CurrentCulture));
             }
         }
 
@@ -1520,7 +1520,7 @@ namespace METAbolt
             }
 
             // Log the message
-            string filename = "CHAT-" + timestamp.Date.ToString() + "-" + client.Self.FirstName + " " + client.Self.LastName + ".txt";
+            string filename = "CHAT-" + timestamp.Date.ToString(CultureInfo.CurrentCulture) + "-" + client.Self.FirstName + " " + client.Self.LastName + ".txt";
 
             filename = filename.Replace("/", "-");
             //filename = filename.Replace(" ", "_");

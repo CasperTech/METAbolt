@@ -463,8 +463,6 @@ namespace METAbolt
             }
         }
 
-        // TODO: This is buggy in libopenmv and causes all sorts of problems
-        // DO NOT enable it until it is fixed
         private void SetLang()
         {
             CultureInfo cult = CultureInfo.CurrentCulture;
@@ -530,16 +528,16 @@ namespace METAbolt
 
                 if (md5.ValidateMachinePasscode(lkey))
                 {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
+                    murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
                 }
                 else
                 {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+                    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
                 }
             }
             else
             {
-                murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+                murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
             }
 
             webBrowser = new WebBrowser();
@@ -566,16 +564,16 @@ namespace METAbolt
 
                 if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
                 {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
+                    murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
                 }
                 else
                 {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+                    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
                 }
             }
             else
             {
-                murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+                murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
             }
 
             webBrowser.Navigate(murl);
@@ -595,7 +593,7 @@ namespace METAbolt
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
                 double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
                 double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
                 double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
@@ -608,7 +606,7 @@ namespace METAbolt
             {
                 // Open up the TP form here
                 string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString();
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
                 double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
                 double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
                 double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
@@ -795,7 +793,7 @@ namespace METAbolt
                     }
                     catch (Exception ex)
                     {
-                        string exp = ex.Message.ToString();
+                        string exp = ex.Message.ToString(CultureInfo.CurrentCulture);
                         MessageBox.Show(exp);  
                     }
 
@@ -971,7 +969,7 @@ namespace METAbolt
 
                 Item itm = (Item)cboUserList.SelectedItem;
 
-                string[] name = itm.Name.ToString().Split(' ');  // cboUserList.SelectedItem.ToString().Split(' ');
+                string[] name = itm.Name.ToString(CultureInfo.CurrentCulture).Split(' ');  // cboUserList.SelectedItem.ToString().Split(' ');
 
                 txtFirstName.Text = name[0];
                 txtLastName.Text = name[1];

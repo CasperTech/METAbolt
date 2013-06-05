@@ -214,9 +214,9 @@ namespace METAbolt
             this.rebooted = true;
             startfrombat = true;
 
-            config.CurrentConfig.FirstName = args[0].ToString();
-            config.CurrentConfig.LastName = args[1].ToString();
-            config.CurrentConfig.PasswordMD5 = args[2].ToString();
+            config.CurrentConfig.FirstName = args[0].ToString(CultureInfo.CurrentCulture);
+            config.CurrentConfig.LastName = args[1].ToString(CultureInfo.CurrentCulture);
+            config.CurrentConfig.PasswordMD5 = args[2].ToString(CultureInfo.CurrentCulture);
 
             InitializeConfig();
 
@@ -303,7 +303,7 @@ namespace METAbolt
 
         public void InitAI()
         {
-            string aimlDirectory = Application.StartupPath.ToString();
+            string aimlDirectory = Application.StartupPath.ToString(CultureInfo.CurrentCulture);
             //string confdir = aimlDirectory + "\\config\\";
             aimlDirectory += "\\aiml\\";
 
@@ -506,12 +506,12 @@ namespace METAbolt
 
             try
             {
-                DataRow dr = giveritems.Rows.Find(item.ToString());
+                DataRow dr = giveritems.Rows.Find(item.ToString(CultureInfo.CurrentCulture));
 
                 if (dr != null)
                 {
                     UUID iid = (UUID)dr.ItemArray[1].ToString();
-                    string name = dr.ItemArray[2].ToString().ToString();
+                    string name = dr.ItemArray[2].ToString().ToString(CultureInfo.CurrentCulture);
 
                     string astype = dr.ItemArray[3].ToString();
 
@@ -984,7 +984,7 @@ namespace METAbolt
 
             foreach (char strChar in invalidFileChars)
             {
-                strValue = strValue.Replace(strChar.ToString(), "");
+                strValue = strValue.Replace(strChar.ToString(CultureInfo.CurrentCulture), "");
             }
 
             return strValue;

@@ -705,7 +705,7 @@ namespace METAbolt
                 if (ShowAuto)
                 {
                     panel2.Visible = true;
-                    textBox2.Text = io.Name.ToString();
+                    textBox2.Text = io.Name.ToString(CultureInfo.CurrentCulture);
                     textBox3.Text = io.UUID.ToString();
                     ClearCurrentProperties();
                 }
