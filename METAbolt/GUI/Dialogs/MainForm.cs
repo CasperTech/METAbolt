@@ -1486,7 +1486,7 @@ namespace METAbolt
             }
         }
 
-        private String GetSecondLifeExe()
+        private static String GetSecondLifeExe()
         {
             try
             {

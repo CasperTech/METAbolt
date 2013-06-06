@@ -275,7 +275,7 @@ namespace METAbolt
             this.Close();
         }
 
-        private DialogResult AskForSave()
+        private static DialogResult AskForSave()
         {
             return MessageBox.Show(
                 "Your changes have not been saved. Save the notecard?",

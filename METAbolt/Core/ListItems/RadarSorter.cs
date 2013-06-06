@@ -63,7 +63,7 @@ namespace METAbolt
             }
         }
 
-        private string ExtractNumbers(string expr)
+        private static string ExtractNumbers(string expr)
         { 
             string number = System.Text.RegularExpressions.Regex.Match(expr, @"\[(?<r>\d+)m").Groups[1].Value;
 

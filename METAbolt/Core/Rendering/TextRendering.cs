@@ -165,7 +165,7 @@ namespace METAbolt
             textItems.Clear();
         }
 
-        int GetItemHash(TextItem item)
+        static int GetItemHash(TextItem item)
         {
             int ret = 17;
             ret = ret * 31 + item.Text.GetHashCode();

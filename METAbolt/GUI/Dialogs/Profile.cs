@@ -631,7 +631,7 @@ namespace METAbolt
             pnlWeb.Controls.Add(web);
         }
 
-        private void ProcessWebURL(string url)
+        private static void ProcessWebURL(string url)
         {
             if (url.StartsWith("http://", StringComparison.CurrentCulture) || url.StartsWith("ftp://", StringComparison.CurrentCulture))
                 System.Diagnostics.Process.Start(url);

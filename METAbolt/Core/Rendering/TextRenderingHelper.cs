@@ -309,6 +309,7 @@ namespace METAbolt
             pos.X = _out.X;
             pos.Y = _out.Y;
             pos.Z = _out.Z;
+
             return true;
         }
     }

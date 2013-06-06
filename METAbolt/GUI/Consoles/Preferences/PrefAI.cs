@@ -164,7 +164,7 @@ namespace METAbolt
             }
         }
 
-        private bool DirExists(string sDirName)
+        private static bool DirExists(string sDirName)
         {
             try
             {

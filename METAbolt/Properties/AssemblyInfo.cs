@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.metabolt.net")]
 [assembly: AssemblyProduct("METAbolt")]
-[assembly: AssemblyCopyright("Copyright ©  2008-2011 www.metabolt.net")]
+[assembly: AssemblyCopyright("Copyright ©  2008-2013 www.metabolt.net")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

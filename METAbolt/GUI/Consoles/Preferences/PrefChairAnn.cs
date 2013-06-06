@@ -90,7 +90,7 @@ namespace METAbolt
         {
             
             config.CurrentConfig.ChairAnnouncerUUID = UUID.Parse(textBox1.Text);
-            config.CurrentConfig.ChairAnnouncerInterval = Convert.ToInt32(textBox2.Text);
+            config.CurrentConfig.ChairAnnouncerInterval = Convert.ToInt32(textBox2.Text, CultureInfo.CurrentCulture);
             config.CurrentConfig.ChairAnnouncerEnabled = checkBox1.Checked;
             config.CurrentConfig.ChairAnnouncerChat = checkBox2.Checked;
             config.CurrentConfig.ChairAnnouncerGroup1 = UUID.Parse(textBox3.Text);

@@ -90,7 +90,7 @@ namespace METAbolt
             }
         }
 
-        private void DisableProxy()
+        private static void DisableProxy()
         {
             IWebProxy proxy = new WebProxy();
             proxy.Credentials = CredentialCache.DefaultNetworkCredentials;   // null;

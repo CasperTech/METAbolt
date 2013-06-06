@@ -587,7 +587,7 @@ namespace METAbolt
             textBox3.Text = instance.Config.CurrentConfig.GroupManPro;
         }
 
-        public string GetRandomPassword(int length)
+        public static string GetRandomPassword(int length)
         {
             char[] chars = "$%@abcdefghijklmnopqrstuvwxyz1234567890?!*ABCDEFGHIJKLMNOPQRSTUVWXYZ#^&".ToCharArray();
             string password = string.Empty;

@@ -196,7 +196,7 @@ namespace METAbolt
             return false;
         }
 
-        public bool IsConnectedToInternet()
+        public static bool IsConnectedToInternet()
         {
             ConnectionState flags = 0;
             InternetGetConnectedState(ref flags, 0);
@@ -209,7 +209,7 @@ namespace METAbolt
             return true;
         }
 
-        public bool IsUsingInternetProxy()
+        public static bool IsUsingInternetProxy()
         {
             ConnectionState flags = 0;
             InternetGetConnectedState(ref flags, 0);

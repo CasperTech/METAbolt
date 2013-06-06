@@ -62,18 +62,18 @@ namespace METAbolt
             image = _image;
         }
 
-        protected override void OnMeasureItem(MeasureItemEventArgs _args)
+        protected override void OnMeasureItem(MeasureItemEventArgs e)
         {
-            _args.ItemWidth = ICON_WIDTH + ICON_MARGIN;
-            _args.ItemHeight = ICON_HEIGHT + 2 * ICON_MARGIN;
+            e.ItemWidth = ICON_WIDTH + ICON_MARGIN;
+            e.ItemHeight = ICON_HEIGHT + 2 * ICON_MARGIN;
         }
 
-        protected override void OnDrawItem(DrawItemEventArgs _args)
+        protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            Graphics _graphics = _args.Graphics;
-            Rectangle _bounds = _args.Bounds;
+            Graphics _graphics = e.Graphics;
+            Rectangle _bounds = e.Bounds;
 
-            DrawBackground(_graphics, _bounds, ((_args.State & DrawItemState.Selected) != 0));
+            DrawBackground(_graphics, _bounds, ((e.State & DrawItemState.Selected) != 0));
             _graphics.DrawImage(image, _bounds.X + ((_bounds.Width - ICON_WIDTH) / 2), _bounds.Y + ((_bounds.Height - ICON_HEIGHT) / 2));
         }
 

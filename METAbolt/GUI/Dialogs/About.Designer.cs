@@ -53,7 +53,7 @@ namespace METAbolt
             // 
             // btnClose
             // 
-            this.btnClose.AccessibleDescription = "Close butto nto close this window";
+            this.btnClose.AccessibleDescription = "Close button to close this window";
             this.btnClose.AccessibleName = "Close";
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.DimGray;
@@ -71,7 +71,7 @@ namespace METAbolt
             // 
             // lblVersion
             // 
-            this.lblVersion.AccessibleDescription = "METAbotl version";
+            this.lblVersion.AccessibleDescription = "METAbolt version";
             this.lblVersion.AccessibleName = "Version";
             this.lblVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblVersion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);

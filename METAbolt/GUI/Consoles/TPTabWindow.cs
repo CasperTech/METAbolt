@@ -152,9 +152,9 @@ namespace METAbolt
                 string[] split = encoded.Split(new Char[] { '/' });
                 //string[] split = e.LinkText.Split(new Char[] { '/' });
                 string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
 
@@ -166,9 +166,9 @@ namespace METAbolt
                 string[] split = encoded.Split(new Char[] { '/' });
                 //string[] split = e.LinkText.Split(new Char[] { '/' });
                 string sim = split[4].ToString();
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
                 (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
 

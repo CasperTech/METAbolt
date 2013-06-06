@@ -282,7 +282,7 @@ namespace METAbolt
             }
         }
 
-        public string GetRandomPassword(int length)
+        public static string GetRandomPassword(int length)
         {
             char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
             string password = string.Empty;
@@ -414,7 +414,7 @@ namespace METAbolt
             }
         }
 
-        private bool DirExists(string sDirName)
+        private static bool DirExists(string sDirName)
         {
             try
             {
@@ -426,7 +426,7 @@ namespace METAbolt
             }
         }
 
-        private long GetDirectorySize(string p)
+        private static long GetDirectorySize(string p)
         {
             string[] a = Directory.GetFiles(p, "*.*");
 
@@ -440,7 +440,7 @@ namespace METAbolt
             return b;
         }
 
-        private double ConvertBytesToMegabytes(long bytes)
+        private static double ConvertBytesToMegabytes(long bytes)
         {
             return (bytes / 1024f) / 1024f;
         }
@@ -744,7 +744,7 @@ namespace METAbolt
         //    return dtbl;
         //}
 
-        private DataTable MakeGiverDataTable()
+        private static DataTable MakeGiverDataTable()
         {
             DataTable dtbl = new DataTable("list");
             dtbl.Locale = CultureInfo.CurrentCulture;
@@ -1018,7 +1018,7 @@ namespace METAbolt
             Environment.Exit(0); 
         }
 
-        public int Distance3D(int x1, int y1, int z1, int x2, int y2, int z2)
+        public static int Distance3D(int x1, int y1, int z1, int x2, int y2, int z2)
         {
             //     __________________________________
             //d = &#8730; (x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2

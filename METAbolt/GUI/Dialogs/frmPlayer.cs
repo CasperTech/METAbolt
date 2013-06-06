@@ -646,7 +646,7 @@ namespace METAbolt
             }
         }
 
-        private Bitmap LoadPicture(string url)
+        private static Bitmap LoadPicture(string url)
         {
             HttpWebRequest wreq;
             HttpWebResponse wresp;

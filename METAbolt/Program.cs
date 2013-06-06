@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Globalization;
 
+[assembly: CLSCompliant(true)]
 namespace METAbolt
 {
     static class Program

@@ -52,7 +52,7 @@ namespace METAbolt
         {
             lang = listBox1.Items[listBox1.SelectedIndex].ToString();
 
-            string[] sfile = lang.Split('.');
+            //string[] sfile = lang.Split('.');
             //string file = lang = sfile[0];
 
             this.instance.DictionaryFile = lang + ".dic";

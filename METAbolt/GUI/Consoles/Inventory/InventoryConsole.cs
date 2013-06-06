@@ -1118,7 +1118,7 @@ namespace METAbolt
         /// <summary>
         /// </summary>
         /// <param name="body"></param>
-        public byte[] CreateNotecardAsset(string body)
+        public static byte[] CreateNotecardAsset(string body)
         {
             body = body.Trim();
 
@@ -1883,7 +1883,7 @@ namespace METAbolt
                 );
         }
 
-        public byte[] CreateScriptAsset(string body)
+        public static byte[] CreateScriptAsset(string body)
         {
             body = body.Trim();
 

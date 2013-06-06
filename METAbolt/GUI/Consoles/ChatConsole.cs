@@ -1903,7 +1903,7 @@ namespace METAbolt
             }
         }
 
-        public Vector3 QuaternionToEuler(Quaternion q)
+        public static Vector3 QuaternionToEuler(Quaternion q)
         {
             Vector3 v = new Vector3(Vector3.Zero); 
             v = Vector3.Zero;
@@ -2120,6 +2120,8 @@ namespace METAbolt
 
         public void SendChat(string input, ChatType type)
         {
+            if (String.IsNullOrEmpty(input)) return;
+
             string[] inputArgs = input.Split(' ');
 
             if (inputArgs[0].StartsWith("//", StringComparison.CurrentCultureIgnoreCase)) //Chat on previously used channel
@@ -2181,7 +2183,7 @@ namespace METAbolt
             }
         }
 
-        private string GetTranslation(string sTrStr)
+        private static string GetTranslation(string sTrStr)
         {
             ////string sPair = GetLangPair(cboLanguage.Text);
 
@@ -2205,7 +2207,7 @@ namespace METAbolt
             return string.Empty;  
         }
 
-        private string GetLangPair(string sPair)
+        private static string GetLangPair(string sPair)
         {
             string[] inputArgs = sPair.Split(' ');
 

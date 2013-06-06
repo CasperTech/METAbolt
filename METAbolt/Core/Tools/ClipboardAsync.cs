@@ -68,6 +68,7 @@ namespace METAbolt
                 _ContainsText = false;
             }
         }
+
         public bool ContainsText()
         {
             ClipboardAsync instance = new ClipboardAsync();
@@ -77,6 +78,7 @@ namespace METAbolt
             staThread.Join();
             return instance._ContainsText;
         }
+
         public bool ContainsText(object format)
         {
             ClipboardAsync instance = new ClipboardAsync();
@@ -100,6 +102,7 @@ namespace METAbolt
                 _ContainsFileDropList = false;
             }
         }
+
         public bool ContainsFileDropList()
         {
             ClipboardAsync instance = new ClipboardAsync();
@@ -123,6 +126,7 @@ namespace METAbolt
                 _GetFileDropList = null;
             }
         }
+
         public System.Collections.Specialized.StringCollection GetFileDropList()
         {
             ClipboardAsync instance = new ClipboardAsync();

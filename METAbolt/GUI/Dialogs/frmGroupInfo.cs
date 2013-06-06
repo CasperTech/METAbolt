@@ -384,7 +384,7 @@ namespace METAbolt
             }
         }
 
-        private int GetAttachment(AssetType attype)
+        private static int GetAttachment(AssetType attype)
         {
             int at = 0;
 
@@ -749,6 +749,9 @@ namespace METAbolt
         public static DateTime ConvertDateTime(string Date)
         {
             DateTime date = new DateTime();
+
+            if (String.IsNullOrEmpty(Date)) return date; 
+
             try
             {
                 string CurrentPattern = Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern;
@@ -773,6 +776,7 @@ namespace METAbolt
                 {
                     NewDate = DateSplit[2] + "/" + DateSplit[1] + "/" + DateSplit[0];
                 }
+
                 date = DateTime.Parse(NewDate, Thread.CurrentThread.CurrentCulture);
             }
             catch

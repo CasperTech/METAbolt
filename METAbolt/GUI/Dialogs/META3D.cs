@@ -989,7 +989,7 @@ namespace METAbolt
         //    scrollZoom.Value = zoom;
         //}
 
-        public FacetedMesh GenerateFacetedMesh(Primitive prim, OSDMap MeshData, DetailLevel LOD)
+        public static FacetedMesh GenerateFacetedMesh(Primitive prim, OSDMap MeshData, DetailLevel LOD)
         {
             FacetedMesh ret = new FacetedMesh();
 
@@ -1454,7 +1454,7 @@ namespace METAbolt
         //    glControl.SwapBuffers();
         //}
 
-        private void GluPerspective(float fovy, float aspect, float zNear, float zFar)
+        private static void GluPerspective(float fovy, float aspect, float zNear, float zFar)
         {
             float fH = (float)Math.Tan(fovy / 360 * (float)Math.PI) * zNear;
             float fW = fH * aspect;
