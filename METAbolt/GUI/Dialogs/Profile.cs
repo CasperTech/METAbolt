@@ -132,6 +132,7 @@ namespace METAbolt
                 picFLImage.AllowDrop = true;
                 //txtDisplayName.ReadOnly = false;
                 button7.Enabled = true;
+                button8.Enabled = true;
                 txtTitle.ReadOnly = false;
                 txtDescription.ReadOnly = false;
             }
@@ -1178,7 +1179,11 @@ namespace METAbolt
             UUID pick = (UUID)lvwPicks.SelectedItems[0].Tag;
 
             loadwait2.Visible = true;
-            button11.Enabled = true;
+
+            if (agentID == client.Self.AgentID)
+            {
+                button11.Enabled = true;
+            }
 
             client.Avatars.RequestPickInfo(agentID, pick);
             txtTitle.Text = string.Empty;
@@ -1364,6 +1369,8 @@ namespace METAbolt
 
             client.Self.PickInfoUpdate(pick, false, pid, this.instance.MainForm.parcel.Name, client.Self.GlobalPosition, this.instance.MainForm.parcel.SnapshotID, this.instance.MainForm.parcel.Desc);
             client.Avatars.RequestAvatarPicks(agentID);
+
+            button11.Enabled = true;
         }
 
         private void button11_Click(object sender, EventArgs e)

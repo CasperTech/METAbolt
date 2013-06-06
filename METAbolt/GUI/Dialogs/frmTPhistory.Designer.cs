@@ -186,7 +186,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(568, 345);
-            this.ControlBox = false;
             this.Controls.Add(this.picHelp);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);

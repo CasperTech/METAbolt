@@ -59,15 +59,15 @@ namespace METAbolt
         //private int _findex = 0;
         //private Color bgcolour = Color.White;
 
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern IntPtr SendMessage(IntPtr window, int message, int wparam, int lparam);
-        const int WM_VSCROLL = 0x115;
-        const int SB_BOTTOM = 7;
-
         //[System.Runtime.InteropServices.DllImport("user32.dll")]
-        //static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, Int32 wParam, Int32 lParam);
-        //const int WM_USER = 0x400;
-        //const int EM_HIDESELECTION = WM_USER + 63;
+        //private static extern IntPtr SendMessage(IntPtr window, int message, int wparam, int lparam);
+        //const int WM_VSCROLL = 0x115;
+        //const int SB_BOTTOM = 7;
+
+        ////[System.Runtime.InteropServices.DllImport("user32.dll")]
+        ////static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, Int32 wParam, Int32 lParam);
+        ////const int WM_USER = 0x400;
+        ////const int EM_HIDESELECTION = WM_USER + 63;
 
         public RichTextBoxPrinter(METAboltInstance instance, ExRichTextBox textBox)
         {
@@ -139,10 +139,10 @@ namespace METAbolt
 
         #region ITextPrinter Members
 
-        public void ScrollToBottom()
-        {
-            SendMessage(rtb.Handle, WM_VSCROLL, SB_BOTTOM, 0);
-        }
+        //public void ScrollToBottom()
+        //{
+        //    SendMessage(rtb.Handle, WM_VSCROLL, SB_BOTTOM, 0);
+        //}
 
         void AppendNStext(string text)
         {
