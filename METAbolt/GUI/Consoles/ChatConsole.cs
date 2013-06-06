@@ -3124,7 +3124,31 @@ namespace METAbolt
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            (new frmPlayer(instance)).Show();
+            //FormCollection fc = Application.OpenForms;
+
+            //foreach (Form frm in fc)
+            //{
+            //    if (frm.Name == "frmPlayer")
+            //    {
+            //        MessageBox.Show("METAplayer is already open");
+            //        return;
+            //    }
+            //}
+
+            //(new frmPlayer(instance)).Show();
+
+            frmPlayer prForm = new frmPlayer(instance);
+
+            prForm.FormClosed += new FormClosedEventHandler(PrForm_FormClosed);
+            tsMusic.Enabled = false;
+            prForm.Show();
+        }
+
+        private void PrForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            tsMusic.Enabled = true;
+
+            //prForm.FormClosed -= new FormClosedEventHandler(PrForm_FormClosed);
         }
 
         #region Minimap
