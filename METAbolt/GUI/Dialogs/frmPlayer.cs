@@ -285,12 +285,12 @@ namespace METAbolt
                 if (words.Length > 2)
                 {
                     currentartist = @words[0].Trim() + "-" + @words[1].Trim();
-                    currenttrack = @words[2].Trim();
+                    currenttrack = @words[2].Trim().Replace("&", "and");
                 }
                 else
                 {
                     currentartist = @words[0].Trim();
-                    currenttrack = @words[1].Trim();
+                    currenttrack = @words[1].Trim().Replace("&", "and");
                 }
 
                 if (currenttrack.Contains("("))
