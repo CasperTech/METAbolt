@@ -55,14 +55,14 @@ namespace METAbolt
         private string file;
         private byte[] ImgUp;
 
-        public UploadImage(METAboltInstance instance, Image img, string file, string ext)
+        public UploadImage(METAboltInstance instance, Bitmap img, string file, string ext)
         {
             InitializeComponent();
 
             this.instance = instance;
             client = this.instance.Client;
 
-            this.img = (Bitmap)img;
+            this.img = img;
             //this.ext = ext;
             this.file = file;
         }
@@ -165,6 +165,7 @@ namespace METAbolt
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            img.Dispose(); 
             this.Close();
         }        
 
@@ -208,6 +209,8 @@ namespace METAbolt
             {
                 label3.Text = "Upload failed";
             }
+
+            img.Dispose();
         }
     }
 }

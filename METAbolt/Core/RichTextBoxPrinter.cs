@@ -689,7 +689,16 @@ namespace METAbolt
         private void ReplaceWithSmiley(int _index, string text, Bitmap smiley)
         {
             rtb.Select(_index, text.Length);
-            rtb.InsertImage(smiley);
+
+            try
+            {
+                rtb.InsertImage(smiley);
+            }
+            catch 
+            {
+                smiley.Dispose(); 
+                return; 
+            }
 
             int newindex = (_index + text.Length) - 1;
 
@@ -701,6 +710,8 @@ namespace METAbolt
                 }
             }
             catch { ; }
+
+            smiley.Dispose();
 
             rtb.Select(rtb.Text.Length, 0);
         }
