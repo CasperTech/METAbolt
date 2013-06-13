@@ -1486,15 +1486,15 @@ namespace METAbolt
             sb = null;
         }
 
-        private void ProcessIncomingDialog(ScriptDialogEventArgs e)
-        {
-            if (string.IsNullOrEmpty(e.Message)) return;
+        //private void ProcessIncomingDialog(ScriptDialogEventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(e.Message)) return;
 
-            if (instance.IsObjectMuted(e.ObjectID, e.ObjectName))
-                return;
+        //    if (instance.IsObjectMuted(e.ObjectID, e.ObjectName))
+        //        return;
 
-            (new frmDialog(instance, e)).ShowDialog(instance.MainForm);
-        }
+        //    (new frmDialog(instance, e)).ShowDialog(instance.MainForm);
+        //}
 
         private void LogMessage(DateTime timestamp, string uuid, string fromName, string msg)
         {

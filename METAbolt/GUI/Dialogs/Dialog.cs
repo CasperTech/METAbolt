@@ -101,7 +101,7 @@ namespace METAbolt
 
                     tsButtons.Items.Add(btn);
 
-                    btn.Dispose(); 
+                    //btn.Dispose();
                 }
             }
 
