@@ -447,38 +447,29 @@ namespace METAbolt
 
         public bool IsAvatarMuted(UUID avatar, string name)
         {
-            //if (avatar == UUID.Zero) return false;
+            ////if (avatar == UUID.Zero) return false;
   
-            //try
-            //{
-            //    DataRow dr = mutelist.Rows.Find(avatar.ToString());
+            ////try
+            ////{
+            ////    DataRow dr = mutelist.Rows.Find(avatar.ToString());
 
-            //    if (dr != null)
-            //    {
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
-            //}
-            //catch { return false; }
+            ////    if (dr != null)
+            ////    {
+            ////        return true;
+            ////    }
+            ////    else
+            ////    {
+            ////        return false;
+            ////    }
+            ////}
+            ////catch { return false; }
 
-            //MuteEntry mentry = client.Self.MuteList.Find(mle => mle.Type == mtyp && mle.ID == avatar);
+            ////MuteEntry mentry = client.Self.MuteList.Find(mle => mle.Type == mtyp && mle.ID == avatar);
 
-            if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.Object && mle.ID == avatar) // id 
-                || (mle.Type == MuteType.ByName && mle.Name == name) // avatar/object name
-                || (mle.Type == MuteType.Resident && mle.ID == avatar) // avatar
-                ))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-            //if (mentry != null)
+            //if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.Object && mle.ID == avatar) // id 
+            //    || (mle.Type == MuteType.ByName && mle.Name == name) // avatar/object name
+            //    || (mle.Type == MuteType.Resident && mle.ID == avatar) // avatar
+            //    ))
             //{
             //    return true;
             //}
@@ -486,11 +477,17 @@ namespace METAbolt
             //{
             //    return false;
             //}
-        }
 
-        public bool IsObjectMuted(UUID avatar, string name)
-        {
-            if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.Object && mle.ID == avatar)))
+            ////if (mentry != null)
+            ////{
+            ////    return true;
+            ////}
+            ////else
+            ////{
+            ////    return false;
+            ////}
+
+            if (null != client.Self.MuteList.Find(mle => (mle.ID == avatar) || (mle.Type == MuteType.ByName && mle.Name == name)))
             {
                 return true;
             }
@@ -498,6 +495,34 @@ namespace METAbolt
             {
                 return false;
             }
+        }
+
+        public bool IsObjectMuted(UUID avatar, string name)
+        {
+            //if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.Object && mle.ID == avatar)))
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.Resident && mle.ID == avatar)))
+            //    {
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        if (null != client.Self.MuteList.Find(mle => (mle.Type == MuteType.ByName && mle.Name == name)))
+            //        {
+            //            return true;
+            //        }
+            //        else
+            //        {
+            //            return false;
+            //        }
+            //    }
+            //}
+
+            return IsAvatarMuted(avatar, name);
         }
 
         public bool IsGiveItem(string item, UUID avid)

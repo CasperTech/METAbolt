@@ -483,6 +483,8 @@ namespace METAbolt
                 return;
             }
 
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+
             BeginInvoke(new MethodInvoker(delegate()
             {
                 ChatBufferItem ready = new ChatBufferItem(DateTime.Now,
@@ -778,6 +780,8 @@ namespace METAbolt
 
         private void HandleGroupNoticeReceived(InstantMessageEventArgs e)
         {
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+
             if (instance.Config.CurrentConfig.DisableGroupNotices)
             {
                 return;
@@ -823,6 +827,8 @@ namespace METAbolt
 
         private void HandleMessageBox(InstantMessageEventArgs e)
         {
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+
             if (instance.State.IsBusy) return;
 
             //string ttl = "METAbolt";
@@ -1011,6 +1017,8 @@ namespace METAbolt
         }
         private void HandleTP(InstantMessageEventArgs e)
         {
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+
             if (instance.State.IsBusy)
             {
                 string responsemsg = this.instance.Config.CurrentConfig.BusyReply;
@@ -1034,6 +1042,8 @@ namespace METAbolt
 
         private void HandleFriendship(InstantMessageEventArgs e)
         {
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+
             if (instance.State.IsBusy)
             {
                 string responsemsg = this.instance.Config.CurrentConfig.BusyReply;
@@ -1202,6 +1212,8 @@ namespace METAbolt
 
         private void HandleGroupInvite(InstantMessageEventArgs e)
         {
+            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+
             if (instance.Config.CurrentConfig.DisableInboundGroupInvites)
                 return;
 

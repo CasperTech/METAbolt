@@ -441,6 +441,9 @@ namespace METAbolt
             //e.ObjectName;
             //e.url;
 
+            if (instance.IsObjectMuted(e.ObjectID, e.ObjectName))
+                return;
+
             DialogResult sret = MessageBox.Show(e.ObjectName.ToString(CultureInfo.CurrentCulture) + " owned by " + e.OwnerID.ToString() + ":\n\n" + e.Message, "URL offer...", MessageBoxButtons.OKCancel);
 
             if (sret == DialogResult.OK)

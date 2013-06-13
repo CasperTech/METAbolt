@@ -437,21 +437,26 @@ namespace METAbolt
                                                 item.PropertiesReceived += new EventHandler(iitem_PropertiesReceived);
                                                 item.RequestProperties();
                                             }
-                                            else
-                                            {
-                                                listItems.Remove(e.Prim.LocalID);
-                                                listItems.Add(e.Prim.LocalID, item);
+                                            //else
+                                            //{
+                                            //    listItems.Remove(e.Prim.LocalID);
+                                            //    listItems.Add(e.Prim.LocalID, item);
 
-                                                lock (lbxPrims.Items)
-                                                {
-                                                    lbxPrims.BeginUpdate();
-                                                    lbxPrims.Items.Remove(item);
-                                                    lbxPrims.Items.Add(item);
-                                                    lbxPrims.EndUpdate();
-                                                }
+                                            //    lock (lbxPrims.Items)
+                                            //    {
+                                            //        lbxPrims.BeginUpdate();
 
-                                                lbxPrims.SortList();
-                                            }
+                                            //        if (lbxPrims.Items.Contains(item))
+                                            //        {
+                                            //            lbxPrims.Items.Remove(item);
+                                            //        }
+
+                                            //        lbxPrims.Items.Add(item);
+                                            //        lbxPrims.EndUpdate();
+                                            //    }
+
+                                            //    lbxPrims.SortList();
+                                            //}
                                         }
                                         catch
                                         {
