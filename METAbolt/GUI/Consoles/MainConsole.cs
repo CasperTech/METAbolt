@@ -361,7 +361,7 @@ namespace METAbolt
                         break;
 
                     case LoginStatus.Success:
-                        SetLang();
+                        //SetLang();
 
                         lblLoginStatus.Text = "Logged in as " + netcom.LoginOptions.FullName;
                         lblLoginStatus.ForeColor = Color.Blue;
@@ -463,23 +463,23 @@ namespace METAbolt
             }
         }
 
-        private void SetLang()
-        {
-            CultureInfo cult = CultureInfo.CurrentCulture;
-            string land = cult.TwoLetterISOLanguageName;
+        //private void SetLang()
+        //{
+        //    CultureInfo cult = CultureInfo.CurrentCulture;
+        //    string land = cult.TwoLetterISOLanguageName;
 
-            AgentManager avm = new AgentManager(client);
+        //    AgentManager avm = new AgentManager(client);
 
-            try
-            {
-                avm.UpdateAgentLanguage(land, true);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
-                //reporter.Show(ex);
-            }
-        }
+        //    try
+        //    {
+        //        avm.UpdateAgentLanguage(land, true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Log("Agent Language: (relog can help) " + ex.Message, Helpers.LogLevel.Warning);
+        //        //reporter.Show(ex);
+        //    }
+        //}
 
         private void netcom_ClientLoggedOut(object sender, EventArgs e)
         {
