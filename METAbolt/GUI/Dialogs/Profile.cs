@@ -333,6 +333,8 @@ namespace METAbolt
 
         private void Avatars_OnGroupsReply(object sender, AvatarGroupsReplyEventArgs e)
         {
+            if (e.AvatarID != agentID) return;
+
             if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(() => Avatars_OnGroupsReply(sender, e)));

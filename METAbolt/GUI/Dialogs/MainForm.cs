@@ -2136,52 +2136,20 @@ namespace METAbolt
         {
             tabsConsole.chatConsole.UpdateFavourites(foundfolders);  
 
-            //foreach (InventoryBase o in foundfolders)
+            //foreach (InventoryBase oitem in foundfolders)
             //{
-            //    if (o.Name.ToLower() == "favorites")
+            //    InventoryItem item = (InventoryItem)oitem;
+
+            //    if (item.InventoryType == InventoryType.Landmark)
             //    {
-            //        if (o is InventoryFolder)
+            //        string iname = item.Name;
+
+            //        int ncnt = iname.Length; 
+
+            //        if (parcel.Name.ToString().StartsWith(iname, StringComparison.CurrentCultureIgnoreCase))
             //        {
-            //            List<InventoryBase> founditems = client.Inventory.FolderContents(o.UUID, client.Self.AgentID, false, true, InventorySortOrder.ByName, 3000);
-
-            //            if (founditems.Count > 0)
-            //            {
-            //                tsFavs.Visible = true;
-            //                tsFavs.Items.Clear();
-
-            //                foreach (InventoryBase oitem in founditems)
-            //                {
-            //                    InventoryItem item = (InventoryItem)oitem;
-
-            //                    string iname = item.Name;
-            //                    string desc = item.Description; 
-
-            //                    if (iname.Length > 24)
-            //                    {
-            //                        iname = iname.Substring(0, 21) + "...";
-            //                    }
-
-            //                    ToolStripButton btn = new ToolStripButton(iname, null, FavsToolStripMenuItem_Click, item.AssetUUID.ToString());
-
-            //                    //if (!tsFavs.Items.Contains(btn))
-            //                    //{
-            //                        btn.ToolTipText = desc;
-            //                        tsFavs.Items.Add(btn);
-
-            //                        ToolStripSeparator sep = new ToolStripSeparator();
-            //                        tsFavs.Items.Add(sep);
-            //                    //}
-            //                }
-
-            //                //tsdefault.Visible = false;
-            //                //this.Height += 25;
-            //            }
-            //            else
-            //            {
-            //                tsFavs.Visible = false;
-            //                //tsdefault.Visible = true;
-            //            }
-            //        }
+            //            toolStripStatusLabel2.Enabled = false;
+            //        }                       
             //    }
             //}
         }

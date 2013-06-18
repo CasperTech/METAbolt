@@ -86,7 +86,6 @@ namespace METAbolt
             this.txtSlurl = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
-            this.lvwPicks = new METAbolt.FlickerFreeListView();
             this.tpgFirstLife = new System.Windows.Forms.TabPage();
             this.proFLImage = new System.Windows.Forms.PictureBox();
             this.rtbAboutFL = new System.Windows.Forms.RichTextBox();
@@ -99,6 +98,7 @@ namespace METAbolt
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.lvwPicks = new METAbolt.FlickerFreeListView();
             this.tabProfile.SuspendLayout();
             this.tpgProfile.SuspendLayout();
             this.gbDisplayName.SuspendLayout();
@@ -190,7 +190,7 @@ namespace METAbolt
             this.gbDisplayName.Controls.Add(this.label16);
             this.gbDisplayName.Controls.Add(this.textBox3);
             this.gbDisplayName.Controls.Add(this.textBox2);
-            this.gbDisplayName.Location = new System.Drawing.Point(6, 35);
+            this.gbDisplayName.Location = new System.Drawing.Point(6, 33);
             this.gbDisplayName.Name = "gbDisplayName";
             this.gbDisplayName.Size = new System.Drawing.Size(447, 432);
             this.gbDisplayName.TabIndex = 56;
@@ -903,27 +903,6 @@ namespace METAbolt
             this.txtTitle.Size = new System.Drawing.Size(296, 21);
             this.txtTitle.TabIndex = 2;
             // 
-            // lvwPicks
-            // 
-            this.lvwPicks.AccessibleName = "List of picks listbox";
-            this.lvwPicks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwPicks.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwPicks.FullRowSelect = true;
-            this.lvwPicks.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwPicks.HideSelection = false;
-            this.lvwPicks.LabelWrap = false;
-            this.lvwPicks.Location = new System.Drawing.Point(3, 22);
-            this.lvwPicks.MultiSelect = false;
-            this.lvwPicks.Name = "lvwPicks";
-            this.lvwPicks.Size = new System.Drawing.Size(152, 393);
-            this.lvwPicks.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvwPicks.TabIndex = 0;
-            this.lvwPicks.UseCompatibleStateImageBehavior = false;
-            this.lvwPicks.View = System.Windows.Forms.View.List;
-            this.lvwPicks.SelectedIndexChanged += new System.EventHandler(this.lvwPicks_SelectedIndexChanged);
-            // 
             // tpgFirstLife
             // 
             this.tpgFirstLife.AccessibleName = "First life tab";
@@ -1101,6 +1080,27 @@ namespace METAbolt
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // lvwPicks
+            // 
+            this.lvwPicks.AccessibleName = "List of picks listbox";
+            this.lvwPicks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwPicks.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvwPicks.FullRowSelect = true;
+            this.lvwPicks.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvwPicks.HideSelection = false;
+            this.lvwPicks.LabelWrap = false;
+            this.lvwPicks.Location = new System.Drawing.Point(3, 22);
+            this.lvwPicks.MultiSelect = false;
+            this.lvwPicks.Name = "lvwPicks";
+            this.lvwPicks.Size = new System.Drawing.Size(152, 393);
+            this.lvwPicks.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvwPicks.TabIndex = 0;
+            this.lvwPicks.UseCompatibleStateImageBehavior = false;
+            this.lvwPicks.View = System.Windows.Forms.View.List;
+            this.lvwPicks.SelectedIndexChanged += new System.EventHandler(this.lvwPicks_SelectedIndexChanged);
             // 
             // frmProfile
             // 
