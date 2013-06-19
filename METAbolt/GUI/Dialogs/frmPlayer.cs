@@ -293,6 +293,8 @@ namespace METAbolt
                     currenttrack = @words[1].Trim().Replace("&", "and");
                 }
 
+                currentartist = currentartist.Replace("f/", "feat"); 
+
                 if (currenttrack.Contains("("))
                 {
                     // get them out
@@ -504,7 +506,7 @@ namespace METAbolt
 
             try
             {
-                string baseUrl = "http://ws.audioscrobbler.com/2.0/?method=" + method + "&api_key=" + apiKey + "&artist=" + artist + "&album=" + track;
+                string baseUrl = "http://ws.audioscrobbler.com/2.0/?method=" + method + "&api_key=" + apiKey + "&artist=" + artist.Replace(" ", "%20") + "&album=" + track.Replace(" ", "%20");
 
                 XmlReaderSettings settings = new XmlReaderSettings();
                 settings.IgnoreWhitespace = true;
@@ -589,7 +591,7 @@ namespace METAbolt
 
             try
             {
-                string baseUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getbuylinks&country=united%20states&api_key=" + apiKey + "&artist=" + artist + "&track=" + track;
+                string baseUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getbuylinks&country=united%20states&api_key=" + apiKey + "&artist=" + artist.Replace(" ", "%20") + "&track=" + track.Replace(" ", "%20");
 
                 XmlReaderSettings settings = new XmlReaderSettings();
                 settings.IgnoreWhitespace = true;
