@@ -78,7 +78,7 @@
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
             this.lvwList.Size = new System.Drawing.Size(118, 360);
-            this.lvwList.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvwList.Sorting = System.Windows.Forms.SortOrder.Descending;
             this.lvwList.TabIndex = 3;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.List;

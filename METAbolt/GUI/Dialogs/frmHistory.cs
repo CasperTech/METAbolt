@@ -19,7 +19,7 @@ namespace METAbolt
         private SafeDictionary<string, string> ffiles = new SafeDictionary<string, string>();
         private bool isgroup = false;
         private GridClient client;
-        private NumericStringComparer lvwColumnSorter;
+        private NumericStringComparerDateGroups lvwColumnSorter;
 
         public frmHistory(METAboltInstance instance, string filename, bool isgroup)
         {
@@ -33,7 +33,8 @@ namespace METAbolt
 
             GetHistory();
 
-            lvwColumnSorter = new NumericStringComparer();
+            lvwColumnSorter = new NumericStringComparerDateGroups();
+            lvwColumnSorter.Order = SortOrder.Descending; 
             lvwList.ListViewItemSorter = lvwColumnSorter;
         }
 
