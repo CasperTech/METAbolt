@@ -86,7 +86,6 @@ namespace METAbolt
         private bool ChatLogin = true;
 
         private string commandin = string.Empty;
-        private string ignoreidin = string.Empty;
         //private bool TEnabled = false;
         //private string tName = string.Empty;
         //private string tPwd = string.Empty;
@@ -131,7 +130,9 @@ namespace METAbolt
 
             //added by GM on 2-JUL-2009
             gmu = this.instance.Config.CurrentConfig.GroupManagerUID;
-            imu = this.instance.Config.CurrentConfig.IgnoreUID;    
+            imu = this.instance.Config.CurrentConfig.IgnoreUID;
+            commandin = this.instance.Config.CurrentConfig.CommandInID;
+    
             cau = this.instance.Config.CurrentConfig.ChairAnnouncerUUID;
             chairAnnouncerInterval = this.instance.Config.CurrentConfig.ChairAnnouncerInterval;
             chairAnnEnabled = this.instance.Config.CurrentConfig.ChairAnnouncerEnabled;
@@ -149,9 +150,6 @@ namespace METAbolt
             nextCallTime = DateTime.Now;
             //added by GM on 1-APR-2010
             chairAnnAdvert = this.instance.Config.CurrentConfig.ChairAnnouncerAdvert;
-
-            commandin = this.instance.Config.CurrentConfig.CommandInID;
-            ignoreidin = this.instance.Config.CurrentConfig.IgnoreUID;
 
             client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
 
@@ -536,6 +534,7 @@ namespace METAbolt
             string prefix = string.Empty;
 
             if (smsg.Contains(imu)) return; // Ignore the message for plugin use or whatever
+            if (smsg.Contains(commandin)) return; // LSL API command
 
             //if (addToBuffer)
             //{
@@ -753,11 +752,6 @@ namespace METAbolt
                     OpenMetaverse.Logger.Log(String.Format(CultureInfo.CurrentCulture, "GroupMan Pro Error: {0}", excp), Helpers.LogLevel.Error);
                     return;
                 }
-            }
-            else if (smsg.Contains(commandin) || smsg.Contains(ignoreidin))
-            {
-                // this is now handled by the MB_LSLAPI
-                return;
             }
             //added by GM on 2-JUL-2009
             else if (item.FromUUID == cau && cau != UUID.Zero)
