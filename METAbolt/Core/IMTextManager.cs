@@ -244,7 +244,8 @@ namespace METAbolt
                 return;
             }
 
-            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;  
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.IgnoreUID)) return;
 
             if (e.IM.Dialog == InstantMessageDialog.StartTyping ||
                 e.IM.Dialog == InstantMessageDialog.StopTyping ||

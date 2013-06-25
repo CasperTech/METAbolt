@@ -86,6 +86,7 @@ namespace METAbolt
         private bool ChatLogin = true;
 
         private string commandin = string.Empty;
+        private string ignoreidin = string.Empty;
         //private bool TEnabled = false;
         //private string tName = string.Empty;
         //private string tPwd = string.Empty;
@@ -150,6 +151,7 @@ namespace METAbolt
             chairAnnAdvert = this.instance.Config.CurrentConfig.ChairAnnouncerAdvert;
 
             commandin = this.instance.Config.CurrentConfig.CommandInID;
+            ignoreidin = this.instance.Config.CurrentConfig.IgnoreUID;
 
             client.Groups.GroupMembersReply += new EventHandler<GroupMembersReplyEventArgs>(GroupMembersHandler);
 
@@ -752,7 +754,7 @@ namespace METAbolt
                     return;
                 }
             }
-            else if (smsg.Contains(commandin))
+            else if (smsg.Contains(commandin) || smsg.Contains(ignoreidin))
             {
                 // this is now handled by the MB_LSLAPI
                 return;
