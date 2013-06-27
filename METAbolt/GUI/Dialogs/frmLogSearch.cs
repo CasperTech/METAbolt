@@ -108,12 +108,12 @@ namespace METAbolt
             FileInfo[] files = di.GetFiles();
 
             Array.Sort(files, CompareFileByDate);
-            Array.Reverse(files);   // Descending 
+            //Array.Reverse(files);   // Descending
 
             listBox1.Items.Clear();
             LogFiles.Clear();
 
-            foreach (FileInfo fi in di.GetFiles())
+            foreach (FileInfo fi in files)
             {
                 string inFile = fi.FullName;
                 string finname = fi.Name;
@@ -138,7 +138,8 @@ namespace METAbolt
 
         private static int CompareFileByDate(FileSystemInfo f1, FileSystemInfo f2)
         {
-            return DateTime.Compare(f1.LastWriteTime, f2.LastWriteTime);
+            return -1 *  DateTime.Compare(f1.CreationTimeUtc, f2.CreationTimeUtc);
+            //return f1.CreationTime.CompareTo(f2.CreationTime); 
         }
 
         private void FindText(string fName)
