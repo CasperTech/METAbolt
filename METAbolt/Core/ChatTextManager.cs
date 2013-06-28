@@ -918,7 +918,7 @@ namespace METAbolt
                     break;
 
                 case ChatBufferTextStyle.LoginReply:
-                    textPrinter.PrintHeader("::Login Reply::");
+                    textPrinter.PrintHeader(":: Grid Login Message ::");
                     textPrinter.SetSelectionForeColor(Color.Black);
                     //textPrinter.SetSelectionBackColor(Color.LightSteelBlue);
                     textPrinter.SetSelectionBackColor(instance.Config.CurrentConfig.HeaderBackColour);
