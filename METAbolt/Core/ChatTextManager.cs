@@ -269,19 +269,19 @@ namespace METAbolt
                     ChatBufferTextStyle.StatusBlue);
 
                 ChatBufferItem loginReply = new ChatBufferItem(
-                    DateTime.Now, " Login reply: " + e.Message, ChatBufferTextStyle.StatusDarkBlue);
+                    DateTime.Now, Environment.NewLine + e.Message, ChatBufferTextStyle.LoginReply);
 
                 string avid = client.Self.AgentID.ToString();
 
                 ChatBufferItem avuuid = new ChatBufferItem(
-                    DateTime.Now, " " + netcom.LoginOptions.FullName + "'s UUID is " + avid + " ", ChatBufferTextStyle.Alert);
+                    DateTime.Now, " " + netcom.LoginOptions.FullName + "'s UUID is " + avid + " " + Environment.NewLine, ChatBufferTextStyle.StatusBlue);
 
                 //ChatBufferItem avuuid1 = new ChatBufferItem(
                 //    DateTime.Now, " Waiting for avatar to rezz... ", ChatBufferTextStyle.Alert);
 
                 ProcessBufferItem(loggedIn, true);
-                ProcessBufferItem(loginReply, true);
                 ProcessBufferItem(avuuid, true);
+                ProcessBufferItem(loginReply, true);
                 //ProcessBufferItem(avuuid1, true);
             }
             else if (e.Status == LoginStatus.Failed)
@@ -873,6 +873,8 @@ namespace METAbolt
                 //textPrinter.SetOffset(0);
             }
 
+            bool islhdr = false;
+
             switch (item.Style)
             {
                 case ChatBufferTextStyle.Normal:
@@ -905,7 +907,8 @@ namespace METAbolt
 
                 case ChatBufferTextStyle.Alert:
                     textPrinter.SetSelectionForeColor(Color.White);
-                    textPrinter.SetSelectionBackColor(Color.BlueViolet);
+                    //textPrinter.SetSelectionBackColor(Color.BlueViolet);
+                    textPrinter.SetSelectionBackColor(Color.SteelBlue);
                     item.Text = item.Text;   // +"\n";
                     break;
 
@@ -913,9 +916,22 @@ namespace METAbolt
                     textPrinter.SetSelectionForeColor(Color.Yellow);
                     textPrinter.SetSelectionBackColor(Color.Red);
                     break;
+
+                case ChatBufferTextStyle.LoginReply:
+                    textPrinter.PrintHeader("::Login Reply::");
+                    textPrinter.SetSelectionForeColor(Color.Black);
+                    //textPrinter.SetSelectionBackColor(Color.LightSteelBlue);
+                    textPrinter.SetSelectionBackColor(instance.Config.CurrentConfig.HeaderBackColour);
+                    textPrinter.SetFontStyle(FontStyle.Bold);
+                    //textPrinter.SetFontSize(12);
+                    textPrinter.SetOffset(8);
+                    islhdr = true;
+                    break;
             }
 
             textPrinter.PrintTextLine(item.Text);
+
+            if (islhdr) textPrinter.PrintHeader(" ");
 
             //// Handle chat tweets
             //if (TEnabled)

@@ -134,6 +134,7 @@ namespace METAbolt
         ObjectChat,
         StartupTitle,
         Error,
-        Alert
+        Alert,
+        LoginReply
     }
 }
