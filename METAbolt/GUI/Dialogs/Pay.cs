@@ -87,6 +87,22 @@ namespace METAbolt
             LoadCallBacks();
         }
 
+        public frmPay(METAboltInstance instance, UUID target, string name, string itemname, Primitive prim)
+        {
+            InitializeComponent();
+
+            this.instance = instance;
+            client = this.instance.Client;
+            //this.name = txtPerson.Text = name;
+            textBox1.Text = itemname;
+
+            this.Prim = prim;
+
+            this.target = target;
+
+            LoadCallBacks();
+        }
+
         public frmPay(METAboltInstance instance, UUID target, string name, int sprice, Primitive prim)
         {
             InitializeComponent();
@@ -127,7 +143,7 @@ namespace METAbolt
             {
                 if (oprice != buyprice && buyprice != -1)
                 {
-                    client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
+                    client.Self.GiveObjectMoney(target, iprice, textBox1.Text.Trim());
                 }
                 else
                 {
@@ -148,7 +164,7 @@ namespace METAbolt
                     }
                     else
                     {
-                        client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
+                        client.Self.GiveObjectMoney(target, iprice, textBox1.Text.Trim());
                     }
                 }
             }

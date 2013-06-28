@@ -2115,7 +2115,7 @@ namespace METAbolt
             }
             else
             {
-                (new frmPay(instance, item.Prim.ID, label9.Text, item.Prim.Properties.Name)).Show(this);
+                (new frmPay(instance, item.Prim.ID, label9.Text, item.Prim.Properties.Name, sPr)).Show(this);
             }
         }
 

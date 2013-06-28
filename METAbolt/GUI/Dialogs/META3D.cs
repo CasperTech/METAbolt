@@ -2145,7 +2145,8 @@ namespace METAbolt
             }
             else
             {
-                (new frmPay(instance, sPr.ID, sPr.Properties.Name)).Show(this);
+                //(new frmPay(instance, sPr.ID, sPr.Properties.Name)).Show(this);
+                (new frmPay(instance, sPr.ID, string.Empty, sPr.Properties.Name, sPr)).Show(this);
             }
             //}
         }
