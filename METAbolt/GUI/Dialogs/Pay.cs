@@ -40,6 +40,8 @@ namespace METAbolt
         private UUID target = UUID.Zero;
         //private string name;
         private Primitive Prim = new Primitive();
+        private int buyprice = -1;
+        private int oprice = -1;
 
         public frmPay(METAboltInstance instance, UUID target, string name)
         {
@@ -47,11 +49,13 @@ namespace METAbolt
 
             this.instance = instance;
             client = this.instance.Client;
-            //this.name = txtPerson.Text = name;
+            txtPerson.Text = name;
+            txtPerson.Visible = true;
+            label3.Visible = true;
 
             this.target = target;
 
-            LoadCallBacks();
+            //LoadCallBacks();
 
             this.Text += "   " + "[ " + client.Self.Name + " ]";
         }
@@ -78,7 +82,6 @@ namespace METAbolt
             client = this.instance.Client;
 
             this.target = target;
-            //this.name = txtPerson.Text = name;
             this.nudAmount.Value = (decimal)sprice;
 
             LoadCallBacks();
@@ -93,9 +96,11 @@ namespace METAbolt
 
             this.target = target;
             //this.name = txtPerson.Text = name;
-            textBox1.Text = prim.Properties.Name;  
+            textBox1.Text = prim.Properties.Name;
+            btnPay.Text = "&Buy"; 
 
             this.nudAmount.Value = (decimal)sprice;
+            oprice = sprice;
 
             this.Prim = prim;
 
@@ -120,24 +125,31 @@ namespace METAbolt
 
             if (Prim != null && Prim.ID != UUID.Zero)
             {
-                SaleType styp = Prim.Properties.SaleType;
-
-                if (styp != SaleType.Not)
+                if (oprice != buyprice && buyprice != -1)
                 {
-                    UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
-
-                    if (styp == SaleType.Contents)
-                    {
-                        client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, client.Inventory.Store.RootFolder.UUID);
-                    }
-                    else
-                    {
-                        client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, folderid);
-                    }
+                    client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
                 }
                 else
                 {
-                    client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
+                    SaleType styp = Prim.Properties.SaleType;
+
+                    if (styp != SaleType.Not)
+                    {
+                        UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
+
+                        if (styp == SaleType.Contents)
+                        {
+                            client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, client.Inventory.Store.RootFolder.UUID);
+                        }
+                        else
+                        {
+                            client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, folderid);
+                        }
+                    }
+                    else
+                    {
+                        client.Self.GiveObjectMoney(target, iprice, Prim.Properties.Name);
+                    }
                 }
             }
             else
@@ -186,11 +198,13 @@ namespace METAbolt
             {
                 this.nudAmount.Value = (decimal)e.DefaultPrice;
                 SetNud(e.DefaultPrice);
+                buyprice = e.DefaultPrice;
             }
             else if (e.DefaultPrice == -1)
             {
                 this.nudAmount.Value = (decimal)e.ButtonPrices[0];
                 SetNud(e.ButtonPrices[0]);
+                buyprice = e.ButtonPrices[0];
             }
         }
 

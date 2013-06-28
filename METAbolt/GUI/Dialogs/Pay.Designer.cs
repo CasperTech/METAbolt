@@ -138,6 +138,7 @@ namespace METAbolt
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Pay resident:";
+            this.label3.Visible = false;
             // 
             // txtPerson
             // 
@@ -148,6 +149,7 @@ namespace METAbolt
             this.txtPerson.ReadOnly = true;
             this.txtPerson.Size = new System.Drawing.Size(220, 21);
             this.txtPerson.TabIndex = 1;
+            this.txtPerson.Visible = false;
             // 
             // frmPay
             // 

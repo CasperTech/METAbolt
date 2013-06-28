@@ -2134,12 +2134,13 @@ namespace METAbolt
             }
 
             SaleType styp = sPr.Properties.SaleType;
-            int sprice = sPr.Properties.SalePrice;
 
             //if (sprice > 0)
             //{
             if (styp != SaleType.Not)
             {
+                int sprice = sPr.Properties.SalePrice;
+
                 (new frmPay(instance, sPr.ID, sPr.Properties.Name, sprice, sPr)).Show(this);
             }
             else
