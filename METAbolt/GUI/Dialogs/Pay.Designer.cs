@@ -38,6 +38,7 @@ namespace METAbolt
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPerson = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,6 +152,18 @@ namespace METAbolt
             this.txtPerson.TabIndex = 1;
             this.txtPerson.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.Color.Green;
+            this.label5.Location = new System.Drawing.Point(131, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 29);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Amount:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label5.Visible = false;
+            // 
             // frmPay
             // 
             this.AccessibleName = "Pay window";
@@ -161,6 +174,7 @@ namespace METAbolt
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(244, 196);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnPay);
@@ -199,5 +213,6 @@ namespace METAbolt
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPerson;
+        private System.Windows.Forms.Label label5;
     }
 }

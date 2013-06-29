@@ -141,31 +141,47 @@ namespace METAbolt
 
             if (Prim != null && Prim.ID != UUID.Zero)
             {
-                if (oprice != buyprice && buyprice != -1)
-                {
-                    client.Self.GiveObjectMoney(target, iprice, textBox1.Text.Trim());
-                }
-                else
-                {
-                    SaleType styp = Prim.Properties.SaleType;
+                SaleType styp = Prim.Properties.SaleType;
 
-                    if (styp != SaleType.Not)
+                if (styp != SaleType.Not)
+                {
+                    if (oprice != buyprice && buyprice != -1)
                     {
-                        UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
+                        if (oprice < buyprice)
+                        {
+                            if (styp == SaleType.Contents)
+                            {
+                                client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, client.Inventory.Store.RootFolder.UUID);
+                            }
+                            else
+                            {
+                                UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
 
+                                client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, folderid);
+                            }
+                        }
+                        else
+                        {
+                            client.Self.GiveObjectMoney(target, iprice, textBox1.Text.Trim());
+                        }
+                    }
+                    else
+                    {
                         if (styp == SaleType.Contents)
                         {
                             client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, client.Inventory.Store.RootFolder.UUID);
                         }
                         else
                         {
+                            UUID folderid = client.Inventory.FindFolderForType(AssetType.Object);   // instance.Config.CurrentConfig.ObjectsFolder;
+
                             client.Objects.BuyObject(client.Network.CurrentSim, Prim.LocalID, styp, iprice, client.Self.ActiveGroup, folderid);
                         }
                     }
-                    else
-                    {
-                        client.Self.GiveObjectMoney(target, iprice, textBox1.Text.Trim());
-                    }
+                }
+                else
+                {
+                    client.Self.GiveObjectMoney(target, iprice, textBox1.Text.Trim());
                 }
             }
             else
@@ -213,20 +229,31 @@ namespace METAbolt
             if (e.DefaultPrice > 0)
             {
                 this.nudAmount.Value = (decimal)e.DefaultPrice;
-                SetNud(e.DefaultPrice);
+                //SetNud(e.DefaultPrice);
                 buyprice = e.DefaultPrice;
+                btnPay.Text = "&Pay"; 
             }
             else if (e.DefaultPrice == -1)
             {
                 this.nudAmount.Value = (decimal)e.ButtonPrices[0];
-                SetNud(e.ButtonPrices[0]);
+                //SetNud(e.ButtonPrices[0]);
                 buyprice = e.ButtonPrices[0];
+                btnPay.Text = "&Pay";
+            }
+
+            if (oprice != buyprice && buyprice != -1 & oprice != -1)
+            {
+                if (this.Prim.ClickAction == ClickAction.Buy || this.Prim.ClickAction == ClickAction.Pay)
+                {
+                    label5.Text = "Buy Price: L$" + oprice;
+                    label5.Visible = true;
+                }
             }
         }
 
         private void SetNud(int nprc)
         {
-            this.nudAmount.Minimum = (decimal)nprc;
+            //this.nudAmount.Minimum = (decimal)nprc;
         }
     }
 }
