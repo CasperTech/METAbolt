@@ -448,6 +448,7 @@ namespace METAbolt
 
                     case LoginStatus.Failed:
                         lblLoginStatus.Text = e.Message;
+                        Logger.Log("Login Failed: " + e.FailReason, Helpers.LogLevel.Info);
                         lblLoginStatus.ForeColor = Color.Red;
 
                         //proLogin.Visible = false;
