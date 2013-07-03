@@ -851,6 +851,7 @@ namespace METAbolt
             /// time out and retry</remarks>
             //client.Settings.CAPS_TIMEOUT = 120 * 1000;   //60 * 1000;
             client.Settings.SIMULATOR_TIMEOUT = 180 * 1000;    //90 * 1000;
+            client.Settings.LOGIN_TIMEOUT = 120 * 1000;
             /// <summary>Number of milliseconds for xml-rpc to timeout</summary>
             //client.Settings.RESEND_TIMEOUT = 8 * 1000;   //4 * 1000;
             /// <summary>Milliseconds to wait for a simulator info request through
@@ -894,15 +895,13 @@ namespace METAbolt
 
             //client.Settings.STORE_LAND_PATCHES = true;
             /// <summary>Enable/disable sending periodic camera updates</summary>
-            client.Settings.SEND_AGENT_UPDATES = true;
-
             // Enable stats
             //client.Settings.TRACK_UTILIZATION = false;
             /// <summary>Enable/disable the sending of pings to monitor lag and 
             /// packet loss</summary>
             //client.Settings.SEND_PINGS = false;
             /// <summary>Whether to decode sim stats</summary>
-            //client.Settings.ENABLE_SIMSTATS = false;
+            client.Settings.ENABLE_SIMSTATS = true;
 
             /// <summary>Whether to establish connections to HTTP capabilities
             /// servers for simulators</summary>
@@ -933,6 +932,7 @@ namespace METAbolt
             ///// <summary>If true, and <code>SEND_AGENT_UPDATES</code> is true,
             ///// AgentUpdate packets will continuously be sent out to give the bot
             ///// smoother movement and autopiloting</summary>
+            client.Settings.SEND_AGENT_UPDATES = true;
             //client.Settings.SYNC_PACKETCALLBACKS = true;
             /// <summary>If true, currently visible primitives and avatars will be
             /// stored in dictionaries inside <code>Simulator.Objects</code>. If 
@@ -965,6 +965,8 @@ namespace METAbolt
 
             if (config.CurrentConfig.BandwidthThrottle == 500.0f)
             {
+                client.Settings.SEND_AGENT_THROTTLE = true;
+
                 client.Throttle.Total = throttle;
             }
             else
