@@ -149,7 +149,15 @@ namespace METAbolt
             textBox1.Text = tBar1.Value.ToString(CultureInfo.CurrentCulture);
 
             tbar2.Maximum = tBar1.Value;
-            tbar2.Value = config.CurrentConfig.ObjectRange;
+
+            try
+            {
+                tbar2.Value = config.CurrentConfig.ObjectRange;
+            }
+            catch
+            {
+                tbar2.Value = tbar2.Minimum;
+            }
 
             textBox2.Text = tbar2.Value.ToString(CultureInfo.CurrentCulture);
             textBox3.Text = config.CurrentConfig.GroupManPro;
@@ -180,7 +188,15 @@ namespace METAbolt
                 radioButton2.Checked = true;
                 trackBar1.Enabled = true;
 
-                trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);
+                try
+                {
+                    trackBar1.Value = Convert.ToInt32(config.CurrentConfig.BandwidthThrottle);
+                }
+                catch
+                {
+                    trackBar1.Value = 160;
+                }
+
                 label19.Text = trackBar1.Value.ToString(CultureInfo.CurrentCulture);
             }
             else
@@ -188,7 +204,15 @@ namespace METAbolt
                 radioButton1.Checked = true;
                 trackBar1.Enabled = false;
 
-                trackBar1.Value = 500;
+                try
+                {
+                    trackBar1.Value = 500;
+                }
+                catch
+                {
+                    trackBar1.Value = trackBar1.Maximum;
+                }
+
                 label19.Text = "500";
             }
 
