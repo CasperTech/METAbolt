@@ -870,5 +870,10 @@ namespace METAbolt
             }
             catch { ; }
         }
+
+        //private void rtbIMText_Leave(object sender, EventArgs e)
+        //{
+        //    //rtbIMText.HideSelection = true;
+        //}
     }
 }

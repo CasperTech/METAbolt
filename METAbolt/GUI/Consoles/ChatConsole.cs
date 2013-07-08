@@ -1250,11 +1250,19 @@ namespace METAbolt
                 }
             }
 
-            if (instance.Config.CurrentConfig.DisableRadar && instance.Config.CurrentConfig.DisableFavs && instance.Config.CurrentConfig.DisableFavs)
+            if (instance.Config.CurrentConfig.DisableRadar && instance.Config.CurrentConfig.DisableFavs && instance.Config.CurrentConfig.DisableVoice)
             {
-                splitContainer1.SplitterDistance = splitContainer1.Width;   //513
-                panel5.Visible = false;
-                tabControl1.Visible = false;
+                try
+                {
+                    splitContainer1.SplitterDistance = splitContainer1.Width;   //513
+                    panel5.Visible = false;
+                    tabControl1.Visible = false;
+                }
+                catch (Exception ex)
+                {
+                    //Logger.Log("MB ERROR: " + ex.Message, Helpers.LogLevel.Error);
+                    splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.Panel2MinSize;
+                }
             }
             else
             {
@@ -3905,19 +3913,6 @@ namespace METAbolt
             //}
         }
 
-        private void rtbChat_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
-
-            //if (rtbChat.SelectedText == string.Empty || rtbChat.SelectedText == null) return; 
-
-            //if (e.Control && e.KeyCode == Keys.C)
-            //{
-            //    Clipboard.Clear();
-            //    Clipboard.SetText(rtbChat.SelectedText, TextDataFormat.UnicodeText); 
-            //}
-        }
-
         private void ChatConsole_SizeChanged(object sender, EventArgs e)
         {
             //newsize = tabPage2.Width - 40;
@@ -4582,11 +4577,6 @@ namespace METAbolt
             System.Diagnostics.Process.Start(@"http://www.bing.com/");
         }
 
-        private void rtbChat_MouseDown(object sender, MouseEventArgs e)
-        {
-            
-        }
-
         private void lvwRadar_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
             ////e.DrawBackground();
@@ -4872,10 +4862,17 @@ namespace METAbolt
 
         private void rtbChat_SizeChanged(object sender, EventArgs e)
         {
-            pTP.Location = new Point(
-            rtbChat.Width / 2 - pTP.Size.Width / 2,
-            rtbChat.Height / 2 - pTP.Size.Height / 2);
-            pTP.Anchor = AnchorStyles.None;
+            try
+            {
+                pTP.Location = new Point(
+                rtbChat.Width / 2 - pTP.Size.Width / 2,
+                rtbChat.Height / 2 - pTP.Size.Height / 2);
+                pTP.Anchor = AnchorStyles.None;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("MB ERROR: " + ex.Message, Helpers.LogLevel.Error);  
+            }
         }
 
         //private void lvwRadar_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)

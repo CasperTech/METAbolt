@@ -33,6 +33,7 @@ namespace METAbolt
             this.btnSend = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnProfile = new System.Windows.Forms.ToolStripButton();
+            this.tsbLocation = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
@@ -43,7 +44,6 @@ namespace METAbolt
             this.cmenu_Emoticons = new System.Windows.Forms.ContextMenu();
             this.tbar_SendMessage = new System.Windows.Forms.ToolBar();
             this.tbBtn_Emoticons = new System.Windows.Forms.ToolBarButton();
-            this.tsbLocation = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,6 +132,16 @@ namespace METAbolt
             this.tbtnProfile.Text = "&Profile";
             this.tbtnProfile.Click += new System.EventHandler(this.tbtnProfile_Click);
             // 
+            // tsbLocation
+            // 
+            this.tsbLocation.Enabled = false;
+            this.tsbLocation.Image = global::METAbolt.Properties.Resources.world;
+            this.tsbLocation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbLocation.Name = "tsbLocation";
+            this.tsbLocation.Size = new System.Drawing.Size(73, 22);
+            this.tsbLocation.Text = "Location";
+            this.tsbLocation.Click += new System.EventHandler(this.tsbLocation_Click);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.Enabled = false;
@@ -215,7 +225,6 @@ namespace METAbolt
             this.rtbIMText.TabIndex = 4;
             this.rtbIMText.Text = "";
             this.rtbIMText.TextColor = Khendys.Controls.RtfColor.Black;
-            this.rtbIMText.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbIMText_LinkClicked_1);
             this.rtbIMText.TextChanged += new System.EventHandler(this.rtbIMText_TextChanged);
             // 
             // tbar_SendMessage
@@ -244,16 +253,6 @@ namespace METAbolt
             this.tbBtn_Emoticons.Style = System.Windows.Forms.ToolBarButtonStyle.DropDownButton;
             this.tbBtn_Emoticons.Text = "{E}";
             this.tbBtn_Emoticons.ToolTipText = "Insert an emoticon";
-            // 
-            // tsbLocation
-            // 
-            this.tsbLocation.Enabled = false;
-            this.tsbLocation.Image = global::METAbolt.Properties.Resources.world;
-            this.tsbLocation.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbLocation.Name = "tsbLocation";
-            this.tsbLocation.Size = new System.Drawing.Size(73, 22);
-            this.tsbLocation.Text = "Location";
-            this.tsbLocation.Click += new System.EventHandler(this.tsbLocation_Click);
             // 
             // IMTabWindow
             // 

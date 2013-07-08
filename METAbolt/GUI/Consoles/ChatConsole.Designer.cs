@@ -565,9 +565,7 @@ namespace METAbolt
             this.rtbChat.SizeChanged += new System.EventHandler(this.rtbChat_SizeChanged);
             this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
             this.rtbChat.Enter += new System.EventHandler(this.rtbChat_Enter);
-            this.rtbChat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbChat_KeyDown);
             this.rtbChat.Leave += new System.EventHandler(this.rtbChat_Leave);
-            this.rtbChat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rtbChat_MouseDown);
             // 
             // pTP
             // 
