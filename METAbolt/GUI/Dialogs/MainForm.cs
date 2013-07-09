@@ -726,6 +726,8 @@ namespace METAbolt
             manager.AssemblyLoading -= new ExtensionManager<IExtension, IHost>.AssemblyLoadingEventHandler(manager_AssemblyLoading);
 
             //statusTimer.Elapsed -= new ElapsedEventHandler(statusTimer_Elapsed);
+
+            this.instance.EndCrashRep();
         }
 
         private void netcom_ClientDisconnected(object sender, DisconnectedEventArgs e)

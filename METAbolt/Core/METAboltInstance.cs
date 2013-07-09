@@ -148,7 +148,7 @@ namespace METAbolt
 
             SetSettings();
 
-            netcom = new SLNetCom(client);
+            netcom = new SLNetCom(client, this);
             InitializeConfig();
 
             state = new StateManager(this);
@@ -209,7 +209,7 @@ namespace METAbolt
             config.ApplyDefault();
 
             SetSettings();
-            netcom = new SLNetCom(client);
+            netcom = new SLNetCom(client, this);
 
             this.rebooted = true;
             startfrombat = true;
@@ -1326,6 +1326,28 @@ namespace METAbolt
         {
             get { return favsfolder; }
             set { favsfolder = value; }
+        }
+
+        public void StartCrashRep()
+        {
+            File.Create(appdir + "\\crashrep_" +  netcom.LoginOptions.FullName).Dispose();
+        }
+
+        public void EndCrashRep()
+        {
+            File.Delete(appdir + "\\crashrep_" + netcom.LoginOptions.FullName);
+        }
+
+        public LastExecStatus HadCrashed()
+        {
+            if (File.Exists(appdir + "\\crashrep_" + netcom.LoginOptions.FullName))
+            {
+                return LastExecStatus.OtherCrash;
+            }
+            else
+            {
+                return LastExecStatus.Normal;
+            }
         }
     }
 }

@@ -55,6 +55,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="METAbolt">
+      <HintPath>..\METAbolt\bin\Debug\METAbolt.exe</HintPath>
+    </Reference>
     <Reference Include="OpenMetaverse, Version=0.0.0.25709, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\OpenMetaverse.dll</HintPath>

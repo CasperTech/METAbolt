@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using OpenMetaverse;
 
 namespace SLNetworkComm
 {
@@ -43,6 +44,7 @@ namespace SLNetworkComm
 
         private LoginGrid grid = LoginGrid.MainGrid;
         private string gridCustomLoginUri = string.Empty;
+        private LastExecStatus crashstatus = LastExecStatus.Normal;
 
         public LoginOptions()
         {
@@ -118,6 +120,12 @@ namespace SLNetworkComm
         {
             get { return gridCustomLoginUri; }
             set { gridCustomLoginUri = value; }
+        }
+
+        public LastExecStatus CrashStatus
+        {
+            get { return crashstatus; }
+            set { crashstatus = value; }
         }
     }
 }

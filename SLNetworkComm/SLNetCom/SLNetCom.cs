@@ -32,6 +32,7 @@ using OpenMetaverse;
 using OpenMetaverse.Packets;
 using System.Net;
 using System.Management; 
+using METAbolt;
 
 
 namespace SLNetworkComm
@@ -44,6 +45,7 @@ namespace SLNetworkComm
     {
         private GridClient client;
         private LoginOptions loginOptions;
+        private METAboltInstance instance;
 
         private bool loggingIn = false;
         private bool loggedIn = false;
@@ -57,9 +59,10 @@ namespace SLNetworkComm
         // in the client app when responding to those events.
         private ISynchronizeInvoke netcomSync;
 
-        public SLNetCom(GridClient client)
+        public SLNetCom(GridClient client, METAboltInstance instance)
         {
             this.client = client;
+            this.instance = instance;
             loginOptions = new LoginOptions();
 
             AddClientEvents();
@@ -101,14 +104,25 @@ namespace SLNetworkComm
         {
             try
             {
-                if (ea.Status == LoginStatus.Success) loggedIn = true;
+                if (ea.Status == LoginStatus.Success)
+                {
+                    loggedIn = true;
+                    client.Self.RequestBalance();
+                }
+
+                if (ea.Status == LoginStatus.Failed)
+                {
+                    instance.EndCrashRep();
+                }
 
                 if (netcomSync != null)
+                {
                     netcomSync.BeginInvoke(new OnClientLoginRaise(OnClientLoginStatus), new object[] { ea });
+                }
                 else
+                {
                     OnClientLoginStatus(ea);
-
-                client.Self.RequestBalance();
+                }
             }
             catch (Exception ex)
             {
@@ -210,6 +224,8 @@ namespace SLNetworkComm
 
             loggedIn = false;
 
+            instance.EndCrashRep();
+
             try
             {
                 if (netcomSync != null)
@@ -251,6 +267,12 @@ namespace SLNetworkComm
             try
             {
                 loggingIn = true;
+
+                LastExecStatus crashrep = instance.HadCrashed();
+
+                loginOptions.CrashStatus = crashrep;
+
+                instance.StartCrashRep();
 
                 OverrideEventArgs ea = new OverrideEventArgs();
                 OnClientLoggingIn(ea);
