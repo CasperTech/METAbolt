@@ -522,8 +522,8 @@ namespace METAbolt
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
-            this.splitContainer1.Panel1.Controls.Add(this.rtbChat);
             this.splitContainer1.Panel1.Controls.Add(this.pTP);
+            this.splitContainer1.Panel1.Controls.Add(this.rtbChat);
             this.splitContainer1.Panel1.Controls.Add(this.panel7);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
