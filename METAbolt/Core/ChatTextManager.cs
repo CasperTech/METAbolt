@@ -1391,7 +1391,7 @@ namespace METAbolt
 
             if (string.IsNullOrEmpty(e.Message)) return;
 
-            if (e.Message.Substring(0, 1) == "@") return;   // Ignore RLV commands
+            //if (e.Message.Substring(0, 1) == "@") return;   // Ignore RLV commands
             if (e.Message.Contains(imu)) return; // Ignore the message for plugin use or whatever
             if (e.Message.Contains(commandin)) return; // LSL API command
 
