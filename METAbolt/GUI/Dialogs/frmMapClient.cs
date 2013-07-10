@@ -491,14 +491,15 @@ namespace METAbolt
             //py = 255 - e.Y;
 
             px = NormaliseSize(e.X);   // Convert.ToInt32(Math.Round(e.X * ssize));
-            py = NormaliseSize(255 - e.Y);   // Convert.ToInt32(Math.Round(e.Y * ssize));
+            //py = NormaliseSize(255 - e.Y);   // Convert.ToInt32(Math.Round(e.Y * ssize));
+            py = NormaliseSize(e.Y);   // Convert.ToInt32(Math.Round(e.Y * ssize));
 
             nuX.Value = (decimal)px;
             nuY.Value = (decimal)py;
             nuZ.Value = (decimal)10;
 
-            clickedx = NormaliseSize(e.X);
-            clickedy = NormaliseSize(e.Y); 
+            clickedx = px;   // NormaliseSize(e.X);
+            clickedy = py;   // NormaliseSize(e.Y); 
 
             //PlotSelected(e.X, e.Y);
 
@@ -526,7 +527,8 @@ namespace METAbolt
 
         private int NormaliseSize(int number)
         {
-            decimal ssize = (decimal)256 / (decimal)tabPage1.Width;
+            //decimal ssize = (decimal)256 / (decimal)tabPage1.Width;
+            decimal ssize = (decimal)256 / (decimal)world.Width;
 
             int pos = Convert.ToInt32(Math.Round(number * ssize));
 
@@ -647,6 +649,8 @@ namespace METAbolt
                             toolTip1.SetToolTip(world, CurrentLoc.LocationName + apstn);
                         }
                     }
+
+                    //world.Cursor = Cursors.Hand;
 
                     showing = true;
                 }

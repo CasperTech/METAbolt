@@ -484,6 +484,8 @@ namespace METAbolt
             }
 
             if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.IgnoreUID)) return;
 
             BeginInvoke(new MethodInvoker(delegate()
             {
@@ -841,6 +843,8 @@ namespace METAbolt
         private void HandleIM(InstantMessageEventArgs e)
         {
             if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.IgnoreUID)) return;
 
             if (e.IM.Dialog == InstantMessageDialog.SessionSend)
             {

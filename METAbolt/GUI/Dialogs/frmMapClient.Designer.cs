@@ -188,7 +188,7 @@ namespace METAbolt
             // checkBox1
             // 
             this.checkBox1.AccessibleName = "Display residents option";
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -205,7 +205,7 @@ namespace METAbolt
             // chkResident
             // 
             this.chkResident.AccessibleName = "Display residents option";
-            this.chkResident.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkResident.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.chkResident.AutoSize = true;
             this.chkResident.Checked = true;
             this.chkResident.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -222,7 +222,7 @@ namespace METAbolt
             // chkForSale
             // 
             this.chkForSale.AccessibleName = "Land for sale option";
-            this.chkForSale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkForSale.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.chkForSale.AutoSize = true;
             this.chkForSale.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkForSale.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;

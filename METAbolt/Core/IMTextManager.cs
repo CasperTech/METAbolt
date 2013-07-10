@@ -244,8 +244,8 @@ namespace METAbolt
                 return;
             }
 
-            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;
-            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.IgnoreUID)) return;
+            //if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;
+            //if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.IgnoreUID)) return;
 
             if (e.IM.Dialog == InstantMessageDialog.StartTyping ||
                 e.IM.Dialog == InstantMessageDialog.StopTyping ||
@@ -307,9 +307,11 @@ namespace METAbolt
             if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName))
                 return;
 
-            string iuid = this.instance.Config.CurrentConfig.IgnoreUID;
+            //string iuid = this.instance.Config.CurrentConfig.IgnoreUID;
 
-            if (e.IM.Message.Contains(iuid)) return; // Ignore Im for plugins use etc.
+            //if (e.IM.Message.Contains(iuid)) return; // Ignore Im for plugins use etc.
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;
+            if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.IgnoreUID)) return;
 
             bool isgroup = this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID);
 
