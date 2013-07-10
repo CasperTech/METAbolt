@@ -533,9 +533,6 @@ namespace METAbolt
             string smsg = item.Text;
             string prefix = string.Empty;
 
-            if (smsg.Contains(imu)) return; // Ignore the message for plugin use or whatever
-            if (smsg.Contains(commandin)) return; // LSL API command
-
             //if (addToBuffer)
             //{
             //    textBuffer.Add(item);
@@ -1395,6 +1392,8 @@ namespace METAbolt
             if (string.IsNullOrEmpty(e.Message)) return;
 
             if (e.Message.Substring(0, 1) == "@") return;   // Ignore RLV commands
+            if (e.Message.Contains(imu)) return; // Ignore the message for plugin use or whatever
+            if (e.Message.Contains(commandin)) return; // LSL API command
 
             StringBuilder sb = new StringBuilder();
 
