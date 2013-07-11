@@ -66,7 +66,7 @@ namespace METAbolt
                     {
                         if (finname.Contains("-GROUP-"))
                         {
-                            if (finname.Contains(client.Self.FirstName + " " + client.Self.LastName))
+                            if (finname.Contains(client.Self.Name))
                             {
                                 string filedate = string.Empty;
                                 string[] file = finname.Split('-');
@@ -82,7 +82,7 @@ namespace METAbolt
                     {
                         if (!finname.Contains("-GROUP-"))
                         {
-                            if (finname.Contains(client.Self.FirstName + " " + client.Self.LastName))
+                            if (finname.Contains(client.Self.Name))
                             {
                                 string filedate = string.Empty;
                                 string[] file = finname.Split('-');

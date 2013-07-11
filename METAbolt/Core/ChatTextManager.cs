@@ -635,7 +635,7 @@ namespace METAbolt
                         }
                         else
                         {
-                            if (item.FromName == client.Self.FirstName + " " + client.Self.LastName)
+                            if (item.FromName == client.Self.Name)   //FirstName + " " + client.Self.LastName)
                             {
                                 prefix = dte.ToString("   [HH:mm] ", CultureInfo.CurrentCulture);
                             }
@@ -1606,7 +1606,7 @@ namespace METAbolt
             }
 
             // Log the message
-            string filename = "CHAT-" + timestamp.Date.ToString(CultureInfo.CurrentCulture) + "-" + client.Self.FirstName + " " + client.Self.LastName + ".txt";
+            string filename = "CHAT-" + timestamp.Date.ToString(CultureInfo.CurrentCulture) + "-" + client.Self.Name + ".txt";
 
             filename = filename.Replace("/", "-");
             //filename = filename.Replace(" ", "_");

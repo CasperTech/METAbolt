@@ -397,11 +397,11 @@ namespace METAbolt
             {
                 string cleangrpname = instance.RemoveReservedCharacters(groupname);
 
-                filename = "IM-" + timestamp.Date.ToString() + "-" + client.Self.FirstName + " " + client.Self.LastName + "-GROUP-" + cleangrpname + ".txt";
+                filename = "IM-" + timestamp.Date.ToString() + "-" + client.Self.Name + "-GROUP-" + cleangrpname + ".txt";
             }
             else
             {
-                filename = "IM-" + timestamp.Date.ToString() + "-" + client.Self.FirstName + " " + client.Self.LastName + "-" + sessionAVname + ".txt";
+                filename = "IM-" + timestamp.Date.ToString() + "-" + client.Self.Name + "-" + sessionAVname + ".txt";
             }
 
             filename = filename.Replace("/", "-");

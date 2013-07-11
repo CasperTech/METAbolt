@@ -2168,6 +2168,7 @@ namespace METAbolt
             else //Chat on channel 0 (public chat)
             {
                 netcom.ChatOut(input, type, 0);
+                //client.Self.Chat(input, 0, type);
             }
 
             ClearChatInput();

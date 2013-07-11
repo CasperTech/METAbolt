@@ -366,9 +366,9 @@ namespace METAbolt
                         lblLoginStatus.Text = "Logged in as " + netcom.LoginOptions.FullName;
                         lblLoginStatus.ForeColor = Color.Blue;
      
-                        string uname = client.Self.FirstName + " " + client.Self.LastName + "\\";
+                        string uname = client.Self.Name + "\\";
 
-                        Wildcard wildcard = new Wildcard(client.Self.FirstName + " " + client.Self.LastName + "*", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                        Wildcard wildcard = new Wildcard(client.Self.Name + "*", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
                         List<string> torem = new List<string>(); 
 
                         foreach (string s in usernlist)
