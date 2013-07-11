@@ -837,7 +837,7 @@ namespace METAbolt
             this.flyToolStripMenuItem.AccessibleName = "Fly menu option";
             this.flyToolStripMenuItem.CheckOnClick = true;
             this.flyToolStripMenuItem.Name = "flyToolStripMenuItem";
-            this.flyToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.flyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.flyToolStripMenuItem.Text = "Fly";
             this.flyToolStripMenuItem.Click += new System.EventHandler(this.flyToolStripMenuItem_Click);
             // 
@@ -846,7 +846,7 @@ namespace METAbolt
             this.alwaysRunToolStripMenuItem.AccessibleName = "Always run menu option";
             this.alwaysRunToolStripMenuItem.CheckOnClick = true;
             this.alwaysRunToolStripMenuItem.Name = "alwaysRunToolStripMenuItem";
-            this.alwaysRunToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.alwaysRunToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.alwaysRunToolStripMenuItem.Text = "Always Run";
             this.alwaysRunToolStripMenuItem.Click += new System.EventHandler(this.alwaysRunToolStripMenuItem_Click);
             // 
@@ -998,7 +998,7 @@ namespace METAbolt
             this.aboutLandToolStripMenuItem.Name = "aboutLandToolStripMenuItem";
             this.aboutLandToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
             this.aboutLandToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.aboutLandToolStripMenuItem.Text = "AboutLand";
+            this.aboutLandToolStripMenuItem.Text = "About Land";
             this.aboutLandToolStripMenuItem.Click += new System.EventHandler(this.aboutLandToolStripMenuItem_Click);
             // 
             // toolStripSeparator2

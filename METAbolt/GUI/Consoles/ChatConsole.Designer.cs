@@ -67,11 +67,11 @@ namespace METAbolt
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.rtbChat = new Khendys.Controls.ExRichTextBox();
             this.pTP = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rtbChat = new Khendys.Controls.ExRichTextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -198,6 +198,7 @@ namespace METAbolt
             this.cbxInput.Size = new System.Drawing.Size(508, 21);
             this.cbxInput.TabIndex = 0;
             this.cbxInput.TextChanged += new System.EventHandler(this.cbxInput_TextChanged);
+            this.cbxInput.Click += new System.EventHandler(this.cbxInput_Click);
             this.cbxInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbxInput_KeyDown);
             this.cbxInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxInput_KeyUp);
             // 
@@ -537,36 +538,6 @@ namespace METAbolt
             this.splitContainer1.SplitterDistance = 513;
             this.splitContainer1.TabIndex = 7;
             // 
-            // rtbChat
-            // 
-            this.rtbChat.AccessibleDescription = "Display incoming and outgoing chat";
-            this.rtbChat.AccessibleName = "Chat output window";
-            this.rtbChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbChat.AutoWordSelection = true;
-            this.rtbChat.BackColor = System.Drawing.Color.White;
-            this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbChat.DetectUrls = true;
-            this.rtbChat.Font = new System.Drawing.Font("Tahoma", 8.5F);
-            this.rtbChat.HideSelection = false;
-            this.rtbChat.HiglightColor = Khendys.Controls.RtfColor.Gray;
-            this.rtbChat.Location = new System.Drawing.Point(3, 3);
-            this.rtbChat.Name = "rtbChat";
-            this.rtbChat.ReadOnly = true;
-            this.rtbChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.rtbChat.ShowSelectionMargin = true;
-            this.rtbChat.Size = new System.Drawing.Size(512, 440);
-            this.rtbChat.TabIndex = 6;
-            this.rtbChat.Text = "";
-            this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
-            this.rtbChat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbChat_LinkClicked);
-            this.rtbChat.Click += new System.EventHandler(this.rtbChat_Click);
-            this.rtbChat.SizeChanged += new System.EventHandler(this.rtbChat_SizeChanged);
-            this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
-            this.rtbChat.Enter += new System.EventHandler(this.rtbChat_Enter);
-            this.rtbChat.Leave += new System.EventHandler(this.rtbChat_Leave);
-            // 
             // pTP
             // 
             this.pTP.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -619,6 +590,36 @@ namespace METAbolt
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // rtbChat
+            // 
+            this.rtbChat.AccessibleDescription = "Display incoming and outgoing chat";
+            this.rtbChat.AccessibleName = "Chat output window";
+            this.rtbChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbChat.AutoWordSelection = true;
+            this.rtbChat.BackColor = System.Drawing.Color.White;
+            this.rtbChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbChat.DetectUrls = true;
+            this.rtbChat.Font = new System.Drawing.Font("Tahoma", 8.5F);
+            this.rtbChat.HideSelection = false;
+            this.rtbChat.HiglightColor = Khendys.Controls.RtfColor.Gray;
+            this.rtbChat.Location = new System.Drawing.Point(3, 3);
+            this.rtbChat.Name = "rtbChat";
+            this.rtbChat.ReadOnly = true;
+            this.rtbChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.rtbChat.ShowSelectionMargin = true;
+            this.rtbChat.Size = new System.Drawing.Size(512, 440);
+            this.rtbChat.TabIndex = 6;
+            this.rtbChat.Text = "";
+            this.rtbChat.TextColor = Khendys.Controls.RtfColor.Black;
+            this.rtbChat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbChat_LinkClicked);
+            this.rtbChat.Click += new System.EventHandler(this.rtbChat_Click);
+            this.rtbChat.SizeChanged += new System.EventHandler(this.rtbChat_SizeChanged);
+            this.rtbChat.TextChanged += new System.EventHandler(this.rtbChat_TextChanged_1);
+            this.rtbChat.Enter += new System.EventHandler(this.rtbChat_Enter);
+            this.rtbChat.Leave += new System.EventHandler(this.rtbChat_Leave);
             // 
             // panel7
             // 

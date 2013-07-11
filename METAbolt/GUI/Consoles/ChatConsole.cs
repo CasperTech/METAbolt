@@ -4875,6 +4875,11 @@ namespace METAbolt
             }
         }
 
+        private void cbxInput_Click(object sender, EventArgs e)
+        {
+            //rtbChat.HideSelection = false;
+        }
+
         //private void lvwRadar_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         //{
         //    if (e.ColumnIndex == 1)

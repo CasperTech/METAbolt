@@ -104,6 +104,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="AIMLbot, Version=2.4.1.50, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\AIMLbot.dll</HintPath>
@@ -213,6 +214,7 @@
       <HintPath>..\Libs\SLNetworkComm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
       <Private>False</Private>
@@ -265,6 +267,7 @@
     <Compile Include="Core\Components\ExListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Core\Components\MessageBoxEx.cs" />
     <Compile Include="Core\Components\Notification.cs">
       <SubType>Form</SubType>
     </Compile>

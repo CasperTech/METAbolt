@@ -39,7 +39,7 @@ using System.Globalization;
 
 namespace METAbolt
 {
-    public partial class frmDialog : Form
+    public partial class frmDialogLoadURL : Form
     {
         private METAboltInstance instance;
         //private SLNetCom netcom;
@@ -47,7 +47,7 @@ namespace METAbolt
         private ScriptDialogEventArgs ed;
 
 
-        public frmDialog(METAboltInstance instance, ScriptDialogEventArgs e)
+        public frmDialogLoadURL(METAboltInstance instance, ScriptDialogEventArgs e)
         {
             InitializeComponent();
 

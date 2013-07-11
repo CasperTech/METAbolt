@@ -1,6 +1,6 @@
 ﻿namespace METAbolt
 {
-    partial class frmDialog
+    partial class frmDialogLoadURL
     {
         /// <summary>
         /// Required designer variable.
