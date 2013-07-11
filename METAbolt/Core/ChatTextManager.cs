@@ -487,8 +487,13 @@ namespace METAbolt
 
         public void PrintMsg(string Msg)
         {
-            textPrinter.SetSelectionForeColor(Color.Brown);
-            textPrinter.PrintText(Msg);
+            //textPrinter.SetSelectionForeColor(Color.Brown);
+            //textPrinter.PrintText(Msg);
+
+            ChatBufferItem ready = new ChatBufferItem(
+               DateTime.Now, Msg, ChatBufferTextStyle.StatusBrown);
+
+            ProcessBufferItem(ready, true);
         }
 
         private void CheckBufferSize()
@@ -884,6 +889,14 @@ namespace METAbolt
                     textPrinter.SetSelectionForeColor(Color.Blue);
                     break;
 
+                case ChatBufferTextStyle.StatusBold:
+                    textPrinter.SetFontStyle(FontStyle.Bold);
+                    break;
+
+                case ChatBufferTextStyle.StatusBrown:
+                    textPrinter.SetSelectionForeColor(Color.Brown);
+                    break;
+
                 case ChatBufferTextStyle.StatusDarkBlue:
                     textPrinter.SetSelectionForeColor(Color.Gray);
                     //textPrinter.BackColor = Color.LightSeaGreen;
@@ -896,6 +909,16 @@ namespace METAbolt
 
                 case ChatBufferTextStyle.ObjectChat:
                     textPrinter.SetSelectionForeColor(Color.DarkCyan);
+                    //item.Text = "\n" + item.Text;
+                    break;
+
+                case ChatBufferTextStyle.OwnerSay:
+                    textPrinter.SetSelectionForeColor(Color.FromArgb(255, 211, 75, 0));
+                    //item.Text = "\n" + item.Text;
+                    break;
+
+                case ChatBufferTextStyle.RegionSay:
+                    textPrinter.SetSelectionForeColor(Color.Green);
                     //item.Text = "\n" + item.Text;
                     break;
 
@@ -1036,8 +1059,15 @@ namespace METAbolt
                             string prefix = instance.SetTime();    //dte.ToString("[HH:mm] ");
                             string gname = instance.State.GroupStore[igroup];
 
-                            textPrinter.SetSelectionForeColor(Color.Gray);
-                            textPrinter.PrintTextLine(prefix + "\n\n[ GroupMan Pro ] @ " + gmanlocation + "\n   Invite request for group " + gname.ToUpper(CultureInfo.CurrentCulture) + " has been ignored. " + gavname + " (" + iperson.ToString() + ") is already a member.");
+                            //textPrinter.SetSelectionForeColor(Color.Gray);
+                           // textPrinter.PrintTextLine(prefix + "\n\n[ GroupMan Pro ] @ " + gmanlocation + "\n   Invite request for group " + gname.ToUpper(CultureInfo.CurrentCulture) + " has been ignored. " + gavname + " (" + iperson.ToString() + ") is already a member.");
+
+                            string Msg = "\n\n[ GroupMan Pro ] @ " + gmanlocation + "\n   Invite request for group " + gname.ToUpper(CultureInfo.CurrentCulture) + " has been ignored. " + gavname + " (" + iperson.ToString() + ") is already a member.";
+
+                            ChatBufferItem ready = new ChatBufferItem( DateTime.Now, Msg, ChatBufferTextStyle.StatusGray);
+
+                            ProcessBufferItem(ready, true);
+
                             return;
                         }
                         else
@@ -1110,8 +1140,15 @@ namespace METAbolt
                 gname = "for group " + instance.State.GroupStore[igroup];
             }
 
-            textPrinter.SetFontStyle(FontStyle.Bold);
-            textPrinter.PrintTextLine(prefix + "\n\n[ GroupMan Pro ] @ " + gmanlocation + "\n   An invite has been sent to: " + gavname + " (" + iperson.ToString() + ")" + gname);
+            //textPrinter.SetFontStyle(FontStyle.Bold);
+            //textPrinter.PrintTextLine(prefix + "\n\n[ GroupMan Pro ] @ " + gmanlocation + "\n   An invite has been sent to: " + gavname + " (" + iperson.ToString() + ")" + gname);
+
+            string Msg = "\n\n[ GroupMan Pro ] @ " + gmanlocation + "\n   An invite has been sent to: " + gavname + " (" + iperson.ToString() + ")" + gname;
+
+            ChatBufferItem ready = new ChatBufferItem(
+               DateTime.Now, Msg, ChatBufferTextStyle.StatusBold);
+
+            ProcessBufferItem(ready, true);
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
@@ -1209,7 +1246,7 @@ namespace METAbolt
 
                 try
                 {
-                    if (item.Style != ChatBufferTextStyle.ObjectChat)
+                    if (item.Style != ChatBufferTextStyle.ObjectChat && item.Style != ChatBufferTextStyle.OwnerSay && item.Style != ChatBufferTextStyle.RegionSay)
                     {
                         if (!string.IsNullOrEmpty(item.FromName))
                         {
@@ -1234,7 +1271,7 @@ namespace METAbolt
                     {
                         textPrinter.SetFontStyle(FontStyle.Bold);
 
-                        if (item.Style != ChatBufferTextStyle.ObjectChat)
+                        if (item.Style != ChatBufferTextStyle.ObjectChat && item.Style != ChatBufferTextStyle.OwnerSay && item.Style != ChatBufferTextStyle.RegionSay)
                         {
                             if (!string.IsNullOrEmpty(item.FromName))
                             {
@@ -1292,6 +1329,14 @@ namespace METAbolt
                     textPrinter.SetSelectionForeColor(Color.BlueViolet);
                     break;
 
+                case ChatBufferTextStyle.StatusBold:
+                    textPrinter.SetFontStyle(FontStyle.Bold);
+                    break;
+
+                case ChatBufferTextStyle.StatusBrown:
+                    textPrinter.SetSelectionForeColor(Color.Brown);
+                    break;
+
                 case ChatBufferTextStyle.StatusDarkBlue:
                     textPrinter.SetSelectionForeColor(Color.White);
                     textPrinter.SetSelectionBackColor(Color.LightSeaGreen);
@@ -1304,16 +1349,24 @@ namespace METAbolt
 
                 case ChatBufferTextStyle.ObjectChat:
                     textPrinter.SetSelectionForeColor(Color.DarkCyan);
+                    //item.Text = "\n" + item.Text;
                     break;
 
-                case ChatBufferTextStyle.StartupTitle:
-                    textPrinter.SetSelectionForeColor(Color.Black);
-                    textPrinter.SetFontStyle(FontStyle.Bold);
+                case ChatBufferTextStyle.OwnerSay:
+                    textPrinter.SetSelectionForeColor(Color.FromArgb(255, 211, 75, 0));
+                    //item.Text = "\n" + item.Text;
+                    break;
+
+                case ChatBufferTextStyle.RegionSay:
+                    textPrinter.SetSelectionForeColor(Color.Green);
+                    //item.Text = "\n" + item.Text;
                     break;
 
                 case ChatBufferTextStyle.Alert:
                     textPrinter.SetSelectionForeColor(Color.White);
-                    textPrinter.SetSelectionBackColor(Color.BlueViolet);
+                    //textPrinter.SetSelectionBackColor(Color.BlueViolet);
+                    textPrinter.SetSelectionBackColor(Color.SteelBlue);
+                    item.Text = item.Text;   // +"\n";
                     break;
 
                 case ChatBufferTextStyle.Error:
@@ -1486,7 +1539,24 @@ namespace METAbolt
                     // Ignore RLV commands from objects
                     if (item.Text.StartsWith("@", StringComparison.CurrentCultureIgnoreCase)) return;
 
-                    item.Style = ChatBufferTextStyle.ObjectChat;
+                    if (e.Type == ChatType.OwnerSay)
+                    {
+                        item.Style = ChatBufferTextStyle.OwnerSay;
+                    }
+                    else if (e.Type == ChatType.Debug)
+                    {
+                        item.Style = ChatBufferTextStyle.Error;
+                    }
+                    else if (e.Type == ChatType.RegionSay)
+                    {
+                        item.Style = ChatBufferTextStyle.RegionSay;
+                    }
+                    else
+                    {
+                        item.Style = ChatBufferTextStyle.ObjectChat;
+                    }
+
+                    //item.Style = ChatBufferTextStyle.ObjectChat;
                     break;
             }
 
@@ -1517,8 +1587,8 @@ namespace METAbolt
             if (!instance.Config.CurrentConfig.SaveChat)
                 return;
 
-            if (string.IsNullOrEmpty(fromName))
-                return;
+            //if (string.IsNullOrEmpty(fromName))
+            //    return;
 
             string newsess = string.Empty;
 

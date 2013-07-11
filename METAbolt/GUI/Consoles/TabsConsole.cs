@@ -705,8 +705,10 @@ namespace METAbolt
 
             BeginInvoke(new MethodInvoker(delegate()
             {
-                //chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
-                chatConsole.ChatManager.PrintMsg(Environment.NewLine + getTimeStamp() + msg);
+                ////chatConsole.ChatManager.PrintMsg("\n" + msg + "\n");
+                ////chatConsole.ChatManager.PrintMsg(Environment.NewLine + getTimeStamp() + msg);
+                //chatConsole.ChatManager.PrintMsg(Environment.NewLine + msg);
+                chatConsole.ChatManager.PrintMsg(msg);
             }));
 
             if (!stopnotify)

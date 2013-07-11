@@ -129,10 +129,15 @@ namespace METAbolt
     {
         Normal,
         StatusBlue,
+        StatusBold,
+        StatusBrown,
         StatusDarkBlue,
+        StatusGray,
         LindenChat,
         ObjectChat,
+        OwnerSay,
         StartupTitle,
+        RegionSay,
         Error,
         Alert,
         LoginReply
