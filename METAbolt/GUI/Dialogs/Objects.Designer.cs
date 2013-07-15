@@ -50,7 +50,6 @@ namespace METAbolt
             this.btnPay = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lkLocation = new System.Windows.Forms.LinkLabel();
             this.btnTP = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -118,6 +117,7 @@ namespace METAbolt
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.button8 = new System.Windows.Forms.Button();
+            this.lkLocation = new System.Windows.Forms.LinkLabel();
             this.lbxPrims = new METAbolt.Core.Components.ExListBox();
             this.gbxInworld.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -145,6 +145,7 @@ namespace METAbolt
             this.gbxInworld.Controls.Add(this.button5);
             this.gbxInworld.Controls.Add(this.btnTake);
             this.gbxInworld.Controls.Add(this.btnPointAt);
+            this.gbxInworld.Controls.Add(this.btnTP);
             this.gbxInworld.Controls.Add(this.button2);
             this.gbxInworld.Controls.Add(this.btnWalk1);
             this.gbxInworld.Controls.Add(this.btnLocation);
@@ -154,7 +155,7 @@ namespace METAbolt
             this.gbxInworld.Enabled = false;
             this.gbxInworld.Location = new System.Drawing.Point(390, 73);
             this.gbxInworld.Name = "gbxInworld";
-            this.gbxInworld.Size = new System.Drawing.Size(239, 108);
+            this.gbxInworld.Size = new System.Drawing.Size(239, 138);
             this.gbxInworld.TabIndex = 7;
             this.gbxInworld.TabStop = false;
             this.gbxInworld.Text = "In-world";
@@ -364,28 +365,18 @@ namespace METAbolt
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lkLocation
-            // 
-            this.lkLocation.AutoSize = true;
-            this.lkLocation.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.lkLocation.Location = new System.Drawing.Point(84, 536);
-            this.lkLocation.Name = "lkLocation";
-            this.lkLocation.Size = new System.Drawing.Size(0, 13);
-            this.lkLocation.TabIndex = 10;
-            // 
             // btnTP
             // 
             this.btnTP.AccessibleName = "Teleport button";
-            this.btnTP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTP.BackColor = System.Drawing.Color.DimGray;
-            this.btnTP.Enabled = false;
             this.btnTP.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnTP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTP.ForeColor = System.Drawing.Color.White;
-            this.btnTP.Location = new System.Drawing.Point(390, 575);
+            this.btnTP.Location = new System.Drawing.Point(6, 108);
             this.btnTP.Name = "btnTP";
-            this.btnTP.Size = new System.Drawing.Size(60, 23);
+            this.btnTP.Size = new System.Drawing.Size(61, 23);
             this.btnTP.TabIndex = 11;
             this.btnTP.Text = "&Teleport";
             this.btnTP.UseVisualStyleBackColor = false;
@@ -459,11 +450,10 @@ namespace METAbolt
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.Gray;
-            this.label22.Location = new System.Drawing.Point(107, 221);
+            this.label22.Location = new System.Drawing.Point(100, 223);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(0, 13);
+            this.label22.Size = new System.Drawing.Size(136, 13);
             this.label22.TabIndex = 51;
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1316,13 +1306,25 @@ namespace METAbolt
             this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(396, 187);
+            this.button8.Location = new System.Drawing.Point(387, 575);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(107, 23);
+            this.button8.Size = new System.Drawing.Size(78, 23);
             this.button8.TabIndex = 56;
             this.button8.Text = "Attac&hments";
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // lkLocation
+            // 
+            this.lkLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lkLocation.AutoSize = true;
+            this.lkLocation.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lkLocation.Location = new System.Drawing.Point(3, 580);
+            this.lkLocation.Name = "lkLocation";
+            this.lkLocation.Size = new System.Drawing.Size(0, 13);
+            this.lkLocation.TabIndex = 10;
+            this.lkLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lkLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lkLocation_LinkClicked);
             // 
             // lbxPrims
             // 
@@ -1361,7 +1363,6 @@ namespace METAbolt
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnTP);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gbxInworld);
             this.DoubleBuffered = true;
@@ -1406,7 +1407,6 @@ namespace METAbolt
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnLocation;
-        private System.Windows.Forms.LinkLabel lkLocation;
         private System.Windows.Forms.Button btnTP;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
@@ -1482,5 +1482,6 @@ namespace METAbolt
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.LinkLabel lkLocation;
     }
 }

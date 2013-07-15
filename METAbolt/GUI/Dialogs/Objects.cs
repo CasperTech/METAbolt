@@ -1510,7 +1510,10 @@ namespace METAbolt
                 int iDx = lbxPrims.SelectedIndex;
 
                 if (iDx < 0)
+                {
+                    //btnTP.Enabled = false;
                     return;
+                }
 
                 ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
 
@@ -1524,6 +1527,8 @@ namespace METAbolt
                     //client.Objects.RequestObject(client.Network.CurrentSim, sPr.LocalID);
                     return;
                 }
+
+                //btnTP.Enabled = true;
 
                 lblOwner.Text = sPr.Properties.OwnerID.ToString();
                 lblUUID.Text = sPr.Properties.ObjectID.ToString();
@@ -1692,8 +1697,10 @@ namespace METAbolt
                     checkBox3.Checked = false;
                 }
 
-                if (btnTP.Enabled)
-                    btnTP.Enabled = false; lkLocation.Text = "";
+                //if (btnTP.Enabled)
+                //    btnTP.Enabled = false; 
+                
+                lkLocation.Text = "";
 
                 //sPr.Flags = LLObject.ObjectFlags.Scripted;
                 //client.Objects.RequestObject("", sPr.LocalID);
@@ -2038,7 +2045,7 @@ namespace METAbolt
             //"http://slurl.com/GridClient/" + 
             string sPos = client.Network.CurrentSim.Name + "/" + item.Prim.Position.X + "/" + item.Prim.Position.Y + "/" + item.Prim.Position.Z;
             lkLocation.Text = sPos;
-            btnTP.Enabled = true;
+            //btnTP.Enabled = true;
         }
 
         private void btnTP_Click(object sender, EventArgs e)
@@ -2533,6 +2540,8 @@ namespace METAbolt
             ////    lbxPrims.SortList();
             ////}
 
+            gbxInworld.Enabled = false;
+
             txtSearch.Text = string.Empty;  
 
             range = newrange = (float)numericUpDown1.Value;
@@ -2842,7 +2851,7 @@ namespace METAbolt
 
                 if (iDx < 0)
                 {
-                    MessageBox.Show("You must first select an object before yo ucan drop an item.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);     
+                    MessageBox.Show("You must first select an object before you can drop an item.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);     
                     return;
                 }
 
@@ -3206,6 +3215,18 @@ namespace METAbolt
             sav = client.Network.CurrentSim.ObjectsAvatars.Find((Avatar av) => { return av.ID == client.Self.AgentID; });
 
             (new WornAttachments(instance, sav)).Show(this);
+        }
+
+        private void lkLocation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //LinkLabel.Link lk = e.Link;
+
+            int iDx = lbxPrims.SelectedIndex;
+            ObjectsListItem item = (ObjectsListItem)lbxPrims.Items[iDx];
+
+            if (item == null) return;
+
+            (new frmTeleport(instance, client.Network.CurrentSim.Name, item.Prim.Position.X, item.Prim.Position.Y, item.Prim.Position.Z, false)).Show();
         }
     }
 }
