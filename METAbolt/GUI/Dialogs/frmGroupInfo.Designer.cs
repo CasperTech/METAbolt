@@ -249,6 +249,7 @@ namespace METAbolt
             // 
             this.chkMature.AccessibleName = "Mature publish option";
             this.chkMature.AutoSize = true;
+            this.chkMature.Enabled = false;
             this.chkMature.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.chkMature.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkMature.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
@@ -298,6 +299,7 @@ namespace METAbolt
             // 
             this.chkFee.AccessibleName = "Enrollment fee option";
             this.chkFee.AutoSize = true;
+            this.chkFee.Enabled = false;
             this.chkFee.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.chkFee.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
@@ -314,6 +316,7 @@ namespace METAbolt
             // 
             this.chkOpenEnrollment.AccessibleName = "Open enrollment option";
             this.chkOpenEnrollment.AutoSize = true;
+            this.chkOpenEnrollment.Enabled = false;
             this.chkOpenEnrollment.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.chkOpenEnrollment.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkOpenEnrollment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
@@ -330,6 +333,7 @@ namespace METAbolt
             // 
             this.chkPublish.AccessibleName = "Publish on the web option";
             this.chkPublish.AutoSize = true;
+            this.chkPublish.Enabled = false;
             this.chkPublish.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.chkPublish.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkPublish.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;

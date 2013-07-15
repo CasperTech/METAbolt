@@ -914,6 +914,14 @@ namespace METAbolt
                                     numFee.Enabled = true;
                                     chkMature.Enabled = true;
                                 }
+                                else
+                                {
+                                    chkPublish.Enabled = false;
+                                    chkOpenEnrollment.Enabled = false;
+                                    chkFee.Enabled = false;
+                                    numFee.Enabled = false;
+                                    chkMature.Enabled = false;
+                                }
 
                                 chkListInProfile.Enabled = true;
                                 chkGroupNotices.Enabled = true;
@@ -983,8 +991,8 @@ namespace METAbolt
 
                 button6.Enabled = !isgmember;
 
-                chkOpenEnrollment.Enabled = true;
-                chkFee.Enabled = true;
+                //chkOpenEnrollment.Enabled = true;
+                //chkFee.Enabled = true;
 
                 if (!chkOpenEnrollment.Checked && !chkFee.Checked)
                 {
