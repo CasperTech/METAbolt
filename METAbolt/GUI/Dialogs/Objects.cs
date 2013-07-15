@@ -3199,5 +3199,13 @@ namespace METAbolt
                 client.Objects.SetName(client.Network.CurrentSim, sPr.LocalID, textBox2.Text);     
             }
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Avatar sav = new Avatar();
+            sav = client.Network.CurrentSim.ObjectsAvatars.Find((Avatar av) => { return av.ID == client.Self.AgentID; });
+
+            (new WornAttachments(instance, sav)).Show(this);
+        }
     }
 }
