@@ -105,6 +105,7 @@ namespace METAbolt
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox5 = new Khendys.Controls.ExRichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cmdApply = new System.Windows.Forms.Button();
@@ -114,7 +115,6 @@ namespace METAbolt
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox5 = new Khendys.Controls.ExRichTextBox();
             this.tabs.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.grpPreferences.SuspendLayout();
@@ -171,6 +171,7 @@ namespace METAbolt
             // 
             this.button6.AccessibleName = "Join this group button";
             this.button6.BackColor = System.Drawing.Color.DimGray;
+            this.button6.Enabled = false;
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1047,6 +1048,30 @@ namespace METAbolt
             this.panel1.Size = new System.Drawing.Size(407, 270);
             this.panel1.TabIndex = 30;
             // 
+            // textBox5
+            // 
+            this.textBox5.AccessibleDescription = "Displays inbound and the responses you have typed";
+            this.textBox5.AccessibleName = "IM box";
+            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox5.AutoWordSelection = true;
+            this.textBox5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox5.DetectUrls = true;
+            this.textBox5.Font = new System.Drawing.Font("Tahoma", 8.5F);
+            this.textBox5.HideSelection = false;
+            this.textBox5.HiglightColor = Khendys.Controls.RtfColor.Gray;
+            this.textBox5.Location = new System.Drawing.Point(3, 23);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.ShowSelectionMargin = true;
+            this.textBox5.Size = new System.Drawing.Size(398, 244);
+            this.textBox5.TabIndex = 27;
+            this.textBox5.Text = "";
+            this.textBox5.TextColor = Khendys.Controls.RtfColor.Black;
+            this.textBox5.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.textBox5_LinkClicked);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1147,30 +1172,6 @@ namespace METAbolt
             // 
             this.columnHeader8.Text = "";
             this.columnHeader8.Width = 167;
-            // 
-            // textBox5
-            // 
-            this.textBox5.AccessibleDescription = "Displays inbound and the responses you have typed";
-            this.textBox5.AccessibleName = "IM box";
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.AutoWordSelection = true;
-            this.textBox5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox5.DetectUrls = true;
-            this.textBox5.Font = new System.Drawing.Font("Tahoma", 8.5F);
-            this.textBox5.HideSelection = false;
-            this.textBox5.HiglightColor = Khendys.Controls.RtfColor.Gray;
-            this.textBox5.Location = new System.Drawing.Point(3, 23);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.ShowSelectionMargin = true;
-            this.textBox5.Size = new System.Drawing.Size(398, 244);
-            this.textBox5.TabIndex = 27;
-            this.textBox5.Text = "";
-            this.textBox5.TextColor = Khendys.Controls.RtfColor.Black;
-            this.textBox5.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.textBox5_LinkClicked);
             // 
             // frmGroupInfo
             // 

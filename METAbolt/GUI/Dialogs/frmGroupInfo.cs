@@ -817,6 +817,8 @@ namespace METAbolt
                 numFee.Enabled = false;
                 chkMature.Enabled = false;
 
+                bool isgmember = false;
+
                 foreach (GroupMember member in Members.Values)
                 {
                     GroupMemberData memberData = new GroupMemberData();
@@ -865,10 +867,12 @@ namespace METAbolt
 
                     if (member.ID == Client.Self.AgentID)
                     {
-                        if (Client.Self.AgentID == member.ID && member.IsOwner)
+                        isgmember = true;
+
+                        if (member.IsOwner)
                         {
                             cmdEject.Enabled = ejectpower = true;
-                            button6.Enabled = true;
+                            //button6.Enabled = true;
 
                             button4.Visible = true;
                             button5.Visible = true;
@@ -889,7 +893,7 @@ namespace METAbolt
                             //cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
                             cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject, grpid);
 
-                            button6.Enabled = false;
+                            //button6.Enabled = false;
 
                             button4.Visible = HasGroupPower(GroupPowers.CreateRole, grpid);   // ((member.Powers & GroupPowers.CreateRole) != 0);
                             button5.Visible = HasGroupPower(GroupPowers.DeleteRole, grpid);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
@@ -975,6 +979,16 @@ namespace METAbolt
                     lvi.Tag = member;
 
                     lstMembers2.Items.Add(lvi);
+                }
+
+                button6.Enabled = !isgmember;
+
+                chkOpenEnrollment.Enabled = true;
+                chkFee.Enabled = true;
+
+                if (!chkOpenEnrollment.Checked && !chkFee.Checked)
+                {
+                    button6.Enabled = false;
                 }
 
                 label10.Visible = false;
