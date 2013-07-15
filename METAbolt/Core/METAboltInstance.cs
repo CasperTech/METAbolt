@@ -980,9 +980,10 @@ namespace METAbolt
                 client.Settings.SEND_AGENT_THROTTLE = false;
 
                 client.Throttle.Cloud = 0.0f;
-                client.Throttle.Land = 0.0f;
+                //client.Throttle.Land = 0.0f;
                 client.Throttle.Wind = 0.0f;
 
+                client.Throttle.Land = throttle / 10f;
                 client.Throttle.Task = throttle / 10f;   // 2f * (throttle / 10f);   // 846000.0f;   // 220000.0f;    //1000000;
                 client.Throttle.Asset = throttle / 10f;   // 2f * (throttle / 10f);    //220000.0f;
                 client.Throttle.Resend = throttle / 10f;   // 3f * (throttle / 10f);  //1000000.0f;   // 

@@ -86,7 +86,16 @@ namespace METAbolt
                 label1.Text = "Name: " + sim.ToString();
 
                 label22.Text = "Version: " + sim.SimVersion;
-                label23.Text = "Location: " + sim.Name;
+                label23.Text = "Location: " + sim.ColoLocation;
+
+                if (client.Appearance.ServerBakingRegion())
+                {
+                    label45.Text = "SSA Enabled";
+                }
+                else
+                {
+                    label45.Text = "SSA Disabled";
+                }
 
                 label2.Text = "Dilation: " + sim.Stats.Dilation.ToString(CultureInfo.CurrentCulture);
                 progressBar1.Value = (int)(sim.Stats.Dilation * 10);

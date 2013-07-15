@@ -948,6 +948,16 @@ namespace METAbolt
                     //textPrinter.SetFontSize(12);
                     textPrinter.SetOffset(8);
                     islhdr = true;
+
+                    if (item.Text.Contains("http://"))
+                    {
+                        item.Text = item.Text.Replace("http://", "\nhttp://");
+                    }
+
+                    if (item.Text.Contains("https://"))
+                    {
+                        item.Text = item.Text.Replace("https://", "\nhttps://");
+                    }
                     break;
             }
 
