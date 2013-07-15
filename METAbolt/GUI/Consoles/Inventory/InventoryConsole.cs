@@ -78,7 +78,7 @@ namespace METAbolt
         private Dictionary<UUID, InventoryItem> inventoryitems = new Dictionary<UUID, InventoryItem>();
         //private bool AppearanceSet = false;
         //private TreeViewWalker treeViewWalker;
-        private InventoryFolder CoF;
+        //public InventoryFolder CoF;
         private bool gotCoF = false;
 
         internal class ThreadExceptionHandler
@@ -362,7 +362,7 @@ namespace METAbolt
                             if (o is InventoryFolder)
                             {
                                 client.Inventory.RequestFolderContents(o.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
-                                CoF = (InventoryFolder)o;
+                                instance.CoF = (InventoryFolder)o;
                                 gotCoF = true;
                             }
                         }
@@ -1004,7 +1004,7 @@ namespace METAbolt
                     {
                         if (gotCoF)
                         {
-                            if (io.ParentUUID != CoF.UUID)
+                            if (io.ParentUUID != instance.CoF.UUID)
                             {
                                 attachToToolStripMenuItem.Visible = true;
                             }
@@ -2002,7 +2002,7 @@ namespace METAbolt
                 }
             }
 
-            contents = client.Inventory.Store.GetContents(CoF.UUID);
+            contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
             List<UUID> remclothing = new List<UUID>();
 
             foreach (InventoryItem item in contents)
@@ -2017,7 +2017,7 @@ namespace METAbolt
 
             foreach (var item in clothing)
             {
-                client.Inventory.CreateLink(CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
+                client.Inventory.CreateLink(instance.CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
                 {
                     if (success)
                     {
@@ -2060,7 +2060,7 @@ namespace METAbolt
                 {
                     //InventoryFolder folder = (InventoryFolder)io;
 
-                    if (io.UUID == CoF.UUID)
+                    if (io.UUID == instance.CoF.UUID)
                     {
                         takeOffToolStripMenuItem.Visible = false;
                         wearToolStripMenuItem.Visible = false;
@@ -2073,7 +2073,7 @@ namespace METAbolt
             {
                 if (gotCoF == true)
                 {
-                    if (io.ParentUUID == CoF.UUID)
+                    if (io.ParentUUID == instance.CoF.UUID)
                     {
                         takeOffToolStripMenuItem.Visible = true;
                         wearToolStripMenuItem.Visible = false;
@@ -2311,7 +2311,7 @@ namespace METAbolt
                 List<InventoryBase> contents = client.Inventory.Store.GetContents(folder.UUID);
                 List<InventoryItem> clothing = new List<InventoryItem>();
 
-                List<InventoryBase> cofcontents = client.Inventory.Store.GetContents(CoF.UUID);
+                List<InventoryBase> cofcontents = client.Inventory.Store.GetContents(instance.CoF.UUID);
                 List<UUID> remclothing = new List<UUID>();
 
                 foreach (InventoryItem item in contents)
@@ -2346,7 +2346,7 @@ namespace METAbolt
 
                 foreach (var item in clothing)
                 {
-                    client.Inventory.CreateLink(CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
+                    client.Inventory.CreateLink(instance.CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
                     {
                         if (success)
                         {
@@ -2380,7 +2380,7 @@ namespace METAbolt
 
                     clothing.Add(item);
 
-                    List<InventoryBase> cofcontents = client.Inventory.Store.GetContents(CoF.UUID);
+                    List<InventoryBase> cofcontents = client.Inventory.Store.GetContents(instance.CoF.UUID);
                     List<UUID> remclothing = new List<UUID>();
 
                     if (item is InventoryWearable)
@@ -2413,7 +2413,7 @@ namespace METAbolt
                     managerbusy = client.Appearance.ManagerBusy;
                     client.Appearance.AddToOutfit(item, true);
 
-                    client.Inventory.CreateLink(CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
+                    client.Inventory.CreateLink(instance.CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
                     {
                         if (success)
                         {
@@ -2432,7 +2432,7 @@ namespace METAbolt
                 {
                     client.Appearance.Attach(item, AttachmentPoint.Default, false);
 
-                    client.Inventory.CreateLink(CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
+                    client.Inventory.CreateLink(instance.CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
                     {
                         if (success)
                         {
@@ -2449,7 +2449,7 @@ namespace METAbolt
         {
             client.Appearance.Attach(item, pnt, false);
 
-            client.Inventory.CreateLink(CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
+            client.Inventory.CreateLink(instance.CoF.UUID, item.UUID, item.Name, string.Empty, AssetType.Link, item.InventoryType, UUID.Random(), (success, newItem) =>
             {
                 if (success)
                 {
@@ -2490,7 +2490,7 @@ namespace METAbolt
 
             if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
             {
-                List<InventoryBase> contents = client.Inventory.Store.GetContents(CoF.UUID);
+                List<InventoryBase> contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
                 List<UUID> remclothing = new List<UUID>();
 
                 foreach (InventoryItem ritem in contents)
@@ -2515,7 +2515,7 @@ namespace METAbolt
             {
                 if (item.AssetType == AssetType.Object)
                 {
-                    List<InventoryBase> contents = client.Inventory.Store.GetContents(CoF.UUID);
+                    List<InventoryBase> contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
                     List<UUID> remclothing = new List<UUID>();
 
                     foreach (InventoryItem ritem in contents)

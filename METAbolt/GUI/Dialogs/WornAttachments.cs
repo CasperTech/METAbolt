@@ -60,6 +60,8 @@ namespace METAbolt
 
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             //client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
+
+            if (av.ID == client.Self.AgentID) button1.Enabled = true; 
         }
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
@@ -139,6 +141,8 @@ namespace METAbolt
                     this.BeginInvoke(new MethodInvoker(delegate()
                     {
                         lbxPrims.BeginUpdate();
+
+                        lbxPrims.Items.Clear();  
 
                         foreach (Primitive prim in prims)
                         {
@@ -586,6 +590,62 @@ namespace METAbolt
             //}
 
             //GC.Collect();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int iDx = lbxPrims.SelectedIndex;
+
+            if (iDx != -1)
+            {
+                AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
+
+                if (item == null) return;
+
+                UUID itmid = GetItemID(item.Prim);
+
+                if (itmid == UUID.Zero) return;
+
+                InventoryItem attid = client.Inventory.Store[itmid] as InventoryItem;
+
+                //client.Appearance.Detach(attid);
+
+                //List<UUID> remclothing = new List<UUID>();
+                //remclothing.Add(attid.UUID);
+
+                List<InventoryBase> contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
+                List<UUID> remclothing = new List<UUID>();
+
+                foreach (InventoryItem ritem in contents)
+                {
+                    if (ritem.AssetUUID == attid.UUID)
+                    {
+                        remclothing.Add(ritem.UUID);
+                    }
+                }
+
+                client.Inventory.Remove(remclothing, null);
+                client.Appearance.Detach(attid);
+
+                Thread.Sleep(2000);
+
+                //ReLoadItems();
+                GetAttachments();
+            }
+        }
+
+        private static UUID GetItemID(Primitive att)
+        {
+            if (att.NameValues == null) return UUID.Zero;
+
+            for (int i = 0; i < att.NameValues.Length; i++)
+            {
+                if (att.NameValues[i].Name == "AttachItemID")
+                {
+                    return (UUID)att.NameValues[i].Value.ToString();
+                }
+            }
+            return UUID.Zero;
         }
     }
 }

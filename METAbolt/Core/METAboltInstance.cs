@@ -113,7 +113,8 @@ namespace METAbolt
         private string afffile = string.Empty;
         private string dicfile = string.Empty;
         private bool allowvoice = true;
-        private UUID favsfolder = UUID.Zero; 
+        private UUID favsfolder = UUID.Zero;
+        public InventoryFolder CoF;
 
         internal class ThreadExceptionHandler
         {

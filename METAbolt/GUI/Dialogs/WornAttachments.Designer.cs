@@ -43,6 +43,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPoint = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pBar3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,7 +180,7 @@
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(221, 439);
+            this.button2.Location = new System.Drawing.Point(166, 439);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 23);
             this.button2.TabIndex = 56;
@@ -238,6 +239,25 @@
             this.txtPoint.Size = new System.Drawing.Size(316, 21);
             this.txtPoint.TabIndex = 64;
             // 
+            // button1
+            // 
+            this.button1.AccessibleDescription = "Touch or click the selected object";
+            this.button1.AccessibleName = "Touch or Click button";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.DimGray;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(223, 439);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 23);
+            this.button1.TabIndex = 65;
+            this.button1.Text = "Detac&h";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // WornAttachments
             // 
             this.AccessibleName = "Worn attachments window";
@@ -246,6 +266,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(420, 534);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtPoint);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtUUID);
@@ -295,5 +316,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtPoint;
+        private System.Windows.Forms.Button button1;
     }
 }
