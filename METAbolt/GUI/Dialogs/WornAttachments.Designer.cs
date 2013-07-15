@@ -292,6 +292,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Worn Attachments";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WornAttachments_FormClosing_1);
             this.Load += new System.EventHandler(this.WornAssets_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pBar3)).EndInit();
             this.ResumeLayout(false);

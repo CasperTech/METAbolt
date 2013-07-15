@@ -60,8 +60,6 @@ namespace METAbolt
 
             client.Network.SimChanged += new EventHandler<SimChangedEventArgs>(SIM_OnSimChanged);
             //client.Self.TeleportProgress += new EventHandler<TeleportEventArgs>(Self_TeleportProgress);
-
-            if (av.ID == client.Self.AgentID) button1.Enabled = true; 
         }
 
         private void SIM_OnSimChanged(object sender, SimChangedEventArgs e)
@@ -141,7 +139,6 @@ namespace METAbolt
                     this.BeginInvoke(new MethodInvoker(delegate()
                     {
                         lbxPrims.BeginUpdate();
-
                         lbxPrims.Items.Clear();  
 
                         foreach (Primitive prim in prims)
@@ -184,6 +181,62 @@ namespace METAbolt
             this.CenterToParent();
 
             GetAttachments();
+
+            client.Objects.ObjectUpdate += new EventHandler<PrimEventArgs>(Objects_OnNewPrim);
+            client.Objects.KillObject += new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
+        }
+
+        private void Objects_OnNewPrim(object sender, PrimEventArgs e)
+        {
+            //if (!this.IsHandleCreated) return;
+
+            if (e.Simulator.Handle != client.Network.CurrentSim.Handle || e.Prim is Avatar) return;
+
+            //if (e.Prim.ParentID != 0) return;
+
+            if (!e.Prim.IsAttachment) return;
+
+            if (e.Prim.ParentID != av.LocalID) return;
+
+            lock (listItems)
+            {
+                listItems.Clear();
+            }
+
+            BeginInvoke(new MethodInvoker(delegate()
+            {
+                pBar3.Visible = true;
+                lbxPrims.Items.Clear();
+                lbxPrimGroup.Items.Clear();
+
+                ReLoadItems();
+            }));
+        }
+
+        private void Objects_OnObjectKilled(object sender, KillObjectEventArgs e)
+        {
+            if (e.Simulator.Handle != client.Network.CurrentSim.Handle) return;
+
+            //if (!e.Prim.IsAttachment) return;
+            
+            //if (e.Prim.ParentID != av.LocalID) return;
+
+            if (listItems.ContainsKey(e.ObjectLocalID))
+            {
+                lock (listItems)
+                {
+                    listItems.Clear();
+                }
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    pBar3.Visible = true;
+                    lbxPrims.Items.Clear();
+                    lbxPrimGroup.Items.Clear();
+
+                    ReLoadItems();
+                }));
+            }
         }
 
         private void GetAttachments()
@@ -459,11 +512,14 @@ namespace METAbolt
             {
                 btnTouch.Enabled = false;
                 button2.Enabled = false;
+
+                if (av.ID == client.Self.AgentID) button1.Enabled = false; 
                 return;
             }
             else
             {
                 button2.Enabled = true;
+                if (av.ID == client.Self.AgentID) button1.Enabled = true; 
             }
 
             AttachmentsListItem item = (AttachmentsListItem)lbxPrims.Items[iDx];
@@ -627,10 +683,23 @@ namespace METAbolt
                 client.Inventory.Remove(remclothing, null);
                 client.Appearance.Detach(attid);
 
-                Thread.Sleep(2000);
+                lock (listItems)
+                {
+                    listItems.Clear();
+                }
 
-                //ReLoadItems();
-                GetAttachments();
+                pBar3.Visible = true;
+                lbxPrims.Items.Clear();
+                lbxPrimGroup.Items.Clear();
+
+                ThreadPool.QueueUserWorkItem(delegate(object sync)
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    Thread.Sleep(2000);
+                    ReLoadItems();
+                    //GetAttachments();
+                    Cursor.Current = Cursors.Default;
+                });
             }
         }
 
@@ -646,6 +715,12 @@ namespace METAbolt
                 }
             }
             return UUID.Zero;
+        }
+
+        private void WornAttachments_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            client.Objects.ObjectUpdate -= new EventHandler<PrimEventArgs>(Objects_OnNewPrim);
+            client.Objects.KillObject -= new EventHandler<KillObjectEventArgs>(Objects_OnObjectKilled);
         }
     }
 }
