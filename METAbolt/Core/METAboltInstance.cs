@@ -1013,7 +1013,8 @@ namespace METAbolt
 
             foreach (char strChar in invalidFileChars)
             {
-                strValue = strValue.Replace(strChar.ToString(CultureInfo.CurrentCulture), "");
+                //strValue = strValue.Replace(strChar.ToString(CultureInfo.CurrentCulture), "");
+                strValue = CleanReplace(strChar.ToString(CultureInfo.CurrentCulture), "", strValue);
             }
 
             return strValue;
@@ -1169,6 +1170,15 @@ namespace METAbolt
             string prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
 
             return prefix;
+        }
+
+        public string CleanReplace(string rep, string repwith, string inputString)
+        {
+            StringBuilder b = new StringBuilder(inputString);
+
+            b.Replace(rep, repwith);
+
+            return b.ToString();
         }
 
         public GridClient Client

@@ -2466,12 +2466,12 @@ namespace METAbolt
             {
                 if (!wear)
                 {
-                    treeView1.SelectedNode.Text = node.Text.Replace(" (WORN)", "");
+                    treeView1.SelectedNode.Text = instance.CleanReplace(" (WORN)", "", node.Text);
                     treeView1.SelectedNode.ForeColor = Color.Black;
                 }
                 else
                 {
-                    treeView1.SelectedNode.Text = node.Text.Replace(" (WORN)", "") + " (WORN)";
+                    treeView1.SelectedNode.Text = instance.CleanReplace(" (WORN)", "", node.Text) + " (WORN)";
                     treeView1.SelectedNode.ForeColor = Color.RoyalBlue;
                 }
             }

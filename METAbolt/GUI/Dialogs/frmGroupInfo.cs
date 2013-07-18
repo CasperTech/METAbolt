@@ -447,7 +447,7 @@ namespace METAbolt
 
                         char[] deli = "|".ToCharArray();
                         string[] Msg = imsg.Message.Split(deli);
-                        textBox5.Text = Msg[1].Replace("\n", System.Environment.NewLine);
+                        textBox5.Text = instance.CleanReplace("\n", System.Environment.NewLine, Msg[1]);
 
                         label7.Text = string.Empty;
                         label7.TextAlign = ContentAlignment.MiddleLeft;

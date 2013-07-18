@@ -951,12 +951,12 @@ namespace METAbolt
 
                     if (item.Text.Contains("http://"))
                     {
-                        item.Text = item.Text.Replace("http://", "\nhttp://");
+                        item.Text = instance.CleanReplace("http://", "\nhttp://", item.Text);
                     }
 
                     if (item.Text.Contains("https://"))
                     {
-                        item.Text = item.Text.Replace("https://", "\nhttps://");
+                        item.Text = instance.CleanReplace("https://", "\nhttps://", item.Text);
                     }
                     break;
             }
@@ -1618,9 +1618,9 @@ namespace METAbolt
             // Log the message
             string filename = "CHAT-" + timestamp.Date.ToString(CultureInfo.CurrentCulture) + "-" + client.Self.Name + ".txt";
 
-            filename = filename.Replace("/", "-");
+            filename = instance.CleanReplace("/", "-", filename);    //filename.Replace("/", "-");
             //filename = filename.Replace(" ", "_");
-            filename = filename.Replace(":", "-");
+            filename = instance.CleanReplace(":", "-", filename);    //filename.Replace(":", "-");
 
             string path = folder + filename;
             string line = newsess + "[" + timestamp.ToShortTimeString() + "] " + msg;

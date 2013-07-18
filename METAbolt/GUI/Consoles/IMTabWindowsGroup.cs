@@ -645,8 +645,8 @@ namespace METAbolt
 
             message = message.TrimEnd();
 
-            message = message.Replace("http://secondlife:///", "secondlife:///");
-            message = message.Replace("http://secondlife://", "secondlife:///");
+            message = instance.CleanReplace("http://secondlife:///", "secondlife:///", message);
+            message = instance.CleanReplace("http://secondlife://", "secondlife:///", message);
 
             if (instance.Config.CurrentConfig.EnableSpelling)
             {

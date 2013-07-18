@@ -1578,7 +1578,9 @@ namespace METAbolt
                     item.ForeColor = clr;
                     item.Tag = key;
 
-                    rentry = rentry.Replace("*", " (Sitting)");  
+                    //rentry = rentry.Replace("*", " (Sitting)");
+                    rentry = instance.CleanReplace("*", " (Sitting)", rentry);
+
                     item.ToolTipText = sDist + name + rentry;
                     //item.BackColor = rowclr;
 
@@ -2075,8 +2077,8 @@ namespace METAbolt
             //else
             //{
 
-            input = input.Replace("http://secondlife:///", "secondlife:///");
-            input = input.Replace("http://secondlife://", "secondlife:///");
+            input = instance.CleanReplace("http://secondlife:///", "secondlife:///", input);
+            input = instance.CleanReplace("http://secondlife://", "secondlife:///", input);
  
                 if (instance.Config.CurrentConfig.EnableSpelling)
                 {

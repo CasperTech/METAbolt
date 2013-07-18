@@ -355,7 +355,7 @@ namespace METAbolt
                 {
                     if (!text.Contains("http://secondlife:///"))
                     {
-                        text = text.Replace("secondlife:///", "http://secondlife:///");
+                        text = instance.CleanReplace("secondlife:///", "http://secondlife:///", text);
                     }
                 }
 
@@ -363,7 +363,7 @@ namespace METAbolt
                 {
                     if (!text.Contains("http://secondlife://"))
                     {
-                        text = text.Replace("secondlife://", "http://secondlife:///");
+                        text = instance.CleanReplace("secondlife://", "http://secondlife:///", text);
                     }
                 }
 
@@ -395,11 +395,27 @@ namespace METAbolt
                 //rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
                 ////rtb.SelectionBackColor = rtb.BackColor = bgcolour;
 
+                //if (text.Contains("secondlife:///"))
+                //{
+                //    if (!text.Contains("http://secondlife:///"))
+                //    {
+                //        text = text.Replace("secondlife:///", "http://secondlife:///");
+                //    }
+                //}
+
+                //if (text.Contains("secondlife://"))
+                //{
+                //    if (!text.Contains("http://secondlife://"))
+                //    {
+                //        text = text.Replace("secondlife://", "http://secondlife:///");
+                //    }
+                //}
+
                 if (text.Contains("secondlife:///"))
                 {
                     if (!text.Contains("http://secondlife:///"))
                     {
-                        text = text.Replace("secondlife:///", "http://secondlife:///");
+                        text = instance.CleanReplace("secondlife:///", "http://secondlife:///", text);
                     }
                 }
 
@@ -407,7 +423,7 @@ namespace METAbolt
                 {
                     if (!text.Contains("http://secondlife://"))
                     {
-                        text = text.Replace("secondlife://", "http://secondlife:///");
+                        text = instance.CleanReplace("secondlife://", "http://secondlife:///", text);
                     }
                 }
 
@@ -439,11 +455,27 @@ namespace METAbolt
                 //rtb.SelectionFont = new Font(textfont, textfontsize, fontst);
                 //rtb.SelectionBackColor = rtb.BackColor = bgcolour;
 
+                //if (text.Contains("secondlife:///"))
+                //{
+                //    if (!text.Contains("http://secondlife:///"))
+                //    {
+                //        text = text.Replace("secondlife:///", "http://secondlife:///");
+                //    }
+                //}
+
+                //if (text.Contains("secondlife://"))
+                //{
+                //    if (!text.Contains("http://secondlife://"))
+                //    {
+                //        text = text.Replace("secondlife://", "http://secondlife:///");
+                //    }
+                //}
+
                 if (text.Contains("secondlife:///"))
                 {
                     if (!text.Contains("http://secondlife:///"))
                     {
-                        text = text.Replace("secondlife:///", "http://secondlife:///");
+                        text = instance.CleanReplace("secondlife:///", "http://secondlife:///", text);
                     }
                 }
 
@@ -451,7 +483,7 @@ namespace METAbolt
                 {
                     if (!text.Contains("http://secondlife://"))
                     {
-                        text = text.Replace("secondlife://", "http://secondlife:///");
+                        text = instance.CleanReplace("secondlife://", "http://secondlife:///", text);
                     }
                 }
 

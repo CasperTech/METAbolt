@@ -404,9 +404,13 @@ namespace METAbolt
                 filename = "IM-" + timestamp.Date.ToString() + "-" + client.Self.Name + "-" + sessionAVname + ".txt";
             }
 
-            filename = filename.Replace("/", "-");
+            //filename = filename.Replace("/", "-");
+            ////filename = filename.Replace(" ", "_");
+            //filename = filename.Replace(":", "-");
+
+            filename = instance.CleanReplace("/", "-", filename);    //filename.Replace("/", "-");
             //filename = filename.Replace(" ", "_");
-            filename = filename.Replace(":", "-");
+            filename = instance.CleanReplace(":", "-", filename);    //filename.Replace(":", "-");
 
             string path = folder + filename;
             string line = "[" + timestamp.ToShortTimeString() + "] " + fromName + ": " + msg; 

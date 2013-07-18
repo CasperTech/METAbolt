@@ -340,10 +340,13 @@ namespace METAbolt
             string avsim = e.Simulator.Name;
             Vector3 avloccords = e.IM.Position;
 
-            avloc = "http://slurl.com/secondlife/" + avsim + "/" + (avloccords.X - 1).ToString(CultureInfo.CurrentCulture) + "/" + avloccords.Y.ToString(CultureInfo.CurrentCulture) + "/" + avloccords.Z.ToString(CultureInfo.CurrentCulture);
+            if (avloccords != Vector3.Zero)
+            {
+                avloc = "http://slurl.com/secondlife/" + avsim + "/" + (avloccords.X - 1).ToString(CultureInfo.CurrentCulture) + "/" + avloccords.Y.ToString(CultureInfo.CurrentCulture) + "/" + avloccords.Z.ToString(CultureInfo.CurrentCulture);
 
-            tsbLocation.Enabled = true;
-            tsbLocation.ToolTipText = e.IM.FromAgentName + "'s Location";
+                tsbLocation.Enabled = true;
+                tsbLocation.ToolTipText = e.IM.FromAgentName + "'s Location";
+            }
         }
 
         private void Config_ConfigApplied(object sender, ConfigAppliedEventArgs e)
@@ -502,8 +505,11 @@ namespace METAbolt
 
             message = message.TrimEnd();
 
-            message = message.Replace("http://secondlife:///", "secondlife:///");
-            message = message.Replace("http://secondlife://", "secondlife:///");
+            //message = message.Replace("http://secondlife:///", "secondlife:///");
+            //message = message.Replace("http://secondlife://", "secondlife:///");
+
+            message = instance.CleanReplace("http://secondlife:///", "secondlife:///", message);
+            message = instance.CleanReplace("http://secondlife://", "secondlife:///", message);
 
             if (instance.Config.CurrentConfig.EnableSpelling)
             {
