@@ -488,6 +488,10 @@ namespace METAbolt
             ////    return false;
             ////}
 
+            if (avatar == UUID.Zero) return false;
+
+            if (avatar == client.Self.AgentID || name == client.Self.Name) return false;
+
             if (null != client.Self.MuteList.Find(mle => (mle.ID == avatar) || (mle.Type == MuteType.ByName && mle.Name == name)))
             {
                 return true;
