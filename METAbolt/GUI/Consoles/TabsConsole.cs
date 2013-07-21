@@ -784,7 +784,7 @@ namespace METAbolt
 
         private void HandleGroupNoticeReceived(InstantMessageEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+            //if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
 
             if (instance.Config.CurrentConfig.DisableGroupNotices)
             {
