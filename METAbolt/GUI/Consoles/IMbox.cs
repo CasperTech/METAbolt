@@ -19,7 +19,7 @@ namespace METAbolt
     public partial class IMbox : UserControl
     {
         private METAboltInstance instance;
-        //private GridClient client;
+        private GridClient client;
         private SLNetCom netcom;
         private TabsConsole tabsconsole;
         private Popup toolTip;
@@ -44,7 +44,7 @@ namespace METAbolt
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             this.instance = instance;
-            //client = this.instance.Client;
+            client = this.instance.Client;
             netcom = this.instance.Netcom;
 
             string msg1 = "To view IMs, double click on an IM session from the list.\nWhen the IMbox tab turns BLUE it means there is a new IM.\nThis tab can be detached from the 'PC' icon on the right.";
@@ -170,6 +170,8 @@ namespace METAbolt
 
             if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
             {
+                //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
+
                 // Check to see if group IMs are disabled
                 if (instance.Config.CurrentConfig.DisableGroupIMs) return;
 
@@ -177,6 +179,7 @@ namespace METAbolt
             }
             else
             {
+                if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
                 TabAgentName = e.IM.FromAgentName;
             }
 

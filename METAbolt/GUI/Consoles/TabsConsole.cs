@@ -852,6 +852,8 @@ namespace METAbolt
             {
                 if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
                 {
+                    //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
+
                     // Check to see if group IMs are disabled
                     if (instance.Config.CurrentConfig.DisableGroupIMs)
                         return;
@@ -929,6 +931,8 @@ namespace METAbolt
 
             if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
             {
+                //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
+
                 // Check to see if group IMs are disabled
                 if (instance.Config.CurrentConfig.DisableGroupIMs)
                 {
