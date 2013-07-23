@@ -271,11 +271,30 @@ namespace METAbolt
             {
                 InventoryWearable werbl = item as InventoryWearable;
 
-                label9.Text = "Wearable type: " +  werbl.WearableType.ToString();
+                if (item.ParentUUID == instance.CoF.UUID)
+                {
+                    InventoryItem wItem = AInventoryItem(item);
+
+                    werbl = wItem as InventoryWearable;
+                    label9.Text = "Wearable type: " + werbl.WearableType.ToString();
+                }
+                else
+                {
+                    label9.Text = "Wearable type: " + werbl.WearableType.ToString();
+                }
             }
             else
             {
-                label9.Text = string.Empty;   
+                //if (item.ParentUUID == instance.CoF.UUID)
+                //{
+
+                //}
+                //else
+                //{
+                //    label9.Text = string.Empty;
+                //}
+
+                label9.Text = "Wearable type: Object";
             }
 
             if ((item.Permissions.OwnerMask & PermissionMask.Modify) != PermissionMask.Modify)
@@ -284,6 +303,16 @@ namespace METAbolt
             }
 
             fLoading = false;
+        }
+
+        private InventoryItem AInventoryItem(InventoryItem item)
+        {
+            if (item.IsLink() && client.Inventory.Store.Contains(item.AssetUUID) && client.Inventory.Store[item.AssetUUID] is InventoryItem)
+            {
+                return (InventoryItem)client.Inventory.Store[item.AssetUUID];
+            }
+
+            return item;
         }
 
         private void InventoryItemConsole_Load(object sender, EventArgs e)
