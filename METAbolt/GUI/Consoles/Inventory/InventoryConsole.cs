@@ -934,6 +934,9 @@ namespace METAbolt
 
             if (e.Node.Tag.ToString() == "empty") return;
 
+            tbtnNew.Enabled = true;
+            tbtnOrganize.Enabled = true;
+
             if (e.Node.Tag is InventoryFolder)
             {
                 //tmnuRename.Enabled = false;
@@ -953,6 +956,11 @@ namespace METAbolt
 
                     emptyMenu.Visible = true;
                     emptyTrashToolStripMenuItem.Visible = true;
+                }
+                else if (aitem.PreferredType == AssetType.CurrentOutfitFolder)
+                {
+                    tbtnNew.Enabled = false;
+                    tbtnOrganize.Enabled = false;
                 }
                 else
                 {
@@ -1018,6 +1026,12 @@ namespace METAbolt
                     {
                         attachToToolStripMenuItem.Visible = true;
                     }
+                }
+
+                if (io.ParentUUID == instance.CoF.UUID)
+                {
+                    tbtnNew.Enabled = false;
+                    tbtnOrganize.Enabled = false;
                 }
 
                 if (io is InventoryWearable || io is InventoryObject || io is InventoryAttachment)
@@ -1372,15 +1386,15 @@ namespace METAbolt
         {
             if (e.CancelEdit) return;
 
+            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+
             //protect against an empty name
-            if (string.IsNullOrEmpty(e.Label))
+            if (string.IsNullOrEmpty(e.Label) || io.ParentUUID == instance.CoF.UUID)
             {
                 e.CancelEdit = true;
                 //Logger.Log("Attempt to give inventory item a blank name was foiled!", Helpers.LogLevel.Warning);
                 return;
-            }
-
-            InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
+            }           
 
             if (e.Node.Tag is InventoryFolder)
             {
@@ -2066,6 +2080,15 @@ namespace METAbolt
                         wearToolStripMenuItem.Visible = false;
                         replaceOutfitToolStripMenuItem.Visible = false;
                         attachToToolStripMenuItem.Visible = false;
+                        newFolderToolStripMenuItem.Enabled = false;
+                        newNotecardToolStripMenuItem.Enabled = false;
+                        newScriptToolStripMenuItem.Enabled = false;
+                    }
+                    else
+                    {
+                        newFolderToolStripMenuItem.Enabled = true;
+                        newNotecardToolStripMenuItem.Enabled = true;
+                        newScriptToolStripMenuItem.Enabled = true;
                     }
                 }
             }
@@ -2078,9 +2101,24 @@ namespace METAbolt
                         takeOffToolStripMenuItem.Visible = true;
                         wearToolStripMenuItem.Visible = false;
                         attachToToolStripMenuItem.Visible = false;
+
+                        newFolderToolStripMenuItem.Enabled = false;
+                        newNotecardToolStripMenuItem.Enabled = false;
+                        newScriptToolStripMenuItem.Enabled = false;
+                        deleteToolStripMenuItem.Enabled = false;
+                        renameToolStripMenuItem.Enabled = false;
+                        cutMenu.Enabled = false;
+                        copyMenu.Enabled = false;
+                        pasteMenu.Enabled = false;
                     }
                     else
                     {
+                        newFolderToolStripMenuItem.Enabled = true;
+                        newNotecardToolStripMenuItem.Enabled = true;
+                        newScriptToolStripMenuItem.Enabled = true;
+                        //cutMenu.Enabled = true;
+                        //copyMenu.Enabled = true;
+
                         if (sitem.ToLower(CultureInfo.CurrentCulture).Contains("worn"))
                         {
                             takeOffToolStripMenuItem.Visible = true;
