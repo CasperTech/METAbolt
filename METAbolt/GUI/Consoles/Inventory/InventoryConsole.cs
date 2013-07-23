@@ -2536,6 +2536,47 @@ namespace METAbolt
             InventoryBase io = (InventoryBase)treeView1.SelectedNode.Tag;
             InventoryItem item = (InventoryItem)io;
 
+            if (io.ParentUUID == instance.CoF.UUID)
+            {
+                if (item.AssetType == AssetType.Link)
+                {
+                    List<UUID> remclothing = new List<UUID>();
+
+                    remclothing.Add(item.UUID);
+
+                    InventoryItem wItem;
+
+                    try
+                    {
+                        wItem = AInventoryItem(item);
+
+                        try
+                        {
+                            client.Inventory.Remove(remclothing, null);
+
+                            if (wItem.AssetType == AssetType.Object)
+                            {
+                                client.Appearance.Detach(item.AssetUUID);
+                            }
+                            else
+                            {
+                                client.Appearance.RemoveFromOutfit(wItem);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            string exp = ex.Message;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string exp = ex.Message;
+                    }
+
+                    return;
+                }
+            }
+
             selectednode = treeView1.SelectedNode;
 
             if (item.AssetType == AssetType.Clothing || item.AssetType == AssetType.Bodypart)
@@ -2585,60 +2626,6 @@ namespace METAbolt
                     {
                         //string exp = ex.Message;
                     }
-                }
-                else if (item.AssetType == AssetType.Link)
-                {
-                    //List<InventoryBase> contents = client.Inventory.Store.GetContents(CoF.UUID);
-                    List<UUID> remclothing = new List<UUID>();
-
-                    //InventoryItem wItem = AInventoryItem(item);
-
-                    //if (item.AssetUUID == wItem.UUID)
-                    //{
-                    //    remclothing.Add(wItem.UUID);
-                    //}
-                    //else if (wItem is InventoryWearable)
-                    //{
-                    //    InventoryWearable ci = (InventoryWearable)wItem;
-
-                    //    if (ci.WearableType == ((InventoryWearable)item).WearableType)
-                    //    {
-                    //        remclothing.Add(wItem.UUID);
-                    //    }
-                    //}
-
-                    remclothing.Add(item.UUID);
-
-                    InventoryItem wItem;
-                    //InventoryWearable ci;
-
-                    try
-                    {
-                        wItem = AInventoryItem(item);
-                        //ci = (InventoryWearable)wItem.;
-
-                        try
-                        {
-                            client.Inventory.Remove(remclothing, null);
-
-                            if (wItem.AssetType == AssetType.Object)
-                            {
-                                client.Appearance.Detach(item.AssetUUID);
-                            }
-                            else
-                            {
-                                client.Appearance.RemoveFromOutfit(wItem);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            string exp = ex.Message;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        string exp = ex.Message; 
-                    }                    
                 }
             }
 
