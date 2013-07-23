@@ -394,43 +394,43 @@ namespace METAbolt
             }
         }
 
-        private void CheckAttachments()
-        {
-            //inventoryitems
+        //private void CheckAttachments()
+        //{
+        //    //inventoryitems
 
-            lock (inventoryitems)
-            {
-                List<Primitive> attachments = client.Network.CurrentSim.ObjectsPrimitives.FindAll((Primitive p) => p.ParentID == client.Self.LocalID);
+        //    lock (inventoryitems)
+        //    {
+        //        List<Primitive> attachments = client.Network.CurrentSim.ObjectsPrimitives.FindAll((Primitive p) => p.ParentID == client.Self.LocalID);
 
-                //foreach (InventoryItem item in inventoryitems.Values)
-                //{
-                //    //if (item is InventoryObject || item is InventoryAttachment)
-                //    //{
-                //        if (!IsAttached(attachments, item))
-                //        {
-                //            client.Appearance.Attach(item, AttachmentPoint.Default, false);
-                //        }
-                //    //}
-                //}
+        //        //foreach (InventoryItem item in inventoryitems.Values)
+        //        //{
+        //        //    //if (item is InventoryObject || item is InventoryAttachment)
+        //        //    //{
+        //        //        if (!IsAttached(attachments, item))
+        //        //        {
+        //        //            client.Appearance.Attach(item, AttachmentPoint.Default, false);
+        //        //        }
+        //        //    //}
+        //        //}
 
-                foreach (Primitive prim in attachments)
-                {
-                    //if (prim.NameValues != null)
-                    //{
-                    //    for (int i = 0; i < prim.NameValues.Length; i++)
-                    //    {
-                    //        if (prim.NameValues[i].Name == "AttachItemID")
-                    //        {
-                    //            return (UUID)prim.NameValues[i].Value.ToString(); prim.
-                    //        }
-                    //    }
-                    //}
+        //        foreach (Primitive prim in attachments)
+        //        {
+        //            //if (prim.NameValues != null)
+        //            //{
+        //            //    for (int i = 0; i < prim.NameValues.Length; i++)
+        //            //    {
+        //            //        if (prim.NameValues[i].Name == "AttachItemID")
+        //            //        {
+        //            //            return (UUID)prim.NameValues[i].Value.ToString(); prim.
+        //            //        }
+        //            //    }
+        //            //}
 
-                    client.Appearance.Detach(prim.ID);
-                    client.Appearance.Attach(prim.ID, client.Self.AgentID, "", "", Permissions.FullPermissions, 0, AttachmentPoint.Default, false); 
-                }
-            }
-        }
+        //            client.Appearance.Detach(prim.ID);
+        //            client.Appearance.Attach(prim.ID, client.Self.AgentID, "", "", Permissions.FullPermissions, 0, AttachmentPoint.Default, false); 
+        //        }
+        //    }
+        //}
 
         public static bool IsAttached(List<Primitive> attachments, InventoryItem item)
         {
@@ -555,6 +555,7 @@ namespace METAbolt
                     List<InventoryBase> invroot = client.Inventory.Store.GetContents(favfolder);
                     instance.MainForm.UpdateFavourites(invroot);
                 }
+                
 
                 treeView1.Sort();  
             }

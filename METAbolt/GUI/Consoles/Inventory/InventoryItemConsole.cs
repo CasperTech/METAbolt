@@ -294,7 +294,7 @@ namespace METAbolt
                 //    label9.Text = string.Empty;
                 //}
 
-                label9.Text = "Wearable type: Object";
+                label9.Text = "Asset type: " + item.AssetType.ToString();
             }
 
             if ((item.Permissions.OwnerMask & PermissionMask.Modify) != PermissionMask.Modify)
