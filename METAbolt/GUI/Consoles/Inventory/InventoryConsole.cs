@@ -1572,7 +1572,10 @@ namespace METAbolt
                     }
                 }
 
-                client.Inventory.Remove(remclothing, null);
+                if (remclothing.Count > 0)
+                {
+                    client.Inventory.Remove(remclothing, null);
+                }
 
                 foreach (var item in items)
                 {
@@ -1848,7 +1851,10 @@ namespace METAbolt
                     }
                 }
 
-                client.Inventory.Remove(remclothing, null);
+                if (remclothing.Count > 0)
+                {
+                    client.Inventory.Remove(remclothing, null);
+                }
 
                 foreach (var item in items)
                 {
