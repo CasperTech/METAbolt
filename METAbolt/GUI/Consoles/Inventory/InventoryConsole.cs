@@ -2488,11 +2488,11 @@ namespace METAbolt
                 }
             });
 
-            ThreadPool.QueueUserWorkItem(sync =>
-            {
-                Thread.Sleep(2000);
-                client.Appearance.RequestSetAppearance(true);
-            });
+            //ThreadPool.QueueUserWorkItem(sync =>
+            //{
+            //    Thread.Sleep(2000);
+            //    client.Appearance.RequestSetAppearance(true);
+            //});
         }
 
         private void AttachTo(InventoryItem item, AttachmentPoint pnt)
