@@ -618,12 +618,34 @@ namespace METAbolt
         {
             if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
 
-            if (e.Control && e.KeyCode == Keys.V)
+            //if (e.Control && e.KeyCode == Keys.V)
+            //{
+            //    ClipboardAsync Clipboard2 = new ClipboardAsync();
+            //    cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+
+            //    //pasted = true;
+            //}
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            //if ((keyData == (Keys.Control | Keys.C)))
+            //{
+            //    //your implementation
+            //    return true;
+            //}
+
+            if ((keyData == (Keys.Control | Keys.V)))
             {
                 ClipboardAsync Clipboard2 = new ClipboardAsync();
-                cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
 
-                //pasted = true;
+                string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+                cbxInput.Text += ptxt;
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
             }
         }
 

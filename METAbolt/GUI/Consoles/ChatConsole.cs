@@ -2329,13 +2329,28 @@ namespace METAbolt
         {
             if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
 
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                ClipboardAsync Clipboard2 = new ClipboardAsync();
-                cbxInput.Text += Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+            //if (e.Control && e.KeyCode == Keys.V)
+            //{
+            //    //e.Handled = true;
 
-                //pasted = true;
-            }
+            //    ClipboardAsync Clipboard2 = new ClipboardAsync();
+
+            //    string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+            //    cbxInput.Text += ptxt;
+            //    //Clipboard.SetText(" ");
+            //    //Clipboard.Clear();
+            //    //string fgt = Clipboard.GetText();
+            //    //Clipboard.SetText(ptxt);
+
+            //    //////pasted = true;
+            //    //string ptxt = Clipboard.GetText().Replace(Environment.NewLine, "\r\n");
+
+            //    //Clipboard.SetText(" ");
+            //    //string fgt = Clipboard.GetText();
+            //    //Clipboard.Clear();
+            //    //Clipboard.SetText(ptxt); 
+            //    //cbxInput.Text += ptxt;
+            //}
         }
 
         private void cbxInput_KeyUp(object sender, KeyEventArgs e)
@@ -2793,6 +2808,28 @@ namespace METAbolt
 
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            //if ((keyData == (Keys.Control | Keys.C)))
+            //{
+            //    //your implementation
+            //    return true;
+            //}
+
+            if ((keyData == (Keys.Control | Keys.V)))
+            {
+                ClipboardAsync Clipboard2 = new ClipboardAsync();
+
+                string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+                cbxInput.Text += ptxt;
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
+
         protected override bool ProcessKeyPreview(ref System.Windows.Forms.Message m)
         {
             int key = m.WParam.ToInt32();
@@ -2801,7 +2838,10 @@ namespace METAbolt
             // Fix submitted by METAforums user Spirit 25/09/2009
             // TO DO: This should be a setting in preferences so that
             // it works both ways...
-            if (cbxInput.Focused) return false;
+            if (cbxInput.Focused)
+            {
+                return false;
+            }
 
             switch (key)
             {
