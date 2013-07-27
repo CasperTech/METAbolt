@@ -1444,6 +1444,8 @@ namespace METAbolt
             if (e.Simulator != client.Network.CurrentSim) return;
             if (!e.Update.Avatar) return;
 
+            if (!netcom.IsLoggedIn) return;
+
             //Avatar av = new Avatar();
             //client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Update.LocalID, out av);
             ////client.Network.CurrentSim.ObjectsAvatars.TryGetValue(e.Prim.LocalID, out av);
