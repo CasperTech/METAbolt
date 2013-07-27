@@ -98,6 +98,8 @@ namespace METAbolt
         private bool classiclayout = false;
         private ExceptionReporter reporter = new ExceptionReporter();
         private bool reprinting = false;
+        private RingBufferProtection scriptbuffer = new RingBufferProtection();
+        private RingBufferProtection urlbuffer = new RingBufferProtection();
 
         internal class ThreadExceptionHandler
         {
@@ -156,6 +158,10 @@ namespace METAbolt
 
             showTimestamps = this.instance.Config.CurrentConfig.ChatTimestamps;
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
+
+            scriptbuffer.SetBuffer(instance.Config.CurrentConfig.ScriptUrlBufferLimit);
+            urlbuffer.SetBuffer(instance.Config.CurrentConfig.ScriptUrlBufferLimit);
+            instance.chatbuffer.SetBuffer(instance.Config.CurrentConfig.ChatBufferLimit);
         }
 
         private void SetExceptionReporter()
@@ -221,6 +227,10 @@ namespace METAbolt
                 CheckBufferSize();
                 instance.Config.CurrentConfig.BufferApplied = false; 
             }
+
+            scriptbuffer.SetBuffer(instance.Config.CurrentConfig.ScriptUrlBufferLimit);
+            urlbuffer.SetBuffer(instance.Config.CurrentConfig.ScriptUrlBufferLimit);
+            instance.chatbuffer.SetBuffer(instance.Config.CurrentConfig.ChatBufferLimit);
         }
 
         private void AddNetcomEvents()
@@ -387,6 +397,16 @@ namespace METAbolt
             if (instance.IsObjectMuted(e.ItemID, e.ObjectName))
                 return;
 
+            if (scriptbuffer.RingBuffer(instance))
+            {
+                ChatBufferItem dalert = new ChatBufferItem(
+                DateTime.Now, "Too many script dialogues are coming in too quickly. Flood Protection is in operation for your security...", ChatBufferTextStyle.Alert);
+
+                ProcessBufferItem(dalert, true);
+
+                return;
+            }
+
             //e.ObjectName.ToString();
             //e.ObjectOwner.ToString();
             //e.Questions.ToString();
@@ -445,6 +465,16 @@ namespace METAbolt
 
             if (instance.IsObjectMuted(e.ObjectID, e.ObjectName))
                 return;
+
+            if (urlbuffer.RingBuffer(instance))
+            {
+                ChatBufferItem dalert = new ChatBufferItem(
+                DateTime.Now, "Too many URL offers are coming in too quickly. Flood Protection is in operation for your security...", ChatBufferTextStyle.Alert);
+
+                ProcessBufferItem(dalert, true);
+
+                return;
+            }
 
             DialogResult sret = MessageBoxEx.Show(e.ObjectName.ToString(CultureInfo.CurrentCulture) + "\nowned by " + e.OwnerID.ToString() + " is offering you a URL.\n\nClick 'OK' to visit.", "URL offer...", MessageBoxButtons.OKCancel, 15000);
 
@@ -1451,10 +1481,11 @@ namespace METAbolt
 
         private void ProcessIncomingChat(ChatEventArgs e)
         {
-            if (instance.IsAvatarMuted(e.OwnerID, e.FromName))
-                return;
 
             if (string.IsNullOrEmpty(e.Message)) return;
+
+            if (instance.IsAvatarMuted(e.OwnerID, e.FromName))
+                return;
 
             //if (e.Message.Substring(0, 1) == "@") return;   // Ignore RLV commands
             if (e.Message.Contains(imu)) return; // Ignore the message for plugin use or whatever
@@ -1499,7 +1530,17 @@ namespace METAbolt
                 sb.Append(e.Message);
             }
             else
-            {               
+            {
+                if (instance.chatbuffer.RingBuffer(instance))
+                {
+                    ChatBufferItem dalert = new ChatBufferItem(
+                    DateTime.Now, "Too many chat messages are coming in too quickly. Flood Protection is in operation for your security...", ChatBufferTextStyle.Alert);
+
+                    ProcessBufferItem(dalert, true);
+
+                    return;
+                }
+
                 switch (e.Type)
                 {
                     case ChatType.Normal:

@@ -178,6 +178,8 @@ namespace METAbolt
         private string landmenupos = "Top";
         private string fnmenupos = "Top";
         private bool usellsd = false;
+        private int chatbufferlimit = 20;
+        private int scripturlbufferlimit = 5;
 
         public Config()
         {
@@ -284,6 +286,8 @@ namespace METAbolt
                 config.LandMenuPos = conf.Configs["General"].GetString("LandMenuPos", "Top");
                 config.FnMenuPos = conf.Configs["General"].GetString("FnMenuPos", "Top");
                 config.UseLLSD = conf.Configs["General"].GetBoolean("UseLLSD", false);
+                config.ChatBufferLimit = conf.Configs["General"].GetInt("ChatBufferLimit", 20);
+                config.ScriptUrlBufferLimit = conf.Configs["General"].GetInt("ScriptUrlBufferLimit", 5);
                 
                 // AI    
                 config.AIon = conf.Configs["AI"].GetBoolean("AIon", false);
@@ -470,6 +474,9 @@ namespace METAbolt
             config.Set("LandMenuPos", landmenupos.ToString(CultureInfo.CurrentCulture));
             config.Set("FnMenuPos", fnmenupos.ToString(CultureInfo.CurrentCulture));
             config.Set("UseLLSD", usellsd.ToString(CultureInfo.CurrentCulture));
+
+            config.Set("ChatBufferLimit", chatbufferlimit.ToString(CultureInfo.CurrentCulture));
+            config.Set("ScriptUrlBufferLimit", scripturlbufferlimit.ToString(CultureInfo.CurrentCulture));
             
             // Interface
             config = source.AddConfig("Interface");
@@ -1325,6 +1332,18 @@ namespace METAbolt
         {
             get { return usellsd; }
             set { usellsd = value; }
+        }
+
+        public int ChatBufferLimit
+        {
+            get { return chatbufferlimit; }
+            set { chatbufferlimit = value; }
+        }
+
+        public int ScriptUrlBufferLimit
+        {
+            get { return scripturlbufferlimit; }
+            set { scripturlbufferlimit = value; }
         }
     }
 }

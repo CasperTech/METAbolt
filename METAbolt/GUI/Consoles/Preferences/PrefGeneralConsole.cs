@@ -178,6 +178,9 @@ namespace METAbolt
             chkRadarMiniMap.Checked = config.CurrentConfig.DisableRadarImageMiniMap;
             cbLLSD.Checked = config.CurrentConfig.UseLLSD;
 
+            numChatBuff.Value = config.CurrentConfig.ChatBufferLimit;
+            numScriptBuff.Value = config.CurrentConfig.ScriptUrlBufferLimit;
+
             if (config.CurrentConfig.BandwidthThrottle > 500.0f)
             {
                 config.CurrentConfig.BandwidthThrottle = 500.0f;
@@ -362,6 +365,8 @@ namespace METAbolt
             instance.Config.CurrentConfig.DisableHTTPinv = cbHHTPInv.Checked;
             instance.Config.CurrentConfig.DisableRadarImageMiniMap = chkRadarMiniMap.Checked;
             instance.Config.CurrentConfig.UseLLSD = cbLLSD.Checked;
+            instance.Config.CurrentConfig.ChatBufferLimit = Convert.ToInt32(numChatBuff.Value);
+            instance.Config.CurrentConfig.ScriptUrlBufferLimit = Convert.ToInt32(numScriptBuff.Value);
 
             if (checkBox4.Checked)
             {

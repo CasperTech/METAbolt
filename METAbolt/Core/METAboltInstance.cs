@@ -115,6 +115,8 @@ namespace METAbolt
         private bool allowvoice = true;
         private UUID favsfolder = UUID.Zero;
         public InventoryFolder CoF;
+        public RingBufferProtection chatbuffer = new RingBufferProtection();
+        private bool blockinchat = false;
 
         internal class ThreadExceptionHandler
         {
@@ -1336,6 +1338,12 @@ namespace METAbolt
         {
             get { return allowvoice; }
             set { allowvoice = value; }
+        }
+
+        public bool BlockChatIn
+        {
+            get { return blockinchat; }
+            set { blockinchat = value; }
         }
 
         public UUID FavsFolder

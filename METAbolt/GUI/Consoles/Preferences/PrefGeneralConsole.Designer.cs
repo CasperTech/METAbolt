@@ -144,6 +144,10 @@ namespace METAbolt
             this.txtAdRemove = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.numChatBuff = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.numScriptBuff = new System.Windows.Forms.NumericUpDown();
+            this.label28 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -170,6 +174,8 @@ namespace METAbolt
             this.tabPage5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numChatBuff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScriptBuff)).BeginInit();
             this.SuspendLayout();
             // 
             // rdoSystemStyle
@@ -232,6 +238,10 @@ namespace METAbolt
             // 
             this.tabPage1.AccessibleName = "Options tab";
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.numScriptBuff);
+            this.tabPage1.Controls.Add(this.label28);
+            this.tabPage1.Controls.Add(this.numChatBuff);
+            this.tabPage1.Controls.Add(this.label27);
             this.tabPage1.Controls.Add(this.chkFavs);
             this.tabPage1.Controls.Add(this.chkVoice);
             this.tabPage1.Controls.Add(this.chkDisableRadar);
@@ -273,7 +283,7 @@ namespace METAbolt
             this.chkFavs.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFavs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFavs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkFavs.Location = new System.Drawing.Point(203, 208);
+            this.chkFavs.Location = new System.Drawing.Point(202, 162);
             this.chkFavs.Name = "chkFavs";
             this.chkFavs.Size = new System.Drawing.Size(109, 17);
             this.chkFavs.TabIndex = 69;
@@ -288,7 +298,7 @@ namespace METAbolt
             this.chkVoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkVoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkVoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkVoice.Location = new System.Drawing.Point(203, 190);
+            this.chkVoice.Location = new System.Drawing.Point(202, 144);
             this.chkVoice.Name = "chkVoice";
             this.chkVoice.Size = new System.Drawing.Size(109, 17);
             this.chkVoice.TabIndex = 68;
@@ -303,7 +313,7 @@ namespace METAbolt
             this.chkDisableRadar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkDisableRadar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkDisableRadar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisableRadar.Location = new System.Drawing.Point(203, 173);
+            this.chkDisableRadar.Location = new System.Drawing.Point(202, 127);
             this.chkDisableRadar.Name = "chkDisableRadar";
             this.chkDisableRadar.Size = new System.Drawing.Size(121, 17);
             this.chkDisableRadar.TabIndex = 67;
@@ -314,7 +324,7 @@ namespace METAbolt
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(5, 45);
+            this.label18.Location = new System.Drawing.Point(5, 40);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(135, 13);
             this.label18.TabIndex = 65;
@@ -329,7 +339,7 @@ namespace METAbolt
             "Ask",
             "Auto decline",
             "Auto accept"});
-            this.comboBox1.Location = new System.Drawing.Point(143, 42);
+            this.comboBox1.Location = new System.Drawing.Point(143, 37);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 64;
@@ -342,7 +352,7 @@ namespace METAbolt
             this.chkLSL.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLSL.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLSL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkLSL.Location = new System.Drawing.Point(8, 208);
+            this.chkLSL.Location = new System.Drawing.Point(8, 170);
             this.chkLSL.Name = "chkLSL";
             this.chkLSL.Size = new System.Drawing.Size(129, 17);
             this.chkLSL.TabIndex = 63;
@@ -401,7 +411,7 @@ namespace METAbolt
             this.chkAutoFriend.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoFriend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkAutoFriend.Location = new System.Drawing.Point(8, 66);
+            this.chkAutoFriend.Location = new System.Drawing.Point(8, 55);
             this.chkAutoFriend.Name = "chkAutoFriend";
             this.chkAutoFriend.Size = new System.Drawing.Size(163, 17);
             this.chkAutoFriend.TabIndex = 59;
@@ -416,7 +426,7 @@ namespace METAbolt
             this.chkTyping.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTyping.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTyping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkTyping.Location = new System.Drawing.Point(8, 116);
+            this.chkTyping.Location = new System.Drawing.Point(8, 93);
             this.chkTyping.Name = "chkTyping";
             this.chkTyping.Size = new System.Drawing.Size(139, 17);
             this.chkTyping.TabIndex = 13;
@@ -431,7 +441,7 @@ namespace METAbolt
             this.chkFriends.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFriends.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFriends.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkFriends.Location = new System.Drawing.Point(8, 150);
+            this.chkFriends.Location = new System.Drawing.Point(8, 127);
             this.chkFriends.Name = "chkFriends";
             this.chkFriends.Size = new System.Drawing.Size(158, 17);
             this.chkFriends.TabIndex = 2;
@@ -446,7 +456,7 @@ namespace METAbolt
             this.chkTray.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTray.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkTray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkTray.Location = new System.Drawing.Point(203, 116);
+            this.chkTray.Location = new System.Drawing.Point(203, 93);
             this.chkTray.Name = "chkTray";
             this.chkTray.Size = new System.Drawing.Size(102, 17);
             this.chkTray.TabIndex = 3;
@@ -512,7 +522,7 @@ namespace METAbolt
             this.checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox2.Location = new System.Drawing.Point(203, 99);
+            this.checkBox2.Location = new System.Drawing.Point(203, 76);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(122, 17);
             this.checkBox2.TabIndex = 10;
@@ -527,7 +537,7 @@ namespace METAbolt
             this.chkLookAt.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLookAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkLookAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkLookAt.Location = new System.Drawing.Point(203, 133);
+            this.chkLookAt.Location = new System.Drawing.Point(203, 110);
             this.chkLookAt.Name = "chkLookAt";
             this.chkLookAt.Size = new System.Drawing.Size(93, 17);
             this.chkLookAt.TabIndex = 9;
@@ -542,7 +552,7 @@ namespace METAbolt
             this.chkInvites.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkInvites.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkInvites.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkInvites.Location = new System.Drawing.Point(8, 99);
+            this.chkInvites.Location = new System.Drawing.Point(8, 76);
             this.chkInvites.Name = "chkInvites";
             this.chkInvites.Size = new System.Drawing.Size(163, 17);
             this.chkInvites.TabIndex = 8;
@@ -568,7 +578,7 @@ namespace METAbolt
             // picAutoSit
             // 
             this.picAutoSit.Image = ((System.Drawing.Image)(resources.GetObject("picAutoSit.Image")));
-            this.picAutoSit.Location = new System.Drawing.Point(159, 190);
+            this.picAutoSit.Location = new System.Drawing.Point(158, 172);
             this.picAutoSit.Name = "picAutoSit";
             this.picAutoSit.Size = new System.Drawing.Size(15, 15);
             this.picAutoSit.TabIndex = 38;
@@ -585,7 +595,7 @@ namespace METAbolt
             this.chkAutoSit.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoSit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkAutoSit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkAutoSit.Location = new System.Drawing.Point(8, 190);
+            this.chkAutoSit.Location = new System.Drawing.Point(8, 152);
             this.chkAutoSit.Name = "chkAutoSit";
             this.chkAutoSit.Size = new System.Drawing.Size(148, 17);
             this.chkAutoSit.TabIndex = 12;
@@ -595,7 +605,7 @@ namespace METAbolt
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(158, 133);
+            this.pictureBox1.Location = new System.Drawing.Point(158, 110);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
             this.pictureBox1.TabIndex = 36;
@@ -612,7 +622,7 @@ namespace METAbolt
             this.chkNotifications.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkNotifications.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkNotifications.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkNotifications.Location = new System.Drawing.Point(8, 133);
+            this.chkNotifications.Location = new System.Drawing.Point(8, 110);
             this.chkNotifications.Name = "chkNotifications";
             this.chkNotifications.Size = new System.Drawing.Size(141, 17);
             this.chkNotifications.TabIndex = 1;
@@ -1723,6 +1733,54 @@ namespace METAbolt
             this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ShowEffects = false;
             // 
+            // numChatBuff
+            // 
+            this.numChatBuff.AccessibleName = "Auto logout interval setting";
+            this.numChatBuff.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numChatBuff.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numChatBuff.Location = new System.Drawing.Point(118, 194);
+            this.numChatBuff.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numChatBuff.Name = "numChatBuff";
+            this.numChatBuff.Size = new System.Drawing.Size(53, 21);
+            this.numChatBuff.TabIndex = 70;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 197);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(111, 13);
+            this.label27.TabIndex = 71;
+            this.label27.Text = "Chat flood buffer limit";
+            // 
+            // numScriptBuff
+            // 
+            this.numScriptBuff.AccessibleName = "Auto logout interval setting";
+            this.numScriptBuff.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numScriptBuff.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numScriptBuff.Location = new System.Drawing.Point(217, 216);
+            this.numScriptBuff.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numScriptBuff.Name = "numScriptBuff";
+            this.numScriptBuff.Size = new System.Drawing.Size(50, 21);
+            this.numScriptBuff.TabIndex = 72;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 219);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(208, 13);
+            this.label28.TabIndex = 73;
+            this.label28.Text = "Script dialogue/URL offer flood buffer limit";
+            // 
             // PrefGeneralConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1772,6 +1830,8 @@ namespace METAbolt
             this.groupBox3.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numChatBuff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScriptBuff)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1894,6 +1954,10 @@ namespace METAbolt
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.NumericUpDown numScriptBuff;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.NumericUpDown numChatBuff;
+        private System.Windows.Forms.Label label27;
 
     }
 }

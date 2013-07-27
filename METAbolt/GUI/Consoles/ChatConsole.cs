@@ -1990,6 +1990,8 @@ namespace METAbolt
                 return;
             }
 
+            if (instance.BlockChatIn) return;
+
             if (e.SourceType != ChatSourceType.Agent)
             {
                 return;
@@ -1999,6 +2001,9 @@ namespace METAbolt
             {
                 return;
             }
+
+            if (instance.IsAvatarMuted(e.OwnerID, e.FromName))
+                return;
 
             int index = lvwRadar.Items.IndexOfKey(e.FromName);
             if (index == -1) return;
