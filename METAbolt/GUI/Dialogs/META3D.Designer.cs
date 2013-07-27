@@ -67,6 +67,7 @@
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gbZoom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAutoSit)).BeginInit();
             this.ctxObjects.SuspendLayout();
@@ -143,6 +144,7 @@
             this.button8.Text = "T";
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button8.MouseHover += new System.EventHandler(this.button8_MouseHover);
             // 
             // button7
             // 
@@ -155,6 +157,7 @@
             this.button7.TabIndex = 46;
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button7.MouseHover += new System.EventHandler(this.button7_MouseHover);
             // 
             // button6
             // 
@@ -167,6 +170,7 @@
             this.button6.TabIndex = 45;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.MouseHover += new System.EventHandler(this.button6_MouseHover);
             // 
             // button5
             // 
@@ -179,6 +183,7 @@
             this.button5.TabIndex = 44;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.MouseHover += new System.EventHandler(this.button5_MouseHover);
             // 
             // button4
             // 
@@ -191,6 +196,7 @@
             this.button4.TabIndex = 43;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.MouseHover += new System.EventHandler(this.button4_MouseHover);
             // 
             // button3
             // 
@@ -203,6 +209,7 @@
             this.button3.TabIndex = 42;
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.MouseHover += new System.EventHandler(this.button3_MouseHover);
             // 
             // button2
             // 
@@ -215,6 +222,7 @@
             this.button2.TabIndex = 41;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.MouseHover += new System.EventHandler(this.button2_MouseHover);
             // 
             // btnClose
             // 
@@ -260,6 +268,7 @@
             this.button1.TabIndex = 24;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseHover += new System.EventHandler(this.button1_MouseHover);
             // 
             // btnResetView
             // 
@@ -418,6 +427,7 @@
         private System.Windows.Forms.ToolStripMenuItem payBuyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.ToolTip toolTip1;
 
     }
 }
