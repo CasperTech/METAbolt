@@ -46,7 +46,7 @@ namespace METAbolt
 
                 TimeSpan tspn = DateTime.Now - ltry;
 
-                if (tspn.Milliseconds < 61)
+                if (tspn.TotalSeconds < 1.1)
                 {
                     if (ringbuffer.Count == ringbuffmax)
                     {
@@ -58,7 +58,7 @@ namespace METAbolt
                 {
                     try
                     {
-                        if (tspn.Milliseconds < 121)
+                        if (tspn.TotalSeconds < 2.1)
                         {
                             ringbuffer.RemoveAt(ringbuffer.Count() - 1);
                         }
