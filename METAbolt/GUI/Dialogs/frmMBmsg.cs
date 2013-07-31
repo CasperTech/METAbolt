@@ -55,7 +55,7 @@ namespace METAbolt
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            instance.MainForm.Close();
+            this.Close();
         }
 
         private void frmMBmsg_FormClosing(object sender, FormClosingEventArgs e)
