@@ -2768,7 +2768,16 @@ namespace METAbolt
                 // Open up the Group Info form here
                 string encoded = HttpUtility.UrlDecode(e.LinkText);
                 string[] split = encoded.Split(new Char[] { '/' });
-                UUID uuid = (UUID)split[7].ToString();
+                UUID uuid = UUID.Zero;
+
+                try
+                {
+                    uuid = (UUID)split[7].ToString();
+                }
+                catch
+                {
+                    uuid = UUID.Zero;
+                }
 
                 if (uuid != UUID.Zero && split[6].ToString(CultureInfo.CurrentCulture).ToLower(CultureInfo.CurrentCulture) == "group")
                 {

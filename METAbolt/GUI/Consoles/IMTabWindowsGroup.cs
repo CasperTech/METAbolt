@@ -892,12 +892,12 @@ namespace METAbolt
                     string encoded = HttpUtility.UrlDecode(e.LinkText);
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
-                    string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                    string simr = split[4].ToString();
                     double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
-                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
+                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z, false)).Show();
                 }
                 catch { ; }
 
@@ -910,12 +910,12 @@ namespace METAbolt
                     string encoded = HttpUtility.UrlDecode(e.LinkText);
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '/' });
-                    string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                    string simr = split[4].ToString();
                     double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
                     double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture);
 
-                    (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
+                    (new frmTeleport(instance, simr, (float)x, (float)y, (float)z, true)).Show();
                 }
                 catch { ; }
 
@@ -927,15 +927,15 @@ namespace METAbolt
                     string encoded = HttpUtility.UrlDecode(e.LinkText);
                     string[] split = encoded.Split(new Char[] { '/' });
                     //string[] split = e.LinkText.Split(new Char[] { '#' });
-                    string aavname = split[0].ToString(CultureInfo.CurrentCulture);
+                    string aavname = split[0].ToString();
                     string[] avnamesplit = aavname.Split(new Char[] { '#' });
-                    aavname = avnamesplit[0].ToString(CultureInfo.CurrentCulture);
+                    aavname = avnamesplit[0].ToString();
 
                     split = e.LinkText.Split(new Char[] { ':' });
                     string elink = split[2].ToString(CultureInfo.CurrentCulture);
                     split = elink.Split(new Char[] { '&' });
 
-                    UUID avid = (UUID)split[0].ToString(CultureInfo.CurrentCulture);
+                    UUID avid = (UUID)split[0].ToString();
 
                     (new frmProfile(instance, aavname, avid)).Show();
                 }
@@ -946,13 +946,25 @@ namespace METAbolt
                 // Open up the Group Info form here
                 string encoded = HttpUtility.UrlDecode(e.LinkText);
                 string[] split = encoded.Split(new Char[] { '/' });
-                //string[] split = e.LinkText.Split(new Char[] { '/' });
-                UUID uuid = (UUID)split[7].ToString(CultureInfo.CurrentCulture);
+                UUID uuid = UUID.Zero;
 
-                if (uuid != UUID.Zero && split[6].ToString().ToLower(CultureInfo.CurrentCulture) == "group")
+                try
+                {
+                    uuid = (UUID)split[7].ToString();
+                }
+                catch
+                {
+                    uuid = UUID.Zero;
+                }
+
+                if (uuid != UUID.Zero && split[6].ToString(CultureInfo.CurrentCulture).ToLower(CultureInfo.CurrentCulture) == "group")
                 {
                     frmGroupInfo frm = new frmGroupInfo(uuid, instance);
                     frm.Show();
+                }
+                else if (uuid != UUID.Zero && split[6].ToString(CultureInfo.CurrentCulture).ToLower(CultureInfo.CurrentCulture) == "agent")
+                {
+                    (new frmProfile(instance, string.Empty, uuid)).Show();
                 }
             }
             else if (e.LinkText.StartsWith("http://", StringComparison.CurrentCultureIgnoreCase) || e.LinkText.StartsWith("ftp://", StringComparison.CurrentCultureIgnoreCase) || e.LinkText.StartsWith("https://", StringComparison.CurrentCultureIgnoreCase))

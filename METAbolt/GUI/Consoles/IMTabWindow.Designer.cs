@@ -225,6 +225,7 @@ namespace METAbolt
             this.rtbIMText.TabIndex = 4;
             this.rtbIMText.Text = "";
             this.rtbIMText.TextColor = Khendys.Controls.RtfColor.Black;
+            this.rtbIMText.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbIMText_LinkClicked_1);
             this.rtbIMText.TextChanged += new System.EventHandler(this.rtbIMText_TextChanged);
             // 
             // tbar_SendMessage

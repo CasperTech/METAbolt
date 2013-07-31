@@ -83,6 +83,19 @@ namespace METAbolt
             this.instance.Config.ConfigApplied += new EventHandler<ConfigAppliedEventArgs>(Config_ConfigApplied);
         }
 
+        //private ToolStripItem GetSelectedItem()
+        //{
+        //    ToolStripItem item = null;
+        //    for (int i = 0; i < tabs.Count; i++)
+        //    {
+        //        if (tabs[i].Selected)
+        //        {
+        //            item = this.DisplayedItems[i];
+        //        }
+        //    }
+        //    return item;
+        //}
+
         private void SetExceptionReporter()
         {
             reporter.Config.ShowSysInfoTab = false;   // alternatively, set properties programmatically

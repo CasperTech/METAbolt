@@ -1187,6 +1187,15 @@ namespace METAbolt
             return b.ToString();
         }
 
+        public bool IsOSwin8()
+        {
+            Version win8v = new Version(6, 2, 9200, 0);
+
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version >= win8v) return true;
+
+            return false;
+        }
+
         public GridClient Client
         {
             get { return client; }
