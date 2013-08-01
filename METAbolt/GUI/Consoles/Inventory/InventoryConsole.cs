@@ -259,7 +259,7 @@ namespace METAbolt
             }
 
 
-            //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
+            //WorkPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
 
             client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
             UpdateFolder(fldr);
@@ -288,7 +288,7 @@ namespace METAbolt
         //    //    fldr = e.Obj.ParentUUID;
         //    //}
 
-        //    //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
+        //    //WorkPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), fldr);
 
         //    //if (!instance.State.FolderRcvd)
         //    //{
@@ -479,7 +479,7 @@ namespace METAbolt
                 {
                     //if (folderproc == e.FolderID)
                     //{
-                        ////ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
+                        ////WorkPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), e.FolderID);
 
                         client.Inventory.FolderUpdated -= new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                         UpdateFolder(e.FolderID);
@@ -1162,7 +1162,7 @@ namespace METAbolt
             {
                 //InventoryBase invObj = client.Inventory.Store[ifolder.UUID];
                 //UpdateFolder(ifolder.UUID);
-                //ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), ifolder.UUID);
+                //WorkPool.QueueUserWorkItem(new WaitCallback(UpdateFolder), ifolder.UUID);
 
                 //InventoryItem ifitm = client.Inventory.FetchItem(itemID, client.Self.AgentID, 3000);
 
@@ -1241,7 +1241,7 @@ namespace METAbolt
             //foreach (TreeNode n in nodes)
             //{
             //    found = FindRecursive(n);
-            //    //found = ThreadPool.QueueUserWorkItem(new WaitCallback(FindRecursive), n);
+            //    //found = WorkPool.QueueUserWorkItem(new WaitCallback(FindRecursive), n);
 
             //    if (!found)
             //    {
@@ -1591,7 +1591,7 @@ namespace METAbolt
 
                 client.Appearance.ReplaceOutfit(items);
 
-                ThreadPool.QueueUserWorkItem(sync =>
+                WorkPool.QueueUserWorkItem(sync =>
                 {
                     Thread.Sleep(2000);
                     client.Appearance.RequestSetAppearance(true);
@@ -1870,7 +1870,7 @@ namespace METAbolt
 
                 client.Appearance.ReplaceOutfit(items);
 
-                ThreadPool.QueueUserWorkItem(sync =>
+                WorkPool.QueueUserWorkItem(sync =>
                 {
                     Thread.Sleep(2000);
                     client.Appearance.RequestSetAppearance(true);
@@ -2104,7 +2104,7 @@ namespace METAbolt
             managerbusy = client.Appearance.ManagerBusy;
             client.Appearance.ReplaceOutfit(clothing);
 
-            ThreadPool.QueueUserWorkItem(sync =>
+            WorkPool.QueueUserWorkItem(sync =>
             {
                 Thread.Sleep(2000);
                 client.Appearance.RequestSetAppearance(true);
@@ -2488,7 +2488,7 @@ namespace METAbolt
                 }
             });
 
-            //ThreadPool.QueueUserWorkItem(sync =>
+            //WorkPool.QueueUserWorkItem(sync =>
             //{
             //    Thread.Sleep(2000);
             //    client.Appearance.RequestSetAppearance(true);
@@ -2631,7 +2631,7 @@ namespace METAbolt
 
             WearTakeoff(false, selectednode);
 
-            //ThreadPool.QueueUserWorkItem(sync =>
+            //WorkPool.QueueUserWorkItem(sync =>
             //    {
             //        Thread.Sleep(2000);
             //        client.Appearance.RequestSetAppearance(true);

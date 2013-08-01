@@ -77,7 +77,7 @@ namespace METAbolt
                 lbxPrims.Items.Clear();
                 lbxPrimGroup.Items.Clear();
 
-                ThreadPool.QueueUserWorkItem(delegate(object sync)
+                WorkPool.QueueUserWorkItem(delegate(object sync)
                 {
                     Cursor.Current = Cursors.WaitCursor;
                     Thread.Sleep(5000);
@@ -101,7 +101,7 @@ namespace METAbolt
         //            return;
 
         //        case TeleportStatus.Finished:
-        //            ThreadPool.QueueUserWorkItem(delegate(object sync)
+        //            WorkPool.QueueUserWorkItem(delegate(object sync)
         //            {
         //                Cursor.Current = Cursors.WaitCursor;
         //                Thread.Sleep(6000);
@@ -692,7 +692,7 @@ namespace METAbolt
                 lbxPrims.Items.Clear();
                 lbxPrimGroup.Items.Clear();
 
-                ThreadPool.QueueUserWorkItem(delegate(object sync)
+                WorkPool.QueueUserWorkItem(delegate(object sync)
                 {
                     Cursor.Current = Cursors.WaitCursor;
                     Thread.Sleep(2000);

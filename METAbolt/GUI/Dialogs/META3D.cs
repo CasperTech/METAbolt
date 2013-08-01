@@ -334,7 +334,7 @@ namespace METAbolt
                     return;
 
                 case TeleportStatus.Finished:
-                    ThreadPool.QueueUserWorkItem(delegate(object sync)
+                    WorkPool.QueueUserWorkItem(delegate(object sync)
                     {
                         Cursor.Current = Cursors.WaitCursor;
                         Thread.Sleep(6000);
@@ -349,7 +349,7 @@ namespace METAbolt
 
         private void ReLoadObject()
         {
-            ThreadPool.QueueUserWorkItem(delegate(object sync)
+            WorkPool.QueueUserWorkItem(delegate(object sync)
             {
                 // Search for the new local id of the object
                 List<Primitive> results = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
@@ -607,7 +607,7 @@ namespace METAbolt
         //    rotation += deltaRotation;
         //    glControl.Invalidate();
 
-        //    ThreadPool.QueueUserWorkItem(sync =>
+        //    WorkPool.QueueUserWorkItem(sync =>
         //    {
         //        if (client.Network.CurrentSim.ObjectsPrimitives.ContainsKey(RootPrimLocalID))
         //        {
@@ -967,7 +967,7 @@ namespace METAbolt
         {
             SetupGLControl();
 
-            ThreadPool.QueueUserWorkItem(sync =>
+            WorkPool.QueueUserWorkItem(sync =>
             {
                 if (client.Network.CurrentSim.ObjectsPrimitives.ContainsKey(RootPrimLocalID))
                 {
