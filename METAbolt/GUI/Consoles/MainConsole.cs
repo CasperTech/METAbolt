@@ -440,7 +440,7 @@ namespace METAbolt
                             Logger.Log("Error trying to save user settings to METAbolt.ini ", Helpers.LogLevel.Warning, ex);
                         }
 
-                        LoadWebPage();
+                        //LoadWebPage();
 
                         client.Self.Movement.Camera.Far = (float)instance.Config.CurrentConfig.RadarRange;
 
@@ -521,25 +521,27 @@ namespace METAbolt
             //btnInfo.Enabled = false;
             //btnInfo.Refresh();
 
-            string lkey = instance.Config.CurrentConfig.AdRemove;
+            //string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            if (!string.IsNullOrEmpty(lkey))
-            {
-                METAMD5 md5 = new METAMD5();
+            //if (!string.IsNullOrEmpty(lkey))
+            //{
+            //    METAMD5 md5 = new METAMD5();
 
-                if (md5.ValidateMachinePasscode(lkey))
-                {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-                }
-                else
-                {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-                }
-            }
-            else
-            {
-                murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-            }
+            //    if (md5.ValidateMachinePasscode(lkey))
+            //    {
+            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+            //    }
+            //    else
+            //    {
+            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+            //    }
+            //}
+            //else
+            //{
+            //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+            //}
+
+            murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
 
             webBrowser = new WebBrowser();
             webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
@@ -550,35 +552,35 @@ namespace METAbolt
             webBrowser.Dock = DockStyle.Fill;
             webBrowser.IsWebBrowserContextMenuEnabled = false;
             webBrowser.ScriptErrorsSuppressed = true;
-            webBrowser.ScrollBarsEnabled = true;
+            //webBrowser.ScrollBarsEnabled = true;
             webBrowser.NewWindow += new CancelEventHandler(webBrowser_NewWindow); 
             pnlLoginPage.Controls.Add(webBrowser);
         }
 
-        private void LoadWebPage()
-        {
-            string lkey = instance.Config.CurrentConfig.AdRemove;
+        //private void LoadWebPage()
+        //{
+        //    string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            if (!string.IsNullOrEmpty(lkey))
-            {
-                METAMD5 md5 = new METAMD5();
+        //    if (!string.IsNullOrEmpty(lkey))
+        //    {
+        //        METAMD5 md5 = new METAMD5();
 
-                if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-                {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-                }
-                else
-                {
-                    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-                }
-            }
-            else
-            {
-                murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-            }
+        //        if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
+        //        {
+        //            murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+        //        }
+        //        else
+        //        {
+        //            murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+        //    }
 
-            webBrowser.Navigate(murl);
-        }
+        //    webBrowser.Navigate(murl);
+        //}
 
         private void webBrowser_NewWindow(object sender, CancelEventArgs e)
         {
@@ -641,6 +643,10 @@ namespace METAbolt
             {
                 var.AttachEventHandler("onclick", LinkClicked);
             }
+
+            webBrowser.ScrollBarsEnabled = false;
+
+            webBrowser.Document.Body.Style = "overflow:hidden";
         }
 
         private void LinkClicked(object sender, EventArgs e)
@@ -859,7 +865,7 @@ namespace METAbolt
 
         private void MainConsole_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void DoBrowser()
