@@ -542,6 +542,7 @@ namespace METAbolt
             //}
 
             murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+            //murl = "http://viewer-login.agni.lindenlab.com/";
 
             webBrowser = new WebBrowser();
             webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);

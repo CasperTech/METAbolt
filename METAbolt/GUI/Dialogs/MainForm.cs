@@ -268,7 +268,7 @@ namespace METAbolt
                 tb6.Visible = false;
                 tb7.Visible = false;
 
-                //set them to false incase of parcel chance
+                //set them to false incase of parcel change
                 Aboutlandforsale = false;
                 AboutlandAllowFly = false;
                 AboutlandCreateObj = false;
@@ -372,7 +372,7 @@ namespace METAbolt
 
                 if (strInfolast == strInfo) return;
 
-                strInfolast = strInfo; 
+                strInfolast = strInfo;
 
                 try
                 {
