@@ -55,7 +55,7 @@ namespace METAbolt
         private Dictionary<UUID, GroupMember> Members = new Dictionary<UUID, GroupMember>();
         private Dictionary<UUID, GroupTitle> Titles = new Dictionary<UUID, GroupTitle>();
         private Dictionary<UUID, GroupMemberData> MemberData = new Dictionary<UUID, GroupMemberData>();
-        private Dictionary<UUID, string> Names = new Dictionary<UUID, string>();
+        private Dictionary<UUID, string> GrupMemberNames = new Dictionary<UUID, string>();
         private SLNetCom netcom;
         private InstantMessage imsg;
         private UUID objID = UUID.Zero;
@@ -78,6 +78,8 @@ namespace METAbolt
         private AssetType assettype;
         private UUID assetfolder = UUID.Zero;
         private string filename = string.Empty;
+        private string ejecttedgroupmember = string.Empty;
+        private UUID ejectedmemberid = UUID.Zero;
 
         internal class ThreadExceptionHandler
         {
@@ -227,6 +229,7 @@ namespace METAbolt
             Client.Groups.GroupRoleDataReply += new EventHandler<GroupRolesDataReplyEventArgs>(Groups_OnGroupRoleDataReply);
             Client.Groups.GroupRoleMembersReply += new EventHandler<GroupRolesMembersReplyEventArgs>(Groups_OnGroupRoleMembersReply);
             Client.Groups.GroupMemberEjected += new EventHandler<GroupOperationEventArgs>(Groups_GroupMemberEjected);
+            Client.Groups.GroupJoinedReply += new EventHandler<GroupOperationEventArgs>(Groups_GroupMemberJoined);
         }
 
         private void GetDets()
@@ -245,19 +248,35 @@ namespace METAbolt
             form_dispose(); 
         }
 
+        private void Groups_GroupMemberJoined(object sender, GroupOperationEventArgs e)
+        {
+            if (e.GroupID != grpid) return;
+
+            //if (e.Success)
+            //{
+            //    groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+            //}
+        }
+
         private void Groups_GroupMemberEjected(object sender, GroupOperationEventArgs e)
         {
             if (e.GroupID != grpid) return;
 
             if (e.Success)
             {
-                groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
-                instance.TabConsole.DisplayChatScreen("Group member ejected.");
+                //groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
+                Members.Remove(ejectedmemberid);
+                instance.TabConsole.DisplayChatScreen("Group member ejected: " + ejecttedgroupmember);
+
+                label16.Text = Members.Count.ToString() + " members";
             }
             else
             {
-                instance.TabConsole.DisplayChatScreen("Failed to eject group member.");
+                instance.TabConsole.DisplayChatScreen("Failed to eject group member: " + ejecttedgroupmember);
             }
+
+            ejectedmemberid = UUID.Zero;
+            ejecttedgroupmember = string.Empty;
         }
 
         private void form_dispose()
@@ -277,7 +296,7 @@ namespace METAbolt
             Members.Clear();
             Titles.Clear();
             MemberData.Clear();
-            Names.Clear();
+            GrupMemberNames.Clear();
             grouproles.Clear();
             grouprolesavs.Clear();
 
@@ -530,27 +549,29 @@ namespace METAbolt
             this.Group = e.Group; 
             Profile = e.Group;
 
-            if (this.Group.InsigniaID != null && this.Group.InsigniaID != UUID.Zero)
-                Client.Assets.RequestImage(this.Group.InsigniaID, ImageType.Normal,
-                    delegate(TextureRequestState state, AssetTexture assetTexture)
-                    {
-                        ManagedImage imgData;
-                        Image bitmap;
-
-                        if (state != TextureRequestState.Timeout || state != TextureRequestState.NotFound)
-                        {
-                            OpenJPEG.DecodeToImage(assetTexture.AssetData, out imgData, out bitmap);
-                            picInsignia.Image = bitmap;
-                            UpdateInsigniaProgressText("Progress...");
-                        }
-                        if (state == TextureRequestState.Finished)
-                        {
-                            UpdateInsigniaProgressText("");
-                        }
-                    }, true);
-
             this.BeginInvoke(new MethodInvoker(delegate()
             {
+                label16.Text = Profile.GroupMembershipCount.ToString() + " members";
+
+                if (this.Group.InsigniaID != null && this.Group.InsigniaID != UUID.Zero)
+                    Client.Assets.RequestImage(this.Group.InsigniaID, ImageType.Normal,
+                        delegate(TextureRequestState state, AssetTexture assetTexture)
+                        {
+                            ManagedImage imgData;
+                            Image bitmap;
+
+                            if (state != TextureRequestState.Timeout || state != TextureRequestState.NotFound)
+                            {
+                                OpenJPEG.DecodeToImage(assetTexture.AssetData, out imgData, out bitmap);
+                                picInsignia.Image = bitmap;
+                                UpdateInsigniaProgressText("Progress...");
+                            }
+                            if (state == TextureRequestState.Finished)
+                            {
+                                UpdateInsigniaProgressText("");
+                            }
+                        }, true);
+
                 if (!instance.avnames.ContainsKey(e.Group.FounderID))
                 {
                     founderid = e.Group.FounderID;
@@ -561,15 +582,18 @@ namespace METAbolt
                     lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
                 }
 
-                if (Profile.GroupMembershipCount < 5001)
-                {
-                    groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
-                    label10.Text = "Loading...";
-                }
-                else
-                {
-                    label10.Text = "Too many members to list";
-                }
+                //if (Profile.GroupMembershipCount < 5001)
+                //{
+                //    groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
+                //    label10.Text = "Loading...";
+                //}
+                //else
+                //{
+                //    label10.Text = "Too many members to list";
+                //}
+
+                groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
+                label10.Text = "Loading...";
 
                 UpdateProfile();
             }));
@@ -592,17 +616,17 @@ namespace METAbolt
 
         void Groups_OnGroupLeft(object sender, GroupOperationEventArgs e)
         {
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Groups_OnGroupLeft(sender, e);
-                }));
+            //if (this.InvokeRequired)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(delegate()
+            //    {
+            //        Groups_OnGroupLeft(sender, e);
+            //    }));
 
-                return;
-            }
+            //    return;
+            //}
 
-            groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+            //groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
         }
 
         private void UpdateProfile()
@@ -674,17 +698,15 @@ namespace METAbolt
                 {
                     try
                     {
-                        if (!instance.avnames.ContainsKey(av.Key))
+                        if (!GrupMemberNames.ContainsKey(av.Key))
                         {
-                            instance.avnames.Add(av.Key, av.Value);
+                            GrupMemberNames.Add(av.Key, av.Value);
                         }
 
                         if (av.Key == founderid)
                         {
                             lblFoundedBy.Text = "Founded by " + av.Value;
                         }
-   
-                        if (!MemberData.ContainsKey(av.Key)) return;
 
                         ListViewItem foundItem = lstMembers.FindItemWithText(av.Key.ToString(), false, 0, true);
 
@@ -699,6 +721,8 @@ namespace METAbolt
                         {
                             foundItem.Text = av.Value;
                         }
+
+                        if (!MemberData.ContainsKey(av.Key)) return;
 
                         GroupMemberData memberData = new GroupMemberData();
 
@@ -738,12 +762,25 @@ namespace METAbolt
                 return;
             } 
 
-            Members = e.Members;
+            //Members = e.Members;
 
-            this.BeginInvoke(new MethodInvoker(delegate()
+            foreach (var member in e.Members)
+            {
+                if (!Members.ContainsKey(member.Key))
+                {
+                    Members.Add(member.Key, member.Value);
+                }
+            }
+
+            //this.BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    UpdateMembers();
+            //})); 
+
+            WorkPool.QueueUserWorkItem(sync =>
             {
                 UpdateMembers();
-            })); 
+            });
         }
 
         public static DateTime ConvertDateTime(string Date)
@@ -805,6 +842,8 @@ namespace METAbolt
             }
             else
             {
+                label10.Visible = false;
+
                 List<UUID> requestids = new List<UUID>();
 
                 lstMembers.Items.Clear();
@@ -825,40 +864,12 @@ namespace METAbolt
                     memberData.ID = member.ID;
                     memberData.IsOwner = member.IsOwner;
 
-                    // TPV change just incase!!! 31 Mar 2010
-                    if (Client.Self.AgentID == member.ID && member.IsOwner)
-                    {
-                        button1.Enabled = true;
-                    }
-
-                    //var zones = TimeZoneInfo.GetSystemTimeZones();
-                    //string lastonlinedate = member.OnlineStatus;
-
-                    //CultureInfo culture = CultureInfo.CurrentCulture;
-
                     string lastonlinedate = member.OnlineStatus;
 
                     if (member.OnlineStatus.ToLower(CultureInfo.CurrentCulture) != "online")
                     {
                         lastonlinedate = ConvertDateTime(member.OnlineStatus).ToShortDateString();
                     }
-
-                    //DateTimeFormatInfo usDtfi = new CultureInfo("en-US", false).DateTimeFormat;
-                    //DateTime usdte = Convert.ToDateTime(lastonlinedate, usDtfi);
-
-                    ////var culture = new CultureInfo( "en-GB" );
-                    //var dateValue = new DateTime( member.OnlineStatus);
-                    //var result = dateValue.ToString( "d", culture ) );
-
-                    //try
-                    //{
-                    //    //lastonlinedate = DateTime.Parse(usdte.ToString())
-                    //    //    .ToString(culture.DateTimeFormat.ShortDatePattern);
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    string exp = ex.Message;
-                    //}
 
                     memberData.LastOnline = lastonlinedate;
                     memberData.Powers = (ulong)member.Powers;
@@ -887,26 +898,28 @@ namespace METAbolt
 
                             chkListInProfile.Enabled = true;
                             chkGroupNotices.Enabled = true;
+
+                            button1.Enabled = true;
                         }
                         else
                         {
                             //cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
-                            cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject, grpid);
+                            cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject);
 
                             //button6.Enabled = false;
 
-                            button4.Visible = HasGroupPower(GroupPowers.CreateRole, grpid);   // ((member.Powers & GroupPowers.CreateRole) != 0);
-                            button5.Visible = HasGroupPower(GroupPowers.DeleteRole, grpid);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
-                            button3.Visible = HasGroupPower(GroupPowers.SendNotices, grpid);
+                            button4.Visible = HasGroupPower(GroupPowers.CreateRole);   // ((member.Powers & GroupPowers.CreateRole) != 0);
+                            button5.Visible = HasGroupPower(GroupPowers.DeleteRole);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
+                            button3.Visible = HasGroupPower(GroupPowers.SendNotices);
 
                             if (instance.State.Groups.ContainsKey(Profile.ID))
                             {
-                                if (HasGroupPower(GroupPowers.ChangeIdentity, grpid))   //(member.Powers & GroupPowers.ChangeIdentity) != 0)
+                                if (HasGroupPower(GroupPowers.ChangeIdentity))   //(member.Powers & GroupPowers.ChangeIdentity) != 0)
                                 {
                                     txtCharter.Enabled = true;
                                 }
 
-                                if (HasGroupPower(GroupPowers.ChangeOptions, grpid))   //(member.Powers & GroupPowers.ChangeOptions) != 0)
+                                if (HasGroupPower(GroupPowers.ChangeOptions))   //(member.Powers & GroupPowers.ChangeOptions) != 0)
                                 {
                                     chkPublish.Enabled = true;
                                     chkOpenEnrollment.Enabled = true;
@@ -935,14 +948,16 @@ namespace METAbolt
                     }
 
                     ListViewItem lvi = new ListViewItem();
+                    bool memberfound = false;
 
-                    if (!instance.avnames.ContainsKey(member.ID))
+                    if (!GrupMemberNames.ContainsKey(member.ID))
                     {
                         lvi.Text = member.ID.ToString();
                     }
                     else
                     {
-                        lvi.Text = memberData.Name = instance.avnames[member.ID];
+                        lvi.Text = memberData.Name = GrupMemberNames[member.ID];
+                        memberfound = true;
                     }
 
                     ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
@@ -958,22 +973,24 @@ namespace METAbolt
 
                     lstMembers.Items.Add(lvi);
 
-                    if (!MemberData.ContainsKey(member.ID))
+                    if (MemberData.ContainsKey(member.ID))
                     {
-                        MemberData.Add(member.ID, memberData);
+                        MemberData.Remove(member.ID);
                     }
+
+                    MemberData.Add(member.ID, memberData);
 
                     lvi = null;
 
                     lvi = new ListViewItem();
-                    if (!instance.avnames.ContainsKey(member.ID))
+                    if (!memberfound)
                     {
                         lvi.Text = member.ID.ToString();
                         requestids.Add(member.ID);
                     }
                     else
                     {
-                        lvi.Text = instance.avnames[member.ID];
+                        lvi.Text = GrupMemberNames[member.ID];
                     }
 
                     lvsi = new ListViewItem.ListViewSubItem();
@@ -999,8 +1016,6 @@ namespace METAbolt
                     button6.Enabled = false;
                 }
 
-                label10.Visible = false;
-
                 lstMembers.Sort();
                 lstMembers2.Sort();
 
@@ -1011,11 +1026,42 @@ namespace METAbolt
             }
         }
 
-        private bool HasGroupPower(GroupPowers power, UUID groupID)
+        private bool HasGroupPower(GroupPowers pwr)
         {
-            if (!instance.State.Groups.ContainsKey(groupID)) return false;
+            //if (!instance.State.Groups.ContainsKey(groupID)) return false;
 
-            return (instance.State.Groups[groupID].Powers & power) != 0;
+            //return (instance.State.Groups[groupID].Powers & power) != 0;
+
+            GroupPowers power = GroupPowers.None;
+
+            foreach (GroupRole role in grouproles.Values)
+            {
+                if (role.Name.ToLower(CultureInfo.CurrentCulture) != "everyone")
+                {
+                    UUID roleid = role.ID;
+
+                    foreach (var el in grouprolesavs)
+                    {
+                        if (el.Value == Client.Self.AgentID && el.Key == roleid)
+                        {
+                            power = role.Powers;
+
+                            foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                            {
+                                if (p != GroupPowers.None && (power & p) == p)
+                                {
+                                    if (p == pwr)
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         private void GroupTitlesHandler(object sender, GroupTitlesReplyEventArgs e)
@@ -1075,11 +1121,11 @@ namespace METAbolt
         {
             if (!ejectpower) return;
 
-            if (lstMembers2.SelectedItems.Count  > 0)   // && lstMembers2.Columns[0].ToString != "none")
+            if (lstMembers2.SelectedItems.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
             {
                 for (int i = lstMembers2.SelectedItems.Count - 1; i >= 0; i--)
                 {
-                   string  li = lstMembers2.SelectedItems[i].Text ;  
+                    string li = lstMembers2.SelectedItems[i].Text;
 
                     foreach (GroupMemberData entry in MemberData.Values)
                     {
@@ -1088,11 +1134,13 @@ namespace METAbolt
                             try
                             {
                                 Client.Groups.EjectUser(Group.ID, entry.ID);
-                                break; 
+                                ejecttedgroupmember = entry.Name;
+                                ejectedmemberid = entry.ID;
+                                break;
                             }
                             catch (Exception ex)
                             {
-                                Logger.Log("Eject from group: " + ex.Message, Helpers.LogLevel.Warning);    
+                                Logger.Log("Eject from group: " + ex.Message, Helpers.LogLevel.Warning);
                             }
                         }
                     }
@@ -1100,12 +1148,17 @@ namespace METAbolt
 
                 try
                 {
-                    groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+                    //groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
+                    UpdateMembers();
                 }
                 catch
                 {
-                    ; 
+                    ;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Select a member to eject!","METAbolt");
             }
         }
 
@@ -1116,12 +1169,20 @@ namespace METAbolt
 
         private void cmdRefresh_Click(object sender, EventArgs e)
         {
+            label10.Visible = true;
+
             // Request the group information
             Client.Groups.RequestGroupProfile(Group.ID);
             groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
             grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
 
-            lstNotices.Items.Clear();  
+            lstNotices.Items.Clear();
+
+            //Members.Clear();
+            Titles.Clear();
+            //MemberData.Clear();
+            grouproles.Clear();
+            grouprolesavs.Clear();
 
             Client.Groups.RequestGroupNoticesList(Group.ID);
             Client.Groups.RequestGroupRoles(Group.ID); 

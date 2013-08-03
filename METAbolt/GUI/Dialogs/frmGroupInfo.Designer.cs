@@ -115,6 +115,7 @@ namespace METAbolt
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label16 = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.grpPreferences.SuspendLayout();
@@ -149,6 +150,7 @@ namespace METAbolt
             // 
             this.tabGeneral.AccessibleName = "General tab";
             this.tabGeneral.BackColor = System.Drawing.Color.White;
+            this.tabGeneral.Controls.Add(this.label16);
             this.tabGeneral.Controls.Add(this.button6);
             this.tabGeneral.Controls.Add(this.label10);
             this.tabGeneral.Controls.Add(this.labelInsigniaProgress);
@@ -188,6 +190,7 @@ namespace METAbolt
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label10.ForeColor = System.Drawing.Color.Red;
             this.label10.Location = new System.Drawing.Point(11, 262);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(56, 13);
@@ -197,6 +200,7 @@ namespace METAbolt
             // labelInsigniaProgress
             // 
             this.labelInsigniaProgress.AutoSize = true;
+            this.labelInsigniaProgress.ForeColor = System.Drawing.Color.Red;
             this.labelInsigniaProgress.Location = new System.Drawing.Point(14, 177);
             this.labelInsigniaProgress.Name = "labelInsigniaProgress";
             this.labelInsigniaProgress.Size = new System.Drawing.Size(56, 13);
@@ -222,9 +226,9 @@ namespace METAbolt
             this.grpPreferences.Controls.Add(this.chkFee);
             this.grpPreferences.Controls.Add(this.chkOpenEnrollment);
             this.grpPreferences.Controls.Add(this.chkPublish);
-            this.grpPreferences.Location = new System.Drawing.Point(10, 363);
+            this.grpPreferences.Location = new System.Drawing.Point(10, 381);
             this.grpPreferences.Name = "grpPreferences";
-            this.grpPreferences.Size = new System.Drawing.Size(393, 112);
+            this.grpPreferences.Size = new System.Drawing.Size(393, 94);
             this.grpPreferences.TabIndex = 6;
             this.grpPreferences.TabStop = false;
             this.grpPreferences.Text = "Group Preferences";
@@ -237,7 +241,7 @@ namespace METAbolt
             this.chkListInProfile.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkListInProfile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkListInProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkListInProfile.Location = new System.Drawing.Point(250, 64);
+            this.chkListInProfile.Location = new System.Drawing.Point(253, 57);
             this.chkListInProfile.Name = "chkListInProfile";
             this.chkListInProfile.Size = new System.Drawing.Size(110, 17);
             this.chkListInProfile.TabIndex = 7;
@@ -254,7 +258,7 @@ namespace METAbolt
             this.chkMature.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkMature.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkMature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkMature.Location = new System.Drawing.Point(16, 90);
+            this.chkMature.Location = new System.Drawing.Point(27, 77);
             this.chkMature.Name = "chkMature";
             this.chkMature.Size = new System.Drawing.Size(93, 17);
             this.chkMature.TabIndex = 1;
@@ -268,7 +272,7 @@ namespace METAbolt
             this.numFee.BackColor = System.Drawing.Color.WhiteSmoke;
             this.numFee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numFee.Enabled = false;
-            this.numFee.Location = new System.Drawing.Point(155, 65);
+            this.numFee.Location = new System.Drawing.Point(166, 55);
             this.numFee.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -287,7 +291,7 @@ namespace METAbolt
             this.chkGroupNotices.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkGroupNotices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkGroupNotices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkGroupNotices.Location = new System.Drawing.Point(250, 87);
+            this.chkGroupNotices.Location = new System.Drawing.Point(253, 77);
             this.chkGroupNotices.Name = "chkGroupNotices";
             this.chkGroupNotices.Size = new System.Drawing.Size(131, 17);
             this.chkGroupNotices.TabIndex = 6;
@@ -304,7 +308,7 @@ namespace METAbolt
             this.chkFee.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkFee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkFee.Location = new System.Drawing.Point(36, 67);
+            this.chkFee.Location = new System.Drawing.Point(47, 57);
             this.chkFee.Name = "chkFee";
             this.chkFee.Size = new System.Drawing.Size(112, 17);
             this.chkFee.TabIndex = 4;
@@ -321,7 +325,7 @@ namespace METAbolt
             this.chkOpenEnrollment.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkOpenEnrollment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkOpenEnrollment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkOpenEnrollment.Location = new System.Drawing.Point(16, 44);
+            this.chkOpenEnrollment.Location = new System.Drawing.Point(27, 36);
             this.chkOpenEnrollment.Name = "chkOpenEnrollment";
             this.chkOpenEnrollment.Size = new System.Drawing.Size(102, 17);
             this.chkOpenEnrollment.TabIndex = 3;
@@ -338,7 +342,7 @@ namespace METAbolt
             this.chkPublish.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkPublish.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.chkPublish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkPublish.Location = new System.Drawing.Point(16, 21);
+            this.chkPublish.Location = new System.Drawing.Point(27, 18);
             this.chkPublish.Name = "chkPublish";
             this.chkPublish.Size = new System.Drawing.Size(113, 17);
             this.chkPublish.TabIndex = 2;
@@ -1177,6 +1181,16 @@ namespace METAbolt
             this.columnHeader8.Text = "";
             this.columnHeader8.Width = 167;
             // 
+            // label16
+            // 
+            this.label16.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label16.Location = new System.Drawing.Point(253, 363);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(150, 18);
+            this.label16.TabIndex = 18;
+            this.label16.Text = "0 members";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmGroupInfo
             // 
             this.AccessibleName = "Group information window";
@@ -1314,6 +1328,7 @@ namespace METAbolt
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Khendys.Controls.ExRichTextBox textBox5;
+        private System.Windows.Forms.Label label16;
 
     }
 }
