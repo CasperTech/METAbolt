@@ -1021,10 +1021,34 @@ namespace METAbolt
 
                 if (requestids.Count > 0)
                 {
-                    Client.Avatars.RequestAvatarNames(requestids);
+                    if (requestids.Count > 200)
+                    {
+                        List<List<UUID>> chunks = splitList(requestids);
+
+                        foreach (List<UUID> chunklist in chunks)
+                        {
+                            Client.Avatars.RequestAvatarNames(chunklist);
+                        }
+                    }
+                    else
+                    {
+                        Client.Avatars.RequestAvatarNames(requestids);
+                    }
                 }
             }
         }
+
+        public static List<List<UUID>> splitList(List<UUID> locations, int nSize = 200)
+        {
+            List<List<UUID>> list = new List<List<UUID>>();
+
+            for (int i = 0; i < locations.Count; i += nSize)
+            {
+                list.Add(locations.GetRange(i, Math.Min(nSize, locations.Count - i)));
+            }
+
+            return list;
+        } 
 
         private bool HasGroupPower(GroupPowers pwr)
         {
