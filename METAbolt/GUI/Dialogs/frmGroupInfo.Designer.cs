@@ -32,6 +32,7 @@ namespace METAbolt
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGroupInfo));
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.labelInsigniaProgress = new System.Windows.Forms.Label();
@@ -115,7 +116,6 @@ namespace METAbolt
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label16 = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.grpPreferences.SuspendLayout();
@@ -169,11 +169,20 @@ namespace METAbolt
             this.tabGeneral.Text = "General";
             this.tabGeneral.Click += new System.EventHandler(this.tabGeneral_Click);
             // 
+            // label16
+            // 
+            this.label16.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label16.Location = new System.Drawing.Point(253, 363);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(150, 18);
+            this.label16.TabIndex = 18;
+            this.label16.Text = "0 members";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // button6
             // 
             this.button6.AccessibleName = "Join this group button";
             this.button6.BackColor = System.Drawing.Color.DimGray;
-            this.button6.Enabled = false;
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -364,19 +373,21 @@ namespace METAbolt
             this.lstMembers.Name = "lstMembers";
             this.lstMembers.ShowItemToolTips = true;
             this.lstMembers.Size = new System.Drawing.Size(396, 126);
-            this.lstMembers.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstMembers.TabIndex = 5;
             this.lstMembers.UseCompatibleStateImageBehavior = false;
             this.lstMembers.View = System.Windows.Forms.View.Details;
+            this.lstMembers.VirtualMode = true;
             this.lstMembers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstMembers_ColumnClick);
+            this.lstMembers.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lstMembers_RetrieveVirtualItem);
             this.lstMembers.DoubleClick += new System.EventHandler(this.lstMembers_DoubleClick);
+            this.lstMembers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstMembers_MouseDoubleClick);
             this.lstMembers.MouseEnter += new System.EventHandler(this.lstMembers_MouseEnter);
             this.lstMembers.MouseLeave += new System.EventHandler(this.lstMembers_MouseLeave);
             // 
             // colName
             // 
             this.colName.Text = "Member Name";
-            this.colName.Width = 166;
+            this.colName.Width = 160;
             // 
             // colTitle
             // 
@@ -386,7 +397,7 @@ namespace METAbolt
             // colLasLogin
             // 
             this.colLasLogin.Text = "Last Login";
-            this.colLasLogin.Width = 95;
+            this.colLasLogin.Width = 85;
             // 
             // txtCharter
             // 
@@ -549,30 +560,32 @@ namespace METAbolt
             this.lstMembers2.MultiSelect = false;
             this.lstMembers2.Name = "lstMembers2";
             this.lstMembers2.Size = new System.Drawing.Size(380, 182);
-            this.lstMembers2.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstMembers2.TabIndex = 0;
             this.lstMembers2.UseCompatibleStateImageBehavior = false;
             this.lstMembers2.View = System.Windows.Forms.View.Details;
+            this.lstMembers2.VirtualMode = true;
             this.lstMembers2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstMembers2_ColumnClick);
+            this.lstMembers2.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lstMembers2_RetrieveVirtualItem);
             this.lstMembers2.SelectedIndexChanged += new System.EventHandler(this.lstMembers2_SelectedIndexChanged);
             this.lstMembers2.DoubleClick += new System.EventHandler(this.lstMembers2_DoubleClick);
+            this.lstMembers2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstMembers2_MouseDoubleClick);
             this.lstMembers2.MouseEnter += new System.EventHandler(this.lstMembers2_MouseEnter);
             this.lstMembers2.MouseLeave += new System.EventHandler(this.lstMembers2_MouseLeave);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Member Name";
-            this.columnHeader1.Width = 152;
+            this.columnHeader1.Width = 165;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Donated Tier";
-            this.columnHeader2.Width = 119;
+            this.columnHeader2.Width = 100;
             // 
             // LastLogin
             // 
             this.LastLogin.Text = "Last Login";
-            this.LastLogin.Width = 96;
+            this.LastLogin.Width = 90;
             // 
             // label2
             // 
@@ -831,7 +844,7 @@ namespace METAbolt
             // columnHeader11
             // 
             this.columnHeader11.Text = "UUID";
-            this.columnHeader11.Width = 220;
+            this.columnHeader11.Width = 205;
             // 
             // tabNotices
             // 
@@ -1180,16 +1193,6 @@ namespace METAbolt
             // 
             this.columnHeader8.Text = "";
             this.columnHeader8.Width = 167;
-            // 
-            // label16
-            // 
-            this.label16.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label16.Location = new System.Drawing.Point(253, 363);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(150, 18);
-            this.label16.TabIndex = 18;
-            this.label16.Text = "0 members";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // frmGroupInfo
             // 

@@ -55,6 +55,7 @@ namespace METAbolt
         private Dictionary<UUID, GroupMember> Members = new Dictionary<UUID, GroupMember>();
         private Dictionary<UUID, GroupTitle> Titles = new Dictionary<UUID, GroupTitle>();
         private Dictionary<UUID, GroupMemberData> MemberData = new Dictionary<UUID, GroupMemberData>();
+        private List<GroupMemberData> SortedMembers = new List<GroupMemberData>();
         private Dictionary<UUID, string> GrupMemberNames = new Dictionary<UUID, string>();
         private SLNetCom netcom;
         private InstantMessage imsg;
@@ -80,6 +81,7 @@ namespace METAbolt
         private string filename = string.Empty;
         private string ejecttedgroupmember = string.Empty;
         private UUID ejectedmemberid = UUID.Zero;
+        private MemberSorter sortedlist = new MemberSorter();
 
         internal class ThreadExceptionHandler
         {
@@ -114,8 +116,8 @@ namespace METAbolt
             //lvwColumnSorter = new NumericStringComparer();
             lvwDateColumnSorter = new NumericStringComparerDateGroups();
 
-            lstMembers.ListViewItemSorter = lvwDateColumnSorter;
-            lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
+            //lstMembers.ListViewItemSorter = lvwDateColumnSorter;
+            //lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
             lstNotices.ListViewItemSorter = lvwDateColumnSorter;
             //lstRoles.ListViewItemSorter = lvwColumnSorter;
 
@@ -145,16 +147,11 @@ namespace METAbolt
             //lvwColumnSorter = new NumericStringComparer();
             lvwDateColumnSorter = new NumericStringComparerDateGroups();
 
-            lstMembers.ListViewItemSorter = lvwDateColumnSorter;
-            lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
+            //lstMembers.ListViewItemSorter = lvwDateColumnSorter;
+            //lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
             lstNotices.ListViewItemSorter = lvwDateColumnSorter;
 
-            Client.Groups.RequestGroupProfile(group.GroupID);
-            //groupmembers = Client.Groups.RequestGroupMembers(group.GroupID);
-            grouptitles = Client.Groups.RequestGroupTitles(group.GroupID);
-            // and the notices
-            Client.Groups.RequestGroupNoticesList(group.GroupID);
-            Client.Groups.RequestGroupRoles(group.GroupID);
+            GetDets();
         }
 
         public frmGroupInfo(UUID groupid, METAboltInstance instance)
@@ -180,16 +177,11 @@ namespace METAbolt
             //lvwColumnSorter = new NumericStringComparer();
             lvwDateColumnSorter = new NumericStringComparerDateGroups();
 
-            lstMembers.ListViewItemSorter = lvwDateColumnSorter;
-            lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
+            //lstMembers.ListViewItemSorter = lvwDateColumnSorter;
+            //lstMembers2.ListViewItemSorter = lvwDateColumnSorter;
             lstNotices.ListViewItemSorter = lvwDateColumnSorter;
 
-            Client.Groups.RequestGroupProfile(groupid);
-            //groupmembers = Client.Groups.RequestGroupMembers(groupid);
-            grouptitles = Client.Groups.RequestGroupTitles(groupid);
-            // and the notices
-            Client.Groups.RequestGroupNoticesList(groupid);
-            Client.Groups.RequestGroupRoles(groupid);
+            GetDets();
         }
 
         private void SetExceptionReporter()
@@ -234,6 +226,16 @@ namespace METAbolt
 
         private void GetDets()
         {
+            lstMembers.Items.Clear();
+            lstMembers2.Items.Clear();
+
+            txtCharter.Enabled = false;
+            chkPublish.Enabled = false;
+            chkOpenEnrollment.Enabled = false;
+            chkFee.Enabled = false;
+            numFee.Enabled = false;
+            chkMature.Enabled = false;
+
             // Request the group information
             Client.Groups.RequestGroupProfile(Group.ID);
             //groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
@@ -592,10 +594,10 @@ namespace METAbolt
                 //    label10.Text = "Too many members to list";
                 //}
 
+                UpdateProfile();
+
                 groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
                 label10.Text = "Loading...";
-
-                UpdateProfile();
             }));
         }
 
@@ -677,6 +679,11 @@ namespace METAbolt
             //chkGroupNotices.Checked = Profile.AcceptNotices;
             textBox2.Text = "Group UUID: " + Profile.ID.ToString();
 
+            //if (!chkOpenEnrollment.Checked && !chkFee.Checked)
+            //{
+            //    button6.Enabled = false;
+            //}
+
             floading = false;
         }
 
@@ -694,6 +701,8 @@ namespace METAbolt
                
             this.BeginInvoke(new MethodInvoker(delegate()
             {
+                List<UUID> memkeys = new List<UUID>();
+
                 foreach (KeyValuePair<UUID, string> av in e.Names)
                 {
                     try
@@ -703,37 +712,44 @@ namespace METAbolt
                             GrupMemberNames.Add(av.Key, av.Value);
                         }
 
+                        if (!memkeys.Contains(av.Key))
+                        {
+                            memkeys.Add(av.Key);
+                        }
+
                         if (av.Key == founderid)
                         {
                             lblFoundedBy.Text = "Founded by " + av.Value;
                         }
 
-                        ListViewItem foundItem = lstMembers.FindItemWithText(av.Key.ToString(), false, 0, true);
+                        MemberData[av.Key].Name = av.Value;
 
-                        if (foundItem != null)
-                        {
-                            foundItem.Text = av.Value;
-                        }
+                        //ListViewItem foundItem = lstMembers.FindItemWithText(av.Key.ToString(), false, 0, true);
 
-                        foundItem = lstMembers2.FindItemWithText(av.Key.ToString(), false, 0, true);
+                        //if (foundItem != null)
+                        //{
+                        //    foundItem.Text = av.Value;
+                        //}
 
-                        if (foundItem != null)
-                        {
-                            foundItem.Text = av.Value;
-                        }
+                        //foundItem = lstMembers2.FindItemWithText(av.Key.ToString(), false, 0, true);
 
-                        if (!MemberData.ContainsKey(av.Key)) return;
+                        //if (foundItem != null)
+                        //{
+                        //    foundItem.Text = av.Value;
+                        //}
 
-                        GroupMemberData memberData = new GroupMemberData();
+                        //if (!MemberData.ContainsKey(av.Key)) return;
 
-                        memberData = MemberData[av.Key];
-                        memberData.Name = av.Value;
+                        //GroupMemberData memberData = new GroupMemberData();
 
-                        lock (MemberData)
-                        {
-                            MemberData.Remove(av.Key);
-                            MemberData.Add(av.Key, memberData);
-                        }
+                        //memberData = MemberData[av.Key];
+                        //memberData.Name = av.Value;
+
+                        //lock (MemberData)
+                        //{
+                        //    MemberData.Remove(av.Key);
+                        //    MemberData.Add(av.Key, memberData);
+                        //}
                     }
                     catch
                     {
@@ -741,8 +757,10 @@ namespace METAbolt
                     }
                 }
 
-                lstMembers.Sort();
-                lstMembers2.Sort();
+                WorkPool.QueueUserWorkItem(sync =>
+                {
+                    UpdateMembers(memkeys);
+                });                
             }));
         }
 
@@ -760,15 +778,66 @@ namespace METAbolt
                 }));
 
                 return;
-            } 
+            }
+
+            lstMembers.VirtualListSize = 0;
+            lstMembers2.VirtualListSize = 0;
 
             //Members = e.Members;
+
+            List<UUID> requestids = new List<UUID>();
 
             foreach (var member in e.Members)
             {
                 if (!Members.ContainsKey(member.Key))
                 {
                     Members.Add(member.Key, member.Value);
+                    requestids.Add(member.Key);
+                }
+            }
+
+            foreach (GroupMember member in Members.Values)
+            {
+                GroupMemberData memberData = new GroupMemberData();
+                memberData.ID = member.ID;
+                memberData.IsOwner = member.IsOwner;
+
+                string lastonlinedate = member.OnlineStatus;
+
+                if (member.OnlineStatus.ToLower(CultureInfo.CurrentCulture) != "online")
+                {
+                    lastonlinedate = ConvertDateTime(member.OnlineStatus).ToShortDateString();
+                }
+
+                memberData.LastOnline = lastonlinedate;
+                memberData.Powers = (ulong)member.Powers;
+                memberData.Title = member.Title;
+                memberData.Contribution = member.Contribution;
+
+                if (MemberData.ContainsKey(member.ID))
+                {
+                    MemberData.Remove(member.ID);
+                    SortedMembers.Remove(memberData);
+                }
+
+                MemberData.Add(member.ID, memberData);
+                SortedMembers.Add(memberData);
+            }
+
+            if (requestids.Count > 0)
+            {
+                if (requestids.Count > 80)
+                {
+                    List<List<UUID>> chunks = splitList(requestids);
+
+                    foreach (List<UUID> chunklist in chunks)
+                    {
+                        Client.Avatars.RequestAvatarNames(chunklist);
+                    }
+                }
+                else
+                {
+                    Client.Avatars.RequestAvatarNames(requestids);
                 }
             }
 
@@ -777,10 +846,13 @@ namespace METAbolt
             //    UpdateMembers();
             //})); 
 
-            WorkPool.QueueUserWorkItem(sync =>
-            {
-                UpdateMembers();
-            });
+            //WorkPool.QueueUserWorkItem(sync =>
+            //{
+            //    UpdateMembers();
+            //});
+
+            lstMembers.VirtualListSize = SortedMembers.Count;
+            lstMembers2.VirtualListSize = SortedMembers.Count;
         }
 
         public static DateTime ConvertDateTime(string Date)
@@ -829,216 +901,161 @@ namespace METAbolt
 
         }
 
-        private void UpdateMembers()
+        private void UpdateMembers(List<UUID> lst)
         {
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new MethodInvoker(delegate()
                 {
-                    UpdateMembers();
+                    UpdateMembers(lst);
                 }));
 
                 return;
             }
             else
             {
-                label10.Visible = false;
-
-                List<UUID> requestids = new List<UUID>();
-
-                lstMembers.Items.Clear();
-                lstMembers2.Items.Clear();
-
-                txtCharter.Enabled = false;
-                chkPublish.Enabled = false;
-                chkOpenEnrollment.Enabled = false;
-                chkFee.Enabled = false;
-                numFee.Enabled = false;
-                chkMature.Enabled = false;
-
-                bool isgmember = false;
-
-                foreach (GroupMember member in Members.Values)
+                try
                 {
-                    GroupMemberData memberData = new GroupMemberData();
-                    memberData.ID = member.ID;
-                    memberData.IsOwner = member.IsOwner;
+                    label10.Visible = false;
 
-                    string lastonlinedate = member.OnlineStatus;
+                    //List<UUID> requestids = new List<UUID>();
 
-                    if (member.OnlineStatus.ToLower(CultureInfo.CurrentCulture) != "online")
+                    //bool isgmember = false;
+
+                    foreach (UUID memid in lst)
                     {
-                        lastonlinedate = ConvertDateTime(member.OnlineStatus).ToShortDateString();
-                    }
-
-                    memberData.LastOnline = lastonlinedate;
-                    memberData.Powers = (ulong)member.Powers;
-                    memberData.Title = member.Title;
-                    memberData.Contribution = member.Contribution;
-
-                    if (member.ID == Client.Self.AgentID)
-                    {
-                        isgmember = true;
-
-                        if (member.IsOwner)
+                        if (Members.ContainsKey(memid))
                         {
-                            cmdEject.Enabled = ejectpower = true;
-                            //button6.Enabled = true;
+                            GroupMember member = Members[memid];
 
-                            button4.Visible = true;
-                            button5.Visible = true;
-
-                            txtCharter.Enabled = true;
-
-                            chkPublish.Enabled = true;
-                            chkOpenEnrollment.Enabled = true;
-                            chkFee.Enabled = true;
-                            numFee.Enabled = true;
-                            chkMature.Enabled = true;
-
-                            chkListInProfile.Enabled = true;
-                            chkGroupNotices.Enabled = true;
-
-                            button1.Enabled = true;
-                        }
-                        else
-                        {
-                            //cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
-                            cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject);
-
-                            //button6.Enabled = false;
-
-                            button4.Visible = HasGroupPower(GroupPowers.CreateRole);   // ((member.Powers & GroupPowers.CreateRole) != 0);
-                            button5.Visible = HasGroupPower(GroupPowers.DeleteRole);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
-                            button3.Visible = HasGroupPower(GroupPowers.SendNotices);
-
-                            if (instance.State.Groups.ContainsKey(Profile.ID))
+                            if (member.ID == Client.Self.AgentID)
                             {
-                                if (HasGroupPower(GroupPowers.ChangeIdentity))   //(member.Powers & GroupPowers.ChangeIdentity) != 0)
-                                {
-                                    txtCharter.Enabled = true;
-                                }
+                                //isgmember = true;
 
-                                if (HasGroupPower(GroupPowers.ChangeOptions))   //(member.Powers & GroupPowers.ChangeOptions) != 0)
+                                button6.Enabled = false; ;
+
+                                if (member.IsOwner)
                                 {
+                                    cmdEject.Enabled = ejectpower = true;
+                                    //button6.Enabled = true;
+
+                                    button4.Visible = true;
+                                    button5.Visible = true;
+
+                                    txtCharter.Enabled = true;
+
                                     chkPublish.Enabled = true;
                                     chkOpenEnrollment.Enabled = true;
                                     chkFee.Enabled = true;
                                     numFee.Enabled = true;
                                     chkMature.Enabled = true;
+
+                                    chkListInProfile.Enabled = true;
+                                    chkGroupNotices.Enabled = true;
+
+                                    button1.Enabled = true;
                                 }
                                 else
                                 {
-                                    chkPublish.Enabled = false;
-                                    chkOpenEnrollment.Enabled = false;
-                                    chkFee.Enabled = false;
-                                    numFee.Enabled = false;
-                                    chkMature.Enabled = false;
+                                    //cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
+                                    cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject);
+
+                                    //button6.Enabled = false;
+
+                                    button4.Visible = HasGroupPower(GroupPowers.CreateRole);   // ((member.Powers & GroupPowers.CreateRole) != 0);
+                                    button5.Visible = HasGroupPower(GroupPowers.DeleteRole);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
+                                    button3.Visible = HasGroupPower(GroupPowers.SendNotices);
+
+                                    if (instance.State.Groups.ContainsKey(Profile.ID))
+                                    {
+                                        if (HasGroupPower(GroupPowers.ChangeIdentity))   //(member.Powers & GroupPowers.ChangeIdentity) != 0)
+                                        {
+                                            txtCharter.Enabled = true;
+                                        }
+
+                                        if (HasGroupPower(GroupPowers.ChangeOptions))   //(member.Powers & GroupPowers.ChangeOptions) != 0)
+                                        {
+                                            chkPublish.Enabled = true;
+                                            chkOpenEnrollment.Enabled = true;
+                                            chkFee.Enabled = true;
+                                            numFee.Enabled = true;
+                                            chkMature.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            chkPublish.Enabled = false;
+                                            chkOpenEnrollment.Enabled = false;
+                                            chkFee.Enabled = false;
+                                            numFee.Enabled = false;
+                                            chkMature.Enabled = false;
+                                        }
+
+                                        chkListInProfile.Enabled = true;
+                                        chkGroupNotices.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        chkListInProfile.Enabled = false;
+                                        chkGroupNotices.Enabled = false;
+                                    }
                                 }
-
-                                chkListInProfile.Enabled = true;
-                                chkGroupNotices.Enabled = true;
-                            }
-                            else
-                            {
-                                chkListInProfile.Enabled = false;
-                                chkGroupNotices.Enabled = false;
                             }
                         }
                     }
 
-                    ListViewItem lvi = new ListViewItem();
-                    bool memberfound = false;
+                    //this.Refresh();
 
-                    if (!GrupMemberNames.ContainsKey(member.ID))
-                    {
-                        lvi.Text = member.ID.ToString();
-                    }
-                    else
-                    {
-                        lvi.Text = memberData.Name = GrupMemberNames[member.ID];
-                        memberfound = true;
-                    }
+                    //SortMeberData();
+                    
 
-                    ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
-                    lvsi.Text = member.Title;
-                    lvi.SubItems.Add(lvsi);
+                    //MemberData = sortedDictionary1;
 
-                    lvsi = new ListViewItem.ListViewSubItem();
-                    lvsi.Text = memberData.LastOnline;   // member.OnlineStatus;
-                    lvi.SubItems.Add(lvsi);
+                    SortedMembers.Sort(sortedlist);
 
-                    lvi.Tag = memberData;
-                    lvi.ToolTipText = "Double click to view " + lvi.Text + "'s profile";
-
-                    lstMembers.Items.Add(lvi);
-
-                    if (MemberData.ContainsKey(member.ID))
-                    {
-                        MemberData.Remove(member.ID);
-                    }
-
-                    MemberData.Add(member.ID, memberData);
-
-                    lvi = null;
-
-                    lvi = new ListViewItem();
-                    if (!memberfound)
-                    {
-                        lvi.Text = member.ID.ToString();
-                        requestids.Add(member.ID);
-                    }
-                    else
-                    {
-                        lvi.Text = GrupMemberNames[member.ID];
-                    }
-
-                    lvsi = new ListViewItem.ListViewSubItem();
-                    lvsi.Text = member.Contribution.ToString(CultureInfo.CurrentCulture);
-                    lvi.SubItems.Add(lvsi);
-
-                    lvsi = new ListViewItem.ListViewSubItem();
-                    lvsi.Text = memberData.LastOnline;   // member.OnlineStatus;
-                    lvi.SubItems.Add(lvsi);
-
-                    lvi.Tag = member;
-
-                    lstMembers2.Items.Add(lvi);
+                    lstMembers.Refresh();
                 }
-
-                button6.Enabled = !isgmember;
-
-                //chkOpenEnrollment.Enabled = true;
-                //chkFee.Enabled = true;
-
-                if (!chkOpenEnrollment.Checked && !chkFee.Checked)
+                catch (Exception ex)
                 {
-                    button6.Enabled = false;
-                }
-
-                lstMembers.Sort();
-                lstMembers2.Sort();
-
-                if (requestids.Count > 0)
-                {
-                    if (requestids.Count > 200)
-                    {
-                        List<List<UUID>> chunks = splitList(requestids);
-
-                        foreach (List<UUID> chunklist in chunks)
-                        {
-                            Client.Avatars.RequestAvatarNames(chunklist);
-                        }
-                    }
-                    else
-                    {
-                        Client.Avatars.RequestAvatarNames(requestids);
-                    }
+                    //string exp = ex.Message;
                 }
             }
         }
 
-        public static List<List<UUID>> splitList(List<UUID> locations, int nSize = 200)
+        //private void SortMeberData()
+        //{
+        //    List<string> sodic = new List<string>();
+
+        //    foreach (GroupMemberData entry in MemberData.Values)
+        //    {
+        //        sodic.Add(entry.Name);
+        //    }
+
+        //    sodic.Sort();
+
+        //    Dictionary<UUID, GroupMemberData> SortedMemberData = new Dictionary<UUID, GroupMemberData>();
+
+        //    foreach (string id in sodic)
+        //    {
+        //        UUID suuid = UUID.Zero;
+        //        GroupMemberData smsmdat = null;
+
+        //        foreach (GroupMemberData entry in MemberData.Values)
+        //        {
+        //            if (entry.Name == id)
+        //            {
+        //                suuid = entry.ID;
+        //                smsmdat = entry;
+        //                break;
+        //            }
+        //        }
+
+        //        SortedMemberData.Add(suuid, smsmdat);
+        //    }
+
+        //    MemberData = SortedMemberData;
+        //}
+
+        public static List<List<UUID>> splitList(List<UUID> locations, int nSize = 80)
         {
             List<List<UUID>> list = new List<List<UUID>>();
 
@@ -1145,44 +1162,42 @@ namespace METAbolt
         {
             if (!ejectpower) return;
 
-            if (lstMembers2.SelectedItems.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
+            if (lstMembers2.SelectedIndices.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
             {
-                for (int i = lstMembers2.SelectedItems.Count - 1; i >= 0; i--)
-                {
-                    string li = lstMembers2.SelectedItems[i].Text;
+                //string li = lstMembers2.SelectedIndices[0];
+                int sel = lstMembers2.SelectedIndices[0];
+                int ctr = 0;
 
-                    foreach (GroupMemberData entry in MemberData.Values)
+                UUID avid = UUID.Zero;
+
+                foreach (GroupMemberData entry in MemberData.Values)
+                {
+                    if (ctr == sel)
                     {
-                        if (li == entry.Name)
-                        {
-                            try
-                            {
-                                Client.Groups.EjectUser(Group.ID, entry.ID);
-                                ejecttedgroupmember = entry.Name;
-                                ejectedmemberid = entry.ID;
-                                break;
-                            }
-                            catch (Exception ex)
-                            {
-                                Logger.Log("Eject from group: " + ex.Message, Helpers.LogLevel.Warning);
-                            }
-                        }
+                        avid = entry.ID;
+                        break;
                     }
+
+                    ctr += 1;
                 }
 
-                try
+                if (avid != UUID.Zero)
                 {
-                    //groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
-                    UpdateMembers();
-                }
-                catch
-                {
-                    ;
+                    try
+                    {
+                        Client.Groups.EjectUser(Group.ID, avid);
+                        ejecttedgroupmember = MemberData[avid].Name;
+                        ejectedmemberid = avid;
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log("Eject from group: " + ex.Message, Helpers.LogLevel.Warning);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Select a member to eject!","METAbolt");
+                MessageBox.Show("Select a member to eject!", "METAbolt");
             }
         }
 
@@ -1193,18 +1208,21 @@ namespace METAbolt
 
         private void cmdRefresh_Click(object sender, EventArgs e)
         {
+            lstNotices.Items.Clear();
+            lstMembers.Items.Clear();
+            lstMembers2.Items.Clear();
+
             label10.Visible = true;
 
-            // Request the group information
-            Client.Groups.RequestGroupProfile(Group.ID);
+            //// Request the group information
+            //Client.Groups.RequestGroupProfile(Group.ID);
             groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
             grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
 
-            lstNotices.Items.Clear();
-
-            //Members.Clear();
+            Members = new Dictionary<UUID, GroupMember>();
+            MemberData.Clear();
+            SortedMembers.Clear();
             Titles.Clear();
-            //MemberData.Clear();
             grouproles.Clear();
             grouprolesavs.Clear();
 
@@ -1232,21 +1250,28 @@ namespace METAbolt
         private void lstMembers2_SelectedIndexChanged(object sender, EventArgs e)
         {
             //chkListRoles.Items.Clear();
-            lvAssignedRoles.Items.Clear();  
+            lvAssignedRoles.Items.Clear();
 
-            if (lstMembers2.SelectedItems.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
+            if (lstMembers2.SelectedIndices.Count > 0)   // && lstMembers2.Columns[0].ToString != "none")
             {
-                string li = lstMembers2.SelectedItems[0].Text;
+                //string li = lstMembers2.SelectedIndices[0];
+                int sel = lstMembers2.SelectedIndices[0];
+                int ctr = 0;
+
                 UUID avid = UUID.Zero;  
 
                 foreach (GroupMemberData entry in MemberData.Values)
                 {
-                    if (li == entry.Name)
+                    if (ctr == sel)
                     {
                         avid = entry.ID;
                         break; 
                     }
+
+                    ctr += 1;
                 }
+
+                if (avid == UUID.Zero) return;
 
                 checkignore = true;
 
@@ -1374,34 +1399,34 @@ namespace METAbolt
 
         private void lstMembers_DoubleClick(object sender, EventArgs e)
         {
-            if (lstMembers.SelectedItems.Count == 1)
-            {
-                string li = lstMembers.SelectedItems[0].Text;
+            //if (lstMembers.SelectedItems.Count == 1)
+            //{
+            //    string li = lstMembers.SelectedItems[0].Text;
 
-                foreach (GroupMemberData entry in MemberData.Values)
-                {
-                    if (li == entry.Name)
-                    {
-                        (new frmProfile(instance, entry.Name, entry.ID)).Show();
-                    }
-                }
-            }
+            //    foreach (GroupMemberData entry in MemberData.Values)
+            //    {
+            //        if (li == entry.Name)
+            //        {
+            //            (new frmProfile(instance, entry.Name, entry.ID)).Show();
+            //        }
+            //    }
+            //}
         }
 
         private void lstMembers2_DoubleClick(object sender, EventArgs e)
         {
-            if (lstMembers2.SelectedItems.Count == 1)
-            {
-                string li = lstMembers2.SelectedItems[0].Text;
+            //if (lstMembers2.SelectedItems.Count == 1)
+            //{
+            //    string li = lstMembers2.SelectedItems[0].Text;
 
-                foreach (GroupMemberData entry in MemberData.Values)
-                {
-                    if (li == entry.Name)
-                    {
-                        (new frmProfile(instance, entry.Name, entry.ID)).Show();
-                    }
-                }
-            }
+            //    foreach (GroupMemberData entry in MemberData.Values)
+            //    {
+            //        if (li == entry.Name)
+            //        {
+            //            (new frmProfile(instance, entry.Name, entry.ID)).Show();
+            //        }
+            //    }
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1659,54 +1684,58 @@ namespace METAbolt
 
         private void lstMembers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == lvwDateColumnSorter.SortColumn)
+            if (sortedlist.CurrentOrder == MemberSorter.SortOrder.Ascending)
             {
-                // Reverse the current sort direction for this column.
-                if (lvwDateColumnSorter.Order == SortOrder.Ascending)
-                {
-                    lvwDateColumnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    lvwDateColumnSorter.Order = SortOrder.Ascending;
-                }
+                sortedlist.CurrentOrder = MemberSorter.SortOrder.Descending;
             }
             else
             {
-                // Set the column number that is to be sorted; default to ascending.
-                lvwDateColumnSorter.SortColumn = e.Column;
-                lvwDateColumnSorter.Order = SortOrder.Ascending;
+                sortedlist.CurrentOrder = MemberSorter.SortOrder.Ascending;
             }
 
-            // Perform the sort with these new sort options.
-            lstMembers.Sort();
+            if (e.Column == 0)
+            {
+                sortedlist.SortBy = MemberSorter.SortByColumn.Name;
+            }
+            else if (e.Column == 1)
+            {
+                sortedlist.SortBy = MemberSorter.SortByColumn.Title;
+            }
+            else if (e.Column == 2)
+            {
+                sortedlist.SortBy = MemberSorter.SortByColumn.LastOnline;
+            }
+
+            SortedMembers.Sort(sortedlist);
+            lstMembers.Refresh();
         }
 
         private void lstMembers2_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == lvwDateColumnSorter.SortColumn)
+            if (sortedlist.CurrentOrder == MemberSorter.SortOrder.Ascending)
             {
-                // Reverse the current sort direction for this column.
-                if (lvwDateColumnSorter.Order == SortOrder.Ascending)
-                {
-                    lvwDateColumnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    lvwDateColumnSorter.Order = SortOrder.Ascending;
-                }
+                sortedlist.CurrentOrder = MemberSorter.SortOrder.Descending;
             }
             else
             {
-                // Set the column number that is to be sorted; default to ascending.
-                lvwDateColumnSorter.SortColumn = e.Column;
-                lvwDateColumnSorter.Order = SortOrder.Ascending;
+                sortedlist.CurrentOrder = MemberSorter.SortOrder.Ascending;
             }
 
-            // Perform the sort with these new sort options.
-            lstMembers2.Sort();
+            if (e.Column == 0)
+            {
+                sortedlist.SortBy = MemberSorter.SortByColumn.Name;
+            }
+            else if (e.Column == 1)
+            {
+                sortedlist.SortBy = MemberSorter.SortByColumn.Contribution;
+            }
+            else if (e.Column == 2)
+            {
+                sortedlist.SortBy = MemberSorter.SortByColumn.LastOnline;
+            }
+
+            SortedMembers.Sort(sortedlist);
+            lstMembers2.Refresh();
         }
 
         private void lstNotices_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -2050,6 +2079,222 @@ namespace METAbolt
                 System.Diagnostics.Process.Start("http://" + e.LinkText);
             }
         }
+
+        private void lstMembers_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            GroupMemberData fmem = null;
+
+            //int i = 0;
+
+            try
+            {
+                //foreach (GroupMemberData entry in MemberData.Values)
+                //{
+                //    if (i == e.ItemIndex)
+                //    {
+                //        fmem = entry;
+                //        break;
+                //    }
+
+                //    i += 1;
+                //}
+
+                fmem = SortedMembers[e.ItemIndex];
+            }
+            catch
+            {
+                e.Item = new ListViewItem();
+                return;
+            }
+
+            ListViewItem lvi = new ListViewItem();
+            lvi.Text = fmem.Name;
+
+            ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
+
+            lvsi.Text = fmem.Title;
+            lvi.SubItems.Add(lvsi);
+
+            lvsi = new ListViewItem.ListViewSubItem();
+            lvsi.Text = fmem.LastOnline;   // member.OnlineStatus;
+            lvi.SubItems.Add(lvsi);
+
+            lvi.Tag = fmem;
+            lvi.ToolTipText = "Double click to view " + lvi.Text + "'s profile";
+
+            e.Item = lvi;
+        }
+
+        private void lstMembers2_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            GroupMemberData fmem = null;
+
+            //int i = 0;
+
+            try
+            {
+                //foreach (GroupMember member in Members.Values)
+                //{
+                //    if (i == e.ItemIndex)
+                //    {
+                //        fmem = member;
+                //        break;
+                //    }
+
+                //    i += 1;
+                //}
+
+                fmem = SortedMembers[e.ItemIndex];
+            }
+            catch
+            {
+                e.Item = new ListViewItem();
+                return;
+            }
+
+            ListViewItem lvi = new ListViewItem();
+            lvi.Text = fmem.Name;
+
+            ListViewItem.ListViewSubItem lvsi = new ListViewItem.ListViewSubItem();
+            lvsi.Text = fmem.Contribution.ToString(CultureInfo.CurrentCulture);
+            lvi.SubItems.Add(lvsi);
+
+            lvsi = new ListViewItem.ListViewSubItem();
+            lvsi.Text = fmem.LastOnline;   // member.OnlineStatus;
+            lvi.SubItems.Add(lvsi);
+
+            lvi.Tag = Members[fmem.ID];
+
+            e.Item = lvi;
+        }
+
+        private void lstMembers_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem grpitem = lstMembers.GetItemAt(e.X, e.Y);
+
+            if (grpitem != null)
+            {
+                foreach (GroupMemberData entry in MemberData.Values)
+                {
+                    if (grpitem.Text == entry.Name)
+                    {
+                        (new frmProfile(instance, entry.Name, entry.ID)).Show();
+                    }
+                }
+            }
+        }
+
+        private void lstMembers2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem grpitem = lstMembers2.GetItemAt(e.X, e.Y);
+
+            if (grpitem != null)
+            {
+                foreach (GroupMemberData entry in MemberData.Values)
+                {
+                    if (grpitem.Text == entry.Name)
+                    {
+                        (new frmProfile(instance, entry.Name, entry.ID)).Show();
+                    }
+                }
+            }
+        }
+    }
+
+    public class MemberSorter : IComparer<GroupMemberData>
+    {
+        public enum SortByColumn
+        {
+            Name,
+            Title,
+            LastOnline,
+            Contribution
+        }
+
+        public enum SortOrder
+        {
+            Ascending,
+            Descending
+        }
+
+        public SortOrder CurrentOrder = SortOrder.Ascending;
+        public SortByColumn SortBy = SortByColumn.Name;
+
+        public int Compare(GroupMemberData member1, GroupMemberData member2)
+        {
+            try
+            {
+                switch (SortBy)
+                {
+                    case SortByColumn.Name:
+                        if (CurrentOrder == SortOrder.Ascending)
+                        {
+                            return string.Compare(member1.Name, member2.Name);
+                        }
+                        else
+                        {
+                            return string.Compare(member2.Name, member1.Name);
+                        }
+
+                    case SortByColumn.LastOnline:
+                        string a = member1.LastOnline;
+                        string b = member2.LastOnline;
+                        string[] d1;
+                        string[] d2;
+                        int compareResult;
+
+                        if (a.Contains("/"))
+                        {
+                            d1 = a.Split('/');
+                            a = d1[2] + d1[1] + d1[0];
+                        }
+
+                        if (b.Contains("/"))
+                        {
+                            d2 = b.Split('/');
+                            b = d2[2] + d2[1] + d2[0];
+                        }
+
+                        compareResult = SafeNativeDateMethods.StrCmpLogicalW(a, b);
+
+                        if (CurrentOrder == SortOrder.Ascending)
+                        {
+                            return compareResult;
+                        }
+                        else
+                        {
+                            return (-compareResult);
+                        }
+
+                    case SortByColumn.Contribution:
+                        if (member1.Contribution < member2.Contribution)
+                        {
+                            return CurrentOrder == SortOrder.Ascending ? -1 : 1;
+                        }
+                        else if (member1.Contribution > member2.Contribution)
+                        {
+                            return CurrentOrder == SortOrder.Ascending ? 1 : -1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+
+                    case SortByColumn.Title:
+                        if (CurrentOrder == SortOrder.Ascending)
+                        {
+                            return string.Compare(member1.Title, member2.Title);
+                        }
+                        else
+                        {
+                            return string.Compare(member2.Title, member1.Title);
+                        }
+                }
+
+                return 0;
+            }
+            catch { return 0; }
+        }        
     }
 
     public class GroupMemberData
