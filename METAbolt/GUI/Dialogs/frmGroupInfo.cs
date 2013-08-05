@@ -584,16 +584,6 @@ namespace METAbolt
                     lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
                 }
 
-                //if (Profile.GroupMembershipCount < 5001)
-                //{
-                //    groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
-                //    label10.Text = "Loading...";
-                //}
-                //else
-                //{
-                //    label10.Text = "Too many members to list";
-                //}
-
                 UpdateProfile();
 
                 groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
@@ -673,16 +663,9 @@ namespace METAbolt
 
                 numFee.Value = Profile.MembershipFee;
             }
-
             catch { ; }
 
-            //chkGroupNotices.Checked = Profile.AcceptNotices;
             textBox2.Text = "Group UUID: " + Profile.ID.ToString();
-
-            //if (!chkOpenEnrollment.Checked && !chkFee.Checked)
-            //{
-            //    button6.Enabled = false;
-            //}
 
             floading = false;
         }
@@ -705,62 +688,41 @@ namespace METAbolt
 
                 foreach (KeyValuePair<UUID, string> av in e.Names)
                 {
-                    try
+                    if (Members.ContainsKey(av.Key))
                     {
-                        if (!GrupMemberNames.ContainsKey(av.Key))
+                        try
                         {
-                            GrupMemberNames.Add(av.Key, av.Value);
-                        }
+                            if (!GrupMemberNames.ContainsKey(av.Key))
+                            {
+                                GrupMemberNames.Add(av.Key, av.Value);
+                            }
 
-                        if (!memkeys.Contains(av.Key))
+                            if (!memkeys.Contains(av.Key))
+                            {
+                                memkeys.Add(av.Key);
+                            }
+
+                            SortedMembers.Remove(MemberData[av.Key]);
+                            MemberData[av.Key].Name = av.Value;
+                            SortedMembers.Add(MemberData[av.Key]);
+
+
+                            if (av.Key == founderid)
+                            {
+                                lblFoundedBy.Text = "Founded by " + av.Value;
+                            }                            
+                        }
+                        catch
                         {
-                            memkeys.Add(av.Key);
+                            ;
                         }
-
-                        if (av.Key == founderid)
-                        {
-                            lblFoundedBy.Text = "Founded by " + av.Value;
-                        }
-
-                        MemberData[av.Key].Name = av.Value;
-
-                        //ListViewItem foundItem = lstMembers.FindItemWithText(av.Key.ToString(), false, 0, true);
-
-                        //if (foundItem != null)
-                        //{
-                        //    foundItem.Text = av.Value;
-                        //}
-
-                        //foundItem = lstMembers2.FindItemWithText(av.Key.ToString(), false, 0, true);
-
-                        //if (foundItem != null)
-                        //{
-                        //    foundItem.Text = av.Value;
-                        //}
-
-                        //if (!MemberData.ContainsKey(av.Key)) return;
-
-                        //GroupMemberData memberData = new GroupMemberData();
-
-                        //memberData = MemberData[av.Key];
-                        //memberData.Name = av.Value;
-
-                        //lock (MemberData)
-                        //{
-                        //    MemberData.Remove(av.Key);
-                        //    MemberData.Add(av.Key, memberData);
-                        //}
-                    }
-                    catch
-                    {
-                        ; 
                     }
                 }
 
                 WorkPool.QueueUserWorkItem(sync =>
                 {
                     UpdateMembers(memkeys);
-                });                
+                });   
             }));
         }
 
@@ -780,10 +742,11 @@ namespace METAbolt
                 return;
             }
 
-            lstMembers.VirtualListSize = 0;
-            lstMembers2.VirtualListSize = 0;
-
-            //Members = e.Members;
+            this.BeginInvoke(new MethodInvoker(delegate()
+            {
+                lstMembers.VirtualListSize = 0;
+                lstMembers2.VirtualListSize = 0;
+            }));
 
             List<UUID> requestids = new List<UUID>();
 
@@ -792,7 +755,11 @@ namespace METAbolt
                 if (!Members.ContainsKey(member.Key))
                 {
                     Members.Add(member.Key, member.Value);
-                    requestids.Add(member.Key);
+
+                    if (!GrupMemberNames.ContainsKey(member.Key))
+                    {
+                        requestids.Add(member.Key);
+                    }
                 }
             }
 
@@ -814,45 +781,67 @@ namespace METAbolt
                 memberData.Title = member.Title;
                 memberData.Contribution = member.Contribution;
 
-                if (MemberData.ContainsKey(member.ID))
+                if (GrupMemberNames.ContainsKey(member.ID))
                 {
-                    MemberData.Remove(member.ID);
-                    SortedMembers.Remove(memberData);
+                    memberData.Name = GrupMemberNames[member.ID];
+                }
+                else
+                {
+                    memberData.Name = "???";
                 }
 
-                MemberData.Add(member.ID, memberData);
-                SortedMembers.Add(memberData);
+                if (!MemberData.ContainsKey(member.ID))
+                {
+                    MemberData.Add(member.ID, memberData);
+                    SortedMembers.Add(memberData);
+                }                
             }
+
+            this.BeginInvoke(new MethodInvoker(delegate()
+                {
+                    lstMembers.VirtualListSize = SortedMembers.Count;
+                    lstMembers2.VirtualListSize = SortedMembers.Count;
+                }));
 
             if (requestids.Count > 0)
             {
                 if (requestids.Count > 80)
                 {
-                    List<List<UUID>> chunks = splitList(requestids);
-
-                    foreach (List<UUID> chunklist in chunks)
-                    {
-                        Client.Avatars.RequestAvatarNames(chunklist);
-                    }
+                    SendNameRequsts(requestids);               
                 }
                 else
                 {
                     Client.Avatars.RequestAvatarNames(requestids);
                 }
             }
+            else
+            {
+                this.BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        label10.Visible = false;
+                    }));
+            }
+        }
 
-            //this.BeginInvoke(new MethodInvoker(delegate()
-            //{
-            //    UpdateMembers();
-            //})); 
+        private void SendNameRequsts(List<UUID> namelist)
+        {
+            this.BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        List<List<UUID>> chunks = splitList(namelist);
 
-            //WorkPool.QueueUserWorkItem(sync =>
-            //{
-            //    UpdateMembers();
-            //});
+                        pBar1.Visible = true;
+                        pBar1.Maximum = chunks.Count;
 
-            lstMembers.VirtualListSize = SortedMembers.Count;
-            lstMembers2.VirtualListSize = SortedMembers.Count;
+                        foreach (List<UUID> chunklist in chunks)
+                        {
+                            pBar1.Value += 1;
+
+                            Client.Avatars.RequestAvatarNames(chunklist);
+                            Thread.Sleep(100);
+                        }
+
+                        pBar1.Visible = false;
+                    }));
         }
 
         public static DateTime ConvertDateTime(string Date)
@@ -1012,7 +1001,8 @@ namespace METAbolt
 
                     SortedMembers.Sort(sortedlist);
 
-                    lstMembers.Refresh();
+                    lstMembers.Invalidate();
+                    lstMembers2.Invalidate();
                 }
                 catch (Exception ex)
                 {
@@ -1707,7 +1697,8 @@ namespace METAbolt
             }
 
             SortedMembers.Sort(sortedlist);
-            lstMembers.Refresh();
+
+            lstMembers.Invalidate();
         }
 
         private void lstMembers2_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -1735,7 +1726,8 @@ namespace METAbolt
             }
 
             SortedMembers.Sort(sortedlist);
-            lstMembers2.Refresh();
+
+            lstMembers2.Invalidate();
         }
 
         private void lstNotices_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -2197,6 +2189,30 @@ namespace METAbolt
                         (new frmProfile(instance, entry.Name, entry.ID)).Show();
                     }
                 }
+            }
+        }
+
+        private void lstMembers_SearchForVirtualItem(object sender, SearchForVirtualItemEventArgs e)
+        {
+            double x = 0;
+
+            if (Double.TryParse(e.Text, out x))
+            {
+                x = Math.Sqrt(x);
+                x = Math.Round(x);
+                e.Index = (int)x;
+            }
+        }
+
+        private void lstMembers2_SearchForVirtualItem(object sender, SearchForVirtualItemEventArgs e)
+        {
+            double x = 0;
+
+            if (Double.TryParse(e.Text, out x))
+            {
+                x = Math.Sqrt(x);
+                x = Math.Round(x);
+                e.Index = (int)x;
             }
         }
     }

@@ -32,6 +32,7 @@ namespace METAbolt
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGroupInfo));
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.pBar1 = new System.Windows.Forms.ProgressBar();
             this.label16 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -150,6 +151,7 @@ namespace METAbolt
             // 
             this.tabGeneral.AccessibleName = "General tab";
             this.tabGeneral.BackColor = System.Drawing.Color.White;
+            this.tabGeneral.Controls.Add(this.pBar1);
             this.tabGeneral.Controls.Add(this.label16);
             this.tabGeneral.Controls.Add(this.button6);
             this.tabGeneral.Controls.Add(this.label10);
@@ -168,6 +170,15 @@ namespace METAbolt
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.Click += new System.EventHandler(this.tabGeneral_Click);
+            // 
+            // pBar1
+            // 
+            this.pBar1.Location = new System.Drawing.Point(7, 363);
+            this.pBar1.Name = "pBar1";
+            this.pBar1.Size = new System.Drawing.Size(244, 10);
+            this.pBar1.Step = 1;
+            this.pBar1.TabIndex = 19;
+            this.pBar1.Visible = false;
             // 
             // label16
             // 
@@ -379,6 +390,7 @@ namespace METAbolt
             this.lstMembers.VirtualMode = true;
             this.lstMembers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstMembers_ColumnClick);
             this.lstMembers.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lstMembers_RetrieveVirtualItem);
+            this.lstMembers.SearchForVirtualItem += new System.Windows.Forms.SearchForVirtualItemEventHandler(this.lstMembers_SearchForVirtualItem);
             this.lstMembers.DoubleClick += new System.EventHandler(this.lstMembers_DoubleClick);
             this.lstMembers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstMembers_MouseDoubleClick);
             this.lstMembers.MouseEnter += new System.EventHandler(this.lstMembers_MouseEnter);
@@ -566,6 +578,7 @@ namespace METAbolt
             this.lstMembers2.VirtualMode = true;
             this.lstMembers2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstMembers2_ColumnClick);
             this.lstMembers2.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lstMembers2_RetrieveVirtualItem);
+            this.lstMembers2.SearchForVirtualItem += new System.Windows.Forms.SearchForVirtualItemEventHandler(this.lstMembers2_SearchForVirtualItem);
             this.lstMembers2.SelectedIndexChanged += new System.EventHandler(this.lstMembers2_SelectedIndexChanged);
             this.lstMembers2.DoubleClick += new System.EventHandler(this.lstMembers2_DoubleClick);
             this.lstMembers2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstMembers2_MouseDoubleClick);
@@ -1332,6 +1345,7 @@ namespace METAbolt
         private System.Windows.Forms.PictureBox pictureBox1;
         private Khendys.Controls.ExRichTextBox textBox5;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ProgressBar pBar1;
 
     }
 }
