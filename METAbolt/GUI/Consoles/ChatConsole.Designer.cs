@@ -117,6 +117,8 @@ namespace METAbolt
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lvwRadar = new METAbolt.FlickerFreeListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
@@ -152,8 +154,6 @@ namespace METAbolt
             this.tsFavs = new System.Windows.Forms.ToolStrip();
             this.tsdefault = new System.Windows.Forms.ToolStripLabel();
             this.TPtimer = new System.Windows.Forms.Timer(this.components);
-            this.lvwRadar = new METAbolt.FlickerFreeListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -738,6 +738,7 @@ namespace METAbolt
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             this.button8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button8_MouseDown);
+            this.button8.MouseHover += new System.EventHandler(this.button8_MouseHover);
             // 
             // button6
             // 
@@ -756,6 +757,7 @@ namespace METAbolt
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             this.button6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button6_MouseDown);
+            this.button6.MouseHover += new System.EventHandler(this.button6_MouseHover);
             // 
             // picCompass
             // 
@@ -883,6 +885,7 @@ namespace METAbolt
             this.button7.TabIndex = 17;
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button7.MouseHover += new System.EventHandler(this.button7_MouseHover);
             // 
             // button5
             // 
@@ -903,6 +906,7 @@ namespace METAbolt
             this.button5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button5_KeyDown);
             this.button5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.button5_KeyUp);
             this.button5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button5_MouseDown);
+            this.button5.MouseHover += new System.EventHandler(this.button5_MouseHover);
             this.button5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button5_MouseUp);
             // 
             // button2
@@ -921,6 +925,7 @@ namespace METAbolt
             this.button2.TabIndex = 14;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.MouseHover += new System.EventHandler(this.button2_MouseHover);
             // 
             // button4
             // 
@@ -941,6 +946,7 @@ namespace METAbolt
             this.button4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button4_KeyDown);
             this.button4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.button4_KeyUp);
             this.button4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button4_MouseDown);
+            this.button4.MouseHover += new System.EventHandler(this.button4_MouseHover);
             this.button4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button4_MouseUp);
             // 
             // button3
@@ -959,6 +965,7 @@ namespace METAbolt
             this.button3.TabIndex = 12;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.MouseHover += new System.EventHandler(this.button3_MouseHover);
             // 
             // toolStrip1
             // 
@@ -1216,6 +1223,43 @@ namespace METAbolt
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(177, 14);
             this.textBox1.TabIndex = 20;
+            // 
+            // lvwRadar
+            // 
+            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
+    "ion preferences settings";
+            this.lvwRadar.AccessibleName = "Radar list";
+            this.lvwRadar.AllowColumnReorder = true;
+            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwRadar.BackColor = System.Drawing.Color.White;
+            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwRadar.FullRowSelect = true;
+            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwRadar.HideSelection = false;
+            this.lvwRadar.LabelWrap = false;
+            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
+            this.lvwRadar.MultiSelect = false;
+            this.lvwRadar.Name = "lvwRadar";
+            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
+            this.lvwRadar.TabIndex = 9;
+            this.lvwRadar.UseCompatibleStateImageBehavior = false;
+            this.lvwRadar.View = System.Windows.Forms.View.Details;
+            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
+            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
+            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
+            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
+            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
+            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "[Dist.] Av. Name";
+            this.columnHeader1.Width = 175;
             // 
             // tabPage2
             // 
@@ -1679,43 +1723,6 @@ namespace METAbolt
             // 
             this.TPtimer.Interval = 3000;
             this.TPtimer.Tick += new System.EventHandler(this.TPtimer_Tick);
-            // 
-            // lvwRadar
-            // 
-            this.lvwRadar.AccessibleDescription = "Displays the list of avatars within the range you have specified in your applicat" +
-    "ion preferences settings";
-            this.lvwRadar.AccessibleName = "Radar list";
-            this.lvwRadar.AllowColumnReorder = true;
-            this.lvwRadar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvwRadar.BackColor = System.Drawing.Color.White;
-            this.lvwRadar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvwRadar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.lvwRadar.Font = new System.Drawing.Font("Arial", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvwRadar.FullRowSelect = true;
-            this.lvwRadar.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwRadar.HideSelection = false;
-            this.lvwRadar.LabelWrap = false;
-            this.lvwRadar.Location = new System.Drawing.Point(3, 3);
-            this.lvwRadar.MultiSelect = false;
-            this.lvwRadar.Name = "lvwRadar";
-            this.lvwRadar.Size = new System.Drawing.Size(177, 277);
-            this.lvwRadar.TabIndex = 9;
-            this.lvwRadar.UseCompatibleStateImageBehavior = false;
-            this.lvwRadar.View = System.Windows.Forms.View.Details;
-            this.lvwRadar.SelectedIndexChanged += new System.EventHandler(this.lvwRadar_SelectedIndexChanged);
-            this.lvwRadar.SizeChanged += new System.EventHandler(this.lvwRadar_SizeChanged);
-            this.lvwRadar.DoubleClick += new System.EventHandler(this.lvwRadar_DoubleClick);
-            this.lvwRadar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvwRadar_KeyUp);
-            this.lvwRadar.Leave += new System.EventHandler(this.lvwRadar_Leave);
-            this.lvwRadar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvwRadar_MouseMove);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "[Dist.] Av. Name";
-            this.columnHeader1.Width = 175;
             // 
             // ChatConsole
             // 

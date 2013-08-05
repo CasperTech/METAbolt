@@ -4947,6 +4947,48 @@ namespace METAbolt
             //rtbChat.HideSelection = false;
         }
 
+        private void button3_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(button3, "Turn right");
+        }
+
+        private void button2_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(button2, "Trun left");
+        }
+
+        private void button7_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(button7, "Hover");
+        }
+
+        private void button5_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(button5, "Walk forward");
+        }
+
+        private void button8_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(button8, "Walk left");
+        }
+
+        private void button4_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(button4, "Walk back");
+        }
+
+        private void button6_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(button6, "Walk right");
+        }
+
         //private void lvwRadar_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         //{
         //    if (e.ColumnIndex == 1)
