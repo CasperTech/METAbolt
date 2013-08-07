@@ -686,10 +686,14 @@ namespace METAbolt
             {
                 List<UUID> memkeys = new List<UUID>();
 
+                bool isgroupmembers = false;
+
                 foreach (KeyValuePair<UUID, string> av in e.Names)
                 {
                     if (Members.ContainsKey(av.Key))
                     {
+                        isgroupmembers = true;
+
                         try
                         {
                             if (!GrupMemberNames.ContainsKey(av.Key))
@@ -721,7 +725,7 @@ namespace METAbolt
 
                 WorkPool.QueueUserWorkItem(sync =>
                 {
-                    UpdateMembers(memkeys);
+                    if (isgroupmembers) UpdateMembers(memkeys);
                 });   
             }));
         }
