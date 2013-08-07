@@ -925,9 +925,11 @@ namespace METAbolt
                             {
                                 //isgmember = true;
 
-                                button6.Enabled = false; ;
+                                button6.Enabled = false;
 
-                                if (member.IsOwner)
+                                bool isownerlike = HasGroupPower(GroupPowers.LandSetSale);
+
+                                if (member.IsOwner || isownerlike)
                                 {
                                     cmdEject.Enabled = ejectpower = true;
                                     //button6.Enabled = true;

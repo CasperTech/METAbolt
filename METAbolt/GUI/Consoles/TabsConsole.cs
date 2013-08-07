@@ -861,6 +861,11 @@ namespace METAbolt
             if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.CommandInID)) return;
             if (e.IM.Message.Contains(this.instance.Config.CurrentConfig.IgnoreUID)) return;
 
+            if (instance.IsGiveItem(e.IM.Message.ToLower(CultureInfo.CurrentCulture), e.IM.FromAgentID))
+            {
+                return;
+            }
+
             if (e.IM.Dialog == InstantMessageDialog.SessionSend)
             {
                 if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
@@ -876,24 +881,25 @@ namespace METAbolt
                     if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
                     {
                         METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower(CultureInfo.CurrentCulture)];
-                        //if (!tab.Selected) tab.Highlight();
+                        if (!tab.Selected)
+                        {
+                            tab.Highlight();
+                            tabs["imbox"].PartialHighlight();
+                        }
+
                         return;
                     }
                     else
                     {
                         IMTabWindowGroup imTab = AddIMTabGroup(e);
-                        //tabs[imTab.TargetName.ToLower()].Highlight();
+                        tabs[imTab.TargetName.ToLower()].Highlight();
+                        tabs["imbox"].IMboxHighlight();
                         if (tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Selected) tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
 
                         return;
                     }
                 }
 
-                return;
-            }
-
-            if (instance.IsGiveItem(e.IM.Message.ToLower(CultureInfo.CurrentCulture), e.IM.FromAgentID))
-            {
                 return;
             }
 
