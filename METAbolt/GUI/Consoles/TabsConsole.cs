@@ -546,37 +546,37 @@ namespace METAbolt
                     //if (e.IM.FromAgentID != client.Self.AgentID)
                     //{
                     if (e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture) == "second life")
+                    {
+                        DisplayOnChat(e);
+                        return;
+                    }
+                    else if (e.IM.FromAgentID == UUID.Zero)
+                    {
+                        // Marketplace Received item notification
+                        //MessageBox.Show(e.IM.Message, "METAbolt");
+                        (new frmMBmsg(instance, e.IM.Message)).ShowDialog(this);
+                    }
+                    else if (e.IM.IMSessionID == UUID.Zero)
+                    {
+                        if (e.IM.RegionID != UUID.Zero)
                         {
-                            DisplayOnChat(e);
-                            return;
-                        }
-                        else if (e.IM.FromAgentID == UUID.Zero)
-                        {
-                            // Marketplace Received item notification
-                            //MessageBox.Show(e.IM.Message, "METAbolt");
-                            (new frmMBmsg(instance, e.IM.Message)).ShowDialog(this);
-                        }
-                        else if (e.IM.IMSessionID == UUID.Zero)
-                        {
-                            if (e.IM.RegionID != UUID.Zero)
-                            {
-                                // Region message
-                                String msg = "Region message from " + e.IM.FromAgentName + Environment.NewLine + Environment.NewLine;
-                                msg += @e.IM.Message;
+                            // Region message
+                            String msg = "Region message from " + e.IM.FromAgentName + Environment.NewLine + Environment.NewLine;
+                            msg += @e.IM.Message;
 
-                                //MessageBox.Show(msg, "METAbolt");
+                            //MessageBox.Show(msg, "METAbolt");
 
-                                (new frmMBmsg(instance, msg)).ShowDialog(this);
-                            }
-                            else
-                            {
-                                HandleIM(e);
-                            }
+                            (new frmMBmsg(instance, msg)).ShowDialog(this);
                         }
                         else
                         {
                             HandleIM(e);
                         }
+                    }
+                    else
+                    {
+                        HandleIM(e);
+                    }
                     //}
                     
                     break;
@@ -993,18 +993,10 @@ namespace METAbolt
             }
             else
             {
-                //string agentname = e.IM.FromAgentName;
-
-                //if (!e.IM.FromAgentName.Contains("."))
-                //{
-                //    agentname.Replace(" ", ".");  
-                //}
-
                 if (TabExists(e.IM.FromAgentName))
                 {
                     METAboltTab tab = tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)];
                     if (!tab.Selected) tab.PartialHighlight();
-                    //Logger.Log("NonStored|ExistingAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                     return;
                 }
                 else
@@ -1023,8 +1015,6 @@ namespace METAbolt
                         simpleSound.Play();
                         simpleSound.Dispose();
                     }
-
-                    //Logger.Log("NonStored|NewAgentTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
                 }
             }
         }

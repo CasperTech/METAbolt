@@ -652,12 +652,15 @@ namespace METAbolt
             // lvRoleMembers
             // 
             this.lvRoleMembers.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvRoleMembers.HideSelection = false;
             this.lvRoleMembers.Location = new System.Drawing.Point(12, 239);
+            this.lvRoleMembers.MultiSelect = false;
             this.lvRoleMembers.Name = "lvRoleMembers";
             this.lvRoleMembers.Size = new System.Drawing.Size(145, 107);
             this.lvRoleMembers.TabIndex = 8;
             this.lvRoleMembers.UseCompatibleStateImageBehavior = false;
             this.lvRoleMembers.View = System.Windows.Forms.View.List;
+            this.lvRoleMembers.SelectedIndexChanged += new System.EventHandler(this.lvRoleMembers_SelectedIndexChanged);
             // 
             // panel3
             // 
@@ -786,7 +789,6 @@ namespace METAbolt
             // lvwAbilities
             // 
             this.lvwAbilities.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvwAbilities.CheckBoxes = true;
             this.lvwAbilities.Location = new System.Drawing.Point(163, 239);
             this.lvwAbilities.Name = "lvwAbilities";
             this.lvwAbilities.Size = new System.Drawing.Size(220, 107);
@@ -839,6 +841,7 @@ namespace METAbolt
             this.columnHeader11});
             this.lstRoles.FullRowSelect = true;
             this.lstRoles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lstRoles.HideSelection = false;
             this.lstRoles.Location = new System.Drawing.Point(6, 30);
             this.lstRoles.MultiSelect = false;
             this.lstRoles.Name = "lstRoles";

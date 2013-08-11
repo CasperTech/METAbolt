@@ -82,6 +82,7 @@ namespace METAbolt
         private string ejecttedgroupmember = string.Empty;
         private UUID ejectedmemberid = UUID.Zero;
         private MemberSorter sortedlist = new MemberSorter();
+        private bool userisowner = false;
 
         internal class ThreadExceptionHandler
         {
@@ -322,6 +323,8 @@ namespace METAbolt
             if (e.GroupID != grpid) return;
 
             grouprolesavs = e.RolesMembers;
+
+            userisowner = IsGroupOwner();
         }
 
         private void Groups_OnGroupRoleDataReply(object sender, GroupRolesDataReplyEventArgs e)
@@ -927,9 +930,9 @@ namespace METAbolt
 
                                 button6.Enabled = false;
 
-                                bool isownerlike = HasGroupPower(GroupPowers.LandSetSale);
+                                //bool isownerlike = HasGroupPower(GroupPowers.LandSetSale);
 
-                                if (member.IsOwner || isownerlike)
+                                if (member.IsOwner || userisowner)
                                 {
                                     cmdEject.Enabled = ejectpower = true;
                                     //button6.Enabled = true;
@@ -1093,6 +1096,27 @@ namespace METAbolt
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsGroupOwner()
+        {
+            foreach (GroupRole role in grouproles.Values)
+            {
+                if (role.Name.ToLower(CultureInfo.CurrentCulture) == "owners")
+                {
+                    UUID roleid = role.ID;
+
+                    foreach (var el in grouprolesavs)
+                    {
+                        if (el.Value == Client.Self.AgentID && el.Key == roleid)
+                        {
+                            return true;
                         }
                     }
                 }
@@ -1339,6 +1363,7 @@ namespace METAbolt
                 //button5.Enabled = true;
 
                 lvRoleMembers.Items.Clear();
+                lvwAbilities.Items.Clear();
 
                 if ((UUID)li == UUID.Zero)
                 {
@@ -1346,7 +1371,11 @@ namespace METAbolt
 
                     foreach (GroupMemberData data in MemberData.Values)
                     {
-                        lvRoleMembers.Items.Add(data.Name);
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Text = data.Name;
+                        lvi.Tag = data.ID;
+                        
+                        lvRoleMembers.Items.Add(lvi);
                     }
                 }
                 else
@@ -1357,7 +1386,11 @@ namespace METAbolt
                         {
                             if (instance.avnames.ContainsKey(name.Value))
                             {
-                                lvRoleMembers.Items.Add(instance.avnames[name.Value]);
+                                ListViewItem lvi = new ListViewItem();
+                                lvi.Text = instance.avnames[name.Value];
+                                lvi.Tag = name.Value;
+
+                                lvRoleMembers.Items.Add(lvi);
                             }
                         }
                     }
@@ -2219,6 +2252,41 @@ namespace METAbolt
                 x = Math.Sqrt(x);
                 x = Math.Round(x);
                 e.Index = (int)x;
+            }
+        }
+
+        private void lvRoleMembers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvRoleMembers.SelectedItems.Count > 0)
+            {
+                lvwAbilities.Items.Clear();
+
+                string selectedrole = lstRoles.SelectedItems[0].Text;
+                UUID selectedmember = (UUID)lvRoleMembers.SelectedItems[0].Tag;
+
+                foreach (GroupRole role in grouproles.Values)
+                {
+                    if (role.Name.ToLower(CultureInfo.CurrentCulture) == selectedrole.ToLower(CultureInfo.CurrentCulture))
+                    {
+                        UUID roleid = role.ID;
+
+                        foreach (var el in grouprolesavs)
+                        {
+                            if (el.Value == selectedmember && el.Key == roleid)
+                            {
+                                 GroupPowers power = role.Powers;
+
+                                foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                                {
+                                    if (p != GroupPowers.None && (power & p) == p)
+                                    {
+                                        lvwAbilities.Items.Add(p.ToString());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
