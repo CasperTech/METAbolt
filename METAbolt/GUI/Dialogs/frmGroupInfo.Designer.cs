@@ -502,6 +502,7 @@ namespace METAbolt
             this.lvAssignedRoles.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvAssignedRoles.CheckBoxes = true;
             this.lvAssignedRoles.FullRowSelect = true;
+            this.lvAssignedRoles.HideSelection = false;
             this.lvAssignedRoles.Location = new System.Drawing.Point(6, 241);
             this.lvAssignedRoles.Name = "lvAssignedRoles";
             this.lvAssignedRoles.Size = new System.Drawing.Size(147, 199);
@@ -568,6 +569,7 @@ namespace METAbolt
             this.columnHeader2,
             this.LastLogin});
             this.lstMembers2.FullRowSelect = true;
+            this.lstMembers2.HideSelection = false;
             this.lstMembers2.Location = new System.Drawing.Point(6, 6);
             this.lstMembers2.MultiSelect = false;
             this.lstMembers2.Name = "lstMembers2";

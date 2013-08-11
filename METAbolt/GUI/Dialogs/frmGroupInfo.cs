@@ -1278,9 +1278,9 @@ namespace METAbolt
                 int sel = lstMembers2.SelectedIndices[0];
                 int ctr = 0;
 
-                UUID avid = UUID.Zero;  
+                UUID avid = UUID.Zero;
 
-                foreach (GroupMemberData entry in MemberData.Values)
+                foreach (GroupMemberData entry in SortedMembers)
                 {
                     if (ctr == sel)
                     {
@@ -1328,15 +1328,15 @@ namespace METAbolt
                         lvAssignedRoles.Items.Add(nme);
                     }
 
-                    lvwAble.Items.Clear();
+                    //lvwAble.Items.Clear();
 
-                    foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
-                    {
-                        if (p != GroupPowers.None && (power & p) == p)
-                        {
-                            lvwAble.Items.Add(p.ToString());
-                        }
-                    }
+                    //foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                    //{
+                    //    if (p != GroupPowers.None && (power & p) == p)
+                    //    {
+                    //        lvwAble.Items.Add(p.ToString());
+                    //    }
+                    //}
                 }
 
                 checkignore = false;
@@ -1878,14 +1878,30 @@ namespace METAbolt
             {
                 if (lvAssignedRoles.SelectedItems[0].Tag == null)
                 {
-                    // everyone
-                    GroupPowers power = GroupPowers.None;
+                    //// everyone
+                    //GroupPowers power = GroupPowers.None;
 
-                    foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                    //foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                    //{
+                    //    if (p != GroupPowers.None && (power & p) == p)
+                    //    {
+                    //        lvwAble.Items.Add(p.ToString());
+                    //    }
+                    //}
+
+                    foreach (GroupRole role in grouproles.Values)
                     {
-                        if (p != GroupPowers.None && (power & p) == p)
+                        if (role.Name.ToLower(CultureInfo.CurrentCulture) == "everyone")
                         {
-                            lvwAble.Items.Add(p.ToString());
+                            GroupPowers power = role.Powers;
+
+                            foreach (GroupPowers p in Enum.GetValues(typeof(GroupPowers)))
+                            {
+                                if (p != GroupPowers.None && (power & p) == p)
+                                {
+                                    lvwAble.Items.Add(p.ToString());
+                                }
+                            }
                         }
                     }
                 }
