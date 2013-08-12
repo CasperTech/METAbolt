@@ -494,7 +494,9 @@ namespace METAbolt
 
             if (avatar == client.Self.AgentID || name == client.Self.Name) return false;
 
-            if (null != client.Self.MuteList.Find(mle => (mle.ID == avatar) || (mle.Type == MuteType.ByName && mle.Name == name)))
+            if (null != client.Self.MuteList.Find(mle => (mle.ID == avatar) || (mle.Type == MuteType.ByName && mle.Name == name)
+                                                    || (mle.Type == MuteType.Object && mle.Name == name)
+                                                    || (mle.Type == MuteType.Resident && mle.Name == name)))
             {
                 return true;
             }

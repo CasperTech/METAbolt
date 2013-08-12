@@ -83,6 +83,7 @@ namespace METAbolt
         private UUID ejectedmemberid = UUID.Zero;
         private MemberSorter sortedlist = new MemberSorter();
         private bool userisowner = false;
+        private UUID groupmembersrequest = UUID.Zero;
 
         internal class ThreadExceptionHandler
         {
@@ -322,6 +323,8 @@ namespace METAbolt
         {
             if (e.GroupID != grpid) return;
 
+            if (e.RequestID != groupmembersrequest) return;
+
             grouprolesavs = e.RolesMembers;
 
             userisowner = IsGroupOwner();
@@ -337,7 +340,7 @@ namespace METAbolt
             }
             catch { ; }
 
-            Client.Groups.RequestGroupRolesMembers(grpid);
+            groupmembersrequest = Client.Groups.RequestGroupRolesMembers(grpid);
 
             this.BeginInvoke(new MethodInvoker(delegate()
             {
@@ -1930,7 +1933,20 @@ namespace METAbolt
             if (checkignore) return;
 
             ListViewItem item = e.Item as ListViewItem;
-            //GroupRole role = (GroupRole)lvAssignedRoles.SelectedItems[0].Tag;
+            
+            if (!HasGroupPower(GroupPowers.AssignMember))
+            {
+                //if (item.Checked)
+                //{
+                //    item.Checked = true;
+                //}
+                //else
+                //{
+                //    item.Checked = false;
+                //}
+
+                return;
+            }
 
             GroupRole role;
 
