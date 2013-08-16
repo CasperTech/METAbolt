@@ -1193,7 +1193,7 @@ namespace METAbolt
 
                 UUID avid = UUID.Zero;
 
-                foreach (GroupMemberData entry in MemberData.Values)
+                foreach (GroupMemberData entry in SortedMembers)
                 {
                     if (ctr == sel)
                     {

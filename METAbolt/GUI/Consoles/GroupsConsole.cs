@@ -242,6 +242,22 @@ namespace METAbolt
                 return;
             }
 
+            foreach (KeyValuePair<UUID, Group> g in e.Groups)
+            {
+                if (!instance.State.Groups.ContainsKey(g.Key))
+                {
+                    instance.State.Groups.Add(g.Key, g.Value);
+                }
+            }
+
+            foreach (Group group in this.instance.State.Groups.Values)
+            {
+                if (!instance.State.GroupStore.ContainsKey(group.ID))
+                {
+                    this.instance.State.GroupStore.Add(group.ID, group.Name);
+                }
+            }
+
             this.BeginInvoke(new MethodInvoker(delegate()
             {
                 UpdateGroups();

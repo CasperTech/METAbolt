@@ -224,7 +224,16 @@ namespace METAbolt
         {
             try
             {
-                this.instance.State.Groups = e.Groups;
+                //this.instance.State.Groups = e.Groups;
+
+                foreach (KeyValuePair<UUID, Group> g in e.Groups)
+                {
+                    if (!instance.State.Groups.ContainsKey(g.Key))
+                    {
+                        instance.State.Groups.Add(g.Key, g.Value);
+                    }
+                }
+
                 BeginInvoke(new MethodInvoker(GetGroupsName));
             }
             catch (Exception ex)
@@ -388,11 +397,14 @@ namespace METAbolt
 
         private void GetGroupsName()
         {
-            this.instance.State.GroupStore.Clear();
+            //this.instance.State.GroupStore.Clear();
 
             foreach (Group group in this.instance.State.Groups.Values)
             {
-                this.instance.State.GroupStore.Add(group.ID, group.Name);
+                if (!instance.State.GroupStore.ContainsKey(group.ID))
+                {
+                    this.instance.State.GroupStore.Add(group.ID, group.Name);
+                }
             }
         }
 
