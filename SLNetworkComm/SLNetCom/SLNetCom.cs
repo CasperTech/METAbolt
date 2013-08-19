@@ -328,7 +328,7 @@ namespace SLNetworkComm
                 loginParams.Channel = "METAbolt";
                 loginParams.Author = loginOptions.Author;
                 
-                //loginParams.MAC = GetMACAddress();
+                loginParams.MAC = GetMACAddress();
                 //loginParams.MethodName = string.Empty;
                 loginParams.Platform = System.Environment.OSVersion.VersionString;   // "Windows";
                 //loginParams.ReadCritical = false;
@@ -355,7 +355,7 @@ namespace SLNetworkComm
             ManagementObjectSearcher query = null;
             ManagementObjectCollection queryCollection = null;
 
-            string macad = string.Empty;  
+            string macad = string.Empty;
 
             try
             {
@@ -367,16 +367,21 @@ namespace SLNetworkComm
                 {
                     if (mo["MacAddress"] != null)
                     {
-                        macad = mo["MacAddress"].ToString();
+                        bool ipenabled = Convert.ToBoolean(mo["IPEnabled"].ToString());
+
+                        if (ipenabled)
+                        {
+                            macad = mo["MacAddress"].ToString();
+                        }
                     }
                 }
             }
             catch
             {
-                macad = string.Empty;  
+                macad = string.Empty;
             }
 
-            return macad; 
+            return macad;
         } 
 
 
