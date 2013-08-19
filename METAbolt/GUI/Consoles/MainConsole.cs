@@ -626,11 +626,11 @@ namespace METAbolt
 
         private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            //if (clickedurl != string.Empty)
-            //{
-            //    e.Cancel = true;
-            //    System.Diagnostics.Process.Start(e.Url.ToString());
-            //}
+            if (clickedurl != string.Empty)
+            {
+                e.Cancel = true;
+                System.Diagnostics.Process.Start(e.Url.ToString());
+            }
         }
 
         private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -638,24 +638,30 @@ namespace METAbolt
             lblInitWebBrowser.Visible = false;
             //btnInfo.Enabled = true;
 
-            HtmlElementCollection links = webBrowser.Document.Links;
+            //HtmlElementCollection links = webBrowser.Document.Links;
 
-            foreach (HtmlElement var in links)
-            {
-                var.AttachEventHandler("onclick", LinkClicked);
-            }
+            //foreach (HtmlElement var in links)
+            //{
+            //    var.AttachEventHandler("onclick", LinkClicked);
+            //    var.Click += new HtmlElementEventHandler(this.LinkClick);
+            //}
 
             webBrowser.ScrollBarsEnabled = false;
 
             webBrowser.Document.Body.Style = "overflow:hidden";
         }
 
-        private void LinkClicked(object sender, EventArgs e)
-        {
+        //private void LinkClick(object sender, System.EventArgs e)
+        //{
+        //    MessageBox.Show("Link Was Clicked Navigation was Cancelled");
+        //}
 
-            HtmlElement link = webBrowser.Document.ActiveElement;
-            clickedurl = link.GetAttribute("href");
-        }
+        //private void LinkClicked(object sender, EventArgs e)
+        //{
+
+        //    HtmlElement link = webBrowser.Document.ActiveElement;
+        //    clickedurl = link.GetAttribute("href");
+        //}
 
         private void BeginLogin()
         {

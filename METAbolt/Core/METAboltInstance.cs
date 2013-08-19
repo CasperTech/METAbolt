@@ -117,6 +117,7 @@ namespace METAbolt
         public InventoryFolder CoF;
         public RingBufferProtection chatbuffer = new RingBufferProtection();
         private bool blockinchat = false;
+        public string METAbolt_Version = string.Empty;
 
         internal class ThreadExceptionHandler
         {
@@ -173,6 +174,8 @@ namespace METAbolt
             //InitAI();
 
             RandomPwd();
+
+            METAbolt_Version = Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
             //mutelist = LoadXMLFile("MuteList.xml");
             //mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
         }
@@ -239,6 +242,8 @@ namespace METAbolt
             //InitAI();
 
             RandomPwd();
+
+            METAbolt_Version = Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
             //mutelist = LoadXMLFile("MuteList.xml");
             //mutelist.PrimaryKey = new DataColumn[] { mutelist.Columns["uuid"] };
         }

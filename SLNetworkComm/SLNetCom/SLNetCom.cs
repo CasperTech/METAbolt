@@ -330,9 +330,9 @@ namespace SLNetworkComm
                 
                 //loginParams.MAC = GetMACAddress();
                 //loginParams.MethodName = string.Empty;
-                //loginParams.Platform = "Windows";
+                loginParams.Platform = System.Environment.OSVersion.VersionString;   // "Windows";
                 //loginParams.ReadCritical = false;
-                //loginParams.Version = ;  
+                loginParams.Version = instance.METAbolt_Version;  
 
                 // V 0.9.1.6 change
                 switch (loginOptions.Grid)
