@@ -84,7 +84,7 @@ namespace METAbolt
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMBmsg";
-            this.Opacity = 0.85D;
+            this.Opacity = 0.75D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

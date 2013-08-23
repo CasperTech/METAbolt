@@ -133,7 +133,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInvOffered";
-            this.Opacity = 0.85D;
+            this.Opacity = 0.75D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

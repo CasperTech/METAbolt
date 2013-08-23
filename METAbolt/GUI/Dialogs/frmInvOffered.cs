@@ -319,7 +319,7 @@ namespace METAbolt
 
         private void frmInvOffered_MouseLeave(object sender, EventArgs e)
         {
-            this.Opacity = 85;
+            this.Opacity = 75;
         }
     }
 }

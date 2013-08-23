@@ -188,7 +188,7 @@ namespace METAbolt
 
         private void frmDialog_MouseLeave(object sender, EventArgs e)
         {
-            this.Opacity = 85;
+            this.Opacity = 75;
         }
     }
 }

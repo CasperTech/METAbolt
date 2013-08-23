@@ -304,7 +304,7 @@ namespace METAbolt
 
         private void frmGroupNotice_MouseLeave(object sender, EventArgs e)
         {
-            this.Opacity = 85;
+            this.Opacity = 75;
         }
 
         private void rtbBody_LinkClicked(object sender, LinkClickedEventArgs e)

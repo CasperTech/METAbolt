@@ -189,7 +189,7 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // frmDialog
+            // frmDialogLoadURL
             // 
             this.AccessibleDescription = "Displays script generated dialogs to interact with objects";
             this.AccessibleName = "Dialog window";
@@ -209,8 +209,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmDialog";
-            this.Opacity = 0.85D;
+            this.Name = "frmDialogLoadURL";
+            this.Opacity = 0.75D;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dialog";
