@@ -1828,6 +1828,7 @@ namespace METAbolt
 
                 List<InventoryBase> contents = client.Inventory.FolderContents(cfolder, client.Self.AgentID, true, true, InventorySortOrder.ByName, 20 * 1000);
                 List<InventoryItem> items = new List<InventoryItem>();
+                //List<InventoryItem> oitems = new List<InventoryItem>();
 
                 if (contents == null)
                 {
@@ -1838,7 +1839,20 @@ namespace METAbolt
                 foreach (InventoryBase item in contents)
                 {
                     if (item is InventoryItem)
+                    {
+                        //InventoryItem oitem = (InventoryItem)item;
+
+                        //if (oitem.AssetType == AssetType.Object)
+                        //{
+                        //    oitems.Add(oitem);
+                        //}
+                        //else
+                        //{
+                        //    items.Add(oitem);
+                        //}
+
                         items.Add((InventoryItem)item);
+                    }
                 }
 
                 contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
@@ -1848,6 +1862,15 @@ namespace METAbolt
                 {
                     if (item is InventoryItem)
                     {
+                        //if (item.AssetType == AssetType.Object)
+                        //{
+                        //    client.Appearance.Detach(item);
+                        //}
+                        //else
+                        //{
+                        //    remclothing.Add(item.UUID);
+                        //}
+
                         remclothing.Add(item.UUID);
                     }
                 }
@@ -1867,6 +1890,11 @@ namespace METAbolt
                         }
                     });
                 }
+
+                //foreach (var item in oitems)
+                //{
+                //    client.Appearance.Attach(item, AttachmentPoint.Default, false);
+                //}
 
                 client.Appearance.ReplaceOutfit(items);
 
@@ -2067,28 +2095,51 @@ namespace METAbolt
 
             List<InventoryBase> contents = client.Inventory.Store.GetContents(io.UUID);
             List<InventoryItem> clothing = new List<InventoryItem>();
+            //List<InventoryItem> oitems = new List<InventoryItem>();
+
+            List<InventoryBase> cofcontents = client.Inventory.Store.GetContents(instance.CoF.UUID);
+            List<UUID> remclothing = new List<UUID>();
 
             foreach (InventoryItem item in contents)
             {
                 //if (item.InventoryType == InventoryType.Wearable || item.InventoryType == InventoryType.Attachment || item.InventoryType == InventoryType.Object)
                 if (item is InventoryItem)
                 {
-                    clothing.Add(item);
+                    //InventoryItem oitem = (InventoryItem)item;
+
+                    //if (oitem.AssetType == AssetType.Object)
+                    //{
+                    //    oitems.Add(oitem);
+                    //}
+                    //else
+                    //{
+                    //    clothing.Add(item);
+                    //}
+
+                    bool aisworn = false;
+
+                    foreach (InventoryItem cofitem in cofcontents)
+                    {
+                        if (item.AssetUUID == cofitem.AssetUUID)
+                        {
+                            aisworn = true;
+                        }
+                    }
+
+                    if (!aisworn)
+                    {
+                        clothing.Add(item);
+                    }
                 }
             }
 
-            contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
-            List<UUID> remclothing = new List<UUID>();
+            //foreach (var item in oitems)
+            //{
+            //    client.Appearance.Attach(item, AttachmentPoint.Default, false);
+            //}
 
-            foreach (InventoryItem item in contents)
-            {
-                if (item is InventoryItem)
-                {
-                    remclothing.Add(item.UUID);
-                }
-            }
-
-            client.Inventory.Remove(remclothing, null);
+            managerbusy = client.Appearance.ManagerBusy;
+            client.Appearance.ReplaceOutfit(clothing);
 
             foreach (var item in clothing)
             {
@@ -2100,9 +2151,6 @@ namespace METAbolt
                     }
                 });
             }
-
-            managerbusy = client.Appearance.ManagerBusy;
-            client.Appearance.ReplaceOutfit(clothing);
 
             WorkPool.QueueUserWorkItem(sync =>
             {
@@ -2412,7 +2460,7 @@ namespace METAbolt
                 {
                     if (item is InventoryWearable)
                     {
-                        ProcessWearItem(item);       
+                        ProcessWearItem(item);
                     }
                 }
             }
