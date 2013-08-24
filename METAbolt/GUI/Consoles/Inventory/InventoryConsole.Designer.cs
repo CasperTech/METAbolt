@@ -1097,7 +1097,6 @@ namespace METAbolt
             this.trackBar1.Maximum = 120;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(185, 45);
-            this.trackBar1.SmallChange = 10;
             this.trackBar1.TabIndex = 5;
             this.trackBar1.TickFrequency = 10;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);

@@ -31,5 +31,5 @@ using System.Resources;
 //      Revision
 //
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("0.9.68.0")]
+[assembly: AssemblyFileVersion("0.9.69.0")]
 [assembly: NeutralResourcesLanguageAttribute("en")]

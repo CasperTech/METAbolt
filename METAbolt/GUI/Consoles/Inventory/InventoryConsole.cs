@@ -351,43 +351,48 @@ namespace METAbolt
         {
             if (e.Simulator == client.Network.CurrentSim)
             {
-                List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
+                GetRoots();
+            }
+        }
 
-                foreach (InventoryBase o in invroot)
+        private void GetRoots()
+        {
+            List<InventoryBase> invroot = client.Inventory.Store.GetContents(client.Inventory.Store.RootFolder.UUID);
+
+            foreach (InventoryBase o in invroot)
+            {
+                if (o.Name.ToLower(CultureInfo.CurrentCulture) == "current outfit")
                 {
-                    if (o.Name.ToLower(CultureInfo.CurrentCulture) == "current outfit")
+                    if (!gotCoF)
                     {
-                        if (!gotCoF)
+                        if (o is InventoryFolder)
                         {
-                            if (o is InventoryFolder)
-                            {
-                                client.Inventory.RequestFolderContents(o.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
-                                instance.CoF = (InventoryFolder)o;
-                                gotCoF = true;
-                            }
+                            client.Inventory.RequestFolderContents(o.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+                            instance.CoF = (InventoryFolder)o;
+                            gotCoF = true;
                         }
                     }
+                }
 
-                    if (!instance.Config.CurrentConfig.DisableFavs)
+                if (!instance.Config.CurrentConfig.DisableFavs)
+                {
+                    if (o.Name.ToLower(CultureInfo.CurrentCulture) == "favorites" || o.Name.ToLower(CultureInfo.CurrentCulture) == "my favorites")
                     {
-                        if (o.Name.ToLower(CultureInfo.CurrentCulture) == "favorites" || o.Name.ToLower(CultureInfo.CurrentCulture) == "my favorites")
+                        if (o is InventoryFolder)
                         {
-                            if (o is InventoryFolder)
-                            {
-                                favfolder = instance.FavsFolder = o.UUID;
+                            favfolder = instance.FavsFolder = o.UUID;
 
-                                client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate);;
-                            }
+                            client.Inventory.RequestFolderContents(favfolder, client.Self.AgentID, true, true, InventorySortOrder.ByDate); ;
                         }
                     }
-                    else
+                }
+                else
+                {
+                    if (o.Name.ToLower(CultureInfo.CurrentCulture) == "favorites" || o.Name.ToLower(CultureInfo.CurrentCulture) == "my favorites")
                     {
-                        if (o.Name.ToLower(CultureInfo.CurrentCulture) == "favorites" || o.Name.ToLower(CultureInfo.CurrentCulture) == "my favorites")
+                        if (o is InventoryFolder)
                         {
-                            if (o is InventoryFolder)
-                            {
-                                favfolder = instance.FavsFolder = o.UUID;
-                            }
+                            favfolder = instance.FavsFolder = o.UUID;
                         }
                     }
                 }
@@ -485,6 +490,15 @@ namespace METAbolt
                         UpdateFolder(e.FolderID);
                         client.Inventory.FolderUpdated += new EventHandler<FolderUpdatedEventArgs>(Inventory_OnFolderUpdated);
                         //folderproc = UUID.Zero;
+
+                        if (instance.CoF != null)
+                        {
+                            if (e.FolderID == instance.CoF.UUID)
+                            {
+                                instance.CoF = (InventoryFolder)client.Inventory.Store.Items[client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder)].Data;
+                            }
+                        }
+
                     //}
                 }
             }
@@ -934,6 +948,12 @@ namespace METAbolt
             tbtnNew.Enabled = tbtnSort.Enabled = tbtnOrganize.Enabled = (treeView1.SelectedNode != null);
 
             if (e.Node.Tag.ToString() == "empty") return;
+
+            if (instance.CoF == null)
+            {
+                GetRoots();
+                //return;
+            }
 
             tbtnNew.Enabled = true;
             tbtnOrganize.Enabled = true;
@@ -1565,7 +1585,7 @@ namespace METAbolt
                 contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
                 List<UUID> remclothing = new List<UUID>();
 
-                foreach (InventoryItem item in contents)
+                foreach (InventoryBase item in contents)
                 {
                     if (item is InventoryItem)
                     {
@@ -1844,7 +1864,7 @@ namespace METAbolt
                 contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
                 List<UUID> remclothing = new List<UUID>();
 
-                foreach (InventoryItem item in contents)
+                foreach (InventoryBase item in contents)
                 {
                     if (item is InventoryItem)
                     {
@@ -2064,31 +2084,31 @@ namespace METAbolt
         private void ReplacesesOutfit(InventoryBase io)
         {
             //selectednode = treeView1.SelectedNode;
-
+            List<InventoryBase> cofcontents = client.Inventory.Store.GetContents(instance.CoF.UUID);
             List<InventoryBase> contents = client.Inventory.Store.GetContents(io.UUID);
             List<InventoryItem> clothing = new List<InventoryItem>();
+            List<InventoryItem> oitems = new List<InventoryItem>();
 
-            foreach (InventoryItem item in contents)
+            foreach (InventoryBase item in contents)
             {
                 //if (item.InventoryType == InventoryType.Wearable || item.InventoryType == InventoryType.Attachment || item.InventoryType == InventoryType.Object)
                 if (item is InventoryItem)
                 {
-                    clothing.Add(item);
+                    clothing.Add((InventoryItem)item);
                 }
             }
 
-            contents = client.Inventory.Store.GetContents(instance.CoF.UUID);
             List<UUID> remclothing = new List<UUID>();
 
-            foreach (InventoryItem item in contents)
+            foreach (InventoryBase item in cofcontents)
             {
-                if (item is InventoryItem)
-                {
-                    remclothing.Add(item.UUID);
-                }
+                remclothing.Add(item.UUID);
             }
 
-            client.Inventory.Remove(remclothing, null);
+            if (remclothing.Count > 0)
+            {
+                client.Inventory.Remove(remclothing, null);
+            }
 
             foreach (var item in clothing)
             {
@@ -2099,6 +2119,11 @@ namespace METAbolt
                         client.Inventory.RequestFetchInventory(newItem.UUID, newItem.OwnerID);
                     }
                 });
+            }
+
+            foreach (var item in oitems)
+            {
+                client.Appearance.Attach(item, AttachmentPoint.Default, false);
             }
 
             managerbusy = client.Appearance.ManagerBusy;
@@ -2443,15 +2468,15 @@ namespace METAbolt
                     {
                         remclothing.Add(link.UUID);
                     }
-                    else if (wItem is InventoryWearable)
-                    {
-                        InventoryWearable ci = (InventoryWearable)wItem;
+                    //else if (wItem is InventoryWearable)
+                    //{
+                    //    InventoryWearable ci = (InventoryWearable)wItem;
 
-                        if (ci.WearableType == ((InventoryWearable)item).WearableType)
-                        {
-                            remclothing.Add(link.UUID);
-                        }
-                    }
+                    //    if (ci.WearableType == ((InventoryWearable)item).WearableType)
+                    //    {
+                    //        remclothing.Add(link.UUID);
+                    //    }
+                    //}
                 }
             }
 
