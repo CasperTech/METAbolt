@@ -2087,7 +2087,7 @@ namespace METAbolt
             List<InventoryBase> cofcontents = client.Inventory.Store.GetContents(instance.CoF.UUID);
             List<InventoryBase> contents = client.Inventory.Store.GetContents(io.UUID);
             List<InventoryItem> clothing = new List<InventoryItem>();
-            List<InventoryItem> oitems = new List<InventoryItem>();
+            //List<InventoryItem> oitems = new List<InventoryItem>();
 
             foreach (InventoryBase item in contents)
             {
@@ -2119,12 +2119,14 @@ namespace METAbolt
                         client.Inventory.RequestFetchInventory(newItem.UUID, newItem.OwnerID);
                     }
                 });
+
+                //ProcessWearItem(item);
             }
 
-            foreach (var item in oitems)
-            {
-                client.Appearance.Attach(item, AttachmentPoint.Default, false);
-            }
+            //foreach (var item in oitems)
+            //{
+            //    client.Appearance.Attach(item, AttachmentPoint.Default, false);
+            //}
 
             managerbusy = client.Appearance.ManagerBusy;
             client.Appearance.ReplaceOutfit(clothing);

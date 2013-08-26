@@ -78,10 +78,28 @@ namespace METAbolt
             Client.Groups.RequestCurrentGroups();
 
             Client.Groups.GroupJoinedReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupStateChanged);
-            Client.Groups.GroupLeaveReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupStateChanged);
+            //Client.Groups.GroupLeaveReply += new EventHandler<GroupOperationEventArgs>(Groups_OnGroupStateChanged);
             Client.Groups.GroupMemberEjected += new EventHandler<GroupOperationEventArgs>(Groups_GroupMemberEjected);
+            Client.Groups.GroupLeaveReply += Groups_GroupLeaveReply;
 
             Disposed += new EventHandler(GroupsConsole_Disposed);
+        }
+
+        void Groups_GroupLeaveReply(object sender, GroupOperationEventArgs e)
+        {
+            instance.State.Groups.Remove(e.GroupID);
+
+            if (instance.State.GroupStore.ContainsKey(e.GroupID))
+            {
+                instance.State.GroupStore.Remove(e.GroupID);
+            }
+
+            if (instance.State.Groups.ContainsKey(e.GroupID))
+            {
+                instance.State.Groups.Remove(e.GroupID);
+            }
+
+            Client.Groups.RequestCurrentGroups();
         }
 
         private void SetExceptionReporter()
@@ -116,6 +134,18 @@ namespace METAbolt
 
         private void Groups_GroupMemberEjected(object sender, GroupOperationEventArgs e)
         {
+            instance.State.Groups.Remove(e.GroupID);
+
+            if (instance.State.GroupStore.ContainsKey(e.GroupID))
+            {
+                instance.State.GroupStore.Remove(e.GroupID);
+            }
+
+            if (instance.State.Groups.ContainsKey(e.GroupID))
+            {
+                instance.State.Groups.Remove(e.GroupID);
+            }
+
             Client.Groups.RequestCurrentGroups();
         }
 
