@@ -561,6 +561,18 @@ namespace METAbolt
             {
                 label16.Text = Profile.GroupMembershipCount.ToString() + " members";
 
+                UpdateProfile();
+
+                if (!instance.avnames.ContainsKey(e.Group.FounderID))
+                {
+                    founderid = e.Group.FounderID;
+                    Client.Avatars.RequestAvatarName(founderid);
+                }
+                else
+                {
+                    lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
+                }
+
                 if (this.Group.InsigniaID != null && this.Group.InsigniaID != UUID.Zero)
                     Client.Assets.RequestImage(this.Group.InsigniaID, ImageType.Normal,
                         delegate(TextureRequestState state, AssetTexture assetTexture)
@@ -580,20 +592,9 @@ namespace METAbolt
                             }
                         }, true);
 
-                if (!instance.avnames.ContainsKey(e.Group.FounderID))
-                {
-                    founderid = e.Group.FounderID;
-                    Client.Avatars.RequestAvatarName(founderid);
-                }
-                else
-                {
-                    lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
-                }
-
-                UpdateProfile();
-
-                groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
                 label10.Text = "Loading...";
+
+                groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);                
             }));
         }
 
