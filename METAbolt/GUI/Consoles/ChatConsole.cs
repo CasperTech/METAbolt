@@ -1174,8 +1174,15 @@ namespace METAbolt
                 hunspell.Dispose();
                 hunspell = new Hunspell();
 
-                hunspell.Load(dir + afffile, dir + dicfile);
-                ReadWords();
+                try
+                {
+                    hunspell.Load(dir + afffile, dir + dicfile);
+                    ReadWords();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Spelling dictionary error: " + ex.Message);
+                }
             }
             else
             {

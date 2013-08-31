@@ -50,16 +50,23 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            lang = listBox1.Items[listBox1.SelectedIndex].ToString();
+            try
+            {
+                lang = listBox1.Items[listBox1.SelectedIndex].ToString().Replace(".dic", string.Empty);
 
-            //string[] sfile = lang.Split('.');
-            //string file = lang = sfile[0];
+                //string[] sfile = lang.Split('.');
+                //string file = lang = sfile[0];
 
-            this.instance.DictionaryFile = lang + ".dic";
-            this.instance.AffFile = lang + ".aff";
+                this.instance.DictionaryFile = lang +".dic";
+                this.instance.AffFile = lang + ".aff";
 
-            label2.Text = "Selected language: " + lang;
-            SetFlag();
+                label2.Text = "Selected language: " + lang;
+                SetFlag();
+            }
+            catch (Exception ex)
+            {
+                string exp = ex.Message;
+            }
         }
 
         #region IPreferencePane Members
@@ -118,7 +125,7 @@ namespace METAbolt
         {
             string[] sfile = lang.Split('_');
 
-            picFlag.Image = ilFlags.Images[sfile[1] + ".png"];
+            picFlag.Image = ilFlags.Images[sfile[0] + ".png"];
         }
 
         private void SetSelFlag()
