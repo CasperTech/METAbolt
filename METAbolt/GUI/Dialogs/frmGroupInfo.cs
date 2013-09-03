@@ -241,12 +241,12 @@ namespace METAbolt
             chkMature.Enabled = false;
 
             // Request the group information
-            Client.Groups.RequestGroupProfile(Group.ID);
+            Client.Groups.RequestGroupProfile(grpid);
             //groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
-            grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
+            grouptitles = Client.Groups.RequestGroupTitles(grpid);
             // and the notices
-            Client.Groups.RequestGroupNoticesList(Group.ID);
-            Client.Groups.RequestGroupRoles(Group.ID); 
+            Client.Groups.RequestGroupNoticesList(grpid);
+            Client.Groups.RequestGroupRoles(grpid); 
         }
 
         ~frmGroupInfo()
