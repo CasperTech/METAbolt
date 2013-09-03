@@ -581,9 +581,9 @@ namespace METAbolt
 
                     textPrinter.SetSelectionForeColor(Color.Gray);
                     textPrinter.SetOffset(6);
-                    textPrinter.SetFontSize(6.5f);
+                    //textPrinter.SetFontSize(6.5f);
                     textPrinter.PrintDate(timestamp.ToString("[HH:mm] ", CultureInfo.CurrentCulture));
-                    textPrinter.SetFontSize(8.5f);
+                    //textPrinter.SetFontSize(8.5f);
                     textPrinter.SetOffset(0);
                 }
             }
