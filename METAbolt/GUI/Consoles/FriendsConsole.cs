@@ -152,7 +152,8 @@ namespace METAbolt
                     //    //client.Avatars.GetDisplayNames(avIDs, DisplayNameReceived);
                     //}
 
-                    lbxFriends.Items.Add(new FriendsListItem(friend));
+                    //lbxFriends.Items.Add(new FriendsListItem(friend));
+                    lbxFriends.Items.Add(friend);
                 }
 
                 //lbxFriends.Sort();
@@ -410,7 +411,7 @@ namespace METAbolt
 
             if (e.Index < 0) return;
 
-            FriendsListItem itemToDraw = (FriendsListItem)lbxFriends.Items[e.Index];
+            FriendInfo itemToDraw = (FriendInfo)lbxFriends.Items[e.Index];
 
             Brush textBrush = null;
             Font textFont = null;
@@ -426,11 +427,11 @@ namespace METAbolt
                 textFont = new Font(e.Font, FontStyle.Regular);
             }
 
-            SizeF stringSize = e.Graphics.MeasureString(itemToDraw.Friend.Name, textFont);
+            SizeF stringSize = e.Graphics.MeasureString(itemToDraw.Name, textFont);
             float stringX = e.Bounds.Left + 4 + Properties.Resources.green_orb.Width;
             float stringY = e.Bounds.Top + 2 + ((Properties.Resources.green_orb.Height / 2) - (stringSize.Height / 2));
 
-            if (itemToDraw.Friend.IsOnline)
+            if (itemToDraw.IsOnline)
             {
                 e.Graphics.DrawImage(Properties.Resources.green_orb, e.Bounds.Left + 2, e.Bounds.Top + 2);
             }
@@ -439,7 +440,7 @@ namespace METAbolt
                 e.Graphics.DrawImage(Properties.Resources.green_orb_off, e.Bounds.Left + 2, e.Bounds.Top + 2);
             }
             
-            e.Graphics.DrawString(" " + itemToDraw.Friend.Name, textFont, textBrush, stringX, stringY);
+            e.Graphics.DrawString(" " + itemToDraw.Name, textFont, textBrush, stringX, stringY);
 
             e.DrawFocusRectangle();
 
@@ -453,8 +454,8 @@ namespace METAbolt
         {
             if (lbxFriends.SelectedItem == null) return;
 
-            FriendsListItem item = (FriendsListItem)lbxFriends.SelectedItem;
-            SetFriend(item.Friend);
+            FriendInfo item = (FriendInfo)lbxFriends.SelectedItem;
+            SetFriend(item);
         }
 
         private void btnIM_Click(object sender, EventArgs e)
@@ -570,7 +571,7 @@ namespace METAbolt
 
         private void lbxFriends_DoubleClick(object sender, EventArgs e)
         {
-            btnIM.PerformClick();
+            //btnIM.PerformClick();
         }
 
         private void lbGroups_SelectedIndexChanged(object sender, EventArgs e)
@@ -668,7 +669,7 @@ namespace METAbolt
                     {
                         if (friend.Name.ToLower(CultureInfo.CurrentCulture) == s.Value.ToLower(CultureInfo.CurrentCulture))
                         {
-                            lbxFriends.Items.Add(new FriendsListItem(friend));
+                            lbxFriends.Items.Add(friend);
                         }
                     }
                 }
@@ -687,7 +688,7 @@ namespace METAbolt
             // Starts a drag-and-drop operation.
             if (index >= 0 && index < lbxFriends.Items.Count)
             {
-                FriendsListItem dltm = (FriendsListItem)lbxFriends.Items[index];
+                FriendInfo dltm = (FriendInfo)lbxFriends.Items[index];
 
                 lbxFriends.DoDragDrop(dltm, DragDropEffects.Copy);
             }
@@ -695,7 +696,7 @@ namespace METAbolt
 
         private void textBox2_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(typeof(FriendsListItem)))
+            if (e.Data.GetDataPresent(typeof(FriendInfo)))
                 e.Effect = DragDropEffects.Copy;
         }
 
@@ -707,14 +708,14 @@ namespace METAbolt
                 return;
             }
 
-            FriendsListItem node = e.Data.GetData(typeof(FriendsListItem)) as FriendsListItem;
+            FriendInfo node = e.Data.GetData(typeof(FriendInfo)) as FriendInfo;
 
             if (node == null) return;
 
-            if (e.Data.GetDataPresent(typeof(FriendsListItem)))
+            if (e.Data.GetDataPresent(typeof(FriendInfo)))
             {
-                fconfig.AddFriendToGroup(lbGroups.SelectedItem.ToString(), node.Friend.Name, node.Friend.UUID.ToString());
-                MessageBox.Show(node.Friend.Name + " has been added to your '" + lbGroups.SelectedItem.ToString() + "' group.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                fconfig.AddFriendToGroup(lbGroups.SelectedItem.ToString(), node.Name, node.UUID.ToString());
+                MessageBox.Show(node.Name + " has been added to your '" + lbGroups.SelectedItem.ToString() + "' group.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -726,6 +727,6 @@ namespace METAbolt
         private void button2_Click(object sender, EventArgs e)
         {
             fconfig.removeFriendFromGroup(lbGroups.SelectedItem.ToString(), selectedFriend.UUID.ToString());
-        }        
+        }       
     }
 }
