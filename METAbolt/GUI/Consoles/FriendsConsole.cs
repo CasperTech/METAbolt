@@ -343,25 +343,35 @@ namespace METAbolt
         {
             if (InvokeRequired)
             {
-                if (IsHandleCreated)
-                {
-                    BeginInvoke(new MethodInvoker(() => Friends_OnFriendNamesReceived(sender, e)));
-                }
+                //if (IsHandleCreated)
+                //{
+                //    BeginInvoke(new MethodInvoker(() => Friends_OnFriendNamesReceived(sender, e)));
+                //}
+
+                BeginInvoke(new MethodInvoker(() => Friends_OnFriendNamesReceived(sender, e)));
 
                 return;
             }
 
-            BeginInvoke(new MethodInvoker(delegate()
+            //BeginInvoke(new MethodInvoker(delegate()
+            //{
+            //    try
+            //    {
+            //        if (IsHandleCreated)
+            //        {
+            //            RefreshFriendsList();
+            //        }
+            //    }
+            //    catch { ; }
+            //}));
+
+            while (!IsHandleCreated)
             {
-                try
-                {
-                    if (IsHandleCreated)
-                    {
-                        RefreshFriendsList();
-                    }
-                }
-                catch { ; }
-            }));
+                // Force handle creation
+                IntPtr temp = Handle;
+            }
+
+            RefreshFriendsList();
         }
 
         private void SetFriend(FriendInfo friend)

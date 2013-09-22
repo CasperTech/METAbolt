@@ -1265,10 +1265,20 @@ namespace METAbolt
                     panel5.Visible = false;
                     tabControl1.Visible = false;
                 }
-                catch (Exception ex)
+                catch //(Exception ex)
                 {
-                    //Logger.Log("MB ERROR: " + ex.Message, Helpers.LogLevel.Error);
-                    splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.Panel2MinSize;
+                    ////Logger.Log("MB ERROR: " + ex.Message, Helpers.LogLevel.Error);
+                    ////int panel1min = splitContainer1.Panel1MinSize;
+                    //int newdist = splitContainer1.Width - splitContainer1.Panel2MinSize;
+
+                    //if (newdist < splitContainer1.Panel1MinSize)
+                    //{
+                    //    newdist = splitContainer1.Panel1MinSize;
+                    //}
+
+                    //splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.Panel2MinSize;
+
+                    splitContainer1.SplitterDistance = 716;
                 }
             }
             else

@@ -914,7 +914,13 @@ namespace METAbolt
 
                 ////murl = "http://www.metabolt.net/index.asp?user=none&ver=" + Properties.Resources.METAboltVersion.ToString();
 
-                webBrowser.Refresh();
+                //webBrowser.Refresh();
+
+
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    webBrowser.Refresh();
+                }));
             }
             catch { ; }
         }
