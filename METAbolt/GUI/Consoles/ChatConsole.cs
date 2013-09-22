@@ -1261,7 +1261,9 @@ namespace METAbolt
             {
                 try
                 {
-                    splitContainer1.SplitterDistance = splitContainer1.Width;   //513
+                    //splitContainer1.SplitterDistance = splitContainer1.Width;   //513
+                    splitContainer1.SplitterDistance = splitContainer1.Width - 5;
+
                     panel5.Visible = false;
                     tabControl1.Visible = false;
                 }
@@ -1278,12 +1280,14 @@ namespace METAbolt
 
                     //splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.Panel2MinSize;
 
-                    splitContainer1.SplitterDistance = 716;
+                    splitContainer1.SplitterDistance = 724;
+                    splitContainer1.Width = 729;
                 }
             }
             else
             {
-                splitContainer1.SplitterDistance = 513;
+                splitContainer1.SplitterDistance = ((splitContainer1.Width/100) * 70) - 5;
+                //splitContainer1.Width = 729;
                 panel5.Visible = true;
                 tabControl1.Visible = true;
                 //tabControl1.TabPages.Add(tabPage1);
