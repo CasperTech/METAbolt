@@ -2336,28 +2336,33 @@ namespace METAbolt
         {
             if (e.KeyCode == Keys.Enter) e.SuppressKeyPress = true;
 
-            //if (e.Control && e.KeyCode == Keys.V)
-            //{
-            //    //e.Handled = true;
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                //e.Handled = true;
 
-            //    ClipboardAsync Clipboard2 = new ClipboardAsync();
+                ClipboardAsync Clipboard2 = new ClipboardAsync();
 
-            //    string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
-            //    cbxInput.Text += ptxt;
-            //    //Clipboard.SetText(" ");
-            //    //Clipboard.Clear();
-            //    //string fgt = Clipboard.GetText();
-            //    //Clipboard.SetText(ptxt);
+                //string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+                //cbxInput.Text += ptxt;
+                ////Clipboard.SetText(" ");
+                ////Clipboard.Clear();
+                ////string fgt = Clipboard.GetText();
+                ////Clipboard.SetText(ptxt);
 
-            //    //////pasted = true;
-            //    //string ptxt = Clipboard.GetText().Replace(Environment.NewLine, "\r\n");
+                ////////pasted = true;
+                ////string ptxt = Clipboard.GetText().Replace(Environment.NewLine, "\r\n");
 
-            //    //Clipboard.SetText(" ");
-            //    //string fgt = Clipboard.GetText();
-            //    //Clipboard.Clear();
-            //    //Clipboard.SetText(ptxt); 
-            //    //cbxInput.Text += ptxt;
-            //}
+                ////Clipboard.SetText(" ");
+                ////string fgt = Clipboard.GetText();
+                ////Clipboard.Clear();
+                ////Clipboard.SetText(ptxt); 
+                ////cbxInput.Text += ptxt;
+
+                string insertText = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+                int selectionIndex = textBox1.SelectionStart;
+                cbxInput.Text = cbxInput.Text.Insert(selectionIndex, insertText);
+                cbxInput.SelectionStart = selectionIndex + insertText.Length;
+            }
         }
 
         private void cbxInput_KeyUp(object sender, KeyEventArgs e)
@@ -2836,8 +2841,11 @@ namespace METAbolt
             {
                 ClipboardAsync Clipboard2 = new ClipboardAsync();
 
-                string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
-                cbxInput.Text += ptxt;
+                string insertText = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+                int selectionIndex = cbxInput.SelectionStart;
+                cbxInput.Text = cbxInput.Text.Insert(selectionIndex, insertText);
+                cbxInput.SelectionStart = selectionIndex + insertText.Length;
+
                 return true;
             }
             else

@@ -850,10 +850,19 @@ namespace METAbolt
 
             if ((keyData == (Keys.Control | Keys.V)))
             {
+                //ClipboardAsync Clipboard2 = new ClipboardAsync();
+
+                //string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+                //cbxInput.Text += ptxt;
+                //return true;
+
                 ClipboardAsync Clipboard2 = new ClipboardAsync();
 
-                string ptxt = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
-                cbxInput.Text += ptxt;
+                string insertText = Clipboard2.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\r\n");
+                int selectionIndex = cbxInput.SelectionStart;
+                cbxInput.Text = cbxInput.Text.Insert(selectionIndex, insertText);
+                cbxInput.SelectionStart = selectionIndex + insertText.Length;
+
                 return true;
             }
             else
