@@ -46,7 +46,7 @@ namespace METAbolt
     {
         private METAboltInstance instance;
         private SLNetCom netcom;
-        private WebBrowser webBrowser;
+        //private WebBrowser webBrowser;
         private GridClient client;
         private string murl;
         private string clickedurl = string.Empty;
@@ -78,11 +78,19 @@ namespace METAbolt
             client = this.instance.Client;
             AddNetcomEvents();
 
-            //btnInfo_Click();
-            if (webBrowser == null)
-                this.InitializeWebBrowser();
+            //while (!IsHandleCreated)
+            //{
+            //    // Force handle creation
+            //    IntPtr temp = Handle;
+            //}
 
-            webBrowser.Visible = true;
+            ////btnInfo_Click();
+            //if (webBrowser == null)
+            //    this.InitializeWebBrowser();
+
+            this.InitializeWebBrowser();
+
+            webBrowser1.Visible = true;
             //btnInfo.Text = "Hide Grid Status";
             label7.Text = "V " + Properties.Resources.METAboltVersion; 
 
@@ -241,8 +249,8 @@ namespace METAbolt
             netcom.ClientLoginStatus -= new EventHandler<LoginProgressEventArgs>(netcom_ClientLoginStatus);
             netcom.ClientLoggingOut -= new EventHandler<OverrideEventArgs>(netcom_ClientLoggingOut);
             netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
-            webBrowser.DocumentCompleted -= new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
-            webBrowser.Navigating -= new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
+            webBrowser1.DocumentCompleted -= new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
+            webBrowser1.Navigating -= new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
         }
 
         private class Item
@@ -515,82 +523,51 @@ namespace METAbolt
 
         private void InitializeWebBrowser()
         {
-            lblInitWebBrowser.Visible = true;
-            lblInitWebBrowser.Refresh();
-
-            //btnInfo.Enabled = false;
-            //btnInfo.Refresh();
-
-            //string lkey = instance.Config.CurrentConfig.AdRemove;
-
-            //if (!string.IsNullOrEmpty(lkey))
-            //{
-            //    METAMD5 md5 = new METAMD5();
-
-            //    if (md5.ValidateMachinePasscode(lkey))
-            //    {
-            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-            //    }
-            //    else
-            //    {
-            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-            //    }
-            //}
-            //else
-            //{
-            //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-            //}
-
             murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-            //murl = "http://viewer-login.agni.lindenlab.com/";
 
-            Thread.CurrentThread.SetApartmentState(ApartmentState.STA);
-
-            webBrowser = new WebBrowser();
-            
-            webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
-            webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
-            webBrowser.Url = new Uri(murl);
-            webBrowser.AllowNavigation = true;
+            webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
+            webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
+            webBrowser1.Url = new Uri(murl);
+            webBrowser1.AllowNavigation = true;
             //webBrowser.AllowWebBrowserDrop = false;
-            webBrowser.Dock = DockStyle.Fill;
-            webBrowser.IsWebBrowserContextMenuEnabled = false;
-            webBrowser.ScriptErrorsSuppressed = true;
+            webBrowser1.Dock = DockStyle.Fill;
+            webBrowser1.IsWebBrowserContextMenuEnabled = false;
+            webBrowser1.ScriptErrorsSuppressed = true;
             //webBrowser.ScrollBarsEnabled = true;
-            webBrowser.NewWindow += new CancelEventHandler(webBrowser_NewWindow); 
-            pnlLoginPage.Controls.Add(webBrowser);
+            webBrowser1.NewWindow += new CancelEventHandler(webBrowser_NewWindow);
         }
 
-        //private void LoadWebPage()
+        //private void STABrowser()
         //{
-        //    string lkey = instance.Config.CurrentConfig.AdRemove;
-
-        //    if (!string.IsNullOrEmpty(lkey))
+        //    using (webBrowser = new WebBrowser())
         //    {
-        //        METAMD5 md5 = new METAMD5();
+        //        webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
+        //        webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
+        //        webBrowser.Url = new Uri(murl);
+        //        webBrowser.AllowNavigation = true;
+        //        //webBrowser.AllowWebBrowserDrop = false;
+        //        webBrowser.Dock = DockStyle.Fill;
+        //        webBrowser.IsWebBrowserContextMenuEnabled = false;
+        //        webBrowser.ScriptErrorsSuppressed = true;
+        //        //webBrowser.ScrollBarsEnabled = true;
+        //        webBrowser.NewWindow += new CancelEventHandler(webBrowser_NewWindow);
+                
+        //        //BeginInvoke(new MethodInvoker(delegate()
+        //        //{
+        //        //    pnlLoginPage.Controls.Add(webBrowser);
+        //        //}));
 
-        //        if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-        //        {
-        //            murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-        //        }
-        //        else
-        //        {
-        //            murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-        //        }
+        //        pnlLoginPage.Controls.Add(webBrowser);
         //    }
-        //    else
-        //    {
-        //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
-        //    }
-
-        //    webBrowser.Navigate(murl);
         //}
+
+
 
         private void webBrowser_NewWindow(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrEmpty(clickedurl))
             {
-                HtmlElement link = webBrowser.Document.ActiveElement;
+                HtmlElement link = webBrowser1.Document.ActiveElement;
                 clickedurl = link.GetAttribute("href");
             }
 
@@ -638,43 +615,10 @@ namespace METAbolt
 
         private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    webBrowser_DocumentCompleted(sender, e);
-                }));
+            webBrowser1.ScrollBarsEnabled = false;
 
-                return;
-            }
-
-            lblInitWebBrowser.Visible = false;
-            //btnInfo.Enabled = true;
-
-            //HtmlElementCollection links = webBrowser.Document.Links;
-
-            //foreach (HtmlElement var in links)
-            //{
-            //    var.AttachEventHandler("onclick", LinkClicked);
-            //    var.Click += new HtmlElementEventHandler(this.LinkClick);
-            //}
-
-            webBrowser.ScrollBarsEnabled = false;
-
-            webBrowser.Document.Body.Style = "overflow:hidden";
+            webBrowser1.Document.Body.Style = "overflow:hidden";
         }
-
-        //private void LinkClick(object sender, System.EventArgs e)
-        //{
-        //    MessageBox.Show("Link Was Clicked Navigation was Cancelled");
-        //}
-
-        //private void LinkClicked(object sender, EventArgs e)
-        //{
-
-        //    HtmlElement link = webBrowser.Document.ActiveElement;
-        //    clickedurl = link.GetAttribute("href");
-        //}
 
         private void BeginLogin()
         {
@@ -689,18 +633,16 @@ namespace METAbolt
                 netcom.LoginOptions.FirstName = txtFirstName.Text;
                 netcom.LoginOptions.LastName = txtLastName.Text;
 
-                //instance.Config.SaveCurrentConfig();
-
-                //string full_name = txtFirstName.Text + "_" + txtLastName.Text;
-                //this.instance.ReapplyConfig(full_name);  
-
                 // Fix thx to METAforum member Tipi (28/06/2010). I don't know how this
-                // escaped us all these years. Embarassing :S
+                // escaped us all these years.
                 string pwd = txtPassword.Text;
 
                 if (pwd.Length > 16)
                 {
                     pwd = pwd.Substring(0, 16);
+                    MessageBox.Show("Your password cannot be longer than 16 characters", "METAbolt");
+                    txtPassword.Focus();
+                    return;
                 }
 
                 netcom.LoginOptions.Password = pwd;   // txtPassword.Text;
@@ -785,7 +727,7 @@ namespace METAbolt
                 //instance.SetSettings();  
 
                 netcom.Login();
-                DoBrowser();
+                //DoBrowser();
             }
             catch (Exception ex)
             {
@@ -890,39 +832,29 @@ namespace METAbolt
 
         private void DoBrowser()
         {
-            try
-            {
-                //string lkey = instance.Config.CurrentConfig.AdRemove;
+            //string lkey = instance.Config.CurrentConfig.AdRemove;
 
-                //if (lkey != string.Empty)
-                //{
-                //    METAMD5 md5 = new METAMD5();
+            //if (lkey != string.Empty)
+            //{
+            //    METAMD5 md5 = new METAMD5();
 
-                //    if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-                //    {
-                //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
-                //    }
-                //    else
-                //    {
-                //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
-                //    }
-                //}
-                //else
-                //{
-                //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
-                //}
+            //    if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
+            //    {
+            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
+            //    }
+            //    else
+            //    {
+            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+            //    }
+            //}
+            //else
+            //{
+            //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+            //}
 
-                ////murl = "http://www.metabolt.net/index.asp?user=none&ver=" + Properties.Resources.METAboltVersion.ToString();
+            ////murl = "http://www.metabolt.net/index.asp?user=none&ver=" + Properties.Resources.METAboltVersion.ToString();
 
-                //webBrowser.Refresh();
-
-
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    webBrowser.Refresh();
-                }));
-            }
-            catch { ; }
+            webBrowser1.Refresh();
         }
 
         private void chkPWD_CheckedChanged(object sender, EventArgs e)

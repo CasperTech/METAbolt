@@ -34,7 +34,6 @@ namespace METAbolt
             this.pnlLoggingIn = new System.Windows.Forms.Panel();
             this.lblLoginStatus = new System.Windows.Forms.Label();
             this.pnlLoginPage = new System.Windows.Forms.Panel();
-            this.lblInitWebBrowser = new System.Windows.Forms.Label();
             this.pnlLoginPrompt = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@ namespace METAbolt
             this.label3 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.label7 = new System.Windows.Forms.Label();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.pnlLoggingIn.SuspendLayout();
             this.pnlLoginPage.SuspendLayout();
             this.pnlLoginPrompt.SuspendLayout();
@@ -111,23 +111,12 @@ namespace METAbolt
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLoginPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLoginPage.BackgroundImage")));
             this.pnlLoginPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlLoginPage.Controls.Add(this.lblInitWebBrowser);
+            this.pnlLoginPage.Controls.Add(this.webBrowser1);
             this.pnlLoginPage.Location = new System.Drawing.Point(3, 4);
             this.pnlLoginPage.Name = "pnlLoginPage";
             this.pnlLoginPage.Size = new System.Drawing.Size(676, 358);
             this.pnlLoginPage.TabIndex = 10;
             this.pnlLoginPage.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLoginPage_Paint);
-            // 
-            // lblInitWebBrowser
-            // 
-            this.lblInitWebBrowser.AutoSize = true;
-            this.lblInitWebBrowser.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInitWebBrowser.Location = new System.Drawing.Point(1, 0);
-            this.lblInitWebBrowser.Name = "lblInitWebBrowser";
-            this.lblInitWebBrowser.Size = new System.Drawing.Size(150, 13);
-            this.lblInitWebBrowser.TabIndex = 0;
-            this.lblInitWebBrowser.Text = "Initializing web browser...";
-            this.lblInitWebBrowser.Visible = false;
             // 
             // pnlLoginPrompt
             // 
@@ -384,6 +373,15 @@ namespace METAbolt
             this.label7.TabIndex = 18;
             this.label7.Text = "version";
             // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(676, 358);
+            this.webBrowser1.TabIndex = 0;
+            // 
             // MainConsole
             // 
             this.AccessibleDescription = "Console to login to SL or other OpenSim based grid";
@@ -404,7 +402,6 @@ namespace METAbolt
             this.Load += new System.EventHandler(this.MainConsole_Load);
             this.pnlLoggingIn.ResumeLayout(false);
             this.pnlLoginPage.ResumeLayout(false);
-            this.pnlLoginPage.PerformLayout();
             this.pnlLoginPrompt.ResumeLayout(false);
             this.pnlLoginPrompt.PerformLayout();
             this.ResumeLayout(false);
@@ -418,7 +415,6 @@ namespace METAbolt
         private System.Windows.Forms.Panel pnlLoggingIn;
         private System.Windows.Forms.Label lblLoginStatus;
         private System.Windows.Forms.Panel pnlLoginPage;
-        private System.Windows.Forms.Label lblInitWebBrowser;
         private System.Windows.Forms.Panel pnlLoginPrompt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCustomLoginUri;
@@ -439,5 +435,6 @@ namespace METAbolt
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

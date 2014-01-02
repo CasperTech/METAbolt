@@ -166,6 +166,7 @@ namespace METAbolt
             this.snippetsToolStripMenuItem,
             this.contectHelpToolStripMenuItem});
             this.Menu1.Name = "Menu1";
+            this.Menu1.OwnerItem = this.toolStripDropDownButton2;
             this.Menu1.Size = new System.Drawing.Size(165, 326);
             // 
             // undoToolStripMenuItem
@@ -500,8 +501,6 @@ namespace METAbolt
             // 
             this.closeToolStripMenuItem.Image = global::METAbolt.Properties.Resources.delete_16;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.X)));
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);

@@ -39,8 +39,7 @@ using ExceptionReporting;
 using System.Threading;
 using System.Management;
 using System.Globalization;
-using System.Web;
-using System.Linq;
+using System.Web; 
 
 
 namespace METAbolt
@@ -85,7 +84,6 @@ namespace METAbolt
         private MemberSorter sortedlist = new MemberSorter();
         private bool userisowner = false;
         private UUID groupmembersrequest = UUID.Zero;
-        private int memberscount = 0;
 
         internal class ThreadExceptionHandler
         {
@@ -241,12 +239,12 @@ namespace METAbolt
             chkMature.Enabled = false;
 
             // Request the group information
-            Client.Groups.RequestGroupProfile(grpid);
+            Client.Groups.RequestGroupProfile(Group.ID);
             //groupmembers = Client.Groups.RequestGroupMembers(Group.ID);
-            grouptitles = Client.Groups.RequestGroupTitles(grpid);
+            grouptitles = Client.Groups.RequestGroupTitles(Group.ID);
             // and the notices
-            Client.Groups.RequestGroupNoticesList(grpid);
-            Client.Groups.RequestGroupRoles(grpid); 
+            Client.Groups.RequestGroupNoticesList(Group.ID);
+            Client.Groups.RequestGroupRoles(Group.ID); 
         }
 
         ~frmGroupInfo()
@@ -330,75 +328,6 @@ namespace METAbolt
             grouprolesavs = e.RolesMembers;
 
             userisowner = IsGroupOwner();
-
-            this.BeginInvoke(new MethodInvoker(delegate()
-            {
-                if (userisowner)
-                {
-                    cmdEject.Enabled = ejectpower = true;
-                    //button6.Enabled = true;
-
-                    button4.Visible = true;
-                    button5.Visible = true;
-
-                    txtCharter.Enabled = true;
-
-                    chkPublish.Enabled = true;
-                    chkOpenEnrollment.Enabled = true;
-                    chkFee.Enabled = true;
-                    numFee.Enabled = true;
-                    chkMature.Enabled = true;
-
-                    chkListInProfile.Enabled = true;
-                    chkGroupNotices.Enabled = true;
-
-                    button1.Enabled = true;
-                }
-                else
-                {
-                    //cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
-                    cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject);
-
-                    //button6.Enabled = false;
-
-                    button4.Visible = HasGroupPower(GroupPowers.CreateRole);   // ((member.Powers & GroupPowers.CreateRole) != 0);
-                    button5.Visible = HasGroupPower(GroupPowers.DeleteRole);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
-                    button3.Visible = HasGroupPower(GroupPowers.SendNotices);
-
-                    if (instance.State.Groups.ContainsKey(Profile.ID))
-                    {
-                        if (HasGroupPower(GroupPowers.ChangeIdentity))   //(member.Powers & GroupPowers.ChangeIdentity) != 0)
-                        {
-                            txtCharter.Enabled = true;
-                        }
-
-                        if (HasGroupPower(GroupPowers.ChangeOptions))   //(member.Powers & GroupPowers.ChangeOptions) != 0)
-                        {
-                            chkPublish.Enabled = true;
-                            chkOpenEnrollment.Enabled = true;
-                            chkFee.Enabled = true;
-                            numFee.Enabled = true;
-                            chkMature.Enabled = true;
-                        }
-                        else
-                        {
-                            chkPublish.Enabled = false;
-                            chkOpenEnrollment.Enabled = false;
-                            chkFee.Enabled = false;
-                            numFee.Enabled = false;
-                            chkMature.Enabled = false;
-                        }
-
-                        chkListInProfile.Enabled = true;
-                        chkGroupNotices.Enabled = true;
-                    }
-                    else
-                    {
-                        chkListInProfile.Enabled = false;
-                        chkGroupNotices.Enabled = false;
-                    }
-                }
-            }));
         }
 
         private void Groups_OnGroupRoleDataReply(object sender, GroupRolesDataReplyEventArgs e)
@@ -632,18 +561,6 @@ namespace METAbolt
             {
                 label16.Text = Profile.GroupMembershipCount.ToString() + " members";
 
-                UpdateProfile();
-
-                if (!instance.avnames.ContainsKey(e.Group.FounderID))
-                {
-                    founderid = e.Group.FounderID;
-                    Client.Avatars.RequestAvatarName(founderid);
-                }
-                else
-                {
-                    lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
-                }
-
                 if (this.Group.InsigniaID != null && this.Group.InsigniaID != UUID.Zero)
                     Client.Assets.RequestImage(this.Group.InsigniaID, ImageType.Normal,
                         delegate(TextureRequestState state, AssetTexture assetTexture)
@@ -663,9 +580,20 @@ namespace METAbolt
                             }
                         }, true);
 
-                label10.Text = "Loading...";
+                if (!instance.avnames.ContainsKey(e.Group.FounderID))
+                {
+                    founderid = e.Group.FounderID;
+                    Client.Avatars.RequestAvatarName(founderid);
+                }
+                else
+                {
+                    lblFoundedBy.Text = "Founded by " + instance.avnames[e.Group.FounderID].ToString();
+                }
 
-                groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);                
+                UpdateProfile();
+
+                groupmembers = Client.Groups.RequestGroupMembers(Profile.ID);
+                label10.Text = "Loading...";
             }));
         }
 
@@ -801,24 +729,10 @@ namespace METAbolt
                     }
                 }
 
-                //WorkPool.QueueUserWorkItem(sync =>
-                //{
-                //    if (isgroupmembers)
-                //    {
-                //        //if (GrupMemberNames.Count > (memberscount/100) * 50)
-                //        //{
-                //            UpdateMembers(memkeys);
-                //        //}
-                //    }
-                //});   
-
-                if (isgroupmembers)
+                WorkPool.QueueUserWorkItem(sync =>
                 {
-                    //if (GrupMemberNames.Count > (memberscount/100) * 50)
-                    //{
-                    UpdateMembers(memkeys);
-                    //}
-                }
+                    if (isgroupmembers) UpdateMembers(memkeys);
+                });   
             }));
         }
 
@@ -897,18 +811,11 @@ namespace METAbolt
                 {
                     lstMembers.VirtualListSize = SortedMembers.Count;
                     lstMembers2.VirtualListSize = SortedMembers.Count;
-
-                    if (Members.ContainsKey(Client.Self.AgentID))
-                    {
-                        button6.Enabled = false;
-                    }
                 }));
 
-            int ricnt = memberscount = requestids.Count;
-
-            if (ricnt > 0)
+            if (requestids.Count > 0)
             {
-                if (ricnt > 80)
+                if (requestids.Count > 80)
                 {
                     SendNameRequsts(requestids);               
                 }
@@ -928,33 +835,23 @@ namespace METAbolt
 
         private void SendNameRequsts(List<UUID> namelist)
         {
-            //this.BeginInvoke(new MethodInvoker(delegate()
-            //        {
-            //            List<List<UUID>> chunks = splitList(namelist);
+            this.BeginInvoke(new MethodInvoker(delegate()
+                    {
+                        List<List<UUID>> chunks = splitList(namelist);
 
-            //            //pBar1.Visible = true;
-            //            //pBar1.Maximum = chunks.Count;
+                        pBar1.Visible = true;
+                        pBar1.Maximum = chunks.Count;
 
-            //            foreach (List<UUID> chunklist in chunks)
-            //            {
-            //                //pBar1.Value += 1;
+                        foreach (List<UUID> chunklist in chunks)
+                        {
+                            pBar1.Value += 1;
 
-            //                Client.Avatars.RequestAvatarNames(chunklist);
-            //                Thread.Sleep(100);
-            //            }
+                            Client.Avatars.RequestAvatarNames(chunklist);
+                            Thread.Sleep(100);
+                        }
 
-            //            //pBar1.Visible = false;
-            //        }));
-
-            List<List<UUID>> chunks = splitList(namelist);
-
-            foreach (List<UUID> chunklist in chunks)
-            {
-                //pBar1.Value += 1;
-
-                Client.Avatars.RequestAvatarNames(chunklist);
-                Thread.Sleep(100);
-            }
+                        pBar1.Visible = false;
+                    }));
         }
 
         public static DateTime ConvertDateTime(string Date)
@@ -1024,24 +921,88 @@ namespace METAbolt
 
                     //bool isgmember = false;
 
-                    //foreach (UUID memid in lst)
-                    //{
-                    //    if (Members.ContainsKey(memid))
-                    //    {
-                    //        GroupMember member = Members[memid];
+                    foreach (UUID memid in lst)
+                    {
+                        if (Members.ContainsKey(memid))
+                        {
+                            GroupMember member = Members[memid];
 
-                    //        if (member.ID == Client.Self.AgentID)
-                    //        {
-                    //            //isgmember = true;
+                            if (member.ID == Client.Self.AgentID)
+                            {
+                                //isgmember = true;
 
-                    //            button6.Enabled = false;
+                                button6.Enabled = false;
 
-                    //            //bool isownerlike = HasGroupPower(GroupPowers.LandSetSale);
+                                //bool isownerlike = HasGroupPower(GroupPowers.LandSetSale);
 
-                                
-                    //        }
-                    //    }
-                    //}
+                                if (member.IsOwner || userisowner)
+                                {
+                                    cmdEject.Enabled = ejectpower = true;
+                                    //button6.Enabled = true;
+
+                                    button4.Visible = true;
+                                    button5.Visible = true;
+
+                                    txtCharter.Enabled = true;
+
+                                    chkPublish.Enabled = true;
+                                    chkOpenEnrollment.Enabled = true;
+                                    chkFee.Enabled = true;
+                                    numFee.Enabled = true;
+                                    chkMature.Enabled = true;
+
+                                    chkListInProfile.Enabled = true;
+                                    chkGroupNotices.Enabled = true;
+
+                                    button1.Enabled = true;
+                                }
+                                else
+                                {
+                                    //cmdEject.Enabled = ejectpower = ((member.Powers & GroupPowers.Eject) != 0);
+                                    cmdEject.Enabled = ejectpower = HasGroupPower(GroupPowers.Eject);
+
+                                    //button6.Enabled = false;
+
+                                    button4.Visible = HasGroupPower(GroupPowers.CreateRole);   // ((member.Powers & GroupPowers.CreateRole) != 0);
+                                    button5.Visible = HasGroupPower(GroupPowers.DeleteRole);   // ((member.Powers & GroupPowers.DeleteRole) != 0);
+                                    button3.Visible = HasGroupPower(GroupPowers.SendNotices);
+
+                                    if (instance.State.Groups.ContainsKey(Profile.ID))
+                                    {
+                                        if (HasGroupPower(GroupPowers.ChangeIdentity))   //(member.Powers & GroupPowers.ChangeIdentity) != 0)
+                                        {
+                                            txtCharter.Enabled = true;
+                                        }
+
+                                        if (HasGroupPower(GroupPowers.ChangeOptions))   //(member.Powers & GroupPowers.ChangeOptions) != 0)
+                                        {
+                                            chkPublish.Enabled = true;
+                                            chkOpenEnrollment.Enabled = true;
+                                            chkFee.Enabled = true;
+                                            numFee.Enabled = true;
+                                            chkMature.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            chkPublish.Enabled = false;
+                                            chkOpenEnrollment.Enabled = false;
+                                            chkFee.Enabled = false;
+                                            numFee.Enabled = false;
+                                            chkMature.Enabled = false;
+                                        }
+
+                                        chkListInProfile.Enabled = true;
+                                        chkGroupNotices.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        chkListInProfile.Enabled = false;
+                                        chkGroupNotices.Enabled = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     //this.Refresh();
 
@@ -1096,26 +1057,17 @@ namespace METAbolt
         //    MemberData = SortedMemberData;
         //}
 
-        //public static List<List<UUID>> splitList(List<UUID> locations, int nSize = 80)
-        //{
-        //    List<List<UUID>> list = new List<List<UUID>>();
-
-        //    for (int i = 0; i < locations.Count; i += nSize)
-        //    {
-        //        list.Add(locations.GetRange(i, Math.Min(nSize, locations.Count - i)));
-        //    }
-
-        //    return list;
-        //}
-
-        public static List<List<UUID>> splitList(List<UUID> source)
+        public static List<List<UUID>> splitList(List<UUID> locations, int nSize = 80)
         {
-            return source
-                .Select((x, i) => new { Index = i, Value = x })
-                .GroupBy(x => 80)
-                .Select(x => x.Select(v => v.Value).ToList())
-                .ToList();
-        }
+            List<List<UUID>> list = new List<List<UUID>>();
+
+            for (int i = 0; i < locations.Count; i += nSize)
+            {
+                list.Add(locations.GetRange(i, Math.Min(nSize, locations.Count - i)));
+            }
+
+            return list;
+        } 
 
         private bool HasGroupPower(GroupPowers pwr)
         {

@@ -84,8 +84,6 @@ namespace METAbolt
         private ExceptionReporter reporter = new ExceptionReporter();
         private string strInfolast = string.Empty;
         private string disconnectreason = "unknown";
-        private string currentsim = string.Empty;
-        private Vector3 currentpos = new Vector3();
 
         //auto update
         public string updaterModulePath = Application.StartupPath + "\\METAbolt Auto Updater.exe";
@@ -203,16 +201,7 @@ namespace METAbolt
             {
                 BeginInvoke(new MethodInvoker(delegate()
                 {
-                    string ncurrentsim = client.Network.CurrentSim.Name;
-                    Vector3 ncurrentpos = client.Self.SimPosition;
-
-                    if (ncurrentsim != currentsim || ncurrentpos != currentpos)
-                    {
-                        Parcels_OnParcelProperties(sender, e);
-
-                        currentsim = client.Network.CurrentSim.Name;
-                        currentpos = client.Self.SimPosition;
-                    }
+                    Parcels_OnParcelProperties(sender, e);
                 }));
 
                 return;

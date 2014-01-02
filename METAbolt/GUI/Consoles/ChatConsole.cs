@@ -1174,15 +1174,8 @@ namespace METAbolt
                 hunspell.Dispose();
                 hunspell = new Hunspell();
 
-                try
-                {
-                    hunspell.Load(dir + afffile, dir + dicfile);
-                    ReadWords();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Spelling dictionary error: " + ex.Message);
-                }
+                hunspell.Load(dir + afffile, dir + dicfile);
+                ReadWords();
             }
             else
             {
@@ -1261,33 +1254,19 @@ namespace METAbolt
             {
                 try
                 {
-                    //splitContainer1.SplitterDistance = splitContainer1.Width;   //513
-                    splitContainer1.SplitterDistance = splitContainer1.Width - 5;
-
+                    splitContainer1.SplitterDistance = splitContainer1.Width;   //513
                     panel5.Visible = false;
                     tabControl1.Visible = false;
                 }
-                catch //(Exception ex)
+                catch (Exception ex)
                 {
-                    ////Logger.Log("MB ERROR: " + ex.Message, Helpers.LogLevel.Error);
-                    ////int panel1min = splitContainer1.Panel1MinSize;
-                    //int newdist = splitContainer1.Width - splitContainer1.Panel2MinSize;
-
-                    //if (newdist < splitContainer1.Panel1MinSize)
-                    //{
-                    //    newdist = splitContainer1.Panel1MinSize;
-                    //}
-
-                    //splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.Panel2MinSize;
-
-                    splitContainer1.SplitterDistance = 724;
-                    splitContainer1.Width = 729;
+                    //Logger.Log("MB ERROR: " + ex.Message, Helpers.LogLevel.Error);
+                    splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.Panel2MinSize;
                 }
             }
             else
             {
-                splitContainer1.SplitterDistance = ((splitContainer1.Width/100) * 70) - 5;
-                //splitContainer1.Width = 729;
+                splitContainer1.SplitterDistance = 513;
                 panel5.Visible = true;
                 tabControl1.Visible = true;
                 //tabControl1.TabPages.Add(tabPage1);

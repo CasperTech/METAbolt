@@ -157,42 +157,31 @@ namespace METAbolt
         private void Self_OnGroupChatJoin(object sender, GroupChatJoinedEventArgs e)
         {
             if (e.SessionID != session && e.TmpSessionID != session) return;
-
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate()
-                {
-                    Self_OnGroupChatJoin(sender, e);
-                }));
-
-                return;
-            }
-
-            //while (!IsHandleCreated)
-            //{
-            //    // Force handle creation
-            //    IntPtr temp = Handle;
-            //}
-
-            if (!IsHandleCreated)
-            {
-                // Force handle creation
-                this.CreateControl();
-            }
-
+ 
             if (e.Success)
-            {
+            { 
                 WaitForSessionStart.Set();
 
-                label1.Visible = false;
+                BeginInvoke(new MethodInvoker(delegate()
+                {
+                    try
+                    {
+                        label1.Visible = false;
+                    }
+                    catch { ; }
+                }));
             }
             else
             {
-                try
+                //BeginInvoke(new MethodInvoker(Group_JoinError));
+                BeginInvoke(new MethodInvoker(delegate()
                 {
-                    label1.Text = "Failed to join the requested group chat";
-                }
-                catch { ; }
+                    try
+                    {
+                        label1.Text = "Failed to join the requested group chat";
+                    }
+                    catch { ; }
+                }));
             }
         }
 

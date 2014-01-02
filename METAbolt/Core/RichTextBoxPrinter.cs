@@ -56,7 +56,6 @@ namespace METAbolt
         private string textfont = "Tahoma";
         private string textfontstyle = "Normal";
         private float textfontsize = 8.5f;
-        private float datefontsize = 7.5f;
         //private int _findex = 0;
         //private Color bgcolour = Color.White;
 
@@ -108,7 +107,6 @@ namespace METAbolt
                 textfont = config.CurrentConfig.TextFont;
                 textfontstyle = config.CurrentConfig.TextFontStyle;
                 textfontsize = config.CurrentConfig.TextFontSize;
-                datefontsize = textfontsize - 1.0f;
             }
 
             switch (textfontstyle.ToLower(CultureInfo.CurrentCulture))
@@ -137,8 +135,6 @@ namespace METAbolt
             textfontsize = config.CurrentConfig.TextFontSize;
 
             hideSmileys = e.AppliedConfig.ChatSmileys;
-
-            datefontsize = textfontsize - 1.0f;
         }
 
         #region ITextPrinter Members
@@ -315,7 +311,7 @@ namespace METAbolt
 
                 rtb.SelectionColor = Color.DarkGray;
                 ////rtb.SelectionCharOffset = 6;
-                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, datefontsize, rtb.SelectionFont.Style);
+                rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 1, rtb.SelectionFont.Style);
                 rtb.SelectionCharOffset = 10;
                 AppendNStext(text);
                 
