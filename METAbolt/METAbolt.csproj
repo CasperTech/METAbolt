@@ -160,9 +160,6 @@
       <HintPath>..\Libs\METAxCommon.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Conversion.v3.5" />
-    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MsgBoxCheck">
       <HintPath>..\Libs\MsgBoxCheck.dll</HintPath>
     </Reference>

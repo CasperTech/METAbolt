@@ -323,6 +323,7 @@ namespace METAbolt
             {
                 string[] mins = emsg.Split(new Char[] { ' ' });
                 emsg = "Region is restarting in " + mins[1].Trim() + " minutes. If you remain in this region you will be logged out.";
+                netcom.ChatOut(emsg, ChatType.Normal, 123456);
             }
 
             ChatBufferItem item = new ChatBufferItem(

@@ -57,7 +57,6 @@
   <ItemGroup>
     <Reference Include="METAbolt">
       <HintPath>..\METAbolt\bin\x86\Debug\METAbolt.exe</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="OpenMetaverse, Version=0.0.0.25709, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
