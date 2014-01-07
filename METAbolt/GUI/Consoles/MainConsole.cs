@@ -1,4 +1,4 @@
-//  Copyright (c) 2008 - 2013, www.metabolt.net (METAbolt)
+//  Copyright (c) 2008 - 2014, www.metabolt.net (METAbolt)
 //  Copyright (c) 2006-2008, Paul Clement (a.k.a. Delta)
 //  All rights reserved.
 
@@ -249,8 +249,8 @@ namespace METAbolt
             netcom.ClientLoginStatus -= new EventHandler<LoginProgressEventArgs>(netcom_ClientLoginStatus);
             netcom.ClientLoggingOut -= new EventHandler<OverrideEventArgs>(netcom_ClientLoggingOut);
             netcom.ClientLoggedOut -= new EventHandler(netcom_ClientLoggedOut);
-            webBrowser1.DocumentCompleted -= new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
-            webBrowser1.Navigating -= new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
+            //webBrowser1.DocumentCompleted -= new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
+            //webBrowser1.Navigating -= new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
         }
 
         private class Item
@@ -525,8 +525,8 @@ namespace METAbolt
         {
             murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
 
-            webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
-            webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
+            //webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
+            //webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
             webBrowser1.Url = new Uri(murl);
             webBrowser1.AllowNavigation = true;
             //webBrowser.AllowWebBrowserDrop = false;
@@ -534,7 +534,7 @@ namespace METAbolt
             webBrowser1.IsWebBrowserContextMenuEnabled = false;
             webBrowser1.ScriptErrorsSuppressed = true;
             //webBrowser.ScrollBarsEnabled = true;
-            webBrowser1.NewWindow += new CancelEventHandler(webBrowser_NewWindow);
+           // webBrowser1.NewWindow += new CancelEventHandler(webBrowser_NewWindow);
         }
 
         //private void STABrowser()
@@ -563,62 +563,62 @@ namespace METAbolt
 
 
 
-        private void webBrowser_NewWindow(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(clickedurl))
-            {
-                HtmlElement link = webBrowser1.Document.ActiveElement;
-                clickedurl = link.GetAttribute("href");
-            }
+        //private void webBrowser_NewWindow(object sender, CancelEventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(clickedurl))
+        //    {
+        //        HtmlElement link = webBrowser1.Document.ActiveElement;
+        //        clickedurl = link.GetAttribute("href");
+        //    }
 
-            e.Cancel = true;
+        //    e.Cancel = true;
 
-            if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCultureIgnoreCase))
-            {
-                // Open up the TP form here
-                string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString(CultureInfo.CurrentCulture);
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
+        //    if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCultureIgnoreCase))
+        //    {
+        //        // Open up the TP form here
+        //        string[] split = clickedurl.Split(new Char[] { '/' });
+        //        string sim = split[4].ToString(CultureInfo.CurrentCulture);
+        //        double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
+        //        double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
+        //        double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
 
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
-                clickedurl = string.Empty;
-                return;
-            }
-            else if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCultureIgnoreCase))
-            {
-                // Open up the TP form here
-                string[] split = clickedurl.Split(new Char[] { '/' });
-                string sim = split[4].ToString(CultureInfo.CurrentCulture);
-                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
-                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
-                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
+        //        (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
+        //        clickedurl = string.Empty;
+        //        return;
+        //    }
+        //    else if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCultureIgnoreCase))
+        //    {
+        //        // Open up the TP form here
+        //        string[] split = clickedurl.Split(new Char[] { '/' });
+        //        string sim = split[4].ToString(CultureInfo.CurrentCulture);
+        //        double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
+        //        double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
+        //        double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
 
-                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
-                clickedurl = string.Empty;
-                return;
-            }
+        //        (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
+        //        clickedurl = string.Empty;
+        //        return;
+        //    }
 
-            System.Diagnostics.Process.Start(clickedurl);
-            clickedurl = string.Empty;  
-        }
+        //    System.Diagnostics.Process.Start(clickedurl);
+        //    clickedurl = string.Empty;  
+        //}
 
-        private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            if (clickedurl != string.Empty)
-            {
-                e.Cancel = true;
-                System.Diagnostics.Process.Start(e.Url.ToString());
-            }
-        }
+        //private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        //{
+        //    if (clickedurl != string.Empty)
+        //    {
+        //        e.Cancel = true;
+        //        System.Diagnostics.Process.Start(e.Url.ToString());
+        //    }
+        //}
 
-        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            webBrowser1.ScrollBarsEnabled = false;
+        //private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        //{
+        //    webBrowser1.ScrollBarsEnabled = false;
 
-            webBrowser1.Document.Body.Style = "overflow:hidden";
-        }
+        //    webBrowser1.Document.Body.Style = "overflow:hidden";
+        //}
 
         private void BeginLogin()
         {
@@ -830,32 +830,32 @@ namespace METAbolt
             
         }
 
-        private void DoBrowser()
-        {
-            //string lkey = instance.Config.CurrentConfig.AdRemove;
+        //private void DoBrowser()
+        //{
+        //    //string lkey = instance.Config.CurrentConfig.AdRemove;
 
-            //if (lkey != string.Empty)
-            //{
-            //    METAMD5 md5 = new METAMD5();
+        //    //if (lkey != string.Empty)
+        //    //{
+        //    //    METAMD5 md5 = new METAMD5();
 
-            //    if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
-            //    {
-            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
-            //    }
-            //    else
-            //    {
-            //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
-            //    }
-            //}
-            //else
-            //{
-            //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
-            //}
+        //    //    if (md5.VerifyAdLicence(netcom.LoginOptions.FullName, client.Self.AgentID.ToString(), lkey))
+        //    //    {
+        //    //        murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString();
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+        //    //    }
+        //    //}
+        //    //else
+        //    //{
+        //    //    murl = "http://www.metabolt.net/index.asp?user=login&nod=false&ver=" + Properties.Resources.METAboltVersion.ToString();
+        //    //}
 
-            ////murl = "http://www.metabolt.net/index.asp?user=none&ver=" + Properties.Resources.METAboltVersion.ToString();
+        //    ////murl = "http://www.metabolt.net/index.asp?user=none&ver=" + Properties.Resources.METAboltVersion.ToString();
 
-            webBrowser1.Refresh();
-        }
+        //    //webBrowser1.Refresh();
+        //}
 
         private void chkPWD_CheckedChanged(object sender, EventArgs e)
         {
@@ -978,6 +978,63 @@ namespace METAbolt
             LoadGrids();
             InitGridCombo();
             cbxGrid.SelectedIndex = 0; 
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            webBrowser1.ScrollBarsEnabled = false;
+
+            webBrowser1.Document.Body.Style = "overflow:hidden";
+        }
+
+        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (clickedurl != string.Empty)
+            {
+                e.Cancel = true;
+                System.Diagnostics.Process.Start(e.Url.ToString());
+            }
+        }
+
+        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(clickedurl))
+            {
+                HtmlElement link = webBrowser1.Document.ActiveElement;
+                clickedurl = link.GetAttribute("href");
+            }
+
+            e.Cancel = true;
+
+            if (clickedurl.StartsWith("http://slurl.", StringComparison.CurrentCultureIgnoreCase))
+            {
+                // Open up the TP form here
+                string[] split = clickedurl.Split(new Char[] { '/' });
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
+
+                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, false)).Show();
+                clickedurl = string.Empty;
+                return;
+            }
+            else if (clickedurl.StartsWith("http://maps.secondlife", StringComparison.CurrentCultureIgnoreCase))
+            {
+                // Open up the TP form here
+                string[] split = clickedurl.Split(new Char[] { '/' });
+                string sim = split[4].ToString(CultureInfo.CurrentCulture);
+                double x = Convert.ToDouble(split[5].ToString(CultureInfo.CurrentCulture));
+                double y = Convert.ToDouble(split[6].ToString(CultureInfo.CurrentCulture));
+                double z = Convert.ToDouble(split[7].ToString(CultureInfo.CurrentCulture));
+
+                (new frmTeleport(instance, sim, (float)x, (float)y, (float)z, true)).Show();
+                clickedurl = string.Empty;
+                return;
+            }
+
+            System.Diagnostics.Process.Start(clickedurl);
+            clickedurl = string.Empty;  
         }
     }
 }

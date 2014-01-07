@@ -2,7 +2,7 @@
 //  Parts are based on the PrimWorkshop project of libopenmv
 //
 //  Copyright (c) 2009-2011, Radegast Development Team
-//  Copyright (c) 2008-2013, www.metabolt.net
+//  Copyright (c) 2008 - 2014, www.metabolt.net (METAbolt)
 //  All rights reserved.
 
 //  Redistribution and use in source and binary forms, with or without modification, 

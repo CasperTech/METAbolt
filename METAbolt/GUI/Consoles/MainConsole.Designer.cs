@@ -34,6 +34,7 @@ namespace METAbolt
             this.pnlLoggingIn = new System.Windows.Forms.Panel();
             this.lblLoginStatus = new System.Windows.Forms.Label();
             this.pnlLoginPage = new System.Windows.Forms.Panel();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.pnlLoginPrompt = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -54,7 +55,6 @@ namespace METAbolt
             this.label3 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.label7 = new System.Windows.Forms.Label();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.pnlLoggingIn.SuspendLayout();
             this.pnlLoginPage.SuspendLayout();
             this.pnlLoginPrompt.SuspendLayout();
@@ -117,6 +117,18 @@ namespace METAbolt
             this.pnlLoginPage.Size = new System.Drawing.Size(676, 358);
             this.pnlLoginPage.TabIndex = 10;
             this.pnlLoginPage.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLoginPage_Paint);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(676, 358);
+            this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
+            this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
             // 
             // pnlLoginPrompt
             // 
@@ -372,15 +384,6 @@ namespace METAbolt
             this.label7.Size = new System.Drawing.Size(42, 12);
             this.label7.TabIndex = 18;
             this.label7.Text = "version";
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(676, 358);
-            this.webBrowser1.TabIndex = 0;
             // 
             // MainConsole
             // 

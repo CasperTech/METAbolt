@@ -1,4 +1,4 @@
-//  Copyright (c) 2008 - 2013, www.metabolt.net (METAbolt)
+//  Copyright (c) 2008 - 2014, www.metabolt.net (METAbolt)
 //  Copyright (c) 2006-2008, Paul Clement (a.k.a. Delta)
 //  All rights reserved.
 
@@ -1507,8 +1507,13 @@ namespace METAbolt
 
                         if (SecondLifeReg == null)
                         {
-                            MessageBox.Show("The Secondlife viewer is not installed", "METAbolt");
-                            return string.Empty;
+                            SecondLifeReg = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Linden Research, Inc.\\SecondLifeViewer");
+
+                            if (SecondLifeReg == null)
+                            {
+                                MessageBox.Show("The Secondlife viewer is not installed", "METAbolt");
+                                return string.Empty;
+                            }
                         }
                     }
                 }
