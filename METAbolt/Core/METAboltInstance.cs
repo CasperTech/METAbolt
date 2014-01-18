@@ -388,24 +388,26 @@ namespace METAbolt
                 long size = GetDirectorySize(logdir);
                 double fsize = ConvertBytesToMegabytes(size);
 
-                if (fsize > 250)
+                if (fsize > 1000)
                 {
-                    DialogResult res = MessageBox.Show("Your chat log folder is over 250MB in size.\n\nDo you want to delete log files older than 60 days?", "METAbolt", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    //DialogResult res = MessageBox.Show("Your chat log folder is over 3GB in size.\n\nDo you want to delete log files older than 60 days?", "METAbolt", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                    if (res == DialogResult.Yes)
-                    {
-                        DirectoryInfo dir = new DirectoryInfo(logdir);
+                    tabsConsole.DisplayChatScreen("Your chat log folder is over 1GB in size.");
 
-                        FileInfo[] rgFiles = dir.GetFiles("*.txt");
+                    //if (res == DialogResult.Yes)
+                    //{
+                    //    DirectoryInfo dir = new DirectoryInfo(logdir);
 
-                        foreach (FileInfo fi in rgFiles)
-                        {
-                            if (DateTime.Now.AddDays(-60) > fi.CreationTime)
-                            {
-                                fi.Delete();
-                            }
-                        }
-                    }
+                    //    FileInfo[] rgFiles = dir.GetFiles("*.txt");
+
+                    //    foreach (FileInfo fi in rgFiles)
+                    //    {
+                    //        if (DateTime.Now.AddDays(-60) > fi.CreationTime)
+                    //        {
+                    //            fi.Delete();
+                    //        }
+                    //    }
+                    //}
                 }
             }
 
