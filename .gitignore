@@ -1,0 +1,11 @@
+*Thumbs.db
+*.orig
+*.bak
+*.diff
+*.resources
+*.pidb
+*.exe
+*.userprefs
+
+METAbolt/bin
+.hg_archival.txt
