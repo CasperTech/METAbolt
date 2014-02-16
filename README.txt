@@ -21,8 +21,6 @@ To get the live source code you have 2 options:
 
 
 
-1. Use HG (Source tab)
+1. Use Git (see the "Clone URL" on the right hand side)
 
-2. Use the Download tab to download in ZIP, gz or bz2 file formats
-
-If you use HG (recommended) I would recommend TortoiseHG (http://tortoisehg.bitbucket.org/)
+2. Use the "Download Zip" button to download a zip file containing the current "bleeding edge" source code.
