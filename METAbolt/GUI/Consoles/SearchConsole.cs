@@ -96,7 +96,7 @@ namespace METAbolt
             webBrowser = new WebBrowser();
             webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
             webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
-            webBrowser.Url = new Uri("http://www.metabolt.net/metasearch.aspx");
+            webBrowser.Url = new Uri("http://www.metabolt.net/metasearch.php");
             webBrowser.AllowNavigation = true;
             //webBrowser.AllowWebBrowserDrop = false;
             webBrowser.Dock = DockStyle.Fill;
@@ -157,7 +157,7 @@ namespace METAbolt
             HtmlElement link = webBrowser.Document.ActiveElement;
             clickedurl = link.GetAttribute("href");
 
-            string murl = "http://www.metabolt.net/METAsearchRedirect.asp?URL=" + clickedurl;
+            string murl = "http://www.metabolt.net/METAsearchRedirect.php?URL=" + clickedurl;
             System.Diagnostics.Process.Start(murl);
         }
 

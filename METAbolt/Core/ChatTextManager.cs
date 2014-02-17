@@ -739,7 +739,7 @@ namespace METAbolt
 
                     if (pwd == "invalid")
                     {
-                        gmsg = "IMPORTANT WARNING: A group invite could not be sent out. Your GroupMan Pro is out of date. For more information please visit: http://www.metabolt.net/metaforums/yaf_postsm1525_GroupMan-Pro-update.aspx#post1525 \nThe password used is: " + pwd + ".";
+                        gmsg = "IMPORTANT WARNING: A group invite could not be sent out. Your GroupMan Pro is out of date.";
                     }
                     else
                     {

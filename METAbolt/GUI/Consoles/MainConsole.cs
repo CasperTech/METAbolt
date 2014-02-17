@@ -523,7 +523,7 @@ namespace METAbolt
 
         private void InitializeWebBrowser()
         {
-            murl = "http://www.metabolt.net/index.asp?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
+            murl = "http://www.metabolt.net/index.php?user=login&nod=true&ver=" + Properties.Resources.METAboltVersion.ToString(CultureInfo.CurrentCulture);
 
             //webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
             //webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser_Navigating);
