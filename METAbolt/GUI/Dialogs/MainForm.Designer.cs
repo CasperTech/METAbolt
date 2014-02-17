@@ -75,9 +75,6 @@ namespace METAbolt
             this.scriptingPortalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tmnuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.mnuDollar = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDonate = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAvatar = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.awayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -430,7 +427,6 @@ namespace METAbolt
             this.tbtnMETAbolt,
             this.toolStripSeparator1,
             this.tbtnHelp,
-            this.toolStripDropDownButton2,
             this.btnAvatar,
             this.toolStripSeparator2,
             this.tlTools,
@@ -678,35 +674,6 @@ namespace METAbolt
             this.tmnuAbout.Text = "About METAbolt";
             this.tmnuAbout.Click += new System.EventHandler(this.tmnuAbout_Click);
             // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.AccessibleName = "Donation menu";
-            this.toolStripDropDownButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuDollar,
-            this.mnuDonate});
-            this.toolStripDropDownButton2.Image = global::METAbolt.Properties.Resources.donate;
-            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton2.Text = "Pls &DONATE to keep METAbolt in development";
-            // 
-            // mnuDollar
-            // 
-            this.mnuDollar.Name = "mnuDollar";
-            this.mnuDollar.Size = new System.Drawing.Size(138, 22);
-            this.mnuDollar.Text = "Donate US $";
-            this.mnuDollar.Click += new System.EventHandler(this.mnuDollar_Click);
-            // 
-            // mnuDonate
-            // 
-            this.mnuDonate.Enabled = false;
-            this.mnuDonate.Name = "mnuDonate";
-            this.mnuDonate.Size = new System.Drawing.Size(138, 22);
-            this.mnuDonate.Text = "Donate L$";
-            this.mnuDonate.Click += new System.EventHandler(this.mnuDonate_Click);
-            // 
             // btnAvatar
             // 
             this.btnAvatar.AccessibleName = "World menu";
@@ -837,7 +804,7 @@ namespace METAbolt
             this.flyToolStripMenuItem.AccessibleName = "Fly menu option";
             this.flyToolStripMenuItem.CheckOnClick = true;
             this.flyToolStripMenuItem.Name = "flyToolStripMenuItem";
-            this.flyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.flyToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.flyToolStripMenuItem.Text = "Fly";
             this.flyToolStripMenuItem.Click += new System.EventHandler(this.flyToolStripMenuItem_Click);
             // 
@@ -846,7 +813,7 @@ namespace METAbolt
             this.alwaysRunToolStripMenuItem.AccessibleName = "Always run menu option";
             this.alwaysRunToolStripMenuItem.CheckOnClick = true;
             this.alwaysRunToolStripMenuItem.Name = "alwaysRunToolStripMenuItem";
-            this.alwaysRunToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.alwaysRunToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.alwaysRunToolStripMenuItem.Text = "Always Run";
             this.alwaysRunToolStripMenuItem.Click += new System.EventHandler(this.alwaysRunToolStripMenuItem_Click);
             // 
@@ -1366,9 +1333,6 @@ namespace METAbolt
         private System.Windows.Forms.ToolStripMenuItem scriptingPortalToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem tmnuAbout;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.ToolStripMenuItem mnuDollar;
-        private System.Windows.Forms.ToolStripMenuItem mnuDonate;
         private System.Windows.Forms.ToolStripDropDownButton btnAvatar;
         private System.Windows.Forms.ToolStripMenuItem statusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem awayToolStripMenuItem;
