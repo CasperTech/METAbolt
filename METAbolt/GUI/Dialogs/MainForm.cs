@@ -689,7 +689,7 @@ namespace METAbolt
 
             client.Settings.ASSET_CACHE_DIR = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + System.IO.Path.DirectorySeparatorChar + client.Self.Name + System.IO.Path.DirectorySeparatorChar + "cache";
 
-            tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
+            tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
             statusTimer.Enabled = true;
             statusTimer.Start();
             RefreshWindowTitle();
@@ -1947,7 +1947,7 @@ namespace METAbolt
                 }
                 else
                 {
-                    tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
+                    tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
                     statusTimer.Enabled = false;
                     statusTimer.Stop();
 
@@ -1970,7 +1970,7 @@ namespace METAbolt
             try
             {
                 // UI shutdown
-                tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
+                tlTools.Enabled = btnMap.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
                 RefreshStatusBar();
                 RefreshWindowTitle();
 
@@ -2059,7 +2059,7 @@ namespace METAbolt
             try
             {
                 // UI shutdown
-                tlTools.Enabled = btnMap.Enabled = mnuDonate.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
+                tlTools.Enabled = btnMap.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = false;
 
                 RefreshStatusBar();
                 RefreshWindowTitle();
