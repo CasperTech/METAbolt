@@ -212,10 +212,6 @@
       <HintPath>..\Libs\ScintillaNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SLNetworkComm">
-      <HintPath>..\Libs\SLNetworkComm.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -230,6 +226,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -1105,6 +1102,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SLNetworkComm\Enums.cs" />
+    <Compile Include="SLNetworkComm\EventArgs\ChatSentEventArgs.cs" />
+    <Compile Include="SLNetworkComm\EventArgs\InstantMessageSentEventArgs.cs" />
+    <Compile Include="SLNetworkComm\EventArgs\OverrideEventArgs.cs" />
+    <Compile Include="SLNetworkComm\EventArgs\TeleportingEventArgs.cs" />
+    <Compile Include="SLNetworkComm\LoginOptions.cs" />
+    <Compile Include="SLNetworkComm\SLNetCom\SLNetCom.cs" />
+    <Compile Include="SLNetworkComm\SLNetCom\SLNetComEvents.cs" />
+    <Compile Include="SLNetworkComm\StartLocationParser.cs" />
     <Compile Include="Smileys.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
