@@ -255,7 +255,8 @@ namespace METAbolt
                     buff += " ";
                 }
 
-                rtb.InsertLink(" " + text, link);
+                rtb.AppendText(" ");
+                rtb.InsertLink(text, link);
 
                 rtb.SelectionBackColor = bkcolour;
                 rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
@@ -312,7 +313,7 @@ namespace METAbolt
                 rtb.SelectionColor = Color.DarkGray;
                 ////rtb.SelectionCharOffset = 6;
                 rtb.SelectionFont = new Font(rtb.SelectionFont.Name, textfontsize - 1, rtb.SelectionFont.Style);
-                rtb.SelectionCharOffset = 10;
+                rtb.SelectionCharOffset = 0;// 10;
                 AppendNStext(text);
                 
                 //rtb.AppendTextAsRtf(text, new Font(rtb.SelectionFont.Name, textfontsize - 2), RtfColor.Gray, RtfColor.White);
