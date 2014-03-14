@@ -666,14 +666,14 @@ namespace METAbolt
                         }
                         else
                         {
-                            if (item.FromName == client.Self.Name)   //FirstName + " " + client.Self.LastName)
-                            {
-                                prefix = dte.ToString("   [HH:mm] ", CultureInfo.CurrentCulture);
-                            }
-                            else
-                            {
+                           // if (item.FromName == client.Self.Name)   //FirstName + " " + client.Self.LastName)
+                          //  {
                                 prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
-                            }
+                          //  }
+                          //  else
+                         //   {
+                        //        prefix = dte.ToString("[HH:mm] ", CultureInfo.CurrentCulture);
+                         //   }
                         }
                     }
                 }
@@ -1350,7 +1350,7 @@ namespace METAbolt
 
                     string header = string.Empty;
 
-                    header = "   [HH:mm] ";
+                    header = "[HH:mm] ";
                     //textPrinter.SetSelectionForeColor(Color.Gray);
                     //textPrinter.SetOffset(6);
                     //textPrinter.SetFontSize(6.5f);
