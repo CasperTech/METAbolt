@@ -228,9 +228,12 @@ namespace METAbolt
 
                 foreach (KeyValuePair<UUID, Group> g in e.Groups)
                 {
-                    if (!instance.State.Groups.ContainsKey(g.Key))
+                    lock (instance.State.Groups)
                     {
-                        instance.State.Groups.Add(g.Key, g.Value);
+                        if (!instance.State.Groups.ContainsKey(g.Key))
+                        {
+                            instance.State.Groups.Add(g.Key, g.Value);
+                        }
                     }
                 }
 
@@ -398,12 +401,15 @@ namespace METAbolt
         private void GetGroupsName()
         {
             //this.instance.State.GroupStore.Clear();
-
+            
             foreach (Group group in this.instance.State.Groups.Values)
             {
-                if (!instance.State.GroupStore.ContainsKey(group.ID))
+                lock (instance.State.GroupStore)
                 {
-                    this.instance.State.GroupStore.Add(group.ID, group.Name);
+                    if (!instance.State.GroupStore.ContainsKey(group.ID))
+                    {
+                        this.instance.State.GroupStore.Add(group.ID, group.Name);
+                    }
                 }
             }
         }
@@ -880,35 +886,38 @@ namespace METAbolt
 
             if (e.IM.Dialog == InstantMessageDialog.SessionSend)
             {
-                if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+                lock (this.instance.State.GroupStore)
                 {
-                    //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
-
-                    // Check to see if group IMs are disabled
-                    if (instance.Config.CurrentConfig.DisableGroupIMs)
-                        return;
-
-                    if (instance.State.IsBusy) return;
-
-                    if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
+                    if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
                     {
-                        METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower(CultureInfo.CurrentCulture)];
-                        if (!tab.Selected)
+                        //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
+
+                        // Check to see if group IMs are disabled
+                        if (instance.Config.CurrentConfig.DisableGroupIMs)
+                            return;
+
+                        if (instance.State.IsBusy) return;
+
+                        if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
                         {
-                            tab.Highlight();
-                            tabs["imbox"].PartialHighlight();
+                            METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower(CultureInfo.CurrentCulture)];
+                            if (!tab.Selected)
+                            {
+                                tab.Highlight();
+                                tabs["imbox"].PartialHighlight();
+                            }
+
+                            return;
                         }
+                        else
+                        {
+                            IMTabWindowGroup imTab = AddIMTabGroup(e);
+                            tabs[imTab.TargetName.ToLower()].Highlight();
+                            tabs["imbox"].IMboxHighlight();
+                            if (tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Selected) tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
 
-                        return;
-                    }
-                    else
-                    {
-                        IMTabWindowGroup imTab = AddIMTabGroup(e);
-                        tabs[imTab.TargetName.ToLower()].Highlight();
-                        tabs["imbox"].IMboxHighlight();
-                        if (tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Selected) tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
-
-                        return;
+                            return;
+                        }
                     }
                 }
 
@@ -959,73 +968,75 @@ namespace METAbolt
                     notifForm.Show();
                 }
             }
-
-            if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+            lock (this.instance.State.GroupStore)
             {
-                //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
-
-                // Check to see if group IMs are disabled
-                if (instance.Config.CurrentConfig.DisableGroupIMs)
+                if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
                 {
-                    Group grp = this.instance.State.Groups[e.IM.IMSessionID];
-                    client.Self.RequestLeaveGroupChat(grp.ID);
-                    return;
-                }
+                    //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
 
-                if (instance.State.IsBusy)
-                {
-                    Group grp = this.instance.State.Groups[e.IM.IMSessionID];
-                    client.Self.RequestLeaveGroupChat(grp.ID);
-                    return;
-                }
+                    // Check to see if group IMs are disabled
+                    if (instance.Config.CurrentConfig.DisableGroupIMs)
+                    {
+                        Group grp = this.instance.State.Groups[e.IM.IMSessionID];
+                        client.Self.RequestLeaveGroupChat(grp.ID);
+                        return;
+                    }
 
-                if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
-                {
-                    METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower(CultureInfo.CurrentCulture)];
-                    if (!tab.Selected) tab.PartialHighlight();
-                    //Logger.Log("Stored|ExistingGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
-                    return;
+                    if (instance.State.IsBusy)
+                    {
+                        Group grp = this.instance.State.Groups[e.IM.IMSessionID];
+                        client.Self.RequestLeaveGroupChat(grp.ID);
+                        return;
+                    }
+
+                    if (TabExists(this.instance.State.GroupStore[e.IM.IMSessionID]))
+                    {
+                        METAboltTab tab = tabs[this.instance.State.GroupStore[e.IM.IMSessionID].ToLower(CultureInfo.CurrentCulture)];
+                        if (!tab.Selected) tab.PartialHighlight();
+                        //Logger.Log("Stored|ExistingGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
+                        return;
+                    }
+                    else
+                    {
+                        //create a new tab
+                        IMTabWindowGroup imTab = AddIMTabGroup(e);
+                        tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
+
+                        if (instance.Config.CurrentConfig.PlayGroupIMreceived)
+                        {
+                            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Group_Im_received);
+                            simpleSound.Play();
+                            simpleSound.Dispose();
+                        }
+
+                        //Logger.Log("Stored|NewGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
+                        return;
+                    }
                 }
                 else
                 {
-                    //create a new tab
-                    IMTabWindowGroup imTab = AddIMTabGroup(e);
-                    tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
-
-                    if (instance.Config.CurrentConfig.PlayGroupIMreceived)
+                    if (TabExists(e.IM.FromAgentName))
                     {
-                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.Group_Im_received);
-                        simpleSound.Play();
-                        simpleSound.Dispose();
+                        METAboltTab tab = tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)];
+                        if (!tab.Selected) tab.PartialHighlight();
+                        return;
                     }
-
-                    //Logger.Log("Stored|NewGroupTab:: " + e.IM.Message, Helpers.LogLevel.Debug);
-                    return;
-                }
-            }
-            else
-            {
-                if (TabExists(e.IM.FromAgentName))
-                {
-                    METAboltTab tab = tabs[e.IM.FromAgentName.ToLower(CultureInfo.CurrentCulture)];
-                    if (!tab.Selected) tab.PartialHighlight();
-                    return;
-                }
-                else
-                {
-                    IMTabWindow imTab = AddIMTab(e);
-                    tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
-
-                    if (instance.Config.CurrentConfig.InitialIMReply.Length > 0)
+                    else
                     {
-                        client.Self.InstantMessage(e.IM.FromAgentID, instance.Config.CurrentConfig.InitialIMReply);
-                    }
+                        IMTabWindow imTab = AddIMTab(e);
+                        tabs[imTab.TargetName.ToLower(CultureInfo.CurrentCulture)].Highlight();
 
-                    if (instance.Config.CurrentConfig.PlayIMreceived)
-                    {
-                        SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.IM_received);
-                        simpleSound.Play();
-                        simpleSound.Dispose();
+                        if (instance.Config.CurrentConfig.InitialIMReply.Length > 0)
+                        {
+                            client.Self.InstantMessage(e.IM.FromAgentID, instance.Config.CurrentConfig.InitialIMReply);
+                        }
+
+                        if (instance.Config.CurrentConfig.PlayIMreceived)
+                        {
+                            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.IM_received);
+                            simpleSound.Play();
+                            simpleSound.Dispose();
+                        }
                     }
                 }
             }

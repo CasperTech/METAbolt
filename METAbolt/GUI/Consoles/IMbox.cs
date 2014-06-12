@@ -168,19 +168,22 @@ namespace METAbolt
 
             string TabAgentName = string.Empty;
 
-            if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+            lock (this.instance.State.GroupStore)
             {
-                //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
+                if (this.instance.State.GroupStore.ContainsKey(e.IM.IMSessionID))
+                {
+                    //if (null != client.Self.MuteList.Find(me => me.Type == MuteType.Group && (me.ID == e.IM.IMSessionID || me.ID == e.IM.FromAgentID))) return;
 
-                // Check to see if group IMs are disabled
-                if (instance.Config.CurrentConfig.DisableGroupIMs) return;
+                    // Check to see if group IMs are disabled
+                    if (instance.Config.CurrentConfig.DisableGroupIMs) return;
 
-                TabAgentName = this.instance.State.GroupStore[e.IM.IMSessionID];
-            }
-            else
-            {
-                if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
-                TabAgentName = e.IM.FromAgentName;
+                    TabAgentName = this.instance.State.GroupStore[e.IM.IMSessionID];
+                }
+                else
+                {
+                    if (instance.IsAvatarMuted(e.IM.FromAgentID, e.IM.FromAgentName)) return;
+                    TabAgentName = e.IM.FromAgentName;
+                }
             }
 
             int s = lbxIMs.FindString(TabAgentName);

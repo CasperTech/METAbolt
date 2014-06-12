@@ -134,24 +134,25 @@ namespace METAbolt
             try
             {
                 lstGroups.Items.Clear();
-
-                foreach (Group group in this.instance.State.Groups.Values)
+                lock (this.instance.State.Groups)
                 {
-                    lstGroups.Items.Add(group);
-
-                    if (Client.Self.ActiveGroup != UUID.Zero)
+                    foreach (Group group in this.instance.State.Groups.Values)
                     {
-                        if (Client.Self.ActiveGroup == group.ID)
+                        lstGroups.Items.Add(group);
+
+                        if (Client.Self.ActiveGroup != UUID.Zero)
                         {
-                            label1.Text = "Current group tag worn: " + group.Name;
+                            if (Client.Self.ActiveGroup == group.ID)
+                            {
+                                label1.Text = "Current group tag worn: " + group.Name;
+                            }
+                        }
+                        else
+                        {
+                            label1.Text = "Current group tag worn: None";
                         }
                     }
-                    else
-                    {
-                        label1.Text = "Current group tag worn: None";
-                    }
                 }
-
                 lstGroups.Sorted = true;
                 lstGroups.Sorted = false;
 
@@ -242,19 +243,25 @@ namespace METAbolt
                 return;
             }
 
-            foreach (KeyValuePair<UUID, Group> g in e.Groups)
+            lock (instance.State.Groups)
             {
-                if (!instance.State.Groups.ContainsKey(g.Key))
+                foreach (KeyValuePair<UUID, Group> g in e.Groups)
                 {
-                    instance.State.Groups.Add(g.Key, g.Value);
+                    if (!instance.State.Groups.ContainsKey(g.Key))
+                    {
+                        instance.State.Groups.Add(g.Key, g.Value);
+                    }
                 }
             }
 
-            foreach (Group group in this.instance.State.Groups.Values)
+            lock (instance.State.GroupStore)
             {
-                if (!instance.State.GroupStore.ContainsKey(group.ID))
+                foreach (Group group in this.instance.State.Groups.Values)
                 {
-                    this.instance.State.GroupStore.Add(group.ID, group.Name);
+                    if (!instance.State.GroupStore.ContainsKey(group.ID))
+                    {
+                        this.instance.State.GroupStore.Add(group.ID, group.Name);
+                    }
                 }
             }
 
