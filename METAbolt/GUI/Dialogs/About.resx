@@ -608,16 +608,16 @@
 </value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>METAbolt is distributed and supported by the METAbolt development team.
+    <value>METAbolt is distributed and supported by CasperTech Ltd.
 
 This software contains open source software developed and given to the public by other developers. 
 
 This software contains components that are not distributed under the New BSD License and some components are not open source.
 
-Author   : Legolas Luke
-Main Code: Legolas Luke
-Concepts : Legolas Luke
-Additional Concepts: METAbolt user community (METAforums members)
+Author: Tom Mettam
+Main Code: Legolas Luke (Retired)
+Concepts: Legolas Luke (Retired)
+Additional Concepts: METAbolt user community
 
 
 Based on SLeek
@@ -643,6 +643,7 @@ Copyrights:
 
 Developers:
 
+Tom Mettam
 Legolas Luke
 Apotheus Silverman
 Goss Machin
