@@ -170,122 +170,125 @@ namespace METAbolt
                 if (this.TreeView.Nodes != null)
                 {
                     TreeNode[] array = this.TreeView.Nodes.Find(folderID.ToString(), true);
-                    TreeNodeCollection nodes = array[0].Nodes;
-                    nodes.Clear();
-                    if (contents.Count == 0)
+                    if (array.Length > 0)
                     {
-                        nodes.Add(UUID.Zero.ToString(), "(empty)");
-                        nodes[UUID.Zero.ToString()].Tag = "empty";
-                        nodes[UUID.Zero.ToString()].ForeColor = Color.FromKnownColor(KnownColor.GrayText);
-                    }
-                    else
-                    {
-                        List<Primitive> list = this.client.Network.CurrentSim.ObjectsPrimitives.FindAll(delegate(Primitive prim)
+                        TreeNodeCollection nodes = array[0].Nodes;
+                        nodes.Clear();
+                        if (contents.Count == 0)
                         {
-                            bool result;
-                            try
-                            {
-                                result = (prim.ParentID == instance.Client.Self.LocalID);
-                            }
-                            catch
-                            {
-                                result = false;
-                            }
-                            return result;
-                        });
-                        foreach (InventoryBase current in contents)
+                            nodes.Add(UUID.Zero.ToString(), "(empty)");
+                            nodes[UUID.Zero.ToString()].Tag = "empty";
+                            nodes[UUID.Zero.ToString()].ForeColor = Color.FromKnownColor(KnownColor.GrayText);
+                        }
+                        else
                         {
-                            string key = current.UUID.ToString();
-                            bool flag = current is InventoryFolder;
-                            try
+                            List<Primitive> list = this.client.Network.CurrentSim.ObjectsPrimitives.FindAll(delegate(Primitive prim)
                             {
-                                string text = string.Empty;
-                                if (!flag)
+                                bool result;
+                                try
                                 {
-                                    InventoryItem inventoryItem = (InventoryItem)current;
-                                    WearableType wearableType = this.client.Appearance.IsItemWorn(inventoryItem);
-                                    if (wearableType != WearableType.Invalid)
+                                    result = (prim.ParentID == instance.Client.Self.LocalID);
+                                }
+                                catch
+                                {
+                                    result = false;
+                                }
+                                return result;
+                            });
+                            foreach (InventoryBase current in contents)
+                            {
+                                string key = current.UUID.ToString();
+                                bool flag = current is InventoryFolder;
+                                try
+                                {
+                                    string text = string.Empty;
+                                    if (!flag)
                                     {
-                                        text = " (WORN)";
-                                    }
-                                    UUID lhs = UUID.Zero;
-                                    foreach (Primitive current2 in list)
-                                    {
-                                        if (current2.NameValues != null)
+                                        InventoryItem inventoryItem = (InventoryItem)current;
+                                        WearableType wearableType = this.client.Appearance.IsItemWorn(inventoryItem);
+                                        if (wearableType != WearableType.Invalid)
                                         {
-                                            for (int i = 0; i < current2.NameValues.Length; i++)
+                                            text = " (WORN)";
+                                        }
+                                        UUID lhs = UUID.Zero;
+                                        foreach (Primitive current2 in list)
+                                        {
+                                            if (current2.NameValues != null)
                                             {
-                                                if (current2.NameValues[i].Name == "AttachItemID")
+                                                for (int i = 0; i < current2.NameValues.Length; i++)
                                                 {
-                                                    lhs = (UUID)current2.NameValues[i].Value.ToString();
-                                                    if (lhs == inventoryItem.UUID)
+                                                    if (current2.NameValues[i].Name == "AttachItemID")
                                                     {
-                                                        text = " (WORN)";
-                                                        break;
+                                                        lhs = (UUID)current2.NameValues[i].Value.ToString();
+                                                        if (lhs == inventoryItem.UUID)
+                                                        {
+                                                            text = " (WORN)";
+                                                            break;
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
-                                    }
-                                    nodes.Add(key, current.Name + text);
-                                    nodes[key].Tag = current;
-                                    if (text == " (WORN)")
-                                    {
-                                        nodes[key].ForeColor = Color.RoyalBlue;
-                                    }
-                                    string empty = string.Empty;
-                                    InventoryType inventoryType = inventoryItem.InventoryType;
-                                    switch (inventoryType)
-                                    {
-                                        case InventoryType.Texture:
-                                            nodes[key].ImageKey = "Texture";
-                                            continue;
-                                        case InventoryType.Sound:
-                                        case (InventoryType)4:
-                                        case (InventoryType)5:
-                                        case InventoryType.Category:
-                                        case InventoryType.RootCategory:
-                                            break;
-                                        case InventoryType.CallingCard:
-                                            nodes[key].ImageKey = "CallingCard";
-                                            continue;
-                                        case InventoryType.Landmark:
-                                            nodes[key].ImageKey = "LM";
-                                            continue;
-                                        case InventoryType.Object:
-                                            nodes[key].ImageKey = "Objects";
-                                            continue;
-                                        case InventoryType.Notecard:
-                                            nodes[key].ImageKey = "Notecard";
-                                            continue;
-                                        case InventoryType.LSL:
-                                            nodes[key].ImageKey = "Script";
-                                            continue;
-                                        default:
-                                            if (inventoryType == InventoryType.Snapshot)
-                                            {
-                                                nodes[key].ImageKey = "Snapshots";
+                                        nodes.Add(key, current.Name + text);
+                                        nodes[key].Tag = current;
+                                        if (text == " (WORN)")
+                                        {
+                                            nodes[key].ForeColor = Color.RoyalBlue;
+                                        }
+                                        string empty = string.Empty;
+                                        InventoryType inventoryType = inventoryItem.InventoryType;
+                                        switch (inventoryType)
+                                        {
+                                            case InventoryType.Texture:
+                                                nodes[key].ImageKey = "Texture";
                                                 continue;
-                                            }
-                                            if (inventoryType == InventoryType.Wearable)
-                                            {
-                                                nodes[key].ImageKey = "Wearable";
+                                            case InventoryType.Sound:
+                                            case (InventoryType)4:
+                                            case (InventoryType)5:
+                                            case InventoryType.Category:
+                                            case InventoryType.RootCategory:
+                                                break;
+                                            case InventoryType.CallingCard:
+                                                nodes[key].ImageKey = "CallingCard";
                                                 continue;
-                                            }
-                                            break;
+                                            case InventoryType.Landmark:
+                                                nodes[key].ImageKey = "LM";
+                                                continue;
+                                            case InventoryType.Object:
+                                                nodes[key].ImageKey = "Objects";
+                                                continue;
+                                            case InventoryType.Notecard:
+                                                nodes[key].ImageKey = "Notecard";
+                                                continue;
+                                            case InventoryType.LSL:
+                                                nodes[key].ImageKey = "Script";
+                                                continue;
+                                            default:
+                                                if (inventoryType == InventoryType.Snapshot)
+                                                {
+                                                    nodes[key].ImageKey = "Snapshots";
+                                                    continue;
+                                                }
+                                                if (inventoryType == InventoryType.Wearable)
+                                                {
+                                                    nodes[key].ImageKey = "Wearable";
+                                                    continue;
+                                                }
+                                                break;
+                                        }
+                                        nodes[key].ImageKey = "Gear";
                                     }
-                                    nodes[key].ImageKey = "Gear";
+                                    else
+                                    {
+                                        nodes.Add(key, current.Name);
+                                        nodes[key].Tag = current;
+                                        nodes[key].ImageKey = "ClosedFolder";
+                                        nodes[key].Nodes.Add(null, "(loading...)").ForeColor = Color.FromKnownColor(KnownColor.GrayText);
+                                    }
                                 }
-                                else
+                                catch (Exception var_16_4C6)
                                 {
-                                    nodes.Add(key, current.Name);
-                                    nodes[key].Tag = current;
-                                    nodes[key].ImageKey = "ClosedFolder";
-                                    nodes[key].Nodes.Add(null, "(loading...)").ForeColor = Color.FromKnownColor(KnownColor.GrayText);
                                 }
-                            }
-                            catch (Exception var_16_4C6)
-                            {
                             }
                         }
                     }
