@@ -514,7 +514,7 @@ namespace METAbolt
                 CheckBufferSize();
 
                 int _findex = rtb.Text.Length - text.Length - Environment.NewLine.Length;
-
+                if (_findex < 0) _findex = 0;
                 PutSmiley(_findex);
             }
         }
