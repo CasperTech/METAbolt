@@ -37,7 +37,6 @@ using SLNetworkComm;
 using OpenMetaverse;
 using System.Threading;
 using ExceptionReporting;
-using TreeViewUtilities;
 using System.Runtime.InteropServices;
 using System.Globalization;
 
