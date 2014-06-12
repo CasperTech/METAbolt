@@ -130,11 +130,11 @@ namespace METAbolt
             {
                 MGrids.Clear();
  
-                bool fext = System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Grids.txt");
+                bool fext = System.IO.File.Exists(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt" + "\\Grids.txt");
 
                 if (fext)
                 {
-                    string[] file = File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Grids.txt");
+                    string[] file = File.ReadAllLines(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt" + "\\Grids.txt");
 
                     MGrids = (from p in file
                               let x = p.Split(',')
@@ -144,7 +144,7 @@ namespace METAbolt
                 {
                     CreateGridFile();
 
-                    string[] file = File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Grids.txt");
+                    string[] file = File.ReadAllLines(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt" + "\\Grids.txt");
 
                     MGrids = (from p in file
                               let x = p.Split(',')
@@ -158,7 +158,7 @@ namespace METAbolt
         {
             StreamWriter SW;
 
-            SW = File.CreateText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Grids.txt");
+            SW = File.CreateText(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt" + "\\Grids.txt");
             SW.WriteLine("3rd Rock Grid,http://grid.3rdrockgrid.com:8002");
             SW.WriteLine("Avatar Hangout,http://login.avatarhangout.com:8002");
             SW.WriteLine("Cyberlandia,http://hypergrid.cyberlandia.net:8002");
@@ -426,11 +426,11 @@ namespace METAbolt
                                 // create the CMD file
                                 CreateCmdFile();
 
-                                FileInfo newFileInfo = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", fname + "_METAbolt.ini"));
+                                FileInfo newFileInfo = new FileInfo(Path.Combine(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt", fname + "_METAbolt.ini"));
 
                                 if (!newFileInfo.Exists)
                                 {
-                                    string pth = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", fname + "_METAbolt.ini");
+                                    string pth = Path.Combine(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt", fname + "_METAbolt.ini");
                                     instance.Config.CurrentConfig.Save(pth);
                                 }
                             }
@@ -776,7 +776,7 @@ namespace METAbolt
             {
                 string cuser = txtFirstName.Text + "_" + txtLastName.Text;
                 string textfile = cuser + ".bat";
-                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", textfile);
+                string path = Path.Combine(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt", textfile);
 
                 if (File.Exists(path))
                 {
@@ -961,7 +961,7 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string fullfile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Grids.txt"; ;
+            string fullfile = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\Grids.txt"; ;
 
             try
             {

@@ -1970,7 +1970,7 @@ namespace METAbolt
             bmp.UnlockBits(data);
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
+            string path = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\";
             string filename = "Object_Snaphot_" + DateTime.Now.ToString() + ".png";
             filename = filename.Replace("/", "-");
             filename = filename.Replace(":", "-");
@@ -2012,7 +2012,7 @@ namespace METAbolt
             bmp.UnlockBits(data);
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
+            string path = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\";
             string filename = "Object_Snaphot_" + DateTime.Now.ToString() + ".png";
             filename = filename.Replace("/", "-");
             filename = filename.Replace(":", "-");

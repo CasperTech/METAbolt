@@ -105,7 +105,7 @@ namespace METAbolt
         public SafeDictionary<UUID, string> avtags = new SafeDictionary<UUID, string>();
         public List<AvLocation> avlocations = new List<AvLocation>();
         private ExceptionReporter reporter = new ExceptionReporter();
-        public string appdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";
+        public string appdir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt";
         public bool startfrombat = false;
         private DataTable giveritems = null;
         private bool readims = false;

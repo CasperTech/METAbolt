@@ -16,7 +16,7 @@ namespace METAbolt
     public partial class PrefSpelling : System.Windows.Forms.UserControl, IPreferencePane
     {
         private METAboltInstance instance;
-        private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+        private string dir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\Spelling\\";
         private string lang = string.Empty;
         private Popup toolTip3;
         private CustomToolTip customToolTip;

@@ -53,7 +53,7 @@ namespace METAbolt
 
             lblVersion.Text = Properties.Resources.METAboltTitle + " V " + Properties.Resources.METAboltVersion;   
             txtDir.Text =  Application.StartupPath.ToString();
-            textBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\";
+            textBox1.Text = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\";
             //platform = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE").ToString();
 
             //lblVersion.Text += " (" + Properties.Resources.PlatformType + ")";

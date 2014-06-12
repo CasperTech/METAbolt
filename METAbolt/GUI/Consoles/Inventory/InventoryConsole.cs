@@ -104,7 +104,7 @@ namespace METAbolt
             Disposed += new EventHandler(InventoryConsole_Disposed);
 
             textfile = "\\" + client.Self.FirstName + "_" + client.Self.LastName + "_" + "Outfit.mtb";
-            this.path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", textfile);
+            this.path = Path.Combine(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt", textfile);
 
             ReadTextFile();
 

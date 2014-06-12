@@ -161,6 +161,7 @@
     </Reference>
     <Reference Include="Microsoft.Build.Conversion.v3.5" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MsgBoxCheck">
       <HintPath>..\Libs\MsgBoxCheck.dll</HintPath>
     </Reference>
@@ -291,6 +292,7 @@
     </Compile>
     <Compile Include="Core\Config\FileConfig.cs" />
     <Compile Include="Core\Config\FileINI.cs" />
+    <Compile Include="Core\DataFolder.cs" />
     <Compile Include="Core\ListItems\NumericStringComparer.cs" />
     <Compile Include="Core\ListItems\NumericStringComparerDateGroups.cs" />
     <Compile Include="Core\ListItems\RadarSorter.cs" />
@@ -1085,6 +1087,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Fakes Include="Fakes\SLNetworkComm.fakes" />
     <None Include="License_METAbolt.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

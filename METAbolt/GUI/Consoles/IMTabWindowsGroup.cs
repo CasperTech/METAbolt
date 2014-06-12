@@ -70,7 +70,7 @@ namespace METAbolt
         private string afffile = string.Empty;
         private string dicfile = string.Empty;
         private string dic = string.Empty;
-        private string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt\\Spelling\\";
+        private string dir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\Spelling\\";
 
 
         internal class ThreadExceptionHandler
@@ -996,7 +996,7 @@ namespace METAbolt
             // Create a SaveFileDialog to request a path and file name to save to.
             SaveFileDialog saveFile1 = new SaveFileDialog();
 
-            string logdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";
+            string logdir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt";
             logdir += "\\Logs\\";
 
             saveFile1.InitialDirectory = logdir; 
