@@ -30,7 +30,7 @@ namespace METAbolt
         {
             if (Type.GetType("Mono.Runtime") != null)
             {
-                return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\METABolt";
+                return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\data";
             }
             else
             {
