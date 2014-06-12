@@ -1055,7 +1055,7 @@ namespace METAbolt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legolas Luke.
+        ///   Looks up a localized string similar to CasperTech Ltd.
         /// </summary>
         internal static string METAboltAuthor {
             get {
