@@ -334,9 +334,11 @@ namespace METAbolt
             try
             {
                 //RefreshInventory();
-
-                List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favfolder);
-                instance.MainForm.UpdateFavourites(foundfolders);
+                if (favfolder.CompareTo(UUID.Zero) != 0)
+                {
+                    List<InventoryBase> foundfolders = client.Inventory.Store.GetContents(favfolder);
+                    instance.MainForm.UpdateFavourites(foundfolders);
+                }
             }
             catch { ; }
 
