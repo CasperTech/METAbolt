@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace METAbolt
 {
@@ -39,8 +40,15 @@ namespace METAbolt
         //default constructor
         public ConfigManager()
         {
-            configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", "METAbolt.ini");   // Path.Combine(Environment.CurrentDirectory, "METAbolt.ini");
-        }
+			if (Type.GetType ("Mono.Runtime") != null) 
+			{
+				configPath = Path.GetDirectoryName (Assembly.GetEntryAssembly ().Location);
+			}
+			else
+			{
+				configPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData) + "\\METAbolt", "METAbolt.ini");   // Path.Combine(Environment.CurrentDirectory, "METAbolt.ini");
+			}
+		}
 
         //named constructor
         public ConfigManager(string name)
