@@ -110,7 +110,7 @@ namespace METAbolt
         private bool saveims = true;
         private bool savechat = false;
         //private string logdir = Application.StartupPath.ToString() + "\\Logs\\";
-        private string logdir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Logs\\";
+        private string logdir = METAbolt.DataFolder.GetDataFolder() + "\\Logs\\";
 
         private bool disablegnotices = false;
         private bool disablegims = false;
@@ -305,7 +305,7 @@ namespace METAbolt
                 config.PlaySound = conf.Configs["Text"].GetBoolean("PlaySound", false);
                 config.SaveIMs = conf.Configs["Text"].GetBoolean("SaveIMs", true);
                 config.SaveChat = conf.Configs["Text"].GetBoolean("SaveChat", false);
-                config.LogDir = conf.Configs["Text"].GetString("LogDir", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt" + "\\Logs\\");
+                config.LogDir = conf.Configs["Text"].GetString("LogDir", METAbolt.DataFolder.GetDataFolder() + "\\Logs\\");
                 config.DisableGroupNotices = conf.Configs["Text"].GetBoolean("DisableGroupNotices", true);
                 config.DisableGroupIMs = conf.Configs["Text"].GetBoolean("DisableGroupIMs", false);
                 config.BusyReply = conf.Configs["Text"].GetString("BusyReply", "The Resident you messaged is in 'busy mode' which means they have requested not to be disturbed.  Your message will still be shown in their IM panel for later viewing.");
@@ -588,7 +588,7 @@ namespace METAbolt
             config.Set("EnableSpelling", enablespellcheck.ToString(CultureInfo.CurrentCulture));
             config.Set("SpellLanguage", spelllang);
 
-            FileInfo newFileInfo = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", filename));
+            FileInfo newFileInfo = new FileInfo(Path.Combine(METAbolt.DataFolder.GetDataFolder(), filename));
 
             if (newFileInfo.Exists)
             {

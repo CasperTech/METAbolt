@@ -53,8 +53,8 @@ namespace METAbolt
         {
             this.CenterToParent();
 
-            label2.Text = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";    //Application.StartupPath.ToString();
-            label8.Text = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";    //Application.StartupPath.ToString();
+            label2.Text = METAbolt.DataFolder.GetDataFolder();    //Application.StartupPath.ToString();
+            label8.Text = METAbolt.DataFolder.GetDataFolder();    //Application.StartupPath.ToString();
 
             currentDirectory = @label2.Text;
             currentDirectory += "\\";
@@ -138,7 +138,7 @@ namespace METAbolt
         {
             string cuser = "METAbolt";
             string textfile = cuser + ".bat";
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", textfile);
+            string path = Path.Combine(METAbolt.DataFolder.GetDataFolder(), textfile);
             string scfile = "METAbolt BAT.lnk";
             string sc = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), scfile);
 
@@ -191,7 +191,7 @@ namespace METAbolt
             WshShell shell = new WshShell();
             IWshShortcut link = (IWshShortcut)shell.CreateShortcut(sc);
             link.TargetPath = path;
-            link.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";    //Application.StartupPath.ToString();
+            link.WorkingDirectory = METAbolt.DataFolder.GetDataFolder();    //Application.StartupPath.ToString();
             link.Description = "METAbolt BAT shortcut";
             //link.IconLocation = Environment.CurrentDirectory + ""; 
             link.Save();
@@ -209,7 +209,7 @@ namespace METAbolt
             WshShell shell = new WshShell();
             IWshShortcut link = (IWshShortcut)shell.CreateShortcut(sc);
             link.TargetPath = path;
-            link.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt";    //Application.StartupPath.ToString(); 
+            link.WorkingDirectory = METAbolt.DataFolder.GetDataFolder();    //Application.StartupPath.ToString(); 
             link.Description = "METAbolt_" + fname + " BAT shortcut";
             //link.IconLocation = Environment.CurrentDirectory + ""; 
             link.Save();
@@ -280,7 +280,7 @@ namespace METAbolt
 
                             string cuser = names[0];
                             string textfile = cuser + ".bat";
-                            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\METAbolt", textfile);
+                            string path = Path.Combine(METAbolt.DataFolder.GetDataFolder(), textfile);
                             string scfile = "METAbolt_" + cuser + " BAT.lnk";
                             string sc = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), scfile);
 
