@@ -29,7 +29,6 @@ using System.Text;
 using System.Windows.Forms;
 using SLNetworkComm;
 using OpenMetaverse;
-using System.Deployment.Application;
 using System.Reflection;
 using AIMLbot;
 using System.Data;
