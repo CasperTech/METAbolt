@@ -19,10 +19,12 @@ namespace METAbolt
             for (int i = 0; i < pathParts.Length; i++)
             {
                 if (i > 0)
-                    pathParts[i] = Path.Combine(pathParts[i - 1], pathParts[i]);
+                    pathParts[i] = Path.Combine(pathParts[i - 1]+"/", pathParts[i]);
 
                 if (!Directory.Exists(pathParts[i]))
+                {
                     Directory.CreateDirectory(pathParts[i]);
+                }
             }
         }
 
@@ -30,7 +32,7 @@ namespace METAbolt
         {
             if (Type.GetType("Mono.Runtime") != null)
             {
-                return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\data";
+                return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/data";
             }
             else
             {
