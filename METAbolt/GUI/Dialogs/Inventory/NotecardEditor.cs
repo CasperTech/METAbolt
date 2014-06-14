@@ -442,7 +442,7 @@ namespace METAbolt
             // Create a SaveFileDialog to request a path and file name to save to.
             SaveFileDialog saveFile1 = new SaveFileDialog();
 
-            string logdir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt";
+            string logdir = METAbolt.DataFolder.GetDataFolder();
 
             saveFile1.InitialDirectory = logdir;
 

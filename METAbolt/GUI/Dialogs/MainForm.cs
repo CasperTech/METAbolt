@@ -687,7 +687,7 @@ namespace METAbolt
         {
             if (e.Status != LoginStatus.Success) return;
 
-            client.Settings.ASSET_CACHE_DIR = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt" + System.IO.Path.DirectorySeparatorChar + client.Self.Name + System.IO.Path.DirectorySeparatorChar + "cache";
+            client.Settings.ASSET_CACHE_DIR = METAbolt.DataFolder.GetDataFolder() + System.IO.Path.DirectorySeparatorChar + client.Self.Name + System.IO.Path.DirectorySeparatorChar + "cache";
 
             tlTools.Enabled = tlLogs.Enabled = tsUtilities.Enabled = btnMap.Enabled = btnAvatar.Enabled = tbtnTeleport.Enabled = tbtnObjects.Enabled = true;
             statusTimer.Enabled = true;
@@ -1025,7 +1025,7 @@ namespace METAbolt
             {
                 //Lookin in the AppPath\Extensions\ folder
                 //manager.LoadExtensions(Application.StartupPath.TrimEnd("\\".ToCharArray()) + "\\Extensions\\");
-                manager.LoadExtensions(METAbolt.DataFolder.GetDataFolder() + "\\METAbolt" + "\\Extensions\\");
+                manager.LoadExtensions(METAbolt.DataFolder.GetDataFolder() + "\\Extensions\\");
             }
             catch (Exception ex)
             {

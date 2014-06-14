@@ -750,7 +750,7 @@ namespace METAbolt
             // Create a SaveFileDialog to request a path and file name to save to.
             SaveFileDialog saveFile1 = new SaveFileDialog();
 
-            string logdir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt";
+            string logdir = METAbolt.DataFolder.GetDataFolder();
 
             saveFile1.InitialDirectory = logdir;
 
@@ -1333,7 +1333,7 @@ namespace METAbolt
 
             int ind = openFileDialog.FilterIndex;
             openFileDialog.FilterIndex = 1;
-            openFileDialog.InitialDirectory = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt";
+            openFileDialog.InitialDirectory = METAbolt.DataFolder.GetDataFolder();
 
             OpenFile(openFileDialog.FileName, ind);
         }
