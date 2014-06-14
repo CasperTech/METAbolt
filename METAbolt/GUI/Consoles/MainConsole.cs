@@ -961,7 +961,7 @@ namespace METAbolt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string fullfile = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\Grids.txt"; ;
+            string fullfile = METAbolt.DataFolder.GetDataFolder() + "\\Grids.txt"; ;
 
             try
             {

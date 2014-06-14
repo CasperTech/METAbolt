@@ -70,7 +70,7 @@ namespace METAbolt
         private string afffile = string.Empty;
         private string dicfile = string.Empty;
         private string dic = string.Empty;
-        private string dir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\Spelling\\";
+        private string dir = METAbolt.DataFolder.GetDataFolder() + "\\Spelling\\";
 
 
         internal class ThreadExceptionHandler

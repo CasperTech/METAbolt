@@ -537,7 +537,7 @@ namespace METAbolt
             cbofgroups.Items.Add("...All friends");
             cbofgroups.SelectedIndex = 0;
 
-            string fconffile = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\" + client.Self.AgentID.ToString() + "_fr_groups.ini";
+            string fconffile = METAbolt.DataFolder.GetDataFolder()  + client.Self.AgentID.ToString() + "_fr_groups.ini";
 
             if (!System.IO.File.Exists(fconffile))
             {

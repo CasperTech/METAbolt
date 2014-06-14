@@ -163,7 +163,7 @@ namespace METAbolt
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\Extensions\\");
+            Process.Start("explorer.exe", METAbolt.DataFolder.GetDataFolder() + "\\Extensions\\");
         }
 
         private void button6_Click(object sender, EventArgs e)

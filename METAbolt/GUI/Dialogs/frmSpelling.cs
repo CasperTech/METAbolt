@@ -18,7 +18,7 @@ namespace METAbolt
         private METAboltInstance instance;
         private SLNetCom netcom;
         private Hunspell hunspell = new Hunspell();   //("en_us.aff", "en_us.dic");
-        private string dir = METAbolt.DataFolder.GetDataFolder() + "\\METAbolt\\Spelling\\";
+        private string dir = METAbolt.DataFolder.GetDataFolder() + "\\Spelling\\";
         //private string words = string.Empty;
         private int start = 0;
         private int indexOfSearchText = 0;
