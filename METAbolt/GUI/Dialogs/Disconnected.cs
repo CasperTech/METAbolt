@@ -64,17 +64,15 @@ namespace METAbolt
         private void frmDisconnected_Load(object sender, EventArgs e)
         {
             lblMessage.Text = rea;
-
+            button1.Visible = true;
             if (instance.State.UnReadIMs > 0)
             {
                 label2.Visible = true;
                 label2.Text = "You have " + instance.State.UnReadIMs.ToString(CultureInfo.CurrentCulture) + " unread IMs";
-                button1.Visible = true;
             }
             else
             {
                 label2.Visible = false;
-                button1.Visible = false;
             }
         }
 
