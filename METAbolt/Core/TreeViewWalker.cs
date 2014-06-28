@@ -5,6 +5,9 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using OpenMetaverse;
 
+//Thanks to Josh Smith
+//http://www.codeproject.com/Articles/12952/TreeViewWalker-Simplifying-Recursion
+
 namespace METAbolt
 {
     /// <summary>
