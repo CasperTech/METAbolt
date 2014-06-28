@@ -637,10 +637,13 @@ namespace METAbolt
                 // escaped us all these years.
                 string pwd = txtPassword.Text;
 
-                if (pwd.Length > 16)
+                // Fly-Man-
+                // Officially the Secondlife viewer and website tells us 16 characters
+                // but they stop checking after 15 characters.
+                if (pwd.Length > 15)
                 {
-                    pwd = pwd.Substring(0, 16);
-                    MessageBox.Show("Your password cannot be longer than 16 characters", "METAbolt");
+                    pwd = pwd.Substring(0, 15);
+                    MessageBox.Show("Your password cannot be longer than 15 characters", "METAbolt");
                     txtPassword.Focus();
                     return;
                 }
