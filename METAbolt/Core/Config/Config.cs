@@ -102,7 +102,7 @@ namespace METAbolt
         private bool chairAnnouncerEnabled = false;
         private bool chairAnnouncerChat = true;
         //added by GM on 1-APR-2010
-        private string chairAnnouncerAdvert = "Brought to you by METAbolt and Machin's Machines";
+        private string chairAnnouncerAdvert = "Brought to you by METAbolt"; // removed reference to Machin's Machines, no longer exist
 
         // Incoming command identifier 04 Aug 2009
         private string commandinid = "ned34b54-3765-439j-fds5";
@@ -369,7 +369,7 @@ namespace METAbolt
                 config.chairAnnouncerEnabled = conf.Configs["PlugIn"].GetBoolean("ChairAnnouncerEnabled", false);
                 config.chairAnnouncerChat = conf.Configs["PlugIn"].GetBoolean("ChairAnnouncerChat", true);
                 //added by GM on 1-APR-2010
-                config.chairAnnouncerAdvert = conf.Configs["PlugIn"].GetString("ChairAnnouncerAdvert", "Brought to you by METAbolt and Machin's Machines");
+                config.chairAnnouncerAdvert = conf.Configs["PlugIn"].GetString("ChairAnnouncerAdvert", "Brought to you by METAbolt"); // removed reference to Machin's Machines, no longer exist
                 //throw new Exception("Test");
 
                 try
@@ -384,7 +384,7 @@ namespace METAbolt
             {
                 try
                 {
-                    exp.HelpLink = "http://www.metabolt.net/METAforums/yaf_postsm708_Crash-on-launch.aspx#post708";
+                    exp.HelpLink = "http:www.metabolt.net/METAwiki/index.php?title=Main_Page"; // updated link addy
                     //Logger.Log("ERROR while loading config file'" + filename + "'. Your settings may not have fully loaded. Message: " + exp.Message, Helpers.LogLevel.Error);
                     MessageBox.Show("The was an error when loading your Config (METAbolt.ini) file.\nNot all of your settings may have been loaded.", "METAbolt", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
