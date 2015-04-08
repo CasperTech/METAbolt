@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Prebuild xmlns="prebuild-1.7.xsd" version="1.7">
-  <Solution name="Radegast" activeConfig="Debug" version="$Rev$">
+  <Solution name="METAbolt" activeConfig="Debug" version="$Rev$">
     <Configuration name="Debug">
       <Options>
         <CompilerDefines>TRACE;DEBUG;SMARTHREADPOOL_REF</CompilerDefines>
@@ -36,21 +36,21 @@
 
     <!-- Libraries -->
 
-    <Project name="OpenMetaverseTypes" path="../libopenmetaverse/OpenMetaverseTypes" type="Library" rootNamespace="OpenMetaverse" frameworkVersion="v3_5" filterGroups="libomv|core" >
+    <Project name="OpenMetaverseTypes" path="../openmetaverse/OpenMetaverseTypes" type="Library" rootNamespace="OpenMetaverse" frameworkVersion="v3_5" filterGroups="libomv|core" >
       <Configuration name="Debug">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
       <Configuration name="Release">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
 
-      <ReferencePath>../../libopenmetaverse/bin/</ReferencePath>
+      <ReferencePath>../../openmetaverse/bin/</ReferencePath>
       <Reference name="System"/>
       <Reference name="System.Core"/>
       <Reference name="System.Xml"/>
@@ -59,21 +59,21 @@
       </Files>
     </Project>
 
-    <Project name="OpenMetaverse.StructuredData" path="../libopenmetaverse/OpenMetaverse.StructuredData" type="Library" rootNamespace="OpenMetaverse.StructuredData" frameworkVersion="v3_5" filterGroups="libomv|core">
+    <Project name="OpenMetaverse.StructuredData" path="../openmetaverse/OpenMetaverse.StructuredData" type="Library" rootNamespace="OpenMetaverse.StructuredData" frameworkVersion="v3_5" filterGroups="libomv|core">
       <Configuration name="Debug">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
       <Configuration name="Release">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
 
-      <ReferencePath>../../radegast/bin/</ReferencePath>
+      <ReferencePath>../../METAbolt/bin/</ReferencePath>
       <Reference name="System"/>
       <Reference name="System.Xml"/>
       <Reference name="OpenMetaverseTypes"/>
@@ -82,21 +82,21 @@
       </Files>
     </Project>
 
-    <Project name="OpenMetaverse" path="../libopenmetaverse/OpenMetaverse" type="Library" rootNamespace="OpenMetaverse" frameworkVersion="v3_5" filterGroups="libomv|core">
+    <Project name="OpenMetaverse" path="../openmetaverse/OpenMetaverse" type="Library" rootNamespace="OpenMetaverse" frameworkVersion="v3_5" filterGroups="libomv|core">
       <Configuration name="Debug">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
       <Configuration name="Release">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
 
-      <ReferencePath>../../libopenmetaverse/bin/</ReferencePath>
+      <ReferencePath>../../openmetaverse/bin/</ReferencePath>
       <Reference name="System"/>
       <Reference name="System.Core"/>
       <Reference name="System.Xml"/>
@@ -113,21 +113,21 @@
       </Files>
     </Project>
 
-    <Project name="OpenMetaverse.Rendering.Meshmerizer" path="../libopenmetaverse/OpenMetaverse.Rendering.Meshmerizer" type="Library" rootNamespace="OpenMetaverse.Rendering" frameworkVersion="v3_5" filterGroups="libomv|core">
+    <Project name="OpenMetaverse.Rendering.Meshmerizer" path="../openmetaverse/OpenMetaverse.Rendering.Meshmerizer" type="Library" rootNamespace="OpenMetaverse.Rendering" frameworkVersion="v3_5" filterGroups="libomv|core">
       <Configuration name="Debug">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
       <Configuration name="Release">
         <Options>
-          <OutputPath>../../radegast/bin/</OutputPath>
+          <OutputPath>../../METAbolt/bin/</OutputPath>
           <PlatformTarget>x86</PlatformTarget>
         </Options>
       </Configuration>
 
-      <ReferencePath>../../libopenmetaverse/bin/</ReferencePath>
+      <ReferencePath>../../openmetaverse/bin/</ReferencePath>
       <Reference name="System"/>
       <Reference name="System.Xml"/>
       <Reference name="System.Data"/>
@@ -142,7 +142,7 @@
 
     <!-- Main App -->
 
-    <Project name="Radegast" path="Radegast" type="WinExe" icon="radegast.ico" frameworkVersion="v3_5" filterGroups="core">
+    <Project name="METAbolt" path="METAbolt" type="WinExe" icon="radegast.ico" frameworkVersion="v3_5" filterGroups="core">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../bin/</OutputPath>
@@ -206,7 +206,7 @@
 
     <!-- Plugins -->
 
-    <Project name="Radegast.Plugin.Alice" path="plugins/Radegast.Plugin.Alice" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_alice">
+    <Project name="METAbolt.Plugin.Alice" path="plugins/METAbolt.Plugin.Alice" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_alice">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../bin/</OutputPath>
@@ -233,7 +233,7 @@
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
       <Reference name="System.Windows.Forms" localCopy="false"/>
       <Reference name="AIMLbot" path="assemblies" localCopy="true" />
-      <Reference name="Radegast.exe" localCopy="false" />
+      <Reference name="METAbolt.exe" localCopy="false" />
       <Files>
         <Match path="." pattern="*.cs" recurse="true" subType="Code">
           <Exclude name="AssemblyInfo.cs"/>
@@ -246,7 +246,7 @@
 
 
 
-    <Project name="Radegast.Plugin.Demo" path="plugins/Radegast.Plugin.Demo" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_demo">
+    <Project name="METAbolt.Plugin.Demo" path="plugins/METAbolt.Plugin.Demo" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_demo">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../bin/</OutputPath>
@@ -272,7 +272,7 @@
       <Reference name="OpenMetaverseTypes" localCopy="false"/>
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
       <Reference name="System.Windows.Forms" localCopy="false"/>
-      <Reference name="Radegast" localCopy="false" />
+      <Reference name="METAbolt" localCopy="false" />
       <Files>
         <Match path="." pattern="*.cs" recurse="true" subType="Code">
           <Exclude name="AssemblyInfo.cs"/>
@@ -281,7 +281,7 @@
       </Files>
     </Project>
 
-    <Project name="Radegast.Plugin.SimpleBuilder" path="plugins/Radegast.Plugin.SimpleBuilder" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_simplebuild">
+    <Project name="METAbolt.Plugin.SimpleBuilder" path="plugins/METAbolt.Plugin.SimpleBuilder" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_simplebuild">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../bin/</OutputPath>
@@ -306,7 +306,7 @@
       <Reference name="OpenMetaverseTypes" localCopy="false"/>
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
       <Reference name="System.Windows.Forms" localCopy="false"/>
-      <Reference name="Radegast" localCopy="false" />
+      <Reference name="METAbolt" localCopy="false" />
       <Files>
         <Match path="." pattern="*.cs" recurse="true" subType="Code">
           <Exclude name="AssemblyInfo.cs"/>
@@ -315,7 +315,7 @@
       </Files>
     </Project>
 
-	<!--Project name="Radegast.Plugin.EVOVend" path="plugins/Radegast.Plugin.EVOVend" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_simplebuild">
+	<!--Project name="METAbolt.Plugin.EVOVend" path="plugins/METAbolt.Plugin.EVOVend" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_simplebuild">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../bin/</OutputPath>
@@ -340,7 +340,7 @@
       <Reference name="OpenMetaverseTypes" localCopy="false"/>
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
       <Reference name="System.Windows.Forms" localCopy="false"/>
-      <Reference name="Radegast" localCopy="false" />
+      <Reference name="METAbolt" localCopy="false" />
       <Files>
         <Match path="." pattern="*.cs" recurse="true" subType="Code">
           <Exclude name="AssemblyInfo.cs"/>
@@ -349,7 +349,7 @@
       </Files>
     </Project-->
 
-    <Project name="Radegast.Plugin.Speech" path="plugins/Radegast.Plugin.Speech/RadSpeech" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_core">
+    <Project name="METAbolt.Plugin.Speech" path="plugins/METAbolt.Plugin.Speech/RadSpeech" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_core">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../../bin/</OutputPath>
@@ -368,7 +368,7 @@
       <Reference name="OpenMetaverseTypes" localCopy="false"/>
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
 
-      <Reference name="Radegast.exe" localCopy="false" />
+      <Reference name="METAbolt.exe" localCopy="false" />
       <Reference name="fmodex-dotnet.dll" />
       <Reference name="System" />
       <Reference name="System.Core"/>
@@ -385,7 +385,7 @@
       </Files>
     </Project>
 
-    <Project name="RadSpeechLin" path="plugins/Radegast.Plugin.Speech/RadSpeechLin" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_linux">
+    <Project name="RadSpeechLin" path="plugins/METAbolt.Plugin.Speech/RadSpeechLin" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_linux">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../../bin/</OutputPath>
@@ -404,8 +404,8 @@
       <Reference name="OpenMetaverseTypes" localCopy="false"/>\
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
 
-      <Reference name="Radegast.exe" localCopy="false" />
-      <Reference name="Radegast.Plugin.Speech" />
+      <Reference name="METAbolt.exe" localCopy="false" />
+      <Reference name="METAbolt.Plugin.Speech" />
       <Reference name="System" />
       <Reference name="System.Core"/>
       <Reference name="System.Xml.Linq"/>
@@ -417,7 +417,7 @@
       </Files>
     </Project>
 
-    <Project name="RadSpeechWin" path="plugins/Radegast.Plugin.Speech/RadSpeechWin" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_windows">
+    <Project name="RadSpeechWin" path="plugins/METAbolt.Plugin.Speech/RadSpeechWin" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_windows">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../../bin/</OutputPath>
@@ -436,9 +436,9 @@
       <Reference name="OpenMetaverseTypes" localCopy="false"/>
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
 
-      <Reference name="Radegast.exe" localCopy="false" />
-      <Reference name="Radegast.Plugin.Speech" />
-      <Reference name="Radegast.exe" />
+      <Reference name="METAbolt.exe" localCopy="false" />
+      <Reference name="METAbolt.Plugin.Speech" />
+      <Reference name="METAbolt.exe" />
       <Reference name="System" />
       <Reference name="System.Core"/>
       <Reference name="System.Speech"/>
@@ -452,7 +452,7 @@
     </Project>
 
 
-    <Project name="RadSpeechMac" path="plugins/Radegast.Plugin.Speech/RadSpeechMac" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_mac">
+    <Project name="RadSpeechMac" path="plugins/METAbolt.Plugin.Speech/RadSpeechMac" type="Library" frameworkVersion="v3_5" filterGroups="plugins|plug_speech|plug_speech_mac">
       <Configuration name="Debug">
         <Options>
           <OutputPath>../../../bin/</OutputPath>
@@ -471,12 +471,12 @@
       <Reference name="OpenMetaverseTypes" localCopy="false"/>
       <Reference name="OpenMetaverse.StructuredData" localCopy="false"/>
 
-      <Reference name="Radegast.exe" localCopy="false" />
-      <Reference name="Radegast.Plugin.Speech" />
+      <Reference name="METAbolt.exe" localCopy="false" />
+      <Reference name="METAbolt.Plugin.Speech" />
       <Reference name="Monobjc" path="Assemblies" />
       <Reference name="Monobjc.Cocoa" path="Assemblies" />
 
-      <Reference name="Radegast.exe" />
+      <Reference name="METAbolt.exe" />
       <Reference name="System" />
       <Reference name="System.Core"/>
       <Reference name="System.Speech"/>

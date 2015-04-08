@@ -1,0 +1,3 @@
+[submodule "openmetaverse"]
+	path = openmetaverse
+	url = git@github.com:CasperTech/libopenmetaverse.git
